@@ -31,7 +31,8 @@ Any more detailed information?
 DNSServer.py
 This is a small DNS server (hence the name) that is now called whenever aTV needs to resolve an internet address. To hijack the trailer App, we will intercept and re-route all queries to trailers.apple.com. Every other query will be forwarded to the next, your original DNS.
 WebServer.py
-This script provides the directory content of "assets" to aTV. As there are no files, you won't get far - but take another look at https://github.com/finkdiff/ATVBrowser-script/tree/atvxml, the folder "assets" holds some static content to play with.
+This script provides the directory content of "assets" to aTV. Additionally it will forward ATV's directory requests to PMS and provide a aTV compatible XML back.
+Serving media does not work currently. You can try... but it will most likely crash your aTV, going through a fresh reboot and leave you on the main page.
 
 
 Disclaimer:
