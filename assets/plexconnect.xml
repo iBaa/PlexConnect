@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atv>
+	<body>
+		<viewWithNavigationBar id="PlexConnect_Navigation">
+			<navigation>
+				<navigationItem id="Library"> 
+					<title>Library</title> 
+					<url>http://trailers.apple.com/library/sections/</url> 
+				</navigationItem> 
+				<navigationItem id="Channels"> 
+					<title>Channels</title> 
+				 <url>http://trailers.apple.com/channels/all/</url> 
+				</navigationItem> 
+				<navigationItem id="Music"> 
+					<title>Music</title> 
+					<url>http://trailers.apple.com/music/</url> 
+				</navigationItem> 
+				<navigationItem id="Photos">
+					<url>http://trailers.apple.com/photos/</url> 
+					<title>Photos</title>
+				</navigationItem>
+			</navigation>
+		</viewWithNavigationBar>
+	</body>
+</atv>
+
