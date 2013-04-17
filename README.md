@@ -20,19 +20,25 @@ The basic idea is, to...
 
 How can I use it?
 Just a view steps...
-- store DNSServer.py and WebServer.py in a local directory
-- in both files, adapt the IP addresses to your local setup
-- sudo both scripts
-- point aTV's DNS setting to the computer running the scripts
-- run the trailer App and check out both script's terminal output
+- store the supplied files in a local directory
+- in Settings.py, adapt the IP addresses to your local setup
+- sudo PlexConnet.py
+- point aTV's DNS setting to the computer running the script
+- run the trailer App and check out the script's terminal output
 
 
 Any more detailed information?
-DNSServer.py
+PlexConnect.py - 
+Main script file, invoking the DNSServer and WebServer into seperate processes.
+DNSServer.py - 
 This is a small DNS server (hence the name) that is now called whenever aTV needs to resolve an internet address. To hijack the trailer App, we will intercept and re-route all queries to trailers.apple.com. Every other query will be forwarded to the next, your original DNS.
-WebServer.py
-This script provides the directory content of "assets" to aTV. Additionally it will forward ATV's directory requests to PMS and provide a aTV compatible XML back.
+WebServer.py - 
+This script provides the directory content of "assets" to aTV. Additionally it will forward aTV's directory requests to PMS and provide a aTV compatible XML back.
 Every media (video, thumbnails...) is URL-wise connected to PMS, so aTV directly accesses the Plex database.
+XMLConverter.py
+This script contains the XML adaption from Plex Media Server's response to valid aTV XML files.
+Settings.py - 
+Basic settings collection. This should be the only file to modify.
 
 
 Disclaimer:

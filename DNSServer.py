@@ -60,12 +60,10 @@ import sys
 import socket
 import struct
 
-# todo: get IP addresses (self, higher level DNS, WebServer)
-IP_DNSself = '192.168.178.20'
-IP_DNSmaster = '192.168.178.1'  # router
-IP_WebServer = '192.168.178.20'
- 
+import Settings
+
 Name_intercept = "trailers.apple.com"
+
 
 
 def printDNSPaket(paket):
@@ -86,15 +84,20 @@ def printDNSPaket(paket):
 
 
 
-if __name__ == '__main__':
-  
+KeepRunning = True
+def SetKeepRunning(in_KeepRunning):
+    KeepRunning = in_KeepRunning
+
+
+
+def Run():
     try:
         DNS = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         DNS.bind(('',53))
     except Exception, e:
         print "Failed to create socket on UDP port 53:", e
         sys.exit(1)
-
+    
     try:
         DNS_forward = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         DNS_forward.bind(('',49152))  # 49152 or above
@@ -103,20 +106,20 @@ if __name__ == '__main__':
     except Exception, e:
         print "Failed to create socket on UDP port 49152:", e
         sys.exit(1)
-
+    
     print "***"
     print "DNS Server"
     print "intercept: "+Name_intercept
-    print "forward other to higher level DNS: "+IP_DNSmaster
+    print "forward other to higher level DNS: "+Settings.getIP_DNSmaster()
     print "***"
-  
+   
     try:
-        while 1:
+        while KeepRunning:
             data, addr = DNS.recvfrom(1024)
             print "DNS request received!"
             print "Source: "+str(addr)
             #printDNSPaket(data)
-
+            
             # analyse DNS request
             # todo: how about multi-query messages?
             opcode = (ord(data[2]) >> 3) & 0x0F # Opcode bits (query=0, inversequery=1, status=2)
@@ -129,7 +132,7 @@ if __name__ == '__main__':
                     i+=nlen+1
                 domain=domain[:-1] 
                 print "Domain: "+domain
-                
+            
             paket=''
             if domain==Name_intercept:
                 print "***intercept request"
@@ -142,24 +145,36 @@ if __name__ == '__main__':
                 paket+=data[12:]                                     # original query
                 paket+='\xc0\x0c'                                    # pointer to domain name/original query
                 paket+='\x00\x01\x00\x01\x00\x00\x00\x3c\x00\x04'    # response type, ttl and resource data length -> 4 bytes
-                paket+=str.join('',map(lambda x: chr(int(x)), IP_WebServer.split('.'))) # 4bytes of IP
-                print "-> DNS response: IP_WebServer"
-
+                paket+=str.join('',map(lambda x: chr(int(x)), Settings.getIP_PMS().split('.'))) # 4bytes of IP
+                print "-> DNS response: IP_PMS"
+            
             else:
                 print "***forward request"
-                DNS_forward.sendto(data, (IP_DNSmaster, 53))
+                DNS_forward.sendto(data, (Settings.getIP_DNSmaster(), 53))
                 paket, addr_master = DNS_forward.recvfrom(1024)
                 # todo: double check: ID has to be the same!
                 # todo: spawn thread to wait in parallel
                 print "-> DNS response from higher level"
-
+            
             #print "-> respond back:"
             #printPaket(paket)
-
+            
             # todo: double check: ID has to be the same!
             DNS.sendto(paket, addr)
-
-    except KeyboardInterrupt:
-        print '\nBye!'
+        
+        print "DNSServer: Shutting down."
         DNS.close()
         DNS_forward.close()
+    
+    except KeyboardInterrupt:
+        print "^C received. Shutting down."
+        DNS.close()
+        DNS_forward.close()
+
+
+
+if __name__ == '__main__':
+    try:
+        Run()
+    except KeyboardInterrupt:
+        pass
