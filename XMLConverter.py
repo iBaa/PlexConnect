@@ -289,8 +289,8 @@ def XML_TVSeason(elem, PMS_XML, path):
         #el_moviePoster.set('accessibilityLabel', i.get('title'))
         #el_moviePoster.set('related', 'true')
         
-        el_moviePoster.set('onSelect', "atv.loadURL('"+el_path+"&PlexConnect=Play')")  # todo: 'Select' - show metadata
-        el_moviePoster.set('onPlay', "atv.loadURL('"+el_path+"&PlexConnect=Play')")
+        el_moviePoster.set('onSelect', "atv.loadURL('"+el_path+"')")  # todo: 'Select' - show metadata
+        el_moviePoster.set('onPlay', "atv.loadURL('"+el_path+"')")
         
         el = etree.SubElement(el_moviePoster, 'label')
         el.text = i.get('title')
