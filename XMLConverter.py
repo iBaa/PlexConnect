@@ -259,8 +259,47 @@ def XML_Episode(elem, PMS_XML, path):
         kp = etree.SubElement(keyedPreview, 'image')
         kp.text = 'http://' + Addr_PMS + i.get('thumb')
 
+def XML_TVSeason(elem, PMS_XML, path):
+    PMSroot = PMS_XML.getroot()
+    
+    el = etree.SubElement(elem, "body")
+    el_listWithPreview = etree.SubElement(el, "listWithPreview", {'id':"com.sample.menu-items-with-sections"})
+    ela = etree.SubElement(el_listWithPreview, 'header')
+    ela = etree.SubElement(ela, 'simpleHeader')
+    elb = etree.SubElement(ela, 'title')
+    elb.text = PMSroot.get('title2')
 
-
+    el_menu = etree.SubElement(el_listWithPreview, "menu")
+    el_sections = etree.SubElement(el_menu, "sections")
+    el_menuSection = etree.SubElement(el_sections, "menuSection")
+    el_items = etree.SubElement(el_menuSection, "items")
+    
+    aTV_shelf_item = 1
+    for i in PMSroot.findall('Directory'):
+        key = i.get('key')
+        if key.startswith("/"):
+            el_path = 'http://trailers.apple.com'+key+'/'
+        else:
+            el_path = 'http://trailers.apple.com'+path+key+'/'
+        
+        el_moviePoster=etree.SubElement(el_items, "oneLineMenuItem")
+        el_moviePoster.set('id', 'shelf_item_'+str(aTV_shelf_item))
+        aTV_shelf_item += 1
+        
+        #el_moviePoster.set('accessibilityLabel', i.get('title'))
+        #el_moviePoster.set('related', 'true')
+        
+        el_moviePoster.set('onSelect', "atv.loadURL('"+el_path+"&PlexConnect=Play')")  # todo: 'Select' - show metadata
+        el_moviePoster.set('onPlay', "atv.loadURL('"+el_path+"&PlexConnect=Play')")
+        
+        el = etree.SubElement(el_moviePoster, 'label')
+        el.text = i.get('title')
+        pv = etree.SubElement(el_moviePoster, "preview")
+        cf = etree.SubElement(pv, "crossFadePreview")
+        img = etree.SubElement(cf, 'image')
+        img.text = 'http://' + Addr_PMS + i.get('thumb')  # direct connect to Plex Media Server
+       
+        
 """
 <atv>
   <body>
@@ -322,10 +361,12 @@ def XML_PMS2aTV(address, path):
     el_aTV = etree.Element("atv")
     if PMSroot.get('viewGroup') is None or \
        PMSroot.get('viewGroup')=='secondary' or \
-       PMSroot.get('viewGroup')=='show' or \
-       PMSroot.get('viewGroup')=='season':
-        # directory
+       PMSroot.get('viewGroup')=='show':
         XML_Directory(el_aTV, PMS, path)
+        
+    elif PMSroot.get('viewGroup')=='season':
+        # directory
+        XML_TVSeason(el_aTV, PMS, path)
         
     elif PMSroot.get('viewGroup')=='movie':
         # movie listing
