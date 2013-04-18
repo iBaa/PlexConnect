@@ -168,7 +168,7 @@ def XML_Movie(elem, PMS_XML, path):
     PMSroot = PMS_XML.getroot()
     
     el = etree.SubElement(elem, "body")
-    el_scroller = etree.SubElement(el, "scroller", {'id':"com.sample.movie-shelf"})
+    el_scroller = etree.SubElement(el, "scroller", {'id':"com.sample.movie-grid"})
     ela = etree.SubElement(el_scroller, 'header')
     ela = etree.SubElement(ela, 'simpleHeader')
     ela = etree.SubElement(ela, 'title')
@@ -176,10 +176,8 @@ def XML_Movie(elem, PMS_XML, path):
     
     el_items = etree.SubElement(el_scroller, "items")
     
-    el_shelf = etree.SubElement(el_items, "shelf", {'id':"shelf_ID", 'columnCount':"5"})
-    el_sections = etree.SubElement(el_shelf, "sections")
-    el_shelfSection = etree.SubElement(el_sections, "shelfSection")
-    el_items2 = etree.SubElement(el_shelfSection, "items")
+    el_grid = etree.SubElement(el_items, "grid", {'id':"grid_0", 'columnCount':"7"})
+    el_items2 = etree.SubElement(el_grid, "items")
     
     aTV_shelf_item = 1
     for i in PMSroot.findall('Video'):
@@ -198,7 +196,10 @@ def XML_Movie(elem, PMS_XML, path):
         
         el_moviePoster.set('onSelect', "atv.loadURL('"+el_path+"&PlexConnect=Play')")  # todo: 'Select' - show metadata
         el_moviePoster.set('onPlay', "atv.loadURL('"+el_path+"&PlexConnect=Play')")
-        
+        el = etree.SubElement(el_moviePoster, 'title')
+        el.text = i.get('title')
+        el = etree.SubElement(el_moviePoster, 'subtitle')
+        el.text = i.get('originallyAvailableAt')[:4]
         el = etree.SubElement(el_moviePoster, 'image')
         el.text = 'http://' + Addr_PMS + i.get('thumb')  # direct connect to Plex Media Server
         el = etree.SubElement(el_moviePoster, 'defaultImage')
