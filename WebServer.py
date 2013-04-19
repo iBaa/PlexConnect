@@ -30,6 +30,7 @@ class MyHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         try:
             if self.client_address[0]==Settings.getIP_aTV():
+                
                 # serve "application.js" to aTV
                 # disregard the path - it is different for different iOS versions
                 if self.path.endswith("application.js"):
@@ -44,8 +45,14 @@ class MyHandler(BaseHTTPRequestHandler):
                 
                 # serve "plexconnect.xml" to aTV
                 if self.path.endswith("plexconnect.xml"):
-                    print "serving plexconnet.xml"
-                    f = open(curdir + sep + "assets" + sep + "plexconnect.xml")
+                    firmVersion = self.headers['X-Apple-TV-Version'][:1] # Grab major firmware version number
+                    print "major firmware version: " + firmVersion 
+                    if int(firmVersion) >= 5:
+                        print "serving plexconnet.xml"
+                        f = open(curdir + sep + "assets" + sep + "plexconnect.xml") # Version 5 or above use top menu bar
+                    else:
+                        print "serving plexconnet_oldmenu.xml  -  " + curdir + sep + "assets" + sep + "plexconnect_oldmenu.xml"
+                        f = open(curdir + sep + "assets" + sep + "plexconnect_oldmenu.xml") # Versions 4 or lower don't use top menu bar    
                     self.send_response(200)
                     self.send_header('Content-type', 'text/html')
                     self.end_headers()
@@ -64,7 +71,6 @@ class MyHandler(BaseHTTPRequestHandler):
                     return
                 
                 # serve Plex media
-                print self.headers
                 if self.path.endswith("&PlexConnect=Play"):
                     print "serving media: "+self.path
                     XML = XMLConverter.XML_PlayVideo(self.client_address, self.path[:-len('&PlexConnect=Play')])

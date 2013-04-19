@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atv>	  
+	<body>	
+		<scroller id="com.sample.movie-shelf">	      
+			<items>
+				<shelf id="shelf_1" columnCount="4">	 
+					<sections>
+						<shelfSection>	      
+							<items>
+								<moviePoster id="Library"
+								featured="true"
+								onSelect="atv.loadURL('http://trailers.apple.com/library/sections/');"
+								onPlay="atv.loadURL('http://trailers.apple.com/library/sections/');">
+                                    <title>Library</title>
+									<image>http://trailers.apple.com/assets/1.jpg</image>
+									<defaultImage>resource://16X9.png</defaultImage>
+								</moviePoster>
+
+								<moviePoster id="Channels"
+								featured="true"
+								onSelect="atv.loadURL('http://trailers.apple.com/channels/all/');"
+								onPlay="atv.loadURL('http://trailers.apple.com/channels/all/');">
+                                    <title>Channels</title>
+									<image>http://trailers.apple.com/assets/1.jpg</image>
+									<defaultImage>resource://16X9.png</defaultImage>
+								</moviePoster>
+
+								<moviePoster id="Music"
+								featured="true"
+								onSelect="atv.loadURL('http://trailers.apple.com/music/');"
+								onPlay="atv.loadURL('http://trailers.apple.com/music');">
+                                    <title>Music</title>
+									<image>http://trailers.apple.com/assets/1.jpg</image>
+									<defaultImage>resource://16X9.png</defaultImage>
+								</moviePoster>
+                                
+								<moviePoster id="Photos"
+								featured="true"
+								onSelect="atv.loadURL('http://trailers.apple.com/photos/');"
+								onPlay="atv.loadURL('http://trailers.apple.com/photos');">
+                                    <title>Photos</title>
+									<image>http://trailers.apple.com/assets/1.jpg</image>
+									<defaultImage>resource://16X9.png</defaultImage>
+								</moviePoster>
+							</items>	    
+						</shelfSection>	  
+					</sections>
+				</shelf>
+			</items>	    
+		</scroller>	 
+	</body>	
+</atv>
