@@ -199,7 +199,7 @@ def XML_Movie(elem, PMS_XML, path):
         el = etree.SubElement(el_moviePoster, 'title')
         el.text = i.get('title')
         el = etree.SubElement(el_moviePoster, 'subtitle')
-        el.text = i.get('originallyAvailableAt')[:4]
+        el.text = i.get('year')
         el = etree.SubElement(el_moviePoster, 'image')
         el.text = 'http://' + Addr_PMS + i.get('thumb')  # direct connect to Plex Media Server
         el = etree.SubElement(el_moviePoster, 'defaultImage')
