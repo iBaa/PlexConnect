@@ -46,7 +46,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 if self.path.endswith("plexconnect.xml"):
                     firmVersion = self.headers['X-Apple-TV-Version']  # firmware version number
                     print "aTV firmware: " + firmVersion 
-                    if eval(firmVersion) >= 5.1:
+                    if eval(firmVersion[:3]) >= 5.1:
                         print "serving plexconnect.xml"
                         f = open(curdir + sep + "assets" + sep + "plexconnect.xml") # Version 5 or above use top menu bar
                     else:
