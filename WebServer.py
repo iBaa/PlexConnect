@@ -44,16 +44,27 @@ class MyHandler(BaseHTTPRequestHandler):
                 
                 # serve "plexconnect.xml" to aTV
                 if self.path.endswith("plexconnect.xml"):
-                    firmVersion = self.headers['X-Apple-TV-Version'][:1] # Grab major firmware version number
-                    print "major firmware version: " + firmVersion 
-                    if int(firmVersion) >= 5:
-                        print "serving plexconnet.xml"
+                    firmVersion = self.headers['X-Apple-TV-Version']  # firmware version number
+                    print "aTV firmware: " + firmVersion 
+                    if eval(firmVersion) >= 5.1:
+                        print "serving plexconnect.xml"
                         f = open(curdir + sep + "assets" + sep + "plexconnect.xml") # Version 5 or above use top menu bar
                     else:
-                        print "serving plexconnet_oldmenu.xml  -  " + curdir + sep + "assets" + sep + "plexconnect_oldmenu.xml"
+                        print "serving plexconnect_oldmenu.xml  -  " + curdir + sep + "assets" + sep + "plexconnect_oldmenu.xml"
                         f = open(curdir + sep + "assets" + sep + "plexconnect_oldmenu.xml") # Versions 4 or lower don't use top menu bar    
                     self.send_response(200)
                     self.send_header('Content-type', 'text/html')
+                    self.end_headers()
+                    self.wfile.write(f.read())
+                    f.close()
+                    return
+                
+                # serve "*.jpg" - thumbnails for old-style mainpage
+                if self.path.endswith(".jpg"):
+                    print "serving *.jpg: ", self.path
+                    f = open(curdir + sep + "assets" + self.path)
+                    self.send_response(200)
+                    self.send_header('Content-type', 'image/jpeg')
                     self.end_headers()
                     self.wfile.write(f.read())
                     f.close()

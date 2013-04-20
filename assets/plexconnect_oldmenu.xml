@@ -13,7 +13,7 @@
 								onSelect="atv.loadURL('http://trailers.apple.com/library/sections/');"
 								onPlay="atv.loadURL('http://trailers.apple.com/library/sections/');">
                                     <title>Library</title>
-									<image>http://trailers.apple.com/assets/1.jpg</image>
+									<image>http://trailers.apple.com/thumbnails/Library.jpg</image>
 									<defaultImage>resource://16X9.png</defaultImage>
 								</moviePoster>
 
@@ -22,7 +22,7 @@
 								onSelect="atv.loadURL('http://trailers.apple.com/channels/all/');"
 								onPlay="atv.loadURL('http://trailers.apple.com/channels/all/');">
                                     <title>Channels</title>
-									<image>http://trailers.apple.com/assets/1.jpg</image>
+									<image>http://trailers.apple.com/thumbnails/Channels.jpg</image>
 									<defaultImage>resource://16X9.png</defaultImage>
 								</moviePoster>
 
@@ -31,7 +31,7 @@
 								onSelect="atv.loadURL('http://trailers.apple.com/music/');"
 								onPlay="atv.loadURL('http://trailers.apple.com/music');">
                                     <title>Music</title>
-									<image>http://trailers.apple.com/assets/1.jpg</image>
+									<image>http://trailers.apple.com/thumbnails/Music.jpg</image>
 									<defaultImage>resource://16X9.png</defaultImage>
 								</moviePoster>
                                 
@@ -40,7 +40,7 @@
 								onSelect="atv.loadURL('http://trailers.apple.com/photos/');"
 								onPlay="atv.loadURL('http://trailers.apple.com/photos');">
                                     <title>Photos</title>
-									<image>http://trailers.apple.com/assets/1.jpg</image>
+									<image>http://trailers.apple.com/thumbnails/Photos.jpg</image>
 									<defaultImage>resource://16X9.png</defaultImage>
 								</moviePoster>
 							</items>	    
