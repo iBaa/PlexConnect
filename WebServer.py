@@ -9,11 +9,10 @@ http://www.linuxjournal.com/content/tech-tip-really-simple-http-server-python
 
 
 import sys
-#import inspect 
 import string, cgi, time
 from os import curdir, sep
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
-#import httplib, socket
+import Queue  # inter process communication
 
 try:
     import xml.etree.cElementTree as etree
@@ -90,37 +89,40 @@ class MyHandler(BaseHTTPRequestHandler):
 
 
 
-KeepRunning = True
-def SetKeepRunning(in_KeepRunning):
-    KeepRunning = in_KeepRunning
-
-
-
-def Run():
+def Run(cmdQueue):
     #Protocol     = "HTTP/1.0"
     # todo: IP, port
-    global KeepRunning
     try:
         server = HTTPServer(('',80), MyHandler)
-        
+        server.timeout = 1
         sa = server.socket.getsockname()
+        
         print "***"
         print "WebServer: Serving HTTP on", sa[0], "port", sa[1], "..."
         print "***"
-        while KeepRunning:
-            server.handle_request()
-            
-        print "WebServer: Shutting down."
-        server.socket.close()
         
+        while True:
+            # check command
+            try:
+                # check command
+                cmd = cmdQueue.get_nowait()
+                if cmd=='shutdown':
+                    break
+            
+            except Queue.Empty:
+                pass
+            
+            # do your work (with timeout)
+            server.handle_request()
+    
     except KeyboardInterrupt:
-        print "^C received. Shutting down."
+        print "^C received."
+    finally:
+        print "WebServer: Shutting down."
         server.socket.close()
 
 
 
 if __name__=="__main__":
-    try:
-        Run()
-    except KeyboardInterrupt:
-        pass
+    cmd = Queue.Queue()
+    Run(cmd)

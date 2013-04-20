@@ -59,6 +59,7 @@ Source: http://doc-tcpip.org/Dns/named.dns.message.html
 import sys
 import socket
 import struct
+import Queue  # inter process communication
 
 import Settings
 
@@ -84,15 +85,10 @@ def printDNSPaket(paket):
 
 
 
-KeepRunning = True
-def SetKeepRunning(in_KeepRunning):
-    KeepRunning = in_KeepRunning
-
-
-
-def Run():
+def Run(cmdQueue):
     try:
         DNS = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        DNS.settimeout(5.0)
         DNS.bind(('',53))
     except Exception, e:
         print "Failed to create socket on UDP port 53:", e
@@ -112,69 +108,79 @@ def Run():
     print "intercept: "+Name_intercept
     print "forward other to higher level DNS: "+Settings.getIP_DNSmaster()
     print "***"
-   
+    
     try:
-        while KeepRunning:
-            data, addr = DNS.recvfrom(1024)
-            print "DNS request received!"
-            print "Source: "+str(addr)
-            #printDNSPaket(data)
+        while True:
+            # check command
+            try:
+                cmd = cmdQueue.get_nowait()
+                if cmd=='shutdown':
+                    break
             
-            # analyse DNS request
-            # todo: how about multi-query messages?
-            opcode = (ord(data[2]) >> 3) & 0x0F # Opcode bits (query=0, inversequery=1, status=2)
-            if opcode == 0:                     # Standard query
-                domain=''
-                i=12
-                while data[i]!='\0':
-                    nlen = ord(data[i])
-                    domain+=data[i+1:i+nlen+1]+'.'
-                    i+=nlen+1
-                domain=domain[:-1] 
-                print "Domain: "+domain
+            except Queue.Empty:
+                pass
             
-            paket=''
-            if domain==Name_intercept:
-                print "***intercept request"
-                paket+=data[:2]         # 0:1 - ID
-                paket+="\x81\x80"       # 2:3 - flags
-                paket+=data[4:6]        # 4:5 - QDCOUNT - should be 1 for this code
-                paket+=data[4:6]        # 6:7 - ANCOUNT
-                paket+='\x00\x00'       # 8:9 - NSCOUNT
-                paket+='\x00\x00'       # 10:11 - ARCOUNT
-                paket+=data[12:]                                     # original query
-                paket+='\xc0\x0c'                                    # pointer to domain name/original query
-                paket+='\x00\x01\x00\x01\x00\x00\x00\x3c\x00\x04'    # response type, ttl and resource data length -> 4 bytes
-                paket+=str.join('',map(lambda x: chr(int(x)), Settings.getIP_PMS().split('.'))) # 4bytes of IP
-                print "-> DNS response: IP_PMS"
-            
-            else:
-                print "***forward request"
-                DNS_forward.sendto(data, (Settings.getIP_DNSmaster(), 53))
-                paket, addr_master = DNS_forward.recvfrom(1024)
+            # do your work (with timeout)
+            try:
+                data, addr = DNS.recvfrom(1024)
+                print "DNS request received!"
+                print "Source: "+str(addr)
+                #printDNSPaket(data)
+                
+                # analyse DNS request
+                # todo: how about multi-query messages?
+                opcode = (ord(data[2]) >> 3) & 0x0F # Opcode bits (query=0, inversequery=1, status=2)
+                if opcode == 0:                     # Standard query
+                    domain=''
+                    i=12
+                    while data[i]!='\0':
+                        nlen = ord(data[i])
+                        domain+=data[i+1:i+nlen+1]+'.'
+                        i+=nlen+1
+                    domain=domain[:-1] 
+                    print "Domain: "+domain
+                
+                paket=''
+                if domain==Name_intercept:
+                    print "***intercept request"
+                    paket+=data[:2]         # 0:1 - ID
+                    paket+="\x81\x80"       # 2:3 - flags
+                    paket+=data[4:6]        # 4:5 - QDCOUNT - should be 1 for this code
+                    paket+=data[4:6]        # 6:7 - ANCOUNT
+                    paket+='\x00\x00'       # 8:9 - NSCOUNT
+                    paket+='\x00\x00'       # 10:11 - ARCOUNT
+                    paket+=data[12:]                                     # original query
+                    paket+='\xc0\x0c'                                    # pointer to domain name/original query
+                    paket+='\x00\x01\x00\x01\x00\x00\x00\x3c\x00\x04'    # response type, ttl and resource data length -> 4 bytes
+                    paket+=str.join('',map(lambda x: chr(int(x)), Settings.getIP_PMS().split('.'))) # 4bytes of IP
+                    print "-> DNS response: IP_PMS"
+                
+                else:
+                    print "***forward request"
+                    DNS_forward.sendto(data, (Settings.getIP_DNSmaster(), 53))
+                    paket, addr_master = DNS_forward.recvfrom(1024)
+                    # todo: double check: ID has to be the same!
+                    # todo: spawn thread to wait in parallel
+                    print "-> DNS response from higher level"
+                
+                #print "-> respond back:"
+                #printPaket(paket)
+                
                 # todo: double check: ID has to be the same!
-                # todo: spawn thread to wait in parallel
-                print "-> DNS response from higher level"
+                DNS.sendto(paket, addr)
             
-            #print "-> respond back:"
-            #printPaket(paket)
-            
-            # todo: double check: ID has to be the same!
-            DNS.sendto(paket, addr)
-        
-        print "DNSServer: Shutting down."
-        DNS.close()
-        DNS_forward.close()
+            except socket.timeout:
+                pass
     
     except KeyboardInterrupt:
-        print "^C received. Shutting down."
+        print "^C received."
+    finally:
+        print "DNSServer: Shutting down."
         DNS.close()
         DNS_forward.close()
 
 
 
 if __name__ == '__main__':
-    try:
-        Run()
-    except KeyboardInterrupt:
-        pass
+   cmd = Queue.Queue()
+   Run(cmd)
