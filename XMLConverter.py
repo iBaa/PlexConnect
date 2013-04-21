@@ -382,7 +382,7 @@ def XML_PlayVideo(address, path):
     el = etree.SubElement(el_file, "description")
     el.text = PMSroot.find('Video').get('summary')
     el = etree.SubElement(el_file, "image")
-    el.text = 'http://' + Addr_PMS + PMSroot.find('Video').get('art')
+    el.text = 'http://' + Addr_PMS + PMSroot.find('Video').get('thumb')
     
     aTVTree = etree.ElementTree(el_aTV)    
     
