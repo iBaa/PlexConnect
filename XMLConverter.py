@@ -152,10 +152,15 @@ def XML_Directory(elem, PMS_XML, path):
     PMS_dirs = PMSroot.findall('Directory')
     for i in PMS_dirs:
         key = i.get('key')
+        modifier = ""
+        
+        if key == "actor":
+            modifier = "&PlexConnect=ActorView"
+            
         if key.startswith("/"):
-            el_path = 'http://trailers.apple.com'+key+'/'
+            el_path = 'http://trailers.apple.com'+key+'/'+modifier
         else:
-            el_path = 'http://trailers.apple.com'+path+key+'/'
+            el_path = 'http://trailers.apple.com'+path+key+'/'+modifier
         
         el__ = etree.SubElement(eld, 'oneLineMenuItem', {'id':i.get('key')})
         el__.set('onSelect', "atv.loadURL('"+el_path+"')")
@@ -304,7 +309,47 @@ def XML_TVSeason(elem, PMS_XML, path):
         cf = etree.SubElement(pv, "crossFadePreview")
         img = etree.SubElement(cf, 'image')
         img.text = 'http://' + Addr_PMS + i.get('thumb')  # direct connect to Plex Media Server
-       
+
+def XML_ActorView(elem, PMS_XML, path):
+    PMSroot = PMS_XML.getroot()
+
+    el = etree.SubElement(elem, "body")
+    el_listWithPreview = etree.SubElement(el, "listWithPreview", {'id':"com.sample.menu-items-with-sections"})
+    ela = etree.SubElement(el_listWithPreview, 'header')
+    ela = etree.SubElement(ela, 'simpleHeader')
+    elb = etree.SubElement(ela, 'title')
+    elb.text = PMSroot.get('title2')
+
+    el_menu = etree.SubElement(el_listWithPreview, "menu")
+    el_sections = etree.SubElement(el_menu, "sections")
+    el_menuSection = etree.SubElement(el_sections, "menuSection")
+    el_items = etree.SubElement(el_menuSection, "items")
+    
+    aTV_shelf_item = 1
+    for i in PMSroot.findall('Directory'):
+        key = i.get('key')
+        if key.startswith("/"):
+            el_path = 'http://trailers.apple.com'+key+'/'
+        else:
+            el_path = 'http://trailers.apple.com'+path+key+'/'
+        
+        el_moviePoster=etree.SubElement(el_items, "oneLineMenuItem")
+        el_moviePoster.set('id', 'shelf_item_'+str(aTV_shelf_item))
+        aTV_shelf_item += 1
+        
+        #el_moviePoster.set('accessibilityLabel', i.get('title'))
+        #el_moviePoster.set('related', 'true')
+        
+        el_moviePoster.set('onSelect', "atv.loadURL('"+el_path+"')")  # todo: 'Select' - show metadata
+        el_moviePoster.set('onPlay', "atv.loadURL('"+el_path+"')")
+        
+        el = etree.SubElement(el_moviePoster, 'label')
+        el.text = i.get('title')
+        pv = etree.SubElement(el_moviePoster, "preview")
+        cf = etree.SubElement(pv, "crossFadePreview")
+        img = etree.SubElement(cf, 'image')
+        img.text = i.get('thumb')  # direct connect to Plex Media Server
+        
 def XML_TVShow_ListView(elem, PMS_XML, path):
     PMSroot = PMS_XML.getroot()
     
@@ -400,11 +445,19 @@ def XML_PlayVideo(address, path):
 
 
 def XML_PMS2aTV(address, path):
-    PMS = XML_ReadFromURL(address, path)
+    if path.endswith('ActorView'):
+        PMS = XML_ReadFromURL(address, path[:-len('&PlexConnect=ActorView')])
+    else:
+        PMS = XML_ReadFromURL(address, path)
+        
     PMSroot = PMS.getroot()
     
     el_aTV = etree.Element("atv")
-    if PMSroot.get('viewGroup') is None or \
+    
+    if path.endswith("ActorView"):
+        XML_ActorView(el_aTV, PMS, path[:-len('&PlexConnect=ActorView')])
+        
+    elif PMSroot.get('viewGroup') is None or \
        PMSroot.get('viewGroup')=='secondary':
         XML_Directory(el_aTV, PMS, path)
        
