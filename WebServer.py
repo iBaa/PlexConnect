@@ -73,7 +73,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     return
                 
                 # serve Plex directory structure - make sure to keep the trailing "/"                
-                if self.path.endswith("/") | self.path.endswith("ActorView"):
+                if self.path.endswith("/"):
                     dprint(__name__, 1, "serving .xml: "+self.path)
                     XML = XMLConverter.XML_PMS2aTV(self.client_address, self.path)
                     self.send_response(200)
@@ -91,7 +91,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     self.end_headers()
                     self.wfile.write(XML)
                     return
-              
+                
                 # unexpected request
                 self.send_error(403,"Access denied: %s" % self.path)
             
