@@ -20,6 +20,7 @@ except ImportError:
     import xml.etree.ElementTree as etree
 
 import Settings
+from Debug import *  # dprint()
 import XMLConverter  # XML_PMS2aTV, XML_PlayVideo
 
 
@@ -33,7 +34,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 # serve "application.js" to aTV
                 # disregard the path - it is different for different iOS versions
                 if self.path.endswith("application.js"):
-                    print "serving application.js"
+                    dprint(__name__, 1, "serving application.js")
                     f = open(curdir + sep + "assets" + sep + "application.js")
                     self.send_response(200)
                     self.send_header('Content-type', 'text/html')
@@ -44,16 +45,15 @@ class MyHandler(BaseHTTPRequestHandler):
                 
                 # serve "plexconnect.xml" to aTV
                 if self.path.endswith("plexconnect.xml"):
-                    fVer = self.headers['X-Apple-TV-Version'].split(".", 2) # firmware version number
+                    fVer = self.headers['X-Apple-TV-Version'].split(".", 2)  # firmware version number
                     firmVersion = fVer[0] + "." + fVer[1]
-                    print "aTV firmware: " + firmVersion                   
-                                        
+                    dprint(__name__, 1, "aTV firmware: " + firmVersion )
                     if eval(firmVersion) >= 5.1:
-                        print "serving plexconnect.xml"
-                        f = open(curdir + sep + "assets" + sep + "plexconnect.xml") # Version 5 or above use top menu bar
+                        dprint(__name__, 1, "serving plexconnect.xml")
+                        f = open(curdir + sep + "assets" + sep + "plexconnect.xml")  # Version 5.1 or above use top menu bar
                     else:
-                        print "serving plexconnect_oldmenu.xml  -  " + curdir + sep + "assets" + sep + "plexconnect_oldmenu.xml"
-                        f = open(curdir + sep + "assets" + sep + "plexconnect_oldmenu.xml") # Versions 4 or lower don't use top menu bar    
+                        dprint(__name__, 1, "serving plexconnect_oldmenu.xml")
+                        f = open(curdir + sep + "assets" + sep + "plexconnect_oldmenu.xml")  # Versions 5.0.2 or lower don't use top menu bar
                     self.send_response(200)
                     self.send_header('Content-type', 'text/html')
                     self.end_headers()
@@ -63,7 +63,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 
                 # serve "*.jpg" - thumbnails for old-style mainpage
                 if self.path.endswith(".jpg"):
-                    print "serving *.jpg: ", self.path
+                    dprint(__name__, 1, "serving *.jpg: "+self.path)
                     f = open(curdir + sep + "assets" + self.path)
                     self.send_response(200)
                     self.send_header('Content-type', 'image/jpeg')
@@ -74,7 +74,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 
                 # serve Plex directory structure - make sure to keep the trailing "/"                
                 if self.path.endswith("/"):
-                    print "serving .xml: "+self.path
+                    dprint(__name__, 1, "serving .xml: "+self.path)
                     XML = XMLConverter.XML_PMS2aTV(self.client_address, self.path)
                     self.send_response(200)
                     self.send_header('Content-type', 'text/html')
@@ -84,7 +84,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 
                 # serve Plex media
                 if self.path.endswith("&PlexConnect=Play"):
-                    print "serving media: "+self.path
+                    dprint(__name__, 1, "serving media: "+self.path)
                     XML = XMLConverter.XML_PlayVideo(self.client_address, self.path[:-len('&PlexConnect=Play')])
                     self.send_response(200)
                     self.send_header('Content-type', 'text/html')
@@ -110,9 +110,9 @@ def Run(cmdQueue):
         server.timeout = 1
         sa = server.socket.getsockname()
         
-        print "***"
-        print "WebServer: Serving HTTP on", sa[0], "port", sa[1], "..."
-        print "***"
+        dprint(__name__, 0, "***")
+        dprint(__name__, 0, "WebServer: Serving HTTP on {} port {}.", sa[0], sa[1])
+        dprint(__name__, 0, "***")
         
         while True:
             # check command
@@ -129,9 +129,9 @@ def Run(cmdQueue):
             server.handle_request()
     
     except KeyboardInterrupt:
-        print "^C received."
+        dprint(__name__, 0,"^C received.")
     finally:
-        print "WebServer: Shutting down."
+        dprint(__name__, 0, "Shutting down.")
         server.socket.close()
 
 

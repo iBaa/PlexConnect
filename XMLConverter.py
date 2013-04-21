@@ -28,6 +28,7 @@ except ImportError:
     import xml.etree.ElementTree as etree
 
 import Settings
+from Debug import *  # dprint()
 
 
 
@@ -58,6 +59,10 @@ def XML_prettyprint(XML):
     indent(XML.getroot())
     XML.write(sys.stdout)
 
+def XML_prettystring(XML):
+    indent(XML.getroot())
+    return(etree.tostring(XML.getroot()))
+
 
 
 """
@@ -78,7 +83,7 @@ def GetURL(address, path):
         
         elif int(data.status) >= 400:
             error = "HTTP response error: " + str(data.status) + " " + str(data.reason)
-            print error
+            dprint(__name__, 0, error)
             return False
         
         else:      
@@ -86,12 +91,12 @@ def GetURL(address, path):
             return link
     
     except socket.gaierror :
-        error = 'Unable to lookup host: ' + Addr_PMS + "\nCheck host name is correct"
-        print error
+        error = "Unable to lookup host: " + Addr_PMS + "\nCheck host name is correct"
+        dprint(__name__, 0, error)
         return False
     except socket.error, msg : 
-        error="Unable to connect to " + Addr_PMS +"\nReason: " + str(msg)
-        print error
+        error = "Unable to connect to " + Addr_PMS + "\nReason: " + str(msg)
+        dprint(__name__, 0, error)
         return False
 
 
@@ -112,9 +117,9 @@ def XML_ReadFromURL(address, path):
     # XML root to ElementTree
     XML = etree.ElementTree(XMLroot)
     
-    print("====== received XML-PMS ======")
-    XML_prettyprint(XML)
-    print("====== XML-PMS finished ======")
+    dprint(__name__, 1, "====== received XML-PMS ======")
+    dprint(__name__, 1, XML_prettystring(XML))
+    dprint(__name__, 1, "====== XML-PMS finished ======")
     
     return XML
 
@@ -386,9 +391,9 @@ def XML_PlayVideo(address, path):
     
     aTVTree = etree.ElementTree(el_aTV)    
     
-    print "====== generated aTV-XML (VIDEO) ======"
-    XML_prettyprint(aTVTree)
-    print "====== aTV-XML finished ======"
+    dprint(__name__, 1, "====== generated aTV-XML (VIDEO) ======")
+    dprint(__name__, 1, XML_prettystring(aTVTree))
+    dprint(__name__, 1, "====== aTV-XML finished ======")
     
     return etree.tostring(el_aTV)
 
@@ -423,9 +428,9 @@ def XML_PMS2aTV(address, path):
     
     aTVTree = etree.ElementTree(el_aTV)    
     
-    print "====== generated aTV-XML ======"
-    XML_prettyprint(aTVTree)
-    print "====== aTV-XML finished ======"
+    dprint(__name__, 1, "====== generated aTV-XML ======")
+    dprint(__name__, 1, XML_prettystring(aTVTree))
+    dprint(__name__, 1, "====== aTV-XML finished ======")
     
     return etree.tostring(el_aTV)
 

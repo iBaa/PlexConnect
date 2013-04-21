@@ -62,6 +62,7 @@ import struct
 import Queue  # inter process communication
 
 import Settings
+from Debug import *  # dprint()
 
 Name_intercept = "trailers.apple.com"
 
@@ -91,7 +92,7 @@ def Run(cmdQueue):
         DNS.settimeout(5.0)
         DNS.bind(('',53))
     except Exception, e:
-        print "Failed to create socket on UDP port 53:", e
+        dprint(__name__, 0, "Failed to create socket on UDP port 53: {}", e)
         sys.exit(1)
     
     try:
@@ -100,14 +101,14 @@ def Run(cmdQueue):
         # todo: where to get free port from?
         # todo: do we need bind?
     except Exception, e:
-        print "Failed to create socket on UDP port 49152:", e
+        dprint(__name__, 0, "Failed to create socket on UDP port 49152: {}", e)
         sys.exit(1)
     
-    print "***"
-    print "DNS Server"
-    print "intercept: "+Name_intercept
-    print "forward other to higher level DNS: "+Settings.getIP_DNSmaster()
-    print "***"
+    dprint(__name__, 0, "***")
+    dprint(__name__, 0, "Starting up.")
+    dprint(__name__, 1, "intercept: "+Name_intercept)
+    dprint(__name__, 1, "forward other to higher level DNS: "+Settings.getIP_DNSmaster())
+    dprint(__name__, 0, "***")
     
     try:
         while True:
@@ -123,8 +124,8 @@ def Run(cmdQueue):
             # do your work (with timeout)
             try:
                 data, addr = DNS.recvfrom(1024)
-                print "DNS request received!"
-                print "Source: "+str(addr)
+                dprint(__name__, 1, "DNS request received!")
+                dprint(__name__, 1, "Source: "+str(addr))
                 #printDNSPaket(data)
                 
                 # analyse DNS request
@@ -138,11 +139,11 @@ def Run(cmdQueue):
                         domain+=data[i+1:i+nlen+1]+'.'
                         i+=nlen+1
                     domain=domain[:-1] 
-                    print "Domain: "+domain
+                    dprint(__name__, 1, "Domain: "+domain)
                 
                 paket=''
                 if domain==Name_intercept:
-                    print "***intercept request"
+                    dprint(__name__, 1, "***intercept request")
                     paket+=data[:2]         # 0:1 - ID
                     paket+="\x81\x80"       # 2:3 - flags
                     paket+=data[4:6]        # 4:5 - QDCOUNT - should be 1 for this code
@@ -153,15 +154,15 @@ def Run(cmdQueue):
                     paket+='\xc0\x0c'                                    # pointer to domain name/original query
                     paket+='\x00\x01\x00\x01\x00\x00\x00\x3c\x00\x04'    # response type, ttl and resource data length -> 4 bytes
                     paket+=str.join('',map(lambda x: chr(int(x)), Settings.getIP_PMS().split('.'))) # 4bytes of IP
-                    print "-> DNS response: IP_PMS"
+                    dprint(__name__, 1, "-> DNS response: IP_PMS")
                 
                 else:
-                    print "***forward request"
+                    dprint(__name__, 1, "***forward request")
                     DNS_forward.sendto(data, (Settings.getIP_DNSmaster(), 53))
                     paket, addr_master = DNS_forward.recvfrom(1024)
                     # todo: double check: ID has to be the same!
                     # todo: spawn thread to wait in parallel
-                    print "-> DNS response from higher level"
+                    dprint(__name__, 1, "-> DNS response from higher level")
                 
                 #print "-> respond back:"
                 #printPaket(paket)
@@ -173,9 +174,9 @@ def Run(cmdQueue):
                 pass
     
     except KeyboardInterrupt:
-        print "^C received."
+        dprint(__name__, 0, "^C received.")
     finally:
-        print "DNSServer: Shutting down."
+        dprint(__name__, 0, "Shutting down.")
         DNS.close()
         DNS_forward.close()
 
