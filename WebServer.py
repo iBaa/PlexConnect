@@ -64,7 +64,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 # serve "*.jpg" - thumbnails for old-style mainpage
                 if self.path.endswith(".jpg"):
                     dprint(__name__, 1, "serving *.jpg: "+self.path)
-                    f = open(curdir + sep + "assets" + self.path)
+                    f = open(curdir + sep + "assets" + self.path, "rb")
                     self.send_response(200)
                     self.send_header('Content-type', 'image/jpeg')
                     self.end_headers()
