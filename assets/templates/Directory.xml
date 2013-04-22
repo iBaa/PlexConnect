@@ -1,0 +1,31 @@
+<atv>
+  <body>
+    <listScrollerSplit id="com.sample.list-scroller-split">
+      <header>
+        <simpleHeader>
+          <title>Plex Library</title>
+        </simpleHeader>
+      </header>
+      <menu>
+        <sections>
+          <menuSection>
+            <header>
+              <textDivider alignment="left">
+                <title>Selection:</title>
+              </textDivider>
+            </header>
+            <items>
+              <oneLineMenuItem id="{{VAL(attrib:key)}}" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(attrib:key)}}')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(attrib:key)}}')">
+                {{COPY(tag:Directory)}}
+                <label>{{VAL(attrib:title)}}</label>
+                <preview>
+                  <link>PREVIEW_URL</link>
+                </preview>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </listScrollerSplit>
+  </body>
+</atv>

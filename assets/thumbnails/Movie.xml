@@ -1,0 +1,24 @@
+<atv>
+  <body>
+    <scroller id="com.sample.movie-grid">
+      <header>
+        <simpleHeader>
+          <title>{{VAL(attrib:title1)}}</title>
+        </simpleHeader>
+      </header>
+      <items>
+        <grid columnCount="7" id="grid_0">
+          <items>
+            <moviePoster id="{{VAL(attrib:key)}}" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(attrib:key)}}&amp;PlexConnect=Play')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(attrib:key)}}&amp;PlexConnect=Play')">
+              {{COPY(tag:Video)}}
+              <title>{{VAL(attrib:title)}}</title>
+              <subtitle>{{VAL(attrib:year)}}</subtitle>
+              <image>http://192.168.178.20:32400{{ADDPATH(attrib:thumb)}}</image>
+              <defaultImage>resource://16X9.png</defaultImage>
+            </moviePoster>
+          </items>
+        </grid>
+      </items>
+    </scroller>
+  </body>
+</atv>
