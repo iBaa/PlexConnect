@@ -9,11 +9,13 @@
       <items>
         <grid columnCount="7" id="grid_0">
           <items>
-            <moviePoster id="{{VAL(attrib:key)}}" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(attrib:key)}}&amp;PlexConnect=Play')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(attrib:key)}}&amp;PlexConnect=Play')">
+            <moviePoster id="{{VAL(attrib:key)}}" 
+                             onPlay="atv.sessionStorage['ratingKey']='{{VAL(attrib:ratingKey)}}';atv.sessionStorage['duration']='{{VAL(attrib:duration)}}';atv.loadURL('http://trailers.apple.com{{ADDPATH(attrib:key)}}&amp;PlexConnect=Play')"
+                           onSelect="atv.sessionStorage['ratingKey']='{{VAL(attrib:ratingKey)}}';atv.sessionStorage['duration']='{{VAL(attrib:duration)}}';atv.loadURL('http://trailers.apple.com{{ADDPATH(attrib:key)}}&amp;PlexConnect=Play')">
               {{COPY(tag:Video)}}
               <title>{{VAL(attrib:title)}}</title>
               <subtitle>{{VAL(attrib:year)}}</subtitle>
-              <image>http://192.168.178.20:32400{{ADDPATH(attrib:thumb)}}</image>
+              <image>http://{{ADDR_PMS}}{{ADDPATH(attrib:thumb)}}</image>
               <defaultImage>resource://16X9.png</defaultImage>
             </moviePoster>
           </items>

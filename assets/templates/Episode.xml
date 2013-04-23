@@ -11,7 +11,9 @@
         <sections>
           <menuSection>
             <items>
-              <twoLineEnhancedMenuItem id="{{VAL(attrib:key)}}" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(attrib:key)}}&amp;PlexConnect=Play')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(attrib:key)}}&amp;PlexConnect=Play')">
+              <twoLineEnhancedMenuItem id="{{VAL(attrib:key)}}" 
+                                         onPlay="atv.sessionStorage['ratingKey']='{{VAL(attrib:ratingKey)}}';atv.sessionStorage['duration']='{{VAL(attrib:duration)}}';atv.loadURL('http://trailers.apple.com{{ADDPATH(attrib:key)}}&amp;PlexConnect=Play')"
+                                       onSelect="atv.sessionStorage['ratingKey']='{{VAL(attrib:ratingKey)}}';atv.sessionStorage['duration']='{{VAL(attrib:duration)}}';atv.loadURL('http://trailers.apple.com{{ADDPATH(attrib:key)}}&amp;PlexConnect=Play')">
                 {{COPY(tag:Video)}}
                 <label>{{VAL(attrib:title)}}</label>
                 <ordinal>{{VAL(attrib:index)}}</ordinal>
@@ -20,9 +22,9 @@
                 <defaultImage>resource://16X9.png</defaultImage>
                 <preview>
                   <keyedPreview>
-                    <title>{{VAL(attrib:preview,keyedPreview,title)}}</title>
-                    <summary>{{VAL(attrib:preview,keyedPreview,summary)}}</summary>
-                    <image>http://{{ADDR_PMS}}{{VAL(attrib:preview,keyedPreview,thumb)}}</image>
+                    <title>{{VAL(attrib:title)}}</title>
+                    <summary>{{VAL(attrib:summary)}}</summary>
+                    <image>http://{{ADDR_PMS}}{{VAL(attrib:thumb)}}</image>
                   </keyedPreview>
                 </preview>
               </twoLineEnhancedMenuItem>
