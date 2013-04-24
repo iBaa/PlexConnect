@@ -26,11 +26,19 @@ atv.player.willStartPlaying = function()
 
 atv.config = { 
     "doesJavaScriptLoadRoot": true,
-    "DEBUG_LEVEL": 4,
-    "ROOT_URL": "http://trailers.apple.com/plexconnect.xml"
+    "DEBUG_LEVEL": 4
 };
 
 atv.onAppEntry = function()
 {
-    atv.loadURL(atv.config.ROOT_URL);
+    fv = atv.device.softwareVersion.split(".");
+    firmVer = fv[0] + "." + fv[1];
+    if (parseFloat(firmVer) >= 5.1)
+    {
+        atv.loadURL("http://trailers.apple.com/plexconnect.xml");
+    }
+    else
+    {
+        atv.loadURL("http://trailers.apple.com/plexconnect_oldmenu.xml");
+    }
 }

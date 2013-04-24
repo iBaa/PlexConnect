@@ -43,17 +43,10 @@ class MyHandler(BaseHTTPRequestHandler):
                     f.close()
                     return
                 
-                # serve "plexconnect.xml" to aTV
-                if self.path.endswith("plexconnect.xml"):
-                    fVer = self.headers['X-Apple-TV-Version'].split(".", 2)  # firmware version number
-                    firmVersion = fVer[0] + "." + fVer[1]
-                    dprint(__name__, 1, "aTV firmware: " + firmVersion )
-                    if eval(firmVersion) >= 5.1:
-                        dprint(__name__, 1, "serving plexconnect.xml")
-                        f = open(curdir + sep + "assets" + sep + "plexconnect.xml")  # Version 5.1 or above use top menu bar
-                    else:
-                        dprint(__name__, 1, "serving plexconnect_oldmenu.xml")
-                        f = open(curdir + sep + "assets" + sep + "plexconnect_oldmenu.xml")  # Versions 5.0.2 or lower don't use top menu bar
+                # serve "plexconnect.xml" or "plexconnect_oldmenu.xml" to aTV
+                if self.path.endswith("plexconnect.xml") or self.path.endswith("plexconnect_oldmenu.xml"):
+                    dprint(__name__,1,"serving "+ curdir + sep + "assets" + self.path.replace('/',sep));
+                    f = open(curdir + sep + "assets" + self.path.replace('/',sep))
                     self.send_response(200)
                     self.send_header('Content-type', 'text/html')
                     self.end_headers()
