@@ -78,7 +78,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 # serve Plex media
                 if self.path.endswith("&PlexConnect=Play"):
                     dprint(__name__, 1, "serving media: "+self.path)
-                    XML = XMLConverter.XML_PlayVideo(self.client_address, self.path[:-len('&PlexConnect=Play')])
+                    XML = XMLConverter.XML_PMS2aTV(self.client_address, self.path)
                     self.send_response(200)
                     self.send_header('Content-type', 'text/html')
                     self.end_headers()

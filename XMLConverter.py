@@ -126,98 +126,50 @@ def XML_ReadFromURL(address, path):
 
 
 
-"""
-<atv>
-  <body>
-    <videoPlayer id="com.sample.video-player">
-      <httpFileVideoAsset id="[id]">
-        <mediaURL>
-          http://IP:Port/...[mp4/mov]
-        </mediaURL>
-        <title>Title</title>
-        <description>
-          Detailed Description
-        </description>
-        <image>
-          http://IP:Port/...[jpg]
-        </image>
-      </httpFileVideoAsset>
-    </videoPlayer>
-  </body>
-</atv>
-"""
-def XML_PlayVideo(address, path):
-    PMS = XML_ReadFromURL(address, path)
-    PMSroot = PMS.getroot()
-    
-    el_aTV = etree.Element("atv")
-    el = etree.SubElement(el_aTV, "body")
-    el = etree.SubElement(el, "videoPlayer", {'id':'com.sample.video-player'})
-    el_file = etree.SubElement(el, "httpFileVideoAsset", {'id':PMSroot.find('Video').get('guid')})
-    
-    key = PMSroot.find('Video').find('Media').find('Part').get('key')  # todo: multipart video (->m3u8?)
-    if key.startswith("/"):
-        el_path = 'http://' + Addr_PMS + key
-    else:
-        el_path = 'http://' + Addr_PMS + path+key
-    
-    el = etree.SubElement(el_file, "mediaURL")
-    el.text = el_path  # direct connect to Plex Media Server
-    el = etree.SubElement(el_file, "title")
-    el.text = PMSroot.find('Video').get('title')
-    el = etree.SubElement(el_file, "description")
-    el.text = PMSroot.find('Video').get('summary')
-    el = etree.SubElement(el_file, "image")
-    el.text = 'http://' + Addr_PMS + PMSroot.find('Video').get('thumb')
-    
-    aTVTree = etree.ElementTree(el_aTV)    
-    
-    dprint(__name__, 1, "====== generated aTV-XML (VIDEO) ======")
-    dprint(__name__, 1, XML_prettystring(aTVTree))
-    dprint(__name__, 1, "====== aTV-XML finished ======")
-    
-    return etree.tostring(el_aTV)
-
-
-
 def XML_PMS2aTV(address, path):
+
+    cmd = ''
+    pos = string.find(path, "&PlexConnect=")
+    if pos>-1:
+        cmd = path[pos+len("&PlexConnect="):]
+        path = path[:pos]
+    
     PMS = XML_ReadFromURL(address, path)
     PMSroot = PMS.getroot()
     
-    #el_aTV = etree.Element("atv")
-    if PMSroot.get('viewGroup') is None or \
+    dprint(__name__, 1, PMSroot.get('viewGroup','None'))
+    
+    if cmd=='Play':
+        XMLtemplate = 'PlayVideo.xml'
+        path = path[:-len('&PlexConnect=Play')]
+    
+    elif PMSroot.get('viewGroup') is None or \
        PMSroot.get('viewGroup')=='secondary':
-        aTVTree = etree.parse(curdir+'/assets/templates/Directory.xml')
-        aTVroot = aTVTree.getroot()
-        XML_Expand(aTVroot, PMSroot, path)
+        XMLtemplate = 'Directory.xml'
         
     elif PMSroot.get('viewGroup')=='show':
         # TV Show grid view
-        aTVTree = etree.parse(curdir+'/assets/templates/Show.xml')
-        aTVroot = aTVTree.getroot()
-        XML_Expand(aTVroot, PMSroot, path)
+        XMLtemplate = 'Show.xml'
         
     elif PMSroot.get('viewGroup')=='season':
-        # TV season view
-        aTVTree = etree.parse(curdir+'/assets/templates/Season.xml')
-        aTVroot = aTVTree.getroot()
-        XML_Expand(aTVroot, PMSroot, path)
+        # TV Season view
+        XMLtemplate = 'Season.xml'
         
     elif PMSroot.get('viewGroup')=='movie':
-        # movie listing
-        aTVTree = etree.parse(curdir+'/assets/templates/Movie.xml')
-        aTVroot = aTVTree.getroot()
-        XML_Expand(aTVroot, PMSroot, path)
+        # Movie listing
+        XMLtemplate = 'Movie.xml'
         
     elif PMSroot.get('viewGroup')=='episode':
-        # TV episode view
-        aTVTree = etree.parse(curdir+'/assets/templates/Episode.xml')
-        aTVroot = aTVTree.getroot()
-        XML_Expand(aTVroot, PMSroot, path)
+        # TV Episode view
+        XMLtemplate = 'Episode.xml'
+    
+    dprint(__name__, 1, XMLtemplate)
+        
+    aTVTree = etree.parse(curdir+'/assets/templates/'+XMLtemplate)
+    aTVroot = aTVTree.getroot()
+    XML_Expand(aTVroot, PMSroot, path)
     
     # todo: channels, photos...
-    
-    #aTVTree = etree.ElementTree(el_aTV)    
     
     dprint(__name__, 1, "====== generated aTV-XML ======")
     dprint(__name__, 1, XML_prettystring(aTVTree))
@@ -236,6 +188,22 @@ def Path_addPath(path, addpath):
 
 
 
+def XML_processParams(cmd, src):
+            el = src
+            param = string.strip(cmd, '()').split(':')
+            func = param[0]
+            name = param[1]
+            
+            while '/' in name:  # walk the path if neccessary
+                param = name.split('/',1)
+                el = el.find(param[0])
+                name = param[1]
+            
+            dprint(__name__, 2, "XML_processParams: {},{},{}", func, el.tag, name)
+            return [func, el, name]
+
+
+
 def XML_ExpandLine(elem, src, path, line):
     while True:
         cmd_start = line.find('{{')
@@ -245,31 +213,33 @@ def XML_ExpandLine(elem, src, path, line):
         
         cmd = line[cmd_start+2:cmd_end]
         if cmd.startswith('VAL('):
-            cmd = cmd[len('VAL('):]
-            param = string.strip(cmd, '[]()').split(':')
-            #print "VAL", param[0], param[1], line
-            if param[0]=='tag':  # todo
+            func,el,name = XML_processParams(cmd[len('VAL('):], src)
+
+            if func=='tag':  # todo
                 res = ""
-            elif param[0]=='attrib':
-                res = src.get(param[1],'')
+            elif func=='attrib':
+                res = el.get(name,'')
+            else:
+                res = "{{"+cmd+"}}"  # unknown. keep it.
         
         elif cmd.startswith('ADDPATH('):
-            cmd = cmd[len('ADDPATH('):]
-            param = string.strip(cmd, '[]()').split(':')
-            #print "ADDPATH", param[0], param[1], line
-            if param[0]=='tag':  # todo
+            func,el,name = XML_processParams(cmd[len('ADDPATH('):], src)
+            
+            if func=='tag':  # todo
                 res = ""
-            elif param[0]=='attrib':
-                res = Path_addPath(path, src.get(param[1],''))
+            elif func=='attrib':
+                res = Path_addPath(path, el.get(name,''))
+            else:
+                res = "{{"+cmd+"}}"  # unknown. keep it.
         
         elif cmd=='ADDR_PMS':
             res = Addr_PMS
-    
+        
         else:
-            res = ""  # unsupported
+            res = "{{"+cmd+"}}"  # unsupported.
         
         line = line[:cmd_start] + res + line[cmd_end+2:]
-    
+        dprint(__name__, 2, "XML_ExpandLine: {}", line)
     return line
 
 
@@ -286,7 +256,7 @@ def XML_Expand(elem, src, path):
             cmd = line[cmd_start+2:cmd_end]
             if cmd.startswith('COPY('):
                 cmd = cmd[len('COPY('):]
-                param = string.strip(cmd, '[]()').split(':')
+                param = string.strip(cmd, '()').split(':')
 
                 childToCopy = child
                 elem.remove(child)
