@@ -32,6 +32,6 @@ def getTranscodeURL(path, ratingkey):
     plexAccess['X-Plex-Access-Key'] = publicKey
     plexAccess['X-Plex-Access-Time'] = atime
     plexAccess['X-Plex-Access-Code'] = sig
-    plexAccess['X-Plex-Client-Capabilities'] = 'protocols=http-live-streaming,http-mp4-streaming,http-mp4-video,http-mp4-video-720p,http-streaming-video,http-streaming-video-720p;videoDecoders=h264{profile:high&resolution:720&level:42};audioDecoders=aac,mp3,ac3'
+    plexAccess['X-Plex-Client-Capabilities'] = 'protocols=http-live-streaming,http-mp4-streaming,http-mp4-video,http-mp4-video-720p,http-streaming-video,http-streaming-video-720p;videoDecoders=h264{profile:high&resolution:720&level:41};audioDecoders=aac,mp3,ac3'
     transcodeURL = transcodeURL + "&" + urlencode(plexAccess)
     return "%s%s%s" % ("http://", Addr_PMS, transcodeURL)
