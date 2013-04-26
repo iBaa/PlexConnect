@@ -11,7 +11,7 @@
           <items>
             <moviePoster id="{{VAL(attrib:key)}}" 
                              onPlay="atv.sessionStorage['ratingKey']='{{VAL(attrib:ratingKey)}}';atv.sessionStorage['duration']='{{VAL(attrib:duration)}}';atv.loadURL('http://trailers.apple.com{{ADDPATH(attrib:key)}}&amp;PlexConnect=Play')"
-                           onSelect="atv.sessionStorage['ratingKey']='{{VAL(attrib:ratingKey)}}';atv.sessionStorage['duration']='{{VAL(attrib:duration)}}';atv.loadURL('http://trailers.apple.com{{ADDPATH(attrib:key)}}&amp;PlexConnect=Play')">
+                           onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(attrib:key)}}&amp;PlexConnect=MoviePrePlay')">
               {{COPY(tag:Video)}}
               <title>{{VAL(attrib:title)}}</title>
               <subtitle>{{VAL(attrib:year)}}</subtitle>

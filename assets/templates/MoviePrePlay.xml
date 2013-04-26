@@ -1,0 +1,66 @@
+<atv>
+  <body>
+    <itemDetail id="com.apple.trailers">
+		<title>{{VAL(attrib:Video/title)}}</title>
+		<subtitle>{{VAL(attrib:Video/studio)}}</subtitle>
+		<rating>{{VAL(attrib:Video/contentRating)}}</rating>
+		<summary>{{VAL(attrib:Video/summary)}}</summary>
+		<image style="moviePoster">http://{{ADDR_PMS}}{{VAL(attrib:Video/thumb)}}</image>
+		<defaultImage>resource://Poster.png</defaultImage>
+      
+		<table>
+			<columnDefinitions>
+				<columnDefinition width="25" alignment="left">
+					<title>Details</title>
+				</columnDefinition>
+				<columnDefinition width="25" alignment="left">
+					<title>Actors</title>
+				</columnDefinition>
+				<columnDefinition width="25" alignment="left">
+					<title>Director</title>
+				</columnDefinition>
+			</columnDefinitions>
+			<rows>
+				<row>
+					<label>{{VAL(attrib:Video/Genre/tag)}}</label>
+					<label />
+					<label />
+				</row>
+				<row>
+					<label>{{VAL(attrib:Video/Media/videoResolution)}}p</label>
+					<label />
+					<label />
+				</row>
+				<row>
+					<label />
+					<label />
+					<label />
+				</row>
+				<row>
+					<label />
+					<label />
+					<label />
+				</row>
+    
+			</rows>
+		</table>
+		
+		<centerShelf>
+        <shelf id="centerShelf" columnCount="4" center="true">
+			<sections>
+				<shelfSection>
+					<items>
+						<actionButton id="play" onSelect="atv.sessionStorage['ratingKey']='{{VAL(attrib:Video/ratingKey)}}';atv.sessionStorage['duration']='{{VAL(attrib:Video/duration)}}';atv.loadURL('http://trailers.apple.com{{ADDPATH(attrib:Video/key)}}&amp;PlexConnect=Play')">
+							<title>Play</title>
+							<image>resource://Play.png</image>
+                            <focusedImage>resource://PlayFocused.png</focusedImage>
+							<!--<badge></badge>-->
+						</actionButton>
+					</items>
+				</shelfSection>
+			</sections>
+		</shelf>
+		</centerShelf>
+		</itemDetail>
+	</body>
+</atv>

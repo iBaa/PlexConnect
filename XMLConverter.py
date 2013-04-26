@@ -143,6 +143,10 @@ def XML_PMS2aTV(address, path):
         XMLtemplate = 'PlayVideo.xml'
         path = path[:-len('&PlexConnect=Play')]
     
+    elif cmd=='MoviePrePlay':
+        XMLtemplate = 'MoviePrePlay.xml'
+        path = path[:-len('&PlexConnect=MoviePrePlay')]
+        
     elif PMSroot.get('viewGroup') is None or \
        PMSroot.get('viewGroup')=='secondary':
         XMLtemplate = 'Directory.xml'
