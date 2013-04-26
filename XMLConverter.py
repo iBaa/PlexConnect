@@ -30,6 +30,7 @@ except ImportError:
 import Settings
 from Debug import *  # dprint()
 
+import PlexAPI
 
 
 Addr_PMS = Settings.getIP_PMS()+':'+str(Settings.getPort_PMS())
@@ -419,11 +420,12 @@ def XML_PlayVideo(address, path):
     el = etree.SubElement(el, "videoPlayer", {'id':'com.sample.video-player'})
     el_file = etree.SubElement(el, "httpFileVideoAsset", {'id':PMSroot.find('Video').get('guid')})
     
+    ratingkey = PMSroot.find('Video').get('ratingKey') 
     key = PMSroot.find('Video').find('Media').find('Part').get('key')  # todo: multipart video (->m3u8?)
     if key.startswith("/"):
-        el_path = 'http://' + Addr_PMS + key
+        el_path = PlexAPI.getTranscodeURL(key, ratingkey)
     else:
-        el_path = 'http://' + Addr_PMS + path+key
+        el_path = PlexAPI.getTranscodeURL(path+key, ratingkey)
     
     el = etree.SubElement(el_file, "mediaURL")
     el.text = el_path  # direct connect to Plex Media Server
