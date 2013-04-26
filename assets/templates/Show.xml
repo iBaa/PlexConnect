@@ -3,19 +3,19 @@
     <listWithPreview id="com.sample.menu-items-with-sections">
       <header>
         <simpleHeader>
-          <title>{{VAL(attrib:title2)}}</title>
+          <title>{{VAL(title2)}}</title>
         </simpleHeader>
       </header>
       <menu>
         <sections>
           <menuSection>
             <items>
-              <oneLineMenuItem id="{{VAL(attrib:key)}}" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(attrib:key)}}')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(attrib:key)}}')">
-                {{COPY(tag:Directory)}}
-                <label>{{VAL(attrib:title)}}</label>
+              <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')">
+                {{COPY(Directory)}}
+                <label>{{VAL(title)}}</label>
                 <preview>
                   <crossFadePreview>
-                    <image>http://{{ADDR_PMS}}{{ADDPATH(attrib:thumb)}}</image>
+                    <image>http://{{ADDR_PMS}}{{ADDPATH(thumb)}}</image>
                   </crossFadePreview>
                 </preview>
               </oneLineMenuItem>

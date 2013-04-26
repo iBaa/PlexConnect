@@ -192,19 +192,60 @@ def Path_addPath(path, addpath):
 
 
 
-def XML_processParams(cmd, src):
-            el = src
-            param = string.strip(cmd, '()').split(':')
-            func = param[0]
-            name = param[1]
+def XML_processParams(params, src):
+            parts = string.strip(params, '()').split(':',2)
+            attrib = parts[0]
+            default=''
+            if len(parts)>1:
+                default = parts[1]
+            leftover=''
+            if len(parts)>2:
+                leftover = parts[2]
             
-            while '/' in name:  # walk the path if neccessary
-                param = name.split('/',1)
-                el = el.find(param[0])
-                name = param[1]
+            # walk the path if neccessary
+            el = src            
+            while '/' in attrib and el!=None:
+                parts = attrib.split('/',1)
+                el = el.find(parts[0])
+                attrib = parts[1]
             
-            dprint(__name__, 2, "XML_processParams: {},{},{}", func, el.tag, name)
-            return [func, el, name]
+            # check element and get attribute
+            if el!=None:
+                res = el.get(attrib, default)
+            else:  # path not found
+                res = default
+            
+            dprint(__name__, 2, "XML_processParams: {},{}", res, leftover)
+            return [res,leftover]
+
+
+
+def XML_processVALCONV(res, conv):
+    # apply string conversion
+    if conv!='':
+        parts = conv.split('|')
+        convlist = []
+        for part in parts:
+            convstr = part.split('=')
+            convlist.append((convstr[0], convstr[1]))
+        
+        for part in reversed(sorted(convlist)):
+            if res>=part[0]: break
+        
+        res = part[1]
+        
+    dprint(__name__, 2, "XML_processVALCONV: {}", res)
+    return res
+
+
+
+def XML_processVALMATH(res, math):
+    # apply silly math function
+    if math!='':
+        res = str(eval(res+math))
+    
+    dprint(__name__, 2, "XML_processVALMATH: {}", res)
+    return res
 
 
 
@@ -217,31 +258,26 @@ def XML_ExpandLine(elem, src, path, line):
         
         cmd = line[cmd_start+2:cmd_end]
         if cmd.startswith('VAL('):
-            func,el,name = XML_processParams(cmd[len('VAL('):], src)
-
-            if func=='tag':  # todo
-                res = ""
-            elif func=='attrib':
-                res = el.get(name,'')
-            else:
-                res = "{{"+cmd+"}}"  # unknown. keep it.
+            res, leftover = XML_processParams(cmd[len('VAL('):], src)
+        
+        elif cmd.startswith('VALCONV('):
+            res, leftover = XML_processParams(cmd[len('VALCONV('):], src)
+            res = XML_processVALCONV(res, leftover)
+        
+        elif cmd.startswith('VALMATH('):
+            res, leftover = XML_processParams(cmd[len('VALMATH('):], src)
+            res = XML_processVALMATH(res, leftover)
         
         elif cmd.startswith('ADDPATH('):
-            func,el,name = XML_processParams(cmd[len('ADDPATH('):], src)
-            
-            if func=='tag':  # todo
-                res = ""
-            elif func=='attrib':
-                res = Path_addPath(path, el.get(name,''))
-            else:
-                res = "{{"+cmd+"}}"  # unknown. keep it.
+            res,option = XML_processParams(cmd[len('ADDPATH('):], src)
+            res = Path_addPath(path, res)
         
         elif cmd=='ADDR_PMS':
             res = Addr_PMS
         
         else:
             res = "{{"+cmd+"}}"  # unsupported.
-        
+
         line = line[:cmd_start] + res + line[cmd_end+2:]
         dprint(__name__, 2, "XML_ExpandLine: {}", line)
     return line
@@ -249,9 +285,8 @@ def XML_ExpandLine(elem, src, path, line):
 
 
 def XML_Expand(elem, src, path):
-
     # unpack template 'COPY' command in children
-    for child in elem:
+    for child in elem:  # todo: crashes/gives endless loop if multiple {{COPY}} in one template
         line = child.text
         if line==None: line=''
         cmd_start = line.find('{{')
@@ -259,20 +294,17 @@ def XML_Expand(elem, src, path):
         if cmd_start>-1 and cmd_end>-1:
             cmd = line[cmd_start+2:cmd_end]
             if cmd.startswith('COPY('):
+                child.text = line[:cmd_start] + line[cmd_end+2:]  # remove current cmd
                 cmd = cmd[len('COPY('):]
-                param = string.strip(cmd, '()').split(':')
+                tag = string.strip(cmd, '()')
 
                 childToCopy = child
                 elem.remove(child)
-                childToCopy.text = line[:cmd_start] + line[cmd_end+2:]  # remove current cmd
                 # duplicate child and add to tree                
-                if param[0]=='tag':
-                    for elemSRC in src.findall(param[1]):  # tag
-                        el = copy.deepcopy(childToCopy)
-                        XML_Expand(el, elemSRC, path)
-                        elem.append(el)
-                elif param[0]=='attrib':
-                    pass  # todo
+                for elemSRC in src.findall(tag):  # tag
+                    el = copy.deepcopy(childToCopy)
+                    XML_Expand(el, elemSRC, path)
+                    elem.append(el)
     
     # unpack template commands in elem.text
     line = elem.text
@@ -291,22 +323,39 @@ def XML_Expand(elem, src, path):
 
 
 if __name__=="__main__":
-    print "load PMS XML"    
-    PMSTree = etree.parse(curdir+'/XML/PMS_Season.xml')
-    PMSroot = PMSTree.getroot()
-    #XML_prettyprint(PMStree)
-
+    print "load PMS XML"
+    _XML = '<PMS number="1" string="Hello"> \
+                <DATA number="4" string="World"></DATA> \
+                <DATA string="Moon"></DATA> \
+            </PMS>'
+    PMSroot = etree.fromstring(_XML)
+    PMSTree = etree.ElementTree(PMSroot)
+    XML_prettyprint(PMSTree)
+    
+    print
     print "load aTV XML template"
-    aTVTree = etree.parse(curdir+'/assets/templates/Season.xml')
-    aTVroot = aTVTree.getroot()
-    #XML_prettyprint(aTVtree)
-
+    _XML = '<aTV> \
+                <INFO num="{{VAL(number)}}" str="{{VAL(string)}}">Info</INFO> \
+                <FILE str="{{VAL(string)}}" strconv="{{VALCONV(string::World=big|Moon=small}}" num="{{VAL(number:5}}" numfunc="{{VALMATH(number:5:*1000)}}"> \
+                    File{{COPY(DATA)}}\
+                </FILE> \
+                <PATH path="{{ADDPATH(file:unknown)}}" /> \
+            </aTV>'
+    aTVroot = etree.fromstring(_XML)
+    aTVTree = etree.ElementTree(aTVroot)
+    XML_prettyprint(aTVTree)
+    
+    print
     print "unpack PlexConnect commands"
     XML_Expand(aTVroot, PMSroot, '/library/sections/')
-    #XML_prettyprint(aTVtree)
-
-    print "store aTV XML"
-    str = XML_prettystring(aTVTree)
-    f=open(curdir+'/XML/aTV_fromTmpl.xml', 'w')
-    f.write(str)
-    f.close()
+    
+    print
+    print "resulting aTV XML"
+    XML_prettyprint(aTVTree)
+    
+    print
+    #print "store aTV XML"
+    #str = XML_prettystring(aTVTree)
+    #f=open(curdir+'/XML/aTV_fromTmpl.xml', 'w')
+    #f.write(str)
+    #f.close()

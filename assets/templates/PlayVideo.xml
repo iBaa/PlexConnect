@@ -1,12 +1,12 @@
 <atv>
   <body>
     <videoPlayer id="com.sample.video-player">
-      <httpFileVideoAsset id="{{VAL(attrib:Video/key)}}">
-        <mediaURL>http://{{ADDR_PMS}}{{VAL(attrib:Video/Media/Part/key}}</mediaURL>
-        <title>{{VAL(attrib:Video/title)}}</title>
-        <description>{{VAL(attrib:Video/summary)}}</description>
+      <httpFileVideoAsset id="{{VAL(Video/key)}}">
+        <mediaURL>http://{{ADDR_PMS}}{{VAL(Video/Media/Part/key}}</mediaURL>
+        <title>{{VAL(Video/title)}}</title>
+        <description>{{VAL(Video/summary)}}</description>
         <bookmarkTime>0</bookmarkTime>
-        <image>http://{{ADDR_PMS}}{{VAL(attrib:Video/art)}}</image>
+        <image>http://{{ADDR_PMS}}{{VAL(Video/art)}}</image>
       </httpFileVideoAsset>
     </videoPlayer>
   </body>

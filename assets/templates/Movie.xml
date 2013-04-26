@@ -3,19 +3,19 @@
     <scroller id="com.sample.movie-grid">
       <header>
         <simpleHeader>
-          <title>{{VAL(attrib:title1)}}</title>
+          <title>{{VAL(title1)}}</title>
         </simpleHeader>
       </header>
       <items>
         <grid columnCount="7" id="grid_0">
           <items>
-            <moviePoster id="{{VAL(attrib:key)}}" 
-                             onPlay="atv.sessionStorage['ratingKey']='{{VAL(attrib:ratingKey)}}';atv.sessionStorage['duration']='{{VAL(attrib:duration)}}';atv.loadURL('http://trailers.apple.com{{ADDPATH(attrib:key)}}&amp;PlexConnect=Play')"
-                           onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(attrib:key)}}&amp;PlexConnect=MoviePrePlay')">
-              {{COPY(tag:Video)}}
-              <title>{{VAL(attrib:title)}}</title>
-              <subtitle>{{VAL(attrib:year)}}</subtitle>
-              <image>http://{{ADDR_PMS}}{{ADDPATH(attrib:thumb)}}</image>
+            <moviePoster id="{{VAL(key)}}" 
+                             onPlay="atv.sessionStorage['ratingKey']='{{VAL(ratingKey)}}';atv.sessionStorage['duration']='{{VAL(duration)}}';atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=Play')"
+                           onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=MoviePrePlay')">
+              {{COPY(Video)}}
+              <title>{{VAL(title)}}</title>
+              <subtitle>{{VAL(year)}}</subtitle>
+              <image>http://{{ADDR_PMS}}{{ADDPATH(thumb)}}</image>
               <defaultImage>resource://16X9.png</defaultImage>
             </moviePoster>
           </items>

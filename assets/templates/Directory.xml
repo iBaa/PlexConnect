@@ -15,9 +15,9 @@
               </textDivider>
             </header>
             <items>
-              <oneLineMenuItem id="{{VAL(attrib:key)}}" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(attrib:key)}}')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(attrib:key)}}')">
-                {{COPY(tag:Directory)}}
-                <label>{{VAL(attrib:title)}}</label>
+              <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')">
+                {{COPY(Directory)}}
+                <label>{{VAL(title)}}</label>
                 <preview>
                   <link>PREVIEW_URL</link>
                 </preview>
