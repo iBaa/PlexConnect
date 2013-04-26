@@ -5,6 +5,7 @@
         <mediaURL>http://{{ADDR_PMS}}{{VAL(attrib:Video/Media/Part/key}}</mediaURL>
         <title>{{VAL(attrib:Video/title)}}</title>
         <description>{{VAL(attrib:Video/summary)}}</description>
+        <bookmarkTime>0</bookmarkTime>
         <image>http://{{ADDR_PMS}}{{VAL(attrib:Video/art)}}</image>
       </httpFileVideoAsset>
     </videoPlayer>
