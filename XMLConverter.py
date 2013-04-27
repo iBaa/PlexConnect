@@ -193,7 +193,7 @@ def Path_addPath(path, addpath):
 
 
 def XML_processParams(params, src):
-            parts = string.strip(params, '()').split(':',2)
+            parts = params.split(':',2)
             attrib = parts[0]
             default=''
             if len(parts)>1:
@@ -220,7 +220,7 @@ def XML_processParams(params, src):
 
 
 
-def XML_processVALCONV(res, conv):
+def XML_processVAL(res, conv):
     # apply string conversion
     if conv!='':
         parts = conv.split('|')
@@ -234,17 +234,50 @@ def XML_processVALCONV(res, conv):
         
         res = part[1]
         
-    dprint(__name__, 2, "XML_processVALCONV: {}", res)
+    dprint(__name__, 2, "XML_processVAL: {}", res)
     return res
 
 
 
-def XML_processVALMATH(res, math):
-    # apply silly math function
+def XML_processEVAL(res, math):
+    # apply math function - eval
     if math!='':
-        res = str(eval(res+math))
+        try:
+            x = eval(res)
+            res = str(eval(math))
+        except:
+            dprint(__name__, 0, "XML_processEVAL: Error in {}", math)
     
-    dprint(__name__, 2, "XML_processVALMATH: {}", res)
+    dprint(__name__, 2, "XML_processEVAL: {}", res)
+    return res
+
+
+
+def XML_processMEDIAPATH(params, src):
+    # walk the path if neccessary
+    tag = params
+    el = src            
+    while True:
+        parts = tag.split('/',1)
+        el = el.find(parts[0])
+        if not '/' in tag or el==None:
+            break
+        tag = parts[1]
+    
+    # check "Media' element and get key
+    if el!=None:
+        if el.get('container','') in ("mov", "mp4") and \
+           el.get('videoCodec','') in ("mpeg4", "h264") and \
+           el.get('audioCodec','') in ("aac"):
+            # native aTV media
+            res = el.find('Part').get('key','')
+        else:
+            # try transcoding
+            res = ''  # transcoding
+    else:
+        res = ''  # not found?
+    
+    dprint(__name__, 2, "XML_processMEDIAPATH: {}", res)
     return res
 
 
@@ -257,27 +290,27 @@ def XML_ExpandLine(elem, src, path, line):
             break;
         
         cmd = line[cmd_start+2:cmd_end]
-        if cmd.startswith('VAL('):
-            res, leftover = XML_processParams(cmd[len('VAL('):], src)
+        if cmd.startswith('VAL(') and cmd.endswith(')'):
+            res, leftover = XML_processParams(cmd[len('VAL('):-1], src)
+            res = XML_processVAL(res, leftover)
         
-        elif cmd.startswith('VALCONV('):
-            res, leftover = XML_processParams(cmd[len('VALCONV('):], src)
-            res = XML_processVALCONV(res, leftover)
+        elif cmd.startswith('EVAL(') and cmd.endswith(')'):
+            res, leftover = XML_processParams(cmd[len('VAL('):-1], src)
+            res = XML_processEVAL(res, leftover)
         
-        elif cmd.startswith('VALMATH('):
-            res, leftover = XML_processParams(cmd[len('VALMATH('):], src)
-            res = XML_processVALMATH(res, leftover)
-        
-        elif cmd.startswith('ADDPATH('):
-            res,option = XML_processParams(cmd[len('ADDPATH('):], src)
+        elif cmd.startswith('ADDPATH(') and cmd.endswith(')'):
+            res, leftover = XML_processParams(cmd[len('ADDPATH('):-1], src)
             res = Path_addPath(path, res)
         
+        elif cmd.startswith('MEDIAPATH(') and cmd.endswith(')'):
+            res = XML_processMEDIAPATH(cmd[len('MEDIAPATH('):-1], src)
+            
         elif cmd=='ADDR_PMS':
             res = Addr_PMS
         
         else:
             res = "{{"+cmd+"}}"  # unsupported.
-
+        
         line = line[:cmd_start] + res + line[cmd_end+2:]
         dprint(__name__, 2, "XML_ExpandLine: {}", line)
     return line
@@ -293,15 +326,14 @@ def XML_Expand(elem, src, path):
         cmd_end   = line.find('}}')    
         if cmd_start>-1 and cmd_end>-1:
             cmd = line[cmd_start+2:cmd_end]
-            if cmd.startswith('COPY('):
+            if cmd.startswith('COPY(') and cmd.endswith(')'):
+                cmd = cmd[len('COPY('):-1]
                 child.text = line[:cmd_start] + line[cmd_end+2:]  # remove current cmd
-                cmd = cmd[len('COPY('):]
-                tag = string.strip(cmd, '()')
-
+                
                 childToCopy = child
                 elem.remove(child)
                 # duplicate child and add to tree                
-                for elemSRC in src.findall(tag):  # tag
+                for elemSRC in src.findall(cmd):  # tag
                     el = copy.deepcopy(childToCopy)
                     XML_Expand(el, elemSRC, path)
                     elem.append(el)
@@ -325,7 +357,7 @@ def XML_Expand(elem, src, path):
 if __name__=="__main__":
     print "load PMS XML"
     _XML = '<PMS number="1" string="Hello"> \
-                <DATA number="4" string="World"></DATA> \
+                <DATA number="42" string="World"></DATA> \
                 <DATA string="Moon"></DATA> \
             </PMS>'
     PMSroot = etree.fromstring(_XML)
@@ -336,7 +368,7 @@ if __name__=="__main__":
     print "load aTV XML template"
     _XML = '<aTV> \
                 <INFO num="{{VAL(number)}}" str="{{VAL(string)}}">Info</INFO> \
-                <FILE str="{{VAL(string)}}" strconv="{{VALCONV(string::World=big|Moon=small}}" num="{{VAL(number:5}}" numfunc="{{VALMATH(number:5:*1000)}}"> \
+                <FILE str="{{VAL(string)}}" strconv="{{VAL(string::World=big|Moon=small)}}" num="{{VAL(number:5)}}" numfunc="{{EVAL(number:5:int(x/10))}}"> \
                     File{{COPY(DATA)}}\
                 </FILE> \
                 <PATH path="{{ADDPATH(file:unknown)}}" /> \

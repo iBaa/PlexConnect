@@ -2,7 +2,7 @@
   <body>
     <videoPlayer id="com.sample.video-player">
       <httpFileVideoAsset id="{{VAL(Video/key)}}">
-        <mediaURL>http://{{ADDR_PMS}}{{VAL(Video/Media/Part/key}}</mediaURL>
+        <mediaURL>http://{{ADDR_PMS}}{{MEDIAPATH(Video/Media)}}</mediaURL>
         <title>{{VAL(Video/title)}}</title>
         <description>{{VAL(Video/summary)}}</description>
         <bookmarkTime>{{VALMATH(Video/viewOffset:1000:/1000)}}</bookmarkTime>
