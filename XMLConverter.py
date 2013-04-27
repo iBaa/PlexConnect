@@ -174,7 +174,7 @@ def XML_PMS2aTV(address, path):
     XML_Expand(aTVroot, PMSroot, path)
     
     # todo: channels, photos...
-    
+ 
     dprint(__name__, 1, "====== generated aTV-XML ======")
     dprint(__name__, 1, XML_prettystring(aTVTree))
     dprint(__name__, 1, "====== aTV-XML finished ======")
@@ -268,7 +268,7 @@ def XML_processMEDIAPATH(params, src):
     if el!=None:
         if el.get('container','') in ("mov", "mp4") and \
            el.get('videoCodec','') in ("mpeg4", "h264") and \
-           el.get('audioCodec','') in ("aac"):
+           el.get('audioCodec','') in ("aac", "ac3"):
             # native aTV media
             res = el.find('Part').get('key','')
         else:
@@ -295,7 +295,7 @@ def XML_ExpandLine(elem, src, path, line):
             res = XML_processVAL(res, leftover)
         
         elif cmd.startswith('EVAL(') and cmd.endswith(')'):
-            res, leftover = XML_processParams(cmd[len('VAL('):-1], src)
+            res, leftover = XML_processParams(cmd[len('EVAL('):-1], src)
             res = XML_processEVAL(res, leftover)
         
         elif cmd.startswith('ADDPATH(') and cmd.endswith(')'):

@@ -32,7 +32,9 @@
 					<label />
 				</row>
 				<row>
-					<label />
+					<starRating>
+                        <percentage>{{EVAL(Video/rating:0:int(x*10))}}</percentage>
+                    </starRating>
 					<label />
 					<label />
 				</row>

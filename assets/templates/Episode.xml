@@ -16,10 +16,11 @@
                                        onSelect="atv.sessionStorage['ratingKey']='{{VAL(ratingKey)}}';atv.sessionStorage['duration']='{{VAL(duration)}}';atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=Play')">
                 {{COPY(Video)}}
                 <label>{{VAL(title)}}</label>
+                <rightLabel>{{VAL(viewCount:dflt:dflt=***|1=)}}</rightLabel>
                 <ordinal>{{VAL(index)}}</ordinal>
                 <maxOrdinalDigits>2</maxOrdinalDigits>
                 <image>http://{{ADDR_PMS}}{{ADDPATH(thumb)}}</image>
-                <defaultImage>resource://16X9.png</defaultImage>
+                <!--<defaultImage>resource://16X9.png</defaultImage>      This causes the thumbnail to be too small, not sure why.-->
                 <preview>
                   <keyedPreview>
                     <title>{{VAL(title)}}</title>
