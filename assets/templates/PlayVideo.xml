@@ -5,7 +5,7 @@
         <mediaURL>http://{{ADDR_PMS}}{{MEDIAPATH(Video/Media)}}</mediaURL>
         <title>{{VAL(Video/title)}}</title>
         <description>{{VAL(Video/summary)}}</description>
-        <bookmarkTime>{{VALMATH(Video/viewOffset:1000:/1000)}}</bookmarkTime>
+        <bookmarkTime>{{EVAL(Video/viewOffset:1000:int(x/1000))}}</bookmarkTime>
         <image>http://{{ADDR_PMS}}{{VAL(Video/thumb)}}</image>
       </httpFileVideoAsset>
     </videoPlayer>
