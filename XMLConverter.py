@@ -210,10 +210,12 @@ def XML_processParams(params, src):
                 attrib = parts[1]
             
             # check element and get attribute
-            if el!=None:
-                res = el.get(attrib, default)
-            else:  # path not found
+            if el!=None and attrib in el.attrib:
+                res = el.get(attrib)
+            
+            else:  # path/attribute not found
                 res = default
+                leftover = ''  # clear leftover to keep the default
             
             dprint(__name__, 2, "XML_processParams: {},{}", res, leftover)
             return [res,leftover]
@@ -273,8 +275,10 @@ def XML_processMEDIAPATH(params, src):
             res = el.find('Part').get('key','')
         else:
             # try transcoding
+            dprint(__name__, 0, "XML_processMEDIAPATH - transcoding not implemented!")
             res = ''  # transcoding
     else:
+        dprint(__name__, 0, "XML_processMEDIAPATH - element not found: {}", params)
         res = ''  # not found?
     
     dprint(__name__, 2, "XML_processMEDIAPATH: {}", res)
@@ -309,7 +313,8 @@ def XML_ExpandLine(elem, src, path, line):
             res = Addr_PMS
         
         else:
-            res = "{{"+cmd+"}}"  # unsupported.
+            dprint(__name__, 0, "XML_ExpandLine - unknown command: {}", cmd)
+            res = "[["+cmd+"]]"  # unsupported.
         
         line = line[:cmd_start] + res + line[cmd_end+2:]
         dprint(__name__, 2, "XML_ExpandLine: {}", line)
