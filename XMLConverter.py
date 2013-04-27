@@ -268,7 +268,9 @@ def XML_processMEDIAPATH(params, src):
     
     # check "Media' element and get key
     if el!=None:
-        if el.get('container','') in ("mov", "mp4") and \
+        if Settings.getForceDirectPlay()==True or \
+           Settings.getForceTranscoding()==False and \
+           el.get('container','') in ("mov", "mp4") and \
            el.get('videoCodec','') in ("mpeg4", "h264") and \
            el.get('audioCodec','') in ("aac", "ac3"):
             # native aTV media

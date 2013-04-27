@@ -16,3 +16,10 @@ def getIP_aTV():
 
 def getIP_DNSmaster():  # Router, ISP's DNS, ...
     return '192.168.178.1'
+
+# AppleTV capabilities
+def getForceDirectPlay():  # if true, this has higher priority than transcoding
+    return True
+
+def getForceTranscoding():
+    return False
