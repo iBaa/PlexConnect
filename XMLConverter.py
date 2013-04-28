@@ -324,36 +324,86 @@ def XML_ExpandLine(elem, src, path, line):
 
 
 
+def XML_ModifyNode(elem, child, src, path, line):
+    cmd_start = line.find('{{')  # only one command in text/tail? otherwise: todo
+    cmd_end   = line.find('}}')
+    if cmd_start==-1 or cmd_end==-1:
+        return line  # tree not touched, line unchanged
+    
+    cmd = line[cmd_start+2:cmd_end]
+    if cmd.startswith('COPY(') and cmd.endswith(')'):
+        cmd = cmd[len('COPY('):-1]
+        child.text = line[:cmd_start] + line[cmd_end+2:]  # remove current cmd
+        
+        childToCopy = child
+        elem.remove(child)
+        # duplicate child and add to tree
+        for elemSRC in src.findall(cmd):  # tag
+            el = copy.deepcopy(childToCopy)
+            XML_Expand(el, elemSRC, path)
+            elem.append(el)
+        line = None  # tree modified, nodes updated: do not update line
+    
+    elif cmd.startswith('CUT(') and cmd.endswith(')'):
+        res, leftover = XML_processParams(cmd[len('CUT('):-1], src)
+        if res:
+            elem.remove(child)
+            line = None  # tree modified, node removed: do not update line
+        else:
+            line = line[:cmd_start] + line[cmd_end+2:]  # tree not touched, but update line
+    
+    else:
+        pass  # tree not touched, line unchanged
+    
+    dprint(__name__, 2, "XML_ModifyNode: -{}-", line)
+    return line
+
+
+
 def XML_Expand(elem, src, path):
-    # unpack template 'COPY' command in children
-    for child in elem:  # todo: crashes/gives endless loop if multiple {{COPY}} in one template
-        line = child.text
-        if line==None: line=''
-        cmd_start = line.find('{{')
-        cmd_end   = line.find('}}')    
-        if cmd_start>-1 and cmd_end>-1:
-            cmd = line[cmd_start+2:cmd_end]
-            if cmd.startswith('COPY(') and cmd.endswith(')'):
-                cmd = cmd[len('COPY('):-1]
-                child.text = line[:cmd_start] + line[cmd_end+2:]  # remove current cmd
-                
-                childToCopy = child
-                elem.remove(child)
-                # duplicate child and add to tree                
-                for elemSRC in src.findall(cmd):  # tag
-                    el = copy.deepcopy(childToCopy)
-                    XML_Expand(el, elemSRC, path)
-                    elem.append(el)
+    # unpack template 'COPY'/'CUT' command in children
+    line = ''
+    res = ''
+    while True:
+        if list(elem)==[]:  # no sub-elements, stop recursion
+            break
+        
+        for child in elem:  # todo: crashes/gives endless loop if multiple {{COPY}} in one template
+            line = child.text
+            if line!=None:
+                line = line.strip()
+                res = XML_ModifyNode(elem, child, src, path, line)
+                if res!=line:  # tree changed - restart from top
+                    if res!=None:
+                        child.text = res
+                    break
+            
+            line = child.tail
+            if line!=None:
+                line = line.strip()
+                res = XML_ModifyNode(elem, child, src, path, line)
+                if res!=line:  # tree changed - restart from top
+                    if res!=None:
+                        child.tail = res
+                    break
+        
+        if res==line:  # complete tree parsed with no change
+            break
     
     # unpack template commands in elem.text
     line = elem.text
-    if line==None: line=''
-    elem.text = XML_ExpandLine(elem, src, path, line)
+    if line!=None:
+        elem.text = XML_ExpandLine(elem, src, path, line.strip())
+    
+    # unpack template commands in elem.tail
+    line = elem.tail
+    if line!=None:
+        elem.tail = XML_ExpandLine(elem, src, path, line.strip())
     
     # unpack template commands in elem.attrib.value
     for attrib in elem.attrib:
         line = elem.get(attrib)
-        elem.set(attrib, XML_ExpandLine(elem, src, path, line))
+        elem.set(attrib, XML_ExpandLine(elem, src, path, line.strip()))
  
     # recurse into children
     for el in elem:
@@ -379,6 +429,10 @@ if __name__=="__main__":
                     File{{COPY(DATA)}}\
                 </FILE> \
                 <PATH path="{{ADDPATH(file:unknown)}}" /> \
+                <accessories> \
+                    <cut />{{CUT(number)}} \
+                    <dontcut />{{CUT(attribnotfound)}} \
+                </accessories> \
             </aTV>'
     aTVroot = etree.fromstring(_XML)
     aTVTree = etree.ElementTree(aTVroot)
