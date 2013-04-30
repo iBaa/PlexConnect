@@ -31,6 +31,16 @@ class MyHandler(BaseHTTPRequestHandler):
         try:
             if self.client_address[0]==Settings.getIP_aTV():
                 
+                # recieve simple logging messages from the ATV
+                if self.path.endswith("&atvlogger"):
+                    msg = self.path.replace("%20", " ")
+                    msg = msg.replace("&lt;", "<")
+                    msg = msg.replace("&gt;", ">")
+                    msg = msg.replace("&fs;", "/")
+                    msg = msg[1:len(msg)-10]
+                    print("ATVLogger : " + msg)
+                    return
+                    
                 # serve "application.js" to aTV
                 # disregard the path - it is different for different iOS versions
                 if self.path.endswith("application.js"):

@@ -10,15 +10,18 @@
         <sections>
           <menuSection>
             <items>
-              <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')">
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')">
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>
+                <rightLabel>{{VAL(leafCount)}} Episodes</rightLabel>
+                <image>http://{{ADDR_PMS()}}{{ADDPATH(thumb)}}</image>
+                <defaultImage>resource://Poster.png</defaultImage>
                 <preview>
                   <crossFadePreview>
                     <image>http://{{ADDR_PMS()}}{{ADDPATH(thumb)}}</image>
                   </crossFadePreview>
                 </preview>
-              </oneLineMenuItem>
+              </twoLineEnhancedMenuItem>
             </items>
           </menuSection>
         </sections>

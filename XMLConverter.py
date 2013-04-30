@@ -164,8 +164,12 @@ def XML_PMS2aTV(address, path):
         XMLtemplate = 'Movie.xml'
         
     elif PMSroot.get('viewGroup')=='episode':
-        # TV Episode view
-        XMLtemplate = 'Episode.xml'
+        if PMSroot.get('title2')=='On Deck':
+            # TV On Deck View
+            XMLtemplate = 'TV_OnDeck.xml'
+        else:
+            # TV Episode view
+            XMLtemplate = 'Episode.xml'
     
     dprint(__name__, 1, XMLtemplate)
         
@@ -490,7 +494,13 @@ class CCommandAttrib(CCommandHelper):
     
     def ADDR_PMS(self, src, param):
         return Addr_PMS
-
+        
+    def episodestring(self, src, param):
+        parentIndex, leftover = self.getKey(src, param) # getKey "defaults" if nothing found.
+        index, leftover = self.getKey(src, leftover)
+        title, leftover = self.getKey(src, leftover)
+        out = "{:0d}x{:02d} {}".format(int(parentIndex), int(index), title)
+        return out 
 
 
 if __name__=="__main__":
