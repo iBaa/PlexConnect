@@ -171,10 +171,11 @@ def XML_PMS2aTV(address, path):
         
     aTVTree = etree.parse(curdir+'/assets/templates/'+XMLtemplate)
     aTVroot = aTVTree.getroot()
-    XML_Expand(aTVroot, PMSroot, path)
+    XML_ExpandTree(aTVroot, PMSroot, path)
+    XML_ExpandAllAttrib(aTVroot, PMSroot, path)
     
     # todo: channels, photos...
- 
+    
     dprint(__name__, 1, "====== generated aTV-XML ======")
     dprint(__name__, 1, XML_prettystring(aTVTree))
     dprint(__name__, 1, "====== aTV-XML finished ======")
@@ -183,81 +184,128 @@ def XML_PMS2aTV(address, path):
 
 
 
-def Path_addPath(path, addpath):
-    if addpath.startswith("/"):
-        res = addpath+'/'
-    else:
-        res = path+addpath+'/'
-    return res
-
-
-
-def XML_processParams(params, src):
-            parts = params.split(':',2)
-            attrib = parts[0]
-            default=''
-            if len(parts)>1:
-                default = parts[1]
-            leftover=''
-            if len(parts)>2:
-                leftover = parts[2]
-            
-            # walk the path if neccessary
-            el = src            
-            while '/' in attrib and el!=None:
-                parts = attrib.split('/',1)
-                el = el.find(parts[0])
-                attrib = parts[1]
-            
-            # check element and get attribute
-            if el!=None and attrib in el.attrib:
-                res = el.get(attrib)
-            
-            else:  # path/attribute not found
-                res = default
-                leftover = ''  # clear leftover to keep the default
-            
-            dprint(__name__, 2, "XML_processParams: {},{}", res, leftover)
-            return [res,leftover]
-
-
-
-def XML_processVAL(res, conv):
-    # apply string conversion
-    if conv!='':
-        parts = conv.split('|')
-        convlist = []
-        for part in parts:
-            convstr = part.split('=')
-            convlist.append((convstr[0], convstr[1]))
+def XML_ExpandTree(elem, src, path):
+    # unpack template 'COPY'/'CUT' command in children
+    res = False
+    while True:
+        if list(elem)==[]:  # no sub-elements, stop recursion
+            break
         
-        for part in reversed(sorted(convlist)):
-            if res>=part[0]: break
+        for child in elem:
+            res = XML_ExpandNode(elem, child, src, path, 'TEXT')
+            if res==True:  # tree modified: restart from 1st elem
+                break  # "for child"
+            
+            res = XML_ExpandNode(elem, child, src, path, 'TAIL')
+            if res==True:  # tree modified: restart from 1st elem
+                break  # "for child"
         
-        res = part[1]
-        
-    dprint(__name__, 2, "XML_processVAL: {}", res)
-    return res
-
-
-
-def XML_processEVAL(res, math):
-    # apply math function - eval
-    if math!='':
-        try:
-            x = eval(res)
-            res = str(eval(math))
-        except:
-            dprint(__name__, 0, "XML_processEVAL: Error in {}", math)
+        if res==False:  # complete tree parsed with no change, stop recursion
+            break  # "while True"
     
-    dprint(__name__, 2, "XML_processEVAL: {}", res)
-    return res
+    # recurse into children
+    for el in elem:
+        XML_ExpandTree(el, src, path)
 
 
 
-def XML_processMEDIAPATH(params, src):
+def XML_ExpandNode(elem, child, src, path, text_tail):
+    if text_tail=='TEXT':  # read line from text or tail
+        line = child.text
+    elif text_tail=='TAIL':
+        line = child.tail
+    else:
+        dprint(__name__, 0, "XML_ExpandNode - text_tail badly specified: {}", text_tail)
+        return False
+        
+    if line!=None:
+        line = line.strip()
+        cmd_start = line.find('{{')  # only one command in text/tail? otherwise: todo
+        cmd_end   = line.find('}}')
+        if cmd_start==-1 or cmd_end==-1:
+            return False  # tree not touched, line unchanged
+                
+        cmd = line[cmd_start+2:cmd_end]
+        if cmd[-1]!=')':
+            dprint(__name__, 0, "XML_ExpandNode - closing bracket missing: {} ", line)
+        
+        parts = cmd.split('(',1)
+        cmd = parts[0]
+        param = parts[1].strip(')')  # remove ending bracket
+        
+        res = False
+        if hasattr(CCommandTree, cmd):  # expand tree, work COPY, CUT
+            if text_tail=='TEXT':  # remove cmd from text and tail
+                child.text = line[:cmd_start] + line[cmd_end+2:]
+            elif text_tail=='TAIL':
+                child.tail = line[:cmd_start] + line[cmd_end+2:]
+            CMD = CCommandTree(elem, child, path)
+            try:
+                res = eval("CMD."+cmd+"(src, '"+param+"')")
+            except:
+                dprint(__name__, 0, "XML_ExpandNode - Error in {}", line)
+            del CMD
+        
+        dprint(__name__, 2, "XML_ExpandNode: {}", line)
+        return res
+
+
+
+def XML_ExpandAllAttrib(elem, src, path):
+    # unpack template commands in elem.text
+    line = elem.text
+    if line!=None:
+        elem.text = XML_ExpandLine(src, path, line.strip())
+    
+    # unpack template commands in elem.tail
+    line = elem.tail
+    if line!=None:
+        elem.tail = XML_ExpandLine(src, path, line.strip())
+    
+    # unpack template commands in elem.attrib.value
+    for attrib in elem.attrib:
+        line = elem.get(attrib)
+        elem.set(attrib, XML_ExpandLine(src, path, line.strip()))
+    
+    # recurse into children
+    for el in elem:
+        XML_ExpandAllAttrib(el, src, path)
+
+
+
+def XML_ExpandLine(src, path, line):
+    while True:
+        cmd_start = line.find('{{')
+        cmd_end   = line.find('}}')
+        if cmd_start==-1 or cmd_end==-1:
+            break;
+        
+        cmd = line[cmd_start+2:cmd_end]
+        if cmd[-1]!=')':
+            dprint(__name__, 0, "XML_ExpandLine - closing bracket missing: {} ", line)
+        
+        parts = cmd.split('(',1)
+        cmd = parts[0]
+        param = parts[1][:-1]  # remove ending bracket
+        
+        if hasattr(CCommandAttrib, cmd):  # expand tree, work VAL, EVAL...
+            CMD = CCommandAttrib(path)
+            try:                
+                res = eval("CMD."+cmd+"(src, '"+param+"')")
+                line = line[:cmd_start] + res + line[cmd_end+2:]
+            except:
+                dprint(__name__, 0, "XML_ExpandLine - Error in {}", line)
+                line = line[:cmd_start] + "((ERROR:"+cmd+"))" + line[cmd_end+2:]
+            del CMD
+            
+        dprint(__name__, 2, "XML_ExpandLine: {}", line)
+    return line
+
+
+
+def XML_processMEDIAPATH(src, param):
     # walk the path if neccessary
-    tag = params
+    tag = param
     el = src            
     while True:
         parts = tag.split('/',1)
@@ -266,7 +314,7 @@ def XML_processMEDIAPATH(params, src):
             break
         tag = parts[1]
     
-    # check "Media' element and get key
+    # check "Media" element and get key
     if el!=None:
         if Settings.getForceDirectPlay()==True or \
            Settings.getForceTranscoding()==False and \
@@ -288,126 +336,160 @@ def XML_processMEDIAPATH(params, src):
 
 
 
-def XML_ExpandLine(elem, src, path, line):
-    while True:
-        cmd_start = line.find('{{')
-        cmd_end   = line.find('}}')
-        if cmd_start==-1 or cmd_end==-1:
-            break;
+"""
+# Command expander classes
+# CCommandHelper(): base class to the following, provides basic parsing & evaluation functions
+# CCommandTree():   commands with effect on the whole tree (COPY, CUT) - must be expanded first
+# CCommandAttrib(): commands dealing with single node keys, text, tail only (VAL, EVAL, ADDR_PMS)
+"""
+class CCommandHelper():
+    # internal helper functions
+    def getParam(self, src, param):
+        parts = param.split(':',1)
+        param = parts[0]
+        leftover=''
+        if len(parts)>1:
+            leftover = parts[1]
         
-        cmd = line[cmd_start+2:cmd_end]
-        if cmd.startswith('VAL(') and cmd.endswith(')'):
-            res, leftover = XML_processParams(cmd[len('VAL('):-1], src)
-            res = XML_processVAL(res, leftover)
-        
-        elif cmd.startswith('EVAL(') and cmd.endswith(')'):
-            res, leftover = XML_processParams(cmd[len('EVAL('):-1], src)
-            res = XML_processEVAL(res, leftover)
-        
-        elif cmd.startswith('ADDPATH(') and cmd.endswith(')'):
-            res, leftover = XML_processParams(cmd[len('ADDPATH('):-1], src)
-            res = Path_addPath(path, res)
-        
-        elif cmd.startswith('MEDIAPATH(') and cmd.endswith(')'):
-            res = XML_processMEDIAPATH(cmd[len('MEDIAPATH('):-1], src)
-            
-        elif cmd=='ADDR_PMS':
-            res = Addr_PMS
-        
-        else:
-            dprint(__name__, 0, "XML_ExpandLine - unknown command: {}", cmd)
-            res = "[["+cmd+"]]"  # unsupported.
-        
-        line = line[:cmd_start] + res + line[cmd_end+2:]
-        dprint(__name__, 2, "XML_ExpandLine: {}", line)
-    return line
-
-
-
-def XML_ModifyNode(elem, child, src, path, line):
-    cmd_start = line.find('{{')  # only one command in text/tail? otherwise: todo
-    cmd_end   = line.find('}}')
-    if cmd_start==-1 or cmd_end==-1:
-        return line  # tree not touched, line unchanged
+        dprint(__name__, 2, "CCmds_getParam: {}, {}", param, leftover)
+        return [param, leftover]
     
-    cmd = line[cmd_start+2:cmd_end]
-    if cmd.startswith('COPY(') and cmd.endswith(')'):
-        cmd = cmd[len('COPY('):-1]
-        child.text = line[:cmd_start] + line[cmd_end+2:]  # remove current cmd
+    def getKey(self, src, param):
+        parts = param.split(':',2)
+        attrib = parts[0]
+        default=''
+        if len(parts)>1:
+            default = parts[1]
+        leftover=''
+        if len(parts)>2:
+            leftover = parts[2]
         
-        childToCopy = child
-        elem.remove(child)
+        # walk the path if neccessary
+        el = src            
+        while '/' in attrib and el!=None:
+            parts = attrib.split('/',1)
+            el = el.find(parts[0])
+            attrib = parts[1]
+        
+        # check element and get attribute
+        if el!=None and attrib in el.attrib:
+            res = el.get(attrib)
+        
+        else:  # path/attribute not found
+            res = default
+            leftover = ''  # clear leftover to keep the default
+        
+        dprint(__name__, 2, "CCmds_getKey: {},{}", res, leftover)
+        return [res,leftover]
+    
+    def getConversion(self, val, param):
+        parts = param.split(':',1)
+        param = parts[0]
+        leftover=''
+        if len(parts)>1:
+            leftover = parts[1]
+        
+        # build conversion "dictionary"
+        convlist = []
+        if param!='':
+            parts = param.split('|',1)
+            for part in parts:
+                convstr = part.split('=')
+                convlist.append((convstr[0], convstr[1]))
+        
+        dprint(__name__, 2, "CCmds_getConversion: {}", val)
+        return [convlist, leftover]
+    
+    def applyConversion(self, val, convlist):
+        # apply string conversion            
+        if convlist!=[]:
+            for part in reversed(sorted(convlist)):
+                if val>=part[0]:
+                    val = part[1]
+                    break
+        
+        dprint(__name__, 2, "CCmds_applyConversion: {}", val)
+        return val
+    
+    def applyMath(self, val, math):
+        # apply math function - eval
+        if math!='':
+            try:
+                x = eval(val)
+                val = str(eval(math))
+            except:
+                dprint(__name__, 0, "XML_processEVAL: Error in {}", math)
+        
+        dprint(__name__, 2, "CCmds_applyMath: {}", val)
+        return val
+
+
+
+class CCommandTree(CCommandHelper):
+    def __init__(self, elem, child, path):
+        self.elem = elem
+        self.child = child
+        self.path = path
+    
+    # XML tree modifier commands
+    # add new commands to this list!
+    def COPY(self, src, param):
+        childToCopy = self.child
+        self.elem.remove(self.child)
+        
         # duplicate child and add to tree
-        for elemSRC in src.findall(cmd):  # tag
+        for elemSRC in src.findall(param):  # tag
             el = copy.deepcopy(childToCopy)
-            XML_Expand(el, elemSRC, path)
-            elem.append(el)
-        line = None  # tree modified, nodes updated: do not update line
+            XML_ExpandTree(el, elemSRC, self.path)
+            XML_ExpandAllAttrib(el, elemSRC, self.path)
+            self.elem.append(el)
+                   
+        return True  # tree modified, nodes updated: restart from 1st elem
     
-    elif cmd.startswith('CUT(') and cmd.endswith(')'):
-        res, leftover = XML_processParams(cmd[len('CUT('):-1], src)
+    def CUT(self, src, param):
+        key, leftover = self.getKey(src, param)
+        conv, leftover = self.getConversion(src, leftover)
+        res = self.applyConversion(key, conv)
         if res:
-            elem.remove(child)
-            line = None  # tree modified, node removed: do not update line
+            self.elem.remove(self.child)
+            return True  # tree modified, node removed: restart from 1st elem
         else:
-            line = line[:cmd_start] + line[cmd_end+2:]  # tree not touched, but update line
-    
-    else:
-        pass  # tree not touched, line unchanged
-    
-    dprint(__name__, 2, "XML_ModifyNode: -{}-", line)
-    return line
+            return False  # tree unchanged
 
 
 
-def XML_Expand(elem, src, path):
-    # unpack template 'COPY'/'CUT' command in children
-    line = ''
-    res = ''
-    while True:
-        if list(elem)==[]:  # no sub-elements, stop recursion
-            break
-        
-        for child in elem:  # todo: crashes/gives endless loop if multiple {{COPY}} in one template
-            line = child.text
-            if line!=None:
-                line = line.strip()
-                res = XML_ModifyNode(elem, child, src, path, line)
-                if res!=line:  # tree changed - restart from top
-                    if res!=None:
-                        child.text = res
-                    break
-            
-            line = child.tail
-            if line!=None:
-                line = line.strip()
-                res = XML_ModifyNode(elem, child, src, path, line)
-                if res!=line:  # tree changed - restart from top
-                    if res!=None:
-                        child.tail = res
-                    break
-        
-        if res==line:  # complete tree parsed with no change
-            break
+class CCommandAttrib(CCommandHelper):
+    def __init__(self, path):
+        self.path = path
     
-    # unpack template commands in elem.text
-    line = elem.text
-    if line!=None:
-        elem.text = XML_ExpandLine(elem, src, path, line.strip())
+    # XML line modifier commands
+    # add new commands to this list!
+    def VAL(self, src, param):
+        key, leftover = self.getKey(src, param)
+        conv, leftover = self.getConversion(src, leftover)
+        res = self.applyConversion(key, conv)
+        return res
     
-    # unpack template commands in elem.tail
-    line = elem.tail
-    if line!=None:
-        elem.tail = XML_ExpandLine(elem, src, path, line.strip())
+    def EVAL(self, src, param):
+        key, leftover = self.getKey(src, param)
+        math, leftover = self.getParam(src, leftover)
+        res = self.applyMath(key, math)
+        return res
     
-    # unpack template commands in elem.attrib.value
-    for attrib in elem.attrib:
-        line = elem.get(attrib)
-        elem.set(attrib, XML_ExpandLine(elem, src, path, line.strip()))
- 
-    # recurse into children
-    for el in elem:
-        XML_Expand(el, src, path)
+    def ADDPATH(self, src, param):
+        addpath, leftover = self.getKey(src, param)
+        if addpath.startswith("/"):
+            res = addpath+'/'
+        else:
+            res = self.path+addpath+'/'
+        return res
+    
+    def MEDIAPATH(self, src, param):    
+        res = XML_processMEDIAPATH(src, param)
+        return res
+    
+    def ADDR_PMS(self, src, param):
+        return Addr_PMS
 
 
 
@@ -426,21 +508,25 @@ if __name__=="__main__":
     _XML = '<aTV> \
                 <INFO num="{{VAL(number)}}" str="{{VAL(string)}}">Info</INFO> \
                 <FILE str="{{VAL(string)}}" strconv="{{VAL(string::World=big|Moon=small)}}" num="{{VAL(number:5)}}" numfunc="{{EVAL(number:5:int(x/10))}}"> \
-                    File{{COPY(DATA)}}\
+                    File{{COPY(DATA)}} \
                 </FILE> \
                 <PATH path="{{ADDPATH(file:unknown)}}" /> \
                 <accessories> \
-                    <cut />{{CUT(number)}} \
+                    <cut />{{CUT(number::0=cut|1=)}} \
                     <dontcut />{{CUT(attribnotfound)}} \
                 </accessories> \
+                <ADDPATH>{{ADDPATH(string)}}</ADDPATH> \
+                <ADDR_PMS>{{ADDR_PMS()}}</ADDR_PMS> \
+                <COPY2>={{COPY(DATA)}}=</COPY2> \
             </aTV>'
     aTVroot = etree.fromstring(_XML)
     aTVTree = etree.ElementTree(aTVroot)
     XML_prettyprint(aTVTree)
     
     print
-    print "unpack PlexConnect commands"
-    XML_Expand(aTVroot, PMSroot, '/library/sections/')
+    print "unpack PlexConnect COPY/CUT commands"
+    XML_ExpandTree(aTVroot, PMSroot, '/library/sections/')
+    XML_ExpandAllAttrib(aTVroot, PMSroot, '/library/sections/')
     
     print
     print "resulting aTV XML"

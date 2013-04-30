@@ -19,13 +19,13 @@
                 <rightLabel>{{VAL(viewCount:dflt:dflt=***|1=)}}</rightLabel>
                 <ordinal>{{VAL(index)}}</ordinal>
                 <maxOrdinalDigits>2</maxOrdinalDigits>
-                <image>http://{{ADDR_PMS}}{{ADDPATH(thumb)}}</image>
+                <image>http://{{ADDR_PMS()}}{{ADDPATH(thumb)}}</image>
                 <!--<defaultImage>resource://16X9.png</defaultImage>      This causes the thumbnail to be too small, not sure why.-->
                 <preview>
                   <keyedPreview>
                     <title>{{VAL(title)}}</title>
                     <summary>{{VAL(summary)}}</summary>
-                    <image>http://{{ADDR_PMS}}{{VAL(thumb)}}</image>
+                    <image>http://{{ADDR_PMS()}}{{VAL(thumb)}}</image>
                   </keyedPreview>
                 </preview>
               </twoLineEnhancedMenuItem>

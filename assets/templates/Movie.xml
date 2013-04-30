@@ -15,7 +15,7 @@
               {{COPY(Video)}}
               <title>{{VAL(title)}}</title>
               <subtitle>{{VAL(year)}}</subtitle>
-              <image>http://{{ADDR_PMS}}{{ADDPATH(thumb)}}</image>
+              <image>http://{{ADDR_PMS()}}{{ADDPATH(thumb)}}</image>
               <defaultImage>resource://16X9.png</defaultImage>
             </moviePoster>
           </items>
