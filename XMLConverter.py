@@ -307,39 +307,6 @@ def XML_ExpandLine(src, path, line):
 
 
 
-def XML_processMEDIAPATH(src, param):
-    # walk the path if neccessary
-    tag = param
-    el = src            
-    while True:
-        parts = tag.split('/',1)
-        el = el.find(parts[0])
-        if not '/' in tag or el==None:
-            break
-        tag = parts[1]
-    
-    # check "Media" element and get key
-    if el!=None:
-        if Settings.getForceDirectPlay()==True or \
-           Settings.getForceTranscoding()==False and \
-           el.get('container','') in ("mov", "mp4") and \
-           el.get('videoCodec','') in ("mpeg4", "h264") and \
-           el.get('audioCodec','') in ("aac", "ac3"):
-            # native aTV media
-            res = el.find('Part').get('key','')
-        else:
-            # try transcoding
-            dprint(__name__, 0, "XML_processMEDIAPATH - transcoding not implemented!")
-            res = ''  # transcoding
-    else:
-        dprint(__name__, 0, "XML_processMEDIAPATH - element not found: {}", params)
-        res = ''  # not found?
-    
-    dprint(__name__, 2, "XML_processMEDIAPATH: {}", res)
-    return res
-
-
-
 """
 # Command expander classes
 # CCommandHelper(): base class to the following, provides basic parsing & evaluation functions
@@ -386,6 +353,23 @@ class CCommandHelper():
         dprint(__name__, 2, "CCmds_getKey: {},{}", res, leftover)
         return [res,leftover]
     
+    def getElement(self, src, param):
+        parts = param.split(':',1)
+        tag = parts[0]
+        leftover=''
+        if len(parts)>1:
+            leftover = parts[1]
+        
+        # walk the path if neccessary
+        el = src
+        while True:
+            parts = tag.split('/',1)
+            el = el.find(parts[0])
+            if not '/' in tag or el==None:
+                break
+            tag = parts[1]
+        return [el, leftover]
+    
     def getConversion(self, val, param):
         parts = param.split(':',1)
         param = parts[0]
@@ -422,7 +406,7 @@ class CCommandHelper():
                 x = eval(val)
                 val = str(eval(math))
             except:
-                dprint(__name__, 0, "XML_processEVAL: Error in {}", math)
+                dprint(__name__, 0, "CCmds_applyMath: Error in {}", math)
         
         dprint(__name__, 2, "CCmds_applyMath: {}", val)
         return val
@@ -488,8 +472,26 @@ class CCommandAttrib(CCommandHelper):
             res = self.path+addpath+'/'
         return res
     
-    def MEDIAPATH(self, src, param):    
-        res = XML_processMEDIAPATH(src, param)
+    def MEDIAPATH(self, src, param):
+        el, leftover = self.getElement(src,param)
+        
+        # check "Media" element and get key
+        if el!=None:
+            if Settings.getForceDirectPlay()==True or \
+                Settings.getForceTranscoding()==False and \
+                el.get('container','') in ("mov", "mp4") and \
+                el.get('videoCodec','') in ("mpeg4", "h264") and \
+                el.get('audioCodec','') in ("aac", "ac3"):
+                # native aTV media
+                res = el.find('Part').get('key','')
+            else:
+                # try transcoding
+                dprint(__name__, 0, "MEDIAPATH - transcoding not implemented!")
+                res = 'TRANSCODING'  # transcoding
+        else:
+            dprint(__name__, 0, "MEDIAPATH - element not found: {}", params)
+            res = 'FILE_NOT_FOUND'  # not found?
+        
         return res
     
     def ADDR_PMS(self, src, param):
