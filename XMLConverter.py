@@ -13,6 +13,9 @@ http://trailers.apple.com/appletv/us/nav.xml
 ->top trailers: http://trailers.apple.com/appletv/us/index.xml
 ->calendar:     http://trailers.apple.com/appletv/us/calendar.xml
 ->browse:       http://trailers.apple.com/appletv/us/browse.xml
+
+PlexAPI_getTranscodePath() based on getTranscodeURL from pyplex/plexAPI
+https://github.com/megawubs/pyplex/blob/master/plexAPI/info.py
 """
 
 
@@ -27,6 +30,10 @@ try:
     import xml.etree.cElementTree as etree
 except ImportError:
     import xml.etree.ElementTree as etree
+
+import time, uuid, hmac, hashlib, base64
+from urllib import urlencode
+from urlparse import urlparse
 
 import Settings
 from Debug import *  # dprint()
@@ -308,6 +315,43 @@ def XML_ExpandLine(src, path, line):
 
 
 """
+# PlexAPI
+"""
+def PlexAPI_getTranscodePath(path):
+    transcodePath = '/video/:/transcode/segmented/start.m3u8?'
+    
+    args = dict()
+    args['offset'] = 0
+    args['3g'] = 0
+    args['subtitleSize'] = 125
+    args['secondsPerSegment'] = 10
+    #args['ratingKey'] = ratingkey
+    args["identifier"] = 'com.plexapp.plugins.library'
+    args["quality"] = 9
+    args["url"] = "http://" + Addr_PMS + path
+    args["httpCookies"] = ''
+    args["userAgent"] = ''
+    
+    atime = int(time.time())
+    message = transcodePath + urlencode(args) + "@%d" % atime
+    publicKey = 'KQMIY6GATPC63AIMC4R2'
+    privateKey = base64.b64decode('k3U6GLkZOoNIoSgjDshPErvqMIFdE0xMTx8kgsrhnC0=')
+    sig = base64.b64encode(hmac.new(privateKey, msg=message, digestmod=hashlib.sha256).digest())
+    
+    plexAccess = dict()
+    plexAccess['X-Plex-Access-Key'] = publicKey
+    plexAccess['X-Plex-Access-Time'] = atime
+    plexAccess['X-Plex-Access-Code'] = sig
+    plexAccess['X-Plex-Client-Capabilities'] = 'protocols=http-live-streaming,http-mp4-streaming,http-mp4-video,http-mp4-video-720p,http-streaming-video,http-streaming-video-720p;videoDecoders=h264{profile:main&resolution:720&level:42};audioDecoders=aac'
+    
+    dprint(__name__, 2, "TranscodePath: {}", transcodePath)
+    dprint(__name__, 2, "Args: {}", urlencode(args))
+    dprint(__name__, 2, "PlexAccess: {}", urlencode(plexAccess))
+    return transcodePath + urlencode(args) + '&' + urlencode(plexAccess)
+
+
+
+"""
 # Command expander classes
 # CCommandHelper(): base class to the following, provides basic parsing & evaluation functions
 # CCommandTree():   commands with effect on the whole tree (COPY, CUT) - must be expanded first
@@ -485,9 +529,9 @@ class CCommandAttrib(CCommandHelper):
                 # native aTV media
                 res = el.find('Part').get('key','')
             else:
-                # try transcoding
-                dprint(__name__, 0, "MEDIAPATH - transcoding not implemented!")
-                res = 'TRANSCODING'  # transcoding
+                # request transcoding
+                res = el.find('Part').get('key','')
+                res = PlexAPI_getTranscodePath(res)
         else:
             dprint(__name__, 0, "MEDIAPATH - element not found: {}", params)
             res = 'FILE_NOT_FOUND'  # not found?

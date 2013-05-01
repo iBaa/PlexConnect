@@ -19,7 +19,7 @@ def getIP_DNSmaster():  # Router, ISP's DNS, ...
 
 # AppleTV capabilities
 def getForceDirectPlay():  # if true, this has higher priority than transcoding
-    return True
+    return False
 
 def getForceTranscoding():
     return False
