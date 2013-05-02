@@ -75,19 +75,11 @@ class MyHandler(BaseHTTPRequestHandler):
                     f.close()
                     return
                 
-                # serve Plex directory structure - make sure to keep the trailing "/"                
-                if self.path.endswith("/"):
+                # serve Plex directory structure - make sure to keep the trailing "/"
+                # serve &PlexConnect Commands
+                if self.path.endswith("/") or \
+                   self.path.find("&PlexConnect=")>-1:
                     dprint(__name__, 1, "serving .xml: "+self.path)
-                    XML = XMLConverter.XML_PMS2aTV(self.client_address, self.path)
-                    self.send_response(200)
-                    self.send_header('Content-type', 'text/html')
-                    self.end_headers()
-                    self.wfile.write(XML)
-                    return
-                
-                # serve Plex media
-                if self.path.endswith("&PlexConnect=Play") or self.path.endswith("&PlexConnect=MoviePrePlay"):
-                    dprint(__name__, 1, "serving media: "+self.path)
                     XML = XMLConverter.XML_PMS2aTV(self.client_address, self.path)
                     self.send_response(200)
                     self.send_header('Content-type', 'text/html')
