@@ -519,11 +519,14 @@ class CCommandAttrib(CCommandHelper):
             res = self.path+addpath+'/'
         return res
     
-    def MEDIAPATH(self, src, param):
+    def MEDIAURL(self, src, param):
         el, leftover = self.getElement(src,param)
         
+        if el!=None:  # Video
+            el = el.find('Media')
+        
         # check "Media" element and get key
-        if el!=None:
+        if el!=None:  # Media
             if Settings.getForceDirectPlay()==True or \
                 Settings.getForceTranscoding()==False and \
                 el.get('container','') in ("mov", "mp4") and \
@@ -538,6 +541,11 @@ class CCommandAttrib(CCommandHelper):
         else:
             dprint(__name__, 0, "MEDIAPATH - element not found: {}", params)
             res = 'FILE_NOT_FOUND'  # not found?
+        
+        if res.startswith('/'):  # internal path. make sure it's not relative (path_addpath)
+            res = 'http://' + Addr_PMS + res
+        elif res.startswith('http://'):  # external address
+            pass
         
         return res
     
