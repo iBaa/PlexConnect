@@ -366,18 +366,22 @@ class CCommandHelper():
         if len(parts)>1:
             leftover = parts[1]
         
+        param = param.replace('&col;',':')  # colon  # replace XML_template special chars
+        param = param.replace('&ocb;','{')  # opening curly brace
+        param = param.replace('&ccb;','}')  # closinging curly brace
+        
+        param = param.replace('&quot;','"')  # replace XML special chars
+        param = param.replace('&apos;',"'")
+        param = param.replace('&lt;','<')
+        param = param.replace('&gt;','>')
+        param = param.replace('&amp;','&')  # must be last
+        
         dprint(__name__, 2, "CCmds_getParam: {}, {}", param, leftover)
         return [param, leftover]
     
     def getKey(self, src, param):
-        parts = param.split(':',2)
-        attrib = parts[0]
-        default=''
-        if len(parts)>1:
-            default = parts[1]
-        leftover=''
-        if len(parts)>2:
-            leftover = parts[2]
+        attrib, leftover = self.getParam(src, param)
+        default, leftover = self.getParam(src, leftover)
         
         # walk the path if neccessary
         el = src            
@@ -389,20 +393,17 @@ class CCommandHelper():
         # check element and get attribute
         if el!=None and attrib in el.attrib:
             res = el.get(attrib)
+            dfltd = False
         
         else:  # path/attribute not found
             res = default
-            leftover = ''  # clear leftover to keep the default
+            dfltd = True
         
-        dprint(__name__, 2, "CCmds_getKey: {},{}", res, leftover)
-        return [res,leftover]
+        dprint(__name__, 2, "CCmds_getKey: {},{},{}", res, leftover,dfltd)
+        return [res,leftover,dfltd]
     
     def getElement(self, src, param):
-        parts = param.split(':',1)
-        tag = parts[0]
-        leftover=''
-        if len(parts)>1:
-            leftover = parts[1]
+        tag, leftover = self.getParam(src, param)
         
         # walk the path if neccessary
         el = src
@@ -414,22 +415,18 @@ class CCommandHelper():
             tag = parts[1]
         return [el, leftover]
     
-    def getConversion(self, val, param):
-        parts = param.split(':',1)
-        param = parts[0]
-        leftover=''
-        if len(parts)>1:
-            leftover = parts[1]
+    def getConversion(self, src, param):
+        conv, leftover = self.getParam(src, param)
         
         # build conversion "dictionary"
         convlist = []
-        if param!='':
-            parts = param.split('|',1)
+        if conv!='':
+            parts = conv.split('|',1)
             for part in parts:
                 convstr = part.split('=')
                 convlist.append((convstr[0], convstr[1]))
         
-        dprint(__name__, 2, "CCmds_getConversion: {}", val)
+        dprint(__name__, 2, "CCmds_getConversion: {},{}", convlist, leftover)
         return [convlist, leftover]
     
     def applyConversion(self, val, convlist):
@@ -443,14 +440,16 @@ class CCommandHelper():
         dprint(__name__, 2, "CCmds_applyConversion: {}", val)
         return val
     
-    def applyMath(self, val, math):
+    def applyMath(self, val, math, frmt):
         # apply math function - eval
-        if math!='':
-            try:
-                x = eval(val)
-                val = str(eval(math))
-            except:
-                dprint(__name__, 0, "CCmds_applyMath: Error in {}", math)
+        try:
+            x = eval(val)
+            if math!='':
+                x = eval(math)
+            val = ('{'+frmt+'}').format(x)
+        except:
+            dprint(__name__, 0, "CCmds_applyMath: Error in math {}, frmt {}", math, frmt)
+        # apply format specifier
         
         dprint(__name__, 2, "CCmds_applyMath: {}", val)
         return val
@@ -466,11 +465,12 @@ class CCommandTree(CCommandHelper):
     # XML tree modifier commands
     # add new commands to this list!
     def COPY(self, src, param):
+        tag, leftover = self.getParam(src, param)
         childToCopy = self.child
         self.elem.remove(self.child)
         
         # duplicate child and add to tree
-        for elemSRC in src.findall(param):  # tag
+        for elemSRC in src.findall(tag):
             el = copy.deepcopy(childToCopy)
             XML_ExpandTree(el, elemSRC, self.path)
             XML_ExpandAllAttrib(el, elemSRC, self.path)
@@ -479,7 +479,7 @@ class CCommandTree(CCommandHelper):
         return True  # tree modified, nodes updated: restart from 1st elem
     
     def CUT(self, src, param):
-        key, leftover = self.getKey(src, param)
+        key, leftover, dfltd = self.getKey(src, param)
         conv, leftover = self.getConversion(src, leftover)
         res = self.applyConversion(key, conv)
         if res:
@@ -497,19 +497,22 @@ class CCommandAttrib(CCommandHelper):
     # XML line modifier commands
     # add new commands to this list!
     def VAL(self, src, param):
-        key, leftover = self.getKey(src, param)
+        key, leftover, dfltd = self.getKey(src, param)
         conv, leftover = self.getConversion(src, leftover)
-        res = self.applyConversion(key, conv)
-        return res
+        if not dfltd:
+            key = self.applyConversion(key, conv)
+        return key
     
     def EVAL(self, src, param):
-        key, leftover = self.getKey(src, param)
+        key, leftover, dfltd = self.getKey(src, param)
         math, leftover = self.getParam(src, leftover)
-        res = self.applyMath(key, math)
-        return res
+        frmt, leftover = self.getParam(src, leftover)
+        if not dfltd:
+            key = self.applyMath(key, math, frmt)
+        return key
     
     def ADDPATH(self, src, param):
-        addpath, leftover = self.getKey(src, param)
+        addpath, leftover, dfltd = self.getKey(src, param)
         if addpath.startswith("/"):
             res = addpath+'/'
         else:
@@ -542,9 +545,9 @@ class CCommandAttrib(CCommandHelper):
         return Addr_PMS
         
     def episodestring(self, src, param):
-        parentIndex, leftover = self.getKey(src, param) # getKey "defaults" if nothing found.
-        index, leftover = self.getKey(src, leftover)
-        title, leftover = self.getKey(src, leftover)
+        parentIndex, leftover, dfltd = self.getKey(src, param) # getKey "defaults" if nothing found.
+        index, leftover, dfltd = self.getKey(src, leftover)
+        title, leftover, dfltd = self.getKey(src, leftover)
         out = "{:0d}x{:02d} {}".format(int(parentIndex), int(index), title)
         return out 
 
@@ -563,7 +566,7 @@ if __name__=="__main__":
     print "load aTV XML template"
     _XML = '<aTV> \
                 <INFO num="{{VAL(number)}}" str="{{VAL(string)}}">Info</INFO> \
-                <FILE str="{{VAL(string)}}" strconv="{{VAL(string::World=big|Moon=small)}}" num="{{VAL(number:5)}}" numfunc="{{EVAL(number:5:int(x/10))}}"> \
+                <FILE str="{{VAL(string)}}" strconv="{{VAL(string::World=big|Moon=small)}}" num="{{VAL(number:5)}}" numfunc="{{EVAL(number:5:int(x/10):&amp;col;02d)}}"> \
                     File{{COPY(DATA)}} \
                 </FILE> \
                 <PATH path="{{ADDPATH(file:unknown)}}" /> \
