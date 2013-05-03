@@ -1,5 +1,46 @@
 <atv>
   <body>
+    <listWithPreview id="com.sample.menu-items-with-sections">
+      <header>
+        <simpleHeader>
+          <title>{{VAL(title1:Plex Library)}}</title>
+          <subtitle>{{VAL(title2)}}</subtitle>
+        </simpleHeader>
+      </header>
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+              <!-- library directories -->
+              <oneLineMenuItem id="{{VAL(key)}}" 
+                                       onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')" 
+                                       onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')">
+                {{COPY(Directory)}}
+                <label>{{VAL(title)}}</label>
+                <!--
+                <rightLabel>another 100 files...</rightLabel>
+                -->
+                <image>{{URL(thumb)}}</image>
+                <!--<image>http://trailers.apple.com/thumbnails/DirectoryLink.jpg</image>-->
+                <defaultImage>resource://Poster.png</defaultImage>
+                <preview>
+                  <crossFadePreview>
+                    <image>{{URL(thumb)}}</image>
+                  </crossFadePreview>
+                </preview>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </listWithPreview>
+  </body>
+</atv>
+
+
+<!--
+<atv>
+  <body>
     <listScrollerSplit id="com.sample.list-scroller-split">
       <header>
         <simpleHeader>
@@ -15,7 +56,9 @@
               </textDivider>
             </header>
             <items>
-              <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')">
+              <oneLineMenuItem id="{{VAL(key)}}"
+                               onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')"
+                               onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')">
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>
                 <preview>
@@ -29,3 +72,4 @@
     </listScrollerSplit>
   </body>
 </atv>
+-->

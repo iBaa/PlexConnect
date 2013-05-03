@@ -9,37 +9,37 @@
 						<shelfSection>	      
 							<items>
 								<moviePoster id="Library"
-								featured="true"
-								onSelect="atv.loadURL('http://trailers.apple.com/library/sections/');"
-								onPlay="atv.loadURL('http://trailers.apple.com/library/sections/');">
-                                    <title>Library</title>
+									featured="true"
+									onSelect="atv.loadURL('http://trailers.apple.com/library/sections/');"
+									onPlay="atv.loadURL('http://trailers.apple.com/library/sections/');">
+									<title>Library</title>
 									<image>http://trailers.apple.com/thumbnails/Library.jpg</image>
 									<defaultImage>resource://16X9.png</defaultImage>
 								</moviePoster>
 
 								<moviePoster id="Channels"
-								featured="true"
-								onSelect="atv.loadURL('http://trailers.apple.com/channels/all/');"
-								onPlay="atv.loadURL('http://trailers.apple.com/channels/all/');">
-                                    <title>Channels</title>
+									featured="true"
+									onSelect="atv.loadURL('http://trailers.apple.com/channels/all/&amp;PlexConnect=Channels');"
+									onPlay="atv.loadURL('http://trailers.apple.com/channels/all/&amp;PlexConnect=Channels');">
+									<title>Channels</title>
 									<image>http://trailers.apple.com/thumbnails/Channels.jpg</image>
 									<defaultImage>resource://16X9.png</defaultImage>
 								</moviePoster>
 
 								<moviePoster id="Music"
-								featured="true"
-								onSelect="atv.loadURL('http://trailers.apple.com/music/');"
-								onPlay="atv.loadURL('http://trailers.apple.com/music');">
-                                    <title>Music</title>
+									featured="true"
+									onSelect="atv.loadURL('http://trailers.apple.com/music/');"
+									onPlay="atv.loadURL('http://trailers.apple.com/music');">
+									<title>Music</title>
 									<image>http://trailers.apple.com/thumbnails/Music.jpg</image>
 									<defaultImage>resource://16X9.png</defaultImage>
 								</moviePoster>
-                                
+
 								<moviePoster id="Photos"
-								featured="true"
-								onSelect="atv.loadURL('http://trailers.apple.com/photos/');"
-								onPlay="atv.loadURL('http://trailers.apple.com/photos');">
-                                    <title>Photos</title>
+									featured="true"
+									onSelect="atv.loadURL('http://trailers.apple.com/photos/');"
+									onPlay="atv.loadURL('http://trailers.apple.com/photos');">
+									<title>Photos</title>
 									<image>http://trailers.apple.com/thumbnails/Photos.jpg</image>
 									<defaultImage>resource://16X9.png</defaultImage>
 								</moviePoster>

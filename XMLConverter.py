@@ -117,6 +117,11 @@ def GetURL(address, path):
 # - translate and feed back to aTV
 """
 def XML_ReadFromURL(address, path):
+    # quick fix for channel - they don't like the trailing '/'
+    if path[-1]=='/':
+        path=path[:-1]
+    print path
+    
     XMLstring = GetURL(address, path)
     
     # parse from memory
@@ -148,12 +153,22 @@ def XML_PMS2aTV(address, path):
     
     if cmd=='Play':
         XMLtemplate = 'PlayVideo.xml'
-        path = path[:-len('&PlexConnect=Play')]
+        
+        Media = PMSroot.find('Video').find('Media')  # todo: needs to be more flexible?
+        indirect = Media.get('indirect','0')
+        Part = Media.find('Part')
+        key = Part.get('key','')
+        
+        if indirect=='1':  # redirect... todo: select suitable resolution, today we just take first Media
+            PMS = XML_ReadFromURL(address, key)  # todo... check key for trailing '/' or even 'http'
+            PMSroot = PMS.getroot()
     
     elif cmd=='MoviePrePlay':
         XMLtemplate = 'MoviePrePlay.xml'
-        path = path[:-len('&PlexConnect=MoviePrePlay')]
-        
+    
+    elif cmd=='Channels':
+        XMLtemplate = 'Channels.xml'
+    
     elif PMSroot.get('viewGroup') is None or \
        PMSroot.get('viewGroup')=='secondary':
         XMLtemplate = 'Directory.xml'
@@ -519,6 +534,16 @@ class CCommandAttrib(CCommandHelper):
             res = self.path+addpath+'/'
         return res
     
+    def URL(self, src, param):
+        key, leftover, dfltd = self.getKey(src, param)
+        if key.startswith('/'):  # internal full path.
+            res = 'http://' + Addr_PMS + key
+        elif key.startswith('http://'):  # external address
+            res = key
+        else:  # internal path, add-on
+            res = 'http://' + Addr_PMS + self.path + key
+        return res
+    
     def MEDIAURL(self, src, param):
         el, leftover = self.getElement(src,param)
         
@@ -529,7 +554,7 @@ class CCommandAttrib(CCommandHelper):
         if el!=None:  # Media
             if Settings.getForceDirectPlay()==True or \
                 Settings.getForceTranscoding()==False and \
-                el.get('container','') in ("mov", "mp4") and \
+                el.get('container','') in ("mov", "mp4", "mpegts") and \
                 el.get('videoCodec','') in ("mpeg4", "h264") and \
                 el.get('audioCodec','') in ("aac", "ac3"):
                 # native aTV media
@@ -542,11 +567,12 @@ class CCommandAttrib(CCommandHelper):
             dprint(__name__, 0, "MEDIAPATH - element not found: {}", params)
             res = 'FILE_NOT_FOUND'  # not found?
         
-        if res.startswith('/'):  # internal path. make sure it's not relative (path_addpath)
+        if res.startswith('/'):  # internal full path.
             res = 'http://' + Addr_PMS + res
         elif res.startswith('http://'):  # external address
             pass
-        
+        else:  # internal path, add-on
+            res = 'http://' + Addr_PMS + self.path + res
         return res
     
     def ADDR_PMS(self, src, param):

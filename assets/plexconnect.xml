@@ -3,15 +3,15 @@
 	<body>
 		<viewWithNavigationBar id="PlexConnect_Navigation">
 			<navigation>
-				<navigationItem id="Library"> 
+				<navigationItem id="Library">
 					<title>Library</title> 
 					<url>http://trailers.apple.com/library/sections/</url> 
 				</navigationItem> 
-				<navigationItem id="Channels"> 
+				<navigationItem id="Channels">
 					<title>Channels</title> 
-				 <url>http://trailers.apple.com/channels/all/</url> 
+				 <url>http://trailers.apple.com/channels/all/&amp;PlexConnect=Channels</url> 
 				</navigationItem> 
-				<navigationItem id="Music"> 
+				<navigationItem id="Music">
 					<title>Music</title> 
 					<url>http://trailers.apple.com/music/</url> 
 				</navigationItem> 

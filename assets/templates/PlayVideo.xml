@@ -6,7 +6,7 @@
         <title>{{VAL(Video/title)}}</title>
         <description>{{VAL(Video/summary)}}</description>
         <bookmarkTime>{{EVAL(Video/viewOffset:0:int(x/1000))}}</bookmarkTime>
-        <image>http://{{ADDR_PMS()}}{{VAL(Video/thumb)}}</image>
+        <image>{{URL(Video/thumb)}}</image>
       </httpFileVideoAsset>
     </videoPlayer>
   </body>
