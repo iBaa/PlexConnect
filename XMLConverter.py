@@ -584,6 +584,12 @@ class CCommandAttrib(CCommandHelper):
         title, leftover, dfltd = self.getKey(src, leftover)
         out = "{:0d}x{:02d} {}".format(int(parentIndex), int(index), title)
         return out 
+        
+    def sendToATV(self, src, param):
+        ratingKey, leftover, dfltd = self.getKey(src, param) # getKey "defaults" if nothing found.
+        duration, leftover, dfltd = self.getKey(src, leftover)
+        out = "atv.sessionStorage['ratingKey']='" + ratingKey + "';atv.sessionStorage['duration']='" + duration + "'"
+        return out 
 
 
 if __name__=="__main__":
