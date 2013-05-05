@@ -10,7 +10,7 @@ http://www.linuxjournal.com/content/tech-tip-really-simple-http-server-python
 
 import sys
 import string, cgi, time
-from os import curdir, sep
+from os import sep
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 import Queue  # inter process communication
 
@@ -51,7 +51,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 # disregard the path - it is different for different iOS versions
                 if self.path.endswith("application.js"):
                     dprint(__name__, 1, "serving application.js")
-                    f = open(curdir + sep + "assets" + sep + "application.js")
+                    f = open(sys.path[0] + sep + "assets" + sep + "application.js")
                     self.send_response(200)
                     self.send_header('Content-type', 'text/html')
                     self.end_headers()
@@ -61,8 +61,8 @@ class MyHandler(BaseHTTPRequestHandler):
                 
                 # serve "plexconnect.xml" or "plexconnect_oldmenu.xml" to aTV
                 if self.path.endswith("plexconnect.xml") or self.path.endswith("plexconnect_oldmenu.xml"):
-                    dprint(__name__,1,"serving "+ curdir + sep + "assets" + self.path.replace('/',sep));
-                    f = open(curdir + sep + "assets" + self.path.replace('/',sep))
+                    dprint(__name__,1,"serving "+ sys.path[0] + sep + "assets" + self.path.replace('/',sep));
+                    f = open(sys.path[0] + sep + "assets" + self.path.replace('/',sep))
                     self.send_response(200)
                     self.send_header('Content-type', 'text/html')
                     self.end_headers()
@@ -73,7 +73,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 # serve "*.jpg" - thumbnails for old-style mainpage
                 if self.path.endswith(".jpg"):
                     dprint(__name__, 1, "serving *.jpg: "+self.path)
-                    f = open(curdir + sep + "assets" + self.path, "rb")
+                    f = open(sys.path[0] + sep + "assets" + self.path, "rb")
                     self.send_response(200)
                     self.send_header('Content-type', 'image/jpeg')
                     self.end_headers()

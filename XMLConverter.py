@@ -23,7 +23,7 @@ import sys
 import inspect 
 import string, cgi, time
 import copy  # deepcopy()
-from os import curdir, sep
+from os import sep
 import httplib, socket
 
 try:
@@ -195,7 +195,7 @@ def XML_PMS2aTV(address, path):
     
     dprint(__name__, 1, XMLtemplate)
         
-    aTVTree = etree.parse(curdir+'/assets/templates/'+XMLtemplate)
+    aTVTree = etree.parse(sys.path[0]+'/assets/templates/'+XMLtemplate)
     aTVroot = aTVTree.getroot()
     XML_ExpandTree(aTVroot, PMSroot, path)
     XML_ExpandAllAttrib(aTVroot, PMSroot, path)
@@ -634,6 +634,6 @@ if __name__=="__main__":
     print
     #print "store aTV XML"
     #str = XML_prettystring(aTVTree)
-    #f=open(curdir+'/XML/aTV_fromTmpl.xml', 'w')
+    #f=open(sys.path[0]+'/XML/aTV_fromTmpl.xml', 'w')
     #f.write(str)
     #f.close()
