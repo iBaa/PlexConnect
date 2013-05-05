@@ -12,13 +12,13 @@
           <menuSection>
             <items>
               <!-- channel media -->
-              <oneLineMenuItem id="{{VAL(key)}}"
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}"
                                        onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=Play')"
                                        onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=MoviePrePlay')">
                 {{COPY(Video)}}
                 <label>{{VAL(title)}}</label>
                 <image>{{URL(thumb)}}</image>
-                <defaultImage>resource://Poster.png</defaultImage>
+                <!--<defaultImage>resource://Poster.png</defaultImage>-->
                 <preview>
                   <keyedPreview>
                     <title>{{VAL(title)}}</title>
@@ -26,9 +26,9 @@
                     <image>{{URL(thumb)}}</image>
                   </keyedPreview>
                 </preview>
-              </oneLineMenuItem>
+              </twoLineEnhancedMenuItem>
               <!-- channel directories -->
-              <oneLineMenuItem id="{{VAL(key)}}" 
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}" 
                                        onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=Channels')" 
                                        onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=Channels')">
                 {{COPY(Directory)}}
@@ -38,13 +38,13 @@
                 -->
                 <image>{{URL(thumb)}}</image>
                 <!--<image>http://trailers.apple.com/thumbnails/DirectoryLink.jpg</image>-->
-                <defaultImage>resource://Poster.png</defaultImage>
+                <!--<defaultImage>resource://Poster.png</defaultImage>-->
                 <preview>
                   <crossFadePreview>
                     <image>{{URL(thumb)}}</image>
                   </crossFadePreview>
                 </preview>
-              </oneLineMenuItem>
+              </twoLineEnhancedMenuItem>
             </items>
           </menuSection>
         </sections>
