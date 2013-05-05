@@ -14,11 +14,11 @@
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>
                 <rightLabel>{{VAL(leafCount)}} Episodes</rightLabel>
-                <image>http://{{ADDR_PMS()}}{{ADDPATH(thumb)}}</image>
+                <image>{{URL(thumb)}}</image>
                 <defaultImage>resource://Poster.png</defaultImage>
                 <preview>
                   <crossFadePreview>
-                    <image>http://{{ADDR_PMS()}}{{ADDPATH(thumb)}}</image>
+                    <image>{{URL(thumb)}}</image>
                   </crossFadePreview>
                 </preview>
               </twoLineEnhancedMenuItem>

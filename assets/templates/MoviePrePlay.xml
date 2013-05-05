@@ -55,7 +55,7 @@
 						<actionButton id="play" onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(Video/key)}}&amp;PlexConnect=Play')">
 							<title>Play</title>
 							<image>resource://Play.png</image>
-                            <focusedImage>resource://PlayFocused.png</focusedImage>
+              <focusedImage>resource://PlayFocused.png</focusedImage>
 							<!--<badge></badge>-->
 						</actionButton>
 					</items>

@@ -15,7 +15,7 @@
                 <label>{{VAL(title)}}</label>
                 <preview>
                   <crossFadePreview>
-                    <image>http://{{ADDR_PMS()}}{{ADDPATH(thumb)}}</image>
+                    <image>{{URL(thumb)}}</image>
                   </crossFadePreview>
                 </preview>
               </oneLineMenuItem>

@@ -18,7 +18,7 @@
                 <label>{{VAL(title)}}</label>
                 <ordinal>{{VAL(index)}}</ordinal>
                 <maxOrdinalDigits>2</maxOrdinalDigits>
-                <image>http://{{ADDR_PMS()}}{{ADDPATH(thumb)}}</image>
+                <image>{{URL(thumb)}}</image>
                 <!--<defaultImage>resource://16X9.png</defaultImage>      This causes the thumbnail to be too small, not sure why.-->
                 <accessories>
                   <unplayedDot/>{{CUT(viewCount)}}
@@ -27,7 +27,7 @@
                   <keyedPreview>
                     <title>{{VAL(title)}}</title>
                     <summary>{{VAL(summary)}}</summary>
-                    <image>http://{{ADDR_PMS()}}{{VAL(thumb)}}</image>
+                    <image>{{URL(thumb)}}</image>
                   </keyedPreview>
                 </preview>
               </twoLineEnhancedMenuItem>

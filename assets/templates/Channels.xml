@@ -20,9 +20,11 @@
                 <image>{{URL(thumb)}}</image>
                 <defaultImage>resource://Poster.png</defaultImage>
                 <preview>
-                  <crossFadePreview>
+                  <keyedPreview>
+                    <title>{{VAL(title)}}</title>
+                    <summary>{{VAL(summary)}}</summary>
                     <image>{{URL(thumb)}}</image>
-                  </crossFadePreview>
+                  </keyedPreview>
                 </preview>
               </oneLineMenuItem>
               <!-- channel directories -->
