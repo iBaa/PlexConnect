@@ -27,6 +27,12 @@ import XMLConverter  # XML_PMS2aTV, XML_PlayVideo
 
 class MyHandler(BaseHTTPRequestHandler):
     
+    # Fixes slow serving speed under Windows
+    def address_string(self):
+      host, port = self.client_address[:2]
+      #return socket.getfqdn(host)
+      return host
+      
     def do_GET(self):
         try:
             if self.client_address[0]==Settings.getIP_aTV():
