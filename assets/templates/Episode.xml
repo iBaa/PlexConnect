@@ -1,6 +1,10 @@
 <atv>
+  <head>
+    <script src="http://trailers.apple.com/updateXML.js"/> 
+  </head>
+    
   <body>
-    <listWithPreview id="com.sample.menu-items-with-sections">
+    <listWithPreview id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="reloadPMS_XML()">
       <header>
         <simpleHeader>
           <title>{{VAL(title1)}}</title>
@@ -11,9 +15,9 @@
         <sections>
           <menuSection>
             <items>
-              <twoLineEnhancedMenuItem id="{{VAL(key)}}" 
+              <twoLineEnhancedMenuItem id="{{VAL(ratingKey)}}" 
                                          onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=Play')"
-                                       onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=Play')">
+                                         onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=Play')">
                 {{COPY(Video)}}
                 <label>{{VAL(title)}}</label>
                 <ordinal>{{VAL(index)}}</ordinal>

@@ -23,8 +23,6 @@ import Settings
 from Debug import *  # dprint()
 import XMLConverter  # XML_PMS2aTV, XML_PlayVideo
 
-
-
 class MyHandler(BaseHTTPRequestHandler):
     
     # Fixes slow serving speed under Windows
@@ -46,7 +44,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     msg = msg[1:len(msg)-10]
                     print("ATVLogger : " + msg)
                     return
-                    
+                                   
                 # serve "application.js" to aTV
                 # disregard the path - it is different for different iOS versions
                 if self.path.endswith("application.js"):
@@ -59,9 +57,20 @@ class MyHandler(BaseHTTPRequestHandler):
                     f.close()
                     return
                 
-                # serve "plexconnect.xml" or "plexconnect_oldmenu.xml" to aTV
-                if self.path.endswith("plexconnect.xml") or self.path.endswith("plexconnect_oldmenu.xml"):
-                    dprint(__name__,1,"serving "+ sys.path[0] + sep + "assets" + self.path.replace('/',sep));
+                # serve all other .js files to aTV
+                if self.path.endswith(".js"):
+                    dprint(__name__, 1, "serving  " + sys.path[0] + sep + "assets" + self.path.replace('/',sep))
+                    f = open(sys.path[0] + sep + "assets" + self.path.replace('/',sep))
+                    self.send_response(200)
+                    self.send_header('Content-type', 'text/html')
+                    self.end_headers()
+                    self.wfile.write(f.read())
+                    f.close()
+                    return
+                    
+                # serve all .xml files to aTV including "plexconnect.xml" or "plexconnect_oldmenu.xml"
+                if self.path.endswith(".xml"):
+                    dprint(__name__,1,"serving "+ sys.path[0] + sep + "assets" + self.path.replace('/',sep))
                     f = open(sys.path[0] + sep + "assets" + self.path.replace('/',sep))
                     self.send_response(200)
                     self.send_header('Content-type', 'text/html')
@@ -86,7 +95,10 @@ class MyHandler(BaseHTTPRequestHandler):
                 if self.path.endswith("/") or \
                    self.path.find("&PlexConnect=")>-1:
                     dprint(__name__, 1, "serving .xml: "+self.path)
-                    XML = XMLConverter.XML_PMS2aTV(self.client_address, self.path)
+                    try:
+                      XML = XMLConverter.XML_PMS2aTV(self.client_address, self.path)
+                    except:
+                      XML = makeError("PlexConnect Error", "Hey dude, no PMS found.")
                     self.send_response(200)
                     self.send_header('Content-type', 'text/html')
                     self.end_headers()
@@ -101,8 +113,18 @@ class MyHandler(BaseHTTPRequestHandler):
         except IOError:
             self.send_error(404,"File Not Found: %s" % self.path)
 
-
-
+def makeError(title, desc):
+  errorXML = '<?xml version="1.0" encoding="UTF-8"?> \
+		<atv> \
+		<body> \
+		<dialog id="com.sample.error-dialog"> \
+		<title>' + title + '</title> \
+    <description>' + desc + '</description> \
+		</dialog> \
+		</body> \
+		</atv>';
+  return errorXML
+  
 def Run(cmdQueue):
     #Protocol     = "HTTP/1.0"
     # todo: IP, port

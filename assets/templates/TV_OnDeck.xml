@@ -1,6 +1,10 @@
 <atv>
+  <head>
+    <script src="http://trailers.apple.com/updateXML.js"/> 
+  </head>
+    
   <body>
-    <listWithPreview id="com.sample.menu-items-with-sections">
+    <listWithPreview id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="reloadPMS_XML()">
       <header>
         <simpleHeader>
           <title>{{VAL(title1)}}</title>

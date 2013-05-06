@@ -44,7 +44,6 @@ atv.player.playerTimeDidChange = function(time)
         {
             loadPage(addrPMS + "/:/scrobble?key=" + atv.sessionStorage['ratingKey'] + "&identifier=com.plexapp.plugins.library"); // Set scrobble key for video
             loadPage(addrPMS + "/:/progress?key=" + atv.sessionStorage['ratingKey'] + "&identifier=com.plexapp.plugins.library&time=0"); // We've watched the file so set resume point to 0 seconds
-            //log("Watched status set for ratingKey:" + atv.sessionStorage['ratingKey']);
             watchedSet = true;
         }
         else

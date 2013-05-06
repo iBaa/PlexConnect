@@ -205,9 +205,8 @@ def XML_PMS2aTV(address, path):
     dprint(__name__, 1, "====== generated aTV-XML ======")
     dprint(__name__, 1, XML_prettystring(aTVTree))
     dprint(__name__, 1, "====== aTV-XML finished ======")
-    
+  
     return etree.tostring(aTVroot)
-
 
 
 def XML_ExpandTree(elem, src, path):
@@ -588,7 +587,8 @@ class CCommandAttrib(CCommandHelper):
     def sendToATV(self, src, param):
         ratingKey, leftover, dfltd = self.getKey(src, param) # getKey "defaults" if nothing found.
         duration, leftover, dfltd = self.getKey(src, leftover)
-        out = "atv.sessionStorage['ratingKey']='" + ratingKey + "';atv.sessionStorage['duration']='" + duration + "'"
+        out = "atv.sessionStorage['ratingKey']='" + ratingKey + "';atv.sessionStorage['duration']='" + duration + \
+              "';atv.sessionStorage['reloadXMLpath']='" + self.path + "'"
         return out 
 
 
