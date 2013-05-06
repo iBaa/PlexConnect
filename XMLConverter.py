@@ -193,6 +193,10 @@ def XML_PMS2aTV(address, path):
             # TV Episode view
             XMLtemplate = 'Episode.xml'
     
+    elif PMSroot.get('viewGroup')=='photo':
+        # Photo listing
+        XMLtemplate = 'Photo.xml'
+    
     dprint(__name__, 1, XMLtemplate)
         
     aTVTree = etree.parse(sys.path[0]+'/assets/templates/'+XMLtemplate)
