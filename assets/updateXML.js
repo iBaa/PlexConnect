@@ -6,8 +6,7 @@ function pause(millis) {
 }; 
 
 function reloadPMS_XML() {
-  pause(1000); // 1 second pause to let any images on XML page unload
+  pause(200); // 0.2 second pause to let any images on XML page unload
   var path = atv.sessionStorage['reloadXMLpath'];
-  atv.unloadPage();
   atv.loadAndSwapURL("http://trailers.apple.com" + path);
 };

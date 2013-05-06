@@ -1,6 +1,10 @@
 <atv>
+  <head>
+    <script src="http://trailers.apple.com/updateXML.js"/> 
+  </head>
+    
   <body>
-    <scroller id="com.sample.movie-grid">
+    <scroller id="com.sample.movie-grid"  volatile="true" onVolatileReload="reloadPMS_XML()">
       <header>
         <simpleHeader>
           <title>{{VAL(title1)}}</title>
@@ -11,7 +15,7 @@
           <items>
             <moviePoster id="{{VAL(key)}}" 
                              onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=Play')"
-                           onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=MoviePrePlay')">
+                             onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=MoviePrePlay')">
               {{COPY(Video)}}
               <title>{{VAL(title)}}</title>
               <subtitle>{{VAL(year)}}</subtitle>
