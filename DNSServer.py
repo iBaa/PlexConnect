@@ -70,8 +70,8 @@ Name_intercept = "trailers.apple.com"
 
 def printDNSPaket(paket):
     print "***Paket"
-    print "ID {:04x}".format((ord(data[0])<<8)+ord(data[1]))
-    print "flags {:02x} {:02x}".format(ord(paket[2]), ord(paket[3]))
+    print "ID {0:04x}".format((ord(data[0])<<8)+ord(data[1]))
+    print "flags {0:02x} {1:02x}".format(ord(paket[2]), ord(paket[3]))
     print "OpCode "+str((ord(paket[2])>>3)&0x0F)
     print "RCode "+str((ord(paket[3])>>0)&0x0F)
     print "QDCOUNT "+str((ord(paket[4])<<8)+ord(paket[5]))
@@ -92,7 +92,7 @@ def Run(cmdQueue):
         DNS.settimeout(5.0)
         DNS.bind(('',53))
     except Exception, e:
-        dprint(__name__, 0, "Failed to create socket on UDP port 53: {}", e)
+        dprint(__name__, 0, "Failed to create socket on UDP port 53: {0}", e)
         sys.exit(1)
     
     try:
@@ -101,7 +101,7 @@ def Run(cmdQueue):
         # todo: where to get free port from?
         # todo: do we need bind?
     except Exception, e:
-        dprint(__name__, 0, "Failed to create socket on UDP port 49152: {}", e)
+        dprint(__name__, 0, "Failed to create socket on UDP port 49152: {0}", e)
         sys.exit(1)
     
     dprint(__name__, 0, "***")

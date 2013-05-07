@@ -132,11 +132,15 @@ def Run(cmdQueue):
         server = HTTPServer(('',80), MyHandler)
         server.timeout = 1
         sa = server.socket.getsockname()
+    except Exception, e:
+        dprint(__name__, 0, "Failed to connect to port 80 (http): {0}", e)
+        sys.exit(1)
         
-        dprint(__name__, 0, "***")
-        dprint(__name__, 0, "WebServer: Serving HTTP on {} port {}.", sa[0], sa[1])
-        dprint(__name__, 0, "***")
-        
+    dprint(__name__, 0, "***")
+    dprint(__name__, 0, "WebServer: Serving HTTP on {0} port {1}.", sa[0], sa[1])
+    dprint(__name__, 0, "***")
+    
+    try:
         while True:
             # check command
             try:

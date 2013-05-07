@@ -24,8 +24,8 @@ def dprint(src, dlevel, str, *args):
 
 
 if __name__=="__main__":
-    dprint('unknown', 0, "debugging {}", __name__)
+    dprint('unknown', 0, "debugging {0}", __name__)
     dprint('unknown', 1, "level 1")
     
-    dprint('PlexConnect', 0, "debugging {}", 'PlexConnect')
+    dprint('PlexConnect', 0, "debugging {0}", 'PlexConnect')
     dprint('PlexConnect', 1, "level")

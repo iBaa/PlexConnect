@@ -244,7 +244,7 @@ def XML_ExpandNode(elem, child, src, path, text_tail):
     elif text_tail=='TAIL':
         line = child.tail
     else:
-        dprint(__name__, 0, "XML_ExpandNode - text_tail badly specified: {}", text_tail)
+        dprint(__name__, 0, "XML_ExpandNode - text_tail badly specified: {0}", text_tail)
         return False
         
     if line!=None:
@@ -256,7 +256,7 @@ def XML_ExpandNode(elem, child, src, path, text_tail):
                 
         cmd = line[cmd_start+2:cmd_end]
         if cmd[-1]!=')':
-            dprint(__name__, 0, "XML_ExpandNode - closing bracket missing: {} ", line)
+            dprint(__name__, 0, "XML_ExpandNode - closing bracket missing: {0} ", line)
         
         parts = cmd.split('(',1)
         cmd = parts[0]
@@ -272,10 +272,10 @@ def XML_ExpandNode(elem, child, src, path, text_tail):
             try:
                 res = eval("CMD."+cmd+"(src, '"+param+"')")
             except:
-                dprint(__name__, 0, "XML_ExpandNode - Error in {}", line)
+                dprint(__name__, 0, "XML_ExpandNode - Error in {0}", line)
             del CMD
         
-        dprint(__name__, 2, "XML_ExpandNode: {}", line)
+        dprint(__name__, 2, "XML_ExpandNode: {0}", line)
         return res
 
 
@@ -311,7 +311,7 @@ def XML_ExpandLine(src, path, line):
         
         cmd = line[cmd_start+2:cmd_end]
         if cmd[-1]!=')':
-            dprint(__name__, 0, "XML_ExpandLine - closing bracket missing: {} ", line)
+            dprint(__name__, 0, "XML_ExpandLine - closing bracket missing: {0} ", line)
         
         parts = cmd.split('(',1)
         cmd = parts[0]
@@ -323,11 +323,11 @@ def XML_ExpandLine(src, path, line):
                 res = eval("CMD."+cmd+"(src, '"+param+"')")
                 line = line[:cmd_start] + res + line[cmd_end+2:]
             except:
-                dprint(__name__, 0, "XML_ExpandLine - Error in {}", line)
+                dprint(__name__, 0, "XML_ExpandLine - Error in {0}", line)
                 line = line[:cmd_start] + "((ERROR:"+cmd+"))" + line[cmd_end+2:]
             del CMD
             
-        dprint(__name__, 2, "XML_ExpandLine: {}", line)
+        dprint(__name__, 2, "XML_ExpandLine: {0}", line)
     return line
 
 
@@ -362,9 +362,9 @@ def PlexAPI_getTranscodePath(path):
     plexAccess['X-Plex-Access-Code'] = sig
     plexAccess['X-Plex-Client-Capabilities'] = 'protocols=http-live-streaming,http-mp4-streaming,http-mp4-video,http-mp4-video-720p,http-streaming-video,http-streaming-video-720p;videoDecoders=h264{profile:main&resolution:720&level:42};audioDecoders=aac'
     
-    dprint(__name__, 2, "TranscodePath: {}", transcodePath)
-    dprint(__name__, 2, "Args: {}", urlencode(args))
-    dprint(__name__, 2, "PlexAccess: {}", urlencode(plexAccess))
+    dprint(__name__, 2, "TranscodePath: {0}", transcodePath)
+    dprint(__name__, 2, "Args: {0}", urlencode(args))
+    dprint(__name__, 2, "PlexAccess: {0}", urlencode(plexAccess))
     return transcodePath + urlencode(args) + '&' + urlencode(plexAccess)
 
 
@@ -394,7 +394,7 @@ class CCommandHelper():
         param = param.replace('&gt;','>')
         param = param.replace('&amp;','&')  # must be last
         
-        dprint(__name__, 2, "CCmds_getParam: {}, {}", param, leftover)
+        dprint(__name__, 2, "CCmds_getParam: {0}, {1}", param, leftover)
         return [param, leftover]
     
     def getKey(self, src, param):
@@ -417,7 +417,7 @@ class CCommandHelper():
             res = default
             dfltd = True
         
-        dprint(__name__, 2, "CCmds_getKey: {},{},{}", res, leftover,dfltd)
+        dprint(__name__, 2, "CCmds_getKey: {0},{1},{2}", res, leftover,dfltd)
         return [res,leftover,dfltd]
     
     def getElement(self, src, param):
@@ -444,7 +444,7 @@ class CCommandHelper():
                 convstr = part.split('=')
                 convlist.append((convstr[0], convstr[1]))
         
-        dprint(__name__, 2, "CCmds_getConversion: {},{}", convlist, leftover)
+        dprint(__name__, 2, "CCmds_getConversion: {0},{1}", convlist, leftover)
         return [convlist, leftover]
     
     def applyConversion(self, val, convlist):
@@ -455,7 +455,7 @@ class CCommandHelper():
                     val = part[1]
                     break
         
-        dprint(__name__, 2, "CCmds_applyConversion: {}", val)
+        dprint(__name__, 2, "CCmds_applyConversion: {0}", val)
         return val
     
     def applyMath(self, val, math, frmt):
@@ -466,10 +466,10 @@ class CCommandHelper():
                 x = eval(math)
             val = ('{'+frmt+'}').format(x)
         except:
-            dprint(__name__, 0, "CCmds_applyMath: Error in math {}, frmt {}", math, frmt)
+            dprint(__name__, 0, "CCmds_applyMath: Error in math {0}, frmt {1}", math, frmt)
         # apply format specifier
         
-        dprint(__name__, 2, "CCmds_applyMath: {}", val)
+        dprint(__name__, 2, "CCmds_applyMath: {0}", val)
         return val
 
 
@@ -567,7 +567,7 @@ class CCommandAttrib(CCommandHelper):
                 res = el.find('Part').get('key','')
                 res = PlexAPI_getTranscodePath(res)
         else:
-            dprint(__name__, 0, "MEDIAPATH - element not found: {}", params)
+            dprint(__name__, 0, "MEDIAPATH - element not found: {0}", params)
             res = 'FILE_NOT_FOUND'  # not found?
         
         if res.startswith('/'):  # internal full path.
@@ -585,7 +585,7 @@ class CCommandAttrib(CCommandHelper):
         parentIndex, leftover, dfltd = self.getKey(src, param) # getKey "defaults" if nothing found.
         index, leftover, dfltd = self.getKey(src, leftover)
         title, leftover, dfltd = self.getKey(src, leftover)
-        out = "{:0d}x{:02d} {}".format(int(parentIndex), int(index), title)
+        out = "{0:0d}x{1:02d} {2}".format(int(parentIndex), int(index), title)
         return out 
         
     def sendToATV(self, src, param):
