@@ -464,7 +464,7 @@ class CCommandHelper():
             x = eval(val)
             if math!='':
                 x = eval(math)
-            val = ('{'+frmt+'}').format(x)
+            val = ('{0'+frmt+'}').format(x)
         except:
             dprint(__name__, 0, "CCmds_applyMath: Error in math {0}, frmt {1}", math, frmt)
         # apply format specifier
