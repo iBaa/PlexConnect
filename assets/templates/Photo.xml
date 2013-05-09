@@ -1,4 +1,8 @@
 <atv>
+  <head>
+    <script src="http://trailers.apple.com/photo.js"/>
+  </head>
+  
   <body>
     <mediaBrowser id="browser" gridLayout="mixed">
       <header>
@@ -13,12 +17,10 @@
         </headerWithCountAndButtons>
       </header>
       <items>
-        <photo id="{{VAL(key)}}"
-              onPlay="atv.loadURL({{URL(key)}})"
-              onSelect="atv.loadURL({{URL(key)}})">
+        <photo id="{{VAL(ratingKey)}}" onSelect="onSelectPhoto({{VAL(ratingKey)}})">
           {{COPY(Photo)}}
           <assets>
-            <photoAsset width="486" height="720" src="{{URL(thumb)}}"/>
+            <photoAsset width="0" height="0" src="{{URL(Media/Part/key)}}"/>
           </assets>
         </photo>
       </items>
