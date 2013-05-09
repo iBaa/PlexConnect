@@ -10,7 +10,7 @@
           <title>{{VAL(title1)}}</title>
           <count>{{VAL(size)}}</count>
           <buttons>
-            <actionButton id="slideshow" onSelect="onSettingsSelection()" onPlay="onSlideshowStart()">
+            <actionButton id="slideshow" onSelect="onSettings()" onPlay="onSlideShow()">
               <title>SlideShow</title>
             </actionButton>
           </buttons>
