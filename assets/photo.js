@@ -1,3 +1,9 @@
+//
+// ATV Photo Browser code
+// Hacked together using code by YonsmGuo http://www.yonsm.net/
+// https://code.google.com/p/hdweb/
+// 
+
 // atv.Element extensions
 
 if(atv.Element)
