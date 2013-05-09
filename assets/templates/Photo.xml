@@ -7,7 +7,7 @@
     <mediaBrowser id="browser" gridLayout="mixed">
       <header>
         <headerWithCountAndButtons>
-          <title>{{VAL(title1)}}</title>
+          <title>{{VAL(title2)}}</title>
           <count>{{VAL(size)}}</count>
           <buttons>
             <actionButton id="slideshow" onSelect="onSettings()" onPlay="onSlideShow()">
