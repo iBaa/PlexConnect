@@ -358,7 +358,7 @@ def PlexAPI_getTranscodePath(path):
     plexAccess['X-Plex-Access-Key'] = publicKey
     plexAccess['X-Plex-Access-Time'] = atime
     plexAccess['X-Plex-Access-Code'] = sig
-    plexAccess['X-Plex-Client-Capabilities'] = 'protocols=http-live-streaming,http-mp4-streaming,http-mp4-video,http-mp4-video-720p,http-streaming-video,http-streaming-video-720p;videoDecoders=h264{profile:main&resolution:720&level:42};audioDecoders=aac'
+    plexAccess['X-Plex-Client-Capabilities'] = 'protocols=http-live-streaming,http-mp4-streaming,http-mp4-video,http-mp4-video-720p,http-streaming-video,http-streaming-video-720p;videoDecoders=h264{profile:main&resolution:720&level:42};audioDecoders=aac,ac3'
     
     dprint(__name__, 2, "TranscodePath: {0}", transcodePath)
     dprint(__name__, 2, "Args: {0}", urlencode(args))
