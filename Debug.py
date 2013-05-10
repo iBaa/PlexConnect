@@ -10,6 +10,7 @@ debug levels (examples):
 """
 
 dlevels = { "PlexConnect": 0, \
+            "PlexGDM"    : 0, \
             "DNSServer"  : 1, \
             "WebServer"  : 1, \
             "XMLConverter" : 0, \
