@@ -499,8 +499,9 @@ class CCommandTree(CCommandHelper):
     def CUT(self, src, param):
         key, leftover, dfltd = self.getKey(src, param)
         conv, leftover = self.getConversion(src, leftover)
-        res = self.applyConversion(key, conv)
-        if res:
+        if not dfltd:
+            key = self.applyConversion(key, conv)
+        if key:
             self.elem.remove(self.child)
             return True  # tree modified, node removed: restart from 1st elem
         else:

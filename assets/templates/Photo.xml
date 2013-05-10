@@ -20,7 +20,8 @@
         <photo id="{{VAL(ratingKey)}}" onSelect="onSelectPhoto({{VAL(ratingKey)}})">
           {{COPY(Photo)}}
           <assets>
-            <photoAsset width="0" height="0" src="{{URL(Media/Part/key)}}"/>
+            <photoAsset width="0" height="0" src="{{URL(Media/Part/key)}}"/>{{CUT(Media/Part/key:CUT:=)}}
+            <photoAsset width="0" height="0" src="{{URL(key)}}"/>{{CUT(Media/Part/key::=CUT)}}
           </assets>
         </photo>
       </items>
