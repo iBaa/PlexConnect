@@ -30,10 +30,15 @@ if __name__=="__main__":
         
         PlexGDM.Run()
         
-        p_DNSServer = Process(target=DNSServer.Run, args=(cmd_DNSServer,))
+        param = {'IP_PMS': PlexGDM.getIP_PMS(), \
+                 'Port_PMS': PlexGDM.getPort_PMS(), \
+                 'Addr_PMS': PlexGDM.getIP_PMS()+':'+PlexGDM.getPort_PMS(), \
+                }
+                         
+        p_DNSServer = Process(target=DNSServer.Run, args=(cmd_DNSServer, param))
         p_DNSServer.start()
         
-        p_WebServer = Process(target=WebServer.Run, args=(cmd_WebServer,))
+        p_WebServer = Process(target=WebServer.Run, args=(cmd_WebServer, param))
         p_WebServer.start()
         
         key = raw_input()

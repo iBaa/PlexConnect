@@ -130,7 +130,7 @@ def makeError(title, desc):
 		</atv>';
   return errorXML
   
-def Run(cmdQueue):
+def Run(cmdQueue, param):
     #Protocol     = "HTTP/1.0"
     # todo: IP, port
     try:
@@ -144,6 +144,8 @@ def Run(cmdQueue):
     dprint(__name__, 0, "***")
     dprint(__name__, 0, "WebServer: Serving HTTP on {0} port {1}.", sa[0], sa[1])
     dprint(__name__, 0, "***")
+    
+    XMLConverter.setParams(param)
     
     try:
         while True:

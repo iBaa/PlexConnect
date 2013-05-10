@@ -35,10 +35,15 @@ import time, uuid, hmac, hashlib, base64
 from urllib import urlencode
 from urlparse import urlparse
 
-import PlexGDM
 import Settings
 from Debug import *  # dprint()
 
+
+
+g_param = {}
+def setParams(param):
+    global g_param
+    g_param = param
 
 
 
@@ -77,7 +82,7 @@ def XML_prettystring(XML):
 """
 def GetURL(address, path):
     try:
-        conn = httplib.HTTPConnection(PlexGDM.getAddr_PMS())
+        conn = httplib.HTTPConnection(g_param['Addr_PMS'])
         conn.request("GET", path)
         data = conn.getresponse()
         if int(data.status) == 200:
@@ -97,11 +102,11 @@ def GetURL(address, path):
             return link
     
     except socket.gaierror :
-        error = "Unable to lookup host: " + PlexGDM.getAddr_PMS() + "\nCheck host name is correct"
+        error = "Unable to lookup host: " + g_param['Addr_PMS'] + "\nCheck host name is correct"
         dprint(__name__, 0, error)
         return False
     except socket.error, msg : 
-        error = "Unable to connect to " + PlexGDM.getAddr_PMS() + "\nReason: " + str(msg)
+        error = "Unable to connect to " + g_param['Addr_PMS'] + "\nReason: " + str(msg)
         dprint(__name__, 0, error)
         return False
 
@@ -344,7 +349,7 @@ def PlexAPI_getTranscodePath(path):
     #args['ratingKey'] = ratingkey
     args["identifier"] = 'com.plexapp.plugins.library'
     args["quality"] = 9
-    args["url"] = "http://" + PlexGDM.getAddr_PMS() + path
+    args["url"] = "http://" + g_param['Addr_PMS'] + path
     args["httpCookies"] = ''
     args["userAgent"] = ''
     
@@ -539,11 +544,11 @@ class CCommandAttrib(CCommandHelper):
     def URL(self, src, param):
         key, leftover, dfltd = self.getKey(src, param)
         if key.startswith('/'):  # internal full path.
-            res = 'http://' + PlexGDM.getAddr_PMS() + key
+            res = 'http://' + g_param['Addr_PMS'] + key
         elif key.startswith('http://'):  # external address
             res = key
         else:  # internal path, add-on
-            res = 'http://' + PlexGDM.getAddr_PMS() + self.path + key
+            res = 'http://' + g_param['Addr_PMS'] + self.path + key
         return res
     
     def MEDIAURL(self, src, param):
@@ -570,11 +575,11 @@ class CCommandAttrib(CCommandHelper):
             res = 'FILE_NOT_FOUND'  # not found?
         
         if res.startswith('/'):  # internal full path.
-            res = 'http://' + PlexGDM.getAddr_PMS() + res
+            res = 'http://' + g_param['Addr_PMS'] + res
         elif res.startswith('http://'):  # external address
             pass
         else:  # internal path, add-on
-            res = 'http://' + PlexGDM.getAddr_PMS() + self.path + res
+            res = 'http://' + g_param['Addr_PMS'] + self.path + res
         return res
     
     def ADDR_PMS(self, src, param):

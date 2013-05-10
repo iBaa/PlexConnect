@@ -61,7 +61,6 @@ import socket
 import struct
 import Queue  # inter process communication
 
-import PlexGDM
 import Settings
 from Debug import *  # dprint()
 
@@ -85,7 +84,7 @@ def printDNSPaket(paket):
 
 
 
-def Run(cmdQueue):
+def Run(cmdQueue, param):
     try:
         DNS = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         DNS.settimeout(5.0)
@@ -153,7 +152,7 @@ def Run(cmdQueue):
                     paket+='\xc0\x0c'                                    # pointer to domain name/original query
                     paket+='\x00\x01\x00\x01\x00\x00\x00\x3c\x00\x04'    # response type, ttl and resource data length -> 4 bytes
                     # todo: IP PlexConnect vs. IP PMS - currently we assume they run on the same machine!
-                    paket+=str.join('',map(lambda x: chr(int(x)), PlexGDM.getIP_PMS().split('.'))) # 4bytes of IP
+                    paket+=str.join('',map(lambda x: chr(int(x)), param['IP_PMS'].split('.'))) # 4bytes of IP
                     dprint(__name__, 1, "-> DNS response: IP_PMS")
                 
                 else:
