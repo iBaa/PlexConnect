@@ -23,6 +23,8 @@ import Settings
 from Debug import *  # dprint()
 import XMLConverter  # XML_PMS2aTV, XML_PlayVideo
 
+
+
 class MyHandler(BaseHTTPRequestHandler):
     
     # Fixes slow serving speed under Windows
@@ -33,7 +35,10 @@ class MyHandler(BaseHTTPRequestHandler):
       
     def do_GET(self):
         try:
-            if self.client_address[0]==Settings.getIP_aTV():
+            dprint(__name__, 2, "http request header:\n{0}", self.headers)
+            dprint(__name__, 2, "http request path:\n{0}", self.path)
+            if self.headers['Host'] == Settings.getHostToIntercept() and \
+               self.headers['User-Agent'].startswith("iTunes-AppleTV"):
                 
                 # recieve simple logging messages from the ATV
                 if self.path.endswith("&atvlogger"):
