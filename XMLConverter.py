@@ -175,6 +175,9 @@ def XML_PMS2aTV(address, path):
     elif cmd=='Channels':
         XMLtemplate = 'Channels.xml'
     
+    elif cmd=='ByFolderPreview':
+        XMLtemplate = 'ByFolderPreview.xml'
+        
     elif PMSroot.get('viewGroup') is None or \
        PMSroot.get('viewGroup')=='secondary':
         XMLtemplate = 'Directory.xml'
@@ -188,8 +191,12 @@ def XML_PMS2aTV(address, path):
         XMLtemplate = 'Season.xml'
         
     elif PMSroot.get('viewGroup')=='movie':
-        # Movie listing
-        XMLtemplate = 'Movie.xml'
+        if PMSroot.get('title2')=='By Folder':
+          # By Folder View
+          XMLtemplate = 'ByFolder.xml'
+        else:
+          # Movie listing
+          XMLtemplate = 'Movie.xml'
         
     elif PMSroot.get('viewGroup')=='episode':
         if PMSroot.get('title2')=='On Deck':
