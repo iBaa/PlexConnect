@@ -1,0 +1,29 @@
+<atv>
+  <body>
+    <itemDetail id="com.apple.trailers">
+		<title>{{VAL(Video/title)}}</title>
+		<subtitle>{{VAL(Video/studio)}}</subtitle>
+		<rating>{{VAL(Video/contentRating)}}</rating>
+		<summary>{{VAL(Video/summary)}}</summary>
+		<image style="squarePoster">{{URL(Video/thumb)}}</image>
+		<defaultImage>resource://Poster.png</defaultImage>
+    		
+		<centerShelf>
+        <shelf id="centerShelf" columnCount="4" center="true">
+			<sections>
+				<shelfSection>
+					<items>
+						<actionButton id="play" onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=Play')">
+							<title>Play</title>
+							<image>resource://Play.png</image>
+              <focusedImage>resource://PlayFocused.png</focusedImage>
+							<!--<badge></badge>-->
+						</actionButton>
+					</items>
+				</shelfSection>
+			</sections>
+		</shelf>
+		</centerShelf>
+		</itemDetail>
+	</body>
+</atv>
