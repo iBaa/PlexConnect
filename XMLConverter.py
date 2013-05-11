@@ -259,14 +259,16 @@ def XML_ExpandNode(elem, child, src, path, text_tail):
     else:
         dprint(__name__, 0, "XML_ExpandNode - text_tail badly specified: {0}", text_tail)
         return False
-        
+    
     if line!=None:
         line = line.strip()
         cmd_start = line.find('{{')  # only one command in text/tail? otherwise: todo
         cmd_end   = line.find('}}')
         if cmd_start==-1 or cmd_end==-1:
             return False  # tree not touched, line unchanged
-                
+        
+        dprint(__name__, 2, "XML_ExpandNode: {0}", line)
+        
         cmd = line[cmd_start+2:cmd_end]
         if cmd[-1]!=')':
             dprint(__name__, 0, "XML_ExpandNode - closing bracket missing: {0} ", line)
@@ -285,10 +287,18 @@ def XML_ExpandNode(elem, child, src, path, text_tail):
             try:
                 res = eval("CMD."+cmd+"(src, '"+param+"')")
             except:
-                dprint(__name__, 0, "XML_ExpandNode - Error in {0}", line)
+                dprint(__name__, 0, "XML_ExpandNode - Error in cmd {0}, line {1}", cmd, line)
             del CMD
+        elif hasattr(CCommandAttrib, cmd):  # check other known cmds: VAL, EVAL...
+            dprint(__name__, 2, "XML_ExpandNode - Stumbled over {0} in line {1}", cmd, line)
+        else:
+            dprint(__name__, 0, "XML_ExpandNode - Found unknown cmd {0} in line {1}", cmd, line)
+            if text_tail=='TEXT':  # mark unknown cmd in text or tail
+                child.text = line[:cmd_start] + "((UNKNOWN:"+cmd+"))" + line[cmd_end+2:]
+            elif text_tail=='TAIL':
+                child.tail = line[:cmd_start] + "((UNKNOWN:"+cmd+"))" + line[cmd_end+2:]
         
-        dprint(__name__, 2, "XML_ExpandNode: {0}", line)
+        dprint(__name__, 2, "XML_ExpandNode: {0} - done", line)
         return res
 
 
@@ -316,11 +326,14 @@ def XML_ExpandAllAttrib(elem, src, path):
 
 
 def XML_ExpandLine(src, path, line):
+    pos = 0
     while True:
-        cmd_start = line.find('{{')
-        cmd_end   = line.find('}}')
+        cmd_start = line.find('{{',pos)
+        cmd_end   = line.find('}}',pos)
         if cmd_start==-1 or cmd_end==-1:
             break;
+        
+        dprint(__name__, 2, "XML_ExpandLine: {0}", line)
         
         cmd = line[cmd_start+2:cmd_end]
         if cmd[-1]!=')':
@@ -330,17 +343,24 @@ def XML_ExpandLine(src, path, line):
         cmd = parts[0]
         param = parts[1][:-1]  # remove ending bracket
         
-        if hasattr(CCommandAttrib, cmd):  # expand tree, work VAL, EVAL...
+        if hasattr(CCommandAttrib, cmd):  # expand line, work VAL, EVAL...
             CMD = CCommandAttrib(path)
-            try:                
+            try:
                 res = eval("CMD."+cmd+"(src, '"+param+"')")
                 line = line[:cmd_start] + res + line[cmd_end+2:]
+                pos = cmd_start+len(res)
             except:
                 dprint(__name__, 0, "XML_ExpandLine - Error in {0}", line)
                 line = line[:cmd_start] + "((ERROR:"+cmd+"))" + line[cmd_end+2:]
             del CMD
-            
-        dprint(__name__, 2, "XML_ExpandLine: {0}", line)
+        elif hasattr(CCommandTree, cmd):  # check other known cmds: COPY, CUT
+            dprint(__name__, 2, "XML_ExpandLine - stumbled over {0} in line {1}", cmd, line)
+            pos = cmd_end
+        else:
+            dprint(__name__, 0, "XML_ExpandLine - Found unknown cmd {0} in line {1}", cmd, line)
+            line = line[:cmd_start] + "((UNKNOWN:"+cmd+"))" + line[cmd_end+2:]    
+        
+        dprint(__name__, 2, "XML_ExpandLine: {0} - done", line)
     return line
 
 
