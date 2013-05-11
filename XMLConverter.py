@@ -586,7 +586,7 @@ class CCommandAttrib(CCommandHelper):
         return res
     
     def ADDR_PMS(self, src, param):
-        return PlexGDM.getAddr_PMS()
+        return g_param['Addr_PMS']
         
     def episodestring(self, src, param):
         parentIndex, leftover, dfltd = self.getKey(src, param) # getKey "defaults" if nothing found.
