@@ -48,8 +48,8 @@ def setParams(param):
 
 
 # links to CMD classes for module wide usage
-g_CommandTree = []
-g_CommandAttrib = []
+global g_CommandTree
+global g_CommandAttrib
 
 
 
