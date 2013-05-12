@@ -516,16 +516,24 @@ class CCommandTree(CCommandHelper):
     # XML tree modifier commands
     # add new commands to this list!
     def COPY(self, src, param):
-        tag, leftover = self.getParam(src, param)
+        tag, param_enbl = self.getParam(src, param)
         childToCopy = self.child
         self.elem.remove(self.child)
         
         # duplicate child and add to tree
         for elemSRC in src.findall(tag):
-            el = copy.deepcopy(childToCopy)
-            XML_ExpandTree(el, elemSRC, self.path)
-            XML_ExpandAllAttrib(el, elemSRC, self.path)
-            self.elem.append(el)
+            key = 'COPY'
+            if param_enbl!='':
+                key, leftover, dfltd = self.getKey(elemSRC, param_enbl)
+                conv, leftover = self.getConversion(src, leftover)
+                if not dfltd:
+                    key = self.applyConversion(key, conv)
+            
+            if key:
+                el = copy.deepcopy(childToCopy)
+                XML_ExpandTree(el, elemSRC, self.path)
+                XML_ExpandAllAttrib(el, elemSRC, self.path)
+                self.elem.append(el)
                    
         return True  # tree modified, nodes updated: restart from 1st elem
     
