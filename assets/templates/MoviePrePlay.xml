@@ -51,7 +51,7 @@
         <smallCollectionDivider alignment="left">
           <title>Actors</title>
         </smallCollectionDivider>
-      </divider>
+      </divider>{{CUT(Video/Role/id:CUT:=)}}
     
       <bottomShelf>
         <shelf id="bottomShelf" columnCount="7">
@@ -68,7 +68,7 @@
             </shelfSection>
           </sections>
         </shelf>
-      </bottomShelf>           
+      </bottomShelf>{{CUT(Video/Role/id:CUT:=)}}      
        
 		</itemDetail>
 	</body>
