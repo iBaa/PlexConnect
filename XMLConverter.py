@@ -199,7 +199,10 @@ def XML_PMS2aTV(address, path):
           XMLtemplate = 'Movie.xml'
         
     elif PMSroot.get('viewGroup')=='episode':
-        if PMSroot.get('title2')=='On Deck':
+        if PMSroot.get('title2')=='On Deck' or \
+           PMSroot.get('title2')=='Recently Viewed Episodes' or \
+           PMSroot.get('title2')=='Recently Aired' or \
+           PMSroot.get('title2')=='Recently Added':
             # TV On Deck View
             XMLtemplate = 'TV_OnDeck.xml'
         else:
