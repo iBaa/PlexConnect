@@ -4,7 +4,7 @@
   </head>
     
   <body>
-    <scroller id="com.sample.movie-grid"  volatile="true" onVolatileReload="reloadPMS_XML()">
+    <scroller id="com.sample.movie-grid"  volatile="true" onVolatileReload="reloadPMS_XML('{{getPath()}}')">
       <header>
         <simpleHeader>
           <title>{{VAL(title1)}}</title>

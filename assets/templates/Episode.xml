@@ -4,7 +4,7 @@
   </head>
     
   <body>
-    <listWithPreview id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="reloadPMS_XML()">
+    <listWithPreview id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="reloadPMS_XML('{{getPath()}}')">
       <header>
         <simpleHeader>
           <title>{{VAL(title1)}}</title>

@@ -1,68 +1,75 @@
 <atv>
   <body>
-    <itemDetail id="com.apple.trailers">
-		<title>{{VAL(Video/title)}}</title>
-		<subtitle>{{VAL(Video/studio)}}</subtitle>
-		<rating>{{VAL(Video/contentRating)}}</rating>
-		<summary>{{VAL(Video/summary)}}</summary>
-		<image style="moviePoster">{{URL(Video/thumb)}}</image>
-		<defaultImage>resource://Poster.png</defaultImage>
-      
-		<table>
-			<columnDefinitions>
-				<columnDefinition width="25" alignment="left">
-					<title>Details</title>
-				</columnDefinition>
-				<columnDefinition width="25" alignment="left">
-					<title>Actors</title>
-				</columnDefinition>
-				<columnDefinition width="25" alignment="left">
-					<title>Director</title>
-				</columnDefinition>
-			</columnDefinitions>
-			<rows>
-				<row>
-					<label>{{VAL(Video/Genre/tag)}}</label>
-					<label />
-					<label />
-				</row>
-				<row>
-					<label>{{VAL(Video/Media/videoResolution)}}p</label>
-					<label />
-					<label />
-				</row>
-				<row>
-					<starRating>
-                        <percentage>{{EVAL(Video/rating:0:int(x*10))}}</percentage>
-                    </starRating>
-					<label />
-					<label />
-				</row>
-				<row>
-					<label />
-					<label />
-					<label />
-				</row>
+    <itemDetail id="com.apple.trailer">
+      <title>{{VAL(Video/title)}}</title>
+      <subtitle>{{VAL(Video/studio)}}</subtitle>
+      <rating>{{VAL(Video/contentRating)}}</rating>
+      <summary>{{VAL(Video/summary)}}</summary>
+      <image style="moviePoster">{{URL(Video/thumb)}}</image>
+      <defaultImage>resource://Poster.png</defaultImage>
+ 		
+      <table>
+        <columnDefinitions>
+          <columnDefinition width="25" alignment="left">
+            <title>Details</title>
+          </columnDefinition>
+        </columnDefinitions>
+        <rows>
+          <row>
+            <label>{{VAL(Video/Genre/tag)}}</label>	
+          </row>
+          <row>
+            <label>{{getResString(Video/Media/videoResolution)}}</label>
+          </row>
+          <row>
+            <starRating>
+              <percentage>{{EVAL(Video/rating:0:int(x*10))}}</percentage>
+            </starRating>{{CUT(Video/rating:CUT:=)}}
+            <label></label>{{CUT(Video/rating::=CUT)}}
+          </row>
+        </rows>
+      </table>
     
-			</rows>
-		</table>
-		
-		<centerShelf>
+      <centerShelf>
         <shelf id="centerShelf" columnCount="4" center="true">
-			<sections>
-				<shelfSection>
-					<items>
-						<actionButton id="play" onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=Play')">
-							<title>Play</title>
-							<image>resource://Play.png</image>
-              <focusedImage>resource://PlayFocused.png</focusedImage>
-							<!--<badge></badge>-->
-						</actionButton>
-					</items>
-				</shelfSection>
-			</sections>
-		</shelf>
-		</centerShelf>
+          <sections>
+            <shelfSection>
+              <items>
+                <actionButton id="play" onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=Play')">
+                  <title>Play</title>
+                  <image>resource://Play.png</image>
+                  <focusedImage>resource://PlayFocused.png</focusedImage>
+                  <!--<badge></badge>-->
+                </actionButton>
+              </items>
+            </shelfSection>
+          </sections>
+        </shelf>
+      </centerShelf>
+    
+      <divider>
+        <smallCollectionDivider alignment="left">
+          <title>Actors</title>
+        </smallCollectionDivider>
+      </divider>
+    
+      <bottomShelf>
+        <shelf id="bottomShelf" columnCount="7">
+          <sections>
+            <shelfSection>
+              <items>
+                <moviePoster related="true" alwaysShowTitles="true" id="shelf_item_1" onSelect="atv.loadURL('http://trailers.apple.com/library/sections/{{VAL(librarySectionID)}}/actor/{{VAL(id)}}/')">
+                  {{COPY(Video/Role:thumb::=COPY)}}
+                  <title>{{VAL(tag)}}</title>
+                  <subtitle>as {{VAL(role)}}</subtitle>
+                  <image>{{VAL(thumb)}}</image>
+                </moviePoster>
+              </items>
+            </shelfSection>
+          </sections>
+        </shelf>
+      </bottomShelf>           
+       
 		</itemDetail>
 	</body>
 </atv>

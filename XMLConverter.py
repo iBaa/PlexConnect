@@ -634,8 +634,21 @@ class CCommandAttrib(CCommandHelper):
         ratingKey, leftover, dfltd = self.getKey(src, param) # getKey "defaults" if nothing found.
         duration, leftover, dfltd = self.getKey(src, leftover)
         out = "atv.sessionStorage['ratingKey']='" + ratingKey + "';atv.sessionStorage['duration']='" + duration + \
-              "';atv.sessionStorage['reloadXMLpath']='" + self.path + "'"
+              "'" #;atv.sessionStorage['reloadXMLpath']='" + self.path + "'"
         return out 
+    
+    def getPath(self, src, param):
+        return self.path 
+      
+    def getResString(self, src, param):
+        res, leftover, dfltd = self.getKey(src, param) # getKey "defaults" if nothing found.
+        if res=='1080': return '1080p'
+        elif res=='720': return '720p'
+        elif res=='576': return 'SD'
+        elif res=='480': return 'SD'
+        elif res=='sd': return 'SD'
+        return 'Unknown: ' + res
+    
 
 
 if __name__=="__main__":
