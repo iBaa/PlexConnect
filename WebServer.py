@@ -95,10 +95,8 @@ class MyHandler(BaseHTTPRequestHandler):
                     f.close()
                     return
                 
-                # serve Plex directory structure - make sure to keep the trailing "/"
-                # serve &PlexConnect Commands
-                if self.path.endswith("/") or \
-                   self.path.find("&PlexConnect=")>-1:
+                # get everything else from XMLConverter - formerly limited to trailing "/" and &PlexConnect Cmds
+                if True:
                     dprint(__name__, 1, "serving .xml: "+self.path)
                     XML = XMLConverter.XML_PMS2aTV(self.client_address, self.path)
                     self.send_response(200)
@@ -107,8 +105,10 @@ class MyHandler(BaseHTTPRequestHandler):
                     self.wfile.write(XML)
                     return
                 
+                """
                 # unexpected request
                 self.send_error(403,"Access denied: %s" % self.path)
+                """
             
             else:
                 self.send_error(403,"Not Serving Client %s" % self.client_address[0])

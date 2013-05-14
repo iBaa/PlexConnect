@@ -145,11 +145,6 @@ def GetURL(address, path):
 # - translate and feed back to aTV
 """
 def XML_ReadFromURL(address, path):
-    # quick fix for channel - they don't like the trailing '/'
-    if path[-1]=='/':
-        path=path[:-1]
-    print path
-    
     XMLstring = GetURL(address, path)
     if XMLstring==False:
         dprint(__name__, 0, 'No Response from Plex Media Server')
@@ -623,10 +618,10 @@ class CCommandAttrib(CCommandHelper):
     
     def ADDPATH(self, src, param):
         addpath, leftover, dfltd = self.getKey(src, param)
-        if addpath.startswith("/"):
-            res = addpath+'/'
+        if addpath.startswith('/'):
+            res = addpath
         else:
-            res = self.path+addpath+'/'
+            res = self.path+'/'+addpath
         return res
     
     def URL(self, src, param):
@@ -636,7 +631,7 @@ class CCommandAttrib(CCommandHelper):
         elif key.startswith('http://'):  # external address
             res = key
         else:  # internal path, add-on
-            res = 'http://' + g_param['Addr_PMS'] + self.path + key
+            res = 'http://' + g_param['Addr_PMS'] + self.path + '/' + key
         return res
     
     def MEDIAURL(self, src, param):

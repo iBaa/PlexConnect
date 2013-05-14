@@ -5,18 +5,18 @@
 			<navigation>
 				<navigationItem id="Library">
 					<title>Library</title> 
-					<url>http://trailers.apple.com/library/sections/</url> 
+					<url>http://trailers.apple.com/library/sections</url> 
 				</navigationItem> 
 				<navigationItem id="Channels">
 					<title>Channels</title> 
-				 <url>http://trailers.apple.com/channels/all/&amp;PlexConnect=Channels</url> 
+				 <url>http://trailers.apple.com/channels/all&amp;PlexConnect=Channels</url> 
 				</navigationItem> 
 				<navigationItem id="Music">
 					<title>Music</title> 
-					<url>http://trailers.apple.com/music/</url> 
+					<url>http://trailers.apple.com/music</url> 
 				</navigationItem> 
 				<navigationItem id="Photos">
-					<url>http://trailers.apple.com/photos/</url> 
+					<url>http://trailers.apple.com/photos</url> 
 					<title>Photos</title>
 				</navigationItem>
 			</navigation>
