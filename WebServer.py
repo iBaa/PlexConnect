@@ -47,7 +47,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     msg = msg.replace("&gt;", ">")
                     msg = msg.replace("&fs;", "/")
                     msg = msg[1:len(msg)-10]
-                    print("ATVLogger : " + msg)
+                    dprint('ATVLogger', 0, msg)
                     return
                                    
                 # serve "application.js" to aTV
@@ -100,10 +100,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 if self.path.endswith("/") or \
                    self.path.find("&PlexConnect=")>-1:
                     dprint(__name__, 1, "serving .xml: "+self.path)
-                    try:
-                      XML = XMLConverter.XML_PMS2aTV(self.client_address, self.path)
-                    except:
-                      XML = makeError("PlexConnect Error", "Hey dude, no PMS found.")
+                    XML = XMLConverter.XML_PMS2aTV(self.client_address, self.path)
                     self.send_response(200)
                     self.send_header('Content-type', 'text/html')
                     self.end_headers()
@@ -118,18 +115,8 @@ class MyHandler(BaseHTTPRequestHandler):
         except IOError:
             self.send_error(404,"File Not Found: %s" % self.path)
 
-def makeError(title, desc):
-  errorXML = '<?xml version="1.0" encoding="UTF-8"?> \
-		<atv> \
-		<body> \
-		<dialog id="com.sample.error-dialog"> \
-		<title>' + title + '</title> \
-    <description>' + desc + '</description> \
-		</dialog> \
-		</body> \
-		</atv>';
-  return errorXML
-  
+
+
 def Run(cmdQueue, param):
     #Protocol     = "HTTP/1.0"
     # todo: IP, port

@@ -106,11 +106,12 @@ def Run():
     
     if PMS_list==[]:
         dprint(__name__, 0, "No servers discovered - switching to default")
-        PMS_list.append({'server': Settings.getIP_PMS(), 'port': Settings.getPort_PMS()})
+        PMS_list.append({'serverName':'default', 'server': Settings.getIP_PMS(), 'port': str(Settings.getPort_PMS())})
     else:
         dprint(__name__, 0, "servers discovered: {0}", len(PMS_list))
-        for items in PMS_list:
-            dprint(__name__, 1, "{0} {1}:{2}", items['serverName'], items['server'], items['port'])
+    
+    for items in PMS_list:
+        dprint(__name__, 1, "{0} {1}:{2}", items['serverName'], items['server'], items['port'])
 
 
 

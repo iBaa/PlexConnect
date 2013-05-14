@@ -48,8 +48,8 @@ def setParams(param):
 
 
 # links to CMD classes for module wide usage
-global g_CommandTree
-global g_CommandAttrib
+g_CommandTree = None
+g_CommandAttrib = None
 
 
 
@@ -83,12 +83,31 @@ def XML_prettystring(XML):
 
 
 """
+# aTV XML ErrorMessage - hardcoded XML File
+"""
+def XML_Error(title, desc):
+    errorXML = '\
+<?xml version="1.0" encoding="UTF-8"?>\n\
+<atv>\n\
+    <body>\n\
+        <dialog id="com.sample.error-dialog">\n\
+            <title>' + title + '</title>\n\
+            <description>' + desc + '</description>\n\
+        </dialog>\n\
+    </body>\n\
+</atv>\n\
+';
+    return errorXML
+
+
+
+"""
 # GetURL
 # Source (somewhat): https://github.com/hippojay/plugin.video.plexbmc
 """
 def GetURL(address, path):
     try:
-        conn = httplib.HTTPConnection(g_param['Addr_PMS'])
+        conn = httplib.HTTPConnection(g_param['Addr_PMS'], timeout=10)
         conn.request("GET", path)
         data = conn.getresponse()
         if int(data.status) == 200:
@@ -132,6 +151,9 @@ def XML_ReadFromURL(address, path):
     print path
     
     XMLstring = GetURL(address, path)
+    if XMLstring==False:
+        dprint(__name__, 0, 'No Response from Plex Media Server')
+        return False
     
     # parse from memory
     XMLroot = etree.fromstring(XMLstring)    
@@ -156,6 +178,9 @@ def XML_PMS2aTV(address, path):
         path = path[:pos]
     
     PMS = XML_ReadFromURL(address, path)
+    if PMS==False:
+        return XML_Error('PlexConnect', 'No Response from Plex Media Server')
+    
     PMSroot = PMS.getroot()
     
     dprint(__name__, 1, PMSroot.get('viewGroup','None'))
@@ -710,9 +735,7 @@ if __name__=="__main__":
     
     print
     print "unpack PlexConnect COPY/CUT commands"
-    global g_CommandTree
     g_CommandTree = CCommandTree(PMSroot, '/library/sections/')
-    global g_CommandAttrib
     g_CommandAttrib = CCommandAttrib(PMSroot, '/library/sections/')
     XML_ExpandTree(aTVroot, PMSroot)
     XML_ExpandAllAttrib(aTVroot, PMSroot)
