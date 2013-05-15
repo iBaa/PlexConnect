@@ -1,6 +1,11 @@
 <atv>
+  <head>
+    <script src="http://trailers.apple.com/updateXML.js"/> 
+    <script src="http://trailers.apple.com/scrobble.js"/>
+  </head>
+    
   <body>
-    <listWithPreview id="com.sample.menu-items-with-sections">
+    <listWithPreview id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="reloadPMS_XML('{{getPath()}}')">
       <header>
         <simpleHeader>
           <title>{{VAL(title2)}}</title>
@@ -10,7 +15,9 @@
         <sections>
           <menuSection>
             <items>
-              <twoLineEnhancedMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')">
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')" 
+                                                         onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')"
+                                                         onHoldSelect="scrobbleMenu('Season', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>
                 <rightLabel>{{VAL(leafCount)}} Episodes</rightLabel>
@@ -21,7 +28,11 @@
                     <image>{{URL(thumb)}}</image>
                   </crossFadePreview>
                 </preview>
-              </twoLineEnhancedMenuItem>
+              </twoLineEnhancedMenuItem>{{CUT(Directory/title:CUT:=)}}
+            
+              <oneLineMenuItem id="none">
+                <label>No Seasons</label>
+              </oneLineMenuItem>{{CUT(Directory/title::=CUT)}}
             </items>
           </menuSection>
         </sections>

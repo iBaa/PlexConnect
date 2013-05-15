@@ -1,6 +1,11 @@
 <atv>
+  <head>
+    <script src="http://trailers.apple.com/updateXML.js"/> 
+    <script src="http://trailers.apple.com/scrobble.js"/>
+  </head>
+    
   <body>
-    <listWithPreview id="com.sample.menu-items-with-sections">
+    <listWithPreview id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="reloadPMS_XML('{{getPath()}}')">
       <header>
         <simpleHeader>
           <title>{{VAL(title1)}}</title>
@@ -11,7 +16,9 @@
         <sections>
           <menuSection>
             <items>
-              <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')">
+              <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')" 
+                                                 onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')"
+                                                 onHoldSelect="scrobbleMenu('Show', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>
                 <preview>
@@ -19,7 +26,11 @@
                     <image>{{URL(thumb)}}</image>
                   </crossFadePreview>
                 </preview>
-              </oneLineMenuItem>
+              </oneLineMenuItem>{{CUT(Directory/title:CUT:=)}}
+            
+              <oneLineMenuItem id="none">
+                <label>No Unwatched Shows</label>
+              </oneLineMenuItem>{{CUT(Directory/title::=CUT)}}
             </items>
           </menuSection>
         </sections>
