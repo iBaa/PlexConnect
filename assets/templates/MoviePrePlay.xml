@@ -59,7 +59,7 @@
             <shelfSection>
               <items>
                 <moviePoster related="true" alwaysShowTitles="true" id="shelf_item_1" onSelect="atv.loadURL('http://trailers.apple.com/library/sections/{{VAL(/librarySectionID)}}/actor/{{VAL(id)}}/')">
-                  {{COPY(Video/Role:thumb::=COPY)}}
+                  {{COPY(Video/Role)}}
                   <title>{{VAL(tag)}}</title>
                   <subtitle>as {{VAL(role)}}</subtitle>
                   <image>{{VAL(thumb)}}</image>
