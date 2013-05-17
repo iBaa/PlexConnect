@@ -63,6 +63,7 @@
                   <title>{{VAL(tag)}}</title>
                   <subtitle>as {{VAL(role)}}</subtitle>
                   <image>{{VAL(thumb)}}</image>
+                  <defaultImage>http://{{ADDR_PMS()}}/:/resources/actor-icon.png</defaultImage>
                 </moviePoster>
               </items>
             </shelfSection>
