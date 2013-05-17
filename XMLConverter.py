@@ -645,8 +645,8 @@ class CCommandAttrib(CCommandHelper):
             if Settings.getForceDirectPlay()==True or \
                 Settings.getForceTranscoding()==False and \
                 el.get('container','') in ("mov", "mp4", "mpegts") and \
-                el.get('videoCodec','') in ("mpeg4", "h264") and \
-                el.get('audioCodec','') in ("aac", "ac3"):
+                el.get('videoCodec','') in ("mpeg4", "h264", "drmi") and \
+                el.get('audioCodec','') in ("aac", "ac3", "drms"):
                 # native aTV media
                 res = el.find('Part').get('key','')
             else:
