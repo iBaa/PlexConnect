@@ -672,8 +672,8 @@ class CCommandAttrib(CCommandHelper):
         parentIndex, leftover, dfltd = self.getKey(src, param) # getKey "defaults" if nothing found.
         index, leftover, dfltd = self.getKey(src, leftover)
         title, leftover, dfltd = self.getKey(src, leftover)
-        out = "{0:0d}x{1:02d} {2}".format(int(parentIndex), int(index), title)
-        return out 
+        out = "{0:0d}x{1:02d} ".format(int(parentIndex), int(index)) + title
+        return out
     
     def sendToATV(self, src, param):
         ratingKey, leftover, dfltd = self.getKey(src, param) # getKey "defaults" if nothing found.
