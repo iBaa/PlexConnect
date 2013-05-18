@@ -210,7 +210,7 @@ def XML_PMS2aTV(address, path):
         
     elif PMSroot.get('viewGroup')=='show':
         # TV Show grid view
-        XMLtemplate = 'Show.xml'
+        XMLtemplate = Settings.getShowViewType()
         
     elif PMSroot.get('viewGroup')=='season':
         # TV Season view
@@ -222,7 +222,7 @@ def XML_PMS2aTV(address, path):
           XMLtemplate = 'ByFolder.xml'
         else:
           # Movie listing
-          XMLtemplate = 'Movie.xml'
+          XMLtemplate = Settings.getMovieViewType()
         
     elif PMSroot.get('viewGroup')=='episode':
         if PMSroot.get('title2')=='On Deck' or \

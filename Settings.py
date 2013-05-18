@@ -1,9 +1,8 @@
 #!/usr/bin/python
-
+from Debug import *  # dprint()
 """
 Global Settings...
 """
-
 #
 # Plex Media Server
 def getPlexGDM():
@@ -29,3 +28,11 @@ def getForceDirectPlay():  # if true, this has higher priority than transcoding
 
 def getForceTranscoding():
     return False
+    
+def getMovieViewType():
+    return 'Movie_Grid.xml' # uncomment which ever line you want for that style view
+    #return 'Movie_List.xml' # just remember to comment out the line you're not using :)   
+    
+def getShowViewType():
+    #return 'Show_Grid.xml' # uncomment which ever line you want for that style view
+    return 'Show_List.xml' # just remember to comment out the line you're not using :)   
