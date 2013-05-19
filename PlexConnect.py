@@ -9,12 +9,18 @@ inter-process-communication (queue): http://pymotw.com/2/multiprocessing/communi
 
 
 import sys
+import socket
 from multiprocessing import Process, Queue
 
 import PlexGDM
 import DNSServer, WebServer
 import Settings
 from Debug import *  # dprint()
+
+
+
+def getIP_self():
+    return socket.gethostbyname(socket.getfqdn())
 
 
 
@@ -28,13 +34,20 @@ if __name__=="__main__":
         cmd_DNSServer = Queue()
         cmd_WebServer = Queue()
         
-        PlexGDM.Run()
+        param = {}
+        param['IP_self'] = getIP_self()
         
-        param = {'IP_PMS': PlexGDM.getIP_PMS(), \
-                 'Port_PMS': PlexGDM.getPort_PMS(), \
-                 'Addr_PMS': PlexGDM.getIP_PMS()+':'+PlexGDM.getPort_PMS(), \
-                }
-                         
+        if Settings.getPlexGDM()==True:
+            PlexGDM.Run()
+            
+            param['IP_PMS'] = PlexGDM.getIP_PMS()
+            param['Port_PMS'] = PlexGDM.getPort_PMS()
+            param['Addr_PMS'] = PlexGDM.getIP_PMS()+':'+str(PlexGDM.getPort_PMS())
+        else:
+            param['IP_PMS'] = Settings.getIP_PMS()
+            param['Port_PMS'] = Settings.getPort_PMS()
+            param['Addr_PMS'] = Settings.getIP_PMS()+':'+str(Settings.getPort_PMS())
+        
         p_DNSServer = Process(target=DNSServer.Run, args=(cmd_DNSServer, param))
         p_DNSServer.start()
         

@@ -26,14 +26,17 @@ Msg_PlexGDM = 'M-SEARCH * HTTP/1.0'
 
 def getIP_PMS():
     # todo: currently only one server - return first entry
-    return PMS_list[0]['server']
+    if len(PMS_list)>0:
+        return PMS_list[0]['server']
+    else:
+        return Settings.getIP_PMS()
 
 def getPort_PMS():
     # todo: currently only one server - return first entry
-    return PMS_list[0]['port']
-
-def getAddr_PMS():
-    return getIP_PMS()+':'+str(getPort_PMS())
+    if len(PMS_list)>0:
+        return PMS_list[0]['port']
+    else:
+        return Settings.getPort_PMS()
 
 
 
@@ -105,13 +108,11 @@ def Run():
             PMS_list.append(update)
     
     if PMS_list==[]:
-        dprint(__name__, 0, "No servers discovered - switching to default")
-        PMS_list.append({'serverName':'default', 'server': Settings.getIP_PMS(), 'port': str(Settings.getPort_PMS())})
+        dprint(__name__, 0, "No servers discovered")
     else:
         dprint(__name__, 0, "servers discovered: {0}", len(PMS_list))
-    
-    for items in PMS_list:
-        dprint(__name__, 1, "{0} {1}:{2}", items['serverName'], items['server'], items['port'])
+        for items in PMS_list:
+            dprint(__name__, 1, "{0} {1}:{2}", items['serverName'], items['server'], items['port'])
 
 
 
