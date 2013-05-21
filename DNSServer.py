@@ -104,7 +104,7 @@ def Run(cmdQueue, param):
     
     dprint(__name__, 0, "***")
     dprint(__name__, 0, "Starting up.")
-    dprint(__name__, 1, "intercept: "+Settings.getHostToIntercept())
+    dprint(__name__, 1, "intercept "+Settings.getHostToIntercept()+": "+param['IP_self'])
     dprint(__name__, 1, "forward other to higher level DNS: "+Settings.getIP_DNSmaster())
     dprint(__name__, 0, "***")
     
