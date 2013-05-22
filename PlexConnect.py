@@ -20,7 +20,7 @@ from Debug import *  # dprint()
 
 
 def getIP_self():
-    IP = socket.gethostbyname(socket.getfqdn())
+    IP = socket.gethostbyname(socket.gethostname())
     dprint('PlexConnect', 0, "IP_self: "+IP)
     return IP
 
