@@ -292,11 +292,12 @@ def XML_ExpandNode(elem, child, src, text_tail):
         dprint(__name__, 0, "XML_ExpandNode - text_tail badly specified: {0}", text_tail)
         return False
     
-    if line!=None:
+    pos = 0
+    while line!=None:
         line = line.strip()
-        cmd_start = line.find('{{')  # only one command in text/tail? otherwise: todo
-        cmd_end   = line.find('}}')
-        if cmd_start==-1 or cmd_end==-1:
+        cmd_start = line.find('{{',pos)
+        cmd_end   = line.find('}}',pos)
+        if cmd_start==-1 or cmd_end==-1 or cmd_start>cmd_end:
             return False  # tree not touched, line unchanged
         
         dprint(__name__, 2, "XML_ExpandNode: {0}", line)
@@ -321,9 +322,13 @@ def XML_ExpandNode(elem, child, src, text_tail):
                 res = eval("g_CommandCollection.TREE_"+cmd+"(elem, child, src, '"+param+"')")
             except:
                 dprint(__name__, 0, "XML_ExpandNode - Error in cmd {0}, line {1}", cmd, line)
-
+            
+            if res==True:
+                return True  # tree modified, node added/removed: restart from 1st elem
+        
         elif hasattr(CCommandCollection, 'ATTRIB_'+cmd):  # check other known cmds: VAL, EVAL...
             dprint(__name__, 2, "XML_ExpandNode - Stumbled over {0} in line {1}", cmd, line)
+            pos = cmd_end
         else:
             dprint(__name__, 0, "XML_ExpandNode - Found unknown cmd {0} in line {1}", cmd, line)
             line = line[:cmd_start] + "((UNKNOWN:"+cmd+"))" + line[cmd_end+2:]  # mark unknown cmd in text or tail
@@ -331,10 +336,9 @@ def XML_ExpandNode(elem, child, src, text_tail):
                 child.text = line
             elif text_tail=='TAIL':
                 child.tail = line
-        
-        dprint(__name__, 2, "XML_ExpandNode: {0} - done", line)
-
-        return res
+    
+    dprint(__name__, 2, "XML_ExpandNode: {0} - done", line)
+    return False
 
 
 
