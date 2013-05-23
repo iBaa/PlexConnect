@@ -47,9 +47,8 @@ def setParams(param):
 
 
 
-# links to CMD classes for module wide usage
-g_CommandTree = None
-g_CommandAttrib = None
+# links to CMD class for module wide usage
+g_CommandCollection = None
 
 
 
@@ -244,14 +243,11 @@ def XML_PMS2aTV(address, path):
     aTVTree = etree.parse(sys.path[0]+'/assets/templates/'+XMLtemplate)
     aTVroot = aTVTree.getroot()
     
-    global g_CommandTree
-    g_CommandTree = CCommandTree(PMSroot, path)
-    global g_CommandAttrib
-    g_CommandAttrib = CCommandAttrib(PMSroot, path)
+    global g_CommandCollection
+    g_CommandCollection = CCommandCollection(PMSroot, path)
     XML_ExpandTree(aTVroot, PMSroot)
     XML_ExpandAllAttrib(aTVroot, PMSroot)
-    del g_CommandAttrib
-    del g_CommandTree
+    del g_CommandCollection
     
     # todo: channels, photos...
     
@@ -314,25 +310,27 @@ def XML_ExpandNode(elem, child, src, text_tail):
         param = parts[1].strip(')')  # remove ending bracket
         
         res = False
-        if hasattr(CCommandTree, cmd):  # expand tree, work COPY, CUT
-            if text_tail=='TEXT':  # remove cmd from text and tail
-                child.text = line[:cmd_start] + line[cmd_end+2:]
+        if hasattr(CCommandCollection, 'TREE_'+cmd):  # expand tree, work COPY, CUT
+            line = line[:cmd_start] + line[cmd_end+2:]  # remove cmd from text and tail
+            if text_tail=='TEXT':  
+                child.text = line
             elif text_tail=='TAIL':
-                child.tail = line[:cmd_start] + line[cmd_end+2:]
+                child.tail = line
             
             try:
-                res = eval("g_CommandTree."+cmd+"(elem, child, src, '"+param+"')")
+                res = eval("g_CommandCollection.TREE_"+cmd+"(elem, child, src, '"+param+"')")
             except:
                 dprint(__name__, 0, "XML_ExpandNode - Error in cmd {0}, line {1}", cmd, line)
 
-        elif hasattr(CCommandAttrib, cmd):  # check other known cmds: VAL, EVAL...
+        elif hasattr(CCommandCollection, 'ATTRIB_'+cmd):  # check other known cmds: VAL, EVAL...
             dprint(__name__, 2, "XML_ExpandNode - Stumbled over {0} in line {1}", cmd, line)
         else:
             dprint(__name__, 0, "XML_ExpandNode - Found unknown cmd {0} in line {1}", cmd, line)
-            if text_tail=='TEXT':  # mark unknown cmd in text or tail
-                child.text = line[:cmd_start] + "((UNKNOWN:"+cmd+"))" + line[cmd_end+2:]
+            line = line[:cmd_start] + "((UNKNOWN:"+cmd+"))" + line[cmd_end+2:]  # mark unknown cmd in text or tail
+            if text_tail=='TEXT':
+                child.text = line
             elif text_tail=='TAIL':
-                child.tail = line[:cmd_start] + "((UNKNOWN:"+cmd+"))" + line[cmd_end+2:]
+                child.tail = line
         
         dprint(__name__, 2, "XML_ExpandNode: {0} - done", line)
 
@@ -367,7 +365,7 @@ def XML_ExpandLine(src, line):
     while True:
         cmd_start = line.find('{{',pos)
         cmd_end   = line.find('}}',pos)
-        if cmd_start==-1 or cmd_end==-1:
+        if cmd_start==-1 or cmd_end==-1 or cmd_start>cmd_end:
             break;
         
         dprint(__name__, 2, "XML_ExpandLine: {0}", line)
@@ -380,17 +378,17 @@ def XML_ExpandLine(src, line):
         cmd = parts[0]
         param = parts[1][:-1]  # remove ending bracket
         
-        if hasattr(CCommandAttrib, cmd):  # expand line, work VAL, EVAL...
+        if hasattr(CCommandCollection, 'ATTRIB_'+cmd):  # expand line, work VAL, EVAL...
             
             try:
-                res = eval("g_CommandAttrib."+cmd+"(src, '"+param+"')")
+                res = eval("g_CommandCollection.ATTRIB_"+cmd+"(src, '"+param+"')")
                 line = line[:cmd_start] + res + line[cmd_end+2:]
                 pos = cmd_start+len(res)
             except:
                 dprint(__name__, 0, "XML_ExpandLine - Error in {0}", line)
                 line = line[:cmd_start] + "((ERROR:"+cmd+"))" + line[cmd_end+2:]
         
-        elif hasattr(CCommandTree, cmd):  # check other known cmds: COPY, CUT
+        elif hasattr(CCommandCollection, 'TREE_'+cmd):  # check other known cmds: COPY, CUT
             dprint(__name__, 2, "XML_ExpandLine - stumbled over {0} in line {1}", cmd, line)
             pos = cmd_end
         else:
@@ -560,11 +558,21 @@ class CCommandHelper():
 
 
 
-class CCommandTree(CCommandHelper):
-    # XML tree modifier commands
+class CCommandCollection(CCommandHelper):
+    # XML TREE modifier commands
     # add new commands to this list!
-    def COPY(self, elem, child, src, param):
+    def TREE_COPY(self, elem, child, src, param):
         tag, param_enbl = self.getParam(src, param)
+        
+        """
+        # walk the src path if neccessary
+        while '/' in tag and src!=None:
+            parts = tag.split('/',1)
+            src = src.find(parts[0])
+            tag = parts[1]
+            print "---", tag
+        """
+        
         childToCopy = child
         elem.remove(child)
         
@@ -585,7 +593,7 @@ class CCommandTree(CCommandHelper):
             
         return True  # tree modified, nodes updated: restart from 1st elem
     
-    def CUT(self, elem, child, src, param):
+    def TREE_CUT(self, elem, child, src, param):
         key, leftover, dfltd = self.getKey(src, param)
         conv, leftover = self.getConversion(src, leftover)
         if not dfltd:
@@ -595,20 +603,19 @@ class CCommandTree(CCommandHelper):
             return True  # tree modified, node removed: restart from 1st elem
         else:
             return False  # tree unchanged
-
-
-
-class CCommandAttrib(CCommandHelper):
-    # XML line modifier commands
+    
+    
+    
+    # XML ATTRIB modifier commands
     # add new commands to this list!
-    def VAL(self, src, param):
+    def ATTRIB_VAL(self, src, param):
         key, leftover, dfltd = self.getKey(src, param)
         conv, leftover = self.getConversion(src, leftover)
         if not dfltd:
             key = self.applyConversion(key, conv)
         return key
     
-    def EVAL(self, src, param):
+    def ATTRIB_EVAL(self, src, param):
         key, leftover, dfltd = self.getKey(src, param)
         math, leftover = self.getParam(src, leftover)
         frmt, leftover = self.getParam(src, leftover)
@@ -616,7 +623,7 @@ class CCommandAttrib(CCommandHelper):
             key = self.applyMath(key, math, frmt)
         return key
     
-    def ADDPATH(self, src, param):
+    def ATTRIB_ADDPATH(self, src, param):
         addpath, leftover, dfltd = self.getKey(src, param)
         if addpath.startswith('/'):
             res = addpath
@@ -624,7 +631,7 @@ class CCommandAttrib(CCommandHelper):
             res = self.path+'/'+addpath
         return res
     
-    def URL(self, src, param):
+    def ATTRIB_URL(self, src, param):
         key, leftover, dfltd = self.getKey(src, param)
         if key.startswith('/'):  # internal full path.
             res = 'http://' + g_param['Addr_PMS'] + key
@@ -634,7 +641,7 @@ class CCommandAttrib(CCommandHelper):
             res = 'http://' + g_param['Addr_PMS'] + self.path + '/' + key
         return res
     
-    def MEDIAURL(self, src, param):
+    def ATTRIB_MEDIAURL(self, src, param):
         el, leftover = self.getElement(src,param)
         
         if el!=None:  # Video
@@ -665,27 +672,27 @@ class CCommandAttrib(CCommandHelper):
             res = 'http://' + g_param['Addr_PMS'] + self.path + res
         return res
     
-    def ADDR_PMS(self, src, param):
+    def ATTRIB_ADDR_PMS(self, src, param):
         return g_param['Addr_PMS']
     
-    def episodestring(self, src, param):
+    def ATTRIB_episodestring(self, src, param):
         parentIndex, leftover, dfltd = self.getKey(src, param) # getKey "defaults" if nothing found.
         index, leftover, dfltd = self.getKey(src, leftover)
         title, leftover, dfltd = self.getKey(src, leftover)
         out = "{0:0d}x{1:02d} ".format(int(parentIndex), int(index)) + title
         return out
     
-    def sendToATV(self, src, param):
+    def ATTRIB_sendToATV(self, src, param):
         ratingKey, leftover, dfltd = self.getKey(src, param) # getKey "defaults" if nothing found.
         duration, leftover, dfltd = self.getKey(src, leftover)
         out = "atv.sessionStorage['ratingKey']='" + ratingKey + "';atv.sessionStorage['duration']='" + duration + \
               "'" #;atv.sessionStorage['reloadXMLpath']='" + self.path + "'"
         return out 
     
-    def getPath(self, src, param):
+    def ATTRIB_getPath(self, src, param):
         return self.path 
     
-    def getResString(self, src, param):
+    def ATTRIB_getResString(self, src, param):
         res, leftover, dfltd = self.getKey(src, param) # getKey "defaults" if nothing found.
         if res=='1080': return '1080p'
         elif res=='720': return '720p'
