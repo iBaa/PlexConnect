@@ -613,7 +613,6 @@ class CCommandCollection(CCommandHelper):
             
             if key:
                 el = copy.deepcopy(childToCopy)
-                print "*-*-", srcXML, self.path[srcXML]
                 XML_ExpandTree(el, elemSRC, srcXML)
                 XML_ExpandAllAttrib(el, elemSRC, srcXML)
                 elem.append(el)
