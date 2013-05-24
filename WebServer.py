@@ -49,7 +49,12 @@ class MyHandler(BaseHTTPRequestHandler):
                     msg = msg[1:len(msg)-10]
                     dprint('ATVLogger', 0, msg)
                     return
-                                   
+                    
+                # get settings from atv 
+                if self.path.find('&settings:') > -1:
+                    Settings.updateSettings(self.path)
+                    return                  
+                                    
                 # serve "application.js" to aTV
                 # disregard the path - it is different for different iOS versions
                 if self.path.endswith("application.js"):

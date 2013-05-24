@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <atv>
+  <head>
+    <script src="http://trailers.apple.com/settings.js"/>
+  </head>
+  
 	<body>
-		<viewWithNavigationBar id="PlexConnect_Navigation">
+		<viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadItem(event)">
 			<navigation>
 				<navigationItem id="Library">
 					<title>Library</title> 
@@ -11,14 +15,14 @@
 					<title>Channels</title> 
 				 <url>http://trailers.apple.com/channels&amp;PlexConnect=Channels</url> 
 				</navigationItem> 
+        <navigationItem id="Settings">
+					<url>http://trailers.apple.com/settings.xml</url> 
+					<title>Settings</title>
+				</navigationItem>
 				<!--navigationItem id="MyPlex">
 					<title>MyPlex</title> 
 					<url>http://trailers.apple.com/...</url> 
 				</navigationItem--> 
-				<!--navigationItem id="Info/Settings">
-					<title>Info/Settings</title>
-					<url>http://trailers.apple.com/...</url> 
-				</navigationItem-->
 			</navigation>
 		</viewWithNavigationBar>
 	</body>

@@ -3,6 +3,12 @@ from Debug import *  # dprint()
 """
 Global Settings...
 """
+
+settingsMovieView = 'Movie_Grid.xml'
+settingsShowView = 'Show_List.xml'
+settingsForceDirectPlay = False
+settingsForceTranscode = False
+
 #
 # Plex Media Server
 def getPlexGDM():
@@ -24,15 +30,36 @@ def getHostToIntercept():
 #
 # AppleTV
 def getForceDirectPlay():  # if true, this has higher priority than transcoding
-    return False
+    return settingsForceDirectPlay
 
 def getForceTranscoding():
-    return False
+    return settingsForceTranscode
     
 def getMovieViewType():
-    return 'Movie_Grid.xml' # uncomment which ever line you want for that style view
-    #return 'Movie_List.xml' # just remember to comment out the line you're not using :)   
-    
+    return settingsMovieView
+       
 def getShowViewType():
-    #return 'Show_Grid.xml' # uncomment which ever line you want for that style view
-    return 'Show_List.xml' # just remember to comment out the line you're not using :)   
+    return settingsShowView
+        
+def updateSettings(setting):
+    #print('ATVLogger', 0, setting)
+    #dprint('ATVLogger', 0, value)
+    global settingsMovieView
+    global settingsShowView
+    global settingsForceDirectPlay
+    global settingsForceTranscode
+    
+    dprint('ATVLogger', 0, setting)
+    parts = setting.split(':')
+    
+    for i in range(0, len(parts)):
+      dprint('ATVLogger', 0, parts[i])
+      if parts[i] == 'MovieView':
+        if parts[i+1] == 'Grid': settingsMovieView = 'Movie_Grid.xml'
+        if parts[i+1] == 'List': settingsMovieView = 'Movie_List.xml'
+        
+      if parts[i] == 'ShowView':
+        if parts[i+1] == 'Grid': settingsShowView = 'Show_Grid.xml'
+        if parts[i+1] == 'List': settingsShowView = 'Show_List.xml'
+    
+    return

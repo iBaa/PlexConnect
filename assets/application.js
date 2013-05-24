@@ -36,6 +36,43 @@ function log(msg)
     loadPage("http://trailers.apple.com/" + strReplaceAll + "&atvlogger");
 };
 
+function checkSettings()
+{
+  var settings = atv.localStorage['PlexConnectSettings'];
+
+  log("******************************************");
+  log("Getting settings from atv")
+  log("");
+  if (!settings)
+  {
+    log("No settings found!");
+    log("Creating default settings");
+    
+    settings = "PlexConnectSettings:MovieView:Grid:ShowView:List:ForceDirectPlay:false:ForceTranscode:false:TranscoderQuality:9"
+    atv.localStorage['PlexConnectSettings'] = settings;
+  }
+  log(settings);
+  log("Sending settings to PlexConnect");
+  sendSettings(settings);
+  log("******************************************");
+  //atv.localStorage['PlexConnectSettings'] = "";
+};
+
+function sendSettings(settings)
+{
+  loadPage("http://trailers.apple.com/&settings:" + atv.localStorage['PlexConnectSettings']);
+};
+
+function getSetting(name, settings)
+{
+  var parts = settings.split(":");
+  for (var i=0;i<parts.length;i++)
+  {
+    if (parts[i] == name) return parts[i+1];
+  }
+  return '';
+};
+
 atv.player.playerTimeDidChange = function(time)
 {
     if (!watchedSet)
@@ -69,6 +106,7 @@ atv.config = {
 
 atv.onAppEntry = function()
 {
+    checkSettings();
     fv = atv.device.softwareVersion.split(".");
     firmVer = fv[0] + "." + fv[1];
     if (parseFloat(firmVer) >= 5.1)

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atv>
+  <head>
+    <script src="http://trailers.apple.com/settings.js"/>
+  </head>
+  
+  <body>
+    <listWithPreview id="SettingsPage">
+      <header>
+        <simpleHeader>
+          <title>Settings</title>
+        </simpleHeader>
+      </header>
+      <preview>
+        <keyedPreview> 
+          <title>a       </title>
+          <summary/>
+          <metadataKeys>
+            <label>Version</label>
+            <label>Authors</label>
+            <label>Wiki/Docs</label>
+            <label>Homepage</label>
+            <label>Forum</label>
+          </metadataKeys>
+          <metadataValues>
+            <label>Alpha</label>
+            <label>Baa, roidy</label>
+            <label>f00b4r</label>
+            <label>https://github.com/ibaa/plexconnect</label>
+            <label>http://forums.plexapp.com/index.php/forum/136-appletv-plexconnect/</label>
+          </metadataValues>
+          <image>http://trailers.apple.com/thumbnails/PlexConnectLogo.jpg</image>
+        </keyedPreview> 
+      </preview>
+      
+      <menu>
+        <sections>
+          <menuSection>
+            <header>
+							<horizontalDivider alignment="center">
+								<title>View Settings</title>
+							</horizontalDivider>
+						</header>
+            <items>
+              <oneLineMenuItem id="MovieView" onSelect="settings('MovieView')">
+                <label>Movie View</label>
+                <rightLabel>Grid</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="ShowView" onSelect="settings('ShowView')">
+                <label>Show View</label>
+                <rightLabel>List</rightLabel>
+              </oneLineMenuItem>
+              </items>
+            </menuSection>
+            <menuSection>
+              <header>
+              <horizontalDivider alignment="center">
+								<title>Transcoder Settings</title>
+							</horizontalDivider>
+              </header>
+              <items>
+              <oneLineMenuItem id="ForceDirectPlay" dimmed="true">
+                <label>Force Direct Play</label>
+                <rightLabel>No</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="ForceTranscode" dimmed="true">
+                <label>Force Transcode</label>
+                <rightLabel>No</rightLabel>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </listWithPreview>
+  </body>
+</atv>
