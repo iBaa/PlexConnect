@@ -200,6 +200,9 @@ def XML_PMS2aTV(address, path):
     elif cmd=='Channels':
         XMLtemplate = 'Channels.xml'
     
+    elif cmd=='ChannelsVideo':
+        XMLtemplate = 'ChannelsVideo.xml'
+    
     elif cmd=='ByFolderPreview':
         XMLtemplate = 'ByFolderPreview.xml'
         
@@ -245,8 +248,8 @@ def XML_PMS2aTV(address, path):
     
     global g_CommandCollection
     g_CommandCollection = CCommandCollection(PMSroot, path)
-    XML_ExpandTree(aTVroot, PMSroot)
-    XML_ExpandAllAttrib(aTVroot, PMSroot)
+    XML_ExpandTree(aTVroot, PMSroot, 'main')
+    XML_ExpandAllAttrib(aTVroot, PMSroot, 'main')
     del g_CommandCollection
     
     # todo: channels, photos...
@@ -258,7 +261,7 @@ def XML_PMS2aTV(address, path):
     return etree.tostring(aTVroot)
 
 
-def XML_ExpandTree(elem, src):
+def XML_ExpandTree(elem, src, srcXML):
     # unpack template 'COPY'/'CUT' command in children
     res = False
     while True:
@@ -266,11 +269,11 @@ def XML_ExpandTree(elem, src):
             break
         
         for child in elem:
-            res = XML_ExpandNode(elem, child, src, 'TEXT')
+            res = XML_ExpandNode(elem, child, src, srcXML, 'TEXT')
             if res==True:  # tree modified: restart from 1st elem
                 break  # "for child"
             
-            res = XML_ExpandNode(elem, child, src, 'TAIL')
+            res = XML_ExpandNode(elem, child, src, srcXML, 'TAIL')
             if res==True:  # tree modified: restart from 1st elem
                 break  # "for child"
         
@@ -279,11 +282,11 @@ def XML_ExpandTree(elem, src):
     
     # recurse into children
     for el in elem:
-        XML_ExpandTree(el, src)
+        XML_ExpandTree(el, src, srcXML)
 
 
 
-def XML_ExpandNode(elem, child, src, text_tail):
+def XML_ExpandNode(elem, child, src, srcXML, text_tail):
     if text_tail=='TEXT':  # read line from text or tail
         line = child.text
     elif text_tail=='TAIL':
@@ -294,7 +297,6 @@ def XML_ExpandNode(elem, child, src, text_tail):
     
     pos = 0
     while line!=None:
-        line = line.strip()
         cmd_start = line.find('{{',pos)
         cmd_end   = line.find('}}',pos)
         if cmd_start==-1 or cmd_end==-1 or cmd_start>cmd_end:
@@ -319,7 +321,7 @@ def XML_ExpandNode(elem, child, src, text_tail):
                 child.tail = line
             
             try:
-                res = eval("g_CommandCollection.TREE_"+cmd+"(elem, child, src, '"+param+"')")
+                res = eval("g_CommandCollection.TREE_"+cmd+"(elem, child, src, srcXML, '"+param+"')")
             except:
                 dprint(__name__, 0, "XML_ExpandNode - Error in cmd {0}, line {1}", cmd, line)
             
@@ -342,29 +344,29 @@ def XML_ExpandNode(elem, child, src, text_tail):
 
 
 
-def XML_ExpandAllAttrib(elem, src):
+def XML_ExpandAllAttrib(elem, src, srcXML):
     # unpack template commands in elem.text
     line = elem.text
     if line!=None:
-        elem.text = XML_ExpandLine(src, line.strip())
+        elem.text = XML_ExpandLine(src, srcXML, line.strip())
     
     # unpack template commands in elem.tail
     line = elem.tail
     if line!=None:
-        elem.tail = XML_ExpandLine(src, line.strip())
+        elem.tail = XML_ExpandLine(src, srcXML, line.strip())
     
     # unpack template commands in elem.attrib.value
     for attrib in elem.attrib:
         line = elem.get(attrib)
-        elem.set(attrib, XML_ExpandLine(src, line.strip()))
+        elem.set(attrib, XML_ExpandLine(src, srcXML, line.strip()))
     
     # recurse into children
     for el in elem:
-        XML_ExpandAllAttrib(el, src)
+        XML_ExpandAllAttrib(el, src, srcXML)
 
 
 
-def XML_ExpandLine(src, line):
+def XML_ExpandLine(src, srcXML, line):
     pos = 0
     while True:
         cmd_start = line.find('{{',pos)
@@ -385,7 +387,7 @@ def XML_ExpandLine(src, line):
         if hasattr(CCommandCollection, 'ATTRIB_'+cmd):  # expand line, work VAL, EVAL...
             
             try:
-                res = eval("g_CommandCollection.ATTRIB_"+cmd+"(src, '"+param+"')")
+                res = eval("g_CommandCollection.ATTRIB_"+cmd+"(src, srcXML, '"+param+"')")
                 line = line[:cmd_start] + res + line[cmd_end+2:]
                 pos = cmd_start+len(res)
             except:
@@ -449,8 +451,8 @@ def PlexAPI_getTranscodePath(path):
 """
 class CCommandHelper():
     def __init__(self, PMSroot, path):
-        self.PMSroot = PMSroot
-        self.path = path
+        self.PMSroot = {'main': PMSroot}
+        self.path = {'main': path}
     
     # internal helper functions
     def getParam(self, src, param):
@@ -473,13 +475,17 @@ class CCommandHelper():
         dprint(__name__, 2, "CCmds_getParam: {0}, {1}", param, leftover)
         return [param, leftover]
     
-    def getKey(self, src, param):
+    def getKey(self, src, srcXML, param):
         attrib, leftover = self.getParam(src, param)
         default, leftover = self.getParam(src, leftover)
         
         # get base element
-        if attrib.startswith('/'):
-            el = self.PMSroot
+        if attrib.startswith('@'):  # redirect to additional XML
+            parts = attrib.split('/',1)
+            el = self.PMSroot[parts[0][1:]]
+            attrib = parts[1]
+        elif attrib.startswith('/'):  # start at root
+            el = self.PMSroot['main']
             attrib = attrib[1:]
         else:
             el = src
@@ -502,12 +508,16 @@ class CCommandHelper():
         dprint(__name__, 2, "CCmds_getKey: {0},{1},{2}", res, leftover,dfltd)
         return [res,leftover,dfltd]
     
-    def getElement(self, src, param):
+    def getElement(self, src, srcXML, param):
         tag, leftover = self.getParam(src, param)
         
         # get base element
-        if tag.startswith('/'):
-            el = self.PMSroot
+        if tag.startswith('@'):  # redirect to additional XML
+            parts = tag.split('/',1)
+            el = self.PMSroot[parts[0][1:]]
+            tag = parts[1]
+        elif tag.startswith('/'):  # start at root
+            el = self.PMSroot[srcXML]
             tag = tag[1:]
         else:
             el = src
@@ -565,8 +575,20 @@ class CCommandHelper():
 class CCommandCollection(CCommandHelper):
     # XML TREE modifier commands
     # add new commands to this list!
-    def TREE_COPY(self, elem, child, src, param):
+    def TREE_COPY(self, elem, child, src, srcXML, param):
         tag, param_enbl = self.getParam(src, param)
+        
+        # get base element
+        if tag.startswith('/'):
+            src = self.PMSroot[srcXML]
+            tag = tag[1:]
+        elif tag.startswith('@'):
+            parts = tag.split('/',1)
+            srcXML = parts[0][1:]
+            src = self.PMSroot[srcXML]
+            tag = parts[1]
+        else:
+            pass  # keep src
         
         """
         # walk the src path if neccessary
@@ -584,21 +606,22 @@ class CCommandCollection(CCommandHelper):
         for elemSRC in src.findall(tag):
             key = 'COPY'
             if param_enbl!='':
-                key, leftover, dfltd = self.getKey(elemSRC, param_enbl)
-                conv, leftover = self.getConversion(src, leftover)
+                key, leftover, dfltd = self.getKey(elemSRC, srcXML, param_enbl)
+                conv, leftover = self.getConversion(elemSRC, leftover)
                 if not dfltd:
                     key = self.applyConversion(key, conv)
             
             if key:
                 el = copy.deepcopy(childToCopy)
-                XML_ExpandTree(el, elemSRC)
-                XML_ExpandAllAttrib(el, elemSRC)
+                print "*-*-", srcXML, self.path[srcXML]
+                XML_ExpandTree(el, elemSRC, srcXML)
+                XML_ExpandAllAttrib(el, elemSRC, srcXML)
                 elem.append(el)
             
         return True  # tree modified, nodes updated: restart from 1st elem
     
-    def TREE_CUT(self, elem, child, src, param):
-        key, leftover, dfltd = self.getKey(src, param)
+    def TREE_CUT(self, elem, child, src, srcXML, param):
+        key, leftover, dfltd = self.getKey(src, srcXML, param)
         conv, leftover = self.getConversion(src, leftover)
         if not dfltd:
             key = self.applyConversion(key, conv)
@@ -608,45 +631,55 @@ class CCommandCollection(CCommandHelper):
         else:
             return False  # tree unchanged
     
+    def TREE_ADDXML(self, elem, child, src, srcXML, param):
+        path, leftover = self.getParam(src, param)
+        tag, leftover = self.getParam(src, leftover)
+        
+        PMS = XML_ReadFromURL('address', path)
+        self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML
+        self.path[tag] = path  # store base path
+        
+        return False  # tree unchanged (well, source tree yes. but that doesn't count...)
+    
     
     
     # XML ATTRIB modifier commands
     # add new commands to this list!
-    def ATTRIB_VAL(self, src, param):
-        key, leftover, dfltd = self.getKey(src, param)
+    def ATTRIB_VAL(self, src, srcXML, param):
+        key, leftover, dfltd = self.getKey(src, srcXML, param)
         conv, leftover = self.getConversion(src, leftover)
         if not dfltd:
             key = self.applyConversion(key, conv)
         return key
     
-    def ATTRIB_EVAL(self, src, param):
-        key, leftover, dfltd = self.getKey(src, param)
+    def ATTRIB_EVAL(self, src, srcXML, param):
+        key, leftover, dfltd = self.getKey(src, srcXML, param)
         math, leftover = self.getParam(src, leftover)
         frmt, leftover = self.getParam(src, leftover)
         if not dfltd:
             key = self.applyMath(key, math, frmt)
         return key
     
-    def ATTRIB_ADDPATH(self, src, param):
-        addpath, leftover, dfltd = self.getKey(src, param)
+    def ATTRIB_ADDPATH(self, src, srcXML, param):
+        addpath, leftover, dfltd = self.getKey(src, srcXML, param)
         if addpath.startswith('/'):
             res = addpath
         else:
-            res = self.path+'/'+addpath
+            res = self.path[srcXML]+'/'+addpath
         return res
     
-    def ATTRIB_URL(self, src, param):
-        key, leftover, dfltd = self.getKey(src, param)
+    def ATTRIB_URL(self, src, srcXML, param):
+        key, leftover, dfltd = self.getKey(src, srcXML, param)
         if key.startswith('/'):  # internal full path.
             res = 'http://' + g_param['Addr_PMS'] + key
         elif key.startswith('http://'):  # external address
             res = key
         else:  # internal path, add-on
-            res = 'http://' + g_param['Addr_PMS'] + self.path + '/' + key
+            res = 'http://' + g_param['Addr_PMS'] + self.path[srcXML] + '/' + key
         return res
     
-    def ATTRIB_MEDIAURL(self, src, param):
-        el, leftover = self.getElement(src,param)
+    def ATTRIB_MEDIAURL(self, src, srcXML, param):
+        el, leftover = self.getElement(src, srcXML, param)
         
         if el!=None:  # Video
             el = el.find('Media')
@@ -673,31 +706,31 @@ class CCommandCollection(CCommandHelper):
         elif res.startswith('http://'):  # external address
             pass
         else:  # internal path, add-on
-            res = 'http://' + g_param['Addr_PMS'] + self.path + res
+            res = 'http://' + g_param['Addr_PMS'] + self.path[srcXML] + res
         return res
     
-    def ATTRIB_ADDR_PMS(self, src, param):
+    def ATTRIB_ADDR_PMS(self, src, srcXML, param):
         return g_param['Addr_PMS']
     
-    def ATTRIB_episodestring(self, src, param):
-        parentIndex, leftover, dfltd = self.getKey(src, param) # getKey "defaults" if nothing found.
-        index, leftover, dfltd = self.getKey(src, leftover)
-        title, leftover, dfltd = self.getKey(src, leftover)
+    def ATTRIB_episodestring(self, src, srcXML, param):
+        parentIndex, leftover, dfltd = self.getKey(src, srcXML, param)  # getKey "defaults" if nothing found.
+        index, leftover, dfltd = self.getKey(src, srcXML, leftover)
+        title, leftover, dfltd = self.getKey(src, srcXML, leftover)
         out = "{0:0d}x{1:02d} ".format(int(parentIndex), int(index)) + title
         return out
     
-    def ATTRIB_sendToATV(self, src, param):
-        ratingKey, leftover, dfltd = self.getKey(src, param) # getKey "defaults" if nothing found.
-        duration, leftover, dfltd = self.getKey(src, leftover)
+    def ATTRIB_sendToATV(self, src, srcXML, param):
+        ratingKey, leftover, dfltd = self.getKey(src, srcXML, param)  # getKey "defaults" if nothing found.
+        duration, leftover, dfltd = self.getKey(src, srcXML, leftover)
         out = "atv.sessionStorage['ratingKey']='" + ratingKey + "';atv.sessionStorage['duration']='" + duration + \
-              "'" #;atv.sessionStorage['reloadXMLpath']='" + self.path + "'"
+              "'" #;atv.sessionStorage['reloadXMLpath']='" + self.path[srcXML] + "'"
         return out 
     
-    def ATTRIB_getPath(self, src, param):
-        return self.path 
+    def ATTRIB_getPath(self, src, srcXML, param):
+        return self.path[srcXML] 
     
-    def ATTRIB_getResString(self, src, param):
-        res, leftover, dfltd = self.getKey(src, param) # getKey "defaults" if nothing found.
+    def ATTRIB_getResString(self, src, srcXML, param):
+        res, leftover, dfltd = self.getKey(src, srcXML, param) # getKey "defaults" if nothing found.
         if res=='1080': return '1080p'
         elif res=='720': return '720p'
         elif res=='576': return 'SD'

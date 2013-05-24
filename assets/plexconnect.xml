@@ -9,16 +9,16 @@
 				</navigationItem> 
 				<navigationItem id="Channels">
 					<title>Channels</title> 
-				 <url>http://trailers.apple.com/channels/all&amp;PlexConnect=Channels</url> 
+				 <url>http://trailers.apple.com/channels&amp;PlexConnect=Channels</url> 
 				</navigationItem> 
-				<navigationItem id="Music">
-					<title>Music</title> 
-					<url>http://trailers.apple.com/music</url> 
-				</navigationItem> 
-				<navigationItem id="Photos">
-					<url>http://trailers.apple.com/photos</url> 
-					<title>Photos</title>
-				</navigationItem>
+				<!--navigationItem id="MyPlex">
+					<title>MyPlex</title> 
+					<url>http://trailers.apple.com/...</url> 
+				</navigationItem--> 
+				<!--navigationItem id="Info/Settings">
+					<title>Info/Settings</title>
+					<url>http://trailers.apple.com/...</url> 
+				</navigationItem-->
 			</navigation>
 		</viewWithNavigationBar>
 	</body>

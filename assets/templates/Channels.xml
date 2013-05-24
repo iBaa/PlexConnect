@@ -1,5 +1,8 @@
 <atv>
   <body>
+    {{ADDXML(/video:VideoChannels)}}
+    {{ADDXML(/music:AudioChannels)}}
+    {{ADDXML(/photos:PhotoChannels)}}
     <listWithPreview id="com.sample.menu-items-with-sections">
       <header>
         <simpleHeader>
@@ -9,33 +12,70 @@
       </header>
       <menu>
         <sections>
+          <!--Video Channels-->
           <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>Video</title>
+              </horizontalDivider>
+            </header> 
             <items>
-              <!-- channel media -->
-              <twoLineEnhancedMenuItem id="{{VAL(key)}}"
-                                       onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=Play')"
-                                       onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=ChannelPrePlay')">
-                {{COPY(Video)}}
+              {{CUT(@VideoChannels/size:CUT:0=CUT|1=)}}
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}" 
+                                       onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=ChannelsVideo')" 
+                                       onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=ChannelsVideo')">
+                {{COPY(@VideoChannels/Directory)}}
                 <label>{{VAL(title)}}</label>
                 <image>{{URL(thumb)}}</image>
+                <!--<image>http://trailers.apple.com/thumbnails/DirectoryLink.jpg</image>-->
                 <!--<defaultImage>resource://Poster.png</defaultImage>-->
                 <preview>
-                  <keyedPreview>
-                    <title>{{VAL(title)}}</title>
-                    <summary>{{VAL(summary)}}</summary>
+                  <crossFadePreview>
                     <image>{{URL(thumb)}}</image>
-                  </keyedPreview>
+                  </crossFadePreview>
                 </preview>
               </twoLineEnhancedMenuItem>
-              <!-- channel directories -->
+            </items>
+          </menuSection>
+          <!--Audio Channels-->
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>Audio</title>
+              </horizontalDivider>
+            </header> 
+            <items>
+              {{CUT(@AudioChannels/size:CUT:0=CUT|1=)}}
               <twoLineEnhancedMenuItem id="{{VAL(key)}}" 
-                                       onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=Channels')" 
-                                       onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=Channels')">
-                {{COPY(Directory)}}
+                                       onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')" 
+                                       onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')">
+                {{COPY(@AudioChannels/Directory)}}
                 <label>{{VAL(title)}}</label>
-                <!--
-                <rightLabel>another 100 files...</rightLabel>
-                -->
+                <image>{{URL(thumb)}}</image>
+                <!--<image>http://trailers.apple.com/thumbnails/DirectoryLink.jpg</image>-->
+                <!--<defaultImage>resource://Poster.png</defaultImage>-->
+                <preview>
+                  <crossFadePreview>
+                    <image>{{URL(thumb)}}</image>
+                  </crossFadePreview>
+                </preview>
+              </twoLineEnhancedMenuItem>
+            </items>
+          </menuSection>
+          <!--Photo Channels-->
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>Photo</title>
+              </horizontalDivider>
+            </header> 
+            <items>
+              {{CUT(@PhotoChannels/size:CUT:0=CUT|1=)}}
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}" 
+                                       onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')" 
+                                       onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')">
+                {{COPY(@PhotoChannels/Directory)}}
+                <label>{{VAL(title)}}</label>
                 <image>{{URL(thumb)}}</image>
                 <!--<image>http://trailers.apple.com/thumbnails/DirectoryLink.jpg</image>-->
                 <!--<defaultImage>resource://Poster.png</defaultImage>-->
