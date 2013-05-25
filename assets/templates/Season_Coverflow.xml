@@ -15,7 +15,7 @@
       <collectionDivider alignment="left">
             <title></title>
         </collectionDivider>
-        <shelf id="coverflow" columnCount="{{seasonCount(size)}}">
+        <shelf id="coverflow" columnCount="{{EVAL(size:0:min(x,5))}}">
           <sections>
             <shelfSection>
               <items>

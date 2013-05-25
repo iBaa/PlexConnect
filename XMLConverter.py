@@ -738,15 +738,8 @@ class CCommandCollection(CCommandHelper):
         elif res=='480': return 'SD'
         elif res=='sd': return 'SD'
         return 'Unknown: ' + res
-        
-    def ATTRIB_seasonCount(self, src, srcXML, param):
-        count, leftover, dfltd = self.getKey(src, srcXML, param)  # getKey "defaults" if nothing found.
-        if int(count) >= 5:
-          return "5"
-        else:
-          return count
-
-
+     
+     
 if __name__=="__main__":
     setParams({'Addr_PMS':'*Addr_PMS*'})
 
