@@ -51,11 +51,19 @@ function checkSettings()
     settings = "PlexConnectSettings:MovieView:Grid:ShowView:List:SeasonView:List:ForceDirectPlay:false:ForceTranscode:false:TranscoderQuality:9"
     atv.localStorage['PlexConnectSettings'] = settings;
   }
+  else if (settings.length < 127)
+  {
+    log("Old version settings found");
+    log("Updating...");
+    settings = settings + ":SeasonView:List";
+    atv.localStorage['PlexConnectSettings'] = settings;
+  }
+  
   log(settings);
   log("Sending settings to PlexConnect");
   sendSettings(settings);
   log("******************************************");
-  //atv.localStorage['PlexConnectSettings'] = "";
+ //atv.localStorage['PlexConnectSettings'] = "PlexConnectSettings:MovieView:Grid:ShowView:List:ForceDirectPlay:false:ForceTranscode:false:TranscoderQuality:9";
 };
 
 function sendSettings(settings)
