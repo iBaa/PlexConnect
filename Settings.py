@@ -46,19 +46,15 @@ def getSeasonViewType():
     return settingsSeasonView
         
 def updateSettings(setting):
-    #print('ATVLogger', 0, setting)
-    #dprint('ATVLogger', 0, value)
     global settingsMovieView
     global settingsShowView
     global settingsSeasonView
     global settingsForceDirectPlay
     global settingsForceTranscode
-    
-    dprint('ATVLogger', 0, setting)
+
     parts = setting.split(':')
     
     for i in range(0, len(parts)):
-      dprint('ATVLogger', 0, parts[i])
       if parts[i] == 'MovieView':
         if parts[i+1] == 'Grid': settingsMovieView = 'Movie_Grid.xml'
         if parts[i+1] == 'List': settingsMovieView = 'Movie_List.xml'

@@ -51,34 +51,44 @@ function checkSettings()
     settings = "PlexConnectSettings:MovieView:Grid:ShowView:List:SeasonView:List:ForceDirectPlay:false:ForceTranscode:false:TranscoderQuality:9"
     atv.localStorage['PlexConnectSettings'] = settings;
   }
-  else if (settings.length < 127)
+  else 
   {
-    log("Old version settings found");
-    log("Updating...");
-    settings = settings + ":SeasonView:List";
+    settings = checkEachSetting(settings);
     atv.localStorage['PlexConnectSettings'] = settings;
   }
   
   log(settings);
   log("Sending settings to PlexConnect");
-  sendSettings(settings);
+  loadPage("http://trailers.apple.com/&settings:" + atv.localStorage['PlexConnectSettings']);
   log("******************************************");
  //atv.localStorage['PlexConnectSettings'] = "PlexConnectSettings:MovieView:Grid:ShowView:List:ForceDirectPlay:false:ForceTranscode:false:TranscoderQuality:9";
 };
 
-function sendSettings(settings)
+function checkEachSetting(settings)
 {
-  loadPage("http://trailers.apple.com/&settings:" + atv.localStorage['PlexConnectSettings']);
-};
+  newSettings = "PlexConnectSettings";
+  newSettings = newSettings + ":" + getSetting("MovieView", "Grid", settings);
+  newSettings = newSettings + ":" + getSetting("ShowView", "List", settings);
+  newSettings = newSettings + ":" + getSetting("SeasonView", "List", settings);
+  newSettings = newSettings + ":" + getSetting("ForceDirectPlay", "false", settings);
+  newSettings = newSettings + ":" + getSetting("ForceTranscode", "false", settings);
+  newSettings = newSettings + ":" + getSetting("TranscoderQuality", "false", settings);
+  return newSettings;
+}
 
-function getSetting(name, settings)
+function getSetting(name, deft, settings)
 {
   var parts = settings.split(":");
   for (var i=0;i<parts.length;i++)
   {
-    if (parts[i] == name) return parts[i+1];
+    if (parts[i] == name) 
+    {
+      log("Adding: " + name + ":" + parts[i+1]);
+      return name + ":" + parts[i+1];
+    }
   }
-  return '';
+  log("Adding: " + name + ":" + deft + "(default)");
+  return name + ":" + deft;
 };
 
 atv.player.playerTimeDidChange = function(time)
