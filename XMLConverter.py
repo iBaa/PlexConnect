@@ -537,7 +537,7 @@ class CCommandHelper():
         # build conversion "dictionary"
         convlist = []
         if conv!='':
-            parts = conv.split('|',1)
+            parts = conv.split('|')
             for part in parts:
                 convstr = part.split('=')
                 convlist.append((convstr[0], convstr[1]))
@@ -663,6 +663,8 @@ class CCommandCollection(CCommandHelper):
         addpath, leftover, dfltd = self.getKey(src, srcXML, param)
         if addpath.startswith('/'):
             res = addpath
+        elif addpath == '':
+            res = self.path[srcXML]
         else:
             res = self.path[srcXML]+'/'+addpath
         return res
@@ -751,7 +753,7 @@ if __name__=="__main__":
     print "load PMS XML"
     _XML = '<PMS number="1" string="Hello"> \
                 <DATA number="42" string="World"></DATA> \
-                <DATA string="Moon"></DATA> \
+                <DATA string="Sun"></DATA> \
             </PMS>'
     PMSroot = etree.fromstring(_XML)
     PMSTree = etree.ElementTree(PMSroot)
@@ -761,7 +763,7 @@ if __name__=="__main__":
     print "load aTV XML template"
     _XML = '<aTV> \
                 <INFO num="{{VAL(number)}}" str="{{VAL(string)}}">Info</INFO> \
-                <FILE str="{{VAL(string)}}" strconv="{{VAL(string::World=big|Moon=small)}}" num="{{VAL(number:5)}}" numfunc="{{EVAL(number:5:int(x/10):&amp;col;02d)}}"> \
+                <FILE str="{{VAL(string)}}" strconv="{{VAL(string::World=big|Moon=small|Sun=huge)}}" num="{{VAL(number:5)}}" numfunc="{{EVAL(number:5:int(x/10):&amp;col;02d)}}"> \
                     File{{COPY(DATA)}} \
                 </FILE> \
                 <PATH path="{{ADDPATH(file:unknown)}}" /> \
@@ -779,12 +781,10 @@ if __name__=="__main__":
     
     print
     print "unpack PlexConnect COPY/CUT commands"
-    g_CommandTree = CCommandTree(PMSroot, '/library/sections/')
-    g_CommandAttrib = CCommandAttrib(PMSroot, '/library/sections/')
-    XML_ExpandTree(aTVroot, PMSroot)
-    XML_ExpandAllAttrib(aTVroot, PMSroot)
-    del g_CommandAttrib
-    del g_CommandTree    
+    g_CommandCollection = CCommandCollection(PMSroot, '/library/sections/')
+    XML_ExpandTree(aTVroot, PMSroot, 'main')
+    XML_ExpandAllAttrib(aTVroot, PMSroot, 'main')
+    del g_CommandCollection
     
     print
     print "resulting aTV XML"
