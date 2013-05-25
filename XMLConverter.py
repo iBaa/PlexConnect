@@ -663,6 +663,8 @@ class CCommandCollection(CCommandHelper):
         addpath, leftover, dfltd = self.getKey(src, srcXML, param)
         if addpath.startswith('/'):
             res = addpath
+        elif addpath == '':
+            res = self.path[srcXML]
         else:
             res = self.path[srcXML]+'/'+addpath
         return res
