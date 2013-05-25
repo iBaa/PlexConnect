@@ -63,26 +63,21 @@ function settings(mode) {
   if (!value) return undefined;
     
   if (mode=="MovieView") {
-    if (value.textContent=="Grid")
-    {
-      value.textContent = "List";
-    }
-    else
-    {
-      value.textContent = "Grid";
-    }
+    if (value.textContent=="Grid") value.textContent = "List";
+    else if (value.textContent=="List") value.textContent = "Grid";
   }
   
   if (mode=="ShowView") {
-    if (value.textContent=="Grid")
-    {
-      value.textContent = "List";
-    }
-    else
-    {
-      value.textContent = "Grid";
-    }
+    if (value.textContent=="Grid") value.textContent = "List";
+    else if (value.textContent=="List") value.textContent = "Grid";
+    //else if (value.textContent=="Bookcase") value.textContent = "Grid";
   }
+  
+  if (mode=="SeasonView") {
+    if (value.textContent=="List") value.textContent = "Coverflow";
+    else if (value.textContent=="Coverflow") value.textContent = "List";
+  }
+  
   rebuildSettingsString();
   loadPage("http://trailers.apple.com/&settings:" + atv.localStorage['PlexConnectSettings']);
 };
@@ -96,6 +91,9 @@ function createSettingsPage(doc) {
   item = doc.getElementById("ShowView");
   var value = item.getElementByTagName("rightLabel");
   value.textContent = getSetting("ShowView");
+  item = doc.getElementById("SeasonView");
+  var value = item.getElementByTagName("rightLabel");
+  value.textContent = getSetting("SeasonView");
   return doc;
 };
 
@@ -151,6 +149,8 @@ function rebuildSettingsString()
 {
   var setting1 = document.getElementById("MovieView").getElementByTagName("rightLabel").textContent;
   var setting2 = document.getElementById("ShowView").getElementByTagName("rightLabel").textContent;
-  var settings = "PlexConnectSettings:MovieView:" + setting1 + ":ShowView:" + setting2 + ":ForceDirectPlay:false:ForceTranscode:false:TranscoderQuality:9";
+  var setting3 = document.getElementById("SeasonView").getElementByTagName("rightLabel").textContent;
+  var settings = "PlexConnectSettings:MovieView:" + setting1 + ":ShowView:" + setting2 + ":SeasonView:" + setting3;
+  settings = settings + ":ForceDirectPlay:false:ForceTranscode:false:TranscoderQuality:9";
   atv.localStorage['PlexConnectSettings'] = settings;
 };

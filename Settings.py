@@ -6,6 +6,7 @@ Global Settings...
 
 settingsMovieView = 'Movie_Grid.xml'
 settingsShowView = 'Show_List.xml'
+settingsSeasonView = 'Season_List.xml'
 settingsForceDirectPlay = False
 settingsForceTranscode = False
 
@@ -40,12 +41,16 @@ def getMovieViewType():
        
 def getShowViewType():
     return settingsShowView
+
+def getSeasonViewType():
+    return settingsSeasonView
         
 def updateSettings(setting):
     #print('ATVLogger', 0, setting)
     #dprint('ATVLogger', 0, value)
     global settingsMovieView
     global settingsShowView
+    global settingsSeasonView
     global settingsForceDirectPlay
     global settingsForceTranscode
     
@@ -61,5 +66,10 @@ def updateSettings(setting):
       if parts[i] == 'ShowView':
         if parts[i+1] == 'Grid': settingsShowView = 'Show_Grid.xml'
         if parts[i+1] == 'List': settingsShowView = 'Show_List.xml'
-    
+        if parts[i+1] == 'Bookcase': settingsShowView = 'Show_Bookcase.xml'
+        
+      if parts[i] == 'SeasonView':
+        if parts[i+1] == 'List': settingsSeasonView = 'Season_List.xml'
+        if parts[i+1] == 'Coverflow': settingsSeasonView = 'Season_Coverflow.xml'
+      
     return

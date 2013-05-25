@@ -48,7 +48,7 @@ function checkSettings()
     log("No settings found!");
     log("Creating default settings");
     
-    settings = "PlexConnectSettings:MovieView:Grid:ShowView:List:ForceDirectPlay:false:ForceTranscode:false:TranscoderQuality:9"
+    settings = "PlexConnectSettings:MovieView:Grid:ShowView:List:SeasonView:List:ForceDirectPlay:false:ForceTranscode:false:TranscoderQuality:9"
     atv.localStorage['PlexConnectSettings'] = settings;
   }
   log(settings);

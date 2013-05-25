@@ -1,0 +1,44 @@
+<atv>
+  <head>
+    <script src="http://trailers.apple.com/updateXML.js"/> 
+    <script src="http://trailers.apple.com/scrobble.js"/>
+  </head>
+    
+  <body>
+    <scroller id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="reloadPMS_XML('{{getPath()}}')">
+      <header>
+        <simpleHeader>
+          <title>{{VAL(title2)}}</title>
+        </simpleHeader>
+      </header>
+      <items>
+      <collectionDivider alignment="left">
+            <title></title>
+        </collectionDivider>
+        <shelf id="coverflow" columnCount="{{seasonCount(size)}}">
+          <sections>
+            <shelfSection>
+              <items>
+                <goldenPoster id="{{VAL(key)}}" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')"
+                                              onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')"
+                                              onHoldSelect="scrobbleMenu('Season', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
+                  {{COPY(Directory)}}
+                  <title>{{VAL(title)}}</title>
+                  <image>{{URL(thumb)}}</image>
+                  <defaultImage>resource://Poster.png</defaultImage>
+                </goldenPoster>{{CUT(Directory/title:CUT:=)}}
+            
+            <!--    <oneLineMenuItem id="none">
+                  <label>No Seasons</label>
+                </oneLineMenuItem>{{CUT(Directory/title::=CUT)}}-->
+              </items>
+            </shelfSection>
+          </sections>
+        </shelf>
+        <collectionDivider alignment="left">
+            <title></title>
+        </collectionDivider>
+      </items>
+    </scroller>
+  </body>
+</atv>

@@ -216,7 +216,7 @@ def XML_PMS2aTV(address, path):
         
     elif PMSroot.get('viewGroup')=='season':
         # TV Season view
-        XMLtemplate = 'Season.xml'
+        XMLtemplate = Settings.getSeasonViewType()
         
     elif PMSroot.get('viewGroup')=='movie':
         if PMSroot.get('title2')=='By Folder':
@@ -736,7 +736,13 @@ class CCommandCollection(CCommandHelper):
         elif res=='480': return 'SD'
         elif res=='sd': return 'SD'
         return 'Unknown: ' + res
-
+        
+    def ATTRIB_seasonCount(self, src, srcXML, param):
+        count, leftover, dfltd = self.getKey(src, srcXML, param)  # getKey "defaults" if nothing found.
+        if int(count) >= 5:
+          return "5"
+        else:
+          return count
 
 
 if __name__=="__main__":

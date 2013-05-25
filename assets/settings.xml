@@ -6,11 +6,6 @@
   
   <body>
     <listWithPreview id="SettingsPage">
-      <header>
-        <simpleHeader>
-          <title>Settings</title>
-        </simpleHeader>
-      </header>
       <preview>
         <keyedPreview> 
           <title>a       </title>
@@ -37,7 +32,7 @@
         <sections>
           <menuSection>
             <header>
-							<horizontalDivider alignment="center">
+							<horizontalDivider alignment="left">
 								<title>View Settings</title>
 							</horizontalDivider>
 						</header>
@@ -50,11 +45,15 @@
                 <label>Show View</label>
                 <rightLabel>List</rightLabel>
               </oneLineMenuItem>
+              <oneLineMenuItem id="SeasonView" onSelect="settings('SeasonView')">
+                <label>Season View</label>
+                <rightLabel>List</rightLabel>
+              </oneLineMenuItem>
               </items>
             </menuSection>
             <menuSection>
               <header>
-              <horizontalDivider alignment="center">
+              <horizontalDivider alignment="left">
 								<title>Transcoder Settings</title>
 							</horizontalDivider>
               </header>
