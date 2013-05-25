@@ -14,16 +14,16 @@
         <sections>
           <!--Video Channels-->
           <menuSection>
-            {{CUT(@VideoChannels/size:CUT:0=CUT|1=)}}
             <header>
               <horizontalDivider alignment="left">
                 <title>Video</title>
               </horizontalDivider>
             </header> 
             <items>
-              <twoLineEnhancedMenuItem id="{{VAL(key)}}" 
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}"
                                        onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=ChannelsVideo')" 
                                        onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=ChannelsVideo')">
+                {{CUT(@VideoChannels/size:CUT:0=CUT|1=)}}
                 {{COPY(@VideoChannels/Directory)}}
                 <label>{{VAL(title)}}</label>
                 <image>{{URL(thumb)}}</image>
@@ -33,20 +33,24 @@
                   </crossFadePreview>
                 </preview>
               </twoLineEnhancedMenuItem>
+              <twoLineEnhancedMenuItem id="noVideoChannels" dimmed="true">
+                {{CUT(@VideoChannels/size::0=|1=CUT)}}
+                <label>no video channels</label>
+              </twoLineEnhancedMenuItem>
             </items>
           </menuSection>
           <!--Audio Channels-->
           <menuSection>
-            {{CUT(@AudioChannels/size:CUT:0=CUT|1=)}}
             <header>
               <horizontalDivider alignment="left">
                 <title>Audio</title>
               </horizontalDivider>
             </header> 
             <items>
-              <twoLineEnhancedMenuItem id="{{VAL(key)}}" 
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}"
                                        onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')" 
                                        onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')">
+                {{CUT(@AudioChannels/size:CUT:0=CUT|1=)}}
                 {{COPY(@AudioChannels/Directory)}}
                 <label>{{VAL(title)}}</label>
                 <image>{{URL(thumb)}}</image>
@@ -56,11 +60,14 @@
                   </crossFadePreview>
                 </preview>
               </twoLineEnhancedMenuItem>
+              <twoLineEnhancedMenuItem id="noAudioChannels" dimmed="true">
+                {{CUT(@AudioChannels/size::0=|1=CUT)}}
+                <label>no audio channels</label>
+              </twoLineEnhancedMenuItem>
             </items>
           </menuSection>
           <!--Photo Channels-->
           <menuSection>
-            {{CUT(@PhotoChannels/size:CUT:0=CUT|1=)}}
             <header>
               <horizontalDivider alignment="left">
                 <title>Photo</title>
@@ -70,6 +77,7 @@
               <twoLineEnhancedMenuItem id="{{VAL(key)}}" 
                                        onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')" 
                                        onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')">
+                {{CUT(@PhotoChannels/size:CUT:0=CUT|1=)}}
                 {{COPY(@PhotoChannels/Directory)}}
                 <label>{{VAL(title)}}</label>
                 <image>{{URL(thumb)}}</image>
@@ -78,6 +86,10 @@
                     <image>{{URL(thumb)}}</image>
                   </crossFadePreview>
                 </preview>
+              </twoLineEnhancedMenuItem>
+              <twoLineEnhancedMenuItem id="noPhotoChannels" dimmed="true">
+                {{CUT(@PhotoChannels/size::0=|1=CUT)}}
+                <label>no photo channels</label>
               </twoLineEnhancedMenuItem>
             </items>
           </menuSection>
