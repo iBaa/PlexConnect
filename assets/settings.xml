@@ -6,6 +6,11 @@
   
   <body>
     <listWithPreview id="SettingsPage">
+      <header>
+        <simpleHeader>
+          <title>Settings</title>
+        </simpleHeader>
+      </header>
       <preview>
         <keyedPreview> 
           <title>a       </title>
@@ -33,7 +38,7 @@
           <menuSection>
             <header>
 							<horizontalDivider alignment="left">
-								<title>View Settings</title>
+								<title>Appearance</title>
 							</horizontalDivider>
 						</header>
             <items>
@@ -54,7 +59,7 @@
             <menuSection>
               <header>
               <horizontalDivider alignment="left">
-								<title>Transcoder Settings</title>
+								<title>Transcoder</title>
 							</horizontalDivider>
               </header>
               <items>
