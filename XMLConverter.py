@@ -404,44 +404,36 @@ def XML_ExpandLine(src, srcXML, line):
         dprint(__name__, 2, "XML_ExpandLine: {0} - done", line)
     return line
 
-
-
 """
 # PlexAPI
 """
 def PlexAPI_getTranscodePath(path):
-    transcodePath = '/video/:/transcode/segmented/start.m3u8?'
+    transcodePath = '/video/:/transcode/universal/start.m3u8?'
     
     args = dict()
-    args['offset'] = 0
-    args['3g'] = 0
-    args['subtitleSize'] = 125
-    args['secondsPerSegment'] = 10
-    #args['ratingKey'] = ratingkey
-    args["identifier"] = 'com.plexapp.plugins.library'
-    args["quality"] = 9
-    args["url"] = "http://" + g_param['Addr_PMS'] + path
-    args["httpCookies"] = ''
-    args["userAgent"] = ''
+    args['protocol'] = 'hls'
+    args['videoResolution'] = '1920x1080' # Base it on AppleTV model?
+    args['directStream'] = '1'
+    args['directPlay'] = '0'
+    args['maxVideoBitrate'] = '12000'
+    args['videoQuality'] = '90'
+    args['subtitleSize'] = '100'
+    args['audioBoost'] = '100'
+    args['fastSeek'] = '1'
+    args['sesssion'] = ''
+    args['path'] = path
     
-    atime = int(time.time())
-    message = transcodePath + urlencode(args) + "@%d" % atime
-    publicKey = 'KQMIY6GATPC63AIMC4R2'
-    privateKey = base64.b64decode('k3U6GLkZOoNIoSgjDshPErvqMIFdE0xMTx8kgsrhnC0=')
-    sig = base64.b64encode(hmac.new(privateKey, msg=message, digestmod=hashlib.sha256).digest())
+    xargs = dict()
+    xargs['X-Plex-Device'] = 'AppleTV'
+    xargs['X-Plex-Version'] = ''
+    xargs['X-Plex-Client-Platform'] = 'iOS'
+    xargs['X-Plex-Device-Name'] = 'Apple TV'
+    xargs['X-Plex-Model'] = '3,1' # Base it on AppleTV model.
+    xargs['X-Plex-Platform'] = 'iOS'
+    xargs['X-Plex-Product'] = 'Plex Connect'
+    xargs['X-Plex-Platform-Version'] = '5.3' # Base it on AppleTV.
     
-    plexAccess = dict()
-    plexAccess['X-Plex-Access-Key'] = publicKey
-    plexAccess['X-Plex-Access-Time'] = atime
-    plexAccess['X-Plex-Access-Code'] = sig
-    plexAccess['X-Plex-Client-Capabilities'] = 'protocols=http-live-streaming,http-mp4-streaming,http-mp4-video,http-mp4-video-720p,http-streaming-video,http-streaming-video-720p;videoDecoders=h264{profile:main&resolution:720&level:42};audioDecoders=aac,ac3'
-    
-    dprint(__name__, 2, "TranscodePath: {0}", transcodePath)
-    dprint(__name__, 2, "Args: {0}", urlencode(args))
-    dprint(__name__, 2, "PlexAccess: {0}", urlencode(plexAccess))
-    return transcodePath + urlencode(args) + '&' + urlencode(plexAccess)
-
-
+    return transcodePath + urlencode(args) + '&' + urlencode(xargs)
 
 """
 # Command expander classes
@@ -682,6 +674,7 @@ class CCommandCollection(CCommandHelper):
     def ATTRIB_MEDIAURL(self, src, srcXML, param):
         el, leftover = self.getElement(src, srcXML, param)
         
+        metadata = el
         if el!=None:  # Video
             el = el.find('Media')
         
@@ -696,7 +689,7 @@ class CCommandCollection(CCommandHelper):
                 res = el.find('Part').get('key','')
             else:
                 # request transcoding
-                res = el.find('Part').get('key','')
+                res = metadata.get('key','')
                 res = PlexAPI_getTranscodePath(res)
         else:
             dprint(__name__, 0, "MEDIAPATH - element not found: {0}", params)
