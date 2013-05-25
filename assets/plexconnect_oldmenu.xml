@@ -21,8 +21,8 @@
 
 								<squarePoster id="Channels"
 									featured="true"
-									onSelect="atv.loadURL('http://trailers.apple.com/channels&amp;PlexConnect=Channels');"
-									onPlay="atv.loadURL('http://trailers.apple.com/channels&amp;PlexConnect=Channels');">
+									onSelect="atv.loadURL('http://trailers.apple.com/channels/all&amp;PlexConnect=Channels');"
+									onPlay="atv.loadURL('http://trailers.apple.com/channels/all&amp;PlexConnect=Channels');">
 									<title>Channels</title>
 									<image>http://trailers.apple.com/thumbnails/Channels.jpg</image>
 									<defaultImage>resource://Poster.png</defaultImage>
