@@ -61,7 +61,7 @@ function checkSettings()
   log("Sending settings to PlexConnect");
   loadPage("http://trailers.apple.com/&settings:" + atv.localStorage['PlexConnectSettings']);
   log("******************************************");
- //atv.localStorage['PlexConnectSettings'] = "PlexConnectSettings:MovieView:Grid:ShowView:List:ForceDirectPlay:false:ForceTranscode:false:TranscoderQuality:9";
+ //atv.localStorage['PlexConnectSettings'] = "PlexConnectSettings:MovieView:Grid:ShowView::ForceDirectPlay:false:ForceTranscode:false:TranscoderQuality:9";
 };
 
 function checkEachSetting(settings)
@@ -83,8 +83,16 @@ function getSetting(name, deft, settings)
   {
     if (parts[i] == name) 
     {
-      log("Adding: " + name + ":" + parts[i+1]);
-      return name + ":" + parts[i+1];
+      if (parts[i+1] == "")
+      {
+        log("adding: " + name + ":" + deft + "(default)");
+        return name + ":" + deft;
+      }
+      else
+      {
+        log("Adding: " + name + ":" + parts[i+1]);
+        return name + ":" + parts[i+1];
+      }
     }
   }
   log("Adding: " + name + ":" + deft + "(default)");
