@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<atv>	  
+<atv>
   <head>
     <script src="http://trailers.apple.com/settings.js"/>
   </head>
-	<body>	
-		<scroller id="com.sample.movie-shelf">	      
+	<body>
+		<scroller id="com.sample.movie-shelf">
 			<items>
-				<shelf id="shelf_1" columnCount="5">	 
+				<shelf id="shelf_1" columnCount="3">
 					<sections>
-						<shelfSection>	      
+						<shelfSection>
 							<items>
 								<squarePoster id="Library"
 									featured="true"
@@ -21,32 +21,23 @@
 
 								<squarePoster id="Channels"
 									featured="true"
-									onSelect="atv.loadURL('http://trailers.apple.com/channels/all&amp;PlexConnect=Channels');"
-									onPlay="atv.loadURL('http://trailers.apple.com/channels/all&amp;PlexConnect=Channels');">
+									onSelect="atv.loadURL('http://trailers.apple.com/channels&amp;PlexConnect=Channels');"
+									onPlay="atv.loadURL('http://trailers.apple.com/channels&amp;PlexConnect=Channels');">
 									<title>Channels</title>
 									<image>http://trailers.apple.com/thumbnails/Channels.jpg</image>
 									<defaultImage>resource://Poster.png</defaultImage>
 								</squarePoster>
 
-								<squarePoster id="Music"
+								<!--squarePoster id="MyPlex"
 									featured="true"
-									onSelect="atv.loadURL('http://trailers.apple.com/music');"
-									onPlay="atv.loadURL('http://trailers.apple.com/music');">
-									<title>Music</title>
-									<image>http://trailers.apple.com/thumbnails/Music.jpg</image>
+									onSelect="atv.loadURL('http://trailers.apple.com/...');"
+									onPlay="atv.loadURL('http://trailers.apple.com/...');">
+									<title>MyPlex</title>
+									<image>http://trailers.apple.com/thumbnails/....jpg</image>
 									<defaultImage>resource://Poster.png</defaultImage>
-								</squarePoster>
+								</squarePoster-->
 
-								<squarePoster id="Photos"
-									featured="true"
-									onSelect="atv.loadURL('http://trailers.apple.com/photos');"
-									onPlay="atv.loadURL('http://trailers.apple.com/photos');">
-									<title>Photos</title>
-									<image>http://trailers.apple.com/thumbnails/Photos.jpg</image>
-									<defaultImage>resource://Poster.png</defaultImage>
-								</squarePoster>
-                
-                <squarePoster id="Settings"
+								<squarePoster id="Settings"
 									featured="true"
 									onSelect="loadMenuPages('http://trailers.apple.com/settings.xml', false);"
 									onPlay="loadMenuPages('http://trailers.apple.com/settings.xml', false);">
@@ -54,11 +45,11 @@
 									<image>http://trailers.apple.com/thumbnails/Settings.jpg</image>
 									<defaultImage>resource://Poster.png</defaultImage>
 								</squarePoster>
-							</items>	    
-						</shelfSection>	  
+							</items>
+						</shelfSection>
 					</sections>
 				</shelf>
-			</items>	    
-		</scroller>	 
-	</body>	
+			</items>
+		</scroller>
+	</body>
 </atv>
