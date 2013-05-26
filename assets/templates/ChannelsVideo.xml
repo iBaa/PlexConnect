@@ -13,7 +13,7 @@
             <items>
               <!-- channel media -->
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"
-                                       onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=Play')"
+                                       onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}{{PLAY_COMMAND()}})"
                                        onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=ChannelPrePlay')">
                 {{COPY(Video)}}
                 <label>{{VAL(title)}}</label>

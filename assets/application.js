@@ -1,5 +1,4 @@
-var watchedPoint;
-var watchedSet = false;
+var lastReportedTime = -1;
 var resumePoint;
 var addrPMS;
 
@@ -101,28 +100,40 @@ function getSetting(name, deft, settings)
 
 atv.player.playerTimeDidChange = function(time)
 {
-    if (!watchedSet)
+    thisReportTime = Math.round(time*1000);
+    if (lastReportedTime == -1 || Math.abs(thisReportTime-lastReportedTime) > 5000)
     {
-        if (time>watchedPoint)
-        {
-            loadPage(addrPMS + "/:/scrobble?key=" + atv.sessionStorage['ratingKey'] + "&identifier=com.plexapp.plugins.library"); // Set scrobble key for video
-            loadPage(addrPMS + "/:/progress?key=" + atv.sessionStorage['ratingKey'] + "&identifier=com.plexapp.plugins.library&time=0"); // We've watched the file so set resume point to 0 seconds
-            watchedSet = true;
-        }
-        else
-        {
-            resumePoint = Math.round(time*1000);
-            loadPage(addrPMS + "/:/progress?key=" + atv.sessionStorage['ratingKey'] + "&identifier=com.plexapp.plugins.library&time=" + resumePoint.toString());
-        }
+        lastReportedTime = thisReportTime;
+        loadPage(addrPMS + '/:/timeline?ratingKey=' + atv.sessionStorage['ratingKey'] + 
+                 '&duration=' + atv.sessionStorage['duration'] + 
+                 '&key=%2Flibrary%2Fmetadata%2F' + atv.sessionStorage['ratingKey'] + 
+                 '&state=playing' +
+                 '&time=' + thisReportTime.toString() + 
+                 '&X-Plex-Client-Identifier=' + atv.device.udid + 
+                 '&X-Plex-Device-Name=Apple%20TV'
+                 );
     }
+};
+
+atv.player.didStopPlaying = function()
+{	
+    // Notify of a stop.
+    loadPage(addrPMS + '/:/timeline?ratingKey=' + atv.sessionStorage['ratingKey'] + 
+             '&duration=' + atv.sessionStorage['duration'] + 
+             '&key=%2Flibrary%2Fmetadata%2F' + atv.sessionStorage['ratingKey'] + 
+             '&state=stopped' +
+             '&time=' + lastReportedTime.toString() + 
+             '&X-Plex-Client-Identifier=' + atv.device.udid + 
+             '&X-Plex-Device-Name=Apple%20TV'
+             );
+    
+    // Kill the session.
+    loadPage(addrPMS + '/video/:/transcode/universal/stop?session=' + atv.device.udid);
 };
 
 atv.player.willStartPlaying = function()
 {	
-        watchedPoint = parseInt(atv.sessionStorage['duration']); // Grab video duration from python server.
-        watchedPoint = watchedPoint*0.00095; // Calculate the 95% time point in seconds.
-        watchedSet = false;
-        addrPMS = "http://" + atv.sessionStorage['addrpms'];
+    addrPMS = "http://" + atv.sessionStorage['addrpms'];
 };
 
 atv.config = { 
