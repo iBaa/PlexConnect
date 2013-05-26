@@ -18,9 +18,10 @@ import Settings
 from Debug import *  # dprint()
 
 
-
 def getIP_self():
-    IP = socket.gethostbyname(socket.gethostname())
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(('1.2.3.4', 1000))
+    IP = s.getsockname()[0]
     dprint('PlexConnect', 0, "IP_self: "+IP)
     return IP
 

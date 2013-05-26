@@ -16,8 +16,8 @@
           <menuSection>
             <items>
               <twoLineEnhancedMenuItem id="{{VAL(key)}}" 
-                                       onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=Play')"
-                                       onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=Play')">
+                                       onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}{{PLAY_COMMAND()}})"
+                                       onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}{{PLAY_COMMAND()}})">
                 {{COPY(Video)}}
                 <label>{{VAL(grandparentTitle)}}</label>
                 <label2>{{episodestring(parentIndex:0:index:0:title:"default")}}</label2>

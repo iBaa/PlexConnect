@@ -13,7 +13,7 @@
 			<sections>
 				<shelfSection>
 					<items>
-						<actionButton id="play" onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=Play')">
+						<actionButton id="play" onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}{{PLAY_COMMAND()}})">
 							<title>Play</title>
 							<image>resource://Play.png</image>
               <focusedImage>resource://PlayFocused.png</focusedImage>
