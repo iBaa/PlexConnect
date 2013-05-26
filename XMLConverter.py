@@ -247,7 +247,7 @@ def XML_PMS2aTV(address, path):
     aTVroot = aTVTree.getroot()
     
     global g_CommandCollection
-    g_CommandCollection = CCommandCollection(PMSroot, path)
+    g_CommandCollection = CCommandCollection(address, PMSroot, path)
     XML_ExpandTree(aTVroot, PMSroot, 'main')
     XML_ExpandAllAttrib(aTVroot, PMSroot, 'main')
     del g_CommandCollection
@@ -407,7 +407,7 @@ def XML_ExpandLine(src, srcXML, line):
 """
 # PlexAPI
 """
-def PlexAPI_getTranscodePath(path):
+def PlexAPI_getTranscodePath(address, path):
     transcodePath = '/video/:/transcode/universal/start.m3u8?'
     
     args = dict()
@@ -420,7 +420,6 @@ def PlexAPI_getTranscodePath(path):
     args['subtitleSize'] = '100'
     args['audioBoost'] = '100'
     args['fastSeek'] = '1'
-    args['sesssion'] = ''
     args['path'] = path
     
     xargs = dict()
@@ -433,6 +432,9 @@ def PlexAPI_getTranscodePath(path):
     xargs['X-Plex-Product'] = 'Plex Connect'
     xargs['X-Plex-Platform-Version'] = '5.3' # Base it on AppleTV.
     
+    if Settings.deviceMap.has_key(address[0]):
+      args['session'] = Settings.deviceMap[address[0]]
+    
     return transcodePath + urlencode(args) + '&' + urlencode(xargs)
 
 """
@@ -442,7 +444,8 @@ def PlexAPI_getTranscodePath(path):
 # CCommandAttrib(): commands dealing with single node keys, text, tail only (VAL, EVAL, ADDR_PMS)
 """
 class CCommandHelper():
-    def __init__(self, PMSroot, path):
+    def __init__(self, address, PMSroot, path):
+        self.address = address
         self.PMSroot = {'main': PMSroot}
         self.path = {'main': path}
     
@@ -690,7 +693,7 @@ class CCommandCollection(CCommandHelper):
             else:
                 # request transcoding
                 res = metadata.get('key','')
-                res = PlexAPI_getTranscodePath(res)
+                res = PlexAPI_getTranscodePath(self.address, res)
         else:
             dprint(__name__, 0, "MEDIAPATH - element not found: {0}", params)
             res = 'FILE_NOT_FOUND'  # not found?

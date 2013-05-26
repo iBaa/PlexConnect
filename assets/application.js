@@ -35,6 +35,10 @@ function log(msg)
     loadPage("http://trailers.apple.com/" + strReplaceAll + "&atvlogger");
 };
 
+function register()
+{
+    loadPage("http://trailers.apple.com/" + atv.device.udid + "&atvregister");
+}
 
 function s4() {
   return Math.floor((1 + Math.random()) * 0x10000)
@@ -131,6 +135,22 @@ atv.player.playerTimeDidChange = function(time)
     }
 };
 
+atv.player.didStopPlaying = function()
+{	
+    // Notify of a stop.
+    loadPage(addrPMS + '/:/timeline?ratingKey=' + atv.sessionStorage['ratingKey'] + 
+             '&duration=' + atv.sessionStorage['duration'] + 
+             '&key=%2Flibrary%2Fmetadata%2F' + atv.sessionStorage['ratingKey'] + 
+             '&state=stopped' +
+             '&time=' + lastReportedTime.toString() + 
+             '&X-Plex-Client-Identifier=' + atv.localStorage['PlexClientIdentifier'] + 
+             '&X-Plex-Device-Name=Apple%20TV'
+             );
+    
+    // Kill the session.
+    loadPage(addrPMS + '/video/:/transcode/universal/stop?session=' + atv.device.udid);
+};
+
 atv.player.willStartPlaying = function()
 {	
     addrPMS = "http://" + atv.sessionStorage['addrpms'];
@@ -154,4 +174,6 @@ atv.onAppEntry = function()
     {
         atv.loadURL("http://trailers.apple.com/plexconnect_oldmenu.xml");
     }
+    
+    register();
 };
