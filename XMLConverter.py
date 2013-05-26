@@ -166,11 +166,16 @@ def XML_ReadFromURL(address, path):
 def XML_PMS2aTV(address, path):
 
     cmd = ''
+    options = {}
     pos = string.find(path, "&PlexConnect=")
     if pos>-1:
-        cmd = path[pos+len("&PlexConnect="):]
+        params = path[pos+1:].split('&')
+        for p in params:
+            param = p.split('=')
+            options[param[0]] = param[1]
+        cmd = options['PlexConnect']
         path = path[:pos]
-    
+        
     PMS = XML_ReadFromURL(address, path)
     if PMS==False:
         return XML_Error('PlexConnect', 'No Response from Plex Media Server')
@@ -247,7 +252,7 @@ def XML_PMS2aTV(address, path):
     aTVroot = aTVTree.getroot()
     
     global g_CommandCollection
-    g_CommandCollection = CCommandCollection(address, PMSroot, path)
+    g_CommandCollection = CCommandCollection(options, PMSroot, path)
     XML_ExpandTree(aTVroot, PMSroot, 'main')
     XML_ExpandAllAttrib(aTVroot, PMSroot, 'main')
     del g_CommandCollection
@@ -407,7 +412,7 @@ def XML_ExpandLine(src, srcXML, line):
 """
 # PlexAPI
 """
-def PlexAPI_getTranscodePath(address, path):
+def PlexAPI_getTranscodePath(options, path):
     transcodePath = '/video/:/transcode/universal/start.m3u8?'
     
     args = dict()
@@ -432,8 +437,8 @@ def PlexAPI_getTranscodePath(address, path):
     xargs['X-Plex-Product'] = 'Plex Connect'
     xargs['X-Plex-Platform-Version'] = '5.3' # Base it on AppleTV.
     
-    if Settings.deviceMap.has_key(address[0]):
-      args['session'] = Settings.deviceMap[address[0]]
+    if options.has_key('PlexUDID'):
+        args['session'] = options['PlexUDID']
     
     return transcodePath + urlencode(args) + '&' + urlencode(xargs)
 
@@ -444,8 +449,8 @@ def PlexAPI_getTranscodePath(address, path):
 # CCommandAttrib(): commands dealing with single node keys, text, tail only (VAL, EVAL, ADDR_PMS)
 """
 class CCommandHelper():
-    def __init__(self, address, PMSroot, path):
-        self.address = address
+    def __init__(self, options, PMSroot, path):
+        self.options = options
         self.PMSroot = {'main': PMSroot}
         self.path = {'main': path}
     
@@ -693,7 +698,7 @@ class CCommandCollection(CCommandHelper):
             else:
                 # request transcoding
                 res = metadata.get('key','')
-                res = PlexAPI_getTranscodePath(self.address, res)
+                res = PlexAPI_getTranscodePath(self.options, res)
         else:
             dprint(__name__, 0, "MEDIAPATH - element not found: {0}", params)
             res = 'FILE_NOT_FOUND'  # not found?
@@ -705,6 +710,9 @@ class CCommandCollection(CCommandHelper):
         else:  # internal path, add-on
             res = 'http://' + g_param['Addr_PMS'] + self.path[srcXML] + res
         return res
+    
+    def ATTRIB_PLAY_COMMAND(self, src, srcXML, param):
+        return "&PlexConnect=Play&PlexUDID=' + atv.device.udid"
     
     def ATTRIB_ADDR_PMS(self, src, srcXML, param):
         return g_param['Addr_PMS']

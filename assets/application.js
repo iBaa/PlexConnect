@@ -35,22 +35,6 @@ function log(msg)
     loadPage("http://trailers.apple.com/" + strReplaceAll + "&atvlogger");
 };
 
-function register()
-{
-    loadPage("http://trailers.apple.com/" + atv.device.udid + "&atvregister");
-}
-
-function s4() {
-  return Math.floor((1 + Math.random()) * 0x10000)
-             .toString(16)
-             .substring(1);
-};
-
-function guid() {
-  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-         s4() + '-' + s4() + s4() + s4();
-}
-
 function checkSettings()
 {
   var settings = atv.localStorage['PlexConnectSettings'];
@@ -77,10 +61,6 @@ function checkSettings()
   loadPage("http://trailers.apple.com/&settings:" + atv.localStorage['PlexConnectSettings']);
   log("******************************************");
  //atv.localStorage['PlexConnectSettings'] = "PlexConnectSettings:MovieView:Grid:ShowView::ForceDirectPlay:false:ForceTranscode:false:TranscoderQuality:9";
- 
- // Create a UUID if needed.
- if (!('PlexClientIdentifier' in atv.localStorage) || atv.localStorage['PlexClientIdentifier'] == undefined)
-     atv.localStorage['PlexClientIdentifier'] = guid();
 };
 
 function checkEachSetting(settings)
@@ -129,7 +109,7 @@ atv.player.playerTimeDidChange = function(time)
                  '&key=%2Flibrary%2Fmetadata%2F' + atv.sessionStorage['ratingKey'] + 
                  '&state=playing' +
                  '&time=' + thisReportTime.toString() + 
-                 '&X-Plex-Client-Identifier=' + atv.localStorage['PlexClientIdentifier'] + 
+                 '&X-Plex-Client-Identifier=' + atv.device.udid + 
                  '&X-Plex-Device-Name=Apple%20TV'
                  );
     }
@@ -143,7 +123,7 @@ atv.player.didStopPlaying = function()
              '&key=%2Flibrary%2Fmetadata%2F' + atv.sessionStorage['ratingKey'] + 
              '&state=stopped' +
              '&time=' + lastReportedTime.toString() + 
-             '&X-Plex-Client-Identifier=' + atv.localStorage['PlexClientIdentifier'] + 
+             '&X-Plex-Client-Identifier=' + atv.device.udid + 
              '&X-Plex-Device-Name=Apple%20TV'
              );
     
@@ -174,6 +154,4 @@ atv.onAppEntry = function()
     {
         atv.loadURL("http://trailers.apple.com/plexconnect_oldmenu.xml");
     }
-    
-    register();
 };

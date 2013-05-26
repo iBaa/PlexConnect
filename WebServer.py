@@ -40,13 +40,6 @@ class MyHandler(BaseHTTPRequestHandler):
             if self.headers['Host'] == Settings.getHostToIntercept() and \
                self.headers['User-Agent'].startswith("iTunes-AppleTV"):
                 
-                # Have the ATV register.
-                if self.path.endswith("&atvregister"):
-                  msg = self.path[1:len(self.path)-12]
-                  print('Registering %s as %s' % (self.address_string(), msg))
-                  Settings.deviceMap[self.address_string()] = msg
-                  return
-                
                 # recieve simple logging messages from the ATV
                 if self.path.endswith("&atvlogger"):
                     msg = self.path.replace("%20", " ")
