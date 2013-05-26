@@ -85,8 +85,9 @@
           <menuSection>
             {{CUT(size::0=|1=CUT)}}
             <items>
-              <twoLineEnhancedMenuItem id="noChannels" dimmed="true">
+              <twoLineEnhancedMenuItem id="noChannels">
                 <label>No Channels Available</label>
+                <image>resource://More.png</image>
               </twoLineEnhancedMenuItem>
             </items>
           </menuSection>

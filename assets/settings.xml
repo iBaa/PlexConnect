@@ -63,11 +63,11 @@
 							</horizontalDivider>
               </header>
               <items>
-              <oneLineMenuItem id="ForceDirectPlay" dimmed="true">
+              <oneLineMenuItem id="ForceDirectPlay">
                 <label>Force Direct Play</label>
                 <rightLabel>No</rightLabel>
               </oneLineMenuItem>
-              <oneLineMenuItem id="ForceTranscode" dimmed="true">
+              <oneLineMenuItem id="ForceTranscode">
                 <label>Force Transcode</label>
                 <rightLabel>No</rightLabel>
               </oneLineMenuItem>
