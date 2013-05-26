@@ -4,6 +4,8 @@ from Debug import *  # dprint()
 Global Settings...
 """
 
+deviceMap = {}
+
 settingsMovieView = 'Movie_Grid.xml'
 settingsShowView = 'Show_List.xml'
 settingsSeasonView = 'Season_List.xml'
