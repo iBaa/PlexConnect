@@ -11,28 +11,12 @@ function loadPage(url)
 
 function log(msg)
 {
-    var strReplaceAll = msg;
-    var intIndexOfMatch = strReplaceAll.indexOf(" ");
-    while (intIndexOfMatch != -1){
-        strReplaceAll = strReplaceAll.replace( " ", "%20" )
-        intIndexOfMatch = strReplaceAll.indexOf( " " );
-    }
-    intIndexOfMatch = strReplaceAll.indexOf("<");
-    while (intIndexOfMatch != -1){
-        strReplaceAll = strReplaceAll.replace( "<", "&lt;" )
-        intIndexOfMatch = strReplaceAll.indexOf( "<" );
-    }
-    intIndexOfMatch = strReplaceAll.indexOf(">");
-    while (intIndexOfMatch != -1){
-        strReplaceAll = strReplaceAll.replace( ">", "&gt;" )
-        intIndexOfMatch = strReplaceAll.indexOf( ">" );
-    }
-    intIndexOfMatch = strReplaceAll.indexOf("/");
-    while (intIndexOfMatch != -1){
-        strReplaceAll = strReplaceAll.replace( "/", "&fs;" )
-        intIndexOfMatch = strReplaceAll.indexOf( "/" );
-    }
-    loadPage("http://trailers.apple.com/" + strReplaceAll + "&atvlogger");
+    msg = msg.replace(/ /g, "%20")
+    msg = msg.replace(/</g, "&lt;")
+    msg = msg.replace(/>/g, "&gt;")
+    msg = msg.replace(/\//g, "&fs;")
+    
+    loadPage("http://trailers.apple.com/" + msg + "&atvlogger");
 };
 
 function checkSettings()
