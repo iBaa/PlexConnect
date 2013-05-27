@@ -3,7 +3,10 @@
     {{ADDXML(/video:VideoChannels)}}
     {{ADDXML(/music:AudioChannels)}}
     {{ADDXML(/photos:PhotoChannels)}}
+    
+    <!--Channels List-->
     <listWithPreview id="com.sample.menu-items-with-sections">
+    {{CUT(size:CUT:0=CUT|1=)}}
       <header>
         <simpleHeader>
           <title>{{VAL(title1:Plex Channels)}}</title>
@@ -81,18 +84,15 @@
               </twoLineEnhancedMenuItem>
             </items>
           </menuSection>
-          <!--No Channels Available-->
-          <menuSection>
-            {{CUT(size::0=|1=CUT)}}
-            <items>
-              <twoLineEnhancedMenuItem id="noChannels">
-                <label>No Channels Available</label>
-                <image>resource://More.png</image>
-              </twoLineEnhancedMenuItem>
-            </items>
-          </menuSection>
         </sections>
       </menu>
     </listWithPreview>
+    
+    <!--No Channels Available-->
+    <dialog id="com.sample.error-dialog">
+    {{CUT(size::0=|1=CUT)}}
+      <title>PlexConnect</title>
+      <description>Plex Media Server: No Channels Available</description>
+    </dialog>
   </body>
 </atv>
