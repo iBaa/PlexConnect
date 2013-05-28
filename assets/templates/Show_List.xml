@@ -23,7 +23,7 @@
                 <label>{{VAL(title)}}</label>
                 <preview>
                   <crossFadePreview>
-                    <image>{{URL(thumb)}}</image>
+                    <image>{{BIGIMAGEURL(thumb)}}</image>
                   </crossFadePreview>
                 </preview>
               </oneLineMenuItem>{{CUT(Directory/title:CUT:=)}}

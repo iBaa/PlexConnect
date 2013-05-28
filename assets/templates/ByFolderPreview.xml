@@ -11,7 +11,7 @@
               {{COPY(Video)}}
               <title>{{VAL(title)}}</title>
               <subtitle>{{VAL(year)}}</subtitle>
-              <image>{{URL(thumb)}}</image>
+              <image>{{IMAGEURL(thumb)}}</image>
               <defaultImage>resource://16X9.png</defaultImage>
             </sixteenByNinePoster>
           </items>

@@ -24,7 +24,7 @@
                 <label>{{VAL(title)}}</label>
                 <ordinal>{{VAL(index)}}</ordinal>
                 <maxOrdinalDigits>2</maxOrdinalDigits>
-                <image>{{URL(thumb)}}</image>
+                <image>{{IMAGEURL(thumb)}}</image>
                 <!--<defaultImage>resource://16X9.png</defaultImage>      This causes the thumbnail to be too small, not sure why.-->
                 <accessories>
                   <unplayedDot/>{{CUT(viewCount)}}
@@ -33,7 +33,7 @@
                   <keyedPreview>
                     <title>{{VAL(title)}}</title>
                     <summary>{{VAL(summary)}}</summary>
-                    <image>{{URL(thumb)}}</image>
+                    <image>{{IMAGEURL(thumb)}}</image>
                   </keyedPreview>
                 </preview>
               </twoLineEnhancedMenuItem>{{CUT(Video/title:CUT:=)}}
