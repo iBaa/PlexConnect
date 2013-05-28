@@ -29,10 +29,10 @@
                                        onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=ChannelsVideo')">
                 {{COPY(@VideoChannels/Directory)}}
                 <label>{{VAL(title)}}</label>
-                <image>{{URL(thumb)}}</image>
+                <image>{{IMAGEURL(thumb)}}</image>
                 <preview>
                   <crossFadePreview>
-                    <image>{{URL(thumb)}}</image>
+                    <image>{{BIGIMAGEURL(thumb)}}</image>
                   </crossFadePreview>
                 </preview>
               </twoLineEnhancedMenuItem>
@@ -52,10 +52,10 @@
                                        onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')">
                 {{COPY(@AudioChannels/Directory)}}
                 <label>{{VAL(title)}}</label>
-                <image>{{URL(thumb)}}</image>
+                <image>{{IMAGEURL(thumb)}}</image>
                 <preview>
                   <crossFadePreview>
-                    <image>{{URL(thumb)}}</image>
+                    <image>{{BIGIMAGEURL(thumb)}}</image>
                   </crossFadePreview>
                 </preview>
               </twoLineEnhancedMenuItem>
@@ -75,10 +75,10 @@
                                        onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')">
                 {{COPY(@PhotoChannels/Directory)}}
                 <label>{{VAL(title)}}</label>
-                <image>{{URL(thumb)}}</image>
+                <image>{{IMAGEURL(thumb)}}</image>
                 <preview>
                   <crossFadePreview>
-                    <image>{{URL(thumb)}}</image>
+                    <image>{{BIGIMAGEURL(thumb)}}</image>
                   </crossFadePreview>
                 </preview>
               </twoLineEnhancedMenuItem>
