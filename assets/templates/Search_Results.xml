@@ -47,9 +47,10 @@
                              onHoldSelect="scrobbleMenu('Movie', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
                 {{COPY(Video:type::episode=COPY|movie=)}}
                 <label>{{VAL(title)}}</label>
-                <!--<label2>test</label2>{{CUT(Video/type:CUT:episode=CUT|movie=)}}-->
+                <label2>{{VAL(grandparentTitle)}} - {{episodestring(parentIndex:0:index:0)}}</label2>{{CUT(Video/grandparentTitle::=CUT)}}
                 <image>{{URL(thumb)}}</image>
-                <defaultImage>resource://Poster.png</defaultImage>
+                <defaultImage>resource://Poster.png</defaultImage>{{CUT(Video/grandparentTitle:CUT:=)}}
+                <defaultImage>resource://16x9.png</defaultImage>{{CUT(Video/grandparentTitle::=CUT)}}
               </twoLineEnhancedMenuItem>
             </items>
           </menuSection>{{CUT(Video/title:CUT:=)}}
