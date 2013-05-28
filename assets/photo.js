@@ -56,10 +56,10 @@ function createArray(photoID)
 		for(var assetIndex = 0; assetIndex < photoAssets.length; ++assetIndex)
 		{
 			var photoAsset = photoAssets[assetIndex];
-			var photoAssetDict = {
+      var photoAssetDict = {
 				"width": parseInt(photoAsset.getAttribute('width')),
 				"height": parseInt(photoAsset.getAttribute('height')),
-				"src": photoAsset.getAttribute('src')
+				"src": photo.getElementByTagName('stash').getElementByTagName('url').textContent
 			};
 
 			photoDict[collectionArrayName].push(photoAssetDict);
