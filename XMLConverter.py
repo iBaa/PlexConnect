@@ -34,6 +34,7 @@ except ImportError:
 import time, uuid, hmac, hashlib, base64
 from urllib import urlencode
 from urlparse import urlparse
+from urllib import quote_plus
 
 import Settings
 from Debug import *  # dprint()
@@ -195,6 +196,9 @@ def XML_PMS2aTV(address, path):
         if indirect=='1':  # redirect... todo: select suitable resolution, today we just take first Media
             PMS = XML_ReadFromURL(address, key)  # todo... check key for trailing '/' or even 'http'
             PMSroot = PMS.getroot()
+
+    elif cmd=='MoviePreview':
+        XMLtemplate = 'MoviePreview.xml'
     
     elif cmd=='MoviePrePlay':
         XMLtemplate = 'MoviePrePlay.xml'
@@ -671,7 +675,28 @@ class CCommandCollection(CCommandHelper):
         else:
             res = self.path[srcXML]+'/'+addpath
         return res
+
+    def ATTRIB_BIGIMAGEURL(self, src, srcXML, param):
+        key, leftover, dfltd = self.getKey(src, srcXML, param)
+        return self.imageUrl(self.path[srcXML], key, 512, 512)
     
+    def ATTRIB_IMAGEURL(self, src, srcXML, param):
+        key, leftover, dfltd = self.getKey(src, srcXML, param)
+        return self.imageUrl(self.path[srcXML], key, 384, 384)
+            
+    def imageUrl(self, path, key, width, height):
+        if key.startswith('/'):  # internal full path.
+            res = 'http://127.0.0.1:32400' + key
+        elif key.startswith('http://'):  # external address
+            res = key
+        else:
+            res = 'http://127.0.0.1:32000' + path + '/' + key
+        
+        # This is bogus (note the extra path component) but ATV is stupid when it comes to caching images, it doesn't use querystrings.
+        # Fortunately PMS is lenient...
+        #
+        return 'http://' + g_param['Addr_PMS'] + '/photo/:/transcode/%s/?width=%d&height=%d&url=' % (quote_plus(res), width, height) + quote_plus(res)
+            
     def ATTRIB_URL(self, src, srcXML, param):
         key, leftover, dfltd = self.getKey(src, srcXML, param)
         if key.startswith('/'):  # internal full path.
@@ -736,6 +761,16 @@ class CCommandCollection(CCommandHelper):
     
     def ATTRIB_getPath(self, src, srcXML, param):
         return self.path[srcXML] 
+    
+    def ATTRIB_getDurationString(self, src, srcXML, param):
+        duration, leftover, dfltd = self.getKey(src, srcXML, param)
+        if len(duration) > 0:
+            min = int(duration)/1000/60
+            hour = min/60
+            min = min%60
+            return "%dhr %dm" % (hour, min)            
+            
+        return ""
     
     def ATTRIB_getResString(self, src, srcXML, param):
         res, leftover, dfltd = self.getKey(src, srcXML, param) # getKey "defaults" if nothing found.

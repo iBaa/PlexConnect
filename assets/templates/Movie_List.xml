@@ -25,7 +25,7 @@
                 <label>{{VAL(title)}}</label>
                 <preview>
                   <crossFadePreview>
-                    <image>{{URL(thumb)}}</image>
+                    <image>{{IMAGEURL(thumb)}}</image>
                   </crossFadePreview>
                 </preview>
               </oneLineMenuItem>{{CUT(Video/title:CUT:=)}}

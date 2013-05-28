@@ -21,11 +21,11 @@
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>
                 <rightLabel>{{VAL(leafCount)}} Episodes</rightLabel>
-                <image>{{URL(thumb)}}</image>
+                <image>{{IMAGEURL(thumb)}}</image>
                 <defaultImage>resource://Poster.png</defaultImage>
                 <preview>
                   <crossFadePreview>
-                    <image>{{URL(thumb)}}</image>
+                    <image>{{BIGIMAGEURL(thumb)}}</image>
                   </crossFadePreview>
                 </preview>
               </twoLineEnhancedMenuItem>{{CUT(Directory/title:CUT:=)}}
