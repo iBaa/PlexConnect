@@ -1,0 +1,81 @@
+<atv>
+  <body>
+    <searchResults id="searchResults">
+      <menu>
+        <sections>
+        
+        <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>Shows</title>
+              </horizontalDivider>
+            </header> 
+            <items>
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}"  
+                             onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')"
+                             onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')"
+                             onHoldSelect="scrobbleMenu('Show', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
+                {{COPY(Directory)}}
+                <label>{{VAL(title)}}</label>
+                <image>{{URL(thumb)}}</image>
+                <defaultImage>resource://Poster.png</defaultImage>
+              </twoLineEnhancedMenuItem>
+            </items>
+          </menuSection>{{CUT(Directory/title:CUT:=)}}
+          
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>Movies / Episodes</title>
+              </horizontalDivider>
+            </header> 
+            <items>
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}"  
+                             onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}{{PLAY_COMMAND()}})"
+                             onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=MoviePrePlay')"
+                             onHoldSelect="scrobbleMenu('Movie', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
+                {{COPY(Video:type::movie=COPY|episode=)}}
+                <label>{{VAL(title)}}</label>
+                <!--<label2>test</label2>{{CUT(Video/type:CUT:episode=CUT|movie=)}}-->
+                <image>{{URL(thumb)}}</image>
+                <defaultImage>resource://Poster.png</defaultImage>
+              </twoLineEnhancedMenuItem>
+              
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}"  
+                             onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}{{PLAY_COMMAND()}})"
+                             onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=MoviePrePlay')"
+                             onHoldSelect="scrobbleMenu('Movie', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
+                {{COPY(Video:type::episode=COPY|movie=)}}
+                <label>{{VAL(title)}}</label>
+                <!--<label2>test</label2>{{CUT(Video/type:CUT:episode=CUT|movie=)}}-->
+                <image>{{URL(thumb)}}</image>
+                <defaultImage>resource://Poster.png</defaultImage>
+              </twoLineEnhancedMenuItem>
+            </items>
+          </menuSection>{{CUT(Video/title:CUT:=)}}
+                             
+          <!--<menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>Episodes</title>
+              </horizontalDivider>
+            </header> 
+            <items>
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}"  
+                             onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}{{PLAY_COMMAND()}})"
+                             onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=MoviePrePlay')"
+                             onHoldSelect="scrobbleMenu('Movie', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
+                {{COPY(Video:type::episode=COPY|movie=)}}
+                <label>{{VAL(title)}}</label>
+                <label2>{{VAL(grandparentTitle)}}</label2>
+                <image>{{URL(thumb)}}</image>
+                <defaultImage>resource://16x9.png</defaultImage>
+              </twoLineEnhancedMenuItem>
+            </items>
+          </menuSection>-->
+          
+        </sections>
+      </menu>
+    </searchResults>
+  </body>
+</atv>

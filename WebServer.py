@@ -39,7 +39,7 @@ class MyHandler(BaseHTTPRequestHandler):
             dprint(__name__, 2, "http request path:\n{0}", self.path)
             if self.headers['Host'] == Settings.getHostToIntercept() and \
                self.headers['User-Agent'].startswith("iTunes-AppleTV"):
-                
+                                    
                 # recieve simple logging messages from the ATV
                 if self.path.endswith("&atvlogger"):
                     msg = self.path.replace("%20", " ")
@@ -100,6 +100,16 @@ class MyHandler(BaseHTTPRequestHandler):
                     f.close()
                     return
                 
+                # path could be a search string
+                if self.path.find('search') > -1:
+                    dprint(__name__, 1, "Search Query=" + "/search?type=2&query=" +self.path[8:] + "&amp;PlexConnect=Search")
+                    XML = XMLConverter.XML_PMS2aTV(self.client_address, "/search?type=4&query=" +self.path[8:] + "&PlexConnect=Search")
+                    self.send_response(200)
+                    self.send_header('Content-type', 'text/html')
+                    self.end_headers()
+                    self.wfile.write(XML)
+                    return     
+                    
                 # get everything else from XMLConverter - formerly limited to trailing "/" and &PlexConnect Cmds
                 if True:
                     dprint(__name__, 1, "serving .xml: "+self.path)

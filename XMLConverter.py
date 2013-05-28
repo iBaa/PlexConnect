@@ -210,6 +210,9 @@ def XML_PMS2aTV(address, path):
     
     elif cmd=='ByFolderPreview':
         XMLtemplate = 'ByFolderPreview.xml'
+    
+    elif cmd=='Search':
+        XMLtemplate = 'Search_Results.xml'
         
     elif PMSroot.get('viewGroup') is None or \
        PMSroot.get('viewGroup')=='secondary':

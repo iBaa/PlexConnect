@@ -15,6 +15,10 @@
 					<title>Channels</title> 
 				 <url>http://trailers.apple.com/channels/all&amp;PlexConnect=Channels</url> 
 				</navigationItem> 
+        <navigationItem id="Search">
+					<url>http://trailers.apple.com/search.xml</url> 
+					<title>Search</title>
+				</navigationItem>
         <navigationItem id="Settings">
 					<url>http://trailers.apple.com/settings.xml</url> 
 					<title>Settings</title>
