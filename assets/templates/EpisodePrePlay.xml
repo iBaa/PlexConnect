@@ -68,7 +68,7 @@
                 <stream> 
                   {{COPY(Video/Media/Part/Stream)}}
                   <id>{{VAL(id)}}</id>
-                  <language>{{VAL(language)}}</language>
+                  <language>{{VAL(language:Unknown)}}</language>
                   <format>{{VAL(format)}}</format>
                   <streamType>{{VAL(streamType)}}</streamType>
                 </stream>
