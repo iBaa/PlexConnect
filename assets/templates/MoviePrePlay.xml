@@ -67,9 +67,15 @@
                   <focusedImage>resource://PlayFocused.png</focusedImage>
                   <!--<badge></badge>-->
                 </actionButton>
+                <actionButton id="audio" onSelect="">
+                  <title>Audio</title>
+                  <image>resource://Queue.png</image>
+                  <focusedImage>resource://QueueFocused.png</focusedImage>
+                </actionButton>
                 <actionButton id="subs" onSelect="selectSubs('{{ADDR_PMS()}}', '{{VAL(Video/Media/Part/id)}}')">
-                  <title>SUBS</title>
-                  <subtitle>Subtitles</subtitle>
+                  <title>Subtitles</title>
+                  <image>resource://Preview.png</image>
+                  <focusedImage>resource://PreviewFocused.png</focusedImage>
                 </actionButton>
                 <actionButton id="more" accessibilityLabel="More info" onSelect="atv.showMoreInfo();">
                   <title>More</title>
