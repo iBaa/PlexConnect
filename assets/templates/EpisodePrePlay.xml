@@ -1,4 +1,7 @@
 <atv>
+  <head>
+    <script src="http://trailers.apple.com/selectSubsAndAudio.js"/>
+  </head>
   <body>
     <itemDetail id="com.apple.trailer">
       <title>{{VAL(Video/title)}} ({{VAL(Video/year)}})</title>
@@ -51,13 +54,25 @@
                   <image>resource://Play.png</image>
                   <focusedImage>resource://PlayFocused.png</focusedImage>
                 </actionButton>
-                
+                <actionButton id="subs" onSelect="selectSubs('{{ADDR_PMS()}}', '{{VAL(Video/Media/Part/id)}}')">
+                  <title>SUBS</title>
+                  <subtitle>Subtitles</subtitle>
+                </actionButton>
                <!-- <actionButton id="more" accessibilityLabel="More info" onSelect="atv.showMoreInfo();">
                   <title>More</title>
                   <image>resource://More.png</image>
                   <focusedImage>resource://MoreFocused.png</focusedImage>
                 </actionButton>-->
               </items>
+              <stash>
+                <stream> 
+                  {{COPY(Video/Media/Part/Stream)}}
+                  <id>{{VAL(id)}}</id>
+                  <language>{{VAL(language)}}</language>
+                  <format>{{VAL(format)}}</format>
+                  <streamType>{{VAL(streamType)}}</streamType>
+                </stream>
+              </stash>
             </shelfSection>
           </sections>
         </shelf>
