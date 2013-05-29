@@ -768,20 +768,12 @@ class CCommandCollection(CCommandHelper):
             min = int(duration)/1000/60
             hour = min/60
             min = min%60
-            return "%dhr %dm" % (hour, min)            
+            if hour == 0: return "%d Minutes" % (min)
+            else: return "%dhr %dmin" % (hour, min)            
             
         return ""
     
-    def ATTRIB_getResString(self, src, srcXML, param):
-        res, leftover, dfltd = self.getKey(src, srcXML, param) # getKey "defaults" if nothing found.
-        if res=='1080': return '1080p'
-        elif res=='720': return '720p'
-        elif res=='576': return 'SD'
-        elif res=='480': return 'SD'
-        elif res=='sd': return 'SD'
-        return 'Unknown: ' + res
-     
-     
+    
 if __name__=="__main__":
     setParams({'Addr_PMS':'*Addr_PMS*'})
 
