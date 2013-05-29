@@ -780,6 +780,21 @@ class CCommandCollection(CCommandHelper):
         elif res=='480': return 'SD'
         elif res=='sd': return 'SD'
         return 'Unknown: ' + res
+
+    def ATTRIB_getAudioChannelsString(self, src, srcXML, param):
+        audiochannels, leftover, dfltd = self.getKey(src, srcXML, param)
+        if audiochannels=='6': return '5.1'
+        elif audiochannels=='8': return '7.1'
+        elif audiochannels=='2': return '2.0'
+        return 'Unknown: ' + audiochannels
+
+    def ATTRIB_getAudioChannelCodecString(self, src, srcXML, param):
+        audiochannelcodec, leftover, dfltd = self.getKey(src, srcXML, param)
+        if audiochannelcodec=='ac3': return 'AC3'
+        elif audiochannelcodec=='mp3': return 'MP3'
+        elif audiochannelcodec=='aac': return 'AAC'
+        elif audiochannelcodec=='dca': return 'DTS'
+        return 'Unknown'
      
      
 if __name__=="__main__":

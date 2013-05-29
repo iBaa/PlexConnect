@@ -43,7 +43,7 @@
             <label>{{VAL(Video/Producer[3]/tag)}}</label>
           </row>
           <row>
-            <label/>
+            <label>{{getAudioChannelsString(Video/Media/audioChannels)}} {{getAudioChannelCodecString(Video/Media/audioCodec)}}</label>
             <label>{{VAL(Video/Role[4]/tag)}}</label>
             <label>{{VAL(Video/Director[4]/tag)}}</label>
             <label>{{VAL(Video/Producer[4]/tag)}}</label>            
