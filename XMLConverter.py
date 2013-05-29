@@ -202,6 +202,9 @@ def XML_PMS2aTV(address, path):
     
     elif cmd=='MoviePrePlay':
         XMLtemplate = 'MoviePrePlay.xml'
+    
+    elif cmd=='EpisodePrePlay':
+        XMLtemplate = 'EpisodePrePlay.xml'
         
     elif cmd=='ChannelPrePlay':
         XMLtemplate = 'ChannelPrePlay.xml'
