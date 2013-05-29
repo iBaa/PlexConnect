@@ -43,35 +43,36 @@ function createArray(photoID)
 	for(var i = 0; i < photos.length; ++i)
 	{
 		var photo = photos[i]
-    var type = photo.tagName;
-    var collectionArrayName = "assets";
-		var photoAssets = photo.getElementsByTagName('photoAsset');
+    if (photo.getElementByTagName('stash').getElementByTagName('directory').textContent == 'false')
+    {
+      var type = photo.tagName;
+      var collectionArrayName = "assets";
+      var photoAssets = photo.getElementsByTagName('photoAsset');
 
-		photoDict = {};
+      photoDict = {};
+      photoDict.id = photo.getAttribute('id');
+      photoDict.type = "photo";
+      photoDict[collectionArrayName] = [];
+      for(var assetIndex = 0; assetIndex < photoAssets.length; ++assetIndex)
+      {
+        var photoAsset = photoAssets[assetIndex];
+        var photoAssetDict = {
+          "width": parseInt(photoAsset.getAttribute('width')),
+          "height": parseInt(photoAsset.getAttribute('height')),
+          "src": photo.getElementByTagName('stash').getElementByTagName('url').textContent
+        };
 
-		photoDict.id = photo.getAttribute('id');
-		photoDict.type = "photo";
-		
-		photoDict[collectionArrayName] = [];
-		for(var assetIndex = 0; assetIndex < photoAssets.length; ++assetIndex)
-		{
-			var photoAsset = photoAssets[assetIndex];
-      var photoAssetDict = {
-				"width": parseInt(photoAsset.getAttribute('width')),
-				"height": parseInt(photoAsset.getAttribute('height')),
-				"src": photo.getElementByTagName('stash').getElementByTagName('url').textContent
-			};
+        photoDict[collectionArrayName].push(photoAssetDict);
+      };
 
-			photoDict[collectionArrayName].push(photoAssetDict);
-		};
-
-		if(photoDict.id == photoID)
-		{
-			initialSelection = photoDicts.length;
-		};
-
-		photoDicts.push(photoDict);
-	};
+      if(photoDict.id == photoID)
+      {
+        initialSelection = photoDicts.length;
+      };
+  
+      photoDicts.push(photoDict);
+    };
+  };
 
 	var photoArray = {
 		"photoDicts": photoDicts,

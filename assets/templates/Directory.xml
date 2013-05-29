@@ -20,9 +20,9 @@
                 <!--
                 <rightLabel>another 100 files...</rightLabel>
                 -->
-                <image>{{IMAGEURL(thumb)}}</image>
+                <!--<image>{{IMAGEURL(thumb)}}</image>-->
                 <!--<image>http://trailers.apple.com/thumbnails/DirectoryLink.jpg</image>-->
-                <defaultImage>resource://Poster.png</defaultImage>
+                <!--<defaultImage>resource://Poster.png</defaultImage>-->
                 <preview>
                   <crossFadePreview>
                     <image>{{BIGIMAGEURL(thumb)}}</image>

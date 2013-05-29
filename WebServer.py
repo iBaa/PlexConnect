@@ -100,6 +100,17 @@ class MyHandler(BaseHTTPRequestHandler):
                     f.close()
                     return
                 
+                # serve "*.png" - only png's support transparent colors
+                if self.path.endswith(".png"):
+                    dprint(__name__, 1, "serving *.png: "+self.path)
+                    f = open(sys.path[0] + sep + "assets" + self.path, "rb")
+                    self.send_response(200)
+                    self.send_header('Content-type', 'image/png')
+                    self.end_headers()
+                    self.wfile.write(f.read())
+                    f.close()
+                    return
+                    
                 # path could be a search string
                 if self.path.find('search') > -1:
                     dprint(__name__, 1, "Search Query=" + "/search?type=2&query=" +self.path[8:] + "&amp;PlexConnect=Search")
