@@ -86,10 +86,10 @@
               <stash>
                 <stream> 
                   {{COPY(Video/Media/Part/Stream)}}
-                  <id>{{VAL(id)}}</id>
+                  <id>{{VAL(id:0)}}</id>
                   <language>{{VAL(language:Unknown)}}</language>
-                  <format>{{VAL(format)}}</format>
-                  <streamType>{{VAL(streamType)}}</streamType>
+                  <format>{{VAL(format:UNK)}}</format>
+                  <streamType>{{VAL(streamType:0)}}</streamType>
                 </stream>
               </stash>
             </shelfSection>
