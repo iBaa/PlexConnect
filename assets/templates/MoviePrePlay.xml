@@ -138,7 +138,7 @@
                     {{COPY(Video/Genre)}}
                     <label>{{VAL(tag)}}</label>
                     <preview>
-                      <link>http://trailers.apple.com/library/sections/{{VAL(/librarySectionID)}}/genre/{{VAL(id)}}&amp;PlexConnect=MoviePreview</link>
+                      <link>http://trailers.apple.com/library/sections/{{VAL(/librarySectionID)}}/genre/{{VAL(id)}}?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=50&amp;PlexConnect=MoviePreview</link> 
                     </preview>
                   </oneLineMenuItem>
                 </items>
