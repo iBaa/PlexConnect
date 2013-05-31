@@ -44,11 +44,12 @@ This is a small DNS server (hence the name) that is now called whenever aTV need
 * __WebServer.py__ - 
 This script provides the directory content of "assets" to aTV. Additionally it will forward aTV's directory requests to PMS and provide a aTV compatible XML back.
 Every media (video, thumbnails...) is URL-wise connected to PMS, so aTV directly accesses the Plex database.
-* __XMLConverter.py__
+* __XMLConverter.py__ - 
 This script contains the XML adaption from Plex Media Server's response to valid aTV XML files.
 * __Settings.py__ - 
 Basic settings collection. This should be the only file to modify.
-
+* __ATVSettings.py__ - 
+Handles the aTV settings like ViewModes or Transcoder options.
 
 ## Disclaimer
 The software is provided as is. It might work as expected - or not. Just don't blame me.
