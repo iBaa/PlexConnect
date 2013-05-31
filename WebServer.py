@@ -19,7 +19,7 @@ try:
 except ImportError:
     import xml.etree.ElementTree as etree
 
-import Settings
+import Settings, ATVSettings
 from Debug import *  # dprint()
 import XMLConverter  # XML_PMS2aTV, XML_PlayVideo
 
@@ -49,12 +49,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     msg = msg[1:len(msg)-10]
                     dprint('ATVLogger', 0, msg)
                     return
-                    
-                # get settings from atv 
-                if self.path.find('&settings:') > -1:
-                    Settings.updateSettings(self.path)
-                    return                  
-                                    
+                
                 # serve "application.js" to aTV
                 # disregard the path - it is different for different iOS versions
                 if self.path.endswith("application.js"):
@@ -159,6 +154,8 @@ def Run(cmdQueue, param):
     dprint(__name__, 0, "***")
     
     XMLConverter.setParams(param)
+    cfg = ATVSettings.CATVSettings()
+    XMLConverter.setATVSettings(cfg)
     
     try:
         while True:
@@ -179,6 +176,8 @@ def Run(cmdQueue, param):
         dprint(__name__, 0,"^C received.")
     finally:
         dprint(__name__, 0, "Shutting down.")
+        cfg.saveSettings()
+        del cfg
         server.socket.close()
 
 

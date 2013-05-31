@@ -24,6 +24,9 @@ if( atv.Element ) {
     }
 }
 
+/*
+ * ATVLogger
+ */
 function log(msg)
 {
     msg = msg.replace(/ /g, "%20")
@@ -41,6 +44,31 @@ function loadPage(url)
 	req.send();
 };
 
+/*
+ * update Settings
+ */
+function toggleSettings(opt) {
+    // get "opt" element of displayed XML
+    var dispval = document.getElementById(opt).getElementByTagName("rightLabel");
+    if (!dispval) return undefined;  // error - element not found
+    
+    // read new XML
+    var url = "http://trailers.apple.com/&PlexConnect=SettingsToggle:"+opt
+    var req = new XMLHttpRequest();
+    req.open('GET', url, false);
+    req.send();
+    doc=req.responseXML;
+    
+    // get "opt" element of fresh XML
+    var newval = doc.getElementById(opt).getElementByTagName("rightLabel");
+    if (!newval) return undefined;  // error - element not found
+    log("new setting - "+opt+"="+newval.textContent);
+    
+    // push new value to display
+    dispval.textContent = newval.textContent;
+};
+
+/*
 function settings(mode) {
   var item = document.getElementById(mode);
   var value = item.getElementByTagName("rightLabel");
@@ -65,7 +93,8 @@ function settings(mode) {
   rebuildSettingsString();
   loadPage("http://trailers.apple.com/&settings:" + atv.localStorage['PlexConnectSettings']);
 };
-
+*/
+/*
 function createSettingsPage(doc) {
   var item = doc.getElementById("SettingsPage");
   if (!item) return doc;
@@ -80,7 +109,8 @@ function createSettingsPage(doc) {
   value.textContent = getSetting("SeasonView");
   return doc;
 };
-
+*/
+/*
 function getSetting(name)
 {
   var settings = atv.localStorage['PlexConnectSettings'];
@@ -91,7 +121,11 @@ function getSetting(name)
   }
   return '';
 };
+*/
 
+/*
+ * navigation bar - dynamic loading of pages
+ */
 function loadItem(event)
 {
 	var id = event.navigationItemId;
@@ -101,12 +135,14 @@ function loadItem(event)
 	loadMenuPages(url, event);
 };
 
+/*
 function loadDoc(doc, event)
 {
   createSettingsPage(doc);
   if(event) event.success(doc);
 	else atv.loadXML(doc);
 };
+*/
 
 function loadMenuPages(url, event)
 {
@@ -117,7 +153,9 @@ function loadMenuPages(url, event)
 		{
 			if(req.readyState == 4)
 			{
-				loadDoc(req.responseXML , event);
+				doc = req.responseXML
+				if(event) event.success(doc);
+				else atv.loadXML(doc);
 			}
 		}
 		catch(e)
@@ -127,8 +165,8 @@ function loadMenuPages(url, event)
 	}
 	req.open('GET', url, true);
 	req.send();
-}
-
+};
+/*
 function rebuildSettingsString()
 {
   var setting1 = document.getElementById("MovieView").getElementByTagName("rightLabel").textContent;
@@ -138,3 +176,4 @@ function rebuildSettingsString()
   settings = settings + ":ForceDirectPlay:false:ForceTranscode:false:TranscoderQuality:9";
   atv.localStorage['PlexConnectSettings'] = settings;
 };
+*/

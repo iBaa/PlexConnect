@@ -14,6 +14,8 @@ dlevels = { "PlexConnect": 0, \
             "DNSServer"  : 1, \
             "WebServer"  : 1, \
             "XMLConverter" : 0, \
+            "Settings"   : 0, \
+            "ATVSettings": 0, \
           }
 
 

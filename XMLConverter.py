@@ -36,7 +36,7 @@ from urllib import urlencode
 from urlparse import urlparse
 from urllib import quote_plus
 
-import Settings
+import Settings, ATVSettings
 from Debug import *  # dprint()
 
 
@@ -45,6 +45,13 @@ g_param = {}
 def setParams(param):
     global g_param
     g_param = param
+
+g_ATVSettings = None
+def setATVSettings(cfg):
+    global g_ATVSettings
+    g_ATVSettings = cfg
+
+UDID = '007'  # todo: aTV: send UDID, PlexConnect: grab UDID
 
 
 
@@ -220,6 +227,16 @@ def XML_PMS2aTV(address, path):
     
     elif cmd=='Search':
         XMLtemplate = 'Search_Results.xml'
+    
+    elif cmd=='Settings':
+        XMLtemplate = 'Settings.xml'
+    
+    elif cmd.startswith('SettingsToggle:'):
+        XMLtemplate = 'Settings.xml'
+        
+        opt = cmd[len('SettingsToggle:'):]  # cut command:
+        g_ATVSettings.toggleSetting(UDID, opt.lower())
+        dprint(__name__, 2, "ATVSettings->Toggle: {0}", opt)
         
     elif PMSroot.get('viewGroup') is None or \
        PMSroot.get('viewGroup')=='secondary':
@@ -227,11 +244,11 @@ def XML_PMS2aTV(address, path):
         
     elif PMSroot.get('viewGroup')=='show':
         # TV Show grid view
-        XMLtemplate = Settings.getShowViewType()
+        XMLtemplate = 'Show_'+g_ATVSettings.getSetting(UDID, 'showview')+'.xml'
         
     elif PMSroot.get('viewGroup')=='season':
         # TV Season view
-        XMLtemplate = Settings.getSeasonViewType()
+        XMLtemplate = 'Season_'+g_ATVSettings.getSetting(UDID, 'seasonview')+'.xml'
         
     elif PMSroot.get('viewGroup')=='movie':
         if PMSroot.get('title2')=='By Folder':
@@ -239,7 +256,7 @@ def XML_PMS2aTV(address, path):
           XMLtemplate = 'ByFolder.xml'
         else:
           # Movie listing
-          XMLtemplate = Settings.getMovieViewType()
+          XMLtemplate = 'Movie_'+g_ATVSettings.getSetting(UDID, 'movieview')+'.xml'
         
     elif PMSroot.get('viewGroup')=='episode':
         if PMSroot.get('title2')=='On Deck' or \
@@ -669,6 +686,10 @@ class CCommandCollection(CCommandHelper):
             key = self.applyMath(key, math, frmt)
         return key
     
+    def ATTRIB_SETTING(self, src, srcXML, param):
+        opt, leftover = self.getParam(src, param)
+        return g_ATVSettings.getSetting(UDID, opt)
+    
     def ATTRIB_ADDPATH(self, src, srcXML, param):
         addpath, leftover, dfltd = self.getKey(src, srcXML, param)
         if addpath.startswith('/'):
@@ -719,11 +740,11 @@ class CCommandCollection(CCommandHelper):
         
         # check "Media" element and get key
         if el!=None:  # Media
-            if Settings.getForceDirectPlay()==True or \
-                Settings.getForceTranscoding()==False and \
-                el.get('container','') in ("mov", "mp4", "mpegts") and \
-                el.get('videoCodec','') in ("mpeg4", "h264", "drmi") and \
-                el.get('audioCodec','') in ("aac", "ac3", "drms"):
+            if g_ATVSettings.getSetting(UDID, 'forcedirectplay')=='True' or \
+               g_ATVSettings.getSetting(UDID, 'forcetranscoding')!='True' and \
+               el.get('container','') in ("mov", "mp4", "mpegts") and \
+               el.get('videoCodec','') in ("mpeg4", "h264", "drmi") and \
+               el.get('audioCodec','') in ("aac", "ac3", "drms"):
                 # native aTV media
                 res = el.find('Part').get('key','')
             else:

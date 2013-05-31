@@ -37,39 +37,39 @@
         <sections>
           <menuSection>
             <header>
-							<horizontalDivider alignment="left">
-								<title>Appearance</title>
-							</horizontalDivider>
-						</header>
-            <items>
-              <oneLineMenuItem id="MovieView" onSelect="settings('MovieView')">
-                <label>Movie View</label>
-                <rightLabel>Grid</rightLabel>
-              </oneLineMenuItem>
-              <oneLineMenuItem id="ShowView" onSelect="settings('ShowView')">
-                <label>Show View</label>
-                <rightLabel>List</rightLabel>
-              </oneLineMenuItem>
-              <oneLineMenuItem id="SeasonView" onSelect="settings('SeasonView')">
-                <label>Season View</label>
-                <rightLabel>List</rightLabel>
-              </oneLineMenuItem>
-              </items>
-            </menuSection>
-            <menuSection>
-              <header>
               <horizontalDivider alignment="left">
-								<title>Transcoder</title>
-							</horizontalDivider>
-              </header>
-              <items>
-              <oneLineMenuItem id="ForceDirectPlay">
-                <label>Force Direct Play</label>
-                <rightLabel>No</rightLabel>
+                <title>Appearance</title>
+              </horizontalDivider>
+            </header>
+            <items>
+              <oneLineMenuItem id="MovieView" onSelect="toggleSettings('MovieView')">
+                <label>Movie View</label>
+                <rightLabel>{{SETTING(movieview)}}</rightLabel>
               </oneLineMenuItem>
-              <oneLineMenuItem id="ForceTranscode">
+              <oneLineMenuItem id="ShowView" onSelect="toggleSettings('ShowView')">
+                <label>Show View</label>
+                <rightLabel>{{SETTING(showview)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="SeasonView" onSelect="toggleSettings('SeasonView')">
+                <label>Season View</label>
+                <rightLabel>{{SETTING(seasonview)}}</rightLabel>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>Transcoder</title>
+              </horizontalDivider>
+            </header>
+            <items>
+              <oneLineMenuItem id="ForceDirectPlay" onSelect="toggleSettings('ForceDirectPlay')">
+                <label>Force Direct Play</label>
+                <rightLabel>{{SETTING(forcedirectplay)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="ForceTranscode" onSelect="toggleSettings('ForceTranscode')">
                 <label>Force Transcode</label>
-                <rightLabel>No</rightLabel>
+                <rightLabel>{{SETTING(forcetranscode)}}</rightLabel>
               </oneLineMenuItem>
             </items>
           </menuSection>

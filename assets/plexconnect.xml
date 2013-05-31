@@ -20,8 +20,8 @@
 					<title>Search</title>
 				</navigationItem>
         <navigationItem id="Settings">
-					<url>http://trailers.apple.com/settings.xml</url> 
 					<title>Settings</title>
+					<url>http://trailers.apple.com/&amp;PlexConnect=Settings</url> 
 				</navigationItem>
 				<!--navigationItem id="MyPlex">
 					<title>MyPlex</title> 

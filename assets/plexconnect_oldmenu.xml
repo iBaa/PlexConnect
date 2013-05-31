@@ -39,8 +39,8 @@
 
 								<squarePoster id="Settings"
 									featured="true"
-									onSelect="loadMenuPages('http://trailers.apple.com/settings.xml', false);"
-									onPlay="loadMenuPages('http://trailers.apple.com/settings.xml', false);">
+									onSelect="loadMenuPages('http://trailers.apple.com/&amp;PlexConnect=Settings', false);"
+									onPlay="loadMenuPages('http://trailers.apple.com/&amp;PlexConnect=Settings', false);">
 									<title>Settings</title>
 									<image>http://trailers.apple.com/thumbnails/Settings.jpg</image>
 									<defaultImage>resource://Poster.png</defaultImage>
