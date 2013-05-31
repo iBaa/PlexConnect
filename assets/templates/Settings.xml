@@ -13,7 +13,7 @@
       </header>
       <preview>
         <keyedPreview> 
-          <title>a       </title>
+          <title>&#x00AD;<!--soft-hyphen--></title>
           <summary/>
           <metadataKeys>
             <label>Version</label>
