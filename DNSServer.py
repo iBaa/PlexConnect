@@ -95,6 +95,7 @@ def Run(cmdQueue, param):
     
     try:
         DNS_forward = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        DNS_forward.settimeout(5.0)
         DNS_forward.bind(('',49152))  # 49152 or above
         # todo: where to get free port from?
         # todo: do we need bind?
