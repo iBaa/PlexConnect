@@ -714,7 +714,7 @@ class CCommandCollection(CCommandHelper):
         elif key.startswith('http://'):  # external address
             res = key
         else:
-            res = 'http://127.0.0.1:32000' + path + '/' + key
+            res = 'http://127.0.0.1:32400' + path + '/' + key
         
         # This is bogus (note the extra path component) but ATV is stupid when it comes to caching images, it doesn't use querystrings.
         # Fortunately PMS is lenient...
