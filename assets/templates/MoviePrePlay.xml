@@ -67,7 +67,7 @@
                   <focusedImage>resource://PlayFocused.png</focusedImage>
                   <!--<badge></badge>-->
                 </actionButton>
-                <actionButton id="audio" onSelect="">
+                <actionButton id="audio" onSelect="selectAudio('{{ADDR_PMS()}}', '{{VAL(Video/Media/Part/id)}}')">
                   <title>Audio</title>
                   <image>resource://Queue.png</image>
                   <focusedImage>resource://QueueFocused.png</focusedImage>
@@ -89,6 +89,7 @@
                   <id>{{VAL(id:0)}}</id>
                   <language>{{VAL(language:Unknown)}}</language>
                   <format>{{VAL(format:UNK)}}</format>
+                  <codec>{{VAL(codec)}}</codec>
                   <streamType>{{VAL(streamType:0)}}</streamType>
                 </stream>
               </stash>
