@@ -441,12 +441,12 @@ def XML_ExpandLine(src, srcXML, line):
 """
 def PlexAPI_getTranscodePath(options, path):
     transcodePath = '/video/:/transcode/universal/start.m3u8?'
-    quality = {'480p 2.0Mbps' :('720x480', '60', '2000'), \
+    quality = { '1080p 12.0Mbps' :('1920x1080', '90', '12000'), \
+                '480p 2.0Mbps' :('720x480', '60', '2000'), \
                 '720p 3.0Mbps' :('1280x720', '75', '3000'), \
                 '720p 4.0Mbps' :('1280x720', '100', '4000'), \
                 '1080p 8.0Mbps' :('1920x1080', '60', '8000'), \
-                '1080p 10.0Mbps' :('1920x1080', '75', '10000'), \
-                '1080p 12.0Mbps' :('1920x1080', '90', '12000')}
+                '1080p 10.0Mbps' :('1920x1080', '75', '10000') }
     setQuality = g_ATVSettings.getSetting(UDID, 'transcodequality')
     vRes = quality[setQuality][0]
     vQ = quality[setQuality][1]
