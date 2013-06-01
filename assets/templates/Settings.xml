@@ -71,6 +71,10 @@
                 <label>Force Transcode</label>
                 <rightLabel>{{SETTING(forcetranscode)}}</rightLabel>
               </oneLineMenuItem>
+							<oneLineMenuItem id="TranscodeQuality" onSelect="toggleSettings('TranscodeQuality')">
+                <label>Transcoder Quality</label>
+                <rightLabel>{{SETTING(transcodequality)}}</rightLabel>
+              </oneLineMenuItem>
             </items>
           </menuSection>
         </sections>

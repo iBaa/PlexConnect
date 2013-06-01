@@ -441,14 +441,25 @@ def XML_ExpandLine(src, srcXML, line):
 """
 def PlexAPI_getTranscodePath(options, path):
     transcodePath = '/video/:/transcode/universal/start.m3u8?'
-    
+    quality = {'480p 2.0Mbps' :('720x480', '60', '2000'), \
+                '720p 3.0Mbps' :('1280x720', '75', '3000'), \
+                '720p 4.0Mbps' :('1280x720', '100', '4000'), \
+                '1080p 8.0Mbps' :('1920x1080', '60', '8000'), \
+                '1080p 10.0Mbps' :('1920x1080', '75', '10000'), \
+                '1080p 12.0Mbps' :('1920x1080', '90', '12000')}
+    setQuality = g_ATVSettings.getSetting(UDID, 'transcodequality')
+    vRes = quality[setQuality][0]
+    vQ = quality[setQuality][1]
+    mVB = quality[setQuality][2]
+    dprint(__name__, 1, "Setting transcode quality Res:{0} Q:{1} {2}Mbps", vRes, vQ, mVB)
+
     args = dict()
     args['protocol'] = 'hls'
-    args['videoResolution'] = '1920x1080' # Base it on AppleTV model?
+    args['videoResolution'] = vRes # '1920x1080' # Base it on AppleTV model?
     args['directStream'] = '1'
     args['directPlay'] = '0'
-    args['maxVideoBitrate'] = '12000'
-    args['videoQuality'] = '90'
+    args['maxVideoBitrate'] = mVB # '12000'
+    args['videoQuality'] = vQ # '90'
     args['subtitleSize'] = '100'
     args['audioBoost'] = '100'
     args['fastSeek'] = '1'
