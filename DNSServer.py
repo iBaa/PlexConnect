@@ -105,8 +105,11 @@ def Run(cmdQueue, param):
     
     dprint(__name__, 0, "***")
     dprint(__name__, 0, "Starting up.")
-    dprint(__name__, 1, "intercept "+Settings.getHostToIntercept()+": "+param['IP_self'])
-    dprint(__name__, 1, "forward other to higher level DNS: "+Settings.getIP_DNSmaster())
+    if Settings.getShouldIntercept():
+        dprint(__name__, 1, "intercept "+Settings.getHostToIntercept()+": "+param['IP_self'])
+        dprint(__name__, 1, "forward other to higher level DNS: "+Settings.getIP_DNSmaster())
+    else:
+        dprint(__name__, 1, "forward all requests to higher level DNS:" + Settings.getIP_DNSmaster())
     dprint(__name__, 0, "***")
     
     try:
@@ -141,7 +144,7 @@ def Run(cmdQueue, param):
                     dprint(__name__, 1, "Domain: "+domain)
                 
                 paket=''
-                if domain==Settings.getHostToIntercept():
+                if domain==Settings.getHostToIntercept() and Settings.getShouldIntercept():
                     dprint(__name__, 1, "***intercept request")
                     paket+=data[:2]         # 0:1 - ID
                     paket+="\x81\x80"       # 2:3 - flags
