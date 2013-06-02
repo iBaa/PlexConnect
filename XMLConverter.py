@@ -829,7 +829,7 @@ class CCommandCollection(CCommandHelper):
         parentIndex, leftover, dfltd = self.getKey(src, srcXML, param)  # getKey "defaults" if nothing found.
         index, leftover, dfltd = self.getKey(src, srcXML, leftover)
         title, leftover, dfltd = self.getKey(src, srcXML, leftover)
-        out = "{0:0d}x{1:02d} ".format(int(parentIndex), int(index)) + title
+        out = "S{0:02d} E{1:02d} ".format(int(parentIndex), int(index)) + title
         return out
     
     def ATTRIB_sendToATV(self, src, srcXML, param):
