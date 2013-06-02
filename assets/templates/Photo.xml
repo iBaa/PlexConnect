@@ -29,7 +29,7 @@
         </photo>
         
         <!--Library/Photo-->
-        <photo id="{{VAL(ratingKey)}}" onSelect="onSelectPhoto('{{VAL(ratingKey)'}})">
+        <photo id="{{VAL(ratingKey)}}" onSelect="onSelectPhoto('{{VAL(ratingKey)}}')">
           {{COPY(Photo:Media/Part/key::=COPY)}}
           <caption>test</caption>
           <assets>
