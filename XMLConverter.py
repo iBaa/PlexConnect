@@ -240,8 +240,14 @@ def XML_PMS2aTV(address, path):
     elif cmd == 'AllMovies':
         XMLtemplate = 'Movie_'+g_ATVSettings.getSetting(UDID, 'movieview')+'.xml'
         
+    elif cmd == 'MovieSecondary':
+        XMLtemplate = 'MovieSecondary.xml'
+        
     elif cmd == 'AllShows':
         XMLtemplate = 'Show_'+g_ATVSettings.getSetting(UDID, 'showview')+'.xml'
+        
+    elif cmd == 'Directory':
+        XMLtemplate = 'Directory.xml'
         
     elif cmd == 'DirectoryWithPreview':
         XMLtemplate = 'DirectoryWithPreview.xml'
