@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atv>
+  <head>
+    <script src="http://trailers.apple.com/settings.js"/>
+  </head>
+	<body>
+		<viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadItem(event)">
+			<navigation>
+				<navigationItem id="movies">
+					<title>Movies</title> 
+					<url>http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=MovieSection</url>
+				</navigationItem> 
+				
+				<navigationItem id="genre">
+					<title>Genres</title>
+					<url>http://trailers.apple.com{{ADDPATH(key)}}/genre&amp;PlexConnect=DirectoryWithPreview</url>
+				</navigationItem> 
+				
+				<navigationItem id="decade">
+					<title>Decades</title> 
+					<url>http://trailers.apple.com{{ADDPATH(key)}}/decade&amp;PlexConnect=DirectoryWithPreview</url>
+				</navigationItem>
+				
+				<navigationItem id="directors">
+					<title>Directors</title> 
+					<url>http://trailers.apple.com{{ADDPATH(key)}}/director&amp;PlexConnect=DirectoryWithPreview</url>
+				</navigationItem>
+				
+				<navigationItem id="actors">
+					<title>Actors</title> 
+					<url>http://trailers.apple.com{{ADDPATH(key)}}/decade&amp;PlexConnect=DirectoryWithPreview</url>
+				</navigationItem>
+				
+				<navigationItem id="countries">
+					<title>Countries</title> 
+					<url>http://trailers.apple.com{{ADDPATH(key)}}/country&amp;PlexConnect=DirectoryWithPreview</url>
+				</navigationItem>
+				
+				<navigationItem id="contentRating">
+					<title>Content Rating</title> 
+					<url>http://trailers.apple.com{{ADDPATH(key)}}/contentRating&amp;PlexConnect=DirectoryWithPreview</url>
+				</navigationItem>
+				
+			</navigation>
+		</viewWithNavigationBar>
+	</body>
+</atv>
+

@@ -230,7 +230,13 @@ def XML_PMS2aTV(address, path):
     
     elif cmd=='Settings':
         XMLtemplate = 'Settings.xml'
-    
+
+    elif cmd == 'MovieSection':
+        XMLtemplate = 'MovieSection.xml'
+        
+    elif cmd == 'DirectoryWithPreview':
+        XMLtemplate = 'DirectoryWithPreview.xml'
+        
     elif cmd.startswith('SettingsToggle:'):
         XMLtemplate = 'Settings.xml'
         
@@ -244,7 +250,10 @@ def XML_PMS2aTV(address, path):
     elif cmd == 'SectionPreview':
         XMLtemplate = 'SectionPreview.xml'
 
-    elif PMSroot.get('viewGroup')=='secondary':
+    elif PMSroot.get('viewGroup')=="secondary" and PMSroot.get('art').find('movie') != -1:
+        XMLtemplate = 'MovieSectionTopLevel.xml'
+        
+    elif PMSroot.get('viewGroup')=="secondary":
         XMLtemplate = 'Directory.xml'
         
     elif PMSroot.get('viewGroup')=='show':
@@ -674,6 +683,17 @@ class CCommandCollection(CCommandHelper):
         else:
             return False  # tree unchanged
     
+    def TREE_ADDXMLRELATIVE(self, elem, child, src, srcXML, param):
+        path, leftover = self.getParam(src, param)
+        tag, leftover = self.getParam(src, leftover)
+
+        path = self.path[srcXML]+'/'+path
+        PMS = XML_ReadFromURL('address', path)
+        self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML
+        self.path[tag] = path  # store base path
+
+        return False  # tree unchanged (well, source tree yes. but that doesn't count...)
+    
     def TREE_ADDXML(self, elem, child, src, srcXML, param):
         path, leftover = self.getParam(src, param)
         tag, leftover = self.getParam(src, leftover)
@@ -683,8 +703,6 @@ class CCommandCollection(CCommandHelper):
         self.path[tag] = path  # store base path
         
         return False  # tree unchanged (well, source tree yes. but that doesn't count...)
-    
-    
     
     # XML ATTRIB modifier commands
     # add new commands to this list!
