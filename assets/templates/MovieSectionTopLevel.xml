@@ -40,6 +40,11 @@
 					<title>Content Rating</title> 
 					<url>http://trailers.apple.com{{ADDPATH(key)}}/contentRating&amp;PlexConnect=DirectoryWithPreview</url>
 				</navigationItem>
+
+				<navigationItem id="allMovies">
+					<title>All Movies</title> 
+					<url>http://trailers.apple.com{{ADDPATH(key)}}/all&amp;PlexConnect=AllMovies</url>
+				</navigationItem>
 				
 			</navigation>
 		</viewWithNavigationBar>
