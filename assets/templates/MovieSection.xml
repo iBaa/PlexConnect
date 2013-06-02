@@ -11,9 +11,11 @@
     <scroller id="com.sample.movie-showcase-grid">
       <items>
         <collectionDivider alignment="left" accessibilityLabel="On Deck">
+          {{CUT(@OnDeck/size:CUT:0=CUT|1=)}}
           <title>On Deck</title>
         </collectionDivider>
         <shelf id="shelf_0" columnCount="7">
+          {{CUT(@OnDeck/size:CUT:0=CUT|1=)}}
           <sections>
             <shelfSection>
               <items>
@@ -31,9 +33,11 @@
         </shelf>
         
         <collectionDivider alignment="left" accessibilityLabel="Recently Added">
+          {{CUT(@RecentlyAdded/size:CUT:0=CUT|1=)}}
           <title>Recently Added</title>
         </collectionDivider>
         <shelf id="shelf_1" columnCount="7">
+          {{CUT(@RecentlyAdded/size:CUT:0=CUT|1=)}}
           <sections>
             <shelfSection>
               <items>
@@ -51,9 +55,11 @@
         </shelf>
         
         <collectionDivider alignment="left" accessibilityLabel="Recently Released">
+          {{CUT(@RecentlyReleased/size:CUT:0=CUT|1=)}}
           <title>Recently Released</title>
         </collectionDivider>
         <shelf id="shelf_2" columnCount="7">
+          {{CUT(@RecentlyReleased/size:CUT:0=CUT|1=)}}
           <sections>
             <shelfSection>
               <items>
