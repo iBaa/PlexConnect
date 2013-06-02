@@ -265,8 +265,8 @@ def XML_PMS2aTV(address, path):
     elif PMSroot.get('viewGroup') is None:
         XMLtemplate = 'Sections.xml'
 
-    elif cmd == 'SectionPreview':
-        XMLtemplate = 'SectionPreview.xml'
+    elif cmd.find('SectionPreview') != -1:
+        XMLtemplate = cmd + '.xml'
 
     elif PMSroot.get('viewGroup')=="secondary" and (PMSroot.get('art').find('movie') != -1 or PMSroot.get('thumb').find('movie') != -1):
         XMLtemplate = 'MovieSectionTopLevel.xml'

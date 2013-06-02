@@ -18,7 +18,7 @@
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>
                 <preview>
-                  <link>http://trailers.apple.com{{ADDPATH(key)}}/recentlyAdded?stack=1&amp;X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
+                  <link>http://trailers.apple.com{{ADDPATH(key)}}/recentlyAdded?stack=1&amp;X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview-{{VAL(type)}}</link>
                 </preview>
               </oneLineMenuItem>
             </items>

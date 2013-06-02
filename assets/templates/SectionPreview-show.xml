@@ -4,16 +4,8 @@
      <preview>
         <paradePreview inOrder="true">
           <image>
-            {{COPY(Video)}}
-            {{BIGIMAGEURL(thumb)}}
-          </image>
-          <image>
             {{COPY(Directory)}}
-            {{BIGIMAGEURL(thumb)}}
-          </image>
-          <image>
-            {{COPY(Photo)}}
-            {{BIGIMAGEURL(thumb)}}
+            {{BIGIMAGEURL(parentThumb)}}
           </image>
         </paradePreview>
       </preview>

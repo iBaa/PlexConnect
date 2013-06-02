@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atv>
+  <body>
+     <preview>
+        <paradePreview inOrder="true">
+          <image>
+            {{COPY(Video)}}
+            {{BIGIMAGEURL(thumb)}}
+          </image>
+        </paradePreview>
+      </preview>
+  </body>
+</atv>
