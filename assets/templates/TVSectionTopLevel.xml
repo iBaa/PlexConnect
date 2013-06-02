@@ -22,9 +22,9 @@
 					<url>http://trailers.apple.com{{ADDPATH(key)}}/genre&amp;PlexConnect=DirectoryWithPreview</url>
 				</navigationItem> 
 				
-				<navigationItem id="contentRating">
-					<title>Content Rating</title> 
-					<url>http://trailers.apple.com{{ADDPATH(key)}}/contentRating&amp;PlexConnect=DirectoryWithPreview</url>
+				<navigationItem id="more">
+					<title>More...</title> 
+					<url>http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=TVSecondary</url>
 				</navigationItem>
 				
 			</navigation>

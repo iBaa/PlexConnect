@@ -246,6 +246,9 @@ def XML_PMS2aTV(address, path):
     elif cmd == 'AllShows':
         XMLtemplate = 'Show_'+g_ATVSettings.getSetting(UDID, 'showview')+'.xml'
         
+    elif cmd == 'TVSecondary':
+        XMLtemplate = 'TVSecondary.xml'
+        
     elif cmd == 'Directory':
         XMLtemplate = 'Directory.xml'
         
