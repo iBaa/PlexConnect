@@ -63,8 +63,8 @@
           <sections>
             <shelfSection>
               <items>
-                <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}{{PLAY_COMMAND()}})"
-                 onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=MoviePrePlay')">
+                <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=Season')"
+                 onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=Season')">
                   {{COPY(@RecentlyAdded/Directory)}}
                   <title>{{VAL(parentTitle)}}</title>
                   <subtitle>Season {{VAL(index)}}</subtitle>
