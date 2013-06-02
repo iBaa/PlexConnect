@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atv>
+  <head>
+    <script src="http://trailers.apple.com/settings.js"/>
+  </head>
+	<body>
+		<viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadItem(event)">
+			<navigation currentIndex="1">
+
+				<navigationItem id="allTV">
+					<title>All Shows</title> 
+					<url>http://trailers.apple.com{{ADDPATH(key)}}/all&amp;PlexConnect=AllShows</url>
+				</navigationItem>
+
+				<navigationItem id="tv">
+					<title>On Deck</title> 
+					<url>http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=TVSection</url>
+				</navigationItem> 
+				
+				<navigationItem id="genre">
+					<title>Genres</title>
+					<url>http://trailers.apple.com{{ADDPATH(key)}}/genre&amp;PlexConnect=DirectoryWithPreview</url>
+				</navigationItem> 
+				
+				<navigationItem id="contentRating">
+					<title>Content Rating</title> 
+					<url>http://trailers.apple.com{{ADDPATH(key)}}/contentRating&amp;PlexConnect=DirectoryWithPreview</url>
+				</navigationItem>
+				
+			</navigation>
+		</viewWithNavigationBar>
+	</body>
+</atv>
+

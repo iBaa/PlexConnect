@@ -234,6 +234,15 @@ def XML_PMS2aTV(address, path):
     elif cmd == 'MovieSection':
         XMLtemplate = 'MovieSection.xml'
         
+    elif cmd == 'TVSection':
+        XMLtemplate = 'TVSection.xml'
+    
+    elif cmd == 'AllMovies':
+        XMLtemplate = 'Movie_'+g_ATVSettings.getSetting(UDID, 'movieview')+'.xml'
+        
+    elif cmd == 'AllShows':
+        XMLtemplate = 'Show_'+g_ATVSettings.getSetting(UDID, 'showview')+'.xml'
+        
     elif cmd == 'DirectoryWithPreview':
         XMLtemplate = 'DirectoryWithPreview.xml'
         
@@ -250,8 +259,11 @@ def XML_PMS2aTV(address, path):
     elif cmd == 'SectionPreview':
         XMLtemplate = 'SectionPreview.xml'
 
-    elif PMSroot.get('viewGroup')=="secondary" and PMSroot.get('art').find('movie') != -1:
+    elif PMSroot.get('viewGroup')=="secondary" and (PMSroot.get('art').find('movie') != -1 or PMSroot.get('thumb').find('movie') != -1):
         XMLtemplate = 'MovieSectionTopLevel.xml'
+        
+    elif PMSroot.get('viewGroup')=="secondary" and (PMSroot.get('art').find('show') != -1 or PMSroot.get('thumb').find('show') != -1):
+        XMLtemplate = 'TVSectionTopLevel.xml'
         
     elif PMSroot.get('viewGroup')=="secondary":
         XMLtemplate = 'Directory.xml'
