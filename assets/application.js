@@ -62,6 +62,20 @@ atv.config = {
     "DEBUG_LEVEL": 4
 };
 
+atv.player.playerStateChanged = function(newState, timeIntervalSec) {
+	if (newState == 'Paused')
+	{
+		log("atv paused, pinging transcoded.");
+		pingTimer = atv.setInterval(function() {loadPage(addrPMS + '/video/:/transcode/universal/ping?session=' + atv.device.udid);}, 60000);
+	}
+	
+	if (newState == 'Playing')
+	{
+		log("atv playing.");
+		atv.clearInterval(pingTimer);
+	}
+};
+
 atv.onAppEntry = function()
 {
     fv = atv.device.softwareVersion.split(".");
