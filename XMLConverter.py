@@ -843,7 +843,8 @@ if __name__=="__main__":
     
     print
     print "unpack PlexConnect COPY/CUT commands"
-    g_CommandCollection = CCommandCollection(PMSroot, '/library/sections/')
+    options = {}
+    g_CommandCollection = CCommandCollection(options, PMSroot, '/library/sections/')
     XML_ExpandTree(aTVroot, PMSroot, 'main')
     XML_ExpandAllAttrib(aTVroot, PMSroot, 'main')
     del g_CommandCollection
