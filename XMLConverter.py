@@ -238,8 +238,13 @@ def XML_PMS2aTV(address, path):
         g_ATVSettings.toggleSetting(UDID, opt.lower())
         dprint(__name__, 2, "ATVSettings->Toggle: {0}", opt)
         
-    elif PMSroot.get('viewGroup') is None or \
-       PMSroot.get('viewGroup')=='secondary':
+    elif PMSroot.get('viewGroup') is None:
+        XMLtemplate = 'Sections.xml'
+
+    elif cmd == 'SectionPreview':
+        XMLtemplate = 'SectionPreview.xml'
+
+    elif PMSroot.get('viewGroup')=='secondary':
         XMLtemplate = 'Directory.xml'
         
     elif PMSroot.get('viewGroup')=='show':
