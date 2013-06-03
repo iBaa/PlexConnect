@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <atv>
   <head>
+    <script src="http://trailers.apple.com/updateXML.js"/>
     <script src="http://trailers.apple.com/settings.js"/>
   </head>
   <body>
@@ -8,7 +9,7 @@
     {{ADDXMLRELATIVE(newest:RecentlyAired)}}
     {{ADDXMLRELATIVE(recentlyAdded?stack=1:RecentlyAdded)}}
     
-    <scroller id="com.sample.movie-showcase-grid">
+    <scroller id="com.sample.movie-showcase-grid" volatile="true" onVolatileReload="log('Reload - {{getPath()}}'); reloadPMS_XML('{{getPath()}}&amp;PlexConnect=TVSection');">
       <items>
         <collectionDivider alignment="left" accessibilityLabel="On Deck">
           {{CUT(@OnDeck/size:CUT:0=CUT|1=)}}
