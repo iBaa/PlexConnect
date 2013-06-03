@@ -230,7 +230,31 @@ def XML_PMS2aTV(address, path):
     
     elif cmd=='Settings':
         XMLtemplate = 'Settings.xml'
+
+    elif cmd == 'MovieSection':
+        XMLtemplate = 'MovieSection.xml'
+        
+    elif cmd == 'TVSection':
+        XMLtemplate = 'TVSection.xml'
     
+    elif cmd == 'AllMovies':
+        XMLtemplate = 'Movie_'+g_ATVSettings.getSetting(UDID, 'movieview')+'.xml'
+        
+    elif cmd == 'MovieSecondary':
+        XMLtemplate = 'MovieSecondary.xml'
+        
+    elif cmd == 'AllShows':
+        XMLtemplate = 'Show_'+g_ATVSettings.getSetting(UDID, 'showview')+'.xml'
+        
+    elif cmd == 'TVSecondary':
+        XMLtemplate = 'TVSecondary.xml'
+        
+    elif cmd == 'Directory':
+        XMLtemplate = 'Directory.xml'
+        
+    elif cmd == 'DirectoryWithPreview':
+        XMLtemplate = 'DirectoryWithPreview.xml'
+        
     elif cmd.startswith('SettingsToggle:'):
         XMLtemplate = 'Settings.xml'
         
@@ -238,8 +262,19 @@ def XML_PMS2aTV(address, path):
         g_ATVSettings.toggleSetting(UDID, opt.lower())
         dprint(__name__, 2, "ATVSettings->Toggle: {0}", opt)
         
-    elif PMSroot.get('viewGroup') is None or \
-       PMSroot.get('viewGroup')=='secondary':
+    elif PMSroot.get('viewGroup') is None:
+        XMLtemplate = 'Sections.xml'
+
+    elif cmd.find('SectionPreview') != -1:
+        XMLtemplate = cmd + '.xml'
+
+    elif PMSroot.get('viewGroup')=="secondary" and (PMSroot.get('art').find('movie') != -1 or PMSroot.get('thumb').find('movie') != -1):
+        XMLtemplate = 'MovieSectionTopLevel.xml'
+        
+    elif PMSroot.get('viewGroup')=="secondary" and (PMSroot.get('art').find('show') != -1 or PMSroot.get('thumb').find('show') != -1):
+        XMLtemplate = 'TVSectionTopLevel.xml'
+        
+    elif PMSroot.get('viewGroup')=="secondary":
         XMLtemplate = 'Directory.xml'
         
     elif PMSroot.get('viewGroup')=='show':
@@ -441,7 +476,8 @@ def XML_ExpandLine(src, srcXML, line):
 """
 def PlexAPI_getTranscodePath(options, path):
     transcodePath = '/video/:/transcode/universal/start.m3u8?'
-    quality = { '1080p 12.0Mbps' :('1920x1080', '90', '12000'), \
+    quality = { '1080p 20.0Mbps' :('1920x1080', '100', '20000'), \
+                '1080p 12.0Mbps' :('1920x1080', '90', '20000'), \
                 '480p 2.0Mbps' :('720x480', '60', '2000'), \
                 '720p 3.0Mbps' :('1280x720', '75', '3000'), \
                 '720p 4.0Mbps' :('1280x720', '100', '4000'), \
@@ -668,6 +704,17 @@ class CCommandCollection(CCommandHelper):
         else:
             return False  # tree unchanged
     
+    def TREE_ADDXMLRELATIVE(self, elem, child, src, srcXML, param):
+        path, leftover = self.getParam(src, param)
+        tag, leftover = self.getParam(src, leftover)
+
+        path = self.path[srcXML]+'/'+path
+        PMS = XML_ReadFromURL('address', path)
+        self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML
+        self.path[tag] = path  # store base path
+
+        return False  # tree unchanged (well, source tree yes. but that doesn't count...)
+    
     def TREE_ADDXML(self, elem, child, src, srcXML, param):
         path, leftover = self.getParam(src, param)
         tag, leftover = self.getParam(src, leftover)
@@ -677,8 +724,6 @@ class CCommandCollection(CCommandHelper):
         self.path[tag] = path  # store base path
         
         return False  # tree unchanged (well, source tree yes. but that doesn't count...)
-    
-    
     
     # XML ATTRIB modifier commands
     # add new commands to this list!
@@ -784,7 +829,7 @@ class CCommandCollection(CCommandHelper):
         parentIndex, leftover, dfltd = self.getKey(src, srcXML, param)  # getKey "defaults" if nothing found.
         index, leftover, dfltd = self.getKey(src, srcXML, leftover)
         title, leftover, dfltd = self.getKey(src, srcXML, leftover)
-        out = "{0:0d}x{1:02d} ".format(int(parentIndex), int(index)) + title
+        out = "S{0:02d} E{1:02d} ".format(int(parentIndex), int(index)) + title
         return out
     
     def ATTRIB_sendToATV(self, src, srcXML, param):

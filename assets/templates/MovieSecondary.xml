@@ -1,0 +1,59 @@
+<atv>
+  <body>
+    <listWithPreview id="com.sample.menu-items-with-sections">
+      <header>
+        <simpleHeader>
+          <title>More...</title>
+        </simpleHeader>
+      </header>
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+              <oneLineMenuItem id="unwatched" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/unwatched')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/unwatched')">
+                <label>Unwatched</label>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="recentlyViewed" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/recentlyViewed')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/recentlyViewed')">
+                <label>Recently Viewed</label>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="collection" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/collection&amp;PlexConnect=Directory')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/collection&amp;PlexConnect=Directory')">
+                <label>By Collection</label>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="year" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/year&amp;PlexConnect=Directory')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/year&amp;PlexConnect=Directory')">
+                <label>By Year</label>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="country" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/country&amp;PlexConnect=Directory')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/country&amp;PlexConnect=Directory')">
+                <label>By Country</label>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="contentRating" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/contentRating&amp;PlexConnect=Directory')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/contentRating&amp;PlexConnect=Directory')">
+                <label>By Content Rating</label>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="rating" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/rating&amp;PlexConnect=Directory')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/rating&amp;PlexConnect=Directory')">
+                <label>By Rating</label>
+              </oneLineMenuItem>
+
+              <oneLineMenuItem id="resolution" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/resolution&amp;PlexConnect=Directory')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/resolution&amp;PlexConnect=Directory')">
+                <label>By Resolution</label>
+              </oneLineMenuItem>
+
+              <oneLineMenuItem id="firstCharacter" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/firstCharacter&amp;PlexConnect=Directory')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/firstCharacter&amp;PlexConnect=Directory')">
+                <label>By First Letter</label>
+              </oneLineMenuItem>
+
+              <oneLineMenuItem id="folder" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/folder&amp;PlexConnect=Directory')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/folder&amp;PlexConnect=ByFolder')">
+                <label>By Folder</label>
+              </oneLineMenuItem>
+              
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </listWithPreview>
+  </body>
+</atv>
