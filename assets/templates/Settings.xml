@@ -75,6 +75,10 @@
                 <label>Transcoder Quality</label>
                 <rightLabel>{{SETTING(transcodequality)}}</rightLabel>
               </oneLineMenuItem>
+							<oneLineMenuItem id="SubtitleSize" onSelect="toggleSettings('SubtitleSize')">
+                <label>Subtitle Size %</label>
+                <rightLabel>{{SETTING(subtitlesize)}}</rightLabel>
+              </oneLineMenuItem>
             </items>
           </menuSection>
         </sections>

@@ -452,7 +452,7 @@ def PlexAPI_getTranscodePath(options, path):
     vQ = quality[setQuality][1]
     mVB = quality[setQuality][2]
     dprint(__name__, 1, "Setting transcode quality Res:{0} Q:{1} {2}Mbps", vRes, vQ, mVB)
-
+    dprint(__name__, 1, "Subtitle size: {0}", g_ATVSettings.getSetting(UDID, 'subtitlesize'))
     args = dict()
     args['protocol'] = 'hls'
     args['videoResolution'] = vRes # '1920x1080' # Base it on AppleTV model?
@@ -460,7 +460,7 @@ def PlexAPI_getTranscodePath(options, path):
     args['directPlay'] = '0'
     args['maxVideoBitrate'] = mVB # '12000'
     args['videoQuality'] = vQ # '90'
-    args['subtitleSize'] = '100'
+    args['subtitleSize'] = g_ATVSettings.getSetting(UDID, 'subtitlesize')
     args['audioBoost'] = '100'
     args['fastSeek'] = '1'
     args['path'] = path
