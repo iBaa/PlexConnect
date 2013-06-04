@@ -1,8 +1,8 @@
 <atv>
   <body>
-    {{ADDXML(/video:VideoChannels)}}
-    {{ADDXML(/music:AudioChannels)}}
-    {{ADDXML(/photos:PhotoChannels)}}
+    {{ADDXML(VideoChannels:/video)}}
+    {{ADDXML(AudioChannels:/music)}}
+    {{ADDXML(PhotoChannels:/photos)}}
     
     <!--Channels List-->
     <listWithPreview id="com.sample.menu-items-with-sections">

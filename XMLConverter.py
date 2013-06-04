@@ -484,7 +484,7 @@ def PlexAPI_getTranscodePath(options, path):
 # CCommandHelper():
 #     base class to the following, provides basic parsing & evaluation functions
 # CCommandCollection():
-#     cmds to set up sources (ADD_XML, VAR)
+#     cmds to set up sources (ADDXML, VAR)
 #     cmds with effect on the tree structure (COPY, CUT) - must be expanded first
 #     cmds dealing with single node keys, text, tail only (VAL, EVAL, ADDR_PMS ,...)
 """
@@ -667,8 +667,8 @@ class CCommandCollection(CCommandHelper):
             return False  # tree unchanged
     
     def TREE_ADDXML(self, elem, child, src, srcXML, param):
-        path, leftover = self.getParam(src, param)
-        tag, leftover = self.getParam(src, leftover)
+        tag, leftover = self.getParam(src, param)
+        path, leftover = self.getParam(src, leftover)
         
         PMS = XML_ReadFromURL('address', path)
         self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML
