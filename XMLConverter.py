@@ -476,8 +476,9 @@ def XML_ExpandLine(src, srcXML, line):
 """
 def PlexAPI_getTranscodePath(options, path):
     transcodePath = '/video/:/transcode/universal/start.m3u8?'
-    quality = { '1080p 20.0Mbps' :('1920x1080', '100', '20000'), \
-                '1080p 12.0Mbps' :('1920x1080', '90', '20000'), \
+    quality = { '1080p 40.0Mbps' :('1920x1080', '100', '40000'), \
+                '1080p 20.0Mbps' :('1920x1080', '100', '20000'), \
+                '1080p 12.0Mbps' :('1920x1080', '90', '12000'), \
                 '480p 2.0Mbps' :('720x480', '60', '2000'), \
                 '720p 3.0Mbps' :('1280x720', '75', '3000'), \
                 '720p 4.0Mbps' :('1280x720', '100', '4000'), \
