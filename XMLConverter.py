@@ -305,16 +305,15 @@ def XML_ExpandTree(elem, src, srcXML):
             if res==True:  # tree modified: restart from 1st elem
                 break  # "for child"
             
+            # recurse into children
+            XML_ExpandTree(child, src, srcXML)
+            
             res = XML_ExpandNode(elem, child, src, srcXML, 'TAIL')
             if res==True:  # tree modified: restart from 1st elem
                 break  # "for child"
         
         if res==False:  # complete tree parsed with no change, stop recursion
             break  # "while True"
-    
-    # recurse into children
-    for el in elem:
-        XML_ExpandTree(el, src, srcXML)
 
 
 
