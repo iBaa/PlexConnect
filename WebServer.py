@@ -46,6 +46,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     msg = msg.replace("&lt;", "<")
                     msg = msg.replace("&gt;", ">")
                     msg = msg.replace("&fs;", "/")
+                    msg = msg.replace("&qo;", '"')
                     msg = msg[1:len(msg)-10]
                     dprint('ATVLogger', 0, msg)
                     return

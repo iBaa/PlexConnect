@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <atv>
-  <head>
-    <script src="http://trailers.apple.com/settings.js"/>
-  </head>
-	<body>
+ 	<body>
 		<scroller id="com.sample.movie-shelf">
 			<items>
 				<shelf id="shelf_1" columnCount="3">
@@ -28,6 +25,15 @@
 									<defaultImage>resource://Poster.png</defaultImage>
 								</squarePoster>
 
+								<squarePoster id="Search"
+									featured="true"
+									onSelect="atv.loadURL('http://trailers.apple.com/search.xml');"
+									onPlay="atv.loadURL('http://trailers.apple.com/search.xml');">
+									<title>Search</title>
+									<image>http://trailers.apple.com/thumbnails/Search.jpg</image>
+									<defaultImage>resource://Poster.png</defaultImage>
+								</squarePoster>
+								
 								<!--squarePoster id="MyPlex"
 									featured="true"
 									onSelect="atv.loadURL('http://trailers.apple.com/...');"
@@ -39,8 +45,8 @@
 
 								<squarePoster id="Settings"
 									featured="true"
-									onSelect="loadMenuPages('http://trailers.apple.com/&amp;PlexConnect=Settings', false);"
-									onPlay="loadMenuPages('http://trailers.apple.com/&amp;PlexConnect=Settings', false);">
+									onSelect="atv.loadURL('http://trailers.apple.com/&amp;PlexConnect=Settings');"
+									onPlay="atv.loadURL('http://trailers.apple.com/&amp;PlexConnect=Settings');">
 									<title>Settings</title>
 									<image>http://trailers.apple.com/thumbnails/Settings.jpg</image>
 									<defaultImage>resource://Poster.png</defaultImage>
