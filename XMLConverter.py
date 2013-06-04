@@ -799,7 +799,7 @@ class CCommandCollection(CCommandHelper):
         if el!=None:  # Media
             if g_ATVSettings.getSetting(UDID, 'forcedirectplay')=='True' or \
                g_ATVSettings.getSetting(UDID, 'forcetranscode')!='True' and \
-               el.get('container','') in ("mov", "mp4", "mpegts") and \
+               el.get('container','') in ("mov", "mp4") and \
                el.get('videoCodec','') in ("mpeg4", "h264", "drmi") and \
                el.get('audioCodec','') in ("aac", "ac3", "drms"):
                 # native aTV media
