@@ -28,6 +28,18 @@
                     <title>{{VAL(title)}}</title>
                     <summary>{{VAL(summary)}}</summary>
                     <image>{{IMAGEURL(thumb)}}</image>
+										<metadataKeys>
+											<label>Actors</label>
+											<label>Director</label>
+											<label>Genre</label>
+											<label>Length</label>
+										</metadataKeys>
+										<metadataValues>
+											<label>{{VAL(Role/tag)}}{{commaVal(Role[2]/tag)}}{{commaVal(Role[3]/tag)}}</label>
+											<label>{{VAL(Director/tag)}}</label>
+											<label>{{VAL(Genre/tag)}}{{commaVal(Genre[2]/tag)}}</label>
+											<label>{{getDurationString(duration)}}</label>
+										</metadataValues>
                   </keyedPreview>
                 </preview>
               </oneLineMenuItem>{{CUT(Video/title:CUT:=)}}

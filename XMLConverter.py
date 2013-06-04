@@ -814,7 +814,12 @@ class CCommandCollection(CCommandHelper):
             else: return "%dhr %dmin" % (hour, min)            
             
         return ""
-    
+        
+    def ATTRIB_commaVal(self, src, srcXML, param):
+        val, leftover, dfltd = self.getKey(src, srcXML, param)
+        if val == "": return ""
+        return ", " + val
+        
     
 if __name__=="__main__":
     setParams({'Addr_PMS':'*Addr_PMS*'})
