@@ -24,9 +24,11 @@
                 {{COPY(Video)}}
                 <label>{{VAL(title)}}</label>
                 <preview>
-                  <crossFadePreview>
+                  <keyedPreview>
+                    <title>{{VAL(title)}}</title>
+                    <summary>{{VAL(summary)}}</summary>
                     <image>{{IMAGEURL(thumb)}}</image>
-                  </crossFadePreview>
+                  </keyedPreview>
                 </preview>
               </oneLineMenuItem>{{CUT(Video/title:CUT:=)}}
             
