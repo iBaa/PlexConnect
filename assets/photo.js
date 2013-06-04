@@ -1,11 +1,10 @@
-//
-// ATV Photo Browser code
-// Hacked together using code by YonsmGuo http://www.yonsm.net/
-// https://code.google.com/p/hdweb/
-// 
+/*
+ * ATV Photo Browser code
+ * Hacked together using code by YonsmGuo http://www.yonsm.net/
+ * https://code.google.com/p/hdweb/
+ */ 
 
 // atv.Element extensions
-
 if(atv.Element)
 {
 	atv.Element.prototype.getElementsByTagName = function(tagName)
@@ -24,16 +23,18 @@ if(atv.Element)
 	};
 };
 
-// Load Photo Fullscreen
-
+/*
+ * Load Photo Fullscreen
+ */
 function onSelectPhoto(ID)
 {
 	var pArray = createArray(ID);
 	loadFSBrowser(pArray.photoDicts, pArray.initialSelection);
 };
 
-// Make a collection-array from the photos
- 
+/*
+ * Make a collection-array from the photos
+ */
 function createArray(photoID)
 {
 	var initialSelection = 0;
@@ -82,24 +83,27 @@ function createArray(photoID)
 	return photoArray;
 };
 
-// Open the FullScreen browser
-
+/*
+ * Open the FullScreen browser
+ */
 function loadFSBrowser(photoDicts, initialSelection)
 {
 	var fullScreenMediaBrowser = new atv.FullScreenMediaBrowser();
 	fullScreenMediaBrowser.show(photoDicts, initialSelection);
 };
 
-// Starts the slide show 
-
+/* 
+ * Starts the slide show 
+ */
 function onSlideShow()
 {
 	var photoArray = createArray(0);
 	atv.slideShow.run(photoArray.initialSelection, photoArray.photoDicts);
 };
 
-// Loads the slide show settings page.
-
+/*
+ * Loads the slide show settings page.
+ */
 function onSettings()
 {
 	var photoArray = createArray(0);

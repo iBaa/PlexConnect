@@ -1,5 +1,4 @@
 // atv.Element extensions
-
 if(atv.Element)
 {
 	atv.Element.prototype.getElementsByTagName = function(tagName)
@@ -18,6 +17,9 @@ if(atv.Element)
 	};
 };
 
+/*
+ * Build Subtitle selection menu
+ */ 
 function selectSubs(addrPMS, ratingKey) {
   var xmlstr = '<?xml version="1.0" encoding="UTF-8"?><atv><head><script src="http://trailers.apple.com/selectSubsAndAudio.js"/></head> \
                 <body><optionList id="selectSubs.optionDialog"><title>Select Subtitle Track</title><items> \
@@ -40,6 +42,9 @@ function selectSubs(addrPMS, ratingKey) {
   atv.loadXML(doc);
 };
 
+/*
+ * Build Audio selection menu
+ */
 function selectAudio(addrPMS, ratingKey) {
   var xmlstr = '<?xml version="1.0" encoding="UTF-8"?><atv><head><script src="http://trailers.apple.com/selectSubsAndAudio.js"/></head> \
                 <body><optionList id="selectSubs.optionDialog"><title>Select Audio Track</title><items>';
@@ -61,6 +66,9 @@ function selectAudio(addrPMS, ratingKey) {
   atv.loadXML(doc);
 };
 
+/*
+ * Tell PMS which sub/audio stream to use
+ */
 function selectSubStream(addrPMS, ratingKey, stream) {
   var url = "http://" + addrPMS + "/library/parts/" + ratingKey + "?subtitleStreamID=" + stream.toString()
   var req = new XMLHttpRequest();
