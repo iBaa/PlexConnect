@@ -482,15 +482,19 @@ def PlexAPI_getTranscodePath(options, path):
 
 """
 # Command expander classes
-# CCommandHelper(): base class to the following, provides basic parsing & evaluation functions
-# CCommandTree():   commands with effect on the whole tree (COPY, CUT) - must be expanded first
-# CCommandAttrib(): commands dealing with single node keys, text, tail only (VAL, EVAL, ADDR_PMS)
+# CCommandHelper():
+#     base class to the following, provides basic parsing & evaluation functions
+# CCommandCollection():
+#     cmds to set up sources (ADD_XML, VAR)
+#     cmds with effect on the tree structure (COPY, CUT) - must be expanded first
+#     cmds dealing with single node keys, text, tail only (VAL, EVAL, ADDR_PMS ,...)
 """
 class CCommandHelper():
     def __init__(self, options, PMSroot, path):
         self.options = options
         self.PMSroot = {'main': PMSroot}
         self.path = {'main': path}
+        self.variables = {}
     
     # internal helper functions
     def getParam(self, src, param):
@@ -517,25 +521,22 @@ class CCommandHelper():
         attrib, leftover = self.getParam(src, param)
         default, leftover = self.getParam(src, leftover)
         
-        # get base element
-        if attrib.startswith('@'):  # redirect to additional XML
-            parts = attrib.split('/',1)
-            el = self.PMSroot[parts[0][1:]]
-            attrib = parts[1]
-        elif attrib.startswith('/'):  # start at root
-            el = self.PMSroot['main']
-            attrib = attrib[1:]
-        else:
-            el = src
+        el, srcXML, attrib = self.getBase(src, srcXML, attrib)         
         
         # walk the path if neccessary
         while '/' in attrib and el!=None:
             parts = attrib.split('/',1)
-            el = el.find(parts[0])
+            if parts[0].startswith('$'):  # internal variable in path
+                el = el.find(self.variables[parts[0][1:]])
+            else:
+                el = el.find(parts[0])
             attrib = parts[1]
         
         # check element and get attribute
-        if el!=None and attrib in el.attrib:
+        if attrib.startswith('$'):  # internal variable
+            res = self.variables[attrib[1:]]
+            dfltd = False
+        elif el!=None and attrib in el.attrib:
             res = el.get(attrib)
             dfltd = False
         
@@ -549,16 +550,7 @@ class CCommandHelper():
     def getElement(self, src, srcXML, param):
         tag, leftover = self.getParam(src, param)
         
-        # get base element
-        if tag.startswith('@'):  # redirect to additional XML
-            parts = tag.split('/',1)
-            el = self.PMSroot[parts[0][1:]]
-            tag = parts[1]
-        elif tag.startswith('/'):  # start at root
-            el = self.PMSroot[srcXML]
-            tag = tag[1:]
-        else:
-            el = src
+        el, srcXML, tag = self.getBase(src, srcXML, tag)
         
         # walk the path if neccessary
         while True:
@@ -568,6 +560,23 @@ class CCommandHelper():
                 break
             tag = parts[1]
         return [el, leftover]
+    
+    def getBase(self, src, srcXML, param):
+        # get base element
+        if param.startswith('@'):  # redirect to additional XML
+            parts = param.split('/',1)
+            srcXML = parts[0][1:]
+            src = self.PMSroot[srcXML]
+            leftover=''
+            if len(parts)>1:
+                leftover = parts[1]
+        elif param.startswith('/'):  # start at root
+            src = self.PMSroot['main']
+            leftover = param[1:]
+        else:
+            leftover = param
+        
+        return [src, srcXML, leftover]
     
     def getConversion(self, src, param):
         conv, leftover = self.getParam(src, param)
@@ -615,18 +624,8 @@ class CCommandCollection(CCommandHelper):
     # add new commands to this list!
     def TREE_COPY(self, elem, child, src, srcXML, param):
         tag, param_enbl = self.getParam(src, param)
-        
-        # get base element
-        if tag.startswith('/'):
-            src = self.PMSroot[srcXML]
-            tag = tag[1:]
-        elif tag.startswith('@'):
-            parts = tag.split('/',1)
-            srcXML = parts[0][1:]
-            src = self.PMSroot[srcXML]
-            tag = parts[1]
-        else:
-            pass  # keep src
+
+        src, srcXML, tag = self.getBase(src, srcXML, tag)        
         
         """
         # walk the src path if neccessary
@@ -678,6 +677,15 @@ class CCommandCollection(CCommandHelper):
         
         return False  # tree unchanged (well, source tree yes. but that doesn't count...)
     
+    def TREE_VAR(self, elem, child, src, srcXML, param):
+        var, leftover = self.getParam(src, param)
+        key, leftover, dfltd = self.getKey(src, srcXML, leftover)
+        conv, leftover = self.getConversion(src, leftover)
+        if not dfltd:
+            key = self.applyConversion(key, conv)
+        
+        self.variables[var] = key
+        return False  # tree unchanged
     
     
     # XML ATTRIB modifier commands
