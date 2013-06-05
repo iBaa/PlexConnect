@@ -75,6 +75,9 @@ atv.player.willStartPlaying = function()
 /*
  * Handle ATV player state changes
  */
+ 
+var pingTimer = null;
+ 
 atv.player.playerStateChanged = function(newState, timeIntervalSec) {
 	log("Player state: " + newState + " at this time: " + timeIntervalSec);
 	state = null;
