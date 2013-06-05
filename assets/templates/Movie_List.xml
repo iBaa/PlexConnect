@@ -35,9 +35,9 @@
 											<label>Length</label>
 										</metadataKeys>
 										<metadataValues>
-											<label>{{VAL(Role/tag)}}{{commaVal(Role[2]/tag)}}{{commaVal(Role[3]/tag)}}</label>
+											<label>{{VAL(Role/tag)}}{{VAL(Role[2]/tag::=, )}}{{VAL(Role[2]/tag)}}{{VAL(Role[3]/tag::=, )}}{{VAL(Role[3]/tag)}}</label>
 											<label>{{VAL(Director/tag)}}</label>
-											<label>{{VAL(Genre/tag)}}{{commaVal(Genre[2]/tag)}}</label>
+											<label>{{VAL(Genre/tag)}}{{VAL(Role[2]/tag::=, )}}{{VAL(Genre[2]/tag)}}</label>
 											<label>{{getDurationString(duration)}}</label>
 										</metadataValues>
                   </keyedPreview>
