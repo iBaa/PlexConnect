@@ -9,7 +9,7 @@
     {{ADDXMLRELATIVE(recentlyAdded:RecentlyAdded)}}
     {{ADDXMLRELATIVE(newest:RecentlyReleased)}}
     
-    <scroller id="com.sample.movie-showcase-grid" volatile="true" onVolatileReload="log('Reload - {{getPath()}}'); reloadPMS_XML('{{getPath()}}&amp;PlexConnect=MovieSection');">
+    <scroller id="com.sample.movie-showcase-grid">
       <items>
         <collectionDivider alignment="left" accessibilityLabel="On Deck">
           {{CUT(@OnDeck/size:CUT:0=CUT|1=)}}

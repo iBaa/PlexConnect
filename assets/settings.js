@@ -76,15 +76,6 @@ function loadItem(event)
        loadMenuPages(url, event);
 };
 
-/*
-function loadDoc(doc, event)
-{
-  createSettingsPage(doc);
-  if(event) event.success(doc);
-       else atv.loadXML(doc);
-};
-*/
-
 function loadMenuPages(url, event)
 {
        var req = new XMLHttpRequest();
