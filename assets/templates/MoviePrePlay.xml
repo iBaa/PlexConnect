@@ -124,7 +124,7 @@
       </bottomShelf>{{CUT(Video/Role/id:CUT:=)}}
       -->
       
-      <moreInfo>
+      <moreInfo>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
         <listScrollerSplit id="com.sample.list-scroller-split">
           <menu>
             <sections>
@@ -137,6 +137,7 @@
                 <items>
                   <oneLineMenuItem id="list_2">
                     {{COPY(Video/Genre)}}
+                    {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
                     <label>{{VAL(tag)}}</label>
                     <preview>
                       <link>http://trailers.apple.com/library/sections/{{VAL(/librarySectionID)}}/genre/{{VAL(id)}}?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=50&amp;PlexConnect=MoviePreview</link> 
@@ -154,6 +155,7 @@
                 <items>
                   <oneLineMenuItem id="list_3" accessibilityLabel="Ivan Reitman">
                     {{COPY(Video/Director)}}
+                    {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
                     <label>{{VAL(tag)}}</label>
                     <preview>
                       <link>http://trailers.apple.com/library/sections/{{VAL(/librarySectionID)}}/director/{{VAL(id)}}/&amp;PlexConnect=MoviePreview</link>
@@ -171,6 +173,7 @@
                 <items>
                   <twoLineMenuItem id="list_0" accessibilityLabel="Natalie Portman">
                     {{COPY(Video/Role)}}
+                    {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
                     <label>{{VAL(tag)}}</label>
                     <label2>{{VAL(role)}}</label2>
                     <image>{{IMAGEURL(thumb)}}</image>
@@ -185,7 +188,7 @@
             </sections>
           </menu>
         </listScrollerSplit>
-      </moreInfo>
+      </moreInfo>{{CUT($cut)}}
       
 		</itemDetail>
 	</body>

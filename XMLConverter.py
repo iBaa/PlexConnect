@@ -20,6 +20,7 @@ https://github.com/megawubs/pyplex/blob/master/plexAPI/info.py
 
 
 import sys
+import traceback
 import inspect 
 import string, cgi, time
 import copy  # deepcopy()
@@ -354,7 +355,7 @@ def XML_ExpandNode(elem, child, src, srcXML, text_tail):
             try:
                 res = eval("g_CommandCollection.TREE_"+cmd+"(elem, child, src, srcXML, '"+param+"')")
             except:
-                dprint(__name__, 0, "XML_ExpandNode - Error in cmd {0}, line {1}", cmd, line)
+                dprint(__name__, 0, "XML_ExpandNode - Error in cmd {0}, line {1}\n{2}", cmd, line, traceback.format_exc())
             
             if res==True:
                 return True  # tree modified, node added/removed: restart from 1st elem
@@ -422,7 +423,7 @@ def XML_ExpandLine(src, srcXML, line):
                 line = line[:cmd_start] + res + line[cmd_end+2:]
                 pos = cmd_start+len(res)
             except:
-                dprint(__name__, 0, "XML_ExpandLine - Error in {0}", line)
+                dprint(__name__, 0, "XML_ExpandLine - Error in {0}\n{1}", line, traceback.format_exc())
                 line = line[:cmd_start] + "((ERROR:"+cmd+"))" + line[cmd_end+2:]
         
         elif hasattr(CCommandCollection, 'TREE_'+cmd):  # check other known cmds: COPY, CUT
@@ -610,7 +611,7 @@ class CCommandHelper():
                 x = eval(math)
             val = ('{0'+frmt+'}').format(x)
         except:
-            dprint(__name__, 0, "CCmds_applyMath: Error in math {0}, frmt {1}", math, frmt)
+            dprint(__name__, 0, "CCmds_applyMath: Error in math {0}, frmt {1}\n{2}", math, frmt, traceback.format_exc())
         # apply format specifier
         
         dprint(__name__, 2, "CCmds_applyMath: {0}", val)
