@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <atv>
   <head>
-    <script src="http://trailers.apple.com/settings.js"/>
+    <script src="http://trailers.apple.com/updateXML.js"/>
   </head>
 	<body>
-		<viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadItem(event)">
-			<navigation currentIndex="1">
+		<viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadItem(event)" volatile="true" onVolatileReload="updatePage('{{getPath()}}');">
+			<navigation currentIndex="0">
 
-				<navigationItem id="allTV">
+				<navigationItem id="0">
 					<title>All Shows</title> 
 					<url>http://trailers.apple.com{{ADDPATH(key)}}/all&amp;PlexConnect=AllShows</url>
 				</navigationItem>
 
-				<navigationItem id="tv">
+				<navigationItem id="1">
 					<title>On Deck</title> 
 					<url>http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=TVSection</url>
 				</navigationItem> 
 				
-				<navigationItem id="genre">
+				<navigationItem id="2">
 					<title>Genres</title>
 					<url>http://trailers.apple.com{{ADDPATH(key)}}/genre&amp;PlexConnect=DirectoryWithPreview</url>
 				</navigationItem> 
 				
-				<navigationItem id="more">
+				<navigationItem id="3">
 					<title>More...</title> 
 					<url>http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=TVSecondary</url>
 				</navigationItem>

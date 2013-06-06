@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <atv>
   <head>
-    <script src="http://trailers.apple.com/settings.js"/>
+    <script src="http://trailers.apple.com/updateXML.js"/>
   </head>
 	<body>
-		<viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadItem(event)">
-			<navigation currentIndex="1">
+		<viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadItem(event)" volatile="true" onVolatileReload="updatePage('{{getPath()}}');">
+			<navigation currentIndex="0">
 
-				<navigationItem id="allMovies">
+				<navigationItem id="0">
 					<title>All Movies</title> 
 					<url>http://trailers.apple.com{{ADDPATH(key)}}/all&amp;PlexConnect=AllMovies</url>
 				</navigationItem>
 
-				<navigationItem id="movies">
+				<navigationItem id="1">
 					<title>On Deck</title> 
 					<url>http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=MovieSection</url>
 				</navigationItem> 
 				
-				<navigationItem id="genre">
+				<navigationItem id="2">
 					<title>Genres</title>
 					<url>http://trailers.apple.com{{ADDPATH(key)}}/genre&amp;PlexConnect=DirectoryWithPreview</url>
 				</navigationItem> 
 				
-				<navigationItem id="decade">
+				<navigationItem id="3">
 					<title>Decades</title> 
 					<url>http://trailers.apple.com{{ADDPATH(key)}}/decade&amp;PlexConnect=DirectoryWithPreview</url>
 				</navigationItem>
 				
-				<navigationItem id="directors">
+				<navigationItem id="4">
 					<title>Directors</title> 
 					<url>http://trailers.apple.com{{ADDPATH(key)}}/director&amp;PlexConnect=DirectoryWithPreview</url>
 				</navigationItem>
 				
-				<navigationItem id="actors">
+				<navigationItem id="5">
 					<title>Actors</title> 
 					<url>http://trailers.apple.com{{ADDPATH(key)}}/actor&amp;PlexConnect=DirectoryWithPreview</url>
 				</navigationItem>
 				
-				<navigationItem id="more">
+				<navigationItem id="6">
 					<title>More...</title> 
 					<url>http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=MovieSecondary</url>
 				</navigationItem>
