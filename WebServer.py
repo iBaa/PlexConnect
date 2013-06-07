@@ -19,9 +19,16 @@ try:
 except ImportError:
     import xml.etree.ElementTree as etree
 
-import Settings, ATVSettings
+import ATVSettings
 from Debug import *  # dprint()
 import XMLConverter  # XML_PMS2aTV, XML_PlayVideo
+
+
+
+g_param = {}
+def setParams(param):
+    global g_param
+    g_param = param
 
 
 
@@ -37,7 +44,7 @@ class MyHandler(BaseHTTPRequestHandler):
         try:
             dprint(__name__, 2, "http request header:\n{0}", self.headers)
             dprint(__name__, 2, "http request path:\n{0}", self.path)
-            if self.headers['Host'] == Settings.getHostToIntercept() and \
+            if self.headers['Host'] == g_param['HostToIntercept'] and \
                self.headers['User-Agent'].startswith("iTunes-AppleTV"):
                                     
                 # recieve simple logging messages from the ATV
@@ -154,6 +161,7 @@ def Run(cmdQueue, param):
     dprint(__name__, 0, "WebServer: Serving HTTP on {0} port {1}.", sa[0], sa[1])
     dprint(__name__, 0, "***")
     
+    setParams(param)
     XMLConverter.setParams(param)
     cfg = ATVSettings.CATVSettings()
     XMLConverter.setATVSettings(cfg)

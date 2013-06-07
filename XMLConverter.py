@@ -37,7 +37,7 @@ from urllib import urlencode
 from urlparse import urlparse
 from urllib import quote_plus
 
-import Settings, ATVSettings
+import ATVSettings
 from Debug import *  # dprint()
 
 

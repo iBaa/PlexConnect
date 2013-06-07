@@ -33,30 +33,38 @@ if __name__=="__main__":
     dprint('PlexConnect', 0, "Press ENTER to shut down.")
     dprint('PlexConnect', 0, "***")
     
-    cmd_DNSServer = Queue()
+    cfg = Settings.CSettings()
+    
+    if cfg.getSetting('enable_dnsserver')=='True':
+        cmd_DNSServer = Queue()
     cmd_WebServer = Queue()
     
     param = {}
     param['IP_self'] = getIP_self()
+    param['IP_DNSMaster'] = cfg.getSetting('ip_dnsmaster')
+    param['HostToIntercept'] = 'trailers.apple.com'
     
-    if Settings.getPlexGDM()==True:
-        PlexGDM.Run()
-        
-        param['IP_PMS'] = PlexGDM.getIP_PMS()
-        param['Port_PMS'] = PlexGDM.getPort_PMS()
-        param['Addr_PMS'] = PlexGDM.getIP_PMS()+':'+str(PlexGDM.getPort_PMS())
-    else:
-        param['IP_PMS'] = Settings.getIP_PMS()
-        param['Port_PMS'] = Settings.getPort_PMS()
-        param['Addr_PMS'] = Settings.getIP_PMS()+':'+str(Settings.getPort_PMS())
+    # default PMS
+    param['IP_PMS'] = cfg.getSetting('ip_pms')
+    param['Port_PMS'] = cfg.getSetting('port_pms')
+    param['Addr_PMS'] = param['IP_PMS']+':'+param['Port_PMS']
     
-    p_DNSServer = Process(target=DNSServer.Run, args=(cmd_DNSServer, param))
-    p_DNSServer.start()
+    if cfg.getSetting('enable_plexgdm')=='True':
+        if PlexGDM.Run()>0:
+            param['IP_PMS'] = PlexGDM.getIP_PMS()
+            param['Port_PMS'] = PlexGDM.getPort_PMS()
+            param['Addr_PMS'] = param['IP_PMS']+':'+param['Port_PMS']
     
-    time.sleep(0.1)
-    if not p_DNSServer.is_alive():
-        dprint('PlexConnect', 0, "DNSServer not alive. Shutting down.")
-        sys.exit(1)
+    dprint('PlexConnect', 0, "PMS: {0}", param['Addr_PMS'])
+    
+    if cfg.getSetting('enable_dnsserver')=='True':
+        p_DNSServer = Process(target=DNSServer.Run, args=(cmd_DNSServer, param))
+        p_DNSServer.start()
+    
+        time.sleep(0.1)
+        if not p_DNSServer.is_alive():
+            dprint('PlexConnect', 0, "DNSServer not alive. Shutting down.")
+            sys.exit(1)
     
     p_WebServer = Process(target=WebServer.Run, args=(cmd_WebServer, param))
     p_WebServer.start()
@@ -75,8 +83,9 @@ if __name__=="__main__":
     
     finally:
         dprint('PlexConnect', 0,  "Shutting down.")
-        cmd_DNSServer.put('shutdown')
-        cmd_WebServer.put('shutdown')
+        if cfg.getSetting('enable_dnsserver')=='True':
+            cmd_DNSServer.put('shutdown')
+            p_DNSServer.join()
         
-        p_DNSServer.join()
+        cmd_WebServer.put('shutdown')
         p_WebServer.join()

@@ -11,7 +11,6 @@ import sys
 import struct
 import httplib, socket
 
-import Settings
 from Debug import *  # dprint()
 
 
@@ -29,14 +28,14 @@ def getIP_PMS():
     if len(PMS_list)>0:
         return PMS_list[0]['server']
     else:
-        return Settings.getIP_PMS()
+        return '127.0.0.1'
 
 def getPort_PMS():
     # todo: currently only one server - return first entry
     if len(PMS_list)>0:
         return PMS_list[0]['port']
     else:
-        return Settings.getPort_PMS()
+        return '32400'
 
 
 
@@ -113,6 +112,8 @@ def Run():
         dprint(__name__, 0, "servers discovered: {0}", len(PMS_list))
         for items in PMS_list:
             dprint(__name__, 1, "{0} {1}:{2}", items['serverName'], items['server'], items['port'])
+    
+    return len(PMS_list)
 
 
 

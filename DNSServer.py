@@ -61,7 +61,6 @@ import socket
 import struct
 import Queue  # inter process communication
 
-import Settings
 from Debug import *  # dprint()
 
 
@@ -105,8 +104,8 @@ def Run(cmdQueue, param):
     
     dprint(__name__, 0, "***")
     dprint(__name__, 0, "Starting up.")
-    dprint(__name__, 1, "intercept "+Settings.getHostToIntercept()+": "+param['IP_self'])
-    dprint(__name__, 1, "forward other to higher level DNS: "+Settings.getIP_DNSmaster())
+    dprint(__name__, 1, "intercept "+param['HostToIntercept']+": "+param['IP_self'])
+    dprint(__name__, 1, "forward other to higher level DNS: "+param['IP_DNSMaster'])
     dprint(__name__, 0, "***")
     
     try:
@@ -141,7 +140,7 @@ def Run(cmdQueue, param):
                     dprint(__name__, 1, "Domain: "+domain)
                 
                 paket=''
-                if domain==Settings.getHostToIntercept():
+                if domain==param['HostToIntercept']:
                     dprint(__name__, 1, "***intercept request")
                     paket+=data[:2]         # 0:1 - ID
                     paket+="\x81\x80"       # 2:3 - flags
@@ -157,7 +156,7 @@ def Run(cmdQueue, param):
                 
                 else:
                     dprint(__name__, 1, "***forward request")
-                    DNS_forward.sendto(data, (Settings.getIP_DNSmaster(), 53))
+                    DNS_forward.sendto(data, (param['IP_DNSMaster'], 53))
                     paket, addr_master = DNS_forward.recvfrom(1024)
                     # todo: double check: ID has to be the same!
                     # todo: spawn thread to wait in parallel
@@ -182,5 +181,11 @@ def Run(cmdQueue, param):
 
 
 if __name__ == '__main__':
-   cmd = Queue.Queue()
-   Run(cmd)
+    cmd = Queue.Queue()\
+    
+    param = {}
+    param['IP_self'] = '192.168.178.20'
+    param['IP_DNSMaster'] = '8.8.8.8'
+    param['HostToIntercept'] = 'trailers.apple.com'
+    
+    Run(cmd, param)
