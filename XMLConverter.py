@@ -197,6 +197,7 @@ def XML_PMS2aTV(address, path):
         XMLtemplate = 'PlayVideo.xml'
         
         Media = PMSroot.find('Video').find('Media')  # todo: needs to be more flexible?
+        
         indirect = Media.get('indirect','0')
         Part = Media.find('Part')
         key = Part.get('key','')
@@ -204,7 +205,10 @@ def XML_PMS2aTV(address, path):
         if indirect=='1':  # redirect... todo: select suitable resolution, today we just take first Media
             PMS = XML_ReadFromURL(address, key)  # todo... check key for trailing '/' or even 'http'
             PMSroot = PMS.getroot()
-
+            
+    elif cmd=='PlayMusic':
+        XMLtemplate = 'PlayMusic.xml'
+                            
     elif cmd=='MoviePreview':
         XMLtemplate = 'MoviePreview.xml'
     
@@ -240,8 +244,13 @@ def XML_PMS2aTV(address, path):
         dprint(__name__, 2, "ATVSettings->Toggle: {0}", opt)
         
     elif PMSroot.get('viewGroup') is None or \
-       PMSroot.get('viewGroup')=='secondary':
+       PMSroot.get('viewGroup')=='secondary' or \
+       PMSroot.get('viewGroup')=='artist' or \
+       PMSroot.get('viewGroup')=='album':
         XMLtemplate = 'Directory.xml'
+    
+    elif PMSroot.get('viewGroup')=='track':
+        XMLtemplate = 'Music_Track.xml'
         
     elif PMSroot.get('viewGroup')=='show':
         # TV Show grid view
@@ -759,7 +768,9 @@ class CCommandCollection(CCommandHelper):
         
         # check "Media" element and get key
         if el!=None:  # Media
-            if g_ATVSettings.getSetting(UDID, 'forcedirectplay')=='True' or \
+            if el.get('container')=='mp3':
+                res = el.find('Part').get('key','')
+            elif g_ATVSettings.getSetting(UDID, 'forcedirectplay')=='True' or \
                g_ATVSettings.getSetting(UDID, 'forcetranscode')!='True' and \
                el.get('container','') in ("mov", "mp4", "mpegts") and \
                el.get('videoCodec','') in ("mpeg4", "h264", "drmi") and \
@@ -785,6 +796,9 @@ class CCommandCollection(CCommandHelper):
     def ATTRIB_PLAY_COMMAND(self, src, srcXML, param):
         return "&PlexConnect=Play&PlexUDID=' + atv.device.udid"
     
+    def ATTRIB_MUSICPLAY_COMMAND(self, src, srcXML, param):
+        return "&PlexConnect=PlayMusic&PlexUDID=' + atv.device.udid"
+        
     def ATTRIB_ADDR_PMS(self, src, srcXML, param):
         return g_param['Addr_PMS']
     

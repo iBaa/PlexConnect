@@ -1,0 +1,9 @@
+<atv>
+  <body>
+    <videoPlayer id="com.sample.video-player">
+      <httpFileVideoAsset id="{{VAL(Track/key)}}">
+        <mediaURL>{{MEDIAURL(Track)}}</mediaURL>
+      </httpFileVideoAsset>
+    </videoPlayer>
+  </body>
+</atv>

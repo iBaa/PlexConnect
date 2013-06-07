@@ -1,0 +1,33 @@
+<atv>
+  <body>
+    <listWithPreview id="com.sample.menu-items-with-sections">
+      <header>
+        <simpleHeader>
+          <title>{{VAL(parentTitle)}}</title>
+          <subtitle>{{VAL(grandparentTitle)}}</subtitle>
+        </simpleHeader>
+      </header>
+			<preview>
+				<crossFadePreview>
+          <image>{{IMAGEURL(thumb)}}</image>
+        </crossFadePreview>
+      </preview>
+			<menu>
+			  <sections>
+		      <menuSection>
+		        <items>
+              <oneLineMenuItem id="{{VAL(ratingKey)}}"   
+															onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}{{MUSICPLAY_COMMAND()}})"
+                              onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}{{MUSICPLAY_COMMAND()}})"> 
+                {{COPY(Track)}}
+                <label>{{VAL(title)}}</label>
+                <ordinal>{{VAL(index)}}</ordinal>
+                <maxOrdinalDigits>2</maxOrdinalDigits>								
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </listWithPreview>
+  </body>
+</atv>
