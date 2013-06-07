@@ -21,3 +21,7 @@ def getIP_DNSmaster():  # Router, ISP's DNS, ...
 
 def getHostToIntercept():
     return 'trailers.apple.com'
+
+
+def getShouldIntercept(): #if False, requests will be forwarded to DNS master
+    return True 
