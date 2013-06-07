@@ -49,9 +49,9 @@ Every media (video, thumbnails...) is URL-wise connected to PMS, so aTV directly
 * __XMLConverter.py__ - 
 This script contains the XML adaption from Plex Media Server's response to valid aTV XML files.
 * __Settings.py__ - 
-Basic settings collection. This should be the only file to modify.
+Basic settings collection. Creates ```Settings.cfg``` at first run - which may be modified externally.
 * __ATVSettings.py__ - 
-Handles the aTV settings like ViewModes or Transcoder options.
+Handles the aTV settings like ViewModes or Transcoder options. Stores aTV settings in ```ATVSettings.cfg```.
 
 ## Disclaimer
 The software is provided as is. It might work as expected - or not. Just don't blame me.
