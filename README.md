@@ -7,6 +7,8 @@ Unfortunately there are officially no Apps allowed on AppleTV, most of the time 
 This is a collection of files developed for the little project described in [Plex Forum][].
 See also [ATVBrowser][] for a project with similar purpose, all javascript.
 
+For more information, like detailed Installation Guides, FAQs and similar, visit the [Wiki][].
+
 
 ## How does it work?
 The basic idea is, to...
@@ -29,7 +31,7 @@ The basic idea is, to...
 
 ## Usage
 - in ```Settings.py```, adapt the IP addresses to your local setup
-- ```sudo ./PlexConnet.py```
+- ```sudo ./PlexConnect.py```
 - set your AppleTV's DNS address to the computer running PlexConnect
 - run the Trailer App and check the terminal output
 
@@ -58,3 +60,4 @@ The software is provided as is. It might work as expected - or not. Just don't b
 [ATVBrowser]: https://github.com/finkdiff/ATVBrowser-script/tree/atvxml
 [Plex Forum]: http://forums.plexapp.com/index.php/topic/57831-plex-atv-think-different
 [ZIP]: https://github.com/iBaa/PlexConnect/archive/XML_templates.zip
+[Wiki]: https://github.com/iBaa/PlexConnect/wiki
