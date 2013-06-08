@@ -1,9 +1,10 @@
 <atv>
   <head>
-    <script src="http://trailers.apple.com/selectSubsAndAudio.js"/>
+    <script src="http://trailers.apple.com/selectAudioAndSubs.js"/>
+		<script src="http://trailers.apple.com/updateXML.js"/>
   </head>
   <body>
-    <itemDetail id="com.apple.trailer">
+    <itemDetail id="com.apple.trailer" volatile="true" onVolatileReload="reloadPMS_XML('{{getPath()}}&amp;PlexConnect=EpisodePrePlay')">
       <title>{{VAL(Video/index)}}. {{VAL(Video/title)}}</title>
       <subtitle>{{VAL(Video/studio)}}</subtitle>
       <rating>{{VAL(Video/contentRating)}}</rating>
@@ -54,17 +55,12 @@
                   <image>resource://Play.png</image>
                   <focusedImage>resource://PlayFocused.png</focusedImage>
                 </actionButton>
-                <actionButton id="audio" onSelect="selectAudio('{{ADDR_PMS()}}', '{{VAL(Video/Media/Part/id)}}')">
-                  <title>Audio</title>
+                <actionButton id="selectAudioAndSubs" onSelect="selectAudioAndSubs('{{ADDR_PMS()}}', '{{VAL(Video/Media/Part/id)}}')">
+                  <title>Audio/Subs</title>
                   <image>resource://Queue.png</image>
                   <focusedImage>resource://QueueFocused.png</focusedImage>
                 </actionButton>
-                <actionButton id="subs" onSelect="selectSubs('{{ADDR_PMS()}}', '{{VAL(Video/Media/Part/id)}}')">
-                  <title>Subtitles</title>
-                  <image>resource://Preview.png</image>
-                  <focusedImage>resource://PreviewFocused.png</focusedImage>
-                </actionButton>
-              </items>
+							</items>
               <stash>
                 <stream> 
                   {{COPY(Video/Media/Part/Stream)}}
@@ -73,6 +69,7 @@
                   <format>{{VAL(format)}}</format>
                   <codec>{{VAL(codec)}}</codec>
                   <streamType>{{VAL(streamType)}}</streamType>
+									<selected>{{VAL(selected:0)}}</selected>
                 </stream>
               </stash>
             </shelfSection>
