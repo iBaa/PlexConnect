@@ -56,6 +56,9 @@ class MyHandler(BaseHTTPRequestHandler):
                     msg = msg.replace("&qo;", '"')
                     msg = msg[1:len(msg)-10]
                     dprint('ATVLogger', 0, msg)
+                    self.send_response(200)
+                    self.send_header('Content-type', 'text/plain')
+                    self.end_headers()
                     return
                 
                 # serve "application.js" to aTV
