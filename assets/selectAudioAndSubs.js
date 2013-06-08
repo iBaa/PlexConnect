@@ -113,27 +113,31 @@ function toggleSubCheck(id)
 	var menuItems = root.getElementsByTagName('oneLineMenuItem');
 	if (menuItems)
 	{
+		// remove old checks
 		for(var i = 0; i < menuItems.length; ++i)
 		{
 			var menuItem = menuItems[i];
 			var menuID = menuItem.getAttribute('id')
 			if (menuID.indexOf('sub') !== -1)
 			{
-				if (menuID == id)
+				var accessories = menuItem.getElementByTagName('accessories');
+				if ( accessories )
 				{
-					var accessories = document.makeElementNamed("accessories");
-          var checkmark = document.makeElementNamed("checkMark");
-          accessories.appendChild(checkmark);
-          menuItem.appendChild(accessories);
+					accessories.removeFromParent();
 				}
-				else
-				{
-					var accessories = menuItem.getElementByTagName('accessories');
-					if ( accessories )
-					{
-            accessories.removeFromParent();
-					}
-				}
+			}
+		}
+		// create new check
+		for(var i = 0; i < menuItems.length; ++i)
+		{
+			var menuItem = menuItems[i];
+			var menuID = menuItem.getAttribute('id')
+			if ((menuID.indexOf('sub') !== -1)&&(menuID == id))
+			{
+				var accessories = document.makeElementNamed("accessories");
+        var checkmark = document.makeElementNamed("checkMark");
+        accessories.appendChild(checkmark);
+        menuItem.appendChild(accessories);
 			}
 		}
 	}
@@ -149,27 +153,31 @@ function toggleAudioCheck(id)
 	var menuItems = root.getElementsByTagName('oneLineMenuItem');
 	if (menuItems)
 	{
+		// remove old checks
 		for(var i = 0; i < menuItems.length; ++i)
 		{
 			var menuItem = menuItems[i];
 			var menuID = menuItem.getAttribute('id')
 			if (menuID.indexOf('audio') !== -1)
 			{
-				if (menuID == id)
+				var accessories = menuItem.getElementByTagName('accessories');
+				if ( accessories )
 				{
-					var accessories = document.makeElementNamed("accessories");
-          var checkmark = document.makeElementNamed("checkMark");
-          accessories.appendChild(checkmark);
-          menuItem.appendChild(accessories);
+					accessories.removeFromParent();
 				}
-				else
-				{
-					var accessories = menuItem.getElementByTagName('accessories');
-					if ( accessories )
-					{
-            accessories.removeFromParent();
-					}
-				}
+			}
+		}
+		// create new check
+		for(var i = 0; i < menuItems.length; ++i)
+		{
+			var menuItem = menuItems[i];
+			var menuID = menuItem.getAttribute('id')
+			if ((menuID.indexOf('audio') !== -1)&&(menuID == id))
+			{
+				var accessories = document.makeElementNamed("accessories");
+        var checkmark = document.makeElementNamed("checkMark");
+        accessories.appendChild(checkmark);
+        menuItem.appendChild(accessories);
 			}
 		}
 	}
