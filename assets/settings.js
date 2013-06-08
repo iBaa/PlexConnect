@@ -34,8 +34,9 @@ function log(msg)
     msg = msg.replace(/>/g, "&gt;")
     msg = msg.replace(/\//g, "&fs;")
     msg = msg.replace(/"/g, "&qo;")
+    
 		var req = new XMLHttpRequest();
-		var url = "http://trailers.apple.com/" + msg + "&atvlogger";
+		var url = "http://trailers.apple.com/&PlexLog=" + msg;
 		req.open('GET', url, true);
 		req.send();
 };
