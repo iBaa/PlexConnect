@@ -181,11 +181,11 @@ def Run(cmdQueue, param):
     #Protocol     = "HTTP/1.0"
     # todo: IP, port
     try:
-        server = HTTPServer(('',80), MyHandler)
+        server = HTTPServer((param['HTTP_IP'],param['HTTP_Port']), MyHandler)
         server.timeout = 1
         sa = server.socket.getsockname()
     except Exception, e:
-        dprint(__name__, 0, "Failed to connect to port 80 (http): {0}", e)
+        dprint(__name__, 0, "Failed to connect to port {0} (http): {1}", param['HTTP_Port'], e)
         sys.exit(1)
         
     dprint(__name__, 0, "***")
