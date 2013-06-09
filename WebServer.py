@@ -44,42 +44,17 @@ class MyHandler(BaseHTTPRequestHandler):
         try:
             dprint(__name__, 2, "http request header:\n{0}", self.headers)
             dprint(__name__, 2, "http request path:\n{0}", self.path)
-            
-            # break up path, separate options
-            # compare urlparse.parse_qs() but that returns {option:[lists of val]}
-            options = {}
-            if self.path.find('?')==-1 and \
-               self.path.find('&')==-1:
-                pass
-            else:
-                if not self.path.find('?')==-1:
-                    parts = self.path.split('?',1)
-                else:
-                    parts = self.path.split('&',1)
-                self.path = parts[0]
-                
-                parts = parts[1].split('&')
-                for opt in parts:
-                    opt_parts = opt.split('=',1)
-                    if len(opt_parts)==1:
-                        options[opt_parts[0]] = ''
-                    else:
-                        options[opt_parts[0]] = opt_parts[1]
-            
-            dprint(__name__, 2, "cleaned path:\n{0}", self.path)
-            dprint(__name__, 2, "request args:\n{0}", options)
-            
             if self.headers['Host'] == g_param['HostToIntercept'] and \
                self.headers['User-Agent'].startswith("iTunes-AppleTV"):
                                     
                 # recieve simple logging messages from the ATV
-                if 'PlexLog' in options:  # self.path.endswith("&atvlogger"):
-                    msg = options['PlexLog']
-                    msg = msg.replace("%20", " ")
+                if self.path.endswith("&atvlogger"):
+                    msg = self.path.replace("%20", " ")
                     msg = msg.replace("&lt;", "<")
                     msg = msg.replace("&gt;", ">")
                     msg = msg.replace("&fs;", "/")
                     msg = msg.replace("&qo;", '"')
+                    msg = msg[1:len(msg)-10]
                     dprint('ATVLogger', 0, msg)
                     self.send_response(200)
                     self.send_header('Content-type', 'text/plain')
@@ -145,10 +120,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 # path could be a search string
                 if self.path.find('search') > -1:
                     dprint(__name__, 1, "Search Query=" + "/search?type=2&query=" +self.path[8:] + "&amp;PlexConnect=Search")
-                    options = {'PlexConnect':'Search', \
-                               'type':'4', \
-                               'query':self.path[8:] }
-                    XML = XMLConverter.XML_PMS2aTV(self.client_address, "/search", options)
+                    XML = XMLConverter.XML_PMS2aTV(self.client_address, "/search?type=4&query=" +self.path[8:] + "&PlexConnect=Search")
                     self.send_response(200)
                     self.send_header('Content-type', 'text/html')
                     self.end_headers()
@@ -158,7 +130,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 # get everything else from XMLConverter - formerly limited to trailing "/" and &PlexConnect Cmds
                 if True:
                     dprint(__name__, 1, "serving .xml: "+self.path)
-                    XML = XMLConverter.XML_PMS2aTV(self.client_address, self.path, options)
+                    XML = XMLConverter.XML_PMS2aTV(self.client_address, self.path)
                     self.send_response(200)
                     self.send_header('Content-type', 'text/html')
                     self.end_headers()

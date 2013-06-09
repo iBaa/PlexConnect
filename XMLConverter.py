@@ -172,17 +172,20 @@ def XML_ReadFromURL(address, path):
 
 
 
-def XML_PMS2aTV(address, path, options):
-    
+def XML_PMS2aTV(address, path):
+
     cmd = ''
-    if 'PlexConnect' in options:
+    options = {}
+    pos = string.find(path, "&PlexConnect=")
+    if pos>-1:
+        params = path[pos+1:].split('&')
+        for p in params:
+            param = p.split('=')
+            options[param[0]] = param[1]
         cmd = options['PlexConnect']
-        del options['PlexConnect']
-    
-    if len(options)==0:
-        PMS = XML_ReadFromURL(address, path)
-    else:
-        PMS = XML_ReadFromURL(address, path + '?' + urlencode(options))
+        path = path[:pos]
+        
+    PMS = XML_ReadFromURL(address, path)
     if PMS==False:
         return XML_Error('PlexConnect', 'No Response from Plex Media Server')
     

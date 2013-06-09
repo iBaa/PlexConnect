@@ -13,16 +13,16 @@ function loadPage(url)
 
  /*
   * ATVlogger
-  */
+	*/
 function log(msg)
 {
     msg = msg.replace(/ /g, "%20")
     msg = msg.replace(/</g, "&lt;")
     msg = msg.replace(/>/g, "&gt;")
     msg = msg.replace(/\//g, "&fs;")
-    msg = msg.replace(/"/g, "&qo;")
+		msg = msg.replace(/"/g, "&qo;")
     
-    loadPage("http://trailers.apple.com/&PlexLog=" + msg);
+    loadPage("http://trailers.apple.com/" + msg + "&atvlogger");
 };
 
  /*
