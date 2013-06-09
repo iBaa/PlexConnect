@@ -44,6 +44,31 @@ class MyHandler(BaseHTTPRequestHandler):
         try:
             dprint(__name__, 2, "http request header:\n{0}", self.headers)
             dprint(__name__, 2, "http request path:\n{0}", self.path)
+            
+            # brake up path, separate PlexConnect options
+            options = {}
+            while True:
+                cmd_start = self.path.find('&PlexConnect')
+                cmd_end = self.path.find('&', cmd_start+1)
+                
+                if cmd_start==-1:
+                    break
+                if cmd_end>-1:
+                    cmd = self.path[cmd_start+1:cmd_end]
+                    self.path = self.path[:cmd_start] + self.path[cmd_end:]
+                else:
+                    cmd = self.path[cmd_start+1:]
+                    self.path = self.path[:cmd_start]
+                
+                parts = cmd.split('=', 1)
+                if len(parts)==1:
+                    options[parts[0]] = ''
+                else:
+                    options[parts[0]] = parts[1]
+                    
+            dprint(__name__, 2, "cleaned path:\n{0}", self.path)
+            dprint(__name__, 2, "request options:\n{0}", options)
+            
             if self.headers['Host'] == g_param['HostToIntercept'] and \
                self.headers['User-Agent'].startswith("iTunes-AppleTV"):
                                     
@@ -116,21 +141,11 @@ class MyHandler(BaseHTTPRequestHandler):
                     self.wfile.write(f.read())
                     f.close()
                     return
-                    
-                # path could be a search string
-                if self.path.find('search') > -1:
-                    dprint(__name__, 1, "Search Query=" + "/search?type=2&query=" +self.path[8:] + "&amp;PlexConnect=Search")
-                    XML = XMLConverter.XML_PMS2aTV(self.client_address, "/search?type=4&query=" +self.path[8:] + "&PlexConnect=Search")
-                    self.send_response(200)
-                    self.send_header('Content-type', 'text/html')
-                    self.end_headers()
-                    self.wfile.write(XML)
-                    return     
-                    
+                
                 # get everything else from XMLConverter - formerly limited to trailing "/" and &PlexConnect Cmds
                 if True:
                     dprint(__name__, 1, "serving .xml: "+self.path)
-                    XML = XMLConverter.XML_PMS2aTV(self.client_address, self.path)
+                    XML = XMLConverter.XML_PMS2aTV(self.client_address, self.path, options)
                     self.send_response(200)
                     self.send_header('Content-type', 'text/html')
                     self.end_headers()

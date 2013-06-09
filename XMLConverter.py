@@ -172,27 +172,25 @@ def XML_ReadFromURL(address, path):
 
 
 
-def XML_PMS2aTV(address, path):
+def XML_PMS2aTV(address, path, options):
 
     cmd = ''
-    options = {}
-    pos = string.find(path, "&PlexConnect=")
-    if pos>-1:
-        params = path[pos+1:].split('&')
-        for p in params:
-            param = p.split('=')
-            options[param[0]] = param[1]
+    if 'PlexConnect' in options:
         cmd = options['PlexConnect']
-        path = path[:pos]
-        
+    
     PMS = XML_ReadFromURL(address, path)
     if PMS==False:
         return XML_Error('PlexConnect', 'No Response from Plex Media Server')
     
     PMSroot = PMS.getroot()
     
-    dprint(__name__, 1, PMSroot.get('viewGroup','None'))
+    dprint(__name__, 1, "PlexConnect Cmd: "+cmd)
+    dprint(__name__, 1, "viewGroup: "+PMSroot.get('ViewGroup','None'))
     
+    # XML Template selector
+    # - PlexConnect command
+    # - path
+    # - PMS ViewGroup
     if cmd=='Play':
         XMLtemplate = 'PlayVideo.xml'
         
@@ -230,9 +228,6 @@ def XML_PMS2aTV(address, path):
     elif cmd=='ByFolderPreview':
         XMLtemplate = 'ByFolderPreview.xml'
     
-    elif cmd=='Search':
-        XMLtemplate = 'Search_Results.xml'
-    
     elif cmd=='Settings':
         XMLtemplate = 'Settings.xml'
     
@@ -242,7 +237,10 @@ def XML_PMS2aTV(address, path):
         opt = cmd[len('SettingsToggle:'):]  # cut command:
         g_ATVSettings.toggleSetting(UDID, opt.lower())
         dprint(__name__, 2, "ATVSettings->Toggle: {0}", opt)
-        
+    
+    elif path.startswith('/search?'):
+        XMLtemplate = 'Search_Results.xml'
+    
     elif PMSroot.get('viewGroup') is None or \
        PMSroot.get('viewGroup')=='secondary' or \
        PMSroot.get('viewGroup')=='artist' or \
@@ -283,7 +281,7 @@ def XML_PMS2aTV(address, path):
         # Photo listing
         XMLtemplate = 'Photo.xml'
     
-    dprint(__name__, 1, XMLtemplate)
+    dprint(__name__, 1, "XMLTemplate: "+XMLtemplate)
         
     aTVTree = etree.parse(sys.path[0]+'/assets/templates/'+XMLtemplate)
     aTVroot = aTVTree.getroot()
@@ -484,8 +482,8 @@ def PlexAPI_getTranscodePath(options, path):
     xargs['X-Plex-Product'] = 'Plex Connect'
     xargs['X-Plex-Platform-Version'] = '5.3' # Base it on AppleTV.
     
-    if options.has_key('PlexUDID'):
-        args['session'] = options['PlexUDID']
+    if options.has_key('PlexConnectUDID'):
+        args['session'] = options['PlexConnectUDID']
     
     return transcodePath + urlencode(args) + '&' + urlencode(xargs)
 
@@ -794,10 +792,10 @@ class CCommandCollection(CCommandHelper):
         return res
     
     def ATTRIB_PLAY_COMMAND(self, src, srcXML, param):
-        return "&PlexConnect=Play&PlexUDID=' + atv.device.udid"
+        return "&PlexConnect=Play&PlexConnectUDID=' + atv.device.udid"
     
     def ATTRIB_MUSICPLAY_COMMAND(self, src, srcXML, param):
-        return "&PlexConnect=PlayMusic&PlexUDID=' + atv.device.udid"
+        return "&PlexConnect=PlayMusic&PlexConnectUDID=' + atv.device.udid"
         
     def ATTRIB_ADDR_PMS(self, src, srcXML, param):
         return g_param['Addr_PMS']
