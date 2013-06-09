@@ -72,8 +72,9 @@ if __name__=="__main__":
     time.sleep(0.1)
     if not p_WebServer.is_alive():
         dprint('PlexConnect', 0, "WebServer not alive. Shutting down.")
-        cmd_DNSServer.put('shutdown')
-        p_DNSServer.join()
+        if cfg.getSetting('enable_dnsserver')=='True':
+            cmd_DNSServer.put('shutdown')
+            p_DNSServer.join()
         sys.exit(1)
     
     try:
