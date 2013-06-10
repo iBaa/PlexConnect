@@ -22,7 +22,7 @@
                 <defaultImage>resource://Poster.png</defaultImage>
               </twoLineEnhancedMenuItem>
             </items>
-          </menuSection>{{CUT($cut)}}
+          </menuSection>{{CUT(#cut)}}
           
           <menuSection>
             <header>
@@ -42,7 +42,7 @@
                 <defaultImage>resource://Poster.png</defaultImage>
               </twoLineEnhancedMenuItem>
             </items>
-          </menuSection>{{CUT($cut)}}
+          </menuSection>{{CUT(#cut)}}
           
           <menuSection>
             <header>
@@ -63,7 +63,7 @@
                 <defaultImage>resource://Poster.png</defaultImage>
               </twoLineEnhancedMenuItem>
             </items>
-          </menuSection>{{CUT($cut)}}
+          </menuSection>{{CUT(#cut)}}
           
         </sections>
       </menu>

@@ -533,15 +533,20 @@ class CCommandHelper():
         # walk the path if neccessary
         while '/' in attrib and el!=None:
             parts = attrib.split('/',1)
-            if parts[0].startswith('$'):  # internal variable in path
+            if parts[0].startswith('#'):  # internal variable in path
                 el = el.find(self.variables[parts[0][1:]])
+            elif parts[0].startswith('$'):  # setting
+                el = el.find(g_ATVSettings.getSetting(UDID, parts[0][1:]))
             else:
                 el = el.find(parts[0])
             attrib = parts[1]
         
         # check element and get attribute
-        if attrib.startswith('$'):  # internal variable
+        if attrib.startswith('#'):  # internal variable
             res = self.variables[attrib[1:]]
+            dfltd = False
+        elif attrib.startswith('$'):  # setting
+            res = g_ATVSettings.getSetting(UDID, attrib[1:])
             dfltd = False
         elif el!=None and attrib in el.attrib:
             res = el.get(attrib)
@@ -832,7 +837,10 @@ class CCommandCollection(CCommandHelper):
 
 if __name__=="__main__":
     setParams({'Addr_PMS':'*Addr_PMS*'})
-
+    
+    cfg = ATVSettings.CATVSettings()
+    setATVSettings(cfg)
+    
     print "load PMS XML"
     _XML = '<PMS number="1" string="Hello"> \
                 <DATA number="42" string="World"></DATA> \
@@ -880,3 +888,5 @@ if __name__=="__main__":
     #f=open(sys.path[0]+'/XML/aTV_fromTmpl.xml', 'w')
     #f.write(str)
     #f.close()
+    
+    del cfg

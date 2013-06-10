@@ -185,7 +185,7 @@
             </sections>
           </menu>
         </listScrollerSplit>
-      </moreInfo>{{CUT($cut)}}
+      </moreInfo>{{CUT(#cut)}}
       
 		</itemDetail>
 	</body>
