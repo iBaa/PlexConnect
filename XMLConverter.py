@@ -758,6 +758,8 @@ class CCommandCollection(CCommandHelper):
             res = 'http://' + g_param['Addr_PMS'] + key
         elif key.startswith('http://'):  # external address
             res = key
+        elif key == '':  # internal path
+            res = 'http://' + g_param['Addr_PMS'] + self.path[srcXML]
         else:  # internal path, add-on
             res = 'http://' + g_param['Addr_PMS'] + self.path[srcXML] + '/' + key
         return res
