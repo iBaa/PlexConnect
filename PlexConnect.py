@@ -8,7 +8,7 @@ inter-process-communication (queue): http://pymotw.com/2/multiprocessing/communi
 """
 
 
-import sys, time
+import sys, time, commands
 import socket
 from multiprocessing import Process, Queue
 
@@ -30,7 +30,8 @@ def getIP_self():
 if __name__=="__main__":
     dprint('PlexConnect', 0, "***")
     dprint('PlexConnect', 0, "PlexConnect")
-    dprint('PlexConnect', 0, "Press ENTER to shut down.")
+    if sys.stdout.isatty():
+        dprint('PlexConnect', 0, "Press ENTER to shut down.")
     dprint('PlexConnect', 0, "***")
     
     cfg = Settings.CSettings()
@@ -75,17 +76,18 @@ if __name__=="__main__":
         cmd_DNSServer.put('shutdown')
         p_DNSServer.join()
         sys.exit(1)
+
+    if sys.stdout.isatty():
+        try:
+            key = raw_input()
+        except KeyboardInterrupt:
+            dprint('PlexConnect', 0, "^C received.")
     
-    try:
-        key = raw_input()
-    except KeyboardInterrupt:
-        dprint('PlexConnect', 0, "^C received.")
-    
-    finally:
-        dprint('PlexConnect', 0,  "Shutting down.")
-        if cfg.getSetting('enable_dnsserver')=='True':
-            cmd_DNSServer.put('shutdown')
-            p_DNSServer.join()
+        finally:
+            dprint('PlexConnect', 0,  "Shutting down.")
+            if cfg.getSetting('enable_dnsserver')=='True':
+                cmd_DNSServer.put('shutdown')
+                p_DNSServer.join()
         
-        cmd_WebServer.put('shutdown')
-        p_WebServer.join()
+            cmd_WebServer.put('shutdown')
+            p_WebServer.join()
