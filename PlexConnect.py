@@ -33,6 +33,20 @@ if __name__=="__main__":
     if sys.stdout.isatty():
         dprint('PlexConnect', 0, "Press ENTER to shut down.")
     dprint('PlexConnect', 0, "***")
+
+    # Check if Plex Media Server is running on this machine. If not, wait for it to start.
+     output = ""
+     output = commands.getoutput("ps -ef | grep 'Plex Media Server' | grep -vc grep")
+     if output == "0":
+     
+         while output == "0":
+         
+             dprint('PlexConnect', 0, "Plex Media Server is not yet running")
+             time.sleep(10)
+             output = commands.getoutput("ps -ef | grep 'Plex Media Server' | grep -vc grep")
+     
+         dprint('PlexConnect', 0, "Plex Media Server is now running. Waiting for it to completely start up.")
+         time.sleep(30)
     
     cfg = Settings.CSettings()
     
