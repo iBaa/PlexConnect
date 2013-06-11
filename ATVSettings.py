@@ -12,10 +12,10 @@ options = { \
     'movieview'  :('Grid', 'List'), \
     'showview'   :('List', 'Grid'), \
     'seasonview' :('List', 'Coverflow'), \
-    'transcodequality':('1080p 12.0Mbps', \
+    'transcodequality':('1080p 40.0Mbps', \
                         '480p 2.0Mbps', \
                         '720p 3.0Mbps', '720p 4.0Mbps', \
-                        '1080p 8.0Mbps', '1080p 10.0Mbps', '1080p 20.0Mbps', '1080p 40.0Mbps'), \
+                        '1080p 8.0Mbps', '1080p 10.0Mbps', '1080p 12.0Mbps', '1080p 20.0Mbps'), \
     'forcedirectplay'  :('False', 'True'), \
     'forcetranscode'   :('False', 'True'), \
     'subtitlesize'     :('100', '125', '150', '50', '75') }
