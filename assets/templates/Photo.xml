@@ -37,7 +37,7 @@
             <photoAsset width="0" height="0" src="{{IMAGEURL(Media/Part/key)}}"/>
           </assets>
           <stash>
-            <url>{{URL(Media/Part/key)}}</url>
+            <url>http://{{ADDR_PMS()}}{{ADDPATH(Media/Part/key)}}</url>
             <directory>false</directory>
           </stash>
         </photo>
@@ -50,7 +50,7 @@
             <photoAsset width="0" height="0" src="{{IMAGEURL(key)}}"/>
           </assets>
           <stash>
-            <url>{{URL(key)}}</url>
+            <url>http://{{ADDR_PMS()}}{{ADDPATH(key)}}</url>
             <directory>false</directory>
           </stash>
           </photo>
