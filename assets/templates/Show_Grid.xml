@@ -1,11 +1,11 @@
 <atv>
   <head>
-    <script src="http://trailers.apple.com/updateXML.js"/>
-    <script src="http://trailers.apple.com/scrobble.js"/>    
+    <script src="http://trailers.apple.com/utils.js"/>
+    <script src="http://trailers.apple.com/scrobble.js"/>
   </head>
-    
+  
   <body>
-    <scroller id="Show_Grid" volatile="true" onVolatileReload="reloadPMS_XML('{{getPath()}}')">
+    <scroller id="Show_Grid" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
       <header>
         <simpleHeader>
           <title>{{VAL(title1)}}</title>
@@ -16,8 +16,8 @@
         <grid columnCount="7" id="grid_0">
           <items>
             <moviePoster id="{{VAL(key)}}"
-                         onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')" 
-                         onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')"
+                         onPlay="atv.loadURL('{{URL(key)}}')" 
+                         onSelect="atv.loadURL('{{URL(key)}}')"
                          onHoldSelect="scrobbleMenu('Show', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
               {{COPY(Directory)}}
               <title>{{VAL(title)}}</title>

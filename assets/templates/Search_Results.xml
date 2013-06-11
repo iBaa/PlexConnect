@@ -1,4 +1,8 @@
 <atv>
+  <head>
+    <script src="http://trailers.apple.com/utils.js"/>
+  </head>
+  
   <body>
     <searchResults id="searchResults">
       <menu>
@@ -12,8 +16,8 @@
             </header> 
             <items>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"  
-                             onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}{{PLAY_COMMAND()}})"
-                             onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=MoviePrePlay')"
+                             onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                             onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')"
                              onHoldSelect="scrobbleMenu('Movie', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
                 {{COPY(Video:type::movie=COPY|episode=)}}
                 {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
@@ -32,8 +36,8 @@
             </header> 
             <items>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"  
-                             onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')"
-                             onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')"
+                             onPlay="atv.loadURL('{{URL(key)}}')"
+                             onSelect="atv.loadURL('{{URL(key)}}')"
                              onHoldSelect="scrobbleMenu('Show', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
                 {{COPY(Directory)}}
                 {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
@@ -52,8 +56,8 @@
             </header> 
             <items>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"  
-                             onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}{{PLAY_COMMAND()}})"
-                             onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=MoviePrePlay')"
+                             onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                             onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')"
                              onHoldSelect="scrobbleMenu('Movie', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
                 {{COPY(Video:type::episode=COPY|movie=)}}
                 {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->

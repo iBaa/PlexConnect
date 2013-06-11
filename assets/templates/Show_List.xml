@@ -1,11 +1,11 @@
 <atv>
   <head>
-    <script src="http://trailers.apple.com/updateXML.js"/> 
+    <script src="http://trailers.apple.com/utils.js"/>
     <script src="http://trailers.apple.com/scrobble.js"/>
   </head>
-    
+  
   <body>
-    <listWithPreview id="Show_List" volatile="true" onVolatileReload="reloadPMS_XML('{{getPath()}}')">
+    <listWithPreview id="Show_List" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
       <header>
         <simpleHeader>
           <title>{{VAL(title1)}}</title>
@@ -16,8 +16,8 @@
         <sections>
           <menuSection>
             <items>
-              <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')" 
-                                                 onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')"
+              <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key)}}')" 
+                                                 onSelect="atv.loadURL('{{URL(key)}}')"
                                                  onHoldSelect="scrobbleMenu('Show', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>

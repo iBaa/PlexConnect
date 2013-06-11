@@ -1,10 +1,11 @@
 <atv>
   <head>
+    <script src="http://trailers.apple.com/utils.js"/>
     <script src="http://trailers.apple.com/selectAudioAndSubs.js"/>
-		<script src="http://trailers.apple.com/updateXML.js"/>
   </head>
+  
   <body>
-    <itemDetail id="com.apple.trailer" volatile="true" onVolatileReload="reloadPMS_XML('{{getPath()}}&amp;PlexConnect=EpisodePrePlay')">
+    <itemDetail id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}&amp;PlexConnect=EpisodePrePlay')">
       <title>{{VAL(Video/index)}}. {{VAL(Video/title)}}</title>
       <subtitle>{{VAL(Video/studio)}}</subtitle>
       <rating>{{VAL(Video/contentRating)}}</rating>
@@ -50,7 +51,7 @@
           <sections>
             <shelfSection>
               <items>
-                <actionButton id="play" onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}{{PLAY_COMMAND()}})">
+                <actionButton id="play" onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')">
                   <title>Play</title>
                   <image>resource://Play.png</image>
                   <focusedImage>resource://PlayFocused.png</focusedImage>

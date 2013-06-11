@@ -1,4 +1,8 @@
 <atv>
+  <head>
+    <script src="http://trailers.apple.com/utils.js"/>
+  </head>
+  
   <body>
     <itemDetail id="com.apple.trailers">
 		<title>{{VAL(Video/title)}}</title>
@@ -13,7 +17,7 @@
 			<sections>
 				<shelfSection>
 					<items>
-						<actionButton id="play" onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}{{PLAY_COMMAND()}})">
+						<actionButton id="play" onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')">
 							<title>Play</title>
 							<image>resource://Play.png</image>
               <focusedImage>resource://PlayFocused.png</focusedImage>

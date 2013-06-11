@@ -52,8 +52,6 @@ def setATVSettings(cfg):
     global g_ATVSettings
     g_ATVSettings = cfg
 
-UDID = '007'  # todo: aTV: send UDID, PlexConnect: grab UDID
-
 
 
 # links to CMD class for module wide usage
@@ -177,6 +175,9 @@ def XML_PMS2aTV(address, path, options):
     cmd = ''
     if 'PlexConnect' in options:
         cmd = options['PlexConnect']
+    if not 'PlexConnectUDID' in options:
+        dprint(__name__, 1, "no PlexConnectUDID - pick 007")
+        options['PlexConnectUDID'] = '007'
     
     PMS = XML_ReadFromURL(address, path)
     if PMS==False:
@@ -235,7 +236,7 @@ def XML_PMS2aTV(address, path, options):
         XMLtemplate = 'Settings.xml'
         
         opt = cmd[len('SettingsToggle:'):]  # cut command:
-        g_ATVSettings.toggleSetting(UDID, opt.lower())
+        g_ATVSettings.toggleSetting(options['PlexConnectUDID'], opt.lower())
         dprint(__name__, 2, "ATVSettings->Toggle: {0}", opt)
     
     elif path.startswith('/search?'):
@@ -252,11 +253,11 @@ def XML_PMS2aTV(address, path, options):
         
     elif PMSroot.get('viewGroup')=='show':
         # TV Show grid view
-        XMLtemplate = 'Show_'+g_ATVSettings.getSetting(UDID, 'showview')+'.xml'
+        XMLtemplate = 'Show_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'showview')+'.xml'
         
     elif PMSroot.get('viewGroup')=='season':
         # TV Season view
-        XMLtemplate = 'Season_'+g_ATVSettings.getSetting(UDID, 'seasonview')+'.xml'
+        XMLtemplate = 'Season_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'seasonview')+'.xml'
         
     elif PMSroot.get('viewGroup')=='movie':
         if PMSroot.get('title2')=='By Folder':
@@ -264,7 +265,7 @@ def XML_PMS2aTV(address, path, options):
           XMLtemplate = 'ByFolder.xml'
         else:
           # Movie listing
-          XMLtemplate = 'Movie_'+g_ATVSettings.getSetting(UDID, 'movieview')+'.xml'
+          XMLtemplate = 'Movie_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'movieview')+'.xml'
         
     elif PMSroot.get('viewGroup')=='episode':
         if PMSroot.get('title2')=='On Deck' or \
@@ -447,27 +448,34 @@ def XML_ExpandLine(src, srcXML, line):
 # PlexAPI
 """
 def PlexAPI_getTranscodePath(options, path):
+    UDID = options['PlexConnectUDID']
     transcodePath = '/video/:/transcode/universal/start.m3u8?'
-    quality = { '1080p 12.0Mbps' :('1920x1080', '90', '12000'), \
-                '480p 2.0Mbps' :('720x480', '60', '2000'), \
+    
+    quality = { '480p 2.0Mbps' :('720x480', '60', '2000'), \
                 '720p 3.0Mbps' :('1280x720', '75', '3000'), \
                 '720p 4.0Mbps' :('1280x720', '100', '4000'), \
                 '1080p 8.0Mbps' :('1920x1080', '60', '8000'), \
-                '1080p 10.0Mbps' :('1920x1080', '75', '10000') }
+                '1080p 10.0Mbps' :('1920x1080', '75', '10000'), \
+                '1080p 12.0Mbps' :('1920x1080', '90', '12000'), \
+                '1080p 20.0Mbps' :('1920x1080', '100', '20000'), \
+                '1080p 40.0Mbps' :('1920x1080', '100', '40000') }
     setQuality = g_ATVSettings.getSetting(UDID, 'transcodequality')
     vRes = quality[setQuality][0]
     vQ = quality[setQuality][1]
     mVB = quality[setQuality][2]
     dprint(__name__, 1, "Setting transcode quality Res:{0} Q:{1} {2}Mbps", vRes, vQ, mVB)
-    dprint(__name__, 1, "Subtitle size: {0}", g_ATVSettings.getSetting(UDID, 'subtitlesize'))
+    sS = g_ATVSettings.getSetting(UDID, 'subtitlesize')
+    dprint(__name__, 1, "Subtitle size: {0}", sS)
+    
     args = dict()
+    args['session'] = UDID
     args['protocol'] = 'hls'
-    args['videoResolution'] = vRes # '1920x1080' # Base it on AppleTV model?
+    args['videoResolution'] = vRes
+    args['maxVideoBitrate'] = mVB
+    args['videoQuality'] = vQ
     args['directStream'] = '1'
     args['directPlay'] = '0'
-    args['maxVideoBitrate'] = mVB # '12000'
-    args['videoQuality'] = vQ # '90'
-    args['subtitleSize'] = g_ATVSettings.getSetting(UDID, 'subtitlesize')
+    args['subtitleSize'] = sS
     args['audioBoost'] = '100'
     args['fastSeek'] = '1'
     args['path'] = path
@@ -481,9 +489,6 @@ def PlexAPI_getTranscodePath(options, path):
     xargs['X-Plex-Platform'] = 'iOS'
     xargs['X-Plex-Product'] = 'Plex Connect'
     xargs['X-Plex-Platform-Version'] = '5.3' # Base it on AppleTV.
-    
-    if options.has_key('PlexConnectUDID'):
-        args['session'] = options['PlexConnectUDID']
     
     return transcodePath + urlencode(args) + '&' + urlencode(xargs)
 
@@ -530,6 +535,7 @@ class CCommandHelper():
         
         el, srcXML, attrib = self.getBase(src, srcXML, attrib)         
         
+        UDID = self.options['PlexConnectUDID']
         # walk the path if neccessary
         while '/' in attrib and el!=None:
             parts = attrib.split('/',1)
@@ -719,6 +725,7 @@ class CCommandCollection(CCommandHelper):
     
     def ATTRIB_SETTING(self, src, srcXML, param):
         opt, leftover = self.getParam(src, param)
+        UDID = self.options['PlexConnectUDID']
         return g_ATVSettings.getSetting(UDID, opt)
     
     def ATTRIB_ADDPATH(self, src, srcXML, param):
@@ -755,13 +762,13 @@ class CCommandCollection(CCommandHelper):
     def ATTRIB_URL(self, src, srcXML, param):
         key, leftover, dfltd = self.getKey(src, srcXML, param)
         if key.startswith('/'):  # internal full path.
-            res = 'http://' + g_param['Addr_PMS'] + key
+            res = 'http://' + g_param['HostToIntercept'] + key
         elif key.startswith('http://'):  # external address
             res = key
         elif key == '':  # internal path
-            res = 'http://' + g_param['Addr_PMS'] + self.path[srcXML]
+            res = 'http://' + g_param['HostToIntercept'] + self.path[srcXML]
         else:  # internal path, add-on
-            res = 'http://' + g_param['Addr_PMS'] + self.path[srcXML] + '/' + key
+            res = 'http://' + g_param['HostToIntercept'] + self.path[srcXML] + '/' + key
         return res
     
     def ATTRIB_MEDIAURL(self, src, srcXML, param):
@@ -773,6 +780,7 @@ class CCommandCollection(CCommandHelper):
         
         # check "Media" element and get key
         if el!=None:  # Media
+            UDID = self.options['PlexConnectUDID']
             if el.get('container')=='mp3':
                 res = el.find('Part').get('key','')
             elif g_ATVSettings.getSetting(UDID, 'forcedirectplay')=='True' or \

@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <atv>
+  <head>
+    <script src="http://trailers.apple.com/utils.js" />
+  </head>
+  
  	<body>
 		<scroller id="com.sample.movie-shelf">
 			<items>
-				<shelf id="shelf_1" columnCount="3">
+				<shelf id="shelf_1" columnCount="4">
 					<sections>
 						<shelfSection>
 							<items>
