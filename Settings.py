@@ -16,11 +16,11 @@ HTTP: ip_httpforward, port_httpforward
 """
 g_settings = { \
     'enable_plexgdm'  :('True', 'False'), \
-    'ip_pms'          :('192.168.178.10',), \
+    'ip_pms'          :('192.168.178.34',), \
     'port_pms'        :('32400',), \
     \
     'enable_dnsserver':('True', 'False'), \
-    'ip_dnsmaster'    :('8.8.8.8',), \
+    'ip_dnsmaster'    :('192.168.178.1',), \
     }
 
 
