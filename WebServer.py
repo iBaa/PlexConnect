@@ -69,8 +69,10 @@ class MyHandler(BaseHTTPRequestHandler):
             dprint(__name__, 2, "cleaned path:\n{0}", self.path)
             dprint(__name__, 2, "request options:\n{0}", options)
             
-            if self.headers['Host'] == g_param['HostToIntercept'] and \
-               self.headers['User-Agent'].startswith("iTunes-AppleTV"):
+            if 'Host' in self.headers and \
+               'User-Agent' in self.headers and \
+               self.headers['Host'] == g_param['HostToIntercept'] and \
+               'AppleTV' in self.headers['User-Agent']:
                                     
                 # recieve simple logging messages from the ATV
                 if self.path.endswith("&atvlogger"):
