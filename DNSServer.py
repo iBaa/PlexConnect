@@ -84,6 +84,8 @@ def printDNSPaket(paket):
 
 
 def Run(cmdQueue, param):
+    dinit(__name__, param)  # init logging, DNSServer process
+    
     try:
         DNS = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         DNS.settimeout(5.0)

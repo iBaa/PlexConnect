@@ -167,6 +167,8 @@ class MyHandler(BaseHTTPRequestHandler):
 
 
 def Run(cmdQueue, param):
+    dinit(__name__, param)  # init logging, WebServer process
+    
     #Protocol     = "HTTP/1.0"
     # todo: IP, port
     try:

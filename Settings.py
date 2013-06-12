@@ -21,6 +21,8 @@ g_settings = { \
     \
     'enable_dnsserver':('True', 'False'), \
     'ip_dnsmaster'    :('8.8.8.8',), \
+    \
+    'loglevel'        :('Normal', 'High') \
     }
 
 
@@ -78,7 +80,7 @@ class CSettings():
     
     # access/modify PlexConnect settings
     def getSetting(self, option):
-        dprint(__name__, 1, "getsetting {0}", self.cfg.get(self.section, option))
+        dprint(__name__, 1, "getsetting {0}={1}", option, self.cfg.get(self.section, option))
         return self.cfg.get(self.section, option)
 
 

@@ -9,6 +9,7 @@ inter-process-communication (queue): http://pymotw.com/2/multiprocessing/communi
 
 
 import sys, time
+from os import sep
 import socket
 from multiprocessing import Process, Queue
 
@@ -28,18 +29,26 @@ def getIP_self():
 
 
 if __name__=="__main__":
+    param = {}
+    param['LogFile'] = sys.path[0] + sep + 'PlexConnect.log'
+    dinit('PlexConnect', param, True)  # init logging, new file, main process
+
     dprint('PlexConnect', 0, "***")
     dprint('PlexConnect', 0, "PlexConnect")
     dprint('PlexConnect', 0, "Press ENTER to shut down.")
     dprint('PlexConnect', 0, "***")
     
+    # Settings
     cfg = Settings.CSettings()
+    
+    # Logfile, re-init
+    param['LogLevel'] = cfg.getSetting('loglevel')
+    dinit('PlexConnect', param)  # re-init logfile with loglevel
     
     if cfg.getSetting('enable_dnsserver')=='True':
         cmd_DNSServer = Queue()
     cmd_WebServer = Queue()
     
-    param = {}
     param['IP_self'] = getIP_self()
     param['IP_DNSMaster'] = cfg.getSetting('ip_dnsmaster')
     param['HostToIntercept'] = 'trailers.apple.com'
