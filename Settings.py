@@ -21,6 +21,9 @@ g_settings = { \
     \
     'enable_dnsserver':('True', 'False'), \
     'ip_dnsmaster'    :('8.8.8.8',), \
+    \
+    'http_port'       :('80',), \
+    'http_ip'         :('0.0.0.0',), \
     }
 
 

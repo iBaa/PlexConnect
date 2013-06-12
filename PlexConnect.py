@@ -47,6 +47,8 @@ if __name__=="__main__":
     # default PMS
     param['IP_PMS'] = cfg.getSetting('ip_pms')
     param['Port_PMS'] = cfg.getSetting('port_pms')
+    param['HTTP_IP'] = cfg.getSetting('http_ip')
+    param['HTTP_Port'] = int(cfg.getSetting('http_port'))
     param['Addr_PMS'] = param['IP_PMS']+':'+param['Port_PMS']
     
     if cfg.getSetting('enable_plexgdm')=='True':
@@ -72,8 +74,9 @@ if __name__=="__main__":
     time.sleep(0.1)
     if not p_WebServer.is_alive():
         dprint('PlexConnect', 0, "WebServer not alive. Shutting down.")
-        cmd_DNSServer.put('shutdown')
-        p_DNSServer.join()
+        if cfg.getSetting('enable_dnsserver')=='True':
+            cmd_DNSServer.put('shutdown')
+            p_DNSServer.join()
         sys.exit(1)
     
     try:
