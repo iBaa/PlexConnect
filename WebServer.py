@@ -22,6 +22,7 @@ except ImportError:
 import ATVSettings
 from Debug import *  # dprint()
 import XMLConverter  # XML_PMS2aTV, XML_PlayVideo
+import Settings
 
 
 
@@ -168,13 +169,16 @@ class MyHandler(BaseHTTPRequestHandler):
 
 def Run(cmdQueue, param):
     #Protocol     = "HTTP/1.0"
-    # todo: IP, port
+    settingscfg = Settings.CSettings()
+    ip = settingscfg.getSetting('ip_httpserver')
+    port = int(settingscfg.getSetting('port_httpserver'))
+
     try:
-        server = HTTPServer(('',80), MyHandler)
+        server = HTTPServer((ip, port), MyHandler)
         server.timeout = 1
         sa = server.socket.getsockname()
     except Exception, e:
-        dprint(__name__, 0, "Failed to connect to port 80 (http): {0}", e)
+        dprint(__name__, 0, "Failed to connect to port {0} (http): {1}", port, e)
         sys.exit(1)
         
     dprint(__name__, 0, "***")

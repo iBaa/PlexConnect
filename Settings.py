@@ -12,7 +12,7 @@ from Debug import *  # dprint()
 Global Settings...
 PMS: plexgdm, ip_pms, port_pms
 DNS: ip_dnsmaster - IP of Router, ISP's DNS, ... [dflt: google public DNS]
-HTTP: ip_httpforward, port_httpforward
+HTTP: ip_httpserver, port_httpserver
 """
 g_settings = { \
     'enable_plexgdm'  :('True', 'False'), \
@@ -21,6 +21,9 @@ g_settings = { \
     \
     'enable_dnsserver':('True', 'False'), \
     'ip_dnsmaster'    :('8.8.8.8',), \
+    \
+    'ip_httpserver'    :('',), \
+    'port_httpserver'    :('80',), \
     }
 
 
