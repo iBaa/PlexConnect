@@ -1,5 +1,6 @@
 <atv>
   <head>
+    <script src="http://trailers.apple.com/utils.js"/>
     <script src="http://trailers.apple.com/photo.js"/>
   </head>
   
@@ -18,7 +19,7 @@
       </header>
       <items>
         <!--directory-->
-        <photo id="{{VAL(ratingKey)}}" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')">
+        <photo id="{{VAL(ratingKey)}}" onSelect="atv.loadURL('URL(key)}}')">
           {{COPY(Directory)}}
           <assets>
             <photoAsset width="0" height="0" src="http://trailers.apple.com/thumbnails/PhotoFolder.png"/>{{CUT(Media/Part/key::=CUT)}}
@@ -36,7 +37,7 @@
             <photoAsset width="0" height="0" src="{{IMAGEURL(Media/Part/key)}}"/>
           </assets>
           <stash>
-            <url>{{URL(Media/Part/key)}}</url>
+            <url>http://{{ADDR_PMS()}}{{ADDPATH(Media/Part/key)}}</url>
             <directory>false</directory>
           </stash>
         </photo>
@@ -49,7 +50,7 @@
             <photoAsset width="0" height="0" src="{{IMAGEURL(key)}}"/>
           </assets>
           <stash>
-            <url>{{URL(key)}}</url>
+            <url>http://{{ADDR_PMS()}}{{ADDPATH(key)}}</url>
             <directory>false</directory>
           </stash>
           </photo>

@@ -1,10 +1,11 @@
 <atv>
   <head>
-    <script src="http://trailers.apple.com/updateXML.js"/> 
+    <script src="http://trailers.apple.com/utils.js"/>
+    <script src="http://trailers.apple.com/updateXML.js"/>
   </head>
     
   <body>
-    <listWithPreview id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="reloadPMS_XML('{{getPath()}}')">
+    <listWithPreview id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
       <header>
         <simpleHeader>
           <title>{{VAL(title1)}}</title>
@@ -16,8 +17,8 @@
           <menuSection>
             <items>
               <twoLineEnhancedMenuItem id="{{VAL(key)}}" 
-                                       onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}{{PLAY_COMMAND()}})"
-                                       onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}{{PLAY_COMMAND()}})">
+                                       onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                                       onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')">
                 {{COPY(Video)}}
                 <label>{{VAL(grandparentTitle)}}</label>
                 <label2>{{episodestring(parentIndex:0:index:0:title:"default")}}</label2>

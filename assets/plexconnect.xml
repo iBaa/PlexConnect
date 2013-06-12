@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <atv>
+  <head>
+    <script src="http://trailers.apple.com/utils.js" />
+  </head>
+  
  	<body>
-		<viewWithNavigationBar id="PlexConnect_Navigation">
+		<viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadMenuPage(event)">
 			<navigation>
 				<navigationItem id="Library">
 					<title>Library</title> 

@@ -1,11 +1,11 @@
 <atv>
   <head>
-    <script src="http://trailers.apple.com/updateXML.js"/>
-    <script src="http://trailers.apple.com/scrobble.js"/>    
+    <script src="http://trailers.apple.com/utils.js"/>
+    <script src="http://trailers.apple.com/scrobble.js"/>
   </head>
-    
+  
   <body>
-    <listWithPreview id="Movie_List" volatile="true" onVolatileReload="reloadPMS_XML('{{getPath()}}')">
+    <listWithPreview id="Movie_List" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
       <header>
         <simpleHeader>
           <title>{{VAL(title1)}}</title>
@@ -18,8 +18,8 @@
           <menuSection>
             <items>
               <oneLineMenuItem id="{{VAL(key)}}"  
-                             onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}{{PLAY_COMMAND()}})"
-                             onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=MoviePrePlay')"
+                             onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                             onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')"
                              onHoldSelect="scrobbleMenu('Movie', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
                 {{COPY(Video)}}
                 <label>{{VAL(title)}}</label>

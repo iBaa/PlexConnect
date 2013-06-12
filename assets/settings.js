@@ -49,7 +49,7 @@ function toggleSettings(opt) {
     if (!dispval) return undefined;  // error - element not found
     
     // read new XML
-    var url = "http://trailers.apple.com/&PlexConnect=SettingsToggle:"+opt
+    var url = "http://trailers.apple.com/&PlexConnect=SettingsToggle:"+opt+"&PlexConnectUDID="+atv.device.udid
     var req = new XMLHttpRequest();
     req.open('GET', url, false);
     req.send();

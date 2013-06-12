@@ -1,4 +1,8 @@
 <atv>
+  <head>
+    <script src="http://trailers.apple.com/utils.js"/>
+  </head>
+  
   <body>
     <listWithPreview id="com.sample.menu-items-with-sections">
       <header>
@@ -17,8 +21,8 @@
 		      <menuSection>
 		        <items>
               <oneLineMenuItem id="{{VAL(ratingKey)}}"   
-															onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}{{MUSICPLAY_COMMAND()}})"
-                              onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}{{MUSICPLAY_COMMAND()}})"> 
+                               onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';atv.loadURL('{{URL(key)}}{{MUSICPLAY_COMMAND()}})"
+                               onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';atv.loadURL('{{URL(key)}}{{MUSICPLAY_COMMAND()}})"> 
                 {{COPY(Track)}}
                 <label>{{VAL(title)}}</label>
                 <ordinal>{{VAL(index)}}</ordinal>

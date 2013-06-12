@@ -1,4 +1,8 @@
 <atv>
+  <head>
+    <script src="http://trailers.apple.com/utils.js"/>
+  </head>
+  
   <body>
     <listWithPreview id="com.sample.menu-items-with-sections">
       <header>
@@ -13,8 +17,8 @@
             <items>
               <!-- channel media -->
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"
-                                       onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}{{PLAY_COMMAND()}})"
-                                       onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=ChannelPrePlay')">
+                                       onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                                       onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelPrePlay')">
                 {{COPY(Video)}}
                 <label>{{VAL(title)}}</label>
                 <image>{{IMAGEURL(thumb)}}</image>
@@ -29,8 +33,8 @@
               </twoLineEnhancedMenuItem>
               <!-- channel directories -->
               <twoLineEnhancedMenuItem id="{{VAL(key)}}" 
-                                       onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=ChannelsVideo')" 
-                                       onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=ChannelsVideo')">
+                                       onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelsVideo')" 
+                                       onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelsVideo')">
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>
                 <!--
