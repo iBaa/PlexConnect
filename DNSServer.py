@@ -65,6 +65,46 @@ from Debug import *  # dprint()
 
 
 
+"""
+ Hostname/DNS conversion
+ Hostname: 'Hello.World'
+ DNSdata:  '<len(Hello)>Hello<len(World)>World<NULL>
+"""
+def HostToDNS(Host):
+    DNSdata = '.'+Host+'\0'  # python 2.6: bytearray()
+    i=0
+    while i<len(DNSdata)-1:
+        next = DNSdata.find('.',i+1)
+        if next==-1:
+            next = len(DNSdata)-1
+        DNSdata = DNSdata[:i] + chr(next-i-1) + DNSdata[i+1:]  # python 2.6: DNSdata[i] = next-i-1
+        i = next
+    
+    return DNSdata
+
+def DNSToHost(DNSdata):
+    i=0
+    Host = ''
+    while DNSdata[i]!='\0':
+        nlen = ord(DNSdata[i])
+        Host+=DNSdata[i+1:i+nlen+1]+'.'
+        i+=nlen+1
+    Host=Host[:-1] 
+    
+    return Host
+
+def DNSstring(DNSdata):
+    i=0
+    res = ''
+    while DNSdata[i]!='\0':
+        nlen = ord(DNSdata[i])
+        res = res+'<'+str(nlen)+'>'+DNSdata[i+1:i+nlen+1]
+        i+=nlen+1
+    res = res+'<0>'
+    return res
+
+
+
 def printDNSPaket(paket):
     print "***Paket"
     print "ID {0:04x}".format((ord(data[0])<<8)+ord(data[1]))
