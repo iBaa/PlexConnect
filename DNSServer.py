@@ -82,15 +82,16 @@ def HostToDNS(Host):
     
     return DNSdata
 
-def DNSToHost(DNSdata):
-    i=0
+def DNSToHost(DNSdata, i=12):
     Host = ''
     while DNSdata[i]!='\0':
         nlen = ord(DNSdata[i])
-        Host+=DNSdata[i+1:i+nlen+1]+'.'
-        i+=nlen+1
-    Host=Host[:-1] 
-    
+        if nlen & 0xC0:
+            i = ((ord(DNSdata[i]) & 0x3F)<<8) + ord(DNSdata[i+1])
+        else:
+            Host = Host + DNSdata[i+1:i+nlen+1]+'.'
+            i+=nlen+1
+    Host = Host[:-1]
     return Host
 
 def DNSstring(DNSdata):
@@ -172,13 +173,7 @@ def Run(cmdQueue, param):
                 # todo: how about multi-query messages?
                 opcode = (ord(data[2]) >> 3) & 0x0F # Opcode bits (query=0, inversequery=1, status=2)
                 if opcode == 0:                     # Standard query
-                    domain=''
-                    i=12
-                    while data[i]!='\0':
-                        nlen = ord(data[i])
-                        domain+=data[i+1:i+nlen+1]+'.'
-                        i+=nlen+1
-                    domain=domain[:-1] 
+                    domain = DNSToHost(data, 12)
                     dprint(__name__, 1, "Domain: "+domain)
                 
                 paket=''
