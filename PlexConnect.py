@@ -53,6 +53,9 @@ if __name__=="__main__":
     param['IP_DNSMaster'] = cfg.getSetting('ip_dnsmaster')
     param['HostToIntercept'] = 'trailers.apple.com'
     
+    param['IP_WebServer'] = cfg.getSetting('ip_webserver')
+    param['Port_WebServer'] = int(cfg.getSetting('port_webserver'))
+    
     # default PMS
     param['IP_PMS'] = cfg.getSetting('ip_pms')
     param['Port_PMS'] = cfg.getSetting('port_pms')
