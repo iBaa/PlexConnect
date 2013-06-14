@@ -72,8 +72,11 @@ function selectArtwork(addrPMS, ratingKey) {
 		var poster = posters[i];
 		var posterThumb = poster.getAttribute('thumb');
 		var posterURL = poster.getAttribute('key');
-		xml = xml + '<goldenPoster id="poster" onSelect="loadNewArtwork(\'' + addrPMS + '\', \'' + ratingKey + '\', \'' + posterURL + '\');atv.unloadPage();">';
-		xml = xml + '<title></title><image>http://' + addrPMS + posterThumb + '</image>';
+		var selected = poster.getAttribute('selected');
+		var title = '';
+		if (selected == '1') title = 'Current Artwork';
+		xml = xml + '<goldenPoster id="poster" alwaysShowTitles="true" onSelect="loadNewArtwork(\'' + addrPMS + '\', \'' + ratingKey + '\', \'' + posterURL + '\');atv.unloadPage();">';
+		xml = xml + '<title>' + title + '</title><image>http://' + addrPMS + posterThumb + '</image>';
 		xml = xml + '<defaultImage>resource://Poster.png</defaultImage></goldenPoster>';
 	};
 	xml = xml + '</items></shelfSection></sections></shelf><collectionDivider alignment="left"><title></title> \
