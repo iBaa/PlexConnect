@@ -740,7 +740,7 @@ class CCommandCollection(CCommandHelper):
 
     def ATTRIB_BIGIMAGEURL(self, src, srcXML, param):
         key, leftover, dfltd = self.getKey(src, srcXML, param)
-        return self.imageUrl(self.path[srcXML], key, 512, 512)
+        return self.imageUrl(self.path[srcXML], key, 768, 768)
     
     def ATTRIB_IMAGEURL(self, src, srcXML, param):
         key, leftover, dfltd = self.getKey(src, srcXML, param)
