@@ -13,4 +13,4 @@ from subprocess import call
 data = sys.stdin.read()
 last_date = call('git log --pretty=format:"%ad" -1', shell=True)
 
-sys.stdout.write(data.replace('$Date$', '$Date: ' + last_date.to_s + '$'))
+sys.stdout.write(data.replace('$Date$', '$Date: ' + last_date + '$'))
