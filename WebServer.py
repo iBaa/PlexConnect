@@ -170,7 +170,7 @@ def Run(cmdQueue, param):
     #Protocol     = "HTTP/1.0"
     # todo: IP, port
     try:
-        server = HTTPServer((param['IP_WebServer'],int(param['Port_WebServer'])), MyHandler)
+        server = HTTPServer((param['IP_WebServer'],param['Port_WebServer']), MyHandler)
         server.timeout = 1
         sa = server.socket.getsockname()
     except Exception, e:
@@ -213,9 +213,5 @@ def Run(cmdQueue, param):
 
 if __name__=="__main__":
     cmd = Queue.Queue()
-    
-    param = {}
-    param['IP_WebServer'] = '0.0.0.0'
-    param['Port_WebServer'] = '80'
     
     Run(cmd, param)
