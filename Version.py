@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+# export-subst
 """
 Option  Description of Output
 %H  Commit hash
@@ -23,3 +24,6 @@ last_commit = '$Format:%cd$'
 commit_hash = '$Format:%H$'
 tree_hash = '$Format:%T$'
 parent_hashes = '$Format:%P$'
+
+# filter
+date ='$Date$'
