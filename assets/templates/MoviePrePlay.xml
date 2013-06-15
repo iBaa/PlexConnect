@@ -69,7 +69,7 @@
                   <focusedImage>resource://PlayFocused.png</focusedImage>
                   <!--<badge></badge>-->
                 </actionButton>
-                <actionButton id="selectAudioAndSubs" onSelect="selectAudioAndSubs('{{ADDR_PMS()}}', '{{VAL(Video/Media/Part/id)}}')">
+                <actionButton id="selectAudioAndSubs" onSelect="selectAudioAndSubs('{{ADDR_PMS()}}', '{{VAL(Video/Media/Part/id)}}', '{{getPath()}}')">
                   <title>Audio/Subs</title>
                   <image>resource://Queue.png</image>
                   <focusedImage>resource://QueueFocused.png</focusedImage>
@@ -80,17 +80,6 @@
                   <focusedImage>resource://MoreFocused.png</focusedImage>
                 </actionButton>
               </items>
-              <stash>
-                <stream> 
-                  {{COPY(Video/Media/Part/Stream)}}
-                  <id>{{VAL(id:0)}}</id>
-                  <language>{{VAL(language:Unknown)}}</language>
-                  <format>{{VAL(format:UNK)}}</format>
-                  <codec>{{VAL(codec)}}</codec>
-                  <streamType>{{VAL(streamType:0)}}</streamType>
-									<selected>{{VAL(selected:0)}}</selected>
-                </stream>
-              </stash>
             </shelfSection>
           </sections>
         </shelf>
