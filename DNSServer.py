@@ -65,6 +65,47 @@ from Debug import *  # dprint()
 
 
 
+"""
+ Hostname/DNS conversion
+ Hostname: 'Hello.World'
+ DNSdata:  '<len(Hello)>Hello<len(World)>World<NULL>
+"""
+def HostToDNS(Host):
+    DNSdata = '.'+Host+'\0'  # python 2.6: bytearray()
+    i=0
+    while i<len(DNSdata)-1:
+        next = DNSdata.find('.',i+1)
+        if next==-1:
+            next = len(DNSdata)-1
+        DNSdata = DNSdata[:i] + chr(next-i-1) + DNSdata[i+1:]  # python 2.6: DNSdata[i] = next-i-1
+        i = next
+    
+    return DNSdata
+
+def DNSToHost(DNSdata, i=12):
+    Host = ''
+    while DNSdata[i]!='\0':
+        nlen = ord(DNSdata[i])
+        if nlen & 0xC0:
+            i = ((ord(DNSdata[i]) & 0x3F)<<8) + ord(DNSdata[i+1])
+        else:
+            Host = Host + DNSdata[i+1:i+nlen+1]+'.'
+            i+=nlen+1
+    Host = Host[:-1]
+    return Host
+
+def DNSstring(DNSdata):
+    i=0
+    res = ''
+    while DNSdata[i]!='\0':
+        nlen = ord(DNSdata[i])
+        res = res+'<'+str(nlen)+'>'+DNSdata[i+1:i+nlen+1]
+        i+=nlen+1
+    res = res+'<0>'
+    return res
+
+
+
 def printDNSPaket(paket):
     print "***Paket"
     print "ID {0:04x}".format((ord(data[0])<<8)+ord(data[1]))
@@ -132,13 +173,7 @@ def Run(cmdQueue, param):
                 # todo: how about multi-query messages?
                 opcode = (ord(data[2]) >> 3) & 0x0F # Opcode bits (query=0, inversequery=1, status=2)
                 if opcode == 0:                     # Standard query
-                    domain=''
-                    i=12
-                    while data[i]!='\0':
-                        nlen = ord(data[i])
-                        domain+=data[i+1:i+nlen+1]+'.'
-                        i+=nlen+1
-                    domain=domain[:-1] 
+                    domain = DNSToHost(data, 12)
                     dprint(__name__, 1, "Domain: "+domain)
                 
                 paket=''

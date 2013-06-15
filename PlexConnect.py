@@ -53,6 +53,9 @@ if __name__=="__main__":
     param['IP_DNSMaster'] = cfg.getSetting('ip_dnsmaster')
     param['HostToIntercept'] = 'trailers.apple.com'
     
+    param['IP_WebServer'] = cfg.getSetting('ip_webserver')
+    param['Port_WebServer'] = int(cfg.getSetting('port_webserver'))
+    
     # default PMS
     param['IP_PMS'] = cfg.getSetting('ip_pms')
     param['Port_PMS'] = cfg.getSetting('port_pms')
@@ -81,6 +84,7 @@ if __name__=="__main__":
     time.sleep(0.1)
     if not p_WebServer.is_alive():
         dprint('PlexConnect', 0, "WebServer not alive. Shutting down.")
-        cmd_DNSServer.put('shutdown')
-        p_DNSServer.join()
+        if cfg.getSetting('enable_dnsserver')=='True':
+            cmd_DNSServer.put('shutdown')
+            p_DNSServer.join()
         sys.exit(1)

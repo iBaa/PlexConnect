@@ -29,8 +29,8 @@
             </header> 
             <items>
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"
-                                       onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=ChannelsVideo')" 
-                                       onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=ChannelsVideo')">
+                                       onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelsVideo')" 
+                                       onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelsVideo')">
                 {{COPY(@VideoChannels/Directory)}}
                 <label>{{VAL(title)}}</label>
                 <image>{{IMAGEURL(thumb)}}</image>
@@ -52,8 +52,8 @@
             </header> 
             <items>
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"
-                                       onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')" 
-                                       onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')">
+                                       onPlay="atv.loadURL('{{URL(key)}}')" 
+                                       onSelect="atv.loadURL('{{URL(key)}}')">
                 {{COPY(@AudioChannels/Directory)}}
                 <label>{{VAL(title)}}</label>
                 <image>{{IMAGEURL(thumb)}}</image>
@@ -75,8 +75,8 @@
             </header> 
             <items>
               <twoLineEnhancedMenuItem id="{{VAL(key)}}" 
-                                       onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')" 
-                                       onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')">
+                                       onPlay="atv.loadURL('{{URL(key)}}')" 
+                                       onSelect="atv.loadURL('{{URL(key)}}')">
                 {{COPY(@PhotoChannels/Directory)}}
                 <label>{{VAL(title)}}</label>
                 <image>{{IMAGEURL(thumb)}}</image>

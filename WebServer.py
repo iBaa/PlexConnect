@@ -69,9 +69,7 @@ class MyHandler(BaseHTTPRequestHandler):
             dprint(__name__, 2, "cleaned path:\n{0}", self.path)
             dprint(__name__, 2, "request options:\n{0}", options)
             
-            if 'Host' in self.headers and \
-               'User-Agent' in self.headers and \
-               self.headers['Host'] == g_param['HostToIntercept'] and \
+            if 'User-Agent' in self.headers and \
                'AppleTV' in self.headers['User-Agent']:
                                     
                 # recieve simple logging messages from the ATV
@@ -172,11 +170,11 @@ def Run(cmdQueue, param):
     #Protocol     = "HTTP/1.0"
     # todo: IP, port
     try:
-        server = HTTPServer(('',80), MyHandler)
+        server = HTTPServer((param['IP_WebServer'],int(param['Port_WebServer'])), MyHandler)
         server.timeout = 1
         sa = server.socket.getsockname()
     except Exception, e:
-        dprint(__name__, 0, "Failed to connect to port 80 (http): {0}", e)
+        dprint(__name__, 0, "Failed to connect to HTTP on {0} port {1}: {2}", param['IP_WebServer'], param['Port_WebServer'], e)
         sys.exit(1)
         
     dprint(__name__, 0, "***")
@@ -215,4 +213,9 @@ def Run(cmdQueue, param):
 
 if __name__=="__main__":
     cmd = Queue.Queue()
-    Run(cmd)
+    
+    param = {}
+    param['IP_WebServer'] = '0.0.0.0'
+    param['Port_WebServer'] = '80'
+    
+    Run(cmd, param)

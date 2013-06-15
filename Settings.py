@@ -22,6 +22,10 @@ g_settings = { \
     'enable_dnsserver':('True', 'False'), \
     'ip_dnsmaster'    :('8.8.8.8',), \
     \
+    
+    'ip_webserver'    :('0.0.0.0',), \
+    'port_webserver'  :('80',), \
+    \
     'loglevel'        :('Normal', 'High') \
     }
 
