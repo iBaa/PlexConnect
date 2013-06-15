@@ -26,4 +26,4 @@ tree_hash = '$Format:%T$'
 parent_hashes = '$Format:%P$'
 
 # filter
-date ='$Date: Sat Jun 15 21:23:33 2013 +0200$'
+date ='$Date$'
