@@ -1,0 +1,6 @@
+# /etc/conf.d/plexconnect: config file for /etc/init.d/plexconnect
+
+PLEXCONNECT_PATH= # where your PlexConnect repo is
+PLEXCONNECT_LOG=/var/log/pms/plexconnect-out.log
+PLEXCONNECT_ERROR_LOG=/var/log/pms/plexconnect-err.log
+PLEXCONNECT_PID=/var/run/plexconnect.pid

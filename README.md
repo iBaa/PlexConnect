@@ -28,6 +28,21 @@ The basic idea is, to...
   ```
   > If you don't have Git, you can download [ZIP][] file and extract files to a local directory.
 
+### Gentoo sexyness
+- Install plex-media-server from an overlay (I used luman's and 0.9.7.12)
+- Copy these init scripts:
+  ```sh
+  cd PlexConnect/gentoo
+  cp -R etc /
+  ```
+- Open /etc/conf.d/plexconnect, set PLEXCONNECT_PATH to where PlexConnect/ resides
+- Add it on boot:
+   ```sh
+   # If you haven't added Plex Media Server to start up before
+   rc-update add plex-media-server default
+   # Add PlexConnect. This will start right after Plex Media Server starts
+   rc-update add plexconnect default
+   ```
 
 ## Usage
 - in ```Settings.py```, adapt the IP addresses to your local setup
