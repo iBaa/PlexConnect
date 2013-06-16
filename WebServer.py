@@ -40,6 +40,9 @@ class MyHandler(BaseHTTPRequestHandler):
       #return socket.getfqdn(host)
       return host
       
+    def log_message(self, format, *args):
+      pass
+    
     def do_GET(self):
         try:
             dprint(__name__, 2, "http request header:\n{0}", self.headers)
