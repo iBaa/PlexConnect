@@ -1,0 +1,2915 @@
+192.168.0.9 - - [17/Jun/2013 21:00:22] "GET /appletv/application.js HTTP/1.1" 200 -
+192.168.0.9 - - [17/Jun/2013 21:00:22] "GET /plexconnect_oldmenu.xml HTTP/1.1" 200 -
+192.168.0.9 - - [17/Jun/2013 21:00:22] "GET /utils.js HTTP/1.1" 200 -
+192.168.0.9 - - [17/Jun/2013 21:00:25] "GET /loadURL%20(override):%20http:&fs;&fs;trailers.apple.com&fs;library&fs;sections&atvlogger HTTP/1.1" 200 -
+192.168.0.9 - - [17/Jun/2013 21:00:25] "GET /library/sections&PlexConnectUDID=C07FDZKWDDR5 HTTP/1.1" 200 -
+192.168.0.9 - - [17/Jun/2013 21:00:25] "GET /utils.js HTTP/1.1" 200 -
+PlexConnect: started: 21:00:13
+PlexConnect: ***
+PlexConnect: PlexConnect
+PlexConnect: Press ENTER to shut down.
+PlexConnect: ***
+PlexConnect: started: 21:00:13
+PlexConnect: IP_self: 192.168.0.9
+PlexGDM: ***
+PlexGDM: looking up Plex Media Server
+PlexGDM: ***
+PlexGDM: servers discovered: 2
+PlexConnect: PMS: 192.168.0.10:32400
+DNSServer: started: 21:00:14
+DNSServer: ***
+DNSServer: Starting up.
+DNSServer: intercept trailers.apple.com: 192.168.0.9
+DNSServer: forward other to higher level DNS: 8.8.8.8
+DNSServer: ***
+WebServer: started: 21:00:14
+WebServer: ***
+WebServer: WebServer: Serving HTTP on 0.0.0.0 port 81.
+WebServer: ***
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 63120)
+DNSServer: Domain: trailers.apple.com
+DNSServer: ***intercept request
+DNSServer: -> DNS response: 192.168.0.9
+WebServer: serving application.js
+WebServer: serving /volume1/homes/bwynants/PlexConnect/assets/plexconnect_oldmenu.xml
+WebServer: serving  /volume1/homes/bwynants/PlexConnect/assets/utils.js
+ATVLogger: loadURL (override): http://trailers.apple.com/library/sections
+WebServer: serving .xml: /library/sections
+WebServer: serving  /volume1/homes/bwynants/PlexConnect/assets/utils.js
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49222)
+DNSServer: Domain: pop.telenet.be
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54013)
+DNSServer: Domain: plus.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54875)
+DNSServer: Domain: connect.facebook.net.edgekey.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58706)
+DNSServer: Domain: i2.wp.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62940)
+DNSServer: Domain: ssl.gstatic.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49715)
+DNSServer: Domain: static.ak.facebook.com.edgesuite.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59651)
+DNSServer: Domain: s-static.ak.facebook.com.edgekey.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57538)
+DNSServer: Domain: github.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61531)
+DNSServer: Domain: gist.github.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61831)
+DNSServer: Domain: www.invisionpower.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49947)
+DNSServer: Domain: my.plexapp.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 51360)
+DNSServer: Domain: star.c10r.facebook.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54791)
+DNSServer: Domain: fbstatic-a.akamaihd.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58690)
+DNSServer: Domain: p03-keyvalueservice.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54311)
+DNSServer: Domain: gist.github.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS192.168.0.9 - - [17/Jun/2013 21:02:37] "GET /appletv/application.js HTTP/1.1" 200 -
+192.168.0.9 - - [17/Jun/2013 21:02:37] "GET /plexconnect_oldmenu.xml HTTP/1.1" 200 -
+192.168.0.9 - - [17/Jun/2013 21:02:37] "GET /utils.js HTTP/1.1" 200 -
+192.168.0.9 - - [17/Jun/2013 21:02:45] "GET /appletv/application.js HTTP/1.1" 200 -
+192.168.0.9 - - [17/Jun/2013 21:02:45] "GET /plexconnect_oldmenu.xml HTTP/1.1" 200 -
+192.168.0.9 - - [17/Jun/2013 21:02:45] "GET /utils.js HTTP/1.1" 200 -
+192.168.0.9 - - [17/Jun/2013 21:02:47] "GET /loadURL%20(override):%20http:&fs;&fs;trailers.apple.com&fs;library&fs;sections&atvlogger HTTP/1.1" 200 -
+192.168.0.9 - - [17/Jun/2013 21:02:47] "GET /library/sections&PlexConnectUDID=C07FDZKWDDR5 HTTP/1.1" 200 -
+192.168.0.9 - - [17/Jun/2013 21:02:47] "GET /utils.js HTTP/1.1" 200 -
+ request received!
+DNSServer: Source: ('192.168.0.10', 60741)
+DNSServer: Domain: my.plexapp.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 51797)
+DNSServer: Domain: trailers.apple.com
+DNSServer: ***intercept request
+DNSServer: -> DNS response: 192.168.0.9
+WebServer: serving application.js
+WebServer: serving /volume1/homes/bwynants/PlexConnect/assets/plexconnect_oldmenu.xml
+WebServer: serving  /volume1/homes/bwynants/PlexConnect/assets/utils.js
+WebServer: serving application.js
+WebServer: serving /volume1/homes/bwynants/PlexConnect/assets/plexconnect_oldmenu.xml
+WebServer: serving  /volume1/homes/bwynants/PlexConnect/assets/utils.js
+ATVLogger: loadURL (override): http://trailers.apple.com/library/sections
+WebServer: serving .xml: /library/sections
+WebServer: serving  /volume1/homes/bwynants/PlexConnect/assets/utils.js
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 50108)
+DNSServer: Domain: www3.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61395)
+DNSServer: Domain: resources-cdn.plexapp.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59358)
+DNSServer: Domain: resources-cdn.plexapp.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52743)
+DNSServer: Domain: 190358795.r.cdn77.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 56800)
+DNSServer: Domain: itunes.apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 59869)
+DNSServer: Domain: a1.mzstatic.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 55122)
+DNSServer: Domain: a4.mzstatic.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 60239)
+DNSServer: Domain: a3.mzstatic.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58690)
+DNSServer: Domain: p03-keyvalueservice.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61714)
+DNSServer: Domain: www.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49666)
+DNSServer: Domain: www.plexapp.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 63033)
+DNSServer: Domain: db._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 51327)
+DNSServer: Domain: pop.telenet.be
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63413)
+DNSServer: Domain: p03-ubiquity.icloud.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 53786)
+DNSServer: Domain: 164.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 59028)
+DNSServer: Domain: 10.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63217)
+DNSServer: Domain: myip.opendns.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55283)
+DNSServer: Domain: pop.telenet.be
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 51227)
+DNSServer: Domain: r._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 63672)
+DNSServer: Domain: lb._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 63172)
+DNSServer: Domain: dr._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 64416)
+DNSServer: Domain: b._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 51227)
+DNSServer: Domain: r._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 63172)
+DNSServer: Domain: dr._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 63672)
+DNSServer: Domain: lb._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 64416)
+DNSServer: Domain: b._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 51227)
+DNSServer: Domain: r._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 63172)
+DNSServer: Domain: dr._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 63672)
+DNSServer: Domain: lb._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 64416)
+DNSServer: Domain: b._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55453)
+DNSServer: Domain: safebrowsing.clients.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58830)
+DNSServer: Domain: safebrowsing.cache.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58895)
+DNSServer: Domain: pop.telenet.be
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 50439)
+DNSServer: Domain: client62.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49576)
+DNSServer: Domain: www3.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61747)
+DNSServer: Domain: in.telenet.be
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 51227)
+DNSServer: Domain: r._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 63172)
+DNSServer: Domain: dr._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 63672)
+DNSServer: Domain: lb._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 64416)
+DNSServer: Domain: b._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55193)
+DNSServer: Domain: p01-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54871)
+DNSServer: Domain: apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 50495)
+DNSServer: Domain: gmail-imap.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 65231)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49786)
+DNSServer: Domain: jaws.oscar.aol.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55896)
+DNSServer: Domain: chat.t.facebook.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58348)
+DNSServer: Domain: p03-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63246)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52095)
+DNSServer: Domain: b._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63444)
+DNSServer: Domain: db._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63634)
+DNSServer: Domain: r._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54459)
+DNSServer: Domain: dr._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60428)
+DNSServer: Domain: lb._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 51598)
+DNSServer: Domain: b._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62040)
+DNSServer: Domain: db._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59154)
+DNSServer: Domain: r._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60700)
+DNSServer: Domain: dr._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 50814)
+DNSServer: Domain: lb._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55264)
+DNSServer: Domain: notify1.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61284)
+DNSServer: Domain: notify3.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58692)
+DNSServer: Domain: 34-courier.push.apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 64286)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53207)
+DNSServer: Domain: 1.courier-sandbox-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62282)
+DNSServer: Domain: talk.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63381)
+DNSServer: Domain: calendar.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59925)
+DNSServer: Domain: 1.0.0.127.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57764)
+DNSServer: Domain: 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55995)
+DNSServer: Domain: imap.gmail.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59543)
+DNSServer: Domain: myip.opendns.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 65231)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63246)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 64286)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 65231)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58348)
+DNSServer: Domain: p03-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53207)
+DNSServer: Domain: 1.courier-sandbox-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63246)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.20', 63033)
+DNSServer: Domain: db._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 50884)
+DNSServer: Domain: apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59893)
+DNSServer: Domain: gmail-imap.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63572)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49883)
+DNSServer: Domain: jaws.oscar.aol.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63281)
+DNSServer: Domain: chat.t.facebook.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60975)
+DNSServer: Domain: p03-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57594)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57318)
+DNSServer: Domain: b._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56190)
+DNSServer: Domain: db._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60378)
+DNSServer: Domain: r._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63411)
+DNSServer: Domain: dr._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53145)
+DNSServer: Domain: lb._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63625)
+DNSServer: Domain: b._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56494)
+DNSServer: Domain: db._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54536)
+DNSServer: Domain: r._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61664)
+DNSServer: Domain: dr._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62492)
+DNSServer: Domain: lb._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58389)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61765)
+DNSServer: Domain: 1.courier-sandbox-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62656)
+DNSServer: Domain: talk.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63640)
+DNSServer: Domain: p01-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58389)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61765)
+DNSServer: Domain: 1.courier-sandbox-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62656)
+DNSServer: Domain: talk.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63640)
+DNSServer: Domain: p01-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 50884)
+DNSServer: Domain: apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59893)
+DNSServer: Domain: gmail-imap.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63572)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49883)
+DNSServer: Domain: jaws.oscar.aol.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63281)
+DNSServer: Domain: chat.t.facebook.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60975)
+DNSServer: Domain: p03-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57594)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57318)
+DNSServer: Domain: b._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56190)
+DNSServer: Domain: db._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60378)
+DNSServer: Domain: r._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63411)
+DNSServer: Domain: dr._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53145)
+DNSServer: Domain: lb._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63625)
+DNSServer: Domain: b._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56494)
+DNSServer: Domain: db._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54536)
+DNSServer: Domain: r._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61664)
+DNSServer: Domain: dr._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62492)
+DNSServer: Domain: lb._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52832)
+DNSServer: Domain: 39-courier.push.apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 65254)
+DNSServer: Domain: notify3.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 51361)
+DNSServer: Domain: notify1.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52692)
+DNSServer: Domain: calendar.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49377)
+DNSServer: Domain: 1.0.0.127.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54612)
+DNSServer: Domain: 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58234)
+DNSServer: Domain: imap.gmail.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63572)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 51087)
+DNSServer: Domain: d.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57594)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 64853)
+DNSServer: Domain: myip.opendns.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58389)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63572)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57594)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61331)
+DNSServer: Domain: apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 50896)
+DNSServer: Domain: gmail-imap.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59043)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56901)
+DNSServer: Domain: jaws.oscar.aol.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60319)
+DNSServer: Domain: chat.t.facebook.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56172)
+DNSServer: Domain: p03-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63441)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 64824)
+DNSServer: Domain: b._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60034)
+DNSServer: Domain: db._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53352)
+DNSServer: Domain: r._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58678)
+DNSServer: Domain: dr._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62761)
+DNSServer: Domain: lb._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 64262)
+DNSServer: Domain: b._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59134)
+DNSServer: Domain: db._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61146)
+DNSServer: Domain: r._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60051)
+DNSServer: Domain: dr._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59656)
+DNSServer: Domain: lb._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56688)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53987)
+DNSServer: Domain: 1.courier-sandbox-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57604)
+DNSServer: Domain: talk.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57638)
+DNSServer: Domain: p01-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61331)
+DNSServer: Domain: apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 50896)
+DNSServer: Domain: gmail-imap.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59043)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56901)
+DNSServer: Domain: jaws.oscar.aol.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60319)
+DNSServer: Domain: chat.t.facebook.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56172)
+DNSServer: Domain: p03-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63441)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 64824)
+DNSServer: Domain: b._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60034)
+DNSServer: Domain: db._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53352)
+DNSServer: Domain: r._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58678)
+DNSServer: Domain: dr._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62761)
+DNSServer: Domain: lb._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 64262)
+DNSServer: Domain: b._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59134)
+DNSServer: Domain: db._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61146)
+DNSServer: Domain: r._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60051)
+DNSServer: Domain: dr._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59656)
+DNSServer: Domain: lb._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53034)
+DNSServer: Domain: 48-courier.push.apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61588)
+DNSServer: Domain: notify1.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60076)
+DNSServer: Domain: notify3.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53541)
+DNSServer: Domain: calendar.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54629)
+DNSServer: Domain: 1.0.0.127.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55149)
+DNSServer: Domain: 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54702)
+DNSServer: Domain: 10.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53973)
+DNSServer: Domain: imap.gmail.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59043)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56713)
+DNSServer: Domain: client-lb.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63441)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56688)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59043)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63441)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62800)
+DNSServer: Domain: p01-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57225)
+DNSServer: Domain: apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54948)
+DNSServer: Domain: gmail-imap.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54641)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49867)
+DNSServer: Domain: jaws.oscar.aol.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63632)
+DNSServer: Domain: chat.t.facebook.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61684)
+DNSServer: Domain: p03-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49290)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53218)
+DNSServer: Domain: b._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 50958)
+DNSServer: Domain: db._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58362)
+DNSServer: Domain: r._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49877)
+DNSServer: Domain: dr._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63006)
+DNSServer: Domain: lb._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57565)
+DNSServer: Domain: b._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57854)
+DNSServer: Domain: db._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59412)
+DNSServer: Domain: r._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54937)
+DNSServer: Domain: dr._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60531)
+DNSServer: Domain: lb._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61070)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60194)
+DNSServer: Domain: 1.courier-sandbox-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60250)
+DNSServer: Domain: talk.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61070)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60194)
+DNSServer: Domain: 1.courier-sandbox-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60250)
+DNSServer: Domain: talk.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62800)
+DNSServer: Domain: p01-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57225)
+DNSServer: Domain: apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54948)
+DNSServer: Domain: gmail-imap.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54641)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49867)
+DNSServer: Domain: jaws.oscar.aol.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63632)
+DNSServer: Domain: chat.t.facebook.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61684)
+DNSServer: Domain: p03-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49290)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53218)
+DNSServer: Domain: b._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 50958)
+DNSServer: Domain: db._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58362)
+DNSServer: Domain: r._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49877)
+DNSServer: Domain: dr._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63006)
+DNSServer: Domain: lb._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57565)
+DNSServer: Domain: b._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57854)
+DNSServer: Domain: db._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59412)
+DNSServer: Domain: r._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54937)
+DNSServer: Domain: dr._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60531)
+DNSServer: Domain: lb._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57907)
+DNSServer: Domain: 49-courier.push.apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56224)
+DNSServer: Domain: notify1.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 51743)
+DNSServer: Domain: notify3.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57742)
+DNSServer: Domain: calendar.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53978)
+DNSServer: Domain: client-lb.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 65230)
+DNSServer: Domain: 1.0.0.127.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62984)
+DNSServer: Domain: 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61226)
+DNSServer: Domain: imap.gmail.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54641)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49290)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61070)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49290)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60994)
+DNSServer: Domain: p01-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59407)
+DNSServer: Domain: apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63497)
+DNSServer: Domain: gmail-imap.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 64791)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61464)
+DNSServer: Domain: jaws.oscar.aol.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49913)
+DNSServer: Domain: chat.t.facebook.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61422)
+DNSServer: Domain: p03-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58053)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 64793)
+DNSServer: Domain: b._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52689)
+DNSServer: Domain: db._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56222)
+DNSServer: Domain: r._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 51222)
+DNSServer: Domain: dr._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59710)
+DNSServer: Domain: lb._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63653)
+DNSServer: Domain: b._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59622)
+DNSServer: Domain: db._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60295)
+DNSServer: Domain: r._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57195)
+DNSServer: Domain: dr._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55523)
+DNSServer: Domain: lb._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55807)
+DNSServer: Domain: notify1.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63857)
+DNSServer: Domain: notify3.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61546)
+DNSServer: Domain: 27-courier.push.apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53561)
+DNSServer: Domain: imap.gmail.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52664)
+DNSServer: Domain: client-lb.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61751)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57841)
+DNSServer: Domain: 1.courier-sandbox-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59690)
+DNSServer: Domain: talk.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53699)
+DNSServer: Domain: calendar.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63110)
+DNSServer: Domain: myip.opendns.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53350)
+DNSServer: Domain: 1.0.0.127.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62024)
+DNSServer: Domain: 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58053)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 64791)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61751)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63354)
+DNSServer: Domain: p01-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49152)
+DNSServer: Domain: apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55170)
+DNSServer: Domain: gmail-imap.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53767)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57263)
+DNSServer: Domain: jaws.oscar.aol.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 64569)
+DNSServer: Domain: chat.t.facebook.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52717)
+DNSServer: Domain: p03-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55898)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49686)
+DNSServer: Domain: b._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53328)
+DNSServer: Domain: db._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52853)
+DNSServer: Domain: r._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59684)
+DNSServer: Domain: dr._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63054)
+DNSServer: Domain: lb._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 50398)
+DNSServer: Domain: b._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54512)
+DNSServer: Domain: db._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56764)
+DNSServer: Domain: r._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 50290)
+DNSServer: Domain: dr._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55644)
+DNSServer: Domain: lb._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54383)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59605)
+DNSServer: Domain: 1.courier-sandbox-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62659)
+DNSServer: Domain: talk.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54383)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59605)
+DNSServer: Domain: 1.courier-sandbox-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62659)
+DNSServer: Domain: talk.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63354)
+DNSServer: Domain: p01-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49152)
+DNSServer: Domain: apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55170)
+DNSServer: Domain: gmail-imap.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53767)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57263)
+DNSServer: Domain: jaws.oscar.aol.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 64569)
+DNSServer: Domain: chat.t.facebook.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52717)
+DNSServer: Domain: p03-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55898)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49686)
+DNSServer: Domain: b._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53328)
+DNSServer: Domain: db._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52853)
+DNSServer: Domain: r._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59684)
+DNSServer: Domain: dr._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63054)
+DNSServer: Domain: lb._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 50398)
+DNSServer: Domain: b._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54512)
+DNSServer: Domain: db._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56764)
+DNSServer: Domain: r._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 50290)
+DNSServer: Domain: dr._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55644)
+DNSServer: Domain: lb._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 64363)
+DNSServer: Domain: 17-courier.push.apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63173)
+DNSServer: Domain: notify1.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58248)
+DNSServer: Domain: notify3.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49971)
+DNSServer: Domain: client-lb.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57658)
+DNSServer: Domain: calendar.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 64318)
+DNSServer: Domain: 1.0.0.127.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63304)
+DNSServer: Domain: 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54029)
+DNSServer: Domain: imap.gmail.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62659)
+DNSServer: Domain: talk.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55898)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53767)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 50857)
+DNSServer: Domain: myip.opendns.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54383)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52717)
+DNSServer: Domain: p03-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52232)
+DNSServer: Domain: p01-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62458)
+DNSServer: Domain: apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58841)
+DNSServer: Domain: gmail-imap.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 64402)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55461)
+DNSServer: Domain: jaws.oscar.aol.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59203)
+DNSServer: Domain: chat.t.facebook.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55582)
+DNSServer: Domain: p03-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63372)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59931)
+DNSServer: Domain: b._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53501)
+DNSServer: Domain: db._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 51216)
+DNSServer: Domain: r._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56412)
+DNSServer: Domain: dr._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58265)
+DNSServer: Domain: lb._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57893)
+DNSServer: Domain: b._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56075)
+DNSServer: Domain: db._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62981)
+DNSServer: Domain: r._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58647)
+DNSServer: Domain: dr._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 65477)
+DNSServer: Domain: lb._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49807)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59669)
+DNSServer: Domain: 1.courier-sandbox-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63434)
+DNSServer: Domain: talk.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49807)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59669)
+DNSServer: Domain: 1.courier-sandbox-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63434)
+DNSServer: Domain: talk.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52232)
+DNSServer: Domain: p01-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62458)
+DNSServer: Domain: apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58841)
+DNSServer: Domain: gmail-imap.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 64402)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55461)
+DNSServer: Domain: jaws.oscar.aol.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59203)
+DNSServer: Domain: chat.t.facebook.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55582)
+DNSServer: Domain: p03-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63372)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59931)
+DNSServer: Domain: b._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53501)
+DNSServer: Domain: db._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 51216)
+DNSServer: Domain: r._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56412)
+DNSServer: Domain: dr._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58265)
+DNSServer: Domain: lb._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57893)
+DNSServer: Domain: b._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56075)
+DNSServer: Domain: db._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62981)
+DNSServer: Domain: r._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58647)
+DNSServer: Domain: dr._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 65477)
+DNSServer: Domain: lb._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49719)
+DNSServer: Domain: 48-courier.push.apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57956)
+DNSServer: Domain: notify1.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55245)
+DNSServer: Domain: notify3.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60238)
+DNSServer: Domain: calendar.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 50948)
+DNSServer: Domain: client-lb.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 65261)
+DNSServer: Domain: 1.0.0.127.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55243)
+DNSServer: Domain: 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61185)
+DNSServer: Domain: imap.gmail.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63372)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 64402)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49807)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60985)
+DNSServer: Domain: p01-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61504)
+DNSServer: Domain: apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53492)
+DNSServer: Domain: gmail-imap.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63292)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60445)
+DNSServer: Domain: jaws.oscar.aol.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 51069)
+DNSServer: Domain: chat.t.facebook.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52738)
+DNSServer: Domain: p03-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60007)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59213)
+DNSServer: Domain: b._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60666)
+DNSServer: Domain: db._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 51553)
+DNSServer: Domain: r._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 51547)
+DNSServer: Domain: dr._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63377)
+DNSServer: Domain: lb._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 51824)
+DNSServer: Domain: b._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61702)
+DNSServer: Domain: db._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56462)
+DNSServer: Domain: r._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59374)
+DNSServer: Domain: dr._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61345)
+DNSServer: Domain: lb._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57905)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59348)
+DNSServer: Domain: 1.courier-sandbox-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 64810)
+DNSServer: Domain: talk.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57905)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59348)
+DNSServer: Domain: 1.courier-sandbox-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 64810)
+DNSServer: Domain: talk.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60985)
+DNSServer: Domain: p01-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61504)
+DNSServer: Domain: apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53492)
+DNSServer: Domain: gmail-imap.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63292)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60445)
+DNSServer: Domain: jaws.oscar.aol.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 51069)
+DNSServer: Domain: chat.t.facebook.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52738)
+DNSServer: Domain: p03-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60007)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59213)
+DNSServer: Domain: b._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60666)
+DNSServer: Domain: db._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 51553)
+DNSServer: Domain: r._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 51547)
+DNSServer: Domain: dr._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63377)
+DNSServer: Domain: lb._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 51824)
+DNSServer: Domain: b._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61702)
+DNSServer: Domain: db._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56462)
+DNSServer: Domain: r._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59374)
+DNSServer: Domain: dr._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61345)
+DNSServer: Domain: lb._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56254)
+DNSServer: Domain: 6-courier.push.apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60361)
+DNSServer: Domain: notify1.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56048)
+DNSServer: Domain: notify3.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55866)
+DNSServer: Domain: client-lb.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54084)
+DNSServer: Domain: calendar.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61480)
+DNSServer: Domain: 1.0.0.127.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 50857)
+DNSServer: Domain: 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56938)
+DNSServer: Domain: imap.gmail.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60007)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63292)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57905)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57167)
+DNSServer: Domain: p01-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63479)
+DNSServer: Domain: apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54122)
+DNSServer: Domain: gmail-imap.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63395)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62543)
+DNSServer: Domain: jaws.oscar.aol.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55862)
+DNSServer: Domain: chat.t.facebook.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62096)
+DNSServer: Domain: p03-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61971)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56169)
+DNSServer: Domain: b._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52841)
+DNSServer: Domain: db._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 65129)
+DNSServer: Domain: r._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53490)
+DNSServer: Domain: dr._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52437)
+DNSServer: Domain: lb._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52224)
+DNSServer: Domain: b._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54346)
+DNSServer: Domain: db._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55764)
+DNSServer: Domain: r._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 64629)
+DNSServer: Domain: dr._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62473)
+DNSServer: Domain: lb._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49980)
+DNSServer: Domain: notify1.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54444)
+DNSServer: Domain: notify3.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 58042)
+DNSServer: Domain: imap.gmail.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52974)
+DNSServer: Domain: client-lb.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53407)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55409)
+DNSServer: Domain: 1.courier-sandbox-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 50548)
+DNSServer: Domain: talk.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 50923)
+DNSServer: Domain: 11-courier.push.apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57964)
+DNSServer: Domain: calendar.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57728)
+DNSServer: Domain: 1.0.0.127.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62898)
+DNSServer: Domain: 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56945)
+DNSServer: Domain: 10.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62016)
+DNSServer: Domain: d.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61971)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63395)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53407)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55259)
+DNSServer: Domain: p01-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54539)
+DNSServer: Domain: apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63869)
+DNSServer: Domain: gmail-imap.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53782)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59688)
+DNSServer: Domain: jaws.oscar.aol.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52486)
+DNSServer: Domain: chat.t.facebook.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57480)
+DNSServer: Domain: p03-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55829)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57489)
+DNSServer: Domain: b._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 50164)
+DNSServer: Domain: db._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 64319)
+DNSServer: Domain: r._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61311)
+DNSServer: Domain: dr._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54854)
+DNSServer: Domain: lb._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54455)
+DNSServer: Domain: b._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61990)
+DNSServer: Domain: db._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61122)
+DNSServer: Domain: r._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55232)
+DNSServer: Domain: dr._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54383)
+DNSServer: Domain: lb._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54477)
+DNSServer: Domain: 48-courier.push.apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 64823)
+DNSServer: Domain: notify1.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 51148)
+DNSServer: Domain: notify3.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60756)
+DNSServer: Domain: imap.gmail.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56874)
+DNSServer: Domain: client-lb.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63540)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60759)
+DNSServer: Domain: 1.courier-sandbox-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63278)
+DNSServer: Domain: talk.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49492)
+DNSServer: Domain: calendar.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 50512)
+DNSServer: Domain: 1.0.0.127.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54894)
+DNSServer: Domain: 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55078)
+DNSServer: Domain: myip.opendns.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55829)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53782)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63540)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49711)
+DNSServer: Domain: p01-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63574)
+DNSServer: Domain: apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53930)
+DNSServer: Domain: gmail-imap.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57514)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59330)
+DNSServer: Domain: jaws.oscar.aol.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55549)
+DNSServer: Domain: chat.t.facebook.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57624)
+DNSServer: Domain: p03-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59703)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56809)
+DNSServer: Domain: b._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52586)
+DNSServer: Domain: db._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60833)
+DNSServer: Domain: r._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 65412)
+DNSServer: Domain: dr._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61118)
+DNSServer: Domain: lb._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 51818)
+DNSServer: Domain: b._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62591)
+DNSServer: Domain: db._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55394)
+DNSServer: Domain: r._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54057)
+DNSServer: Domain: dr._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57472)
+DNSServer: Domain: lb._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52456)
+DNSServer: Domain: notify1.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 64832)
+DNSServer: Domain: notify3.dropbox.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 65337)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 50460)
+DNSServer: Domain: 1.courier-sandbox-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 51138)
+DNSServer: Domain: talk.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 65337)
+DNSServer: Domain: 1.courier-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 50460)
+DNSServer: Domain: 1.courier-sandbox-push-apple.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 51138)
+DNSServer: Domain: talk.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49711)
+DNSServer: Domain: p01-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 63574)
+DNSServer: Domain: apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 53930)
+DNSServer: Domain: gmail-imap.l.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57514)
+DNSServer: Domain: e4478.b.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59330)
+DNSServer: Domain: jaws.oscar.aol.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55549)
+DNSServer: Domain: chat.t.facebook.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57624)
+DNSServer: Domain: p03-streams.icloud.com.akadns.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59703)
+DNSServer: Domain: e3191.c.akamaiedge.net
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 56809)
+DNSServer: Domain: b._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52586)
+DNSServer: Domain: db._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60833)
+DNSServer: Domain: r._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 65412)
+DNSServer: Domain: dr._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 61118)
+DNSServer: Domain: lb._dns-sd._udp.0.0.168.192.in-addr.arpa
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 51818)
+DNSServer: Domain: b._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62591)
+DNSServer: Domain: db._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 55394)
+DNSServer: Domain: r._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54057)
+DNSServer: Domain: dr._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 57472)
+DNSServer: Domain: lb._dns-sd._udp.home
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52953)
+DNSServer: Domain: 15-courier.push.apple.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 54136)
+DNSServer: Domain: in.telenet.be
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 51113)
+DNSServer: Domain: imap.gmail.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 52193)
+DNSServer: Domain: _xmpp-client._tcp.chat.facebook.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 59598)
+DNSServer: Domain: talk.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62297)
+DNSServer: Domain: api.screenname.aol.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62600)
+DNSServer: Domain: chat.facebook.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 62232)
+DNSServer: Domain: calendar.google.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 49924)
+DNSServer: Domain: api.oscar.aol.com
+DNSServer: ***forward request
+DNSServer: -> DNS response from higher level
+DNSServer: DNS request received!
+DNSServer: Source: ('192.168.0.10', 60336)
+DNSServer: Domain: 1.0.0.127.in-addr.
