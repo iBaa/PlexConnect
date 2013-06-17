@@ -1,18 +1,18 @@
 # Plex Connect
-or: "Plex @ aTV - think different..."
+or: "Plex @ ATV - think different..."
 
 We all want the pleasure of Plex on the big screen - in this case driven by an AppleTV.
-Unfortunately there are officially no Apps allowed on AppleTV, most of the time a jailbreak is late (iOS 5.2?) or not avaiable at all (aTV3?).
+Unfortunately there are officially no Apps allowed on AppleTV, most of the time a jailbreak is late (iOS 5.2?) or not avaiable at all (ATV3).
 
 This is a collection of files developed for the little project described in [Plex Forum][].
-See also [ATVBrowser][] for a project with similar purpose, all javascript.
+See also the discontinued [ATVBrowser][] for a project with similar purpose, all javascript.
 
 For more information, like detailed Installation Guides, FAQs and similar, visit the [Wiki][].
 
 
 ## How does it work?
 The basic idea is, to...
-- re-use an already available app (like YouTube, Vimeo, Apple Trailers, ...)
+- re-use an already available app (Apple Trailers)
 - re-route the request to your local Plex Media Server
 - re-work the reply to fit into AppleTV's XML communication scheme
 - let iOS do the rest
@@ -30,11 +30,7 @@ The basic idea is, to...
 
 
 ## Usage
-- in ```Settings.py```, adapt the IP addresses to your local setup
-- ```sudo ./PlexConnect.py```
-- set your AppleTV's DNS address to the computer running PlexConnect
-- run the Trailer App and check the terminal output
-
+See the wiki for details.
 
 ## More detailed Information about the files
 * __PlexConnect.py__ - 
