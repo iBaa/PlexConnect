@@ -17,7 +17,7 @@ from Debug import *  # dprint()
 
 PMS_list = []
 
-IP_PlexGDM = '239.0.0.250'
+IP_PlexGDM = '<broadcast>'
 Port_PlexGDM = 32414
 Msg_PlexGDM = 'M-SEARCH * HTTP/1.0'
 
@@ -45,15 +45,12 @@ def Run():
     dprint(__name__, 0, "looking up Plex Media Server")
     dprint(__name__, 0, "***")
     
-    client_register_group = (IP_PlexGDM, 32413)
-    client_update_port = 32412
-    
     # setup socket for discovery -> multicast message
     GDM = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     GDM.settimeout(1.0)
     
     # Set the time-to-live for messages to 1 for local network
-    GDM.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, struct.pack('b', 1))
+    GDM.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
     
     returnData = []
     try:
