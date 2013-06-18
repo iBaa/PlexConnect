@@ -26,7 +26,12 @@ g_settings = { \
     'ip_webserver'    :('0.0.0.0',), \
     'port_webserver'  :('80',), \
     \
-    'loglevel'        :('Normal', 'High') \
+    'loglevel'        :('Normal', 'High'), \
+    \
+    'enable_myplex'   :('False','True'), \
+    'myplex_user'     :('username',), \
+    'myplex_pass'     :('password',), \
+    'myplex_url'      :('https://my.plexapp.com/users/sign_in.xml',) \
     }
 
 

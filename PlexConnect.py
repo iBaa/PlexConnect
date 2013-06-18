@@ -8,7 +8,8 @@ inter-process-communication (queue): http://pymotw.com/2/multiprocessing/communi
 """
 
 
-import sys, time
+import sys, time, urllib, re
+from uuid import uuid4
 from os import sep
 import socket
 from multiprocessing import Process, Queue
@@ -60,6 +61,27 @@ if __name__=="__main__":
     param['IP_PMS'] = cfg.getSetting('ip_pms')
     param['Port_PMS'] = cfg.getSetting('port_pms')
     param['Addr_PMS'] = param['IP_PMS']+':'+param['Port_PMS']
+
+    if cfg.getSetting('enable_myplex')=='True':
+        class authURLOpener(urllib.FancyURLopener):
+            def setpasswd(self, user, passwd):
+                self.__user = user
+                self.__passwd = passwd
+
+            def prompt_user_passwd(self, host, realm):
+                return self.__user, self.__passwd
+
+        urlopener = authURLOpener()
+        urlopener.setpasswd(cfg.getSetting('myplex_user'), cfg.getSetting('myplex_pass'))
+        urlopener.addheader('X-Plex-Client-Identifier', uuid4())
+        fd = urlopener.open(cfg.getSetting('myplex_url'), {})
+        try:
+            results = str(fd.read())
+            token = re.findall(r'authenticationToken="(.*)"', results)[0]
+            param['accessToken'] = token
+            dprint('myPlex', 0, "accessToken requested and set")
+        finally:
+            fd.close()
     
     if cfg.getSetting('enable_plexgdm')=='True':
         if PlexGDM.Run()>0:

@@ -114,7 +114,13 @@ def XML_Error(title, desc):
 def GetURL(address, path):
     try:
         conn = httplib.HTTPConnection(g_param['Addr_PMS'], timeout=10)
-        conn.request("GET", path)
+        headers = {}
+        try:
+            headers = {'X-Plex-Token' : g_param['accessToken']}
+        except KeyError:
+            pass
+        conn.request("GET", path, None, headers)
+
         data = conn.getresponse()
         if int(data.status) == 200:
             link=data.read()
@@ -489,7 +495,6 @@ def PlexAPI_getTranscodePath(options, path):
     xargs['X-Plex-Platform'] = 'iOS'
     xargs['X-Plex-Product'] = 'Plex Connect'
     xargs['X-Plex-Platform-Version'] = '5.3' # Base it on AppleTV.
-    
     return transcodePath + urlencode(args) + '&' + urlencode(xargs)
 
 """
