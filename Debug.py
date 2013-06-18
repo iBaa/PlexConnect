@@ -69,6 +69,7 @@ def dprint(src, dlevel, *args):
         
         # print to terminal window
         if (src in dlevels) == False or dlevel <= dlevels[src]:
+            print(time.strftime("%H:%M:%S")),
             if len(asc_args)==0:
                 print src+":"
             elif len(asc_args)==1:

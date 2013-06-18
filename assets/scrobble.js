@@ -39,7 +39,7 @@ function unscrobble(addrPMS, ratingKey) {
 function selectArtwork(addrPMS, ratingKey) {
 	// Load PMS metadata xml
 	var url = "http://" + addrPMS + "/library/metadata/" + ratingKey + "/posters";
-  var req = new XMLHttpRequest();
+	var req = new XMLHttpRequest();
   req.onreadystatechange = function()
   {
     try
@@ -66,7 +66,7 @@ function selectArtwork(addrPMS, ratingKey) {
 						<body><scroller id="poster_selector"><header><simpleHeader><title>Select Artwork</title></simpleHeader></header> \
 						<items><collectionDivider alignment="left"><title></title></collectionDivider><shelf id="coverflow" columnCount="' + colCount +'"> \
 						<sections><shelfSection><items>';
-	
+
 	for(var i = 0; i < posters.length; ++i)
 	{
 		var poster = posters[i];
@@ -91,8 +91,12 @@ function selectArtwork(addrPMS, ratingKey) {
  */
 function loadNewArtwork(addrPMS, ratingKey, posterURL)
 {
-	var urlParts = posterURL.split("?");
-	var url = "http://" + addrPMS + "/library/metadata/" + ratingKey + "/poster?" + urlParts[1];
+	if (posterURL.indexOf('library') !== -1)
+	{
+		var urlParts = posterURL.split('=');
+		posterURL = urlParts[1];
+	}
+	var url = "http://" + addrPMS + "/library/metadata/" + ratingKey + "/poster?url=" + posterURL;
 	var req = new XMLHttpRequest();
 	req.open('PUT', url, true);
 	req.send();
