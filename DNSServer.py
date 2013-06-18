@@ -207,7 +207,10 @@ def Run(cmdQueue, param):
             
             except socket.timeout:
                 pass
-    
+            
+            except socket.error as e:
+                dprint(__name__, 1, "Warning: DNS error ({0}): {1}", e.errno, e.strerror)
+            
     except KeyboardInterrupt:
         dprint(__name__, 0, "^C received.")
     finally:
