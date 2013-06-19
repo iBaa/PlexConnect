@@ -35,6 +35,7 @@ The basic idea is, to...
   sudo ./PlexConnect.py
   ```
   > Depending on your OS, you might only need ```PlexConnect.py```. Or ```python PlexConnect.py``` or ...
+
 - set your AppleTV's DNS address to the computer running PlexConnect
 - run the Trailer App
 
