@@ -37,7 +37,7 @@ from urllib import urlencode
 from urlparse import urlparse
 from urllib import quote_plus
 
-import ATVSettings
+import Settings, ATVSettings
 from Debug import *  # dprint()
 
 
@@ -846,7 +846,13 @@ class CCommandCollection(CCommandHelper):
 
 
 if __name__=="__main__":
-    setParams({'Addr_PMS':'*Addr_PMS*'})
+    cfg = Settings.CSettings()
+    param = {}
+    param['CSettings'] = cfg
+    
+    param['Addr_PMS'] = '*Addr_PMS*'
+    param['HostToIntercept'] = 'trailers.apple.com'
+    setParams(param)
     
     cfg = ATVSettings.CATVSettings()
     setATVSettings(cfg)
@@ -883,6 +889,7 @@ if __name__=="__main__":
     print
     print "unpack PlexConnect COPY/CUT commands"
     options = {}
+    options['PlexConnectUDID'] = '007'
     g_CommandCollection = CCommandCollection(options, PMSroot, '/library/sections/')
     XML_ExpandTree(aTVroot, PMSroot, 'main')
     XML_ExpandAllAttrib(aTVroot, PMSroot, 'main')

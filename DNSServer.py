@@ -59,8 +59,9 @@ Source: http://doc-tcpip.org/Dns/named.dns.message.html
 import sys
 import socket
 import struct
-import Queue  # inter process communication
+from multiprocessing import Pipe  # inter process communication
 
+import Settings
 from Debug import *  # dprint()
 
 
@@ -127,6 +128,10 @@ def printDNSPaket(paket):
 def Run(cmdPipe, param):
     dinit(__name__, param)  # init logging, DNSServer process
     
+    cfg_IP_self = param['IP_self']
+    cfg_IP_DNSMaster = param['CSettings'].getSetting('ip_dnsmaster')
+    cfg_HostToIntercept = 'trailers.apple.com'
+    
     try:
         DNS = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         DNS.settimeout(5.0)
@@ -147,8 +152,8 @@ def Run(cmdPipe, param):
     
     dprint(__name__, 0, "***")
     dprint(__name__, 0, "Starting up.")
-    dprint(__name__, 1, "intercept "+param['HostToIntercept']+": "+param['IP_self'])
-    dprint(__name__, 1, "forward other to higher level DNS: "+param['IP_DNSMaster'])
+    dprint(__name__, 1, "intercept "+cfg_HostToIntercept+": "+cfg_IP_self)
+    dprint(__name__, 1, "forward other to higher level DNS: "+cfg_IP_DNSMaster)
     dprint(__name__, 0, "***")
     
     try:
@@ -174,7 +179,7 @@ def Run(cmdPipe, param):
                     dprint(__name__, 1, "Domain: "+domain)
                 
                 paket=''
-                if domain==param['HostToIntercept']:
+                if domain==cfg_HostToIntercept:
                     dprint(__name__, 1, "***intercept request")
                     paket+=data[:2]         # 0:1 - ID
                     paket+="\x81\x80"       # 2:3 - flags
@@ -185,12 +190,12 @@ def Run(cmdPipe, param):
                     paket+=data[12:]                                     # original query
                     paket+='\xc0\x0c'                                    # pointer to domain name/original query
                     paket+='\x00\x01\x00\x01\x00\x00\x00\x3c\x00\x04'    # response type, ttl and resource data length -> 4 bytes
-                    paket+=str.join('',map(lambda x: chr(int(x)), param['IP_self'].split('.'))) # 4bytes of IP
-                    dprint(__name__, 1, "-> DNS response: "+param['IP_self'])
+                    paket+=str.join('',map(lambda x: chr(int(x)), cfg_IP_self.split('.'))) # 4bytes of IP
+                    dprint(__name__, 1, "-> DNS response: "+cfg_IP_self)
                 
                 else:
                     dprint(__name__, 1, "***forward request")
-                    DNS_forward.sendto(data, (param['IP_DNSMaster'], 53))
+                    DNS_forward.sendto(data, (cfg_IP_DNSMaster, 53))
                     paket, addr_master = DNS_forward.recvfrom(1024)
                     # todo: double check: ID has to be the same!
                     # todo: spawn thread to wait in parallel
@@ -218,11 +223,13 @@ def Run(cmdPipe, param):
 
 
 if __name__ == '__main__':
-    cmd = Queue.Queue()\
+    cmdPipe = Pipe()\
     
+    cfg = Settings.CSettings()
     param = {}
+    param['CSettings'] = cfg
+    
     param['IP_self'] = '192.168.178.20'
-    param['IP_DNSMaster'] = '8.8.8.8'
     param['HostToIntercept'] = 'trailers.apple.com'
     
-    Run(cmd, param)
+    Run(cmdPipe[1], param)

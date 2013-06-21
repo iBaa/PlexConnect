@@ -40,6 +40,10 @@ if __name__=="__main__":
     
     # Settings
     cfg = Settings.CSettings()
+    param['CSettings'] = cfg
+    
+    param['IP_self'] = getIP_self()
+    param['HostToIntercept'] = 'trailers.apple.com'
     
     # Logfile, re-init
     param['LogLevel'] = cfg.getSetting('loglevel')
@@ -48,13 +52,6 @@ if __name__=="__main__":
     if cfg.getSetting('enable_dnsserver')=='True':
         pipe_DNSServer = Pipe()  # endpoint [0]-PlexConnect, [1]-DNSServer
     pipe_WebServer = Pipe()  # endpoint [0]-PlexConnect, [1]-WebServer
-    
-    param['IP_self'] = getIP_self()
-    param['IP_DNSMaster'] = cfg.getSetting('ip_dnsmaster')
-    param['HostToIntercept'] = 'trailers.apple.com'
-    
-    param['IP_WebServer'] = cfg.getSetting('ip_webserver')
-    param['Port_WebServer'] = int(cfg.getSetting('port_webserver'))
     
     # default PMS
     param['IP_PMS'] = cfg.getSetting('ip_pms')
