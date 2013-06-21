@@ -105,6 +105,7 @@ def Run():
     
     if PMS_list==[]:
         dprint(__name__, 0, "No servers discovered")
+        sys.exit(1)
     else:
         dprint(__name__, 0, "servers discovered: {0}", len(PMS_list))
         for items in PMS_list:
