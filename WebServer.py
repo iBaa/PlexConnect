@@ -167,7 +167,7 @@ class MyHandler(BaseHTTPRequestHandler):
 
 
 
-def Run(cmdQueue, param):
+def Run(cmdPipe, param):
     dinit(__name__, param)  # init logging, WebServer process
     
     #Protocol     = "HTTP/1.0"
@@ -192,14 +192,10 @@ def Run(cmdQueue, param):
     try:
         while True:
             # check command
-            try:
-                # check command
-                cmd = cmdQueue.get_nowait()
+            if cmdPipe.poll():
+                cmd = cmdPipe.recv()
                 if cmd=='shutdown':
                     break
-            
-            except Queue.Empty:
-                pass
             
             # do your work (with timeout)
             server.handle_request()

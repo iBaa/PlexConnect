@@ -11,7 +11,7 @@ inter-process-communication (queue): http://pymotw.com/2/multiprocessing/communi
 import sys, time
 from os import sep
 import socket
-from multiprocessing import Process, Queue
+from multiprocessing import Process, Pipe
 
 import PlexGDM
 import DNSServer, WebServer
@@ -46,8 +46,8 @@ if __name__=="__main__":
     dinit('PlexConnect', param)  # re-init logfile with loglevel
     
     if cfg.getSetting('enable_dnsserver')=='True':
-        cmd_DNSServer = Queue()
-    cmd_WebServer = Queue()
+        pipe_DNSServer = Pipe()  # endpoint [0]-PlexConnect, [1]-DNSServer
+    pipe_WebServer = Pipe()  # endpoint [0]-PlexConnect, [1]-WebServer
     
     param['IP_self'] = getIP_self()
     param['IP_DNSMaster'] = cfg.getSetting('ip_dnsmaster')
@@ -70,7 +70,7 @@ if __name__=="__main__":
     dprint('PlexConnect', 0, "PMS: {0}", param['Addr_PMS'])
     
     if cfg.getSetting('enable_dnsserver')=='True':
-        p_DNSServer = Process(target=DNSServer.Run, args=(cmd_DNSServer, param))
+        p_DNSServer = Process(target=DNSServer.Run, args=(pipe_DNSServer[1], param))
         p_DNSServer.start()
     
         time.sleep(0.1)
@@ -78,14 +78,14 @@ if __name__=="__main__":
             dprint('PlexConnect', 0, "DNSServer not alive. Shutting down.")
             sys.exit(1)
     
-    p_WebServer = Process(target=WebServer.Run, args=(cmd_WebServer, param))
+    p_WebServer = Process(target=WebServer.Run, args=(pipe_WebServer[1], param))
     p_WebServer.start()
     
     time.sleep(0.1)
     if not p_WebServer.is_alive():
         dprint('PlexConnect', 0, "WebServer not alive. Shutting down.")
         if cfg.getSetting('enable_dnsserver')=='True':
-            cmd_DNSServer.put('shutdown')
+            pipe_DNSServer[0].send('shutdown')
             p_DNSServer.join()
         sys.exit(1)
     
@@ -97,8 +97,8 @@ if __name__=="__main__":
     finally:
         dprint('PlexConnect', 0,  "Shutting down.")
         if cfg.getSetting('enable_dnsserver')=='True':
-            cmd_DNSServer.put('shutdown')
+            pipe_DNSServer[0].send('shutdown')
             p_DNSServer.join()
         
-        cmd_WebServer.put('shutdown')
+        pipe_WebServer[0].send('shutdown')
         p_WebServer.join()
