@@ -127,6 +127,6 @@ atv.onAppEntry = function()
     }
     else
     {
-        atv.loadURL("http://trailers.apple.com/plexconnect_oldmenu.xml");
+        atv.loadURL("http://trailers.apple.com/versionError.xml");
     }
 };

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atv>
+    <body>
+        <dialog id="com.sample.error-dialog">
+            <title>aTV firmware version 5.0.2 or lower.</title>
+            <description>Your aTV firmware version is too old to run this version of PlexConnect.&#xA;				Please use the v0.1-iOS-pre5.1 branch available from:-&#xA;					  			https://github.com/iBaa/PlexConnect</description>
+        </dialog>
+    </body>
+</atv>

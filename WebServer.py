@@ -93,7 +93,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 # disregard the path - it is different for different iOS versions
                 if self.path.endswith("application.js"):
                     dprint(__name__, 1, "serving application.js")
-                    f = open(sys.path[0] + sep + "assets" + sep + "application.js")
+                    f = open(sys.path[0] + sep + "assets" + sep + "js" + sep + "application.js")
                     self.send_response(200)
                     self.send_header('Content-type', 'text/html')
                     self.end_headers()

@@ -67,7 +67,7 @@ function selectAudioAndSubs(addrPMS, ratingKey, pmsPath) {
   req.open('GET', url, false);
   req.send();
 	
-	var xmlstr = '<?xml version="1.0" encoding="UTF-8"?><atv><head><script src="http://trailers.apple.com/selectAudioAndSubs.js"/></head> \
+	var xmlstr = '<?xml version="1.0" encoding="UTF-8"?><atv><head><script src="http://trailers.apple.com/js/selectAudioAndSubs.js"/></head> \
                 <body><optionDialog id="optionDialog"><header><simpleHeader><title>Select Tracks</title></simpleHeader></header> \
 								<menu><sections><menuSection><header><horizontalDivider alignment="center"><title>Audio Track</title></horizontalDivider> \
 								</header><items>';

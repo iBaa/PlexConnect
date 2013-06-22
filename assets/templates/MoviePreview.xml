@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <atv>
   <head>
-    <script src="http://trailers.apple.com/utils.js"/>
+    <script src="http://trailers.apple.com/js/utils.js"/>
   </head>
   
   <body>
