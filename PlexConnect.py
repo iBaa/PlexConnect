@@ -13,7 +13,6 @@ from os import sep
 import socket
 from multiprocessing import Process, Pipe
 
-import PlexGDM
 import DNSServer, WebServer
 import Settings
 from Debug import *  # dprint()
@@ -49,24 +48,9 @@ if __name__=="__main__":
     param['LogLevel'] = cfg.getSetting('loglevel')
     dinit('PlexConnect', param)  # re-init logfile with loglevel
     
+    # init DNSServer
     if cfg.getSetting('enable_dnsserver')=='True':
         pipe_DNSServer = Pipe()  # endpoint [0]-PlexConnect, [1]-DNSServer
-    pipe_WebServer = Pipe()  # endpoint [0]-PlexConnect, [1]-WebServer
-    
-    # default PMS
-    param['IP_PMS'] = cfg.getSetting('ip_pms')
-    param['Port_PMS'] = cfg.getSetting('port_pms')
-    param['Addr_PMS'] = param['IP_PMS']+':'+param['Port_PMS']
-    
-    if cfg.getSetting('enable_plexgdm')=='True':
-        if PlexGDM.Run()>0:
-            param['IP_PMS'] = PlexGDM.getIP_PMS()
-            param['Port_PMS'] = PlexGDM.getPort_PMS()
-            param['Addr_PMS'] = param['IP_PMS']+':'+param['Port_PMS']
-    
-    dprint('PlexConnect', 0, "PMS: {0}", param['Addr_PMS'])
-    
-    if cfg.getSetting('enable_dnsserver')=='True':
         p_DNSServer = Process(target=DNSServer.Run, args=(pipe_DNSServer[1], param))
         p_DNSServer.start()
     
@@ -75,6 +59,8 @@ if __name__=="__main__":
             dprint('PlexConnect', 0, "DNSServer not alive. Shutting down.")
             sys.exit(1)
     
+    # init WebServer
+    pipe_WebServer = Pipe()  # endpoint [0]-PlexConnect, [1]-WebServer
     p_WebServer = Process(target=WebServer.Run, args=(pipe_WebServer[1], param))
     p_WebServer.start()
     

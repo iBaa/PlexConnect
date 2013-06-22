@@ -38,6 +38,7 @@ from urlparse import urlparse
 from urllib import quote_plus
 
 import Settings, ATVSettings
+import PlexGDM
 from Debug import *  # dprint()
 
 
@@ -170,6 +171,31 @@ def XML_ReadFromURL(address, path):
 
 
 
+def discoverPMS():
+    global g_param
+    if not g_param['CSettings'].getSetting('enable_plexgdm'):
+        g_param['IP_PMS'] = g_param['CSettings'].getSetting('ip_pms')
+        g_param['Port_PMS'] = g_param['CSettings'].getSetting('port_pms')
+        g_param['Addr_PMS'] = g_param['IP_PMS']+':'+g_param['Port_PMS']
+        
+        dprint(__name__, 0, "PlexGDM off - PMS from settings: {0}", g_param['Addr_PMS'])
+        return True
+    else:
+        if PlexGDM.Run()>0:
+            g_param['IP_PMS'] = PlexGDM.getIP_PMS()
+            g_param['Port_PMS'] = PlexGDM.getPort_PMS()
+            g_param['Addr_PMS'] = g_param['IP_PMS']+':'+g_param['Port_PMS']
+            
+            dprint(__name__, 0, "PlexGDM - PMS: {0}", g_param['Addr_PMS'])
+            return True
+        else:
+            g_param['Addr_PMS'] = ''
+            
+            dprint(__name__, 0, "PlexGDM - no PMS found")
+            return False
+
+
+
 def XML_PMS2aTV(address, path, options):
 
     cmd = ''
@@ -179,33 +205,23 @@ def XML_PMS2aTV(address, path, options):
         dprint(__name__, 1, "no PlexConnectUDID - pick 007")
         options['PlexConnectUDID'] = '007'
     
-    PMS = XML_ReadFromURL(address, path)
-    if PMS==False:
-        return XML_Error('PlexConnect', 'No Response from Plex Media Server')
-    
-    PMSroot = PMS.getroot()
+    if g_param['Addr_PMS']=='':
+        # PlexGDM
+        if not discoverPMS():
+            return XML_Error('PlexConnect', 'No Plex Media Server in Proximity')
     
     dprint(__name__, 1, "PlexConnect Cmd: "+cmd)
-    dprint(__name__, 1, "viewGroup: "+PMSroot.get('ViewGroup','None'))
     
     # XML Template selector
     # - PlexConnect command
     # - path
     # - PMS ViewGroup
-    if cmd=='Play':
-        XMLtemplate = 'PlayVideo.xml'
-        
-        Media = PMSroot.find('Video').find('Media')  # todo: needs to be more flexible?
-        
-        indirect = Media.get('indirect','0')
-        Part = Media.find('Part')
-        key = Part.get('key','')
-        
-        if indirect=='1':  # redirect... todo: select suitable resolution, today we just take first Media
-            PMS = XML_ReadFromURL(address, key)  # todo... check key for trailing '/' or even 'http'
-            PMSroot = PMS.getroot()
-            
-    elif cmd=='PlayMusic':
+    XMLtemplate = ''
+    PMS = None
+    PMSroot = None
+    
+    # XMLtemplate defined by solely PlexConnect Cmd
+    if cmd=='PlayMusic':
         XMLtemplate = 'PlayMusic.xml'
                             
     elif cmd=='MoviePreview':
@@ -238,9 +254,40 @@ def XML_PMS2aTV(address, path, options):
         opt = cmd[len('SettingsToggle:'):]  # cut command:
         g_ATVSettings.toggleSetting(options['PlexConnectUDID'], opt.lower())
         dprint(__name__, 2, "ATVSettings->Toggle: {0}", opt)
+        
+        path = ''  # clear path - we don't need PMS-XML
     
     elif path.startswith('/search?'):
         XMLtemplate = 'Search_Results.xml'
+    
+    # request PMS XML
+    if not path=='':
+        PMS = XML_ReadFromURL(address, path)
+        if PMS==False:
+            return XML_Error('PlexConnect', 'No Response from Plex Media Server')
+    
+        PMSroot = PMS.getroot()
+        dprint(__name__, 1, "viewGroup: "+PMSroot.get('ViewGroup','None'))
+    
+    # XMLtemplate defined by PMS XML content
+    if path=='':
+        pass  # nothing to load
+    
+    elif not XMLtemplate=='':
+        pass  # template already selected
+    
+    elif cmd=='Play':
+        XMLtemplate = 'PlayVideo.xml'
+        
+        Media = PMSroot.find('Video').find('Media')  # todo: needs to be more flexible?
+        
+        indirect = Media.get('indirect','0')
+        Part = Media.find('Part')
+        key = Part.get('key','')
+        
+        if indirect=='1':  # redirect... todo: select suitable resolution, today we just take first Media
+            PMS = XML_ReadFromURL(address, key)  # todo... check key for trailing '/' or even 'http'
+            PMSroot = PMS.getroot()
     
     elif PMSroot.get('viewGroup') is None or \
        PMSroot.get('viewGroup')=='secondary' or \
@@ -283,17 +330,17 @@ def XML_PMS2aTV(address, path, options):
         XMLtemplate = 'Photo.xml'
     
     dprint(__name__, 1, "XMLTemplate: "+XMLtemplate)
-        
+    
+    # get XMLtemplate
     aTVTree = etree.parse(sys.path[0]+'/assets/templates/'+XMLtemplate)
     aTVroot = aTVTree.getroot()
     
+    # convert PMS XML to aTV XML using provided XMLtemplate
     global g_CommandCollection
     g_CommandCollection = CCommandCollection(options, PMSroot, path)
     XML_ExpandTree(aTVroot, PMSroot, 'main')
     XML_ExpandAllAttrib(aTVroot, PMSroot, 'main')
     del g_CommandCollection
-    
-    # todo: channels, photos...
     
     dprint(__name__, 1, "====== generated aTV-XML ======")
     dprint(__name__, 1, XML_prettystring(aTVTree))

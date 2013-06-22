@@ -188,6 +188,7 @@ def Run(cmdPipe, param):
     XMLConverter.setParams(param)
     cfg = ATVSettings.CATVSettings()
     XMLConverter.setATVSettings(cfg)
+    XMLConverter.discoverPMS()
     
     try:
         while True:
