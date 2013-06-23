@@ -79,6 +79,10 @@
                 <label>Subtitle Size %</label>
                 <rightLabel>{{SETTING(subtitlesize)}}</rightLabel>
               </oneLineMenuItem>
+              <oneLineMenuItem id="AudioBoost" onSelect="toggleSettings('AudioBoost')">
+                <label>Audio Boost %</label>
+                <rightLabel>{{SETTING(audioboost)}}</rightLabel>
+              </oneLineMenuItem>
             </items>
           </menuSection>
         </sections>

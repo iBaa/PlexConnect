@@ -18,7 +18,8 @@ options = { \
                         '1080p 8.0Mbps', '1080p 10.0Mbps', '1080p 12.0Mbps', '1080p 20.0Mbps'), \
     'forcedirectplay'  :('False', 'True'), \
     'forcetranscode'   :('False', 'True'), \
-    'subtitlesize'     :('100', '125', '150', '50', '75') }
+    'subtitlesize'     :('100', '125', '150', '50', '75'), \
+    'audioboost'       :('100', '175', '225', '300') }
 # comment on forcedirectplay -> if true, this has higher priority than forcetranscode
 
 
