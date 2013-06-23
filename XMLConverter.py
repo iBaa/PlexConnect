@@ -173,7 +173,7 @@ def XML_ReadFromURL(address, path):
 
 def discoverPMS():
     global g_param
-    if not g_param['CSettings'].getSetting('enable_plexgdm'):
+    if g_param['CSettings'].getSetting('enable_plexgdm')=='False':
         g_param['IP_PMS'] = g_param['CSettings'].getSetting('ip_pms')
         g_param['Port_PMS'] = g_param['CSettings'].getSetting('port_pms')
         g_param['Addr_PMS'] = g_param['IP_PMS']+':'+g_param['Port_PMS']

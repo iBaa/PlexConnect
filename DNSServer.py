@@ -223,7 +223,7 @@ def Run(cmdPipe, param):
 
 
 if __name__ == '__main__':
-    cmdPipe = Pipe()\
+    cmdPipe = Pipe()
     
     cfg = Settings.CSettings()
     param = {}
