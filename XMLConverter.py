@@ -513,6 +513,8 @@ def PlexAPI_getTranscodePath(options, path):
     dprint(__name__, 1, "Setting transcode quality Res:{0} Q:{1} {2}Mbps", vRes, vQ, mVB)
     sS = g_ATVSettings.getSetting(UDID, 'subtitlesize')
     dprint(__name__, 1, "Subtitle size: {0}", sS)
+    aB = g_ATVSettings.getSetting(UDID, 'audioboost')
+    dprint(__name__, 1, "Audio Boost: {0}", aB)
     
     args = dict()
     args['session'] = UDID
@@ -523,7 +525,7 @@ def PlexAPI_getTranscodePath(options, path):
     args['directStream'] = '1'
     args['directPlay'] = '0'
     args['subtitleSize'] = sS
-    args['audioBoost'] = '100'
+    args['audioBoost'] = aB
     args['fastSeek'] = '1'
     args['path'] = path
     
