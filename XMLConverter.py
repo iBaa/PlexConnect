@@ -800,6 +800,12 @@ class CCommandCollection(CCommandHelper):
             res = 'http://127.0.0.1:32400' + key
         elif key.startswith('http://'):  # external address
             res = key
+            hijack = g_param['HostToIntercept']
+            if hijack in res:
+                dprint(__name__, 1, "twisting...")
+                hijack_twisted = hijack[::-1]
+                res = res.replace(hijack, hijack_twisted)
+                dprint(__name__, 1, res)
         else:
             res = 'http://127.0.0.1:32400' + path + '/' + key
         
@@ -814,6 +820,12 @@ class CCommandCollection(CCommandHelper):
             res = 'http://' + g_param['HostToIntercept'] + key
         elif key.startswith('http://'):  # external address
             res = key
+            hijack = g_param['HostToIntercept']
+            if hijack in res:
+                dprint(__name__, 1, "twisting...")
+                hijack_twisted = hijack[::-1]
+                res = res.replace(hijack, hijack_twisted)
+                dprint(__name__, 1, res)
         elif key == '':  # internal path
             res = 'http://' + g_param['HostToIntercept'] + self.path[srcXML]
         else:  # internal path, add-on
@@ -850,7 +862,12 @@ class CCommandCollection(CCommandHelper):
         if res.startswith('/'):  # internal full path.
             res = 'http://' + g_param['Addr_PMS'] + res
         elif res.startswith('http://'):  # external address
-            pass
+            hijack = g_param['HostToIntercept']
+            if hijack in res:
+                dprint(__name__, 1, "twisting...")
+                hijack_twisted = hijack[::-1]
+                res = res.replace(hijack, hijack_twisted)
+                dprint(__name__, 1, res)
         else:  # internal path, add-on
             res = 'http://' + g_param['Addr_PMS'] + self.path[srcXML] + res
         return res
