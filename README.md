@@ -17,6 +17,8 @@ The basic idea is, to...
 - re-work the reply to fit into AppleTV's XML communication scheme
 - let iOS do the rest
 
+## Requirements
+Python 2.x series with being the 2.7 minimum (Python 3.x is not supported)
 
 ## Installation
   ```sh
