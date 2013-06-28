@@ -108,6 +108,25 @@ def XML_Error(title, desc):
 
 
 
+def XML_PlayVideo_ChannelsV1(path):
+    XML = '\
+<atv>\n\
+  <body>\n\
+    <videoPlayer id="com.sample.video-player">\n\
+      <httpFileVideoAsset id="' + path + '">\n\
+        <mediaURL>http://' + g_param['Addr_PMS'] +  path + '</mediaURL>\n\
+        <title>*title*</title>\n\
+        <!--bookmarkTime>{{EVAL(Video/viewOffset:0:int(x/1000))}}</bookmarkTime-->\n\
+      </httpFileVideoAsset>\n\
+    </videoPlayer>\n\
+  </body>\n\
+</atv>\n\
+';
+    dprint(__name__,2 , XML)
+    return XML
+
+
+
 """
 # GetURL
 # Source (somewhat): https://github.com/hippojay/plugin.video.plexbmc
@@ -223,7 +242,11 @@ def XML_PMS2aTV(address, path, options):
     # XMLtemplate defined by solely PlexConnect Cmd
     if cmd=='PlayMusic':
         XMLtemplate = 'PlayMusic.xml'
-                            
+    
+    elif cmd=='PlayVideo_ChannelsV1':
+        dprint(__name__, 1, "playing Channels XML Version 1: {0}".format(path))
+        return XML_PlayVideo_ChannelsV1(path)  # direct link, no PMS XML available
+    
     elif cmd=='MoviePreview':
         XMLtemplate = 'MoviePreview.xml'
     
