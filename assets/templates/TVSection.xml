@@ -22,8 +22,8 @@
                 <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}{{PLAY_COMMAND()}})"
                  onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=EpisodePrePlay')">
                   {{COPY(@OnDeck/Video)}}
-                  <title>{{episodestring(parentIndex:0:index:0)}}</title>
-                  <subtitle>{{VAL(title)}}</subtitle>
+                  <title>{{VAL(title)}}</title>
+                  <subtitle>{{episodestring(parentIndex:0:index:0)}}</subtitle>
                   <image>{{IMAGEURL(grandparentThumb)}}</image>
                   <defaultImage>resource://Poster.png</defaultImage>
                 </moviePoster>
@@ -44,8 +44,8 @@
                 <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}{{PLAY_COMMAND()}})"
                  onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=EpisodePrePlay')">
                   {{COPY(@RecentlyAired/Video)}}
-                  <title>{{episodestring(parentIndex:0:index:0)}}</title>
-                  <subtitle>{{VAL(title)}}</subtitle>
+                  <title>{{VAL(title)}}</title>
+                  <subtitle>{{episodestring(parentIndex:0:index:0)}}</subtitle>
                   <image>{{IMAGEURL(grandparentThumb)}}</image>
                   <defaultImage>resource://Poster.png</defaultImage>
                 </moviePoster>
