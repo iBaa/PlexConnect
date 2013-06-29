@@ -248,7 +248,10 @@ def XML_PMS2aTV(address, path, options):
     PMSroot = None
     
     # XMLtemplate defined by solely PlexConnect Cmd
-    if cmd=='PlayVideo_ChannelsV1':
+    if cmd=='Play':
+        XMLtemplate = 'PlayVideo.xml'
+    
+    elif cmd=='PlayVideo_ChannelsV1':
         dprint(__name__, 1, "playing Channels XML Version 1: {0}".format(path))
         return XML_PlayVideo_ChannelsV1(path)  # direct link, no PMS XML available
     
@@ -330,19 +333,6 @@ def XML_PMS2aTV(address, path, options):
     
     elif not XMLtemplate=='':
         pass  # template already selected
-    
-    elif cmd=='Play':
-        XMLtemplate = 'PlayVideo.xml'
-        
-        Media = PMSroot.find('Video').find('Media')  # todo: needs to be more flexible?
-        
-        indirect = Media.get('indirect','0')
-        Part = Media.find('Part')
-        key = Part.get('key','')
-        
-        if indirect=='1':  # redirect... todo: select suitable resolution, today we just take first Media
-            PMS = XML_ReadFromURL(address, key)  # todo... check key for trailing '/' or even 'http'
-            PMSroot = PMS.getroot()
     
     elif PMSroot.get('viewGroup') is None:
         XMLtemplate = 'Sections.xml'
@@ -909,31 +899,38 @@ class CCommandCollection(CCommandHelper):
         return res
     
     def ATTRIB_MEDIAURL(self, src, srcXML, param):
-        el, leftover = self.getElement(src, srcXML, param)
+        Video, leftover = self.getElement(src, srcXML, param)
         
-        metadata = el
-        if el!=None:  # Video
-            el = el.find('Media')
+        if Video!=None:
+            Media = Video.find('Media')
         
         # check "Media" element and get key
-        if el!=None:  # Media
+        if Media!=None:
             UDID = self.options['PlexConnectUDID']
-            if g_ATVSettings.getSetting(UDID, 'forcedirectplay')=='True':
-                # force direct play
-                res = el.find('Part').get('key','')
-            elif g_ATVSettings.getSetting(UDID, 'forcetranscode')!='True' and \
-               el.get('protocol','') in ("hls"):
-                # HTTP Live Stream
-                res = el.find('Part').get('key','')
-            elif g_ATVSettings.getSetting(UDID, 'forcetranscode')!='True' and \
-               el.get('container','') in ("mov", "mp4") and \
-               el.get('videoCodec','') in ("mpeg4", "h264", "drmi") and \
-               el.get('audioCodec','') in ("aac", "ac3", "drms"):
-                # native aTV media
-                res = el.find('Part').get('key','')
+            
+            if g_ATVSettings.getSetting(UDID, 'forcedirectplay')=='True' \
+               or \
+               g_ATVSettings.getSetting(UDID, 'forcetranscode')!='True' and \
+               Media.get('protocol','') in ("hls") \
+               or \
+               g_ATVSettings.getSetting(UDID, 'forcetranscode')!='True' and \
+               Media.get('container','') in ("mov", "mp4") and \
+               Media.get('videoCodec','') in ("mpeg4", "h264", "drmi") and \
+               Media.get('audioCodec','') in ("aac", "ac3", "drms"):
+                # direct play for...
+                #    force direct play
+                # or HTTP live stream
+                # or native aTV media
+                res, leftover, dfltd = self.getKey(Media, srcXML, 'Part/key')
+                
+                if Media.get('indirect',None):  # indirect... todo: select suitable resolution, today we just take first Media
+                    key, leftover, dfltd = self.getKey(Media, srcXML, 'Part/key')
+                    PMS = XML_ReadFromURL(g_param['Addr_PMS'], key)  # todo... check key for trailing '/' or even 'http'
+                    res, leftover, dfltd = self.getKey(PMS.getroot(), srcXML, 'Video/Media/Part/key')
+                
             else:
                 # request transcoding
-                res = metadata.get('key','')
+                res = Video.get('key','')
                 res = PlexAPI_getTranscodePath(self.options, res)
         else:
             dprint(__name__, 0, "MEDIAPATH - element not found: {0}", params)
