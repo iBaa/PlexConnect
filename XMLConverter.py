@@ -253,6 +253,19 @@ def XML_PMS2aTV(address, path, options):
     if cmd=='PlayVideo_ChannelsV1':
         dprint(__name__, 1, "playing Channels XML Version 1: {0}".format(path))
         return XML_PlayVideo_ChannelsV1(path)  # direct link, no PMS XML available
+        
+    elif cmd=='Play':
+        XMLtemplate = 'PlayVideo.xml'
+        
+        Media = PMSroot.find('Video').find('Media')  # todo: needs to be more flexible?
+        
+        indirect = Media.get('indirect','0')
+        Part = Media.find('Part')
+        key = Part.get('key','')
+        
+        if indirect=='1':  # redirect... todo: select suitable resolution, today we just take first Media
+            PMS = XML_ReadFromURL(address, key)  # todo... check key for trailing '/' or even 'http'
+            PMSroot = PMS.getroot()
     
     elif cmd=='MoviePreview':
         XMLtemplate = 'MoviePreview.xml'
@@ -367,18 +380,6 @@ def XML_PMS2aTV(address, path, options):
     elif not XMLtemplate=='':
         pass  # template already selected
     
-    elif cmd=='Play':
-        XMLtemplate = 'PlayVideo.xml'
-        
-        Media = PMSroot.find('Video').find('Media')  # todo: needs to be more flexible?
-        
-        indirect = Media.get('indirect','0')
-        Part = Media.find('Part')
-        key = Part.get('key','')
-        
-        if indirect=='1':  # redirect... todo: select suitable resolution, today we just take first Media
-            PMS = XML_ReadFromURL(address, key)  # todo... check key for trailing '/' or even 'http'
-            PMSroot = PMS.getroot()
     
     dprint(__name__, 1, "XMLTemplate: "+XMLtemplate)
     
@@ -933,13 +934,7 @@ class CCommandCollection(CCommandHelper):
         else:  # internal path, add-on
             res = 'http://' + g_param['Addr_PMS'] + self.path[srcXML] + res
         return res
-    
-    def ATTRIB_PLAY_COMMAND(self, src, srcXML, param):
-        return "&PlexConnect=Play&PlexConnectUDID=' + atv.device.udid"
-    
-    def ATTRIB_MUSICPLAY_COMMAND(self, src, srcXML, param):
-        return "&PlexConnect=PlayMusic&PlexConnectUDID=' + atv.device.udid"
-        
+            
     def ATTRIB_ADDR_PMS(self, src, srcXML, param):
         return g_param['Addr_PMS']
     
