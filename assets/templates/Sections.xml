@@ -22,8 +22,8 @@
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>
                 <preview>
-                  <link>http://trailers.apple.com{{ADDPATH(key)}}/recentlyAdded?stack=1&amp;X-Plex-Container-Start=0&amp;X-Plex-Container-Size=6&amp;PlexConnect=SectionPreview-{{VAL(type)}}</link>{{CUT(type::a=|photo=CUT|q=)}}
-									<link>http://trailers.apple.com{{ADDPATH(key)}}/recentlyAdded?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=6&amp;PlexConnect=SectionPreview-{{VAL(type)}}</link>{{CUT(type:CUT:a=CUT|photo=|q=CUT)}}
+                  <link>http://trailers.apple.com{{ADDPATH(key)}}/recentlyAdded?stack=1&amp;X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20&amp;PlexConnect=SectionPreview-{{VAL(type)}}</link>{{CUT(type::a=|photo=CUT|q=)}}
+									<link>http://trailers.apple.com{{ADDPATH(key)}}/recentlyAdded?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20&amp;PlexConnect=SectionPreview-{{VAL(type)}}</link>{{CUT(type:CUT:a=CUT|photo=|q=CUT)}}
                 </preview>
               </oneLineMenuItem>
             </items>
