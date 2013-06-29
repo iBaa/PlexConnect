@@ -23,6 +23,7 @@
               <title>{{VAL(title)}}</title>
               <image>{{IMAGEURL(thumb)}}</image>
               <defaultImage>resource://Poster.png</defaultImage>
+							<badgeCount>{{unwatchedCountGrid(leafCount:0:viewedLeafCount:0)}}</badgeCount>{{CUT($showunwatched::False=CUT|True=)}}
             </moviePoster>{{CUT(Directory/title:CUT:=)}}
           
             <moviePoster id="none">

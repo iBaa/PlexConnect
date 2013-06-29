@@ -966,7 +966,18 @@ class CCommandCollection(CCommandHelper):
             
         return ""
 
-
+    def ATTRIB_unwatchedCountGrid(self, src, srcXML, param):
+        total, leftover, dfltd = self.getKey(src, srcXML, param)
+        viewed, leftover, dfltd = self.getKey(src, srcXML, leftover)
+        unwatched = int(total) - int(viewed)
+        return str(unwatched)
+    
+    def ATTRIB_unwatchedCountList(self, src, srcXML, param):
+        total, leftover, dfltd = self.getKey(src, srcXML, param)
+        viewed, leftover, dfltd = self.getKey(src, srcXML, leftover)
+        unwatched = int(total) - int(viewed)
+        if unwatched > 0: return str(unwatched) + " unwatched"
+        else: return ""
 
 if __name__=="__main__":
     cfg = Settings.CSettings()

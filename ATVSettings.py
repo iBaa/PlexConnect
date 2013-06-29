@@ -19,7 +19,9 @@ options = { \
     'forcedirectplay'  :('False', 'True'), \
     'forcetranscode'   :('False', 'True'), \
     'subtitlesize'     :('100', '125', '150', '50', '75'), \
-    'audioboost'       :('100', '175', '225', '300') }
+    'audioboost'       :('100', '175', '225', '300'), \
+    'showunwatched'        :('True', 'False') }
+    
 # comment on forcedirectplay -> if true, this has higher priority than forcetranscode
 
 
