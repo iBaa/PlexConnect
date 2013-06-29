@@ -133,7 +133,7 @@ def XML_PlayVideo_ChannelsV1(path):
 """
 def GetURL(address, path):
     try:
-        conn = httplib.HTTPConnection(g_param['Addr_PMS'], timeout=10)
+        conn = httplib.HTTPConnection(address, timeout=10)
         conn.request("GET", path)
         data = conn.getresponse()
         if int(data.status) == 200:
@@ -171,6 +171,14 @@ def GetURL(address, path):
 # - translate and feed back to aTV
 """
 def XML_ReadFromURL(address, path):
+    address = g_param['Addr_PMS']
+    # address[0]+':'+str(address[1])  <- address should be this. ReadFromURL gets called with bad parameters?
+    xargs = PlexAPI_getXArgs()
+    if path.find('?')>=0:
+        path = path + '&' + urlencode(xargs)
+    else:
+        path = path + '?' + urlencode(xargs)
+    
     XMLstring = GetURL(address, path)
     if XMLstring==False:
         dprint(__name__, 0, 'No Response from Plex Media Server')
@@ -579,6 +587,11 @@ def PlexAPI_getTranscodePath(options, path):
     args['fastSeek'] = '1'
     args['path'] = path
     
+    xargs = PlexAPI_getXArgs()
+    
+    return transcodePath + urlencode(args) + '&' + urlencode(xargs)
+
+def PlexAPI_getXArgs():
     xargs = dict()
     xargs['X-Plex-Device'] = 'AppleTV'
     xargs['X-Plex-Version'] = ''
@@ -589,7 +602,9 @@ def PlexAPI_getTranscodePath(options, path):
     xargs['X-Plex-Product'] = 'Plex Connect'
     xargs['X-Plex-Platform-Version'] = '5.3' # Base it on AppleTV.
     
-    return transcodePath + urlencode(args) + '&' + urlencode(xargs)
+    return xargs
+
+
 
 """
 # Command expander classes
@@ -903,10 +918,14 @@ class CCommandCollection(CCommandHelper):
         # check "Media" element and get key
         if el!=None:  # Media
             UDID = self.options['PlexConnectUDID']
-            if el.get('container')=='mp3':
+            if g_ATVSettings.getSetting(UDID, 'forcedirectplay')=='True':
+                # force direct play
                 res = el.find('Part').get('key','')
-            elif g_ATVSettings.getSetting(UDID, 'forcedirectplay')=='True' or \
-               g_ATVSettings.getSetting(UDID, 'forcetranscode')!='True' and \
+            elif g_ATVSettings.getSetting(UDID, 'forcetranscode')!='True' and \
+               el.get('protocol','') in ("hls"):
+                # HTTP Live Stream
+                res = el.find('Part').get('key','')
+            elif g_ATVSettings.getSetting(UDID, 'forcetranscode')!='True' and \
                el.get('container','') in ("mov", "mp4") and \
                el.get('videoCodec','') in ("mpeg4", "h264", "drmi") and \
                el.get('audioCodec','') in ("aac", "ac3", "drms"):
