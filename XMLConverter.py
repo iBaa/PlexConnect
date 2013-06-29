@@ -239,33 +239,10 @@ def XML_PMS2aTV(address, path, options):
     PMS = None
     PMSroot = None
     
-    # request PMS XML
-    if not path=='':
-        PMS = XML_ReadFromURL(address, path)
-        if PMS==False:
-            return XML_Error('PlexConnect', 'No Response from Plex Media Server')
-    
-        PMSroot = PMS.getroot()
-        dprint(__name__, 1, "viewGroup: "+PMSroot.get('ViewGroup','None'))
-        
     # XMLtemplate defined by solely PlexConnect Cmd
-    
     if cmd=='PlayVideo_ChannelsV1':
         dprint(__name__, 1, "playing Channels XML Version 1: {0}".format(path))
         return XML_PlayVideo_ChannelsV1(path)  # direct link, no PMS XML available
-        
-    elif cmd=='Play':
-        XMLtemplate = 'PlayVideo.xml'
-        
-        Media = PMSroot.find('Video').find('Media')  # todo: needs to be more flexible?
-        
-        indirect = Media.get('indirect','0')
-        Part = Media.find('Part')
-        key = Part.get('key','')
-        
-        if indirect=='1':  # redirect... todo: select suitable resolution, today we just take first Media
-            PMS = XML_ReadFromURL(address, key)  # todo... check key for trailing '/' or even 'http'
-            PMSroot = PMS.getroot()
     
     elif cmd=='MoviePreview':
         XMLtemplate = 'MoviePreview.xml'
@@ -287,31 +264,34 @@ def XML_PMS2aTV(address, path, options):
     
     elif cmd=='ByFolderPreview':
         XMLtemplate = 'ByFolderPreview.xml'
-        
-    elif cmd == 'MovieSection':  
-        XMLtemplate = 'MovieSection.xml'  
-   
-    elif cmd == 'TVSection':  
-        XMLtemplate = 'TVSection.xml'  
- 
-    elif cmd == 'AllMovies':  
+    
+    elif cmd == 'MovieSection':
+        XMLtemplate = 'MovieSection.xml'
+    
+    elif cmd == 'TVSection':
+        XMLtemplate = 'TVSection.xml'
+    
+    elif cmd.find('SectionPreview') != -1:
+        XMLtemplate = cmd + '.xml'
+    
+    elif cmd == 'AllMovies':
         XMLtemplate = 'Movie_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'movieview')+'.xml'  
-
-    elif cmd == 'MovieSecondary':  
-        XMLtemplate = 'MovieSecondary.xml'  
-
-    elif cmd == 'AllShows':  
+    
+    elif cmd == 'MovieSecondary':
+        XMLtemplate = 'MovieSecondary.xml'
+    
+    elif cmd == 'AllShows':
         XMLtemplate = 'Show_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'showview')+'.xml'  
-
-    elif cmd == 'TVSecondary':  
-        XMLtemplate = 'TVSecondary.xml'  
-
-    elif cmd == 'Directory':  
-        XMLtemplate = 'Directory.xml'  
-
-    elif cmd == 'DirectoryWithPreview':  
-        XMLtemplate = 'DirectoryWithPreview.xml'  
-
+    
+    elif cmd == 'TVSecondary':
+        XMLtemplate = 'TVSecondary.xml'
+    
+    elif cmd == 'Directory':
+        XMLtemplate = 'Directory.xml'
+    
+    elif cmd == 'DirectoryWithPreview':
+        XMLtemplate = 'DirectoryWithPreview.xml'
+    
     elif cmd=='Settings':
         XMLtemplate = 'Settings.xml'
     
@@ -327,21 +307,47 @@ def XML_PMS2aTV(address, path, options):
     elif path.startswith('/search?'):
         XMLtemplate = 'Search_Results.xml'
     
+    # request PMS XML
+    if not path=='':
+        PMS = XML_ReadFromURL(address, path)
+        if PMS==False:
+            return XML_Error('PlexConnect', 'No Response from Plex Media Server')
+    
+        PMSroot = PMS.getroot()
+        dprint(__name__, 1, "viewGroup: "+PMSroot.get('ViewGroup','None'))
+    
+    # XMLtemplate defined by PMS XML content
+    if path=='':
+        pass  # nothing to load
+    
+    elif not XMLtemplate=='':
+        pass  # template already selected
+    
+    elif cmd=='Play':
+        XMLtemplate = 'PlayVideo.xml'
+        
+        Media = PMSroot.find('Video').find('Media')  # todo: needs to be more flexible?
+        
+        indirect = Media.get('indirect','0')
+        Part = Media.find('Part')
+        key = Part.get('key','')
+        
+        if indirect=='1':  # redirect... todo: select suitable resolution, today we just take first Media
+            PMS = XML_ReadFromURL(address, key)  # todo... check key for trailing '/' or even 'http'
+            PMSroot = PMS.getroot()
+    
     elif PMSroot.get('viewGroup') is None:
         XMLtemplate = 'Sections.xml'
-
-    elif cmd.find('SectionPreview') != -1:
-        XMLtemplate = cmd + '.xml'
-
+    
     elif PMSroot.get('viewGroup')=="secondary" and (PMSroot.get('art').find('movie') != -1 or PMSroot.get('thumb').find('movie') != -1):
         XMLtemplate = 'MovieSectionTopLevel.xml'
-        
+    
     elif PMSroot.get('viewGroup')=="secondary" and (PMSroot.get('art').find('show') != -1 or PMSroot.get('thumb').find('show') != -1):
         XMLtemplate = 'TVSectionTopLevel.xml'
-        
+    
     elif PMSroot.get('viewGroup')=="secondary":
         XMLtemplate = 'Directory.xml'
-        
+    
     elif PMSroot.get('viewGroup')=='show':
         # TV Show grid view
         XMLtemplate = 'Show_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'showview')+'.xml'
@@ -372,14 +378,6 @@ def XML_PMS2aTV(address, path, options):
     elif PMSroot.get('viewGroup')=='photo':
         # Photo listing
         XMLtemplate = 'Photo.xml'
-     
-    # XMLtemplate defined by PMS XML content
-    if path=='':
-        pass  # nothing to load
-    
-    elif not XMLtemplate=='':
-        pass  # template already selected
-    
     
     dprint(__name__, 1, "XMLTemplate: "+XMLtemplate)
     
@@ -978,6 +976,8 @@ class CCommandCollection(CCommandHelper):
         unwatched = int(total) - int(viewed)
         if unwatched > 0: return str(unwatched) + " unwatched"
         else: return ""
+
+
 
 if __name__=="__main__":
     cfg = Settings.CSettings()
