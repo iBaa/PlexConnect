@@ -5,7 +5,7 @@
         <paradePreview inOrder="true">
           <image>
             {{COPY(Directory)}}
-            {{BIGIMAGEURL(thumb)}}
+            {{BIGIMAGEURL(parentThumb)}}
           </image>
         </paradePreview>
       </preview>
