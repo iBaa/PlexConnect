@@ -239,11 +239,18 @@ def XML_PMS2aTV(address, path, options):
     PMS = None
     PMSroot = None
     
-    # XMLtemplate defined by solely PlexConnect Cmd
-    if cmd=='PlayMusic':
-        XMLtemplate = 'PlayMusic.xml'
+    # request PMS XML
+    if not path=='':
+        PMS = XML_ReadFromURL(address, path)
+        if PMS==False:
+            return XML_Error('PlexConnect', 'No Response from Plex Media Server')
     
-    elif cmd=='PlayVideo_ChannelsV1':
+        PMSroot = PMS.getroot()
+        dprint(__name__, 1, "viewGroup: "+PMSroot.get('ViewGroup','None'))
+        
+    # XMLtemplate defined by solely PlexConnect Cmd
+    
+    if cmd=='PlayVideo_ChannelsV1':
         dprint(__name__, 1, "playing Channels XML Version 1: {0}".format(path))
         return XML_PlayVideo_ChannelsV1(path)  # direct link, no PMS XML available
     
@@ -267,7 +274,31 @@ def XML_PMS2aTV(address, path, options):
     
     elif cmd=='ByFolderPreview':
         XMLtemplate = 'ByFolderPreview.xml'
-    
+        
+    elif cmd == 'MovieSection':  
+        XMLtemplate = 'MovieSection.xml'  
+   
+    elif cmd == 'TVSection':  
+        XMLtemplate = 'TVSection.xml'  
+ 
+    elif cmd == 'AllMovies':  
+        XMLtemplate = 'Movie_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'movieview')+'.xml'  
+
+    elif cmd == 'MovieSecondary':  
+        XMLtemplate = 'MovieSecondary.xml'  
+
+    elif cmd == 'AllShows':  
+        XMLtemplate = 'Show_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'showview')+'.xml'  
+
+    elif cmd == 'TVSecondary':  
+        XMLtemplate = 'TVSecondary.xml'  
+
+    elif cmd == 'Directory':  
+        XMLtemplate = 'Directory.xml'  
+
+    elif cmd == 'DirectoryWithPreview':  
+        XMLtemplate = 'DirectoryWithPreview.xml'  
+
     elif cmd=='Settings':
         XMLtemplate = 'Settings.xml'
     
@@ -283,43 +314,20 @@ def XML_PMS2aTV(address, path, options):
     elif path.startswith('/search?'):
         XMLtemplate = 'Search_Results.xml'
     
-    # request PMS XML
-    if not path=='':
-        PMS = XML_ReadFromURL(address, path)
-        if PMS==False:
-            return XML_Error('PlexConnect', 'No Response from Plex Media Server')
-    
-        PMSroot = PMS.getroot()
-        dprint(__name__, 1, "viewGroup: "+PMSroot.get('ViewGroup','None'))
-    
-    # XMLtemplate defined by PMS XML content
-    if path=='':
-        pass  # nothing to load
-    
-    elif not XMLtemplate=='':
-        pass  # template already selected
-    
-    elif cmd=='Play':
-        XMLtemplate = 'PlayVideo.xml'
+    elif PMSroot.get('viewGroup') is None:
+        XMLtemplate = 'Sections.xml'
+
+    elif cmd.find('SectionPreview') != -1:
+        XMLtemplate = cmd + '.xml'
+
+    elif PMSroot.get('viewGroup')=="secondary" and (PMSroot.get('art').find('movie') != -1 or PMSroot.get('thumb').find('movie') != -1):
+        XMLtemplate = 'MovieSectionTopLevel.xml'
         
-        Media = PMSroot.find('Video').find('Media')  # todo: needs to be more flexible?
+    elif PMSroot.get('viewGroup')=="secondary" and (PMSroot.get('art').find('show') != -1 or PMSroot.get('thumb').find('show') != -1):
+        XMLtemplate = 'TVSectionTopLevel.xml'
         
-        indirect = Media.get('indirect','0')
-        Part = Media.find('Part')
-        key = Part.get('key','')
-        
-        if indirect=='1':  # redirect... todo: select suitable resolution, today we just take first Media
-            PMS = XML_ReadFromURL(address, key)  # todo... check key for trailing '/' or even 'http'
-            PMSroot = PMS.getroot()
-    
-    elif PMSroot.get('viewGroup') is None or \
-       PMSroot.get('viewGroup')=='secondary' or \
-       PMSroot.get('viewGroup')=='artist' or \
-       PMSroot.get('viewGroup')=='album':
+    elif PMSroot.get('viewGroup')=="secondary":
         XMLtemplate = 'Directory.xml'
-    
-    elif PMSroot.get('viewGroup')=='track':
-        XMLtemplate = 'Music_Track.xml'
         
     elif PMSroot.get('viewGroup')=='show':
         # TV Show grid view
@@ -351,6 +359,26 @@ def XML_PMS2aTV(address, path, options):
     elif PMSroot.get('viewGroup')=='photo':
         # Photo listing
         XMLtemplate = 'Photo.xml'
+     
+    # XMLtemplate defined by PMS XML content
+    if path=='':
+        pass  # nothing to load
+    
+    elif not XMLtemplate=='':
+        pass  # template already selected
+    
+    elif cmd=='Play':
+        XMLtemplate = 'PlayVideo.xml'
+        
+        Media = PMSroot.find('Video').find('Media')  # todo: needs to be more flexible?
+        
+        indirect = Media.get('indirect','0')
+        Part = Media.find('Part')
+        key = Part.get('key','')
+        
+        if indirect=='1':  # redirect... todo: select suitable resolution, today we just take first Media
+            PMS = XML_ReadFromURL(address, key)  # todo... check key for trailing '/' or even 'http'
+            PMSroot = PMS.getroot()
     
     dprint(__name__, 1, "XMLTemplate: "+XMLtemplate)
     
@@ -756,6 +784,17 @@ class CCommandCollection(CCommandHelper):
             return True  # tree modified, node removed: restart from 1st elem
         else:
             return False  # tree unchanged
+            
+    def TREE_ADDXMLRELATIVE(self, elem, child, src, srcXML, param):  
+        path, leftover = self.getParam(src, param)  
+        tag, leftover = self.getParam(src, leftover)  
+    
+        path = self.path[srcXML]+'/'+path  
+        PMS = XML_ReadFromURL('address', path)  
+        self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML  
+        self.path[tag] = path  # store base path  
+    
+        return False  # tree unchanged (well, source tree yes. but that doesn't count...)  
     
     def TREE_ADDXML(self, elem, child, src, srcXML, param):
         tag, leftover = self.getParam(src, param)
@@ -869,7 +908,7 @@ class CCommandCollection(CCommandHelper):
                 res = el.find('Part').get('key','')
             elif g_ATVSettings.getSetting(UDID, 'forcedirectplay')=='True' or \
                g_ATVSettings.getSetting(UDID, 'forcetranscode')!='True' and \
-               el.get('container','') in ("mov", "mp4", "mpegts") and \
+               el.get('container','') in ("mov", "mp4") and \
                el.get('videoCodec','') in ("mpeg4", "h264", "drmi") and \
                el.get('audioCodec','') in ("aac", "ac3", "drms"):
                 # native aTV media
