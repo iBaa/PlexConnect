@@ -75,36 +75,48 @@ atv.player.willStartPlaying = function()
 /*
  * Handle ATV player state changes
  */
+ 
+var pingTimer = null;
+ 
 atv.player.playerStateChanged = function(newState, timeIntervalSec) {
 	log("Player state: " + newState + " at this time: " + timeIntervalSec);
+	state = null;
+
 	// Pause state, ping transcoder to keep session alive
 	if (newState == 'Paused')
 	{
+	    state = 'paused';
 		pingTimer = atv.setInterval(function() {loadPage(addrPMS + '/video/:/transcode/universal/ping?session=' + 
 																											atv.device.udid);}, 60000);
 	}
-	
+
 	// Playing state, kill paused state ping timer
 	if (newState == 'Playing')
 	{
+	    state = 'play'
 		atv.clearInterval(pingTimer);
 	}
-	
+
 	// Loading state, tell PMS we're buffering
 	if (newState == 'Loading')
-	{	
-		time = Math.round(timeIntervalSec*1000);
-		loadPage(addrPMS + '/:/timeline?ratingKey=' + atv.sessionStorage['ratingKey'] + 
+	{
+	    state = 'buffering';
+	}
+
+	if (state != null)
+	{
+    	time = Math.round(timeIntervalSec*1000);
+    	loadPage(addrPMS + '/:/timeline?ratingKey=' + atv.sessionStorage['ratingKey'] + 
              '&duration=' + atv.sessionStorage['duration'] + 
              '&key=%2Flibrary%2Fmetadata%2F' + atv.sessionStorage['ratingKey'] + 
-             '&state=buffering' +
+             '&state=' + state + 
              '&time=' + time.toString() + 
+             '&report=1' +
              '&X-Plex-Client-Identifier=' + atv.device.udid + 
              '&X-Plex-Device-Name=Apple%20TV'
              );
-	}
+    }
 };
-
 
 /*
  *
