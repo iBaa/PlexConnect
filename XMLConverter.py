@@ -377,6 +377,9 @@ def XML_PMS2aTV(address, path, options):
         # Photo listing
         XMLtemplate = 'Photo.xml'
     
+    else:
+        XMLtemplate = 'Directory.xml'
+    
     dprint(__name__, 1, "XMLTemplate: "+XMLtemplate)
     
     # get XMLtemplate
