@@ -914,12 +914,12 @@ class CCommandCollection(CCommandHelper):
             if g_ATVSettings.getSetting(UDID, 'forcedirectplay')=='True' \
                or \
                g_ATVSettings.getSetting(UDID, 'forcetranscode')!='True' and \
-               Media.get('protocol','') in ("hls") \
+               Media.get('protocol','-') in ("hls") \
                or \
                g_ATVSettings.getSetting(UDID, 'forcetranscode')!='True' and \
-               Media.get('container','') in ("mov", "mp4") and \
-               Media.get('videoCodec','') in ("mpeg4", "h264", "drmi") and \
-               Media.get('audioCodec','') in ("aac", "ac3", "drms"):
+               Media.get('container','-') in ("mov", "mp4") and \
+               Media.get('videoCodec','-') in ("mpeg4", "h264", "drmi") and \
+               Media.get('audioCodec','-') in ("aac", "ac3", "drms"):
                 # direct play for...
                 #    force direct play
                 # or HTTP live stream
