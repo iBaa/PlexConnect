@@ -59,6 +59,7 @@ Source: http://doc-tcpip.org/Dns/named.dns.message.html
 import sys
 import socket
 import struct
+import signal
 from multiprocessing import Pipe  # inter process communication
 
 import Settings
@@ -126,6 +127,7 @@ def printDNSPaket(paket):
 
 
 def Run(cmdPipe, param):
+    signal.signal(signal.SIGINT, signal.SIG_IGN)
     dinit(__name__, param)  # init logging, DNSServer process
     
     cfg_IP_self = param['IP_self']

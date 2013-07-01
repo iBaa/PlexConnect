@@ -11,13 +11,16 @@ inter-process-communication (queue): http://pymotw.com/2/multiprocessing/communi
 import sys, time
 from os import sep
 import socket
-from multiprocessing import Process, Pipe
+import signal
+from multiprocessing import Process, Pipe, active_children
 
 import PlexGDM
 import DNSServer, WebServer
 import Settings
 from Debug import *  # dprint()
 
+p_WebServer = None
+p_DNSServer = None
 
 def getIP_self():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -26,16 +29,25 @@ def getIP_self():
     dprint('PlexConnect', 0, "IP_self: "+IP)
     return IP
 
+def sig_handler(signum=None, frame=None):
+    if type(signum) != type(None):
+        dprint('PlexConnect', 0,  "Shutting down.")
+        if pipe_DNSServer != None:
+            pipe_DNSServer[0].send('shutdown')
+
+        pipe_WebServer[0].send('shutdown')
 
 
 if __name__=="__main__":
+    signal.signal(signal.SIGINT, sig_handler)
+    signal.signal(signal.SIGTERM, sig_handler)
     param = {}
     param['LogFile'] = sys.path[0] + sep + 'PlexConnect.log'
     dinit('PlexConnect', param, True)  # init logging, new file, main process
 
     dprint('PlexConnect', 0, "***")
     dprint('PlexConnect', 0, "PlexConnect")
-    dprint('PlexConnect', 0, "Press ENTER to shut down.")
+    dprint('PlexConnect', 0, "Press ctrl-c to shut down.")
     dprint('PlexConnect', 0, "***")
     
     # Settings
@@ -86,16 +98,6 @@ if __name__=="__main__":
             p_DNSServer.join()
         sys.exit(1)
     
-    try:
-        key = raw_input()
-    except KeyboardInterrupt:
-        dprint('PlexConnect', 0, "^C received.")
-    
-    finally:
-        dprint('PlexConnect', 0,  "Shutting down.")
-        if cfg.getSetting('enable_dnsserver')=='True':
-            pipe_DNSServer[0].send('shutdown')
-            p_DNSServer.join()
-        
-        pipe_WebServer[0].send('shutdown')
-        p_WebServer.join()
+    # Stay alive while my threads do the work
+    while (active_children()):
+        time.sleep(10)

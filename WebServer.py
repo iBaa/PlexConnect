@@ -11,6 +11,7 @@ http://www.linuxjournal.com/content/tech-tip-really-simple-http-server-python
 import sys
 import string, cgi, time
 from os import sep
+import signal
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 from multiprocessing import Pipe  # inter process communication
 
@@ -168,6 +169,7 @@ class MyHandler(BaseHTTPRequestHandler):
 
 
 def Run(cmdPipe, param):
+    signal.signal(signal.SIGINT, signal.SIG_IGN)
     dinit(__name__, param)  # init logging, WebServer process
     
     cfg_IP_WebServer = param['CSettings'].getSetting('ip_webserver')
