@@ -19,8 +19,8 @@ import DNSServer, WebServer
 import Settings
 from Debug import *  # dprint()
 
-p_WebServer = None
-p_DNSServer = None
+pipe_WebServer = None
+pipe_DNSServer = None
 
 def getIP_self():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
