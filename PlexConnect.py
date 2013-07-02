@@ -34,8 +34,8 @@ def sig_handler(signum=None, frame=None):
         dprint('PlexConnect', 0,  "Shutting down.")
         if pipe_DNSServer != None:
             pipe_DNSServer[0].send('shutdown')
-
-        pipe_WebServer[0].send('shutdown')
+        if pipe_DNSServer != None:
+            pipe_WebServer[0].send('shutdown')
 
 
 if __name__=="__main__":
@@ -98,6 +98,8 @@ if __name__=="__main__":
             p_DNSServer.join()
         sys.exit(1)
     
-    # Stay alive while my threads do the work
-    while (active_children()):
-        time.sleep(10)
+    # wait till processed are gone
+    if cfg.getSetting('enable_dnsserver')=='True':
+        p_DNSServer.join()
+    
+    p_WebServer.join()
