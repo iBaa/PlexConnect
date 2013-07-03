@@ -60,6 +60,7 @@ import sys
 import socket
 import struct
 from multiprocessing import Pipe  # inter process communication
+import signal
 
 import Settings
 from Debug import *  # dprint()
@@ -300,6 +301,9 @@ def printDNSstruct(DNSstruct):
 
 
 def Run(cmdPipe, param):
+    if not __name__ == '__main__':
+        signal.signal(signal.SIGINT, signal.SIG_IGN)
+    
     dinit(__name__, param)  # init logging, DNSServer process
     
     cfg_IP_self = param['IP_self']
@@ -420,6 +424,7 @@ def Run(cmdPipe, param):
                 dprint(__name__, 1, "Warning: DNS error ({0}): {1}", e.errno, e.strerror)
             
     except KeyboardInterrupt:
+        signal.signal(signal.SIGINT, signal.SIG_IGN)  # we heard you!
         dprint(__name__, 0, "^C received.")
     finally:
         dprint(__name__, 0, "Shutting down.")

@@ -13,6 +13,7 @@ import string, cgi, time
 from os import sep
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 from multiprocessing import Pipe  # inter process communication
+import signal
 
 try:
     import xml.etree.cElementTree as etree
@@ -168,6 +169,9 @@ class MyHandler(BaseHTTPRequestHandler):
 
 
 def Run(cmdPipe, param):
+    if not __name__ == '__main__':
+        signal.signal(signal.SIGINT, signal.SIG_IGN)
+    
     dinit(__name__, param)  # init logging, WebServer process
     
     cfg_IP_WebServer = param['CSettings'].getSetting('ip_webserver')
@@ -202,6 +206,7 @@ def Run(cmdPipe, param):
             server.handle_request()
     
     except KeyboardInterrupt:
+        signal.signal(signal.SIGINT, signal.SIG_IGN)  # we heard you!
         dprint(__name__, 0,"^C received.")
     finally:
         dprint(__name__, 0, "Shutting down.")
