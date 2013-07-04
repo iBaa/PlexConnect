@@ -12,7 +12,7 @@ import sys, time
 from os import sep
 import socket
 from multiprocessing import Process, Pipe
-import signal
+import signal, errno
 
 import DNSServer, WebServer
 import Settings
@@ -37,7 +37,7 @@ def sighandler_shutdown(signum, frame):
     g_shutdown = True
     if pipe_DNSServer != None:
         pipe_DNSServer[0].send('shutdown')
-    if pipe_DNSServer != None:
+    if pipe_WebServer != None:
         pipe_WebServer[0].send('shutdown')
 
 
@@ -95,9 +95,15 @@ if __name__=="__main__":
     
     # work until shutdown
     # ...or just wait until child processes are done
-    # while g_shutdown==False:
-    #     # do something important
-    #     time.sleep(1)
+    while g_shutdown==False:
+        # do something important
+        try:
+            time.sleep(60)
+        except IOError as e:
+            if e.errno == errno.EINTR and g_shutdown == True:
+                pass  # mask "IOError: [Errno 4] Interrupted function call"
+            else:
+                raise
     
     if cfg.getSetting('enable_dnsserver')=='True':
         p_DNSServer.join()
