@@ -6,9 +6,9 @@ var addrPMS;
  */
 function loadPage(url)
 {
-	var req = new XMLHttpRequest();
-	req.open('GET', url, true);
-	req.send();
+    var req = new XMLHttpRequest();
+    req.open('GET', url, true);
+    req.send();
 };
 
  /*
@@ -50,6 +50,14 @@ atv.player.playerTimeDidChange = function(time)
  */
 atv.player.didStopPlaying = function()
 {	
+    // Remove clock
+    var messageTimer = TextViewController.getConfig("messageTimer");
+    if (messageTimer)
+    {  
+        atv.clearInterval(messageTimer);
+        TextViewController.setConfig("messageTimer", null);
+    }
+        
     // Notify of a stop.
     loadPage(addrPMS + '/:/timeline?ratingKey=' + atv.sessionStorage['ratingKey'] + 
              '&duration=' + atv.sessionStorage['duration'] + 
@@ -69,7 +77,29 @@ atv.player.didStopPlaying = function()
  */
 atv.player.willStartPlaying = function()
 {	
+    // Create clock view
+    if (atv.sessionStorage['showplayerclock'] != 'Off') TextViewController.initiateView("counter");
+    
     addrPMS = "http://" + atv.sessionStorage['addrpms'];
+};
+
+/*
+ * Handle showing/hiding of transport controls
+ */
+atv.player.onTransportControlsDisplayed = function(animationDuration)
+{
+    if (TextViewController.getView("counter"))
+    {
+        TextViewController.showView("counter", animationDuration);
+    }
+};
+
+atv.player.onTransportControlsHidden = function(animationDuration)
+{
+    if (TextViewController.getView("counter"))
+    {
+        TextViewController.hideView("counter", animationDuration);
+    }
 };
 
 /*
@@ -118,6 +148,171 @@ atv.player.playerStateChanged = function(newState, timeIntervalSec) {
     }
 };
 
+
+/*
+ *
+ * Text view creation and animation
+ *
+ */
+
+var TextViewController = (function() {
+    var __config = {}, __views = {};
+    
+    function SetConfig(property, value)
+    {
+        if (property)
+        {
+            __config[property] = value;
+        }
+    };
+    
+    function GetConfig(property)
+    {
+        if (property)
+        {
+            return __config[property];
+        } 
+        else
+        {
+            return false;
+        }
+    };
+    
+    function SaveView(name, value)
+    {
+        if (name)
+        {
+            __views[name] = value;
+        }
+    };
+    
+    function GetView(name)
+    {
+        if (name)
+        {
+            return __views[name];
+        }
+        else
+        {
+            return false;
+        }
+    };
+    
+    function RemoveView(name)
+    {
+        if (GetView(name))
+        {
+            delete __views[name];
+        }
+    };
+    
+    function HideView(name, timeIntervalSec)
+    {
+        var animation = {"type": "BasicAnimation", "keyPath": "opacity",
+                        "fromValue": 1, "toValue": 0, "duration": timeIntervalSec,
+                        "removedOnCompletion": false, "fillMode": "forwards",
+                        "animationDidStop": function(finished) {} };
+        var viewContainer = GetView(name);
+        if (viewContainer) viewContainer.addAnimation(animation, name);
+    };
+    
+    function ShowView(name, timeIntervalSec)
+    {
+        var animation = {"type": "BasicAnimation", "keyPath": "opacity",
+                        "fromValue": 0, "toValue": 1, "duration": timeIntervalSec,
+                        "removedOnCompletion": false, "fillMode": "forwards",
+                        "animationDidStop": function(finished) {} };
+        var viewContainer = GetView( name );
+        if (viewContainer) viewContainer.addAnimation(animation, name);
+    };
+    
+    function pad(num, len) {return (Array(len).join("0") + num).slice(-len);};
+    
+    function __updateMessage()
+    {
+        var messageView = GetConfig("messageView");
+        
+        if(messageView)
+        {
+            var tail = "AM";
+            var time = new Date();
+            var hours24 = pad(time.getHours(), 2);
+            var h12 = parseInt(hours24);
+            if (h12 > 12)
+            {
+              h12 = h12 - 12;
+              tail = "PM";
+            }
+            hours12 = h12.toString();
+            var mins = pad(time.getMinutes(), 2);
+            var secs = pad(time.getSeconds(), 2);
+            var timestr24 = hours24 + ":" + mins + ":" + secs;
+            var timestr12 = hours12 + ":" + mins + ":" + secs + " " + tail;
+            if (atv.sessionStorage['showplayerclock'] == '24 Hour')
+            {
+                messageView.attributedString = {"string": "" + timestr24,
+                                "attributes": {"pointSize": 30.0, "color": {"red": 1, "blue": 1, "green": 1}, "alignment": "center"}};
+            }
+            else
+            {
+                messageView.attributedString = {"string": "" + timestr12,
+                                "attributes": {"pointSize": 30.0, "color": {"red": 1, "blue": 1, "green": 1}, "alignment": "center"}};
+            }
+        };
+    };
+    
+    function InitiateView(name)
+    {
+        var viewContainer = new atv.View();
+        var message = new atv.TextView();
+        var screenFrame = atv.device.screenFrame;
+        var width = screenFrame.width * 0.15;
+        var height = screenFrame.height * 0.07;
+                               
+        // Setup the View container.
+        viewContainer.frame = { "x": screenFrame.x + (screenFrame.width * 0.5) - (width * 0.5),
+                                "y": screenFrame.y + (screenFrame.height * 0.993) - height,
+                                "width": width, "height": height };
+        viewContainer.backgroundColor = {"red": 0, "blue": 0, "green": 0, "alpha": 0.7};
+        viewContainer.alpha = 1;
+        
+        var topPadding = viewContainer.frame.height * 0.15;
+        
+        // Setup the message frame
+        message.frame = { "x": 0, "y": 0,
+                          "width": viewContainer.frame.width, "height": viewContainer.frame.height - topPadding };
+
+        // Update the overlay message
+        var messageTimer = atv.setInterval( __updateMessage, 1000 );
+        SetConfig("messageTimer", messageTimer)
+        
+          // Save the message to config
+          SetConfig("messageView", message)
+                          
+        __updateMessage();
+  
+        // Add the sub view
+        viewContainer.subviews = [message];
+        
+        // Paint the view on Screen.
+        atv.player.overlay = viewContainer;
+        SaveView( name, viewContainer );
+    }
+    
+    return {
+        "initiateView": InitiateView,
+        "hideView": HideView,
+        "showView": ShowView,
+        "saveView": SaveView,
+        "getView": GetView,
+        "removeView": RemoveView,
+        "setConfig": SetConfig,
+        "getConfig": GetConfig
+    }
+} )();
+
+
+
 /*
  *
  * Main app entry point
@@ -142,3 +337,4 @@ atv.onAppEntry = function()
         atv.loadURL("http://trailers.apple.com/versionError.xml");
     }
 };
+

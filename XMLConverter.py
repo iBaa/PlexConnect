@@ -965,8 +965,9 @@ class CCommandCollection(CCommandHelper):
     def ATTRIB_sendToATV(self, src, srcXML, param):
         ratingKey, leftover, dfltd = self.getKey(src, srcXML, param)  # getKey "defaults" if nothing found.
         duration, leftover, dfltd = self.getKey(src, srcXML, leftover)
+        UDID = self.options['PlexConnectUDID']
         out = "atv.sessionStorage['ratingKey']='" + ratingKey + "';atv.sessionStorage['duration']='" + duration + \
-              "'" #;atv.sessionStorage['reloadXMLpath']='" + self.path[srcXML] + "'"
+              "';atv.sessionStorage['showplayerclock']='" + g_ATVSettings.getSetting(UDID, 'showplayerclock') + "'"
         return out 
     
     def ATTRIB_getPath(self, src, srcXML, param):

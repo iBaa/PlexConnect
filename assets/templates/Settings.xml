@@ -58,6 +58,10 @@
                 <label>Show Unwatched Count</label>
                 <rightLabel>{{SETTING(showunwatched)}}</rightLabel>
               </oneLineMenuItem>
+              <oneLineMenuItem id="ShowPlayerClock" onSelect="toggleSettings('ShowPlayerClock')">
+                <label>Show Clock in Video Player</label>
+                <rightLabel>{{SETTING(showplayerclock)}}</rightLabel>
+              </oneLineMenuItem>
             </items>
           </menuSection>
           <menuSection>
