@@ -65,7 +65,6 @@ def daemonize():
     """
     do the UNIX double-fork magic, see Stevens' "Advanced
     Programming in the UNIX Environment" for details (ISBN 0201563177)
-    http://www.erlenstar.demon.co.uk/unix/faq_2.html#SEC16
     """
     dprint('PlexConnect', 0,  "Starting deamon.")
 
