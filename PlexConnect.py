@@ -76,6 +76,7 @@ def daemonize():
     except OSError, e:
         raise RuntimeError("1st fork failed: %s [%d]" % (e.strerror, e.errno))
 
+    # decouple from parent environment
     os.setsid()  # @UndefinedVariable - only available in UNIX
 
     # Make sure I can read my own files and shut out others
@@ -90,8 +91,11 @@ def daemonize():
     except OSError, e:
         raise RuntimeError("2nd fork failed: %s [%d]" % (e.strerror, e.errno))
 
+    # redirect standard file descriptors
     dev_null = file('/dev/null', 'r')
     os.dup2(dev_null.fileno(), sys.stdin.fileno())
+    os.dup2(dev_null.fileno(), sys.stdout.fileno())
+    os.dup2(dev_null.fileno(), sys.stderr.fileno())
 
     global g_createpid, g_createpid
     if g_createpid:
@@ -112,11 +116,6 @@ if __name__=="__main__":
     param = {}
     param['LogFile'] = sys.path[0] + os.sep + 'PlexConnect.log'
     dinit('PlexConnect', param, True)  # init logging, new file, main process
-
-    dprint('PlexConnect', 0, "***")
-    dprint('PlexConnect', 0, "PlexConnect")
-    dprint('PlexConnect', 0, "Press CTRL-C to shut down.")
-    dprint('PlexConnect', 0, "***")
 
     # Settings
     cfg = Settings.CSettings()
@@ -164,8 +163,13 @@ if __name__=="__main__":
 
     if g_daemon:
         daemonize()
+    else:
+        dprint('PlexConnect', 0, "***")
+        dprint('PlexConnect', 0, "PlexConnect")
+        dprint('PlexConnect', 0, "Press CTRL-C to shut down.")
+        dprint('PlexConnect', 0, "***")
 
-    # init DNSServer
+# init DNSServer
     if cfg.getSetting('enable_dnsserver')=='True':
         pipe_DNSServer = Pipe()  # endpoint [0]-PlexConnect, [1]-DNSServer
         p_DNSServer = Process(target=DNSServer.Run, args=(pipe_DNSServer[1], param))
