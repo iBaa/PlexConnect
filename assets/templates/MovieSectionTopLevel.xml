@@ -35,13 +35,13 @@
 
 				<navigationItem id="4">
 					<title>Directors</title> 
-					<url>http://trailers.apple.com{{ADDPATH(key)}}/director&amp;PlexConnect=DirectoryWithPreview</url>
+					<url>http://trailers.apple.com{{ADDPATH(key)}}/director&amp;PlexConnect=DirectoryWithPreviewSingle</url>
 				</navigationItem>
 
 
 				<navigationItem id="5">
 					<title>Actors</title> 
-					<url>http://trailers.apple.com{{ADDPATH(key)}}/actor&amp;PlexConnect=DirectoryWithPreview</url>
+					<url>http://trailers.apple.com{{ADDPATH(key)}}/actor&amp;PlexConnect=DirectoryWithPreviewSingle</url>
 				</navigationItem>
 
 

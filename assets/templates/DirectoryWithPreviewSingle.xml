@@ -1,0 +1,36 @@
+<atv>
+  <head>
+    <script src="http://trailers.apple.com/js/utils.js" />
+  </head>
+	
+  <body>
+    <listWithPreview id="com.sample.menu-items-with-sections">
+      <header>
+        <simpleHeader>
+          <title>{{VAL(title1:Plex Library)}}</title>
+          <subtitle>{{VAL(title2)}}</subtitle>
+        </simpleHeader>
+      </header>
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+              <!-- library directories -->
+              <oneLineMenuItem id="{{VAL(key)}}" 
+                                       onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')" 
+                                       onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')">
+                {{COPY(Directory)}}
+                <label>{{VAL(title)}}</label>
+                <preview>
+                  <crossFadePreview>
+                    <image>{{BIGIMAGEURL(thumb)}}</image>
+                  </crossFadePreview>
+                </preview>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </listWithPreview>
+  </body>
+</atv>
