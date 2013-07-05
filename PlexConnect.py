@@ -56,7 +56,7 @@ def request_shutdown():
         
 
 def sighandler_shutdown(signum, frame):
-    request_shutdown();
+    request_shutdown()
 
 
 def daemonize():
