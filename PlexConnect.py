@@ -93,6 +93,8 @@ def daemonize():
 
     # redirect standard file descriptors
     dev_null = file('/dev/null', 'r')
+    sys.stdout.flush()
+    sys.stderr.flush()
     os.dup2(dev_null.fileno(), sys.stdin.fileno())
     os.dup2(dev_null.fileno(), sys.stdout.fileno())
     os.dup2(dev_null.fileno(), sys.stderr.fileno())
