@@ -16,22 +16,34 @@
             <items>
               <oneLineMenuItem id="unwatched" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/unwatched')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/unwatched')">
                 <label>Unwatched</label>
+                <preview>
+                  <link>http://trailers.apple.com{{ADDPATH(key)}}/unwatched?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
+                </preview>
               </oneLineMenuItem>
               
               <oneLineMenuItem id="recentlyViewedShows" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/recentlyViewedShows')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/recentlyViewedShows')">
                 <label>Recently Viewed Shows</label>
+                <preview>
+                  <link>http://trailers.apple.com{{ADDPATH(key)}}/recentlyViewedShows?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
+                </preview>
               </oneLineMenuItem>
               
-              <oneLineMenuItem id="collection" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/collection&amp;PlexConnect=Directory')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/collection&amp;PlexConnect=Directory')">
+              <oneLineMenuItem id="collection" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/collection&amp;PlexConnect=DirectoryWithPreview')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/collection&amp;PlexConnect=DirectoryWithPreview')">
                 <label>By Collection</label>
+                <preview>
+                  <link>http://trailers.apple.com{{ADDPATH(key)}}/collection?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
+                </preview>
               </oneLineMenuItem>
               
-              <oneLineMenuItem id="year" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/year&amp;PlexConnect=Directory')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/year&amp;PlexConnect=Directory')">
+              <oneLineMenuItem id="year" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/year&amp;PlexConnect=DirectoryWithPreview')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/year&amp;PlexConnect=DirectoryWithPreview')">
                 <label>By Year</label>
               </oneLineMenuItem>
               
-              <oneLineMenuItem id="contentRating" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/contentRating&amp;PlexConnect=Directory')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/contentRating&amp;PlexConnect=Directory')">
+              <oneLineMenuItem id="contentRating" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/contentRating&amp;PlexConnect=DirectoryWithPreview')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/contentRating&amp;PlexConnect=DirectoryWithPreview')">
                 <label>By Content Rating</label>
+                <preview>
+                  <link>http://trailers.apple.com{{ADDPATH(key)}}/contentRating?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
+                </preview>
               </oneLineMenuItem>
             </items>
           </menuSection>
