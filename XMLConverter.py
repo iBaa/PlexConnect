@@ -302,10 +302,7 @@ def XML_PMS2aTV(address, path, options):
     
     elif cmd == 'DirectoryWithPreview':
         XMLtemplate = 'DirectoryWithPreview.xml'
-    
-    elif cmd == 'DirectoryWithPreviewSingle':
-        XMLtemplate = 'DirectoryWithPreviewSingle.xml'
-        
+            
     elif cmd=='Settings':
         XMLtemplate = 'Settings.xml'
     
