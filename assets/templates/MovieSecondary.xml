@@ -28,7 +28,7 @@
                 </preview>
               </oneLineMenuItem>
               
-              <oneLineMenuItem id="collection" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/collection&amp;PlexConnect=DirectoryWithPreview')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/collection&amp;PlexConnect=DirectorywithPreview')">
+              <oneLineMenuItem id="collection" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/collection&amp;PlexConnect=DirectoryWithPreview')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/collection&amp;PlexConnect=DirectoryWithPreview')">
                 <label>By Collection</label>
                 <preview>
                   <link>http://trailers.apple.com{{ADDPATH(key)}}/collection?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
