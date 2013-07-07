@@ -8,7 +8,8 @@ inter-process-communication (queue): http://pymotw.com/2/multiprocessing/communi
 """
 
 
-import sys, time
+import sys
+import time
 import os
 import socket
 from multiprocessing import Process, Pipe
@@ -17,10 +18,18 @@ import  errno
 import signal
 import getopt
 
-import DNSServer, WebServer
+import DNSServer
+import WebServer
 import Settings
 from Debug import *  # dprint()
 
+
+g_pipes = []
+g_processes = []
+g_shutdown = False
+g_createpid = False
+g_pidfile = None
+g_daemon = None
 
 
 def getIP_self():
@@ -31,30 +40,25 @@ def getIP_self():
     return IP
 
 
-g_shutdown = False
-g_createpid = False
-g_pidfile = None
-g_daemon = None
-
-
-def shutdown():
-    if p_DNSServer != None:
-        p_DNSServer.join()
-    if p_WebServer != None:
-        p_WebServer.join()
+def shutdown(code):
+    # join all processes
+    for process in g_processes:
+        process.join()
+    dprint('PlexConnect', 0, "shutdown")
+    #remove pid file if any
     if g_createpid:
-        dprint('PlexConnect', 0, "Removing pidfile")
         os.remove(g_pidfile)
+    if (code):
+        sys.exit(code)
 
 
 def request_shutdown():
     dprint('PlexConnect', 0,  "Shutting down.")
     global g_shutdown
     g_shutdown = True
-    if pipe_DNSServer != None:
-        pipe_DNSServer[0].send('shutdown')
-    if pipe_WebServer != None:
-        pipe_WebServer[0].send('shutdown')
+    # send shutdown to all pipes
+    for pipe in g_pipes:
+        pipe.send('shutdown')
 
 
 def sighandler_shutdown(signum, frame):
@@ -106,14 +110,9 @@ def daemonize():
         file(g_pidfile, 'w').write("%s\n" % pid)
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     signal.signal(signal.SIGINT, sighandler_shutdown)
     signal.signal(signal.SIGTERM, sighandler_shutdown)
-
-    pipe_DNSServer = None
-    pipe_WebServer = None
-    p_DNSServer = None
-    p_WebServer = None
 
     param = {}
     param['LogFile'] = sys.path[0] + os.sep + 'PlexConnect.log'
@@ -131,7 +130,7 @@ if __name__=="__main__":
     dinit('PlexConnect', param)  # re-init logfile with loglevel
 
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "dp:", [ 'daemon', 'pidfile='])  # @UnusedVariable
+        opts, args = getopt.getopt(sys.argv[1:], "dp:", ['daemon', 'pidfile='])  # @UnusedVariable
     except getopt.GetoptError:
         dprint('PlexConnect', 0, "Available Options:  --daemon, --pidfile filename")
         sys.exit()
@@ -171,37 +170,37 @@ if __name__=="__main__":
         dprint('PlexConnect', 0, "Press CTRL-C to shut down.")
         dprint('PlexConnect', 0, "***")
 
-# init DNSServer
-    if cfg.getSetting('enable_dnsserver')=='True':
-        pipe_DNSServer = Pipe()  # endpoint [0]-PlexConnect, [1]-DNSServer
-        p_DNSServer = Process(target=DNSServer.Run, args=(pipe_DNSServer[1], param))
-        p_DNSServer.start()
+    # init DNSServer
+    if cfg.getSetting('enable_dnsserver') == 'True':
+        sender, receiver = Pipe()  # endpoint [0]-PlexConnect, [1]-DNSServer
+        process = Process(target=DNSServer.Run, args=(receiver, param))
+        process.start()
 
         time.sleep(0.1)
-        if not p_DNSServer.is_alive():
+        if not process.is_alive():
             dprint('PlexConnect', 0, "DNSServer not alive. Shutting down.")
-            p_DNSServer = None;
             request_shutdown()
-            shutdown()
-            sys.exit(1)
+            shutdown(1)
+        g_pipes.append(sender)
+        g_processes.append(process)
 
     # init WebServer
-    pipe_WebServer = Pipe()  # endpoint [0]-PlexConnect, [1]-WebServer
-    p_WebServer = Process(target=WebServer.Run, args=(pipe_WebServer[1], param))
-    p_WebServer.start()
+    sender, receiver = Pipe()  # endpoint [0]-PlexConnect, [1]-WebServer
+    process = Process(target=WebServer.Run, args=(receiver, param))
+    process.start()
 
     time.sleep(0.1)
-    if not p_WebServer.is_alive():
+    if not process.is_alive():
         dprint('PlexConnect', 0, "WebServer not alive. Shutting down.")
-        p_WebServer = None;
         request_shutdown()
-        shutdown()
-        sys.exit(1)
+        shutdown(1)
+    g_pipes.append(sender)
+    g_processes.append(process)
 
     # work until shutdown
     # ...or just wait until child processes are done
     if sys.platform == 'win32':
-        while g_shutdown==False:
+        while not g_shutdown:
             # do something important
             try:
                 time.sleep(60)
@@ -211,4 +210,4 @@ if __name__=="__main__":
                 else:
                     raise
 
-    shutdown()
+    shutdown(0)
