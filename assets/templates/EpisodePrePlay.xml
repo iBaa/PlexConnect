@@ -37,9 +37,12 @@
             <label>{{VAL(Video/Writer[2]/tag)}}</label>
           </row>
           <row>
+            <starRating hasUserSetRating="true">
+              <percentage>{{EVAL(Video/userRating:0:int(x*10))}}</percentage>
+            </starRating>{{CUT(Video/userRating:CUT:0=)}}
             <starRating>
               <percentage>{{EVAL(Video/rating:0:int(x*10))}}</percentage>
-            </starRating>
+            </starRating>{{CUT(Video/userRating::0=CUT)}}
             <label>{{VAL(Video/Director[3]/tag)}}</label>
             <label>{{VAL(Video/Writer[3]/tag)}}</label>
           </row>
