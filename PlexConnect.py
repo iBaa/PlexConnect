@@ -14,8 +14,7 @@ import os
 import socket
 from multiprocessing import Process, Pipe
 import signal
-import  errno
-import signal
+import errno
 import getopt
 
 import DNSServer
@@ -62,6 +61,7 @@ def request_shutdown():
 
 
 def sighandler_shutdown(signum, frame):
+    signal.signal(signal.SIGINT, signal.SIG_IGN)  # we heard you!
     request_shutdown()
 
 
