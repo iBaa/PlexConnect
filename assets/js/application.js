@@ -243,6 +243,15 @@ var TextViewController = (function() {
               h12 = h12 - 12;
               tail = "PM";
             }
+            else if (h12 = 12)
+            {
+              tail = "PM";
+            }
+            else if (h12 = 0)
+            {
+              h12 = 12;
+              tail = "AM";
+            }
             hours12 = h12.toString();
             var mins = pad(time.getMinutes(), 2);
             var secs = pad(time.getSeconds(), 2);
