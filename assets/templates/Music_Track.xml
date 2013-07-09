@@ -1,37 +1,53 @@
-<atv>
-  <head>
-    <script src="http://trailers.apple.com/js/utils.js"/>
-  </head>
-  
-  <body>
-    <listWithPreview id="com.sample.menu-items-with-sections">
-      <header>
-        <simpleHeader>
-          <title>{{VAL(parentTitle)}}</title>
-          <subtitle>{{VAL(grandparentTitle)}}</subtitle>
-        </simpleHeader>
-      </header>
-			<preview>
-				<crossFadePreview>
-          <image>{{IMAGEURL(thumb)}}</image>
-        </crossFadePreview>
-      </preview>
-			<menu>
-			  <sections>
-		      <menuSection>
-		        <items>
-              <oneLineMenuItem id="{{VAL(ratingKey)}}"   
-                               onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';atv.loadURL('{{URL(key)}}{{MUSICPLAY_COMMAND()}})"
-                               onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';atv.loadURL('{{URL(key)}}{{MUSICPLAY_COMMAND()}})"> 
-                {{COPY(Track)}}
-                <label>{{VAL(title)}}</label>
-                <ordinal>{{VAL(index)}}</ordinal>
-                <maxOrdinalDigits>2</maxOrdinalDigits>								
-              </oneLineMenuItem>
-            </items>
-          </menuSection>
-        </sections>
-      </menu>
-    </listWithPreview>
-  </body>
-</atv>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd" >
+<plist version="1.0">
+	<dict>
+		<key>page-type</key>
+		<dict>
+			<key>template-name</key>
+			<string>item</string>
+			<key>template-parameters</key>
+			<dict/>
+		</dict>
+		<key>items</key>
+		<array>
+      <dict>
+				<key>type</key>
+				<string>podcast</string>
+				<key>title</key>
+				<string>{{VAL(parentTitle)}}</string>
+				<key>items</key>
+        {{VAR(img:thumb)}}
+        <array>
+					<dict>
+          {{COPY(Track)}}
+						<key>type</key>
+						<string>podcast-episode</string>
+						<key>title</key>
+						<string>{{VAL(title)}}</string>
+						<key>item-id</key>
+						<integer>{{VAL(index)}}</integer>
+						<key>artwork-urls</key>
+						<array>
+							<dict>
+								<key>url</key>
+								<string>http://{{ADDR_PMS()}}{{VAL(#img)}}</string>
+							</dict>
+						</array>
+						<key>store-offers</key>
+						<dict>
+							<key>standard-audio</key>
+							<dict>
+								<key>asset-url</key>
+								<string>http://{{ADDR_PMS()}}{{VAL(Media/Part/key)}}</string>
+							</dict>
+						</dict>
+						<key>description</key>
+						<string></string>
+					</dict>
+					
+				</array>
+			</dict>
+		</array>
+	</dict>
+</plist>

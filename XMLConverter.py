@@ -363,7 +363,10 @@ def XML_PMS2aTV(address, path, options):
         else:
           # Movie listing
           XMLtemplate = 'Movie_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'movieview')+'.xml'
-        
+          
+    elif PMSroot.get('viewGroup')=='track':
+        XMLtemplate = 'Music_Track.xml'
+   
     elif PMSroot.get('viewGroup')=='episode':
         if PMSroot.get('title2')=='On Deck' or \
            PMSroot.get('title2')=='Recently Viewed Episodes' or \
