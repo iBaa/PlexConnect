@@ -25,7 +25,7 @@ class PlexConnectDaemon(PlexConnect):
         super(PlexConnectDaemon, self).__init__(*args, **kwargs)
 
     def get_arguments_short(self):
-        return super(PlexConnectDaemon, self).get_arguments_short() + "dp:"
+        return super(PlexConnectDaemon, self).get_arguments_short() + "p:"
 
     def get_arguments_long(self):
         return super(PlexConnectDaemon, self).get_arguments_long() + ['pidfile=']
@@ -35,6 +35,9 @@ class PlexConnectDaemon(PlexConnect):
 
     # handle the arguments, override to handle your own parameters
     def handle_arguments(self, opts):
+        # let super class handle arguments
+        super(PlexConnectDaemon, self).handle_arguments(opts)
+        # now handle our arguments
         for o, a in opts:
             # Write a pidfile if requested
             if o in ('-p', '--pidfile'):
@@ -96,6 +99,7 @@ class PlexConnectDaemon(PlexConnect):
             file(self.pidfile, 'w').write("%s\n" % pid)
 
     def cleanup(self):
+        # let super class cleanup
         super(PlexConnectDaemon, self).cleanup()
         #remove pid file if any
         if self.createpid:
@@ -110,6 +114,7 @@ class PlexConnectDaemon(PlexConnect):
 def sighandler_shutdown(signum, frame):
     signal.signal(signal.SIGINT, signal.SIG_IGN)  # we heard you!
     plexConnect.stop()
+
 
 if __name__ == "__main__":
     signal.signal(signal.SIGINT, sighandler_shutdown)
