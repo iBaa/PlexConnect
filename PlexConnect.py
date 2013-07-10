@@ -25,7 +25,7 @@ from Debug import *  # dprint()
 
 class PlexConnect(object):
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self):
         self.running = False
         self.logfile = sys.path[0] + os.sep + 'PlexConnect.log'
         self.pipes = []
@@ -81,28 +81,32 @@ class PlexConnect(object):
             if o in ('-l', '--logfile'):
                 self.logfile = str(a)
 
-    def stop(self):
+    def request_shutdown(self):
         """
-        Stop PlexConnect
+        request_shutdown will initiate a shutdown of  PlexConnect by sending all processes a 'shutdown' request
+        but it does not wait till everything is down
         """
         self.running = False
         # send shutdown to all pipes
         for pipe in self.pipes:
             pipe.send('shutdown')
 
-    def cleanup(self):
+    def shutdown(self):
         """
-        Cleanup PlexConnect
+        shutdown wait till PlexConnect brought everything down
+        when no request_shutdown was sent yet it will do that first
         """
+        if  (self.running):
+            self.request_shutdown()
         # join all processes
         for process in self.processes:
             process.join()
         dprint('PlexConnect', 0, "shutdown")
 
     # initialize the settings and startup all needed processes
-    def start(self):
+    def startup(self):
         """
-        Start PlexConnect
+        Startup PlexConnect
         """
         # setup logfile location
         self.param['LogFile'] = self.logfile
@@ -151,9 +155,8 @@ class PlexConnect(object):
 
         # not started successful
         if (not self.running):
-            # stop the parts that did start
-            self.stop()
-            self.cleanup()
+            # shutdown the parts that did start
+            self.shutdown()
             sys.exit(1)
 
     def loop(self):
@@ -173,7 +176,7 @@ class PlexConnect(object):
 
 def sighandler_shutdown(signum, frame):
     signal.signal(signal.SIGINT, signal.SIG_IGN)  # we heard you!
-    plexConnect.stop()
+    plexConnect.request_shutdown()
 
 if __name__ == "__main__":
     signal.signal(signal.SIGINT, sighandler_shutdown)
@@ -187,10 +190,10 @@ if __name__ == "__main__":
     dprint('PlexConnect', 0, "Press CTRL-C to shut down.")
     dprint('PlexConnect', 0, "***")
 
-    plexConnect.start()
+    plexConnect.startup()
 
     plexConnect.run()
 
-    plexConnect.cleanup()
+    plexConnect.shutdown()
 
     sys.exit(0)

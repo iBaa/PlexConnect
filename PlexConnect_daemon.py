@@ -17,11 +17,11 @@ from Debug import *  # dprint()
 
 class PlexConnectDaemon(PlexConnect):
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self):
         self.deamon = True
         self.createpid = False
         self.pidfile = None
-        super(PlexConnectDaemon, self).__init__(*args, **kwargs)
+        super(PlexConnectDaemon, self).__init__()
 
     def daemonize(self):
         """
@@ -98,16 +98,16 @@ class PlexConnectDaemon(PlexConnect):
                 else:
                     print("Not running in daemon mode. PID file creation disabled")
 
-    def start(self):
+    def startup(self):
         # daemonize if possible
         if (self.deamon):
             self.daemonize()
 
-        super(PlexConnectDaemon, self).start()
+        super(PlexConnectDaemon, self).startup()
 
-    def cleanup(self):
+    def shutdown(self):
         # let super cleanup first
-        super(PlexConnectDaemon, self).cleanup()
+        super(PlexConnectDaemon, self).shutdown()
         # remove pid file if any
         if self.createpid:
             os.remove(self.pidfile)
@@ -115,7 +115,7 @@ class PlexConnectDaemon(PlexConnect):
 
 def sighandler_shutdown(signum, frame):
     signal.signal(signal.SIGINT, signal.SIG_IGN)  # we heard you!
-    plexConnect.stop()
+    plexConnect.request_shutdown()
 
 
 if __name__ == "__main__":
@@ -124,10 +124,10 @@ if __name__ == "__main__":
 
     plexConnect = PlexConnectDaemon()
 
-    plexConnect.start()
+    plexConnect.startup()
 
     plexConnect.run()
 
-    plexConnect.cleanup()
+    plexConnect.shutdown()
 
     sys.exit(0)
