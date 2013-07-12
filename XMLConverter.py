@@ -592,7 +592,7 @@ def PlexAPI_getTranscodePath(options, path):
 def PlexAPI_getXArgs():
     xargs = dict()
     xargs['X-Plex-Device'] = 'AppleTV'
-    xargs['X-Plex-Version'] = ''
+    xargs['X-Plex-Version'] = '1.0' # Default PlexConnect version number.
     xargs['X-Plex-Client-Platform'] = 'iOS'
     xargs['X-Plex-Device-Name'] = 'Apple TV'
     xargs['X-Plex-Model'] = '3,1' # Base it on AppleTV model.
