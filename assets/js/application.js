@@ -243,11 +243,11 @@ var TextViewController = (function() {
               h12 = h12 - 12;
               tail = "PM";
             }
-            else if (h12 = 12)
+            else if (h12 == 12)
             {
               tail = "PM";
             }
-            else if (h12 = 0)
+            else if (h12 == 0)
             {
               h12 = 12;
               tail = "AM";
@@ -255,8 +255,8 @@ var TextViewController = (function() {
             hours12 = h12.toString();
             var mins = pad(time.getMinutes(), 2);
             var secs = pad(time.getSeconds(), 2);
-            var timestr24 = hours24 + ":" + mins + ":" + secs;
-            var timestr12 = hours12 + ":" + mins + ":" + secs + " " + tail;
+            var timestr24 = hours24 + ":" + mins;
+            var timestr12 = hours12 + ":" + mins + " " + tail;
             if (atv.sessionStorage['showplayerclock'] == '24 Hour')
             {
                 messageView.attributedString = {"string": "" + timestr24,
@@ -275,7 +275,11 @@ var TextViewController = (function() {
         var viewContainer = new atv.View();
         var message = new atv.TextView();
         var screenFrame = atv.device.screenFrame;
-        var width = screenFrame.width * 0.15;
+        var width = screenFrame.width * 0.10;
+        if (atv.sessionStorage['showplayerclock'] == '12 Hour')
+        {
+            width = screenFrame.width * 0.13;
+        }
         var height = screenFrame.height * 0.07;
                                
         // Setup the View container.
