@@ -20,7 +20,7 @@ g_settings = { \
     'port_pms'        :('32400',), \
     \
     'enable_dnsserver':('True', 'False'), \
-    'ip_dnsmaster'    :('8.8.8.8',), \
+    'ip_dnsmaster'    :('192.168.0.21',), \
     \
     
     'ip_webserver'    :('0.0.0.0',), \
