@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <atv>
   <head>
+    <script src="http://trailers.apple.com/js/utils.js" />
     <script src="http://trailers.apple.com/js/settings.js"/>
   </head>
   
@@ -42,25 +43,27 @@
               </horizontalDivider>
             </header>
             <items>
-              <oneLineMenuItem id="MovieView" onSelect="toggleSettings('MovieView')">
+              <oneLineMenuItem id="MovieView" onSelect="toggleSettings('MovieView', 'Settings')">
                 <label>Movie View</label>
                 <rightLabel>{{SETTING(movieview)}}</rightLabel>
               </oneLineMenuItem>
-              <oneLineMenuItem id="ShowView" onSelect="toggleSettings('ShowView')">
+              <oneLineMenuItem id="ShowView" onSelect="toggleSettings('ShowView', 'Settings')">
                 <label>Show View</label>
                 <rightLabel>{{SETTING(showview)}}</rightLabel>
               </oneLineMenuItem>
-              <oneLineMenuItem id="SeasonView" onSelect="toggleSettings('SeasonView')">
+              <oneLineMenuItem id="SeasonView" onSelect="toggleSettings('SeasonView', 'Settings')">
                 <label>Season View</label>
                 <rightLabel>{{SETTING(seasonview)}}</rightLabel>
               </oneLineMenuItem>
-							<oneLineMenuItem id="ShowUnwatched" onSelect="toggleSettings('ShowUnwatched')">
+							<oneLineMenuItem id="ShowUnwatched" onSelect="toggleSettings('ShowUnwatched', 'Settings')">
                 <label>Show Unwatched Count</label>
                 <rightLabel>{{SETTING(showunwatched)}}</rightLabel>
               </oneLineMenuItem>
-              <oneLineMenuItem id="ShowPlayerClock" onSelect="toggleSettings('ShowPlayerClock')">
-                <label>Show Clock in Video Player</label>
-                <rightLabel>{{SETTING(showplayerclock)}}</rightLabel>
+              <oneLineMenuItem id="VideoOSD" onSelect="atv.loadURL('http://trailers.apple.com/&amp;PlexConnect=SettingsVideoOSD')">
+                <label>Video Player OSD</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
               </oneLineMenuItem>
             </items>
           </menuSection>
@@ -71,23 +74,23 @@
               </horizontalDivider>
             </header>
             <items>
-              <oneLineMenuItem id="ForceDirectPlay" onSelect="toggleSettings('ForceDirectPlay')">
+              <oneLineMenuItem id="ForceDirectPlay" onSelect="toggleSettings('ForceDirectPlay', 'Settings')">
                 <label>Force Direct Play</label>
                 <rightLabel>{{SETTING(forcedirectplay)}}</rightLabel>
               </oneLineMenuItem>
-              <oneLineMenuItem id="ForceTranscode" onSelect="toggleSettings('ForceTranscode')">
+              <oneLineMenuItem id="ForceTranscode" onSelect="toggleSettings('ForceTranscode', 'Settings')">
                 <label>Force Transcode</label>
                 <rightLabel>{{SETTING(forcetranscode)}}</rightLabel>
               </oneLineMenuItem>
-							<oneLineMenuItem id="TranscodeQuality" onSelect="toggleSettings('TranscodeQuality')">
+							<oneLineMenuItem id="TranscodeQuality" onSelect="toggleSettings('TranscodeQuality', 'Settings')">
                 <label>Transcoder Quality</label>
                 <rightLabel>{{SETTING(transcodequality)}}</rightLabel>
               </oneLineMenuItem>
-							<oneLineMenuItem id="SubtitleSize" onSelect="toggleSettings('SubtitleSize')">
+							<oneLineMenuItem id="SubtitleSize" onSelect="toggleSettings('SubtitleSize', 'Settings')">
                 <label>Subtitle Size %</label>
                 <rightLabel>{{SETTING(subtitlesize)}}</rightLabel>
               </oneLineMenuItem>
-              <oneLineMenuItem id="AudioBoost" onSelect="toggleSettings('AudioBoost')">
+              <oneLineMenuItem id="AudioBoost" onSelect="toggleSettings('AudioBoost', 'Settings')">
                 <label>Audio Boost %</label>
                 <rightLabel>{{SETTING(audioboost)}}</rightLabel>
               </oneLineMenuItem>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atv>
+  <head>
+    <script src="http://trailers.apple.com/js/settings.js"/>
+  </head>
+  
+  <body>
+    <listWithPreview id="SettingsPage_VideoOSD">
+      <header>
+        <simpleHeader>
+          <title>Settings</title>
+        </simpleHeader>
+      </header>
+      <preview>
+        <keyedPreview> 
+          <title>&#x00AD;<!--soft-hyphen--></title>
+          <summary/>
+          <metadataKeys>
+            <label>Version</label>
+            <label>Authors</label>
+            <label>Wiki/Docs</label>
+            <label>Homepage</label>
+            <label>Forum</label>
+          </metadataKeys>
+          <metadataValues>
+            <label>Alpha</label>
+            <label>Baa, roidy</label>
+            <label>f00b4r</label>
+            <label>https://github.com/ibaa/plexconnect</label>
+            <label>http://forums.plexapp.com/index.php/forum/136-appletv-plexconnect/</label>
+          </metadataValues>
+          <image>http://trailers.apple.com/thumbnails/PlexConnectLogo.jpg</image>
+        </keyedPreview> 
+      </preview>
+      
+      <menu>
+        <sections>
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>Video Player OSD</title>
+              </horizontalDivider>
+            </header>
+            <items>
+              <oneLineMenuItem id="ShowPlayerClock" onSelect="toggleSettings('ShowPlayerClock', 'Settings_VideoOSD')">
+                <label>Show Clock</label>
+                <rightLabel>{{SETTING(showplayerclock)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="ShowEndTime" onSelect="toggleSettings('ShowEndTime', 'Settings_VideoOSD')">
+                <label>Show End Time</label>
+                <rightLabel>{{SETTING(showendtime)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="TimeFormat" onSelect="toggleSettings('TimeFormat', 'Settings_VideoOSD')">
+                <label>Time Format</label>
+                <rightLabel>{{SETTING(timeformat)}}</rightLabel>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </listWithPreview>
+  </body>
+</atv>

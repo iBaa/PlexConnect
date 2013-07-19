@@ -306,12 +306,15 @@ def XML_PMS2aTV(address, path, options):
     elif cmd=='Settings':
         XMLtemplate = 'Settings.xml'
     
+    elif cmd=='SettingsVideoOSD':
+        XMLtemplate = 'Settings_VideoOSD.xml'
+    
     elif cmd.startswith('SettingsToggle:'):
-        XMLtemplate = 'Settings.xml'
-        
         opt = cmd[len('SettingsToggle:'):]  # cut command:
-        g_ATVSettings.toggleSetting(options['PlexConnectUDID'], opt.lower())
-        dprint(__name__, 2, "ATVSettings->Toggle: {0}", opt)
+        parts = opt.split('+')
+        g_ATVSettings.toggleSetting(options['PlexConnectUDID'], parts[0].lower())
+        XMLtemplate = parts[1] + ".xml"
+        dprint(__name__, 2, "ATVSettings->Toggle: {0} in template: {1}", parts[0], parts[1])
         
         path = ''  # clear path - we don't need PMS-XML
     
@@ -972,7 +975,9 @@ class CCommandCollection(CCommandHelper):
         duration, leftover, dfltd = self.getKey(src, srcXML, leftover)
         UDID = self.options['PlexConnectUDID']
         out = "atv.sessionStorage['ratingKey']='" + ratingKey + "';atv.sessionStorage['duration']='" + duration + \
-              "';atv.sessionStorage['showplayerclock']='" + g_ATVSettings.getSetting(UDID, 'showplayerclock') + "'"
+              "';atv.sessionStorage['showplayerclock']='" + g_ATVSettings.getSetting(UDID, 'showplayerclock') + \
+              "';atv.sessionStorage['showendtime']='" + g_ATVSettings.getSetting(UDID, 'showendtime') + \
+              "';atv.sessionStorage['timeformat']='" + g_ATVSettings.getSetting(UDID, 'timeformat') + "'"
         return out 
     
     def ATTRIB_getPath(self, src, srcXML, param):

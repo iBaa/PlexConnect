@@ -9,19 +9,21 @@ from Debug import *  # dprint()
 
 
 options = { \
-    'movieview'  :('Grid', 'List'), \
-    'showview'   :('List', 'Grid'), \
-    'seasonview' :('List', 'Coverflow'), \
-    'transcodequality':('1080p 40.0Mbps', \
+    'movieview'         :('Grid', 'List'), \
+    'showview'          :('List', 'Grid'), \
+    'seasonview'        :('List', 'Coverflow'), \
+    'transcodequality'  :('1080p 40.0Mbps', \
                         '480p 2.0Mbps', \
                         '720p 3.0Mbps', '720p 4.0Mbps', \
                         '1080p 8.0Mbps', '1080p 10.0Mbps', '1080p 12.0Mbps', '1080p 20.0Mbps'), \
-    'forcedirectplay'  :('False', 'True'), \
-    'forcetranscode'   :('False', 'True'), \
-    'subtitlesize'     :('100', '125', '150', '50', '75'), \
-    'audioboost'       :('100', '175', '225', '300'), \
-    'showunwatched'        :('True', 'False'), \
-    'showplayerclock'         :('24 Hour', '12 Hour', 'Off')}
+    'forcedirectplay'   :('False', 'True'), \
+    'forcetranscode'    :('False', 'True'), \
+    'subtitlesize'      :('100', '125', '150', '50', '75'), \
+    'audioboost'        :('100', '175', '225', '300'), \
+    'showunwatched'     :('True', 'False'), \
+    'showplayerclock'   :('True', 'False'), \
+    'showendtime'       :('True', 'False'), \
+    'timeformat'        :('24 Hour', '12 Hour') }
     
 # comment on forcedirectplay -> if true, this has higher priority than forcetranscode
 
