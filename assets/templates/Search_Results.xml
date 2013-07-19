@@ -1,6 +1,7 @@
 <atv>
   <head>
     <script src="http://trailers.apple.com/js/utils.js"/>
+    <script src="http://trailers.apple.com/js/scrobble.js"/>
   </head>
   
   <body>
@@ -58,7 +59,7 @@
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"  
                              onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                              onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')"
-                             onHoldSelect="scrobbleMenu('Movie', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
+                             onHoldSelect="scrobbleMenu('Episode', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
                 {{COPY(Video:type::episode=COPY|movie=)}}
                 {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
                 <label>{{VAL(title)}}</label>

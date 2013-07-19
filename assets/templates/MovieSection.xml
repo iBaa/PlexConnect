@@ -3,6 +3,7 @@
     <script src="http://trailers.apple.com/js/utils.js" />
     <script src="http://trailers.apple.com/js/updateXML.js"/>
     <script src="http://trailers.apple.com/js/settings.js"/>
+    <script src="http://trailers.apple.com/js/scrobble.js"/>
   </head>
   
 	<body>
@@ -21,8 +22,10 @@
           <sections>
             <shelfSection>
               <items>
-                <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
-                 onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')">
+                <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" 
+                            onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                            onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')"
+                            onHoldSelect="scrobbleMenu('Movie', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
                   {{COPY(@OnDeck/Video)}}
                   <title>{{VAL(title)}}</title>
                   <subtitle>{{VAL(year)}}</subtitle>
@@ -43,8 +46,10 @@
           <sections>
             <shelfSection>
               <items>
-                <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
-                 onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')">
+                <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" 
+                            onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                            onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')"
+                            onHoldSelect="scrobbleMenu('Movie', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
                   {{COPY(@RecentlyAdded/Video)}}
                   <title>{{VAL(title)}}</title>
                   <subtitle>{{VAL(year)}}</subtitle>
@@ -65,8 +70,10 @@
           <sections>
             <shelfSection>
               <items>
-                <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
-                 onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')">
+                <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}"
+                            onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                            onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')"
+                            onHoldSelect="scrobbleMenu('Movie', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
                   {{COPY(@RecentlyReleased/Video)}}
                   <title>{{VAL(title)}}</title>
                   <subtitle>{{VAL(year)}}</subtitle>
