@@ -592,13 +592,14 @@ def PlexAPI_getTranscodePath(options, path):
 def PlexAPI_getXArgs():
     xargs = dict()
     xargs['X-Plex-Device'] = 'AppleTV'
-    xargs['X-Plex-Version'] = ''
-    xargs['X-Plex-Client-Platform'] = 'iOS'
-    xargs['X-Plex-Device-Name'] = 'Apple TV'
     xargs['X-Plex-Model'] = '3,1' # Base it on AppleTV model.
+    xargs['X-Plex-Device-Name'] = 'MyAppleTV' # "friendly" name. Base on UDID? Add UDID?
     xargs['X-Plex-Platform'] = 'iOS'
-    xargs['X-Plex-Product'] = 'Plex Connect'
-    xargs['X-Plex-Platform-Version'] = '5.3' # Base it on AppleTV.
+    xargs['X-Plex-Platform-Version'] = '5.3' # Base it on AppleTV OS version.
+    xargs['X-Plex-Product'] = 'PlexConnect'
+    xargs['X-Plex-Version'] = '0.2'
+    
+    xargs['X-Plex-Client-Capabilities'] = "protocols=http-live-streaming,http-mp4-streaming,http-streaming-video,http-streaming-video-720p,http-mp4-video,http-mp4-video-720p;videoDecoders=h264{profile:high&resolution:1080&level:41};audioDecoders=mp3,aac{bitrate:160000}"
     
     return xargs
 
