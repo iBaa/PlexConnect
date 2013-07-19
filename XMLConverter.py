@@ -978,7 +978,8 @@ class CCommandCollection(CCommandHelper):
         out = "atv.sessionStorage['ratingKey']='" + ratingKey + "';atv.sessionStorage['duration']='" + duration + \
               "';atv.sessionStorage['showplayerclock']='" + g_ATVSettings.getSetting(UDID, 'showplayerclock') + \
               "';atv.sessionStorage['showendtime']='" + g_ATVSettings.getSetting(UDID, 'showendtime') + \
-              "';atv.sessionStorage['timeformat']='" + g_ATVSettings.getSetting(UDID, 'timeformat') + "'"
+              "';atv.sessionStorage['timeformat']='" + g_ATVSettings.getSetting(UDID, 'timeformat') +  \
+              "';atv.sessionStorage['atvname']='" + "MyAppleTV" + "'"
         return out 
     
     def ATTRIB_getPath(self, src, srcXML, param):
