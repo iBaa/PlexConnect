@@ -252,6 +252,7 @@ function updateEndTime()
   var intSecs = parseInt(time.getSeconds());
   var totalTimeInSecs = ((intHours * 3600) + (intMins * 60) + intSecs) + remainingTime;
   var endHours = Math.floor(totalTimeInSecs / 3600);
+  if (endHours >= 24) { endHours = endHours - 24; }
   var endMins = Math.floor((totalTimeInSecs % 3600) / 60);
   var hours24 = pad(endHours.toString(), 2);
   var h12 = endHours;
