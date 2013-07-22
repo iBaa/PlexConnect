@@ -598,6 +598,7 @@ def PlexAPI_getXArgs():
     xargs['X-Plex-Model'] = '3,1' # Base it on AppleTV model.
     xargs['X-Plex-Device-Name'] = 'MyAppleTV' # "friendly" name. Base on UDID? Add UDID?
     xargs['X-Plex-Platform'] = 'iOS'
+    xargs['X-Plex-Client-Platform'] = 'iOS'
     xargs['X-Plex-Platform-Version'] = '5.3' # Base it on AppleTV OS version.
     xargs['X-Plex-Product'] = 'PlexConnect'
     xargs['X-Plex-Version'] = '0.2'
