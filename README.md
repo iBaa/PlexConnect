@@ -18,7 +18,7 @@ The basic idea is, to...
 - let iOS do the rest
 
 ## Requirements
-Python 2.x series with being the 2.7 minimum (Python 3.x is not supported)
+Python 2.x series with 2.7 being the minimum (Python 3.x is not supported)
 
 ## Installation
   ```sh
