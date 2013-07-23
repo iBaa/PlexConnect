@@ -76,7 +76,10 @@ atv.player.willStartPlaying = function()
   // Create clock view
   containerView.frame = screenFrame;
   if (atv.sessionStorage['showplayerclock'] == "True") initClockView();
-  if (atv.sessionStorage['showendtime'] == "True") initEndTimeView();
+  if (parseInt(atv.sessionStorage['duration']) > 0 ) // TODO: grab video length from player not library????
+  {
+    if (atv.sessionStorage['showendtime'] == "True") initEndTimeView();
+  }
   // Paint the views on Screen.
   containerView.subviews = Views;
   atv.player.overlay = containerView;
