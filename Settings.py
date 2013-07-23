@@ -26,7 +26,8 @@ g_settings = { \
     'ip_webserver'    :('0.0.0.0',), \
     'port_webserver'  :('80',), \
     \
-    'loglevel'        :('Normal', 'High') \
+    'loglevel'        :('Normal', 'High'), \
+    'logpath'         :('.',), \
     }
 
 

@@ -29,16 +29,102 @@ def getIP_self():
 
 
 
-g_shutdown = False
+procs = {}
+pipes = {}
+param = {}
+running = False
+
+def startup():
+    global procs
+    global pipes
+    global param
+    global running
+    
+    # Settings
+    cfg = Settings.CSettings()
+    param['CSettings'] = cfg
+    
+    # Logfile
+    if cfg.getSetting('logpath').startswith('.'):
+        # relative to current path
+        logpath = sys.path[0] + sep + cfg.getSetting('logpath')
+    else:
+        # absolute path
+        logpath = cfg.getSetting('logpath')
+    
+    param['LogFile'] = logpath + sep + 'PlexConnect.log'
+    param['LogLevel'] = cfg.getSetting('loglevel')
+    dinit('PlexConnect', param, True)  # init logging, new file, main process
+    
+    # more Settings
+    param['IP_self'] = getIP_self()
+    param['HostToIntercept'] = 'trailers.apple.com'
+    
+    running = True
+    
+    # init DNSServer
+    if cfg.getSetting('enable_dnsserver')=='True':
+        master, slave = Pipe()  # endpoint [0]-PlexConnect, [1]-DNSServer
+        proc = Process(target=DNSServer.Run, args=(slave, param))
+        proc.start()
+        
+        time.sleep(0.1)
+        if proc.is_alive():
+            procs['DNSServer'] = proc
+            pipes['DNSServer'] = master
+        else:
+            dprint('PlexConnect', 0, "DNSServer not alive. Shutting down.")
+            running = False
+    
+    # init WebServer
+    if running:
+        master, slave = Pipe()  # endpoint [0]-PlexConnect, [1]-WebServer
+        proc = Process(target=WebServer.Run, args=(slave, param))
+        proc.start()
+        
+        time.sleep(0.1)
+        if proc.is_alive():
+            procs['WebServer'] = proc
+            pipes['WebServer'] = master
+        else:
+            dprint('PlexConnect', 0, "WebServer not alive. Shutting down.")
+            running = False
+    
+    # not started successful - clean up
+    if not running:
+        cmdShutdown()
+        shutdown()
+        sys.exit(1)
+
+def run():
+    while running:
+        # do something important
+        try:
+            time.sleep(60)
+        except IOError as e:
+            if e.errno == errno.EINTR and not running:
+                pass  # mask "IOError: [Errno 4] Interrupted function call"
+            else:
+                raise
+
+def shutdown():
+    for slave in procs:
+        procs[slave].join()
+    dprint('PlexConnect', 0, "shutdown")
+
+def cmdShutdown():
+    global running
+    running = False
+    # send shutdown to all pipes
+    for slave in pipes:
+        pipes[slave].send('shutdown')
+    dprint('PlexConnect', 0, "Shutting down.")
+
+
 
 def sighandler_shutdown(signum, frame):
-    dprint('PlexConnect', 0,  "Shutting down.")
-    global g_shutdown
-    g_shutdown = True
-    if pipe_DNSServer != None:
-        pipe_DNSServer[0].send('shutdown')
-    if pipe_WebServer != None:
-        pipe_WebServer[0].send('shutdown')
+    signal.signal(signal.SIGINT, signal.SIG_IGN)  # we heard you!
+    cmdShutdown()
 
 
 
@@ -46,66 +132,13 @@ if __name__=="__main__":
     signal.signal(signal.SIGINT, sighandler_shutdown)
     signal.signal(signal.SIGTERM, sighandler_shutdown)
     
-    pipe_DNSServer = None
-    pipe_WebServer = None
-    
-    param = {}
-    param['LogFile'] = sys.path[0] + sep + 'PlexConnect.log'
-    dinit('PlexConnect', param, True)  # init logging, new file, main process
-
     dprint('PlexConnect', 0, "***")
     dprint('PlexConnect', 0, "PlexConnect")
     dprint('PlexConnect', 0, "Press CTRL-C to shut down.")
     dprint('PlexConnect', 0, "***")
     
-    # Settings
-    cfg = Settings.CSettings()
-    param['CSettings'] = cfg
+    startup()
     
-    param['IP_self'] = getIP_self()
-    param['HostToIntercept'] = 'trailers.apple.com'
+    run()
     
-    # Logfile, re-init
-    param['LogLevel'] = cfg.getSetting('loglevel')
-    dinit('PlexConnect', param)  # re-init logfile with loglevel
-    
-    # init DNSServer
-    if cfg.getSetting('enable_dnsserver')=='True':
-        pipe_DNSServer = Pipe()  # endpoint [0]-PlexConnect, [1]-DNSServer
-        p_DNSServer = Process(target=DNSServer.Run, args=(pipe_DNSServer[1], param))
-        p_DNSServer.start()
-    
-        time.sleep(0.1)
-        if not p_DNSServer.is_alive():
-            dprint('PlexConnect', 0, "DNSServer not alive. Shutting down.")
-            sys.exit(1)
-    
-    # init WebServer
-    pipe_WebServer = Pipe()  # endpoint [0]-PlexConnect, [1]-WebServer
-    p_WebServer = Process(target=WebServer.Run, args=(pipe_WebServer[1], param))
-    p_WebServer.start()
-    
-    time.sleep(0.1)
-    if not p_WebServer.is_alive():
-        dprint('PlexConnect', 0, "WebServer not alive. Shutting down.")
-        if cfg.getSetting('enable_dnsserver')=='True':
-            pipe_DNSServer[0].send('shutdown')
-            p_DNSServer.join()
-        sys.exit(1)
-    
-    # work until shutdown
-    # ...or just wait until child processes are done
-    while g_shutdown==False:
-        # do something important
-        try:
-            time.sleep(60)
-        except IOError as e:
-            if e.errno == errno.EINTR and g_shutdown == True:
-                pass  # mask "IOError: [Errno 4] Interrupted function call"
-            else:
-                raise
-    
-    if cfg.getSetting('enable_dnsserver')=='True':
-        p_DNSServer.join()
-    
-    p_WebServer.join()
+    shutdown()
