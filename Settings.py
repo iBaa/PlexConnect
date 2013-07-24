@@ -11,7 +11,10 @@ from Debug import *  # dprint()
 """
 Global Settings...
 PMS: plexgdm, ip_pms, port_pms
-DNS: ip_dnsmaster - IP of Router, ISP's DNS, ... [dflt: google public DNS]
+DNS:    ip_dnsmaster - IP of Router, ISP's DNS, ... [dflt: google public DNS]
+        ip_plexconnect -    Force IP of local machine of PlexConnect DNS Server (useful if you run VPN,
+                                or have more than one Network Interface running,
+                                or other ip detect errors
 HTTP: ip_httpforward, port_httpforward
 """
 g_settings = { \
@@ -21,8 +24,8 @@ g_settings = { \
     \
     'enable_dnsserver':('True', 'False'), \
     'ip_dnsmaster'    :('8.8.8.8',), \
+    'ip_plexconnect'  :('xxx.xxx.xxx.xxx',), \
     \
-    
     'ip_webserver'    :('0.0.0.0',), \
     'port_webserver'  :('80',), \
     \
