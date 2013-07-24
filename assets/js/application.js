@@ -41,7 +41,7 @@ atv.player.playerTimeDidChange = function(time)
                         '&state=playing' +
                         '&time=' + thisReportTime.toString() + 
                         '&X-Plex-Client-Identifier=' + atv.device.udid + 
-                        '&X-Plex-Device-Name=' + atv.sessionStorage['atvname'] );
+                        '&X-Plex-Device-Name=' + encodeURIComponent(atv.device.displayName) );
   }
 };
 
@@ -62,7 +62,7 @@ atv.player.didStopPlaying = function()
                       '&state=stopped' +
                       '&time=' + lastReportedTime.toString() + 
                       '&X-Plex-Client-Identifier=' + atv.device.udid + 
-                      '&X-Plex-Device-Name=' + atv.sessionStorage['atvname'] );
+                      '&X-Plex-Device-Name=' + encodeURIComponent(atv.device.displayName) );
     
   // Kill the session.
   loadPage(addrPMS + '/video/:/transcode/universal/stop?session=' + atv.device.udid);
@@ -151,7 +151,7 @@ atv.player.playerStateChanged = function(newState, timeIntervalSec) {
                       '&time=' + time.toString() + 
                       '&report=1' +
                       '&X-Plex-Client-Identifier=' + atv.device.udid + 
-                      '&X-Plex-Device-Name=' + atv.sessionStorage['atvname'] );
+                      '&X-Plex-Device-Name=' + encodeURIComponent(atv.device.displayName) );
   }
 };
 

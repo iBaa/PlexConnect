@@ -63,9 +63,10 @@ function loadItem(event)
 		log(navbarID);
 		var item = document.getElementById(navbarID);
     var url = item.getElementByTagName('url').textContent;
-		if (url.indexOf("trailers.apple.com")!==-1)
+    if (url.indexOf("trailers.apple.com")!=-1)
     {
         url = url + "&PlexConnectUDID=" + atv.device.udid;
+        url = url + "&PlexConnectATVName=" + encodeURIComponent(atv.device.displayName);
     }
     loadMenuPages(url, event);
 };

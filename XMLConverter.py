@@ -588,15 +588,17 @@ def PlexAPI_getTranscodePath(options, path):
     args['fastSeek'] = '1'
     args['path'] = path
     
-    xargs = PlexAPI_getXArgs()
+    xargs = PlexAPI_getXArgs(options)
     
     return transcodePath + urlencode(args) + '&' + urlencode(xargs)
 
-def PlexAPI_getXArgs():
+def PlexAPI_getXArgs(options=None):
     xargs = dict()
     xargs['X-Plex-Device'] = 'AppleTV'
     xargs['X-Plex-Model'] = '3,1' # Base it on AppleTV model.
-    xargs['X-Plex-Device-Name'] = 'MyAppleTV' # "friendly" name. Base on UDID? Add UDID?
+    if not options is None:
+        if 'PlexConnectATVName' in options:
+            xargs['X-Plex-Device-Name'] = options['PlexConnectATVName'] # "friendly" name: aTV-Settings->General->Name.
     xargs['X-Plex-Platform'] = 'iOS'
     xargs['X-Plex-Client-Platform'] = 'iOS'
     xargs['X-Plex-Platform-Version'] = '5.3' # Base it on AppleTV OS version.
@@ -976,11 +978,10 @@ class CCommandCollection(CCommandHelper):
         ratingKey, leftover, dfltd = self.getKey(src, srcXML, param)  # getKey "defaults" if nothing found.
         duration, leftover, dfltd = self.getKey(src, srcXML, leftover)
         UDID = self.options['PlexConnectUDID']
-        out = "atv.sessionStorage['ratingKey']='" + ratingKey + "';atv.sessionStorage['duration']='" + duration + \
-              "';atv.sessionStorage['showplayerclock']='" + g_ATVSettings.getSetting(UDID, 'showplayerclock') + \
-              "';atv.sessionStorage['showendtime']='" + g_ATVSettings.getSetting(UDID, 'showendtime') + \
-              "';atv.sessionStorage['timeformat']='" + g_ATVSettings.getSetting(UDID, 'timeformat') +  \
-              "';atv.sessionStorage['atvname']='" + "MyAppleTV" + "'"
+        out = "atv.sessionStorage['ratingKey']='" + ratingKey + "';atv.sessionStorage['duration']='" + duration + "';" + \
+              "atv.sessionStorage['showplayerclock']='" + g_ATVSettings.getSetting(UDID, 'showplayerclock') + "';" + \
+              "atv.sessionStorage['showendtime']='" + g_ATVSettings.getSetting(UDID, 'showendtime') + "';" + \
+              "atv.sessionStorage['timeformat']='" + g_ATVSettings.getSetting(UDID, 'timeformat') + "';"
         return out 
     
     def ATTRIB_getPath(self, src, srcXML, param):

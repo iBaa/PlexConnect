@@ -93,9 +93,10 @@ var iOS_atv_loadURL = atv.loadURL;
 atv.loadURL = function(url)
 {
     log("loadURL (override): "+url);
-    if (url.indexOf("trailers.apple.com")!==-1)
+    if (url.indexOf("trailers.apple.com")!=-1)
     {
         url = url + "&PlexConnectUDID=" + atv.device.udid;
+        url = url + "&PlexConnectATVName=" + encodeURIComponent(atv.device.displayName);
     }
     
     iOS_atv_loadURL(url);
@@ -111,9 +112,10 @@ var iOS_atv_loadAndSwapURL = atv.loadAndSwapURL;
 atv.loadAndSwapURL = function(url)
 {
     log("loadAndSwapURL (override): "+url);
-    if (url.indexOf("trailers.apple.com")!==-1)
+    if (url.indexOf("trailers.apple.com")!=-1)
     {
         url = url + "&PlexConnectUDID=" + atv.device.udid;
+        url = url + "&PlexConnectATVName=" + encodeURIComponent(atv.device.displayName);
     }
     
     iOS_atv_loadAndSwapURL(url);

@@ -13,6 +13,7 @@ import string, cgi, time
 from os import sep
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 from multiprocessing import Pipe  # inter process communication
+import urllib
 import signal
 
 try:
@@ -68,7 +69,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 if len(parts)==1:
                     options[parts[0]] = ''
                 else:
-                    options[parts[0]] = parts[1]
+                    options[parts[0]] = urllib.unquote(parts[1])
                     
             dprint(__name__, 2, "cleaned path:\n{0}", self.path)
             dprint(__name__, 2, "request options:\n{0}", options)
