@@ -57,12 +57,12 @@ def startup():
     dinit('PlexConnect', param, True)  # init logging, new file, main process
     
     # more Settings        
-    if cfg.getSetting('ip_plexconnect').startswith('xxx.'):
-        # get public ip of local machine
+    if cfg.getSetting('enable_autodetect_ip_dnslocal')=='True':
+        # get public ip of local machine for DNS
         param['IP_self'] = getIP_self()
     else:
-        # If IP for PlexConnect DNS Server is specified in Settings use it
-        IP = cfg.getSetting('ip_plexconnect')
+        # Otherwise use ip_dnslocal from Settings.cfg
+        IP = cfg.getSetting('ip_dnslocal')
         param['IP_self'] = IP
         dprint('PlexConnect', 0, "IP_self: "+IP)
 
