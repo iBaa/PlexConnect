@@ -76,16 +76,10 @@ class MyHandler(BaseHTTPRequestHandler):
             
             if 'User-Agent' in self.headers and \
                'AppleTV' in self.headers['User-Agent']:
-                                    
+                
                 # recieve simple logging messages from the ATV
-                if self.path.endswith("&atvlogger"):
-                    msg = self.path.replace("%20", " ")
-                    msg = msg.replace("&lt;", "<")
-                    msg = msg.replace("&gt;", ">")
-                    msg = msg.replace("&fs;", "/")
-                    msg = msg.replace("&qo;", '"')
-                    msg = msg[1:len(msg)-10]
-                    dprint('ATVLogger', 0, msg)
+                if 'PlexConnectLog' in options:
+                    dprint('ATVLogger', 0, options['PlexConnectLog'])
                     self.send_response(200)
                     self.send_header('Content-type', 'text/plain')
                     self.end_headers()

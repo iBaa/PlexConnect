@@ -17,12 +17,7 @@ function loadPage(url)
  */
 function log(msg)
 {
-  msg = msg.replace(/ /g, "%20")
-  msg = msg.replace(/</g, "&lt;")
-  msg = msg.replace(/>/g, "&gt;")
-  msg = msg.replace(/\//g, "&fs;")
-  msg = msg.replace(/"/g, "&qo;")
-  loadPage("http://trailers.apple.com/" + msg + "&atvlogger");
+  loadPage("http://trailers.apple.com/" + "&PlexConnectLog=" + encodeURIComponent(msg) );
 };
 
  /*
