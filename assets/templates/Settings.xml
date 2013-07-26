@@ -96,6 +96,18 @@
               </oneLineMenuItem>
             </items>
           </menuSection>
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>Library</title>
+              </horizontalDivider>
+            </header>
+            <items>
+              <oneLineMenuItem id="refreshLibrary" onSelect="refreshLibrary('{{ADDR_PMS()}}')">
+                <label>Refresh Library</label>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
         </sections>
       </menu>
     </listWithPreview>
