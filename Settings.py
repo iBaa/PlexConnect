@@ -11,7 +11,11 @@ from Debug import *  # dprint()
 """
 Global Settings...
 PMS: plexgdm, ip_pms, port_pms
-DNS: ip_dnsmaster - IP of Router, ISP's DNS, ... [dflt: google public DNS]
+DNS:    ip_dnsmaster - IP of Router, ISP's DNS, ... [dflt: google public DNS]
+        enable_autodetect_ip_dnslocal - True = Plex connect automatically attempts to get local machine IP
+                                        False = You must enter an IP in the settings field ip_dnslocal
+        ip_dnslocal -    If enable_autodetect_ip_dnslocal is False, this IP will be used for PlexConnect DNS Server
+                         (useful if you run VPN, or have more than one Network Interface running,or other ip detect errors
 HTTP: ip_httpforward, port_httpforward
 """
 g_settings = { \
@@ -21,8 +25,9 @@ g_settings = { \
     \
     'enable_dnsserver':('True', 'False'), \
     'ip_dnsmaster'    :('8.8.8.8',), \
+    'enable_autodetect_ip_dnslocal'  :('True','False'), \
+    'ip_dnslocal':('192.168.0.1',), \
     \
-    
     'ip_webserver'    :('0.0.0.0',), \
     'port_webserver'  :('80',), \
     \
