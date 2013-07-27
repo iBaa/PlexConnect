@@ -12,7 +12,8 @@ from Debug import *  # dprint()
 Global Settings...
 PMS: plexgdm, ip_pms, port_pms
 DNS: ip_dnsmaster - IP of Router, ISP's DNS, ... [dflt: google public DNS]
-HTTP: ip_httpforward, port_httpforward
+IP_self: enable_plexconnect_autodetect, ip_plexconnect - manual override for VPN usage
+HTTP: ip_webserver, port_webserver - override when using webserver + forwarding to PlexConnect
 """
 g_settings = { \
     'enable_plexgdm'  :('True', 'False'), \
@@ -22,7 +23,9 @@ g_settings = { \
     'enable_dnsserver':('True', 'False'), \
     'ip_dnsmaster'    :('8.8.8.8',), \
     \
-    
+    'enable_plexconnect_autodetect':('True', 'False'), \
+    'ip_plexconnect'  :('0.0.0.0',), \
+    \
     'ip_webserver'    :('0.0.0.0',), \
     'port_webserver'  :('80',), \
     \

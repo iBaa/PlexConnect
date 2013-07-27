@@ -21,10 +21,18 @@ from Debug import *  # dprint()
 
 
 def getIP_self():
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    s.connect(('1.2.3.4', 1000))
-    IP = s.getsockname()[0]
-    dprint('PlexConnect', 0, "IP_self: "+IP)
+    cfg = param['CSettings']
+    if cfg.getSetting('enable_plexconnect_autodetect')=='True':
+        # get public ip of machine running PlexConnect
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(('1.2.3.4', 1000))
+        IP = s.getsockname()[0]
+        dprint('PlexConnect', 0, "IP_self: "+IP)
+    else:
+        # manual override from "settings.cfg"
+        IP = cfg.getSetting('ip_plexconnect')
+        dprint('PlexConnect', 0, "IP_self (from settings): "+IP)
+    
     return IP
 
 

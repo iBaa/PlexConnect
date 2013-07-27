@@ -26,14 +26,16 @@ Msg_PlexGDM = 'M-SEARCH * HTTP/1.0'
 def getIP_PMS():
     # todo: currently only one server - return first entry
     if len(PMS_list)>0:
-        return PMS_list[0]['server']
+        uuid = PMS_list.keys()[0]
+        return PMS_list[uuid]['ip']
     else:
         return '127.0.0.1'
 
 def getPort_PMS():
     # todo: currently only one server - return first entry
     if len(PMS_list)>0:
-        return PMS_list[0]['port']
+        uuid = PMS_list.keys()[0]
+        return PMS_list[uuid]['port']
     else:
         return '32400'
 
@@ -74,19 +76,19 @@ def Run():
     discovery_complete = True
 
     global PMS_list
-    PMS_list = []
+    PMS_list = {}
     if returnData:
         for response in returnData:
-            update = { 'server' : response.get('from')[0] }
+            update = { 'ip' : response.get('from')[0] }
             
             # Check if we had a positive HTTP response                        
             if "200 OK" in response.get('data'):
                 for each in response.get('data').split('\n'): 
                     # decode response data
                     update['discovery'] = "auto"
-                    update['owned']='1'
-                    update['master']= 1
-                    update['role']='master'
+                    #update['owned']='1'
+                    #update['master']= 1
+                    #update['role']='master'
                     
                     if "Content-Type:" in each:
                         update['content-type'] = each.split(':')[1].strip()
@@ -101,14 +103,14 @@ def Run():
                     elif "Version:" in each:
                         update['version'] = each.split(':')[1].strip()
             
-            PMS_list.append(update)
+            PMS_list[update['uuid']] = update
     
-    if PMS_list==[]:
+    if PMS_list=={}:
         dprint(__name__, 0, "No servers discovered")
     else:
         dprint(__name__, 0, "servers discovered: {0}", len(PMS_list))
-        for items in PMS_list:
-            dprint(__name__, 1, "{0} {1}:{2}", items['serverName'], items['server'], items['port'])
+        for uuid in PMS_list:
+            dprint(__name__, 1, "{0} {1}:{2}", PMS_list[uuid]['serverName'], PMS_list[uuid]['ip'], PMS_list[uuid]['port'])
     
     return len(PMS_list)
 
@@ -116,6 +118,7 @@ def Run():
 
 if __name__ == '__main__':
    Run()
+   print PMS_list
    
    print "IP:", getIP_PMS()
    print "Port:", getPort_PMS()
