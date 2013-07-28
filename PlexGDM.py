@@ -112,7 +112,7 @@ def Run():
         for uuid in PMS_list:
             dprint(__name__, 1, "{0} {1}:{2}", PMS_list[uuid]['serverName'], PMS_list[uuid]['ip'], PMS_list[uuid]['port'])
     
-    return len(PMS_list)
+    return PMS_list
 
 
 

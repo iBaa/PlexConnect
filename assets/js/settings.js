@@ -61,6 +61,31 @@ function toggleSettings(opt, template)
 };
 
 /*
+ * discover
+ */
+function discover(opt) 
+{
+  // get "opt" element of displayed XML
+  var dispval = document.getElementById(opt).getElementByTagName("rightLabel");
+  if (!dispval) return undefined;  // error - element not found
+    
+  // read new XML
+  var url = "http://trailers.apple.com/&PlexConnect=Discover&PlexConnectUDID="+atv.device.udid
+  var req = new XMLHttpRequest();
+  req.open('GET', url, false);
+  req.send();
+  doc=req.responseXML;
+    
+  // get "opt" element of fresh XML
+  var newval = doc.getElementById(opt).getElementByTagName("rightLabel");
+  if (!newval) return undefined;  // error - element not found
+  log("discover done - "+newval.textContent);
+    
+  // push new value to display
+  dispval.textContent = newval.textContent;
+};
+
+/*
  * Refresh library
  */
 function refreshLibrary(addrPMS) 

@@ -99,10 +99,14 @@
           <menuSection>
             <header>
               <horizontalDivider alignment="left">
-                <title>Library</title>
+                <title>Plex Media Server</title>
               </horizontalDivider>
             </header>
             <items>
+              <oneLineMenuItem id="discover" onSelect="discover('discover')">
+                <label>Discover</label>
+                <rightLabel>Plex Media Servers: {{PMSCOUNT()}}</rightLabel>
+              </oneLineMenuItem>
               <oneLineMenuItem id="refreshLibrary" onSelect="refreshLibrary('{{ADDR_PMS()}}')">
                 <label>Refresh Library</label>
               </oneLineMenuItem>
