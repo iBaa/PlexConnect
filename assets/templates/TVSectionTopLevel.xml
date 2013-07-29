@@ -16,13 +16,18 @@
 					<title>On Deck</title> 
 					<url>http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=TVSection</url>
 				</navigationItem> 
-
-				<navigationItem id="2">
+        
+        <navigationItem id="2">
+					<title>Unwatched</title> 
+					<url>http://trailers.apple.com{{ADDPATH(key)}}/unwatched&amp;PlexConnect=AllShows</url>
+				</navigationItem>
+        
+				<navigationItem id="3">
 					<title>Genres</title>
 					<url>http://trailers.apple.com{{ADDPATH(key)}}/genre&amp;PlexConnect=DirectoryWithPreview</url>
 				</navigationItem> 
 
-				<navigationItem id="3">
+				<navigationItem id="4">
 					<title>More...</title> 
 					<url>http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=TVSecondary</url>
 				</navigationItem>

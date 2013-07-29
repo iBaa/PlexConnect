@@ -14,13 +14,6 @@
         <sections>
           <menuSection>
             <items>
-              <oneLineMenuItem id="unwatched" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/unwatched')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/unwatched')">
-                <label>Unwatched</label>
-                <preview>
-                  <link>http://trailers.apple.com{{ADDPATH(key)}}/unwatched?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
-                </preview>
-              </oneLineMenuItem>
-              
               <oneLineMenuItem id="recentlyViewed" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/recentlyViewed')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/recentlyViewed')">
                 <label>Recently Viewed</label>
                 <preview>
