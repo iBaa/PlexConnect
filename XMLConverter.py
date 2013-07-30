@@ -313,6 +313,14 @@ def XML_PMS2aTV(address, path, options):
         XMLtemplate = 'Settings_VideoOSD.xml'
         path = ''  # clear path - we don't need PMS-XML
     
+    elif cmd=='SettingsMovies':
+        XMLtemplate = 'Settings_Movies.xml'
+        path = ''  # clear path - we don't need PMS-XML
+        
+    elif cmd=='SettingsTVShows':
+        XMLtemplate = 'Settings_TVShows.xml'
+        path = ''  # clear path - we don't need PMS-XML
+        
     elif cmd.startswith('SettingsToggle:'):
         opt = cmd[len('SettingsToggle:'):]  # cut command:
         parts = opt.split('+')

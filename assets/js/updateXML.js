@@ -7,30 +7,29 @@ function reloadPMS_XML(path) {
 
 // atv.Document extensions
 if( atv.Document ) {
-    atv.Document.prototype.getElementById = function(id) {
-        var elements = this.evaluateXPath("//*[@id='" + id + "']", this);
-        if ( elements && elements.length > 0 ) {
-            return elements[0];
-        }
-        return undefined;
-    }   
+  atv.Document.prototype.getElementById = function(id) {
+    var elements = this.evaluateXPath("//*[@id='" + id + "']", this);
+    if ( elements && elements.length > 0 ) {
+        return elements[0];
+    }
+    return undefined;
+  }   
 }
 
 
 // atv.Element extensions
 if( atv.Element ) {
-    atv.Element.prototype.getElementsByTagName = function(tagName) {
-        return this.ownerDocument.evaluateXPath("descendant::" + tagName, this);
-    }
+  atv.Element.prototype.getElementsByTagName = function(tagName) {
+    return this.ownerDocument.evaluateXPath("descendant::" + tagName, this);
+  }
 
-
-    atv.Element.prototype.getElementByTagName = function(tagName) {
-        var elements = this.getElementsByTagName(tagName);
-        if ( elements && elements.length > 0 ) {
-            return elements[0];
-        }
-        return undefined;
+  atv.Element.prototype.getElementByTagName = function(tagName) {
+    var elements = this.getElementsByTagName(tagName);
+    if ( elements && elements.length > 0 ) {
+      return elements[0];
     }
+    return undefined;
+  }
 }
 
 
@@ -39,10 +38,10 @@ if( atv.Element ) {
  */
 function log(msg)
 {
-		var req = new XMLHttpRequest();
-		var url = "http://trailers.apple.com/" + "&PlexConnectLog=" + encodeURIComponent(msg);
-		req.open('GET', url, true);
-		req.send();
+  var req = new XMLHttpRequest();
+  var url = "http://trailers.apple.com/" + "&PlexConnectLog=" + encodeURIComponent(msg);
+  req.open('GET', url, true);
+  req.send();
 };
 
 
@@ -51,43 +50,58 @@ function log(msg)
  */
  
 var navbarID = null;
+var navbarItemNumber = null;
  
 function loadItem(event)
 {
-    navbarID = event.navigationItemId;
-		log(navbarID);
-		var item = document.getElementById(navbarID);
-    var url = item.getElementByTagName('url').textContent;
-    if (url.indexOf("trailers.apple.com")!=-1)
+  // Get navbar item id name and number
+  navbarID = event.navigationItemId;
+  var root = document.rootElement;
+  var navitems = root.getElementsByTagName('navigationItem')
+  for (var i=0;i<navitems.length;i++)
+  { 
+    if (navitems[i].getAttribute('id') == navbarID) 
     {
-        url = url + "&PlexConnectUDID=" + atv.device.udid;
-        url = url + "&PlexConnectATVName=" + encodeURIComponent(atv.device.displayName);
+      navbarItemNumber = i.toString();
+      break;
     }
-    loadMenuPages(url, event);
+  }
+  log(navbarItemNumber);
+  log(navbarID);
+
+  // Get navbar item URL
+	var item = document.getElementById(navbarID);
+  var url = item.getElementByTagName('url').textContent;
+  if (url.indexOf("trailers.apple.com")!=-1)
+  {
+    url = url + "&PlexConnectUDID=" + atv.device.udid;
+    url = url + "&PlexConnectATVName=" + encodeURIComponent(atv.device.displayName);
+  }
+  loadMenuPages(url, event);
 };
 
 
 function loadMenuPages(url, event)
 {
-       var req = new XMLHttpRequest();
-       req.onreadystatechange = function()
-       {
-               try
-               {
-                       if(req.readyState == 4)
-                       {
-                               doc = req.responseXML
-                               if(event) event.success(doc);
-                               else atv.loadXML(doc);
-                       }
-               }
-               catch(e)
-               {
-                       req.abort();
-               }
-       }
-       req.open('GET', url, true);
-       req.send();
+  var req = new XMLHttpRequest();
+  req.onreadystatechange = function()
+  {
+    try
+    {
+      if(req.readyState == 4)
+      {
+        doc = req.responseXML
+        if(event) event.success(doc);
+        else atv.loadXML(doc);
+      }
+    }
+    catch(e)
+    {
+      req.abort();
+    }
+  }
+  req.open('GET', url, true);
+  req.send();
 };
 
 
@@ -97,10 +111,9 @@ function loadMenuPages(url, event)
 function updatePage(path)
 {
 	// read new XML
-  var url = "http://trailers.apple.com" + path
+  var url = "http://trailers.apple.com" + path + "&PlexConnectUDID="+atv.device.udid;
 
-
-	if (navbarID == '1') // First navbar item is a special case
+	if (navbarItemNumber == '1') // First navbar item is a special case
 	{
 		atv.loadAndSwapURL(url);
 	}
@@ -113,7 +126,7 @@ function updatePage(path)
 				var doc = req.responseXML;
 				var navBar = doc.getElementById('PlexConnect_Navigation');
 				var navKey = navBar.getElementByTagName('navigation');
-				navKey.setAttribute('currentIndex', navbarID);
+				navKey.setAttribute('currentIndex', navbarItemNumber);
 				atv.loadAndSwapXML(doc);
 			}
 		};

@@ -7,30 +7,30 @@
 		<viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadItem(event)" volatile="true" onVolatileReload="updatePage('{{getPath()}}');">
 			<navigation currentIndex="1">
 
-				<navigationItem id="0">
+				<navigationItem id="All Shows">
 					<title>All Shows</title> 
 					<url>http://trailers.apple.com{{ADDPATH(key)}}/all&amp;PlexConnect=AllShows</url>
 				</navigationItem>
 
-				<navigationItem id="1">
+				<navigationItem id="On Deck">
 					<title>On Deck</title> 
 					<url>http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=TVSection</url>
 				</navigationItem> 
         
-        <navigationItem id="2">
+        <navigationItem id="Unwatched">
 					<title>Unwatched</title> 
 					<url>http://trailers.apple.com{{ADDPATH(key)}}/unwatched&amp;PlexConnect=AllShows</url>
-				</navigationItem>
+				</navigationItem>{{CUT($tv_navbar_unwatched::unchecked=CUT|checked=)}}
         
-				<navigationItem id="3">
+				<navigationItem id="Genres">
 					<title>Genres</title>
 					<url>http://trailers.apple.com{{ADDPATH(key)}}/genre&amp;PlexConnect=DirectoryWithPreview</url>
-				</navigationItem> 
+				</navigationItem>{{CUT($tv_navbar_genres::unchecked=CUT|checked=)}}
 
-				<navigationItem id="4">
+				<navigationItem id="More...">
 					<title>More...</title> 
 					<url>http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=TVSecondary</url>
-				</navigationItem>
+				</navigationItem>{{CUT($tv_navbar_more::unchecked=CUT|checked=)}}
 
 			</navigation>
 		</viewWithNavigationBar>

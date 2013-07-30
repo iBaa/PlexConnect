@@ -43,17 +43,17 @@
               </horizontalDivider>
             </header>
             <items>
-              <oneLineMenuItem id="MovieView" onSelect="toggleSettings('MovieView', 'Settings')">
-                <label>Movie View</label>
-                <rightLabel>{{SETTING(movieview)}}</rightLabel>
+              <oneLineMenuItem id="MovieView" onSelect="atv.loadURL('http://trailers.apple.com/&amp;PlexConnect=SettingsMovies')">
+                <label>Movie Options</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
               </oneLineMenuItem>
-              <oneLineMenuItem id="ShowView" onSelect="toggleSettings('ShowView', 'Settings')">
-                <label>Show View</label>
-                <rightLabel>{{SETTING(showview)}}</rightLabel>
-              </oneLineMenuItem>
-              <oneLineMenuItem id="SeasonView" onSelect="toggleSettings('SeasonView', 'Settings')">
-                <label>Season View</label>
-                <rightLabel>{{SETTING(seasonview)}}</rightLabel>
+              <oneLineMenuItem id="ShowView" onSelect="atv.loadURL('http://trailers.apple.com/&amp;PlexConnect=SettingsTVShows')">
+                <label>Show Options</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
               </oneLineMenuItem>
 							<oneLineMenuItem id="ShowUnwatched" onSelect="toggleSettings('ShowUnwatched', 'Settings')">
                 <label>Show Unwatched Count</label>

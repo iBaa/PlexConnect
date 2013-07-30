@@ -40,20 +40,36 @@ function log(msg)
  */
 function toggleSettings(opt, template) 
 {
-  // get "opt" element of displayed XML
-  var dispval = document.getElementById(opt).getElementByTagName("rightLabel");
-  if (!dispval) return undefined;  // error - element not found
-    
   // read new XML
   var url = "http://trailers.apple.com/&PlexConnect=SettingsToggle:"+ opt + "+" + template + "&PlexConnectUDID="+atv.device.udid
   var req = new XMLHttpRequest();
   req.open('GET', url, false);
   req.send();
   doc=req.responseXML;
-    
-  // get "opt" element of fresh XML
+  
+  // get "opt" element of displayed XML
+  var dispval = document.getElementById(opt).getElementByTagName("rightLabel");
+  if (!dispval) // No rightlabel must be a checkmark :)
+  {
+    mainMenuItem = document.getElementById(opt);
+    newMenuItem = doc.getElementById(opt);
+    var mainAccessories = mainMenuItem.getElementByTagName("accessories");
+    var newAccessories = newMenuItem.getElementByTagName("accessories");
+    if ( mainAccessories ) mainAccessories.removeFromParent();
+    if ( newAccessories )
+    {
+      accessories = document.makeElementNamed("accessories");
+      var checkmark = document.makeElementNamed("checkMark");
+      accessories.appendChild(checkmark);
+      mainMenuItem.appendChild(accessories);
+    }
+    return;
+  }
+
+    // get "opt" element of fresh XML
   var newval = doc.getElementById(opt).getElementByTagName("rightLabel");
   if (!newval) return undefined;  // error - element not found
+  
   log("new setting - "+opt+"="+newval.textContent);
     
   // push new value to display

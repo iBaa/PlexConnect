@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atv>
+  <head>
+    <script src="http://trailers.apple.com/js/settings.js"/>
+  </head>
+  
+  <body>
+    <listWithPreview id="SettingsPage_VideoOSD">
+      <header>
+        <simpleHeader>
+          <title>Settings</title>
+        </simpleHeader>
+      </header>
+      <preview>
+        <keyedPreview> 
+          <title>&#x00AD;<!--soft-hyphen--></title>
+          <summary/>
+          <metadataKeys>
+            <label>Version</label>
+            <label>Authors</label>
+            <label>Wiki/Docs</label>
+            <label>Homepage</label>
+            <label>Forum</label>
+          </metadataKeys>
+          <metadataValues>
+            <label>Alpha</label>
+            <label>Baa, roidy</label>
+            <label>f00b4r</label>
+            <label>https://github.com/ibaa/plexconnect</label>
+            <label>http://forums.plexapp.com/index.php/forum/136-appletv-plexconnect/</label>
+          </metadataValues>
+          <image>http://trailers.apple.com/thumbnails/PlexConnectLogo.jpg</image>
+        </keyedPreview> 
+      </preview>
+      
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+              <oneLineMenuItem id="MovieView" onSelect="toggleSettings('MovieView', 'Settings_Movies')">
+                <label>Movie View</label>
+                <rightLabel>{{SETTING(movieview)}}</rightLabel>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+          
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>Movie Navigation Bar</title>
+              </horizontalDivider>
+            </header>
+            <items>
+            
+              <oneLineMenuItem id="Movies_NavBar_Unwatched" onSelect="toggleSettings('Movies_NavBar_Unwatched', 'Settings_Movies')">
+                <label>Unwatched</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($movies_navbar_unwatched::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="Movies_NavBar_Genres" onSelect="toggleSettings('Movies_NavBar_Genres', 'Settings_Movies')">
+                <label>Genres</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($movies_navbar_genres::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="Movies_NavBar_Decades" onSelect="toggleSettings('Movies_NavBar_Decades', 'Settings_Movies')">
+                <label>Decades</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($movies_navbar_decades::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="Movies_NavBar_Directors" onSelect="toggleSettings('Movies_NavBar_Directors', 'Settings_Movies')">
+                <label>Directors</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($movies_navbar_directors::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="Movies_NavBar_Actors" onSelect="toggleSettings('Movies_NavBar_Actors', 'Settings_Movies')">
+                <label>Actors</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($movies_navbar_actors::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="Movies_NavBar_More" onSelect="toggleSettings('Movies_NavBar_More', 'Settings_Movies')">
+                <label>More...</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($movies_navbar_more::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </listWithPreview>
+  </body>
+</atv>

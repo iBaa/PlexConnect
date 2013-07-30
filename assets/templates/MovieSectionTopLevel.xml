@@ -21,32 +21,32 @@
 				<navigationItem id="2">
 					<title>Unwatched</title> 
 					<url>http://trailers.apple.com{{ADDPATH(key)}}/unwatched&amp;PlexConnect=AllMovies</url>
-				</navigationItem>
+				</navigationItem>{{CUT($movies_navbar_unwatched::unchecked=CUT|checked=)}}
 
 				<navigationItem id="3">
 					<title>Genres</title>
 					<url>http://trailers.apple.com{{ADDPATH(key)}}/genre&amp;PlexConnect=DirectoryWithPreview</url>
-				</navigationItem> 
+				</navigationItem>{{CUT($movies_navbar_genres::unchecked=CUT|checked=)}} 
 
 				<navigationItem id="4">
 					<title>Decades</title> 
 					<url>http://trailers.apple.com{{ADDPATH(key)}}/decade&amp;PlexConnect=DirectoryWithPreview</url>
-				</navigationItem>
+				</navigationItem>{{CUT($movies_navbar_decades::unchecked=CUT|checked=)}}
 
 				<navigationItem id="5">
 					<title>Directors</title> 
 					<url>http://trailers.apple.com{{ADDPATH(key)}}/director&amp;PlexConnect=DirectoryWithPreview</url>
-				</navigationItem>
+				</navigationItem>{{CUT($movies_navbar_directors::unchecked=CUT|checked=)}}
 
 				<navigationItem id="6">
 					<title>Actors</title> 
 					<url>http://trailers.apple.com{{ADDPATH(key)}}/actor&amp;PlexConnect=DirectoryWithPreview</url>
-				</navigationItem>
+				</navigationItem>{{CUT($movies_navbar_actors::unchecked=CUT|checked=)}}
 
 				<navigationItem id="7">
 					<title>More...</title> 
 					<url>http://trailers.apple.com{{ADDPATH(key)}}&amp;PlexConnect=MovieSecondary</url>
-				</navigationItem>
+				</navigationItem>{{CUT($movies_navbar_more::unchecked=CUT|checked=)}}
 
 
 			</navigation>

@@ -13,6 +13,14 @@ options = { \
     'movieview'         :('Grid', 'List'), \
     'showview'          :('List', 'Grid'), \
     'seasonview'        :('List', 'Coverflow'), \
+    'movies_navbar_unwatched'   :('checked', 'unchecked'), \
+    'movies_navbar_genres'      :('checked', 'unchecked'), \
+    'movies_navbar_decades'     :('checked', 'unchecked'), \
+    'movies_navbar_directors'   :('checked', 'unchecked'), \
+    'movies_navbar_actors'      :('checked', 'unchecked'), \
+    'tv_navbar_unwatched'   :('checked', 'unchecked'), \
+    'tv_navbar_genres'      :('checked', 'unchecked'), \
+    'tv_navbar_more'     :('checked', 'unchecked') }
     'transcodequality'  :('1080p 40.0Mbps', \
                         '480p 2.0Mbps', \
                         '720p 3.0Mbps', '720p 4.0Mbps', \
