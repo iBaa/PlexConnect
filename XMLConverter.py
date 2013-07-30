@@ -202,7 +202,7 @@ def discoverPMS():
     global g_param
     if g_param['CSettings'].getSetting('enable_plexgdm')=='False':
         PMS_uuid = 'PMS_from_Settings'
-        g_param['PMS_list'] = { PMS_uuid:
+        PMS_list = { PMS_uuid:
                 {
                     'uuid'      : PMS_uuid,
                     'serverName': PMS_uuid,
@@ -210,22 +210,23 @@ def discoverPMS():
                     'port'      : g_param['CSettings'].getSetting('port_pms'),
                 }
             }
-        
-        g_param['Addr_PMS'] = g_param['PMS_list'][PMS_uuid]['ip'] +':'+ g_param['PMS_list'][PMS_uuid]['port']
-        dprint(__name__, 0, "PlexGDM off - PMS from settings: {0}", g_param['Addr_PMS'])
-        return True
+        opts = (PMS_uuid)
+        dprint(__name__, 0, "PlexGDM off - PMS from settings: {0}:{1}", PMS_list[PMS_uuid]['ip'], PMS_list[PMS_uuid]['port'])
+    
     else:
-        g_param['PMS_list'] = PlexGDM.Run()
-        if len(g_param['PMS_list'])>0:
-            g_param['Addr_PMS'] = PlexGDM.getIP_PMS() +':'+ PlexGDM.getPort_PMS()
-            
-            dprint(__name__, 0, "PlexGDM - PMS: {0}", g_param['Addr_PMS'])
-            return True
-        else:
-            g_param['Addr_PMS'] = ''
-            
+        PMS_list = PlexGDM.Run()
+        opts = ()
+        for PMS_uuid in PMS_list.keys():
+            opts = opts + (PMS_uuid, )
+            dprint(__name__, 0, "PlexGDM - PMS: {0}:{1}", PMS_list[PMS_uuid]['ip'], PMS_list[PMS_uuid]['port'])
+        
+        if len(PMS_list)==0:
+            opts = ('no_PMS_found', )
             dprint(__name__, 0, "PlexGDM - no PMS found")
-            return False
+    
+    g_ATVSettings.setOptions('pms_uuid', opts)
+    g_param['PMS_list'] = PMS_list
+    return len(PMS_list)>0
 
 
 
@@ -330,12 +331,26 @@ def XML_PMS2aTV(address, path, options):
     elif path.startswith('/search?'):
         XMLtemplate = 'Search_Results.xml'
     
+    # determine PMS address
+    PMS_list = g_param['PMS_list']
+    PMS_uuid = g_ATVSettings.getSetting(options['PlexConnectUDID'], 'pms_uuid')
+    if not PMS_uuid in PMS_list:
+        g_ATVSettings.checkSetting(options['PlexConnectUDID'], 'pms_uuid')  # verify PMS_uuid
+        PMS_uuid = g_ATVSettings.getSetting(options['PlexConnectUDID'], 'pms_uuid')
+    if PMS_uuid in PMS_list:
+        g_param['Addr_PMS'] = PMS_list[PMS_uuid]['ip'] +':'+ PMS_list[PMS_uuid]['port']
+    else:
+        g_param['Addr_PMS'] = '127.0.0.1:32400'  # no PMS available. Addr stupid but valid.
+    
     # request PMS XML
     if not path=='':
-        if g_param['Addr_PMS']=='':
+        if len(PMS_list)==0:
             # PlexGDM
             if not discoverPMS():
                 return XML_Error('PlexConnect', 'No Plex Media Server in Proximity')
+        
+        if not PMS_uuid in PMS_list:
+            return XML_Error('PlexConnect', 'Selected Plex Media Server not Online')
         
         PMS = XML_ReadFromURL(address, path)
         if PMS==False:
@@ -344,6 +359,7 @@ def XML_PMS2aTV(address, path, options):
         PMSroot = PMS.getroot()
         if not len(PMSroot):  # no children - PMS errormsg
             return XML_Error('Plex Media Server', PMSroot.get('header','Unknown Error'))
+        
         dprint(__name__, 1, "viewGroup: "+PMSroot.get('ViewGroup','None'))
     
     # XMLtemplate defined by PMS XML content
@@ -1027,6 +1043,20 @@ class CCommandCollection(CCommandHelper):
     
     def ATTRIB_PMSCOUNT(self, src, srcXML, param):
         return str(len(g_param['PMS_list']))
+    
+    def ATTRIB_PMSNAME(self, src, srcXML, param):
+        UDID = self.options['PlexConnectUDID']
+        PMS_list = g_param['PMS_list']
+        PMS_uuid = g_ATVSettings.getSetting(UDID, 'pms_uuid')
+        
+        if len(PMS_list)==0:
+            return "[no Server in Proximity]"
+        else:
+            PMS_uuid = g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'pms_uuid')
+            if PMS_uuid in PMS_list:
+                return PMS_list[PMS_uuid]['serverName']
+            else:
+                return '[PMS_uuid not found]'
 
 
 

@@ -63,7 +63,7 @@ function toggleSettings(opt, template)
 /*
  * discover
  */
-function discover(opt) 
+function discover(opt, opt_too) 
 {
   // get "opt" element of displayed XML
   var dispval = document.getElementById(opt).getElementByTagName("rightLabel");
@@ -82,6 +82,16 @@ function discover(opt)
   log("discover done - "+newval.textContent);
     
   // push new value to display
+  dispval.textContent = newval.textContent;
+  
+  // get "opt_too" element of fresh XML
+  newval = doc.getElementById(opt_too).getElementByTagName("rightLabel");
+  if (!newval) return undefined;  // error - element not found
+  log("update PMS - "+newval.textContent);
+    
+  // push new value to display
+  dispval = document.getElementById(opt_too).getElementByTagName("rightLabel");
+  if (!dispval) return undefined;  // error - element not found
   dispval.textContent = newval.textContent;
 };
 

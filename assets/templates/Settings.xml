@@ -103,10 +103,14 @@
               </horizontalDivider>
             </header>
             <items>
-              <oneLineMenuItem id="discover" onSelect="discover('discover')">
+              <oneLineMenuItem id="discover" onSelect="discover('discover','PMS_uuid')">
                 <label>Discover</label>
                 <rightLabel>Plex Media Servers: {{PMSCOUNT()}}</rightLabel>
               </oneLineMenuItem>
+              <oneLineMenuItem id="PMS_uuid" onSelect="toggleSettings('PMS_uuid', 'Settings')">
+                <label>PMS</label>
+                <rightLabel>{{PMSNAME()}}</rightLabel>
+              </oneLineMenuItem>              
               <oneLineMenuItem id="refreshLibrary" onSelect="refreshLibrary('{{ADDR_PMS()}}')">
                 <label>Refresh Library</label>
               </oneLineMenuItem>

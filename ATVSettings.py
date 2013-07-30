@@ -3,6 +3,7 @@
 import sys
 from os import sep
 import ConfigParser
+import fnmatch
 
 from Debug import *  # dprint()
 
@@ -23,7 +24,9 @@ options = { \
     'showunwatched'     :('True', 'False'), \
     'showplayerclock'   :('True', 'False'), \
     'showendtime'       :('True', 'False'), \
-    'timeformat'        :('24 Hour', '12 Hour') }
+    'timeformat'        :('24 Hour', '12 Hour'), \
+    'pms_uuid'          :('*', ), \
+    }
     
 # comment on forcedirectplay -> if true, this has higher priority than forcetranscode
 
@@ -74,26 +77,31 @@ class CATVSettings():
     
     def setSetting(self, UDID, option, val):
         self.checkSection(UDID)
-        opts = options[option]
+        self.cfg.set(UDID, option, val)
     
+    def checkSetting(self, UDID, option):
+        self.checkSection(UDID)
+        val = self.cfg.get(UDID, option)
+        opts = options[option]
+        
         # check val in list
         found = False
         for opt in opts:
-            if opt==val:
+            if fnmatch.fnmatch(val, opt):
                 found = True
-    
-        # set - if incorrect val, pick default
-        if found:
-            self.cfg.set(UDID, option, val)
-        else:
+        
+        # if not found, correct to default
+        if not found:
             self.cfg.set(UDID, option, opts[0])
-
+            dprint(__name__, 1, "checksetting: default {0} to {1}", option, opts[0])
+    
     def toggleSetting(self, UDID, option):
         self.checkSection(UDID)
         cur = self.cfg.get(UDID, option)
         opts = options[option]
     
         # find current in list
+        i=0
         for i,opt in enumerate(opts):
             if opt==cur:
                 break
@@ -105,6 +113,12 @@ class CATVSettings():
     
         # set
         self.cfg.set(UDID, option, opts[i])
+    
+    def setOptions(self, option, opts):
+        global options
+        if option in options:
+            options[option] = opts
+            dprint(__name__, 1, 'setOption: update {0} to {1}', option, opts)
 
 
 
@@ -126,6 +140,13 @@ if __name__=="__main__":
     print "toggleSetting"
     ATVSettings.toggleSetting(UDID, option)
     print ATVSettings.getSetting(UDID, option)
+    ATVSettings.toggleSetting(UDID, option)
+    print ATVSettings.getSetting(UDID, option)
+    ATVSettings.toggleSetting(UDID, option)
+    print ATVSettings.getSetting(UDID, option)
+    
+    option = 'pms_uuid'
+    ATVSettings.setOptions(option, ('PMSonMac', 'PMSonNAS'))
     ATVSettings.toggleSetting(UDID, option)
     print ATVSettings.getSetting(UDID, option)
     ATVSettings.toggleSetting(UDID, option)
