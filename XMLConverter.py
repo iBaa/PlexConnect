@@ -210,7 +210,7 @@ def discoverPMS():
                     'port'      : g_param['CSettings'].getSetting('port_pms'),
                 }
             }
-        opts = (PMS_uuid)
+        opts = (PMS_uuid, )
         dprint(__name__, 0, "PlexGDM off - PMS from settings: {0}:{1}", PMS_list[PMS_uuid]['ip'], PMS_list[PMS_uuid]['port'])
     
     else:
