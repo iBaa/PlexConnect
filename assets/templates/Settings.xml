@@ -50,7 +50,7 @@
                 </accessories>
               </oneLineMenuItem>
               <oneLineMenuItem id="ShowView" onSelect="atv.loadURL('http://trailers.apple.com/&amp;PlexConnect=SettingsTVShows')">
-                <label>Show Options</label>
+                <label>TV Show Options</label>
                 <accessories>
                   <arrow/>
                 </accessories>

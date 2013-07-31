@@ -14,6 +14,20 @@
         <sections>
           <menuSection>
             <items>
+              <oneLineMenuItem id="unwatched" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/unwatched&amp;PlexConnect=AllShows')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/unwatched&amp;PlexConnect=AllShows')">
+                <label>Unwatched</label>
+                <preview>
+                  <link>http://trailers.apple.com{{ADDPATH(key)}}/unwatched?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
+                </preview>
+              </oneLineMenuItem>{{CUT($tv_navbar_unwatched::checked=CUT|unchecked=)}}
+
+              <oneLineMenuItem id="genres" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/genre&amp;PlexConnect=DirectoryWithPreview')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/genre&amp;PlexConnect=DirectoryWithPreview')">
+                <label>Genres</label>
+                <preview>
+                  <link>http://trailers.apple.com{{ADDPATH(key)}}/genres?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
+                </preview>
+              </oneLineMenuItem>{{CUT($tv_navbar_genres::checked=CUT|unchecked=)}}
+              
               <oneLineMenuItem id="recentlyViewedShows" onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/recentlyViewedShows')" onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}/recentlyViewedShows')">
                 <label>Recently Viewed Shows</label>
                 <preview>

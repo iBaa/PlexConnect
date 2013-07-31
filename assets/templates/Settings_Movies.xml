@@ -41,6 +41,11 @@
                 <label>Movie View</label>
                 <rightLabel>{{SETTING(movieview)}}</rightLabel>
               </oneLineMenuItem>
+              
+              <oneLineMenuItem id="ActorView" onSelect="toggleSettings('ActorView', 'Settings_Movies')">
+                <label>Actor View</label>
+                <rightLabel>{{SETTING(actorview)}}</rightLabel>
+              </oneLineMenuItem>
             </items>
           </menuSection>
           
@@ -57,6 +62,13 @@
                 <accessories>
                   <checkMark/>
                 </accessories>{{CUT($movies_navbar_unwatched::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="Movies_NavBar_Collections" onSelect="toggleSettings('Movies_NavBar_Collections', 'Settings_Movies')">
+                <label>Collections</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($movies_navbar_collections::unchecked=CUT|checked=)}}
               </oneLineMenuItem>
               
               <oneLineMenuItem id="Movies_NavBar_Genres" onSelect="toggleSettings('Movies_NavBar_Genres', 'Settings_Movies')">
