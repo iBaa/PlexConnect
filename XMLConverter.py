@@ -1065,7 +1065,7 @@ class CCommandCollection(CCommandHelper):
         else:
             PMS_uuid = g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'pms_uuid')
             if PMS_uuid in PMS_list:
-                return PMS_list[PMS_uuid]['serverName']
+                return PMS_list[PMS_uuid]['serverName'].decode('utf-8', 'replace')  # return as utf-8
             else:
                 return '[PMS_uuid not found]'
 
