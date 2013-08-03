@@ -55,10 +55,6 @@
                   <arrow/>
                 </accessories>
               </oneLineMenuItem>
-							<oneLineMenuItem id="ShowUnwatched" onSelect="toggleSettings('ShowUnwatched', 'Settings')">
-                <label>Show Unwatched Count</label>
-                <rightLabel>{{SETTING(showunwatched)}}</rightLabel>
-              </oneLineMenuItem>
               <oneLineMenuItem id="VideoOSD" onSelect="atv.loadURL('http://trailers.apple.com/&amp;PlexConnect=SettingsVideoOSD')">
                 <label>Video Player OSD</label>
                 <accessories>

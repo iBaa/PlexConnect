@@ -54,6 +54,14 @@
                 <label>Time Format</label>
                 <rightLabel>{{SETTING(timeformat)}}</rightLabel>
               </oneLineMenuItem>
+              <oneLineMenuItem id="ClockPosition" onSelect="toggleSettings('ClockPosition', 'Settings_VideoOSD')">
+                <label>Clock Position</label>
+                <rightLabel>{{SETTING(clockposition)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="OverscanAdjust" onSelect="toggleSettings('OverscanAdjust', 'Settings_VideoOSD')">
+                <label>Overscan Adjust</label>
+                <rightLabel>{{SETTING(overscanadjust)}}</rightLabel>
+              </oneLineMenuItem>
             </items>
           </menuSection>
         </sections>

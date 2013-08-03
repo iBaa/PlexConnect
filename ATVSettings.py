@@ -34,6 +34,8 @@ options = { \
     'audioboost'        :('100', '175', '225', '300'), \
     'showunwatched'     :('True', 'False'), \
     'showplayerclock'   :('True', 'False'), \
+    'overscanadjust'    :('0', '1', '2', '3', '-3', '-2', '-1'), \
+    'clockposition'     :('Center', 'Right', 'Left'), \
     'showendtime'       :('True', 'False'), \
     'timeformat'        :('24 Hour', '12 Hour'), \
     'pms_uuid'          :('*', ), \

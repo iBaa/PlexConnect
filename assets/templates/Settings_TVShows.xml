@@ -45,6 +45,10 @@
                 <label>Season View</label>
                 <rightLabel>{{SETTING(seasonview)}}</rightLabel>
               </oneLineMenuItem>
+              <oneLineMenuItem id="ShowUnwatched" onSelect="toggleSettings('ShowUnwatched', 'Settings_TVShows')">
+                <label>Show Unwatched Count</label>
+                <rightLabel>{{SETTING(showunwatched)}}</rightLabel>
+              </oneLineMenuItem>
             </items>
           </menuSection>
           

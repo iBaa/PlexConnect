@@ -176,11 +176,16 @@ function initClockView()
   width = screenFrame.width * 0.15;
   }
   var height = screenFrame.height * 0.06;
-
+  var overscanadjust = 0.006 * (parseInt(atv.sessionStorage['overscanadjust']));
+  
+  if (atv.sessionStorage['clockposition'] == 'Center') var xmul = 0.5;
+  else if (atv.sessionStorage['clockposition'] == 'Right') var xmul = 0.9;
+  else if (atv.sessionStorage['clockposition'] == 'Left') var xmul = 0.1;
+  
   // Setup the clock frame
   clockView.backgroundColor = { red: 0, blue: 0, green: 0, alpha: 0.7};
-  clockView.frame = { "x": screenFrame.x + (screenFrame.width * 0.5) - (width * 0.5), 
-                      "y": screenFrame.y + (screenFrame.height * 0.988) - height,
+  clockView.frame = { "x": screenFrame.x + (screenFrame.width * xmul) - (width * 0.5), 
+                      "y": screenFrame.y + (screenFrame.height * (0.988 + overscanadjust)) - height,
                       "width": width, "height": height };
 
   // Update the overlay clock
@@ -200,12 +205,17 @@ function initEndTimeView()
   width = screenFrame.width * 0.15;
   }
   var height = screenFrame.height * 0.03;
-
+  var overscanadjust = 0.006 * (parseInt(atv.sessionStorage['overscanadjust']));
+  
+  if (atv.sessionStorage['clockposition'] == 'Center') var xmul = 0.5;
+  else if (atv.sessionStorage['clockposition'] == 'Right') var xmul = 0.9;
+  else if (atv.sessionStorage['clockposition'] == 'Left') var xmul = 0.1;
+    
   // Setup the end time frame
   endTimeView.backgroundColor = { red: 0, blue: 0, green: 0, alpha: 0.7};
-  endTimeView.frame = { "x": screenFrame.x + (screenFrame.width * 0.5) - (width * 0.5), 
-                      "y": screenFrame.y + (screenFrame.height * 0.05) - height,
-                      "width": width, "height": height };
+  endTimeView.frame = { "x": screenFrame.x + (screenFrame.width * xmul) - (width * 0.5), 
+                        "y": screenFrame.y + (screenFrame.height * (0.05 - overscanadjust)) - height,
+                        "width": width, "height": height };
 
   // Update the overlay clock
   endTimer = atv.setInterval( updateEndTime, 1000 );
