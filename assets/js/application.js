@@ -180,7 +180,7 @@ function initClockView()
   // Setup the clock frame
   clockView.backgroundColor = { red: 0, blue: 0, green: 0, alpha: 0.7};
   clockView.frame = { "x": screenFrame.x + (screenFrame.width * 0.5) - (width * 0.5), 
-                      "y": screenFrame.y + (screenFrame.height * 0.988) - height,
+                      "y": screenFrame.y + (screenFrame.height * 0.988) - (height * 1.5),
                       "width": width, "height": height };
 
   // Update the overlay clock
