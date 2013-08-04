@@ -27,8 +27,9 @@
                 <image>{{IMAGEURL(thumb)}}</image>
                 <!--<defaultImage>resource://16X9.png</defaultImage>      This causes the thumbnail to be too small, not sure why.-->
                 <accessories>
-                  <unplayedDot/>{{CUT(viewCount)}}
-                </accessories>
+                  <unplayedDot/>{{CUT(viewOffset)}}
+                  <partiallyPlayedDot/>
+                </accessories>{{CUT(viewCount)}}
                 <preview>
                   <keyedPreview>
                     <title>{{VAL(title)}}</title>
