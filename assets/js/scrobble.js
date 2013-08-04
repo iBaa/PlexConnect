@@ -21,14 +21,14 @@ function scrobbleMenu(type, ratingKey, addrPMS) {
 function scrobble(addrPMS, ratingKey) {
 	var url = "http://" + addrPMS + "/:/scrobble?key=" + ratingKey + "&identifier=com.plexapp.plugins.library";
 	var req = new XMLHttpRequest();
-	req.open('GET', url, true);
+	req.open('GET', url, false);
 	req.send();
 };
 
 function unscrobble(addrPMS, ratingKey) {
 	var url = "http://" + addrPMS + "/:/unscrobble?key=" + ratingKey + "&identifier=com.plexapp.plugins.library";
 	var req = new XMLHttpRequest();
-	req.open('GET', url, true);
+	req.open('GET', url, false);
 	req.send();
 };
 
@@ -98,6 +98,6 @@ function loadNewArtwork(addrPMS, ratingKey, posterURL)
 	}
 	var url = "http://" + addrPMS + "/library/metadata/" + ratingKey + "/poster?url=" + posterURL;
 	var req = new XMLHttpRequest();
-	req.open('PUT', url, true);
+	req.open('PUT', url, false);
 	req.send();
 };
