@@ -23,6 +23,10 @@
                              onHoldSelect="scrobbleMenu('Movie', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
                 {{COPY(Video)}}
                 <label>{{VAL(title)}}</label>
+                <accessories>
+                  <unplayedDot/>{{CUT(viewOffset)}}
+                  <partiallyPlayedDot/>
+                </accessories>{{CUT(viewCount)}}
                 <preview>
                   <keyedPreview>
                     <title>{{VAL(title)}}</title>
