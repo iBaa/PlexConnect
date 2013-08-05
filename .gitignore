@@ -1,5 +1,3 @@
-out.log
-
 *.pyc
 
 ATVSettings.cfg
@@ -7,3 +5,5 @@ ATVSettings.cfg
 Settings.cfg
 
 PlexConnect.log
+
+nohup.out
