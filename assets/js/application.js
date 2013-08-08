@@ -66,6 +66,9 @@ atv.player.didStopPlaying = function()
 /*
  * Handle ATV playback will start
  */
+
+var assettimer = null;
+
 atv.player.willStartPlaying = function()
 {	
   // Create clock view
@@ -80,7 +83,49 @@ atv.player.willStartPlaying = function()
   atv.player.overlay = containerView;
   
   addrPMS = "http://" + atv.sessionStorage['addrpms'];
+  
+  // Use loadMoreAssets callback for playlists - if not transcoding!
+  var url = atv.player.asset.getElementByTagName('mediaURL').textContent;
+  var metadata = atv.player.asset.getElementByTagName('myMetadata');
+  if (metadata != null && url.indexOf('transcode/universal') == -1)
+  {
+    log('load assets')
+    atv.player.loadMoreAssets = function(callback) 
+    {
+      assettimer = atv.setInterval(
+        function()
+        {
+          atv.clearInterval(assettimer);
+          
+          var root = atv.player.asset;
+          var videoAssets = root.getElementsByTagName('httpFileVideoAsset');
+          if (videoAssets != null && videoAssets.length > 1)
+            videoAssets.shift();
+          else
+            videoAssets = null;
+          callback.success(videoAssets);
+        } , 1000);
+    }
+  }
 };
+
+
+
+// atv.Element extensions
+if( atv.Element ) {
+	atv.Element.prototype.getElementsByTagName = function(tagName) {
+		return this.ownerDocument.evaluateXPath("descendant::" + tagName, this);
+	}
+
+	atv.Element.prototype.getElementByTagName = function(tagName) {
+		var elements = this.getElementsByTagName(tagName);
+		if ( elements && elements.length > 0 ) {
+			return elements[0];
+		}
+		return undefined;
+	}
+}
+
 
 /*
  * Handle showing/hiding of transport controls

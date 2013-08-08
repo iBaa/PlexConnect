@@ -7,6 +7,18 @@
         <description>{{VAL(Video/summary)}}</description>
         <bookmarkTime>{{EVAL(Video/viewOffset:0:int(x/1000))}}</bookmarkTime>
         <image>{{IMAGEURL(Video/thumb)}}</image>
+        
+        <!-- stacked media -->
+        <myMetadata>            
+            <httpFileVideoAsset id="{{VAL(key)}}">
+                <mediaURL>http://{{ADDR_PMS()}}{{VAL(key)}}</mediaURL>
+                <title>{{VAL(@main/Video/title)}}</title>
+                <description>{{VAL(@main/Video/summary)}}</description>
+                <!--bookmarkTime>{{EVAL(@main/Video/viewOffset:0:int(x/1000))}}</bookmarkTime-->
+                <image>{{IMAGEURL(@main/Video/thumb)}}</image>
+            </httpFileVideoAsset>{{COPY(Video/Media/Part)}}
+        </myMetadata>
+        
       </httpFileVideoAsset>
     </videoPlayer>
   </body>
