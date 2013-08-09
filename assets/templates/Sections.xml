@@ -1,6 +1,6 @@
 <atv>
   <head>
-    <script src="http://trailers.apple.com/js/utils.js" />
+    <script src="{{URL(:/js/utils.js)}}" />
   </head>
 	
   <body>
