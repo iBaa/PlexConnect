@@ -81,6 +81,14 @@ class PlexConnect(object):
             if o in ('-l', '--logfile'):
                 self.logfile = str(a)
 
+    def activate(self):
+        """
+        Main running sequence for a PlexConnect object
+        """
+        self.startup()
+        self.run()
+        self.shutdown()
+
     def request_shutdown(self):
         """
         request_shutdown will initiate a shutdown of  PlexConnect by sending all processes a 'shutdown' request
@@ -190,10 +198,6 @@ if __name__ == "__main__":
     dprint('PlexConnect', 0, "Press CTRL-C to shut down.")
     dprint('PlexConnect', 0, "***")
 
-    plexConnect.startup()
-
-    plexConnect.run()
-
-    plexConnect.shutdown()
+    plexConnect.activate()
 
     sys.exit(0)

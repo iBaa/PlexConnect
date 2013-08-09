@@ -124,10 +124,6 @@ if __name__ == "__main__":
 
     plexConnect = PlexConnectDaemon()
 
-    plexConnect.startup()
-
-    plexConnect.run()
-
-    plexConnect.shutdown()
+    plexConnect.activate()
 
     sys.exit(0)
