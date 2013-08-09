@@ -17,12 +17,11 @@
             <items>
               <!-- library directories -->
               <oneLineMenuItem id="{{VAL(key)}}" 
-                                       onPlay="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')" 
-                                       onSelect="atv.loadURL('http://trailers.apple.com{{ADDPATH(key)}}')">
-                {{COPY(Directory)}}
+                                       onPlay="atv.loadURL('{{URL(key)}}')" 
+                                       onSelect="atv.loadURL('{{URL(key)}}')">
                 <label>{{VAL(title)}}</label>
                 <preview>
-                  <link>http://trailers.apple.com{{ADDPATH(key)}}?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
+                  <link>{{URL(key)}}?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
                 </preview>
               </oneLineMenuItem>
             </items>

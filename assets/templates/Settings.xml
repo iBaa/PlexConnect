@@ -30,7 +30,7 @@
             <label>https://github.com/ibaa/plexconnect</label>
             <label>http://forums.plexapp.com/index.php/forum/136-appletv-plexconnect/</label>
           </metadataValues>
-          <image>http://trailers.apple.com/thumbnails/PlexConnectLogo.jpg</image>
+          <image>{{URL(:/thumbnails/PlexConnectLogo.jpg)}}</image>
         </keyedPreview> 
       </preview>
       
@@ -43,19 +43,19 @@
               </horizontalDivider>
             </header>
             <items>
-              <oneLineMenuItem id="MovieView" onSelect="atv.loadURL('http://trailers.apple.com/&amp;PlexConnect=SettingsMovies')">
+              <oneLineMenuItem id="MovieView" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsMovies')">
                 <label>Movie Options</label>
                 <accessories>
                   <arrow/>
                 </accessories>
               </oneLineMenuItem>
-              <oneLineMenuItem id="ShowView" onSelect="atv.loadURL('http://trailers.apple.com/&amp;PlexConnect=SettingsTVShows')">
+              <oneLineMenuItem id="ShowView" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsTVShows')">
                 <label>TV Show Options</label>
                 <accessories>
                   <arrow/>
                 </accessories>
               </oneLineMenuItem>
-              <oneLineMenuItem id="VideoOSD" onSelect="atv.loadURL('http://trailers.apple.com/&amp;PlexConnect=SettingsVideoOSD')">
+              <oneLineMenuItem id="VideoOSD" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsVideoOSD')">
                 <label>Video Player OSD</label>
                 <accessories>
                   <arrow/>

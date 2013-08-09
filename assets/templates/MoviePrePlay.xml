@@ -141,7 +141,7 @@
                     {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
                     <label>{{VAL(tag)}}</label>
                     <preview>
-                      <link>http://trailers.apple.com/library/sections/{{VAL(/librarySectionID)}}/genre/{{VAL(id)}}?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=50&amp;PlexConnect=MoviePreview</link> 
+                      <link>{{URL(/library/sections/)}}{{VAL(/librarySectionID)}}/genre/{{VAL(id)}}?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=50&amp;PlexConnect=MoviePreview</link> 
                     </preview>
                   </oneLineMenuItem>
                 </items>
@@ -159,7 +159,7 @@
                     {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
                     <label>{{VAL(tag)}}</label>
                     <preview>
-                      <link>http://trailers.apple.com/library/sections/{{VAL(/librarySectionID)}}/director/{{VAL(id)}}/&amp;PlexConnect=MoviePreview</link>
+                      <link>{{URL(:/library/sections/)}}{{VAL(/librarySectionID)}}/director/{{VAL(id)}}/&amp;PlexConnect=MoviePreview</link>
                     </preview>
                   </oneLineMenuItem>
                 </items>
@@ -180,7 +180,7 @@
                     <image>{{IMAGEURL(thumb)}}</image>
                     <defaultImage>resource://Poster.png</defaultImage>
                     <preview>
-                      <link>http://trailers.apple.com/library/sections/{{VAL(/librarySectionID)}}/actor/{{VAL(id)}}/&amp;PlexConnect=MoviePreview</link>
+                      <link>{{URL(:/library/sections/)}}{{VAL(/librarySectionID)}}/actor/{{VAL(id)}}/&amp;PlexConnect=MoviePreview</link>
                     </preview>
                   </twoLineMenuItem>
                 </items>

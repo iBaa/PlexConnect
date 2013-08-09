@@ -22,7 +22,7 @@
         <photo id="{{VAL(ratingKey)}}" onSelect="atv.loadURL('{{URL(key)}}')">
           {{COPY(Directory)}}
           <assets>
-            <photoAsset width="0" height="0" src="http://trailers.apple.com/thumbnails/PhotoFolder.png"/>{{CUT(Media/Part/key::=CUT)}}
+            <photoAsset width="0" height="0" src="{{URL(:/thumbnails/PhotoFolder.png)}}"/>{{CUT(Media/Part/key::=CUT)}}
           </assets>
           <stash>
             <directory>true</directory>
