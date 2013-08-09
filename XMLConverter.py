@@ -368,8 +368,6 @@ def XML_PMS2aTV(address, path, options):
             return XML_Error('PlexConnect', 'No Response from Plex Media Server')
     
         PMSroot = PMS.getroot()
-        if not len(PMSroot):  # no children - PMS errormsg
-            return XML_Error('Plex Media Server', PMSroot.get('header','Unknown Error'))
         
         dprint(__name__, 1, "viewGroup: "+PMSroot.get('ViewGroup','None'))
     

@@ -5,6 +5,7 @@
 	
   <body>
     <listWithPreview id="com.sample.menu-items-with-sections">
+    {{CUT(size:CUT:0=CUT|1=)}}
       <header>
         <simpleHeader>
           <title>{{VAL(title1:Plex Library)}}</title>
@@ -29,5 +30,12 @@
         </sections>
       </menu>
     </listWithPreview>
+    
+    <!--No Items Available-->
+    <dialog id="com.sample.error-dialog">
+    {{CUT(size::0=|1=CUT)}}
+      <title>PlexConnect</title>
+      <description>Plex Media Server: No Items Available</description>
+    </dialog>
   </body>
 </atv>
