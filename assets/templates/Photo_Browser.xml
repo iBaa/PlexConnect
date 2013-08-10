@@ -9,7 +9,6 @@
   <!--  ONLY PHOTOS   -->
    
     <mediaBrowser id="browser" gridLayout="mixed">
-    {{CUT(Directory/title::=CUT)}}
       <header>
         <headerWithCountAndButtons>
           <title>{{VAL(title2)}}</title>
@@ -51,36 +50,6 @@
         
       </items>
     </mediaBrowser>
-    
-    
-    <!--  DIRECTORIES + PHOTOS  -->
-    
-    <listWithPreview id="com.sample.menu-items-with-sections">
-    {{CUT(Directory/title:CUT:=)}}
-    <header>
-       <simpleHeader>
-          <title>{{VAL(title1:Plex Library)}}</title>
-          <subtitle>{{VAL(title2)}}</subtitle>
-        </simpleHeader> 
-    </header>
-      <menu>
-        <sections>
-          <menuSection>
-            <items>
-              <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=PhotoBrowser')"
-                                                onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=PhotoBrowser')">
-                <label>Show Photos</label>
-              </oneLineMenuItem>{{CUT(Photo/title:CUT:=)}}
-              <!-- library directories -->
-              <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key)}}')" onSelect="atv.loadURL('{{URL(key)}}')">
-                {{COPY(Directory)}}
-                <label>{{VAL(title)}}</label>
-              </oneLineMenuItem>
-            </items>
-          </menuSection>
-        </sections>
-      </menu>
-    </listWithPreview>
-       
+   
   </body>
 </atv>

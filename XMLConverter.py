@@ -257,6 +257,9 @@ def XML_PMS2aTV(address, path, options):
         dprint(__name__, 1, "playing Channels XML Version 1: {0}".format(path))
         return XML_PlayVideo_ChannelsV1(path)  # direct link, no PMS XML available
     
+    elif cmd=='PhotoBrowser':
+        XMLtemplate = 'Photo_Browser.xml'
+        
     elif cmd=='MoviePreview':
         XMLtemplate = 'MoviePreview.xml'
     
