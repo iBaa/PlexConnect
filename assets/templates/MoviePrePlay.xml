@@ -66,18 +66,20 @@
           <sections>
             <shelfSection>
               <items>
-                <actionButton id="play" onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')">
+                <actionButton id="play" onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                                        onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')">
                   <title>Play</title>
                   <image>resource://Play.png</image>
                   <focusedImage>resource://PlayFocused.png</focusedImage>
                   <!--<badge></badge>-->
                 </actionButton>
-                <actionButton id="selectAudioAndSubs" onSelect="selectAudioAndSubs('{{ADDR_PMS()}}', '{{VAL(Video/Media/Part/id)}}')">
+                <actionButton id="selectAudioAndSubs" onSelect="selectAudioAndSubs('{{ADDR_PMS()}}', '{{VAL(Video/Media/Part/id)}}')"
+                                                      onPlay="selectAudioAndSubs('{{ADDR_PMS()}}', '{{VAL(Video/Media/Part/id)}}')">
                   <title>Audio/Subs</title>
                   <image>resource://Queue.png</image>
                   <focusedImage>resource://QueueFocused.png</focusedImage>
                 </actionButton>
-                <actionButton id="more" accessibilityLabel="More info" onSelect="atv.showMoreInfo();">
+                <actionButton id="more" accessibilityLabel="More info" onSelect="atv.showMoreInfo();" onPlay="atv.showMoreInfo();">
                   <title>More</title>
                   <image>resource://More.png</image>
                   <focusedImage>resource://MoreFocused.png</focusedImage>
