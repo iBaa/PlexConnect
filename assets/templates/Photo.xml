@@ -70,11 +70,17 @@
               <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=PhotoBrowser')"
                                                 onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=PhotoBrowser')">
                 <label>Show Photos</label>
+                <preview>
+                  <link>{{URL(key)}}?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview-Photo</link>
+                </preview>
               </oneLineMenuItem>{{CUT(Photo/title:CUT:=)}}
               <!-- library directories -->
               <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key)}}')" onSelect="atv.loadURL('{{URL(key)}}')">
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>
+                <preview>
+                  <link>{{URL(key)}}?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview-Photo</link>
+                </preview>
               </oneLineMenuItem>
             </items>
           </menuSection>
