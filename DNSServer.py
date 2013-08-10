@@ -56,6 +56,17 @@ ResourceRecord
 Source: http://doc-tcpip.org/Dns/named.dns.message.html
 """
 
+"""
+prevent aTV update
+Source: http://forum.xbmc.org/showthread.php?tid=93604
+
+loopback to 127.0.0.1...
+  mesu.apple.com
+  appldnld.apple.com
+  appldnld.apple.com.edgesuite.net
+"""
+
+
 import sys
 import socket
 import struct
@@ -308,7 +319,6 @@ def Run(cmdPipe, param):
     
     cfg_IP_self = param['IP_self']
     cfg_IP_DNSMaster = param['CSettings'].getSetting('ip_dnsmaster')
-    cfg_HostToIntercept = 'trailers.apple.com'
     
     try:
         DNS = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -327,14 +337,19 @@ def Run(cmdPipe, param):
         dprint(__name__, 0, "Failed to create socket on UDP port 49152: {0}", e)
         sys.exit(1)
     
+    hijack = param['HostToIntercept']
+    hijack_twisted = hijack[::-1]
+    
+    restrain = []
+    if param['CSettings'].getSetting('prevent_atv_update')=='True':
+        restrain = ['mesu.apple.com', 'appldnld.apple.com', 'appldnld.apple.com.edgesuite.net']
+    
     dprint(__name__, 0, "***")
     dprint(__name__, 0, "Starting up.")
-    dprint(__name__, 1, "intercept "+cfg_HostToIntercept+": "+cfg_IP_self)
+    dprint(__name__, 1, "intercept "+hijack+": "+cfg_IP_self)
+    dprint(__name__, 1, "restrain: {0}", restrain)
     dprint(__name__, 1, "forward other to higher level DNS: "+cfg_IP_DNSMaster)
     dprint(__name__, 0, "***")
-    
-    hijack = cfg_HostToIntercept
-    hijack_twisted = hijack[::-1]
     
     try:
         while True:
@@ -361,7 +376,7 @@ def Run(cmdPipe, param):
                     dprint(__name__, 1, "Domain: "+domain)
                 
                 paket=''
-                if domain==cfg_HostToIntercept:
+                if domain==hijack:
                     dprint(__name__, 1, "***intercept request")
                     paket+=data[:2]         # 0:1 - ID
                     paket+="\x81\x80"       # 2:3 - flags
@@ -401,7 +416,21 @@ def Run(cmdPipe, param):
                     #print "DNS RESPONSE"
                     #printDNSstruct(DNSstruct)
                     #printDNSdata_raw(paket)
-                    
+                
+                elif domain in restrain:
+                    dprint(__name__, 1, "***restrain request")
+                    paket+=data[:2]         # 0:1 - ID
+                    paket+="\x81\x80"       # 2:3 - flags
+                    paket+=data[4:6]        # 4:5 - QDCOUNT - should be 1 for this code
+                    paket+=data[4:6]        # 6:7 - ANCOUNT
+                    paket+='\x00\x00'       # 8:9 - NSCOUNT
+                    paket+='\x00\x00'       # 10:11 - ARCOUNT
+                    paket+=data[12:]                                     # original query
+                    paket+='\xc0\x0c'                                    # pointer to domain name/original query
+                    paket+='\x00\x01\x00\x01\x00\x00\x00\x3c\x00\x04'    # response type, ttl and resource data length -> 4 bytes
+                    paket+='\x7f\x00\x00\x01'  # 4bytes of IP - 127.0.0.1, loopback
+                    dprint(__name__, 1, "-> DNS response: "+cfg_IP_self)
+                
                 else:
                     dprint(__name__, 1, "***forward request")
                     DNS_forward.sendto(data, (cfg_IP_DNSMaster, 53))
