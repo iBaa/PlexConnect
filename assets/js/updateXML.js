@@ -72,7 +72,7 @@ function loadItem(event)
   // Get navbar item URL
 	var item = document.getElementById(navbarID);
   var url = item.getElementByTagName('url').textContent;
-  if (url.indexOf("aTV.PlexConnect")!=-1)
+  if (url.indexOf("atv.plexconnect")!=-1)
   {
     url = url + "&PlexConnectUDID=" + atv.device.udid;
     url = url + "&PlexConnectATVName=" + encodeURIComponent(atv.device.displayName);

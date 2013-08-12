@@ -51,7 +51,7 @@ function loadMenuPage(event)
     var item = document.getElementById(id);
     var url = item.getElementByTagName('url').textContent;
     
-    if (url.indexOf("aTV.PlexConnect")!=-1)
+    if (url.indexOf("atv.plexconnect")!=-1)
     {
         url = url + "&PlexConnectUDID=" + atv.device.udid;
     }
@@ -87,7 +87,7 @@ var iOS_atv_loadURL = atv.loadURL;
 atv.loadURL = function(url)
 {
     log("loadURL (override): "+url);
-    if (url.indexOf("aTV.PlexConnect")!=-1)
+    if (url.indexOf("atv.plexconnect")!=-1)
     {
         url = url + "&PlexConnectUDID=" + atv.device.udid;
         url = url + "&PlexConnectATVName=" + encodeURIComponent(atv.device.displayName);
@@ -106,7 +106,7 @@ var iOS_atv_loadAndSwapURL = atv.loadAndSwapURL;
 atv.loadAndSwapURL = function(url)
 {
     log("loadAndSwapURL (override): "+url);
-    if (url.indexOf("aTV.PlexConnect")!=-1)
+    if (url.indexOf("atv.plexconnect")!=-1)
     {
         url = url + "&PlexConnectUDID=" + atv.device.udid;
         url = url + "&PlexConnectATVName=" + encodeURIComponent(atv.device.displayName);
