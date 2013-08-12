@@ -1,5 +1,5 @@
 function reloadPMS_XML(path) {
-  atv.loadAndSwapURL("http://trailers.apple.com" + path);
+  atv.loadAndSwapURL("http://aTV.PlexConnect" + path);
 };
 
 
@@ -39,7 +39,7 @@ if( atv.Element ) {
 function log(msg)
 {
   var req = new XMLHttpRequest();
-  var url = "http://trailers.apple.com/" + "&PlexConnectLog=" + encodeURIComponent(msg);
+  var url = "http://aTV.PlexConnect/" + "&PlexConnectLog=" + encodeURIComponent(msg);
   req.open('GET', url, true);
   req.send();
 };
@@ -72,7 +72,7 @@ function loadItem(event)
   // Get navbar item URL
 	var item = document.getElementById(navbarID);
   var url = item.getElementByTagName('url').textContent;
-  if (url.indexOf("trailers.apple.com")!=-1)
+  if (url.indexOf("aTV.PlexConnect")!=-1)
   {
     url = url + "&PlexConnectUDID=" + atv.device.udid;
     url = url + "&PlexConnectATVName=" + encodeURIComponent(atv.device.displayName);
@@ -111,7 +111,7 @@ function loadMenuPages(url, event)
 function updatePage(path)
 {
 	// read new XML
-  var url = "http://trailers.apple.com" + path + "&PlexConnectUDID="+atv.device.udid;
+  var url = "http://aTV.PlexConnect" + path + "&PlexConnectUDID="+atv.device.udid;
 
 	if (navbarItemNumber == '1') // First navbar item is a special case
 	{

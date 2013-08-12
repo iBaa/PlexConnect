@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <atv>
   <head>
-    <script src="http://trailers.apple.com/js/utils.js" />
+    <script src="http://aTV.PlexConnect/js/utils.js" />
   </head>
   
  	<body>
@@ -9,23 +9,23 @@
 			<navigation>
 				<navigationItem id="Library">
 					<title>Library</title> 
-					<url>http://trailers.apple.com/library/sections</url> 
+					<url>http://aTV.PlexConnect/library/sections</url> 
 				</navigationItem> 
 				<navigationItem id="Channels">
 					<title>Channels</title> 
-				 <url>http://trailers.apple.com/channels/all&amp;PlexConnect=Channels</url> 
+				 <url>http://aTV.PlexConnect/channels/all&amp;PlexConnect=Channels</url> 
 				</navigationItem> 
         <navigationItem id="Search">
-					<url>http://trailers.apple.com/search.xml</url> 
+					<url>http://aTV.PlexConnect/search.xml</url> 
 					<title>Search</title>
 				</navigationItem>
         <navigationItem id="Settings">
 					<title>Settings</title>
-					<url>http://trailers.apple.com/&amp;PlexConnect=Settings</url> 
+					<url>http://aTV.PlexConnect/&amp;PlexConnect=Settings</url> 
 				</navigationItem>
 				<!--navigationItem id="MyPlex">
 					<title>MyPlex</title> 
-					<url>http://trailers.apple.com/...</url> 
+					<url>http://aTV.PlexConnect/...</url> 
 				</navigationItem--> 
 			</navigation>
 		</viewWithNavigationBar>

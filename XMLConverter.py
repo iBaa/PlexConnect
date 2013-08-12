@@ -940,7 +940,7 @@ class CCommandCollection(CCommandHelper):
     def ATTRIB_URL(self, src, srcXML, param):
         key, leftover, dfltd = self.getKey(src, srcXML, param)
         if key.startswith('/'):  # internal full path.
-            res = 'http://' + g_param['HostToIntercept'] + key
+            res = 'http://' + g_param['HostOfPlexConnect'] + key
         elif key.startswith('http://'):  # external address
             res = key
             hijack = g_param['HostToIntercept']
@@ -950,9 +950,9 @@ class CCommandCollection(CCommandHelper):
                 res = res.replace(hijack, hijack_twisted)
                 dprint(__name__, 1, res)
         elif key == '':  # internal path
-            res = 'http://' + g_param['HostToIntercept'] + self.path[srcXML]
+            res = 'http://' + g_param['HostOfPlexConnect'] + self.path[srcXML]
         else:  # internal path, add-on
-            res = 'http://' + g_param['HostToIntercept'] + self.path[srcXML] + '/' + key
+            res = 'http://' + g_param['HostOfPlexConnect'] + self.path[srcXML] + '/' + key
         return res
     
     def ATTRIB_MEDIAURL(self, src, srcXML, param):

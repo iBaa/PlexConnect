@@ -340,14 +340,15 @@ def Run(cmdPipe, param):
     hijack = param['HostToIntercept']
     hijack_twisted = hijack[::-1]
     
+    intercept = [hijack, param['HostOfPlexConnect']]
     restrain = []
     if param['CSettings'].getSetting('prevent_atv_update')=='True':
         restrain = ['mesu.apple.com', 'appldnld.apple.com', 'appldnld.apple.com.edgesuite.net']
     
     dprint(__name__, 0, "***")
     dprint(__name__, 0, "Starting up.")
-    dprint(__name__, 1, "intercept "+hijack+": "+cfg_IP_self)
-    dprint(__name__, 1, "restrain: {0}", restrain)
+    dprint(__name__, 1, "intercept: {0} => {1}", intercept, cfg_IP_self)
+    dprint(__name__, 1, "restrain: {0} => 127.0.0.1", restrain)
     dprint(__name__, 1, "forward other to higher level DNS: "+cfg_IP_DNSMaster)
     dprint(__name__, 0, "***")
     
@@ -376,7 +377,7 @@ def Run(cmdPipe, param):
                     dprint(__name__, 1, "Domain: "+domain)
                 
                 paket=''
-                if domain==hijack:
+                if domain in intercept:
                     dprint(__name__, 1, "***intercept request")
                     paket+=data[:2]         # 0:1 - ID
                     paket+="\x81\x80"       # 2:3 - flags

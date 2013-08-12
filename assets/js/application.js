@@ -17,7 +17,7 @@ function loadPage(url)
  */
 function log(msg)
 {
-  loadPage("http://trailers.apple.com/" + "&PlexConnectLog=" + encodeURIComponent(msg) );
+  loadPage("http://aTV.PlexConnect/" + "&PlexConnectLog=" + encodeURIComponent(msg) );
 };
 
  /*
@@ -347,11 +347,11 @@ atv.onAppEntry = function()
     firmVer = fv[0] + "." + fv[1];
     if (parseFloat(firmVer) >= 5.1)
     {
-        atv.loadURL("http://trailers.apple.com/plexconnect.xml");
+        atv.loadURL("http://aTV.PlexConnect/plexconnect.xml");
     }
     else
     {
-        atv.loadURL("http://trailers.apple.com/versionError.xml");
+        atv.loadURL("http://aTV.PlexConnect/versionError.xml");
     }
 };
 
