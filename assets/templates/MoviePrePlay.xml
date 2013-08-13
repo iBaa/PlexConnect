@@ -143,7 +143,7 @@
                     {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
                     <label>{{VAL(tag)}}</label>
                     <preview>
-                      <link>{{URL(/library/sections/)}}{{VAL(/librarySectionID)}}/genre/{{VAL(id)}}?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=50&amp;PlexConnect=MoviePreview</link> 
+                      <link>{{URL(:/library/sections/)}}{{VAL(/librarySectionID)}}/genre/{{VAL(id)}}?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=50&amp;PlexConnect=MoviePreview</link> 
                     </preview>
                   </oneLineMenuItem>
                 </items>
