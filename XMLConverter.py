@@ -1041,7 +1041,15 @@ class CCommandCollection(CCommandHelper):
             else: return "%dhr %dmin" % (hour, min)            
             
         return ""
-
+    
+    def ATTRIB_contentRating(self, src, srcXML, param):
+        rating, leftover, dfltd = self.getKey(src, srcXML, param)
+        if rating.find('/') != -1:
+            parts = rating.split('/')
+            return parts[1]
+        else:
+            return rating
+        
     def ATTRIB_unwatchedCountGrid(self, src, srcXML, param):
         total, leftover, dfltd = self.getKey(src, srcXML, param)
         viewed, leftover, dfltd = self.getKey(src, srcXML, leftover)
