@@ -15,7 +15,7 @@
               {{COPY(Directory)}}
               <title>{{VAL(title)}}</title>
               <subtitle>{{VAL(year)}}</subtitle>
-              <image>http://aTV.PlexConnect/thumbnails/PhotoFolder.png</image>
+              <image>http://atv.plexconnect/thumbnails/PhotoFolder.png</image>
               <defaultImage>resource://16X9.png</defaultImage>
             </sixteenByNinePoster>
             

@@ -1,5 +1,5 @@
 function reloadPMS_XML(path) {
-  atv.loadAndSwapURL("http://aTV.PlexConnect" + path);
+  atv.loadAndSwapURL("http://atv.plexconnect" + path);
 };
 
 
@@ -39,7 +39,7 @@ if( atv.Element ) {
 function log(msg)
 {
   var req = new XMLHttpRequest();
-  var url = "http://aTV.PlexConnect/" + "&PlexConnectLog=" + encodeURIComponent(msg);
+  var url = "http://atv.plexconnect/" + "&PlexConnectLog=" + encodeURIComponent(msg);
   req.open('GET', url, true);
   req.send();
 };
@@ -111,7 +111,7 @@ function loadMenuPages(url, event)
 function updatePage(path)
 {
 	// read new XML
-  var url = "http://aTV.PlexConnect" + path + "&PlexConnectUDID="+atv.device.udid;
+  var url = "http://atv.plexconnect" + path + "&PlexConnectUDID="+atv.device.udid;
 
 	if (navbarItemNumber == '1') // First navbar item is a special case
 	{

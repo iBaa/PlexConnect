@@ -30,7 +30,7 @@ if( atv.Element ) {
 function log(msg)
 {
 	var req = new XMLHttpRequest();
-  var url = "http://aTV.PlexConnect/" + "&PlexConnectLog=" + encodeURIComponent(msg);
+  var url = "http://atv.plexconnect/" + "&PlexConnectLog=" + encodeURIComponent(msg);
 	req.open('GET', url, true);
 	req.send();
 };
@@ -41,7 +41,7 @@ function log(msg)
 function toggleSettings(opt, template) 
 {
   // read new XML
-  var url = "http://aTV.PlexConnect/&PlexConnect=SettingsToggle:"+ opt + "+" + template + "&PlexConnectUDID="+atv.device.udid
+  var url = "http://atv.plexconnect/&PlexConnect=SettingsToggle:"+ opt + "+" + template + "&PlexConnectUDID="+atv.device.udid
   var req = new XMLHttpRequest();
   req.open('GET', url, false);
   req.send();
@@ -86,7 +86,7 @@ function discover(opt, opt_too)
   if (!dispval) return undefined;  // error - element not found
     
   // read new XML
-  var url = "http://aTV.PlexConnect/&PlexConnect=Discover&PlexConnectUDID="+atv.device.udid
+  var url = "http://atv.plexconnect/&PlexConnect=Discover&PlexConnectUDID="+atv.device.udid
   var req = new XMLHttpRequest();
   req.open('GET', url, false);
   req.send();

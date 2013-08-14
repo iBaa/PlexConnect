@@ -33,7 +33,7 @@ if(atv.Element)
 function log(msg)
 {
 		var req = new XMLHttpRequest();
-		var url = "http://aTV.PlexConnect/" + "&PlexConnectLog=" + encodeURIComponent(msg);
+		var url = "http://atv.plexconnect/" + "&PlexConnectLog=" + encodeURIComponent(msg);
 		req.open('GET', url, true);
 		req.send();
 };
@@ -42,7 +42,7 @@ function log(msg)
  * Build Audio/Subtitle menu
  */
 function selectAudioAndSubs(addrPMS, ratingKey) {
-	var xmlstr = '<?xml version="1.0" encoding="UTF-8"?><atv><head><script src="http://aTV.PlexConnect/js/selectAudioAndSubs.js"/></head> \
+	var xmlstr = '<?xml version="1.0" encoding="UTF-8"?><atv><head><script src="http://atv.plexconnect/js/selectAudioAndSubs.js"/></head> \
                 <body><optionDialog id="optionDialog"><header><simpleHeader><title>Select Tracks</title></simpleHeader></header> \
 								<menu><sections><menuSection><header><horizontalDivider alignment="center"><title>Audio Track</title></horizontalDivider> \
 								</header><items>';

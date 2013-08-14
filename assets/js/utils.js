@@ -34,7 +34,7 @@ if( atv.Element ) {
 function log(msg)
 {
     var req = new XMLHttpRequest();
-    var url = "http://aTV.PlexConnect/" + "&PlexConnectLog=" + encodeURIComponent(msg);
+    var url = "http://atv.plexconnect/" + "&PlexConnectLog=" + encodeURIComponent(msg);
     req.open('GET', url, true);
     req.send();
 };

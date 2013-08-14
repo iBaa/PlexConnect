@@ -2,7 +2,7 @@
  * Build Watched/Unwatched menu
  */
 function scrobbleMenu(type, ratingKey, addrPMS) {
-  var xmlstr = '<?xml version="1.0" encoding="UTF-8"?><atv><head><script src="http://aTV.PlexConnect/js/scrobble.js"/></head> \
+  var xmlstr = '<?xml version="1.0" encoding="UTF-8"?><atv><head><script src="http://atv.plexconnect/js/scrobble.js"/></head> \
                 <body><optionList id="scrobble.optionDialog"><title>' + type + '</title><items> \
 								<oneLineMenuItem id="item1" onSelect="scrobble(\'' + addrPMS + '\', \'' + ratingKey + '\');atv.unloadPage();"> \
 								<label>             Mark as Watched</label></oneLineMenuItem> \
@@ -62,7 +62,7 @@ function selectArtwork(addrPMS, ratingKey) {
 	var colCount = "5";
 	if (posters.length <= 5) colCount = posters.length.toString();
 	
-	var xml = '<?xml version="1.0" encoding="UTF-8"?><atv><head><script src="http://aTV.PlexConnect/js/scrobble.js"/></head> \
+	var xml = '<?xml version="1.0" encoding="UTF-8"?><atv><head><script src="http://atv.plexconnect/js/scrobble.js"/></head> \
 						<body><scroller id="poster_selector"><header><simpleHeader><title>Select Artwork</title></simpleHeader></header> \
 						<items><collectionDivider alignment="left"><title></title></collectionDivider><shelf id="coverflow" columnCount="' + colCount +'"> \
 						<sections><shelfSection><items>';
