@@ -277,7 +277,13 @@ def XML_PMS2aTV(address, path, options):
     
     elif cmd=='ChannelsVideo':
         XMLtemplate = 'ChannelsVideo.xml'
-    
+
+    elif cmd=='ByFolder':
+        XMLtemplate = 'ByFolder.xml'
+
+    elif cmd=='ByFolderSubFolder':
+        XMLtemplate = 'ByFolderSubFolder.xml'
+        
     elif cmd=='ByFolderPreview':
         XMLtemplate = 'ByFolderPreview.xml'
     
@@ -394,8 +400,12 @@ def XML_PMS2aTV(address, path, options):
         XMLtemplate = 'Directory.xml'
     
     elif PMSroot.get('viewGroup')=='show':
-        # TV Show grid view
-        XMLtemplate = 'Show_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'showview')+'.xml'
+        if PMSroot.get('title2')=='By Folder':
+          # By Folder View
+          XMLtemplate = 'ByFolder.xml'
+        else:
+          # TV Show grid view
+          XMLtemplate = 'Show_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'showview')+'.xml'
         
     elif PMSroot.get('viewGroup')=='season':
         # TV Season view

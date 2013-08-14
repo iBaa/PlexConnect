@@ -52,6 +52,13 @@
                   <link>{{URL(key)}}/contentRating?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
                 </preview>
               </oneLineMenuItem>
+              
+              <oneLineMenuItem id="folder" onPlay="atv.loadURL('{{URL(key)}}/folder&amp;PlexConnect=ByFolder')" onSelect="atv.loadURL('{{URL(key)}}/folder&amp;PlexConnect=ByFolder')">
+                <label>By Folder</label>
+                <preview>
+                  <link>{{URL(key)}}/folder?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
+                </preview>                
+              </oneLineMenuItem>
             </items>
           </menuSection>
         </sections>
