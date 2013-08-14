@@ -51,7 +51,7 @@ function loadMenuPage(event)
     var item = document.getElementById(id);
     var url = item.getElementByTagName('url').textContent;
     
-    if (url.indexOf("atv.plexconnect")!=-1)
+    if (url.toLowerCase().indexOf("atv.plexconnect")!=-1)
     {
         url = url + "&PlexConnectUDID=" + atv.device.udid;
     }
