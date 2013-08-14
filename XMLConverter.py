@@ -816,14 +816,11 @@ class CCommandCollection(CCommandHelper):
 
         src, srcXML, tag = self.getBase(src, srcXML, tag)        
         
-        """
         # walk the src path if neccessary
         while '/' in tag and src!=None:
             parts = tag.split('/',1)
             src = src.find(parts[0])
             tag = parts[1]
-            print "---", tag
-        """
         
         childToCopy = child
         elem.remove(child)
