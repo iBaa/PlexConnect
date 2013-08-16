@@ -26,14 +26,14 @@
 						<key>title</key>
 						<string>{{VAL(title)}}</string>
 						<key>item-id</key>
-						<integer>{{VAL(index)}}</integer>
-						<key>artwork-urls</key>
+						<integer>{{VAL(index:1)}}</integer>
+						<key>artwork-urls</key>{{CUT(#img:CUT:=CUT| =)}}
 						<array>
 							<dict>
 								<key>url</key>
 								<string>http://{{ADDR_PMS()}}{{VAL(#img)}}</string>
 							</dict>
-						</array>
+						</array>{{CUT(#img:CUT:=CUT| =)}}
 						<key>store-offers</key>
 						<dict>
 							<key>standard-audio</key>
