@@ -852,21 +852,25 @@ class CCommandCollection(CCommandHelper):
             return True  # tree modified, node removed: restart from 1st elem
         else:
             return False  # tree unchanged
-            
-    def TREE_ADDXMLRELATIVE(self, elem, child, src, srcXML, param):  
-        path, leftover = self.getParam(src, param)  
-        tag, leftover = self.getParam(src, leftover)  
-    
-        path = self.path[srcXML]+'/'+path  
-        PMS = XML_ReadFromURL('address', path)  
-        self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML  
-        self.path[tag] = path  # store base path  
-    
-        return False  # tree unchanged (well, source tree yes. but that doesn't count...)  
     
     def TREE_ADDXML(self, elem, child, src, srcXML, param):
         tag, leftover = self.getParam(src, param)
-        path, leftover = self.getParam(src, leftover)
+        key, leftover, dfltd = self.getKey(src, srcXML, leftover)
+        
+        if key.startswith('/'):  # internal full path.
+            path = key
+        #elif key.startswith('http://'):  # external address
+        #    path = key
+        #    hijack = g_param['HostToIntercept']
+        #    if hijack in path:
+        #        dprint(__name__, 1, "twisting...")
+        #        hijack_twisted = hijack[::-1]
+        #        path = path.replace(hijack, hijack_twisted)
+        #        dprint(__name__, 1, path)
+        elif key == '':  # internal path
+            path = self.path[srcXML]
+        else:  # internal path, add-on
+            path = self.path[srcXML] + '/' + key
         
         PMS = XML_ReadFromURL('address', path)
         self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML

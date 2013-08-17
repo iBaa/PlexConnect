@@ -5,9 +5,9 @@
   </head>
 	
   <body>
-    {{ADDXMLRELATIVE(onDeck:OnDeck)}}
-    {{ADDXMLRELATIVE(newest:RecentlyAired)}}
-    {{ADDXMLRELATIVE(recentlyAdded?stack=1:RecentlyAdded)}}
+    {{ADDXML(OnDeck::onDeck)}}
+    {{ADDXML(RecentlyAired::newest)}}
+    {{ADDXML(RecentlyAdded::recentlyAdded?stack=1)}}
     
     <scroller id="com.sample.movie-showcase-grid">
       <items>

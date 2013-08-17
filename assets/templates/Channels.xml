@@ -4,9 +4,9 @@
   </head>
   
   <body>
-    {{ADDXML(VideoChannels:/video)}}
-    {{ADDXML(AudioChannels:/music)}}
-    {{ADDXML(PhotoChannels:/photos)}}
+    {{ADDXML(VideoChannels::/video)}}
+    {{ADDXML(AudioChannels::/music)}}
+    {{ADDXML(PhotoChannels::/photos)}}
     
     <!--Channels List-->
     <listWithPreview id="com.sample.menu-items-with-sections">
