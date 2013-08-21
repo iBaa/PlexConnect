@@ -838,7 +838,12 @@ class CCommandCollection(CCommandHelper):
                 el = copy.deepcopy(childToCopy)
                 XML_ExpandTree(el, elemSRC, srcXML)
                 XML_ExpandAllAttrib(el, elemSRC, srcXML)
-                elem.append(el)
+                
+                if el.tag=='__COPY__':
+                    for child in list(el):
+                        elem.append(child)
+                else:
+                    elem.append(el)
             
         return True  # tree modified, nodes updated: restart from 1st elem
     
