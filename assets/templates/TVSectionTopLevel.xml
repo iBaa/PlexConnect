@@ -4,7 +4,7 @@
     <script src="{{URL(:/js/updateXML.js)}}" />
   </head>
 	<body>
-		<viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadItem(event)" volatile="true" onVolatileReload="updatePage('{{getPath()}}');">
+		<viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadItem(event)" volatile="true" onVolatileReload="updatePage('{{ADDPATH()}}');">
 			<navigation currentIndex="1">
 
 				<navigationItem id="All Shows">

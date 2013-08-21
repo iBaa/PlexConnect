@@ -1044,9 +1044,6 @@ class CCommandCollection(CCommandHelper):
               "atv.sessionStorage['timeformat']='" + g_ATVSettings.getSetting(UDID, 'timeformat') + "';"
         return out 
     
-    def ATTRIB_getPath(self, src, srcXML, param):
-        return self.path[srcXML] 
-    
     def ATTRIB_getDurationString(self, src, srcXML, param):
         duration, leftover, dfltd = self.getKey(src, srcXML, param)
         if len(duration) > 0:
