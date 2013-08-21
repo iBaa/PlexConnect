@@ -390,10 +390,10 @@ def XML_PMS2aTV(address, path, options):
     elif PMSroot.get('viewGroup') is None:
         XMLtemplate = 'Sections.xml'
     
-    elif PMSroot.get('viewGroup')=="secondary" and (PMSroot.get('art').find('movie') != -1 or PMSroot.get('thumb').find('movie') != -1):
+    elif PMSroot.get('viewGroup')=="secondary" and (PMSroot.get('art','').find('movie') != -1 or PMSroot.get('thumb','').find('movie') != -1):
         XMLtemplate = 'MovieSectionTopLevel.xml'
     
-    elif PMSroot.get('viewGroup')=="secondary" and (PMSroot.get('art').find('show') != -1 or PMSroot.get('thumb').find('show') != -1):
+    elif PMSroot.get('viewGroup')=="secondary" and (PMSroot.get('art','').find('show') != -1 or PMSroot.get('thumb','').find('show') != -1):
         XMLtemplate = 'TVSectionTopLevel.xml'
     
     elif PMSroot.get('viewGroup')=="secondary":
