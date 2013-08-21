@@ -28,7 +28,7 @@
               </horizontalDivider>
             </header> 
             <items>
-              <twoLineEnhancedMenuItem id="{{VAL(key)}}"
+              <twoLineEnhancedMenuItem id="Video_{{VAL(key)}}"
                                        onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelsVideo')" 
                                        onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelsVideo')">
                 {{COPY(@VideoChannels/Directory)}}
@@ -51,7 +51,7 @@
               </horizontalDivider>
             </header> 
             <items>
-              <twoLineEnhancedMenuItem id="{{VAL(key)}}"
+              <twoLineEnhancedMenuItem id="Audio_{{VAL(key)}}"
                                        onPlay="atv.loadURL('{{URL(key)}}')" 
                                        onSelect="atv.loadURL('{{URL(key)}}')">
                 {{COPY(@AudioChannels/Directory)}}
@@ -74,7 +74,7 @@
               </horizontalDivider>
             </header> 
             <items>
-              <twoLineEnhancedMenuItem id="{{VAL(key)}}" 
+              <twoLineEnhancedMenuItem id="Photo_{{VAL(key)}}" 
                                        onPlay="atv.loadURL('{{URL(key)}}')" 
                                        onSelect="atv.loadURL('{{URL(key)}}')">
                 {{COPY(@PhotoChannels/Directory)}}
