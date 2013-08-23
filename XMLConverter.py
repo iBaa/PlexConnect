@@ -280,12 +280,6 @@ def XML_PMS2aTV(address, path, options):
 
     elif cmd=='ByFolder':
         XMLtemplate = 'ByFolder.xml'
-
-    elif cmd=='ByFolderSubFolder':
-        XMLtemplate = 'ByFolderSubFolder.xml'
-        
-    elif cmd=='ByFolderPreview':
-        XMLtemplate = 'ByFolderPreview.xml'
     
     elif cmd == 'MovieSection':
         XMLtemplate = 'MovieSection.xml'

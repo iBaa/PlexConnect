@@ -4,30 +4,38 @@
   </head>
   
   <body>
-		<listScrollerSplit id="com.sample.list-scroller-split">	      
-			<header>	        
-				<simpleHeader>	          
-					<title>{{VAL(title1)}}</title>	        
+    <scroller id="com.sample.movie-grid">
+      <header>
+        <simpleHeader>
+          <title>{{VAL(title1)}}</title>
           <subtitle>{{VAL(title2)}}</subtitle>
-        </simpleHeader>	      
-			</header>	      
-			
-			<menu>	        
-				<sections>	          
-					<menuSection>	            
-						<items>	              
-							<oneLineMenuItem id="{{VAL(key)}}">
-                {{COPY(Directory)}}
-								<label>{{VAL(title)}}</label>	                
-								<preview>
-									<link>{{URL(key)}}&amp;PlexConnect=ByFolderPreview</link>
-								</preview>
-							</oneLineMenuItem>	              
-							
-						</items>	          
-					</menuSection>	        
-				</sections>	      
-			</menu>	    
-		</listScrollerSplit>	  
+        </simpleHeader>
+      </header>
+      <items>
+        <grid columnCount="7" id="grid_0">
+          <items>
+            <moviePoster id="{{VAL(key)}}" alwaysShowTitles="true" 
+                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ByFolder')"
+                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ByFolder')">
+              {{COPY(Directory)}}
+              <title>{{VAL(title)}}</title>
+              <subtitle>{{VAL(year)}}</subtitle>
+              <image>http://atv.plexconnect/thumbnails/Folder.png</image>
+              <defaultImage>resource://16X9.png</defaultImage>
+            </moviePoster>
+            
+            <moviePoster id="{{VAL(key)}}" 
+                             onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                             onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')">
+              {{COPY(Video)}}
+              <title>{{VAL(title)}}</title>
+              <subtitle>{{VAL(year)}}</subtitle>
+              <image>{{IMAGEURL(thumb)}}</image>
+              <defaultImage>resource://16X9.png</defaultImage>
+            </moviePoster>
+          </items>
+        </grid>
+      </items>
+    </scroller>
   </body>
 </atv>
