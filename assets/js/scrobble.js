@@ -6,7 +6,7 @@ function scrobbleMenu(type, ratingKey, addrPMS) {
 					<script src="http://atv.plexconnect/js/utils.js"/></head> \
 					<body><optionList id="scrobble.optionDialog"><title>' + type + '</title><items>';
 	
-	if ('On Deck Episode|Recently Added Episode|Recently Aired'.indexOf(type) !== -1)
+	if (type.search(/Deck|Recently/) !== -1)
 	{
   		xmlstr += '<oneLineMenuItem id="item1" onSelect="viewShow(\'' + addrPMS + '\', \'' + ratingKey + '\');atv.unloadPage();"> \
 					<label>                  View Show</label></oneLineMenuItem>';
@@ -110,11 +110,9 @@ function loadNewArtwork(addrPMS, ratingKey, posterURL)
 };
 
 /*
- * Display the Season.xml page for the selected Episode's Show
+ * Display the Season List page for the selected Episode or Season's Show
  */
 function viewShow(addrPMS, ratingKey) {
 	var url = "http://atv.plexconnect" + atv.sessionStorage['scrobbleJump'] + "/children";
-	atv.sessionStorage['scrobbleJump'] = "";
-	log("loadURL (override): "+url);
 	atv.loadURL(url);
 }
