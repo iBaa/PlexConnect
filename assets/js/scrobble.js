@@ -2,17 +2,25 @@
  * Build Watched/Unwatched menu
  */
 function scrobbleMenu(type, ratingKey, addrPMS) {
-  var xmlstr = '<?xml version="1.0" encoding="UTF-8"?><atv><head><script src="http://atv.plexconnect/js/scrobble.js"/></head> \
-                <body><optionList id="scrobble.optionDialog"><title>' + type + '</title><items> \
-								<oneLineMenuItem id="item1" onSelect="scrobble(\'' + addrPMS + '\', \'' + ratingKey + '\');atv.unloadPage();"> \
-								<label>             Mark as Watched</label></oneLineMenuItem> \
-                <oneLineMenuItem id="item2" onSelect="unscrobble(\'' + addrPMS + '\', \'' + ratingKey + '\');atv.unloadPage();"> \
+	var xmlstr = '<?xml version="1.0" encoding="UTF-8"?><atv><head><script src="http://atv.plexconnect/js/scrobble.js"/> \
+					<script src="http://atv.plexconnect/js/utils.js"/></head> \
+					<body><optionList id="scrobble.optionDialog"><title>' + type + '</title><items>';
+	
+	if ('On Deck Episode|Recently Added Episode|Recently Aired'.indexOf(type) !== -1)
+	{
+  		xmlstr += '<oneLineMenuItem id="item1" onSelect="viewShow(\'' + addrPMS + '\', \'' + ratingKey + '\');atv.unloadPage();"> \
+					<label>                  View Show</label></oneLineMenuItem>';
+	}
+	
+	xmlstr += '<oneLineMenuItem id="item2" onSelect="scrobble(\'' + addrPMS + '\', \'' + ratingKey + '\');atv.unloadPage();"> \
+				<label>             Mark as Watched</label></oneLineMenuItem> \
+                <oneLineMenuItem id="item3" onSelect="unscrobble(\'' + addrPMS + '\', \'' + ratingKey + '\');atv.unloadPage();"> \
                 <label>           Mark as Unwatched</label></oneLineMenuItem> \
-								<oneLineMenuItem id="item3" onSelect="selectArtwork(\'' + addrPMS + '\', \'' + ratingKey + '\');"> \
+								<oneLineMenuItem id="item4" onSelect="selectArtwork(\'' + addrPMS + '\', \'' + ratingKey + '\');"> \
                 <label>              Change Artwork</label></oneLineMenuItem> \
                 </items></optionList></body></atv>';
  	var doc = atv.parseXML(xmlstr);
-  atv.loadXML(doc);
+	atv.loadXML(doc);
 };
 
 /*
@@ -31,7 +39,6 @@ function unscrobble(addrPMS, ratingKey) {
 	req.open('GET', url, false);
 	req.send();
 };
-
 
 /*
  * Select Artwork
@@ -101,3 +108,13 @@ function loadNewArtwork(addrPMS, ratingKey, posterURL)
 	req.open('PUT', url, false);
 	req.send();
 };
+
+/*
+ * Display the Season.xml page for the selected Episode's Show
+ */
+function viewShow(addrPMS, ratingKey) {
+	var url = "http://atv.plexconnect" + atv.sessionStorage['scrobbleJump'] + "/children";
+	atv.sessionStorage['scrobbleJump'] = "";
+	log("loadURL (override): "+url);
+	atv.loadURL(url);
+}
