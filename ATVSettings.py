@@ -12,7 +12,7 @@ from Debug import *  # dprint()
 options = { \
     'movieview'         :('Grid', 'List'), \
     'actorview'         :('Movies', 'Portrait'), \
-    'showview'          :('List', 'Grid'), \
+    'showview'          :('List', 'Grid', 'Bookcase'), \
     'seasonview'        :('List', 'Coverflow'), \
     'movies_navbar_unwatched'   :('checked', 'unchecked'), \
     'movies_navbar_collections' :('checked', 'unchecked'), \
