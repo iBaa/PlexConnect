@@ -381,19 +381,16 @@ def XML_PMS2aTV(address, path, options):
     elif not XMLtemplate=='':
         pass  # template already selected
     
-    elif PMSroot.get('viewGroup') is None:
-        XMLtemplate = 'Sections.xml'
-    
-    elif PMSroot.get('viewGroup')=="secondary" and (PMSroot.get('art','').find('movie') != -1 or PMSroot.get('thumb','').find('movie') != -1):
+    elif PMSroot.get('viewGroup','')=="secondary" and (PMSroot.get('art','').find('movie') != -1 or PMSroot.get('thumb','').find('movie') != -1):
         XMLtemplate = 'MovieSectionTopLevel.xml'
     
-    elif PMSroot.get('viewGroup')=="secondary" and (PMSroot.get('art','').find('show') != -1 or PMSroot.get('thumb','').find('show') != -1):
+    elif PMSroot.get('viewGroup','')=="secondary" and (PMSroot.get('art','').find('show') != -1 or PMSroot.get('thumb','').find('show') != -1):
         XMLtemplate = 'TVSectionTopLevel.xml'
     
-    elif PMSroot.get('viewGroup')=="secondary":
+    elif PMSroot.get('viewGroup','')=="secondary":
         XMLtemplate = 'Directory.xml'
     
-    elif PMSroot.get('viewGroup')=='show':
+    elif PMSroot.get('viewGroup','')=='show':
         if PMSroot.get('title2')=='By Folder':
           # By Folder View
           XMLtemplate = 'ByFolder.xml'
@@ -401,11 +398,11 @@ def XML_PMS2aTV(address, path, options):
           # TV Show grid view
           XMLtemplate = 'Show_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'showview')+'.xml'
         
-    elif PMSroot.get('viewGroup')=='season':
+    elif PMSroot.get('viewGroup','')=='season':
         # TV Season view
         XMLtemplate = 'Season_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'seasonview')+'.xml'
         
-    elif PMSroot.get('viewGroup')=='movie':
+    elif PMSroot.get('viewGroup','')=='movie':
         if PMSroot.get('title2')=='By Folder':
           # By Folder View
           XMLtemplate = 'ByFolder.xml'
@@ -413,10 +410,10 @@ def XML_PMS2aTV(address, path, options):
           # Movie listing
           XMLtemplate = 'Movie_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'movieview')+'.xml'
           
-    elif PMSroot.get('viewGroup')=='track':
+    elif PMSroot.get('viewGroup','')=='track':
         XMLtemplate = 'Music_Track.xml'
    
-    elif PMSroot.get('viewGroup')=='episode':
+    elif PMSroot.get('viewGroup','')=='episode':
         if PMSroot.get('title2')=='On Deck' or \
            PMSroot.get('title2')=='Recently Viewed Episodes' or \
            PMSroot.get('title2')=='Recently Aired' or \
@@ -427,7 +424,7 @@ def XML_PMS2aTV(address, path, options):
             # TV Episode view
             XMLtemplate = 'Episode.xml'
     
-    elif PMSroot.get('viewGroup')=='photo':
+    elif PMSroot.get('viewGroup','')=='photo':
         # Photo listing
         XMLtemplate = 'Photo.xml'
     

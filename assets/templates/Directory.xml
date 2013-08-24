@@ -16,7 +16,10 @@
         <sections>
           <menuSection>
             <items>
-              <!-- library directories -->
+              
+              <!-- Directory -->
+              <!-- viewgroup="secondary" -->
+              <!-- content="", "secondary", "items" -->
               <oneLineMenuItem id="{{VAL(key)}}" 
                                        onPlay="atv.loadURL('{{URL(key)}}')" 
                                        onSelect="atv.loadURL('{{URL(key)}}')">
@@ -34,6 +37,68 @@
                   </crossFadePreview>
                 </preview>
               </oneLineMenuItem>
+              
+              <!-- Artist -->
+              <!-- viewgroup="secondary" -->
+              <!-- content="artists" -->
+              <oneLineMenuItem id="{{VAL(key)}}" 
+                                       onPlay="atv.loadURL('{{URL(key)}}')" 
+                                       onSelect="atv.loadURL('{{URL(key)}}')">
+                {{COPY(Artist)}}
+                <label>{{VAL(artist)}}</label>
+                <preview>
+                  <crossFadePreview>
+                    <image>{{BIGIMAGEURL(thumb)}}</image>
+                  </crossFadePreview>
+                </preview>
+              </oneLineMenuItem>
+              
+              <!-- Album -->
+              <!-- viewgroup=missing, "album" -->
+              <!-- content="albums" -->
+              <oneLineMenuItem id="{{VAL(key)}}" 
+                                       onPlay="atv.loadURL('{{URL(key)}}')" 
+                                       onSelect="atv.loadURL('{{URL(key)}}')">
+                {{COPY(Album)}}
+                <label>{{VAL(label)}}</label>
+                <preview>
+                  <crossFadePreview>
+                    <image>{{BIGIMAGEURL(thumb)}}</image>
+                  </crossFadePreview>
+                </preview>
+              </oneLineMenuItem>
+              
+              <!-- Playlist -->
+              <!-- viewgroup="playlist" -->
+              <!-- content="playlists" -->
+              <oneLineMenuItem id="{{VAL(key)}}" 
+                                       onPlay="atv.loadURL('{{URL(key)}}')" 
+                                       onSelect="atv.loadURL('{{URL(key)}}')">
+                {{COPY(Playlist)}}
+                <label>{{VAL(title)}}</label>
+                <rightLabel>{{VAL(count)}}</rightLabel>
+                <preview>
+                  <crossFadePreview>
+                    <image>{{BIGIMAGEURL(thumb)}}</image>
+                  </crossFadePreview>
+                </preview>
+              </oneLineMenuItem>
+              
+              <!-- Genre -->
+              <!-- viewgroup="genre" -->
+              <!-- content="genres" -->
+              <oneLineMenuItem id="{{VAL(key)}}" 
+                                       onPlay="atv.loadURL('{{URL(key)}}')" 
+                                       onSelect="atv.loadURL('{{URL(key)}}')">
+                {{COPY(Genre)}}
+                <label>{{VAL(genre)}}</label>
+                <preview>
+                  <crossFadePreview>
+                    <image>{{BIGIMAGEURL(thumb)}}</image>
+                  </crossFadePreview>
+                </preview>
+              </oneLineMenuItem>
+              
             </items>
           </menuSection>
         </sections>
