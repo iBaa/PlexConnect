@@ -28,7 +28,7 @@ Python 2.x series with 2.7 being the minimum (Python 3.x is not supported)
   cd PlexConnect
   git pull
   ```
-  > If you don't have Git, you can download [ZIP][] file and extract files to a local directory.
+  > If you don't have Git, you can download[ZIP][] file and extract files to a local directory.
 
 
 ## Usage
