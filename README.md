@@ -67,5 +67,5 @@ The software is provided as is. It might work as expected - or not. Just don't b
 
 [ATVBrowser]: https://github.com/finkdiff/ATVBrowser-script/tree/atvxml
 [Plex Forum]: http://forums.plexapp.com/index.php/topic/57831-plex-atv-think-different
-[ZIP]: https://github.com/iBaa/PlexConnect/archive/XML_templates.zip
+[ZIP]: https://github.com/iBaa/PlexConnect/archive/master.zip
 [Wiki]: https://github.com/iBaa/PlexConnect/wiki
