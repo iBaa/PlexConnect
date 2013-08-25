@@ -330,6 +330,10 @@ def XML_PMS2aTV(address, path, options):
         XMLtemplate = 'Settings.xml'
         path = ''  # clear path - we don't need PMS-XML
     
+    elif cmd=='SettingsLanguage':
+        XMLtemplate = 'Settings_Language.xml'
+        path = ''  # clear path - we don't need PMS-XML
+    
     elif cmd=='SettingsVideoOSD':
         XMLtemplate = 'Settings_VideoOSD.xml'
         path = ''  # clear path - we don't need PMS-XML
@@ -348,6 +352,14 @@ def XML_PMS2aTV(address, path, options):
         g_ATVSettings.toggleSetting(options['PlexConnectUDID'], parts[0].lower())
         XMLtemplate = parts[1] + ".xml"
         dprint(__name__, 2, "ATVSettings->Toggle: {0} in template: {1}", parts[0], parts[1])
+        
+        path = ''  # clear path - we don't need PMS-XML
+        
+    elif cmd.startswith('SettingsSet:'):
+        opt = cmd[len('SettingsSet:'):]  # cut command:
+        parts = opt.split('+')
+        g_ATVSettings.setSetting(options['PlexConnectUDID'], parts[0].lower(), parts[1])
+        dprint(__name__, 2, "ATVSettings->Set: {0} = {1}", parts[0], parts[1])
         
         path = ''  # clear path - we don't need PMS-XML
     
