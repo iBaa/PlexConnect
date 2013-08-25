@@ -3,7 +3,7 @@
     <script src="{{URL(:/js/utils.js)}}" />
     <script src="{{URL(:/js/scrobble.js)}}" />
   </head>
-  
+
   <body>
     <scroller id="Show_Grid" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
       <header>
@@ -16,7 +16,7 @@
         <grid columnCount="7" id="grid_0">
           <items>
             <moviePoster id="{{VAL(key)}}"
-                         onPlay="atv.loadURL('{{URL(key)}}')" 
+                         onPlay="atv.loadURL('{{URL(key)}}')"
                          onSelect="atv.loadURL('{{URL(key)}}')"
                          onHoldSelect="scrobbleMenu('Show', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
               {{COPY(Directory)}}
@@ -25,9 +25,9 @@
               <defaultImage>resource://Poster.png</defaultImage>
 							<badgeCount>{{unwatchedCountGrid(leafCount:0:viewedLeafCount:0)}}</badgeCount>{{CUT($showunwatched::False=CUT|True=)}}
             </moviePoster>{{CUT(Directory/title:CUT:=)}}
-          
+
             <moviePoster id="none">
-              <title>No Unwatched Shows</title>
+              <title>{{TEXT(No Unwatched Shows)}}</title>
               <defaultImage>resource://Poster.png</defaultImage>
             </moviePoster>{{CUT(Directory/title::=CUT)}}
           </items>

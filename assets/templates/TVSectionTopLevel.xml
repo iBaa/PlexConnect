@@ -8,27 +8,27 @@
 			<navigation currentIndex="1">
 
 				<navigationItem id="All Shows">
-					<title>All Shows</title> 
+					<title>{{TEXT(All Shows)}}</title>
 					<url>{{URL(key)}}/all&amp;PlexConnect=AllShows</url>
 				</navigationItem>
 
 				<navigationItem id="On Deck">
-					<title>On Deck</title> 
+					<title>{{TEXT(On Deck)}}</title>
 					<url>{{URL(key)}}&amp;PlexConnect=TVSection</url>
-				</navigationItem> 
-        
+				</navigationItem>
+
         <navigationItem id="Unwatched">
-					<title>Unwatched</title> 
+					<title>{{TEXT(Unwatched)}}</title>
 					<url>{{URL(key)}}/unwatched&amp;PlexConnect=AllShows</url>
 				</navigationItem>{{CUT($tv_navbar_unwatched::unchecked=CUT|checked=)}}
-        
+
 				<navigationItem id="Genres">
-					<title>Genres</title>
+					<title>{{TEXT(Genres)}}</title>
 					<url>{{URL(key)}}/genre&amp;PlexConnect=DirectoryWithPreview</url>
 				</navigationItem>{{CUT($tv_navbar_genres::unchecked=CUT|checked=)}}
 
 				<navigationItem id="More...">
-					<title>More...</title> 
+					<title>{{TEXT(More...)}}</title>
 					<url>{{URL(key)}}&amp;PlexConnect=TVSecondary</url>
 				</navigationItem>{{CUT($tv_navbar_more::unchecked=CUT|checked=)}}
 

@@ -3,11 +3,11 @@
     <script src="{{URL(:/js/utils.js)}}" />
     <script src="{{URL(:/js/photo.js)}}" />
   </head>
-  
+
   <body>
-  
+
   <!--  ONLY PHOTOS   -->
-   
+
     <mediaBrowser id="browser" gridLayout="mixed">
       <header>
         <headerWithCountAndButtons>
@@ -15,7 +15,7 @@
           <count>{{VAL(size)}}</count>
           <buttons>
             <actionButton id="slideshow" onSelect="onSettings()" onPlay="onSlideShow()">
-              <title>SlideShow</title>
+              <title>{{TEXT(SlideShow)}}</title>
             </actionButton>
           </buttons>
         </headerWithCountAndButtons>
@@ -34,7 +34,7 @@
             <directory>false</directory>
           </stash>
         </photo>
-        
+
         <!--Photo channel-->
         <photo id="{{VAL(key)}}" onSelect="onSelectPhoto('{{VAL(key)}}')">
           {{COPY(Photo:Media/Part/key:COPY:=)}}
@@ -47,9 +47,9 @@
             <directory>false</directory>
           </stash>
           </photo>
-        
+
       </items>
     </mediaBrowser>
-   
+
   </body>
 </atv>

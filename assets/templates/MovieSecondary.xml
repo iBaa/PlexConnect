@@ -2,12 +2,12 @@
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
   </head>
-	
+
 	<body>
     <listWithPreview id="com.sample.menu-items-with-sections">
       <header>
         <simpleHeader>
-          <title>More...</title>
+          <title>{{TEXT(More...)}}</title>
         </simpleHeader>
       </header>
       <menu>
@@ -15,103 +15,103 @@
           <menuSection>
             <items>
               <oneLineMenuItem id="unwatched" onPlay="atv.loadURL('{{URL(key)}}/unwatched&amp;PlexConnect=AllMovies')" onSelect="atv.loadURL('{{URL(key)}}/unwatched&amp;PlexConnect=AllMovies')">
-                <label>Unwatched</label>
+                <label>{{TEXT(Unwatched)}}</label>
                 <preview>
                   <link>{{URL(key)}}/unwatched?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
                 </preview>
               </oneLineMenuItem>{{CUT($movies_navbar_unwatched::checked=CUT|unchecked=)}}
-              
+
               <oneLineMenuItem id="collection" onPlay="atv.loadURL('{{URL(key)}}/collection&amp;PlexConnect=DirectoryWithPreview')" onSelect="atv.loadURL('{{URL(key)}}/collection&amp;PlexConnect=DirectoryWithPreview')">
-                <label>Collections</label>
+                <label>{{TEXT(Collections)}}</label>
                 <preview>
                   <link>{{URL(key)}}/collection?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
-                </preview>                
+                </preview>
               </oneLineMenuItem>{{CUT($movies_navbar_collections::checked=CUT|unchecked=)}}
-              
+
               <oneLineMenuItem id="genres" onPlay="atv.loadURL('{{URL(key)}}/genre&amp;PlexConnect=DirectoryWithPreview')" onSelect="atv.loadURL('{{URL(key)}}/genre&amp;PlexConnect=DirectoryWithPreview')">
-                <label>Genres</label>
+                <label>{{TEXT(Genres)}}</label>
                 <preview>
                   <link>{{URL(key)}}/genres?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
                 </preview>
               </oneLineMenuItem>{{CUT($movies_navbar_genres::checked=CUT|unchecked=)}}
-              
+
               <oneLineMenuItem id="decades" onPlay="atv.loadURL('{{URL(key)}}/decade&amp;PlexConnect=DirectoryWithPreview')" onSelect="atv.loadURL('{{URL(key)}}/decade&amp;PlexConnect=DirectoryWithPreview')">
-                <label>Decades</label>
+                <label>{{TEXT(Decades)}}</label>
                 <preview>
                   <link>{{URL(key)}}/decade?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
                 </preview>
               </oneLineMenuItem>{{CUT($movies_navbar_decades::checked=CUT|unchecked=)}}
-              
+
               <oneLineMenuItem id="directors" onPlay="atv.loadURL('{{URL(key)}}/director&amp;PlexConnect=DirectoryWithPreview')" onSelect="atv.loadURL('{{URL(key)}}/director&amp;PlexConnect=DirectoryWithPreview')">
-                <label>Directors</label>
+                <label>{{TEXT(Directors)}}</label>
                 <preview>
                   <link>{{URL(key)}}/director?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
                 </preview>
               </oneLineMenuItem>{{CUT($movies_navbar_directors::checked=CUT|unchecked=)}}
-              
+
               <oneLineMenuItem id="actors" onPlay="atv.loadURL('{{URL(key)}}/actor&amp;PlexConnect=DirectoryWithPreviewActors')" onSelect="atv.loadURL('{{URL(key)}}/actor&amp;PlexConnect=DirectoryWithPreviewActors')">
-                <label>Actors</label>
+                <label>{{TEXT(Actors)}}</label>
                 <preview>
                   <link>{{URL(key)}}/actor?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
                 </preview>
               </oneLineMenuItem>{{CUT($movies_navbar_actors::checked=CUT|unchecked=)}}
-              
+
               <oneLineMenuItem id="recentlyViewed" onPlay="atv.loadURL('{{URL(key)}}/recentlyViewed')" onSelect="atv.loadURL('{{URL(key)}}/recentlyViewed')">
-                <label>Recently Viewed</label>
+                <label>{{TEXT(Recently Viewed)}}</label>
                 <preview>
                   <link>{{URL(key)}}/recentlyViewed?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
                 </preview>
               </oneLineMenuItem>
-              
+
               <oneLineMenuItem id="year" onPlay="atv.loadURL('{{URL(key)}}/year&amp;PlexConnect=DirectoryWithPreview')" onSelect="atv.loadURL('{{URL(key)}}/year&amp;PlexConnect=DirectoryWithPreview')">
-                <label>By Year</label>
+                <label>{{TEXT(By Year)}}</label>
                 <preview>
                   <link>{{URL(key)}}/year?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
-                </preview>                
+                </preview>
               </oneLineMenuItem>
-              
+
               <oneLineMenuItem id="country" onPlay="atv.loadURL('{{URL(key)}}/country&amp;PlexConnect=DirectoryWithPreview')" onSelect="atv.loadURL('{{URL(key)}}/country&amp;PlexConnect=DirectoryWithPreview')">
-                <label>By Country</label>
+                <label>{{TEXT(By Country)}}</label>
                 <preview>
                   <link>{{URL(key)}}/country?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
-                </preview>                
+                </preview>
               </oneLineMenuItem>
-              
+
               <oneLineMenuItem id="contentRating" onPlay="atv.loadURL('{{URL(key)}}/contentRating&amp;PlexConnect=DirectoryWithPreview')" onSelect="atv.loadURL('{{URL(key)}}/contentRating&amp;PlexConnect=DirectoryWithPreview')">
-                <label>By Content Rating</label>
+                <label>{{TEXT(By Content Rating)}}</label>
                 <preview>
                   <link>{{URL(key)}}/contentRating?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
-                </preview>                
+                </preview>
               </oneLineMenuItem>
-              
+
               <oneLineMenuItem id="rating" onPlay="atv.loadURL('{{URL(key)}}/rating&amp;PlexConnect=DirectoryWithPreview')" onSelect="atv.loadURL('{{URL(key)}}/rating&amp;PlexConnect=DirectoryWithPreview')">
-                <label>By Rating</label>
+                <label>{{TEXT(By Rating)}}</label>
                 <preview>
                   <link>{{URL(key)}}/rating?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
-                </preview>                
+                </preview>
               </oneLineMenuItem>
 
               <oneLineMenuItem id="resolution" onPlay="atv.loadURL('{{URL(key)}}/resolution&amp;PlexConnect=DirectoryWithPreview')" onSelect="atv.loadURL('{{URL(key)}}/resolution&amp;PlexConnect=DirectoryWithPreview')">
-                <label>By Resolution</label>
+                <label>{{TEXT(By Resolution)}}</label>
                 <preview>
                   <link>{{URL(key)}}/resolution?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
-                </preview>                
+                </preview>
               </oneLineMenuItem>
 
               <oneLineMenuItem id="firstCharacter" onPlay="atv.loadURL('{{URL(key)}}/firstCharacter&amp;PlexConnect=DirectoryWithPreview')" onSelect="atv.loadURL('{{URL(key)}}/firstCharacter&amp;PlexConnect=DirectoryWithPreview')">
-                <label>By First Letter</label>
+                <label>{{TEXT(By First Letter)}}</label>
                 <preview>
                   <link>{{URL(key)}}/firstCharacter?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
-                </preview>                
+                </preview>
               </oneLineMenuItem>
 
               <oneLineMenuItem id="folder" onPlay="atv.loadURL('{{URL(key)}}/folder&amp;PlexConnect=ByFolder')" onSelect="atv.loadURL('{{URL(key)}}/folder&amp;PlexConnect=ByFolder')">
-                <label>By Folder</label>
+                <label>{{TEXT(By Folder)}}</label>
                 <preview>
                   <link>{{URL(key)}}/folder?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
-                </preview>                
+                </preview>
               </oneLineMenuItem>
-              
+
             </items>
           </menuSection>
         </sections>

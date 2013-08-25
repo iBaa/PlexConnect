@@ -3,7 +3,7 @@
     <script src="{{URL(:/js/utils.js)}}" />
     <script src="{{URL(:/js/selectAudioAndSubs.js)}}" />
   </head>
-  
+
   <body>
     <itemDetail id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}&amp;PlexConnect=MoviePrePlay')">
       <title>{{VAL(Video/title)}} ({{VAL(Video/year)}})</title>
@@ -12,20 +12,20 @@
       <summary>{{VAL(Video/summary)}}</summary>
       <image style="moviePoster">{{BIGIMAGEURL(Video/thumb)}}</image>
       <defaultImage>resource://Poster.png</defaultImage>
- 		
+
       <table>
         <columnDefinitions>
           <columnDefinition width="25" alignment="left">
-            <title>Details</title>
+            <title>{{TEXT(Details)}}</title>
           </columnDefinition>
           <columnDefinition width="25" alignment="left">
-            <title>Actors</title>
+            <title>{{TEXT(Actors)}}</title>
           </columnDefinition>
           <columnDefinition width="25" alignment="left">
-            <title>Directors</title>
+            <title>{{TEXT(Directors)}}</title>
           </columnDefinition>
           <columnDefinition width="25" alignment="left">
-            <title>Producers</title>
+            <title>{{TEXT(Producers)}}</title>
           </columnDefinition>
         </columnDefinitions>
         <rows>
@@ -56,11 +56,11 @@
             </starRating>{{CUT(Video/userRating::0=CUT)}}
             <label>{{VAL(Video/Role[4]/tag)}}</label>
             <label>{{VAL(Video/Director[4]/tag)}}</label>
-            <label>{{VAL(Video/Producer[4]/tag)}}</label>            
+            <label>{{VAL(Video/Producer[4]/tag)}}</label>
           </row>
         </rows>
       </table>
-    
+
       <centerShelf>
         <shelf id="centerShelf" columnCount="4" center="true">
           <sections>
@@ -68,25 +68,25 @@
               <items>
                 <actionButton id="play" onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                                         onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')">
-                  <title>Play</title>
+                  <title>{{TEXT(Play)}}</title>
                   <image>resource://Play.png</image>
                   <focusedImage>resource://PlayFocused.png</focusedImage>
                   <!--<badge></badge>-->
                 </actionButton>
                 <actionButton id="selectAudioAndSubs" onSelect="selectAudioAndSubs('{{ADDR_PMS()}}', '{{VAL(Video/Media/Part/id)}}')"
                                                       onPlay="selectAudioAndSubs('{{ADDR_PMS()}}', '{{VAL(Video/Media/Part/id)}}')">
-                  <title>Audio/Subs</title>
+                  <title>{{TEXT(Audio/Subs)}}</title>
                   <image>resource://Queue.png</image>
                   <focusedImage>resource://QueueFocused.png</focusedImage>
                 </actionButton>
                 <actionButton id="more" accessibilityLabel="More info" onSelect="atv.showMoreInfo();" onPlay="atv.showMoreInfo();">
-                  <title>More</title>
+                  <title>{{TEXT(More)}}</title>
                   <image>resource://More.png</image>
                   <focusedImage>resource://MoreFocused.png</focusedImage>
                 </actionButton>
               </items>
               <stash>
-                <stream> 
+                <stream>
                   {{COPY(Video/Media/Part/Stream)}}
                   <id>{{VAL(id:0)}}</id>
                   <language>{{VAL(language:Unknown)}}</language>
@@ -100,14 +100,14 @@
           </sections>
         </shelf>
       </centerShelf>
-    
+
       <!--
       <divider>
         <smallCollectionDivider alignment="left">
           <title>Actors</title>
         </smallCollectionDivider>
       </divider>{{CUT(Video/Role/id:CUT:=)}}
-    
+
       <bottomShelf>
         <shelf id="bottomShelf" columnCount="7">
           <sections>
@@ -126,7 +126,7 @@
         </shelf>
       </bottomShelf>{{CUT(Video/Role/id:CUT:=)}}
       -->
-      
+
       <moreInfo>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
         <listScrollerSplit id="com.sample.list-scroller-split">
           <menu>
@@ -134,7 +134,7 @@
               <menuSection>
                 <header>
                   <textDivider alignment="left" accessibilityLabel="Genres">
-                    <title>Genres</title>
+                    <title>{{TEXT(Genres)}}</title>
                   </textDivider>
                 </header>
                 <items>
@@ -143,16 +143,16 @@
                     {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
                     <label>{{VAL(tag)}}</label>
                     <preview>
-                      <link>{{URL(:/library/sections/)}}{{VAL(/librarySectionID)}}/genre/{{VAL(id)}}?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=50&amp;PlexConnect=MoviePreview</link> 
+                      <link>{{URL(:/library/sections/)}}{{VAL(/librarySectionID)}}/genre/{{VAL(id)}}?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=50&amp;PlexConnect=MoviePreview</link>
                     </preview>
                   </oneLineMenuItem>
                 </items>
               </menuSection>{{CUT(Video/Genre/id:CUT:=)}}
-              
+
               <menuSection>
                 <header>
                   <textDivider alignment="left" accessibilityLabel="Directors">
-                    <title>Directors</title>
+                    <title>{{TEXT(Directors)}}</title>
                   </textDivider>
                 </header>
                 <items>
@@ -166,11 +166,11 @@
                   </oneLineMenuItem>
                 </items>
               </menuSection>{{CUT(Video/Director/id:CUT:=)}}
-              
+
               <menuSection>
                 <header>
                   <textDivider alignment="left" accessibilityLabel="Actors">
-                    <title>Actors</title>
+                    <title>{{TEXT(Actors)}}</title>
                   </textDivider>
                 </header>
                 <items>
@@ -187,12 +187,12 @@
                   </twoLineMenuItem>
                 </items>
               </menuSection>{{CUT(Video/Role/id:CUT:=)}}
-              
+
             </sections>
           </menu>
         </listScrollerSplit>
       </moreInfo>{{CUT(#cut)}}
-      
+
 		</itemDetail>
 	</body>
 </atv>
