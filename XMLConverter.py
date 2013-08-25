@@ -819,6 +819,10 @@ class CCommandHelper():
 
 
 class CCommandCollection(CCommandHelper):
+    def _(self, msgid):
+        language = g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'language')
+        return getTranslation(language).ugettext(msgid)
+
     # XML TREE modifier commands
     # add new commands to this list!
     def TREE_COPY(self, elem, child, src, srcXML, param):
@@ -1039,7 +1043,7 @@ class CCommandCollection(CCommandHelper):
         parentIndex, leftover, dfltd = self.getKey(src, srcXML, param)  # getKey "defaults" if nothing found.
         index, leftover, dfltd = self.getKey(src, srcXML, leftover)
         title, leftover, dfltd = self.getKey(src, srcXML, leftover)
-        out = "{0:0d}x{1:02d} ".format(int(parentIndex), int(index)) + title
+        out = self._("{0:0d}x{1:02d} ").format(int(parentIndex), int(index)) + title
         return out
     
     def ATTRIB_sendToATV(self, src, srcXML, param):
@@ -1060,8 +1064,8 @@ class CCommandCollection(CCommandHelper):
             min = int(duration)/1000/60
             hour = min/60
             min = min%60
-            if hour == 0: return "%d Minutes" % (min)
-            else: return "%dhr %dmin" % (hour, min)            
+            if hour == 0: return self._("%d Minutes") % (min)
+            else: return self._("%dhr %dmin") % (hour, min)            
             
         return ""
     
@@ -1083,7 +1087,7 @@ class CCommandCollection(CCommandHelper):
         total, leftover, dfltd = self.getKey(src, srcXML, param)
         viewed, leftover, dfltd = self.getKey(src, srcXML, leftover)
         unwatched = int(total) - int(viewed)
-        if unwatched > 0: return str(unwatched) + " unwatched"
+        if unwatched > 0: return str(unwatched) + self._(" unwatched")
         else: return ""
 
     def ATTRIB_TEXT(self, src, srcXML, param):
