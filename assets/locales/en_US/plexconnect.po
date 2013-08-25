@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-25 08:50+0800\n"
-"PO-Revision-Date: 2013-08-25 10:38+0800\n"
+"PO-Revision-Date: 2013-08-25 20:29+0800\n"
 "Last-Translator: Grey Lee <bcse@bcse.tw>\n"
 "Language-Team: Grey Lee <bcse@bcse.tw>\n"
 "Language: en_US\n"
@@ -11,6 +11,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
+
+msgid " unwatched"
+msgstr ""
+
+msgid "%d Minutes"
+msgstr ""
+
+msgid "%dhr %dmin"
+msgstr ""
 
 msgid "Actor View"
 msgstr ""
@@ -114,6 +123,9 @@ msgstr ""
 msgid "Library"
 msgstr ""
 
+msgid "Library Refresh in Progress."
+msgstr ""
+
 msgid "More"
 msgstr ""
 
@@ -169,6 +181,9 @@ msgid "Plex Media Server: No Channels Available"
 msgstr ""
 
 msgid "Plex Media Server: No Items Available"
+msgstr ""
+
+msgid "Press menu to return."
 msgstr ""
 
 msgid "Producers"
@@ -271,4 +286,7 @@ msgid ""
 msgstr ""
 
 msgid "aTV firmware version 5.0.2 or lower."
+msgstr ""
+
+msgid "{0:0d}x{1:02d} "
 msgstr ""
