@@ -107,17 +107,6 @@ class MyHandler(BaseHTTPRequestHandler):
                     self.wfile.write(f.read())
                     f.close()
                     return
-                    
-                # serve all .xml files to aTV including "plexconnect.xml" or "plexconnect_oldmenu.xml"
-                if self.path.endswith(".xml"):
-                    dprint(__name__,1,"serving "+ sys.path[0] + sep + "assets" + self.path.replace('/',sep))
-                    f = open(sys.path[0] + sep + "assets" + self.path.replace('/',sep))
-                    self.send_response(200)
-                    self.send_header('Content-type', 'text/html')
-                    self.end_headers()
-                    self.wfile.write(f.read())
-                    f.close()
-                    return
                 
                 # serve "*.jpg" - thumbnails for old-style mainpage
                 if self.path.endswith(".jpg"):
@@ -146,7 +135,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     dprint(__name__, 1, "serving .xml: "+self.path)
                     XML = XMLConverter.XML_PMS2aTV(self.client_address, self.path, options)
                     self.send_response(200)
-                    self.send_header('Content-type', 'text/html')
+                    self.send_header('Content-type', 'text/xml')
                     self.end_headers()
                     self.wfile.write(XML)
                     return

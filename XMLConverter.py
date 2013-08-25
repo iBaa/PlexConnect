@@ -264,8 +264,13 @@ def XML_PMS2aTV(address, path, options):
     PMS = None
     PMSroot = None
     
+    # XML direct request or
     # XMLtemplate defined by solely PlexConnect Cmd
-    if cmd=='Play':
+    if path.endswith(".xml"):
+        XMLtemplate = path.lstrip('/')
+        path = ''  # clear path - we don't need PMS-XML
+    
+    elif cmd=='Play':
         XMLtemplate = 'PlayVideo.xml'
     
     elif cmd=='PlayVideo_ChannelsV1':
@@ -811,6 +816,10 @@ class CCommandHelper():
         
         dprint(__name__, 2, "CCmds_applyMath: {0}", val)
         return val
+    
+    def _(self, msgid):
+        language = g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'language')
+        return getTranslation(language).ugettext(msgid)
 
 
 
@@ -1081,10 +1090,9 @@ class CCommandCollection(CCommandHelper):
         unwatched = int(total) - int(viewed)
         if unwatched > 0: return str(unwatched) + " unwatched"
         else: return ""
-
+    
     def ATTRIB_TEXT(self, src, srcXML, param):
-        language = g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'language')
-        return getTranslation(language).ugettext(param)
+        return self._(param)
     
     def ATTRIB_PMSCOUNT(self, src, srcXML, param):
         return str(len(g_param['PMS_list']))
