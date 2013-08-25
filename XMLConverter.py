@@ -392,6 +392,9 @@ def XML_PMS2aTV(address, path, options):
     # XMLtemplate defined by PMS XML content
     if path=='':
         pass  # nothing to load
+
+    elif os.path.exists(sys.path[0]+'/assets/templates/'+path):
+        XMLtemplate = path.lstrip('/')
     
     elif not XMLtemplate=='':
         pass  # template already selected
@@ -591,7 +594,8 @@ def XML_ExpandLine(src, srcXML, line):
         if hasattr(CCommandCollection, 'ATTRIB_'+cmd):  # expand line, work VAL, EVAL...
             
             try:
-                res = eval("g_CommandCollection.ATTRIB_"+cmd+"(src, srcXML, '"+param+"')")
+                func = getattr(g_CommandCollection, 'ATTRIB_'+cmd)
+                res = func(src, srcXML, param)
                 line = line[:cmd_start] + res + line[cmd_end+2:]
                 pos = cmd_start+len(res)
             except:
