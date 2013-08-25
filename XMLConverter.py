@@ -19,6 +19,7 @@ https://github.com/megawubs/pyplex/blob/master/plexAPI/info.py
 """
 
 
+import os
 import sys
 import traceback
 import inspect 
@@ -52,6 +53,20 @@ g_ATVSettings = None
 def setATVSettings(cfg):
     global g_ATVSettings
     g_ATVSettings = cfg
+
+g_Translations = {}
+def getTranslation(language):
+    global g_Translations
+    if language not in g_Translations:
+        import gettext
+        filename = os.path.join(sys.path[0], 'assets', 'locales', language, 'plexconnect.mo')
+        try:
+            fp = open(filename, 'rb')
+            g_Translations[language] = gettext.GNUTranslations(fp)
+            fp.close()
+        except IOError:
+            g_Translations[language] = gettext.NullTranslations()
+    return g_Translations[language]
 
 
 
@@ -1066,6 +1081,10 @@ class CCommandCollection(CCommandHelper):
         unwatched = int(total) - int(viewed)
         if unwatched > 0: return str(unwatched) + " unwatched"
         else: return ""
+
+    def ATTRIB_TEXT(self, src, srcXML, param):
+        language = g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'language')
+        return getTranslation(language).ugettext(param)
     
     def ATTRIB_PMSCOUNT(self, src, srcXML, param):
         return str(len(g_param['PMS_list']))

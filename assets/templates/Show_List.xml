@@ -3,7 +3,7 @@
     <script src="{{URL(:/js/utils.js)}}" />
     <script src="{{URL(:/js/scrobble.js)}}" />
   </head>
-  
+
   <body>
     <listWithPreview id="Show_List" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
       <header>
@@ -16,7 +16,7 @@
         <sections>
           <menuSection>
             <items>
-              <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key)}}')" 
+              <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key)}}')"
                                                  onSelect="atv.loadURL('{{URL(key)}}')"
                                                  onHoldSelect="scrobbleMenu('Show', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
                 {{COPY(Directory)}}
@@ -28,9 +28,9 @@
                   </crossFadePreview>
                 </preview>
               </oneLineMenuItem>{{CUT(Directory/title:CUT:=)}}
-            
+
               <oneLineMenuItem id="none">
-                <label>No Unwatched Shows</label>
+                <label>{{TEXT(No Unwatched Shows)}}</label>
               </oneLineMenuItem>{{CUT(Directory/title::=CUT)}}
             </items>
           </menuSection>

@@ -3,7 +3,7 @@
     <script src="{{URL(:/js/utils.js)}}" />
     <script src="{{URL(:/js/scrobble.js)}}" />
   </head>
-  
+
   <body>
     <listWithPreview id="Movie_List" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
       <header>
@@ -12,12 +12,12 @@
           <subtitle>{{VAL(title2)}}</subtitle>
         </simpleHeader>
       </header>
-      
+
       <menu>
         <sections>
           <menuSection>
             <items>
-              <oneLineMenuItem id="{{VAL(key)}}"  
+              <oneLineMenuItem id="{{VAL(key)}}"
                              onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                              onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')"
                              onHoldSelect="scrobbleMenu('Movie', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
@@ -33,10 +33,10 @@
                     <summary>{{VAL(summary)}}</summary>
                     <image>{{IMAGEURL(thumb)}}</image>
 										<metadataKeys>
-											<label>Actors</label>
-											<label>Director</label>
-											<label>Genre</label>
-											<label>Length</label>
+											<label>{{TEXT(Actors)}}</label>
+											<label>{{TEXT(Director)}}</label>
+											<label>{{TEXT(Genre)}}</label>
+											<label>{{TEXT(Length)}}</label>
 										</metadataKeys>
 										<metadataValues>
 											<label>{{VAL(Role/tag)}}{{VAL(Role[2]/tag::=, )}}{{VAL(Role[2]/tag)}}{{VAL(Role[3]/tag::=, )}}{{VAL(Role[3]/tag)}}</label>
@@ -47,9 +47,9 @@
                   </keyedPreview>
                 </preview>
               </oneLineMenuItem>{{CUT(Video/title:CUT:=)}}
-            
+
               <oneLineMenuItem id="none">
-                <label>No Unwatched Movies</label>
+                <label>{{TEXT(No Unwatched Movies)}}</label>
               </oneLineMenuItem>{{CUT(Video/title::=CUT)}}
             </items>
           </menuSection>

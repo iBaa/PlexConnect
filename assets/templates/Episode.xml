@@ -3,7 +3,7 @@
     <script src="{{URL(:/js/utils.js)}}" />
     <script src="{{URL(:/js/scrobble.js)}}" />
   </head>
-  
+
   <body>
     <listWithPreview id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
       <header>
@@ -16,7 +16,7 @@
         <sections>
           <menuSection>
             <items>
-              <twoLineEnhancedMenuItem id="{{VAL(ratingKey)}}" 
+              <twoLineEnhancedMenuItem id="{{VAL(ratingKey)}}"
                                          onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                                          onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
                                          onHoldSelect="scrobbleMenu('Episode', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
@@ -38,9 +38,9 @@
                   </keyedPreview>
                 </preview>
               </twoLineEnhancedMenuItem>{{CUT(Video/title:CUT:=)}}
-            
+
               <oneLineMenuItem id="none">
-                <label>No episodes</label>
+                <label>{{TEXT(No episodes)}}</label>
               </oneLineMenuItem>{{CUT(Video/title::=CUT)}}
             </items>
           </menuSection>
