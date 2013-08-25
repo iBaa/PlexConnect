@@ -1,34 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <atv>
   <head>
-    <script src="http://atv.plexconnect/js/utils.js" />
+    <script src="{{URL(:/js/utils.js)}}" />
   </head>
-  
- 	<body>
-		<viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadMenuPage(event)">
-			<navigation>
-				<navigationItem id="Library">
-					<title>{{TEXT(Library)}}</title> 
-					<url>http://atv.plexconnect/library/sections</url> 
-				</navigationItem> 
-				<navigationItem id="Channels">
-					<title>{{TEXT(Channels)}}</title> 
-				 <url>http://atv.plexconnect/channels/all&amp;PlexConnect=Channels</url> 
-				</navigationItem> 
+  <body>
+    <viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadMenuPage(event)">
+      <navigation>
+        <navigationItem id="Library">
+          <title>{{TEXT(Library)}}</title>
+          <url>{{URL(:/library/sections)}}</url>
+        </navigationItem>
+        <navigationItem id="Channels">
+          <title>{{TEXT(Channels)}}</title>
+          <url>{{URL(:/channels/all&amp;PlexConnect=Channels)}}</url>
+        </navigationItem>
         <navigationItem id="Search">
-					<url>http://atv.plexconnect/SearchForm.xml</url> 
-					<title>{{TEXT(Search)}}</title>
-				</navigationItem>
+          <url>{{URL(:/SearchForm.xml)}}</url>
+          <title>{{TEXT(Search)}}</title>
+        </navigationItem>
         <navigationItem id="Settings">
-					<title>{{TEXT(Settings)}}</title>
-					<url>http://atv.plexconnect/&amp;PlexConnect=Settings</url> 
-				</navigationItem>
-				<!--navigationItem id="MyPlex">
-					<title>MyPlex</title> 
-					<url>http://atv.plexconnect/...</url> 
-				</navigationItem--> 
-			</navigation>
-		</viewWithNavigationBar>
-	</body>
+          <title>{{TEXT(Settings)}}</title>
+          <url>{{URL(:/&amp;PlexConnect=Settings)}}</url>
+        </navigationItem>
+        <!--navigationItem id="MyPlex">
+          <title>MyPlex</title>
+          <url>http://atv.plexconnect/...</url>
+        </navigationItem-->
+      </navigation>
+    </viewWithNavigationBar>
+  </body>
 </atv>
-
