@@ -8,6 +8,7 @@ http://www.linuxjournal.com/content/tech-tip-really-simple-http-server-python
 """
 
 
+import os
 import sys
 import string, cgi, time
 from os import sep
@@ -15,6 +16,8 @@ from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 from multiprocessing import Pipe  # inter process communication
 import urllib
 import signal
+import re
+from operator import itemgetter
 
 try:
     import xml.etree.cElementTree as etree
@@ -133,6 +136,14 @@ class MyHandler(BaseHTTPRequestHandler):
                 # get everything else from XMLConverter - formerly limited to trailing "/" and &PlexConnect Cmds
                 if True:
                     dprint(__name__, 1, "serving .xml: "+self.path)
+                    accept_language = self.headers.get('Accept-Language', 'en')
+                    accept_languages = re.findall('(\w{2}(?:[-_]\w{2})?)(?:;q=(\d+(?:\.\d+)?))?', accept_language)
+                    accept_languages = [(lang.replace('-', '_'), float(quotient) if quotient else 1.) for (lang, quotient) in accept_languages]
+                    accept_languages = sorted(accept_languages, key=itemgetter(1), reverse=True)
+                    for language, quotient in accept_languages:
+                        if os.path.exists(os.path.join(sys.path[0], 'assets', 'locales', language, 'plexconnect.mo')):
+                            options['PlexConnectATVLanguage'] = language
+                            break
                     XML = XMLConverter.XML_PMS2aTV(self.client_address, self.path, options)
                     self.send_response(200)
                     self.send_header('Content-type', 'text/xml')

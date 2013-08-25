@@ -253,6 +253,9 @@ def XML_PMS2aTV(address, path, options):
     if not 'PlexConnectUDID' in options:
         dprint(__name__, 1, "no PlexConnectUDID - pick 007")
         options['PlexConnectUDID'] = '007'
+    if not 'PlexConnectATVLanguage' in options:
+        dprint(__name__, 1, "no PlexConnectATVLanguage - pick en")
+        options['PlexConnectATVLanguage'] = 'en'
     
     dprint(__name__, 1, "PlexConnect Cmd: "+cmd)
     
@@ -820,8 +823,7 @@ class CCommandHelper():
 
 class CCommandCollection(CCommandHelper):
     def _(self, msgid):
-        language = g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'language')
-        return getTranslation(language).ugettext(msgid)
+        return getTranslation(self.options['PlexConnectATVLanguage']).ugettext(msgid)
 
     # XML TREE modifier commands
     # add new commands to this list!
@@ -1091,8 +1093,7 @@ class CCommandCollection(CCommandHelper):
         else: return ""
 
     def ATTRIB_TEXT(self, src, srcXML, param):
-        language = g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'language')
-        return getTranslation(language).ugettext(param)
+        return self._(param)
     
     def ATTRIB_PMSCOUNT(self, src, srcXML, param):
         return str(len(g_param['PMS_list']))
