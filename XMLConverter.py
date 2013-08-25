@@ -253,6 +253,9 @@ def XML_PMS2aTV(address, path, options):
     if not 'PlexConnectUDID' in options:
         dprint(__name__, 1, "no PlexConnectUDID - pick 007")
         options['PlexConnectUDID'] = '007'
+    if not 'PlexConnectATVLanguage' in options:
+        dprint(__name__, 1, "no PlexConnectATVLanguage - pick en")
+        options['PlexConnectATVLanguage'] = 'en'
     
     dprint(__name__, 1, "PlexConnect Cmd: "+cmd)
     
@@ -330,10 +333,6 @@ def XML_PMS2aTV(address, path, options):
         XMLtemplate = 'Settings.xml'
         path = ''  # clear path - we don't need PMS-XML
     
-    elif cmd=='SettingsLanguage':
-        XMLtemplate = 'Settings_Language.xml'
-        path = ''  # clear path - we don't need PMS-XML
-    
     elif cmd=='SettingsVideoOSD':
         XMLtemplate = 'Settings_VideoOSD.xml'
         path = ''  # clear path - we don't need PMS-XML
@@ -352,14 +351,6 @@ def XML_PMS2aTV(address, path, options):
         g_ATVSettings.toggleSetting(options['PlexConnectUDID'], parts[0].lower())
         XMLtemplate = parts[1] + ".xml"
         dprint(__name__, 2, "ATVSettings->Toggle: {0} in template: {1}", parts[0], parts[1])
-        
-        path = ''  # clear path - we don't need PMS-XML
-        
-    elif cmd.startswith('SettingsSet:'):
-        opt = cmd[len('SettingsSet:'):]  # cut command:
-        parts = opt.split('+')
-        g_ATVSettings.setSetting(options['PlexConnectUDID'], parts[0].lower(), parts[1])
-        dprint(__name__, 2, "ATVSettings->Set: {0} = {1}", parts[0], parts[1])
         
         path = ''  # clear path - we don't need PMS-XML
     
@@ -832,8 +823,7 @@ class CCommandHelper():
 
 class CCommandCollection(CCommandHelper):
     def _(self, msgid):
-        language = g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'language')
-        return getTranslation(language).ugettext(msgid)
+        return getTranslation(self.options['PlexConnectATVLanguage']).ugettext(msgid)
 
     # XML TREE modifier commands
     # add new commands to this list!
@@ -1103,8 +1093,7 @@ class CCommandCollection(CCommandHelper):
         else: return ""
 
     def ATTRIB_TEXT(self, src, srcXML, param):
-        language = g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'language')
-        return getTranslation(language).ugettext(param)
+        return self._(param)
     
     def ATTRIB_PMSCOUNT(self, src, srcXML, param):
         return str(len(g_param['PMS_list']))

@@ -77,17 +77,6 @@ function toggleSettings(opt, template)
 };
 
 /*
- * set settings
- */
-function setSettings(opt, value)
-{
-  var url = "http://atv.plexconnect/&PlexConnect=SettingsSet:"+opt+"+"+value+"&PlexConnectUDID="+atv.device.udid
-  var req = new XMLHttpRequest();
-  req.open('GET', url, false);
-  req.send();
-}
-
-/*
  * discover
  */
 function discover(opt, opt_too) 

@@ -61,12 +61,6 @@
                   <arrow/>
                 </accessories>
               </oneLineMenuItem>
-              <oneLineMenuItem id="Language" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsLanguage')">
-                <label>{{TEXT(Language)}}</label>
-                <accessories>
-                  <arrow/>
-                </accessories>
-              </oneLineMenuItem>
             </items>
           </menuSection>
           <menuSection>

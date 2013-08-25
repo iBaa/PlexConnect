@@ -117,9 +117,6 @@ msgstr ""
 msgid "Homepage"
 msgstr ""
 
-msgid "Language"
-msgstr ""
-
 msgid "Length"
 msgstr ""
 
