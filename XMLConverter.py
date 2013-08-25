@@ -265,16 +265,7 @@ def XML_PMS2aTV(address, path, options):
     PMSroot = None
     
     # XMLtemplate defined by solely PlexConnect Cmd
-    if cmd=='AppEntry':
-        XMLtemplate = 'AppEntry.xml'
-
-    if cmd=='VersionError':
-        XMLtemplate = 'VersionError.xml'
-
-    elif cmd=='SearchForm':
-        XMLtemplate = 'SearchForm.xml'
-
-    elif cmd=='Play':
+    if cmd=='Play':
         XMLtemplate = 'PlayVideo.xml'
     
     elif cmd=='PlayVideo_ChannelsV1':
@@ -401,6 +392,9 @@ def XML_PMS2aTV(address, path, options):
     # XMLtemplate defined by PMS XML content
     if path=='':
         pass  # nothing to load
+
+    elif os.path.exists(sys.path[0]+'/assets/templates/'+path):
+        XMLtemplate = path.lstrip('/')
     
     elif not XMLtemplate=='':
         pass  # template already selected
