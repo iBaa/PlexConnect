@@ -116,11 +116,7 @@ function discover(opt, opt_too)
  */
 function refreshLibrary(addrPMS) 
 {
-  var xmlstr = '<?xml version="1.0" encoding="UTF-8"?><atv><body> \
-                <dialog id="refreshLibrary"><title>Library Refresh in Progress.</title> \
-                <description>Press menu to return.</description></dialog></body></atv>';
-  var doc = atv.parseXML(xmlstr);
-  atv.loadXML(doc);              
+	atv.loadURL("http://atv.plexconnect/RefreshLibrary.xml");
 	var url = "http://" + addrPMS + "/library/sections/all/refresh";
 	var req = new XMLHttpRequest();
 	req.open('GET', url, true);

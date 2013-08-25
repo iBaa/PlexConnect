@@ -253,6 +253,9 @@ def XML_PMS2aTV(address, path, options):
     if not 'PlexConnectUDID' in options:
         dprint(__name__, 1, "no PlexConnectUDID - pick 007")
         options['PlexConnectUDID'] = '007'
+    if not 'PlexConnectATVLanguage' in options:
+        dprint(__name__, 1, "no PlexConnectATVLanguage - pick en")
+        options['PlexConnectATVLanguage'] = 'en'
     
     dprint(__name__, 1, "PlexConnect Cmd: "+cmd)
     
@@ -392,6 +395,9 @@ def XML_PMS2aTV(address, path, options):
     # XMLtemplate defined by PMS XML content
     if path=='':
         pass  # nothing to load
+
+    elif os.path.exists(sys.path[0]+'/assets/templates/'+path):
+        XMLtemplate = path.lstrip('/')
     
     elif not XMLtemplate=='':
         pass  # template already selected
@@ -591,7 +597,8 @@ def XML_ExpandLine(src, srcXML, line):
         if hasattr(CCommandCollection, 'ATTRIB_'+cmd):  # expand line, work VAL, EVAL...
             
             try:
-                res = eval("g_CommandCollection.ATTRIB_"+cmd+"(src, srcXML, '"+param+"')")
+                func = getattr(g_CommandCollection, 'ATTRIB_'+cmd)
+                res = func(src, srcXML, param)
                 line = line[:cmd_start] + res + line[cmd_end+2:]
                 pos = cmd_start+len(res)
             except:
@@ -815,6 +822,9 @@ class CCommandHelper():
 
 
 class CCommandCollection(CCommandHelper):
+    def _(self, msgid):
+        return getTranslation(self.options['PlexConnectATVLanguage']).ugettext(msgid)
+
     # XML TREE modifier commands
     # add new commands to this list!
     def TREE_COPY(self, elem, child, src, srcXML, param):
@@ -1035,7 +1045,7 @@ class CCommandCollection(CCommandHelper):
         parentIndex, leftover, dfltd = self.getKey(src, srcXML, param)  # getKey "defaults" if nothing found.
         index, leftover, dfltd = self.getKey(src, srcXML, leftover)
         title, leftover, dfltd = self.getKey(src, srcXML, leftover)
-        out = "{0:0d}x{1:02d} ".format(int(parentIndex), int(index)) + title
+        out = self._("{0:0d}x{1:02d} ").format(int(parentIndex), int(index)) + title
         return out
     
     def ATTRIB_sendToATV(self, src, srcXML, param):
@@ -1056,8 +1066,8 @@ class CCommandCollection(CCommandHelper):
             min = int(duration)/1000/60
             hour = min/60
             min = min%60
-            if hour == 0: return "%d Minutes" % (min)
-            else: return "%dhr %dmin" % (hour, min)            
+            if hour == 0: return self._("%d Minutes") % (min)
+            else: return self._("%dhr %dmin") % (hour, min)            
             
         return ""
     
@@ -1079,12 +1089,11 @@ class CCommandCollection(CCommandHelper):
         total, leftover, dfltd = self.getKey(src, srcXML, param)
         viewed, leftover, dfltd = self.getKey(src, srcXML, leftover)
         unwatched = int(total) - int(viewed)
-        if unwatched > 0: return str(unwatched) + " unwatched"
+        if unwatched > 0: return str(unwatched) + self._(" unwatched")
         else: return ""
 
     def ATTRIB_TEXT(self, src, srcXML, param):
-        language = g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'language')
-        return getTranslation(language).ugettext(param)
+        return self._(param)
     
     def ATTRIB_PMSCOUNT(self, src, srcXML, param):
         return str(len(g_param['PMS_list']))

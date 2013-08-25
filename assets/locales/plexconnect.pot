@@ -11,6 +11,15 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+msgid " unwatched"
+msgstr ""
+
+msgid "%d Minutes"
+msgstr ""
+
+msgid "%dhr %dmin"
+msgstr ""
+
 msgid "Actor View"
 msgstr ""
 
@@ -62,6 +71,9 @@ msgstr ""
 msgid "By Year"
 msgstr ""
 
+msgid "Channels"
+msgstr ""
+
 msgid "Clock Position"
 msgstr ""
 
@@ -105,6 +117,12 @@ msgid "Homepage"
 msgstr ""
 
 msgid "Length"
+msgstr ""
+
+msgid "Library"
+msgstr ""
+
+msgid "Library Refresh in Progress."
 msgstr ""
 
 msgid "More"
@@ -164,6 +182,9 @@ msgstr ""
 msgid "Plex Media Server: No Items Available"
 msgstr ""
 
+msgid "Press menu to return."
+msgstr ""
+
 msgid "Producers"
 msgstr ""
 
@@ -183,6 +204,12 @@ msgid "Recently Viewed Shows"
 msgstr ""
 
 msgid "Refresh Library"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Search Plex Library"
 msgstr ""
 
 msgid "Season"
@@ -251,3 +278,14 @@ msgstr ""
 msgid "Writers"
 msgstr ""
 
+msgid ""
+"Your aTV firmware version is too old to run this version of PlexConnect.\n"
+"Please use the v0.1-iOS-pre5.1 branch available from:-\n"
+"https://github.com/iBaa/PlexConnect"
+msgstr ""
+
+msgid "aTV firmware version 5.0.2 or lower."
+msgstr ""
+
+msgid "{0:0d}x{1:02d} "
+msgstr ""
