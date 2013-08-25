@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-25 08:50+0800\n"
-"PO-Revision-Date: 2013-08-26 01:49+0800\n"
+"PO-Revision-Date: 2013-08-26 04:02+0800\n"
 "Last-Translator: Grey Lee <bcse@bcse.tw>\n"
 "Language-Team: Grey Lee <bcse@bcse.tw>\n"
 "Language: zh_TW\n"
@@ -11,15 +11,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
-
-msgid " unwatched"
-msgstr " 集未觀看"
-
-msgid "%d Minutes"
-msgstr "%d 分鐘"
-
-msgid "%dhr %dmin"
-msgstr "%d 時 %d 分"
 
 msgid "Actor View"
 msgstr "演員檢視"
@@ -291,8 +282,14 @@ msgstr ""
 msgid "aTV firmware version 5.0.2 or lower."
 msgstr "Apple TV 系統版本低於 5.0.2"
 
-msgid "{0:0d}x{1:02d} "
-msgstr "第{0:d}季 第{1:d}集 "
+msgid "{0:0d}x{1:02d} {2}"
+msgstr "第{0:d}季 第{1:d}集 {2}"
 
-#~ msgid "Language"
-#~ msgstr "語言"
+msgid "{0:d} Minutes"
+msgstr "{0:d} 分鐘"
+
+msgid "{0:d}hr {1:d}min"
+msgstr "{0:d} 小時 {1:d} 分鐘"
+
+msgid "{0} unwatched"
+msgstr "{0} 集未觀看"

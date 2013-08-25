@@ -1045,7 +1045,7 @@ class CCommandCollection(CCommandHelper):
         parentIndex, leftover, dfltd = self.getKey(src, srcXML, param)  # getKey "defaults" if nothing found.
         index, leftover, dfltd = self.getKey(src, srcXML, leftover)
         title, leftover, dfltd = self.getKey(src, srcXML, leftover)
-        out = self._("{0:0d}x{1:02d} ").format(int(parentIndex), int(index)) + title
+        out = self._("{0:0d}x{1:02d} {2}").format(int(parentIndex), int(index), title)
         return out
     
     def ATTRIB_sendToATV(self, src, srcXML, param):
@@ -1066,8 +1066,8 @@ class CCommandCollection(CCommandHelper):
             min = int(duration)/1000/60
             hour = min/60
             min = min%60
-            if hour == 0: return self._("%d Minutes") % (min)
-            else: return self._("%dhr %dmin") % (hour, min)            
+            if hour == 0: return self._("{0:d} Minutes").format(min)
+            else: return self._("{0:d}hr {1:d}min").format(hour, min)            
             
         return ""
     
@@ -1089,7 +1089,7 @@ class CCommandCollection(CCommandHelper):
         total, leftover, dfltd = self.getKey(src, srcXML, param)
         viewed, leftover, dfltd = self.getKey(src, srcXML, leftover)
         unwatched = int(total) - int(viewed)
-        if unwatched > 0: return str(unwatched) + self._(" unwatched")
+        if unwatched > 0: return self._("{0} unwatched").format(unwatched)
         else: return ""
 
     def ATTRIB_TEXT(self, src, srcXML, param):
