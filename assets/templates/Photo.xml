@@ -3,11 +3,11 @@
     <script src="{{URL(:/js/utils.js)}}" />
     <script src="{{URL(:/js/photo.js)}}" />
   </head>
-  
+
   <body>
-  
+
   <!--  ONLY PHOTOS   -->
-   
+
     <mediaBrowser id="browser" gridLayout="mixed">
     {{CUT(Directory/title::=CUT)}}
       <header>
@@ -16,7 +16,7 @@
           <count>{{VAL(size)}}</count>
           <buttons>
             <actionButton id="slideshow" onSelect="onSettings()" onPlay="onSlideShow()">
-              <title>SlideShow</title>
+              <title>{{TEXT(SlideShow)}}</title>
             </actionButton>
           </buttons>
         </headerWithCountAndButtons>
@@ -35,7 +35,7 @@
             <directory>false</directory>
           </stash>
         </photo>
-        
+
         <!--Photo channel-->
         <photo id="{{VAL(key)}}" onSelect="onSelectPhoto('{{VAL(key)}}')">
           {{COPY(Photo:Media/Part/key:COPY:=)}}
@@ -48,20 +48,20 @@
             <directory>false</directory>
           </stash>
           </photo>
-        
+
       </items>
     </mediaBrowser>
-    
-    
+
+
     <!--  DIRECTORIES + PHOTOS  -->
-    
+
     <listWithPreview id="com.sample.menu-items-with-sections">
     {{CUT(Directory/title:CUT:=)}}
     <header>
        <simpleHeader>
           <title>{{VAL(title1:Plex Library)}}</title>
           <subtitle>{{VAL(title2)}}</subtitle>
-        </simpleHeader> 
+        </simpleHeader>
     </header>
       <menu>
         <sections>
@@ -69,7 +69,7 @@
             <items>
               <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=PhotoBrowser')"
                                                 onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=PhotoBrowser')">
-                <label>Show Photos</label>
+                <label>{{TEXT(Show Photos)}}</label>
                 <preview>
                   <link>{{URL(key)}}?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview-Photo</link>
                 </preview>
@@ -87,6 +87,6 @@
         </sections>
       </menu>
     </listWithPreview>
-       
+
   </body>
 </atv>

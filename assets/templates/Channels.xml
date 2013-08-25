@@ -2,12 +2,12 @@
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
   </head>
-  
+
   <body>
     {{ADDXML(VideoChannels::/video)}}
     {{ADDXML(AudioChannels::/music)}}
     {{ADDXML(PhotoChannels::/photos)}}
-    
+
     <!--Channels List-->
     <listWithPreview id="com.sample.menu-items-with-sections">
     {{CUT(size:CUT:0=CUT|1=)}}
@@ -24,12 +24,12 @@
             {{CUT(@VideoChannels/size:CUT:0=CUT|1=)}}
             <header>
               <horizontalDivider alignment="left">
-                <title>Video</title>
+                <title>{{TEXT(Video)}}</title>
               </horizontalDivider>
-            </header> 
+            </header>
             <items>
               <twoLineEnhancedMenuItem id="Video_{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelsVideo')" 
+                                       onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelsVideo')"
                                        onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelsVideo')">
                 {{COPY(@VideoChannels/Directory)}}
                 <label>{{VAL(title)}}</label>
@@ -47,12 +47,12 @@
             {{CUT(@AudioChannels/size:CUT:0=CUT|1=)}}
             <header>
               <horizontalDivider alignment="left">
-                <title>Audio</title>
+                <title>{{TEXT(Audio)}}</title>
               </horizontalDivider>
-            </header> 
+            </header>
             <items>
               <twoLineEnhancedMenuItem id="Audio_{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL(key)}}')" 
+                                       onPlay="atv.loadURL('{{URL(key)}}')"
                                        onSelect="atv.loadURL('{{URL(key)}}')">
                 {{COPY(@AudioChannels/Directory)}}
                 <label>{{VAL(title)}}</label>
@@ -70,12 +70,12 @@
             {{CUT(@PhotoChannels/size:CUT:0=CUT|1=)}}
             <header>
               <horizontalDivider alignment="left">
-                <title>Photo</title>
+                <title>{{TEXT(Photo)}}</title>
               </horizontalDivider>
-            </header> 
+            </header>
             <items>
-              <twoLineEnhancedMenuItem id="Photo_{{VAL(key)}}" 
-                                       onPlay="atv.loadURL('{{URL(key)}}')" 
+              <twoLineEnhancedMenuItem id="Photo_{{VAL(key)}}"
+                                       onPlay="atv.loadURL('{{URL(key)}}')"
                                        onSelect="atv.loadURL('{{URL(key)}}')">
                 {{COPY(@PhotoChannels/Directory)}}
                 <label>{{VAL(title)}}</label>
@@ -91,12 +91,12 @@
         </sections>
       </menu>
     </listWithPreview>
-    
+
     <!--No Channels Available-->
     <dialog id="com.sample.error-dialog">
     {{CUT(size::0=|1=CUT)}}
       <title>PlexConnect</title>
-      <description>Plex Media Server: No Channels Available</description>
+      <description>{{TEXT(Plex Media Server: No Channels Available)}}</description>
     </dialog>
   </body>
 </atv>

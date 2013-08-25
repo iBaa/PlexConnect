@@ -3,7 +3,7 @@
     <script src="{{URL(:/js/utils.js)}}" />
     <script src="{{URL(:/js/scrobble.js)}}" />
   </head>
-  
+
   <body>
     <scroller id="Show_Bookcase" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
     {{CUT(size:CUT:0=CUT|1=)}}
@@ -13,21 +13,21 @@
           <subtitle>{{VAL(title2)}}</subtitle>
         </simpleHeader>
       </header>
-      
+
       <items>
         <__COPY__>
         {{COPY(Directory)}}
           <collectionDivider alignment="left" accessibilityLabel="Show_Bookcase_Divider">
             <title>{{VAL(title)}}</title>
-          </collectionDivider> 
-        
+          </collectionDivider>
+
           <shelf id="Show_Bookcase_Shelf_{{VAL(title)}}" columnCount="7">
             <sections>
               <shelfSection>
                 <items>
                 {{ADDXML(seasons:key)}}
                   <moviePoster id="Show_Bookcase_{{VAL(key)}}"
-                              onPlay="atv.loadURL('{{URL(key)}}')" 
+                              onPlay="atv.loadURL('{{URL(key)}}')"
                               onSelect="atv.loadURL('{{URL(key)}}')"
                               onHoldSelect="scrobbleMenu('Show', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
                     {{COPY(@seasons/Directory)}}
@@ -43,12 +43,12 @@
         </__COPY__>
       </items>
     </scroller>
-    
+
     <!--No Shows Available-->
     <dialog id="com.sample.error-dialog">
     {{CUT(size::0=|1=CUT)}}
       <title>PlexConnect</title>
-      <description>No Unwatched Shows.</description>
+      <description>{{TEXT(No Unwatched Shows.)}}</description>
     </dialog>
   </body>
 </atv>

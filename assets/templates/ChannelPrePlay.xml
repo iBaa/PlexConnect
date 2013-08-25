@@ -2,7 +2,7 @@
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
   </head>
-  
+
   <body>
     <itemDetail id="com.apple.trailers">
 		<title>{{VAL(Video/title)}}</title>
@@ -11,14 +11,14 @@
 		<summary>{{VAL(Video/summary)}}</summary>
 		<image style="squarePoster">{{IMAGEURL(Video/thumb)}}</image>
 		<defaultImage>resource://Poster.png</defaultImage>
-    		
+
 		<centerShelf>
         <shelf id="centerShelf" columnCount="4" center="true">
 			<sections>
 				<shelfSection>
 					<items>
 						<actionButton id="play" onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')">
-							<title>Play</title>
+							<title>{{TEXT(Play)}}</title>
 							<image>resource://Play.png</image>
               <focusedImage>resource://PlayFocused.png</focusedImage>
 							<!--<badge></badge>-->

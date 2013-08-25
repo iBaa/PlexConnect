@@ -3,14 +3,14 @@
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
   </head>
-  
+
   <body>
     <preview>
       <scrollerPreview id="com.sample.moreInfoPreview">
         <header>
           <metadataHeader>
             <title>{{VAL(title2)}}</title>
-            <subtitle>{{VAL(size)}} Movies</subtitle>
+            <subtitle>{{VAL(size)}} {{TEXT(Movies)}}</subtitle>
           </metadataHeader>
         </header>
         <items>

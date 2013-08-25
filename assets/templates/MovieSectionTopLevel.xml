@@ -9,47 +9,47 @@
 			<navigation currentIndex="1">
 
       <navigationItem id="0">
-					<title>All Movies</title> 
+					<title>{{TEXT(All Movies)}}</title>
 					<url>{{URL(key)}}/all&amp;PlexConnect=AllMovies</url>
 				</navigationItem>
 
 				<navigationItem id="1">
-					<title>On Deck</title> 
+					<title>{{TEXT(On Deck)}}</title>
 					<url>{{URL(key)}}&amp;PlexConnect=MovieSection</url>
-				</navigationItem> 
+				</navigationItem>
 
 				<navigationItem id="2">
-					<title>Unwatched</title> 
+					<title>{{TEXT(Unwatched)}}</title>
 					<url>{{URL(key)}}/unwatched&amp;PlexConnect=AllMovies</url>
 				</navigationItem>{{CUT($movies_navbar_unwatched::unchecked=CUT|checked=)}}
 
 				<navigationItem id="3">
-					<title>Collections</title>
+					<title>{{TEXT(Collections)}}</title>
 					<url>{{URL(key)}}/collection&amp;PlexConnect=DirectoryWithPreview</url>
-				</navigationItem>{{CUT($movies_navbar_collections::unchecked=CUT|checked=)}} 
-        
+				</navigationItem>{{CUT($movies_navbar_collections::unchecked=CUT|checked=)}}
+
 				<navigationItem id="4">
-					<title>Genres</title>
+					<title>{{TEXT(Genres)}}</title>
 					<url>{{URL(key)}}/genre&amp;PlexConnect=DirectoryWithPreview</url>
-				</navigationItem>{{CUT($movies_navbar_genres::unchecked=CUT|checked=)}} 
+				</navigationItem>{{CUT($movies_navbar_genres::unchecked=CUT|checked=)}}
 
 				<navigationItem id="5">
-					<title>Decades</title> 
+					<title>{{TEXT(Decades)}}</title>
 					<url>{{URL(key)}}/decade&amp;PlexConnect=DirectoryWithPreview</url>
 				</navigationItem>{{CUT($movies_navbar_decades::unchecked=CUT|checked=)}}
 
 				<navigationItem id="6">
-					<title>Directors</title> 
+					<title>{{TEXT(Directors)}}</title>
 					<url>{{URL(key)}}/director&amp;PlexConnect=DirectoryWithPreview</url>
 				</navigationItem>{{CUT($movies_navbar_directors::unchecked=CUT|checked=)}}
 
 				<navigationItem id="7">
-					<title>Actors</title> 
+					<title>{{TEXT(Actors)}}</title>
 					<url>{{URL(key)}}/actor&amp;PlexConnect=DirectoryWithPreviewActors</url>
 				</navigationItem>{{CUT($movies_navbar_actors::unchecked=CUT|checked=)}}
 
 				<navigationItem id="8">
-					<title>More...</title> 
+					<title>{{TEXT(More...)}}</title>
 					<url>{{URL(key)}}&amp;PlexConnect=MovieSecondary</url>
 				</navigationItem>{{CUT($movies_navbar_more::unchecked=CUT|checked=)}}
 
