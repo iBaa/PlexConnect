@@ -265,7 +265,16 @@ def XML_PMS2aTV(address, path, options):
     PMSroot = None
     
     # XMLtemplate defined by solely PlexConnect Cmd
-    if cmd=='Play':
+    if cmd=='AppEntry':
+        XMLtemplate = 'AppEntry.xml'
+
+    if cmd=='VersionError':
+        XMLtemplate = 'VersionError.xml'
+
+    elif cmd=='SearchForm':
+        XMLtemplate = 'SearchForm.xml'
+
+    elif cmd=='Play':
         XMLtemplate = 'PlayVideo.xml'
     
     elif cmd=='PlayVideo_ChannelsV1':
@@ -591,7 +600,8 @@ def XML_ExpandLine(src, srcXML, line):
         if hasattr(CCommandCollection, 'ATTRIB_'+cmd):  # expand line, work VAL, EVAL...
             
             try:
-                res = eval("g_CommandCollection.ATTRIB_"+cmd+"(src, srcXML, '"+param+"')")
+                func = getattr(g_CommandCollection, 'ATTRIB_'+cmd)
+                res = func(src, srcXML, param)
                 line = line[:cmd_start] + res + line[cmd_end+2:]
                 pos = cmd_start+len(res)
             except:

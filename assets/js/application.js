@@ -347,11 +347,11 @@ atv.onAppEntry = function()
     firmVer = fv[0] + "." + fv[1];
     if (parseFloat(firmVer) >= 5.1)
     {
-        atv.loadURL("http://atv.plexconnect/plexconnect.xml");
+        atv.loadURL("http://atv.plexconnect/&PlexConnect=AppEntry");
     }
     else
     {
-        atv.loadURL("http://atv.plexconnect/versionError.xml");
+        atv.loadURL("http://atv.plexconnect/&PlexConnect=VersionError");
     }
 };
 

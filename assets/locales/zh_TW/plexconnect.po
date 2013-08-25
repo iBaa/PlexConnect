@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-25 08:50+0800\n"
-"PO-Revision-Date: 2013-08-25 09:39+0800\n"
+"PO-Revision-Date: 2013-08-25 10:18+0800\n"
 "Last-Translator: Grey Lee <bcse@bcse.tw>\n"
 "Language-Team: Grey Lee <bcse@bcse.tw>\n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
-"Language: zh_TW\n"
 
 msgid "Actor View"
 msgstr "演員檢視"
@@ -63,6 +63,9 @@ msgstr "依解析度"
 msgid "By Year"
 msgstr "依年份"
 
+msgid "Channels"
+msgstr "頻道"
+
 msgid "Clock Position"
 msgstr "時鐘位置"
 
@@ -107,6 +110,9 @@ msgstr "首頁"
 
 msgid "Length"
 msgstr "長度"
+
+msgid "Library"
+msgstr "資料庫"
 
 msgid "More"
 msgstr "更多"
@@ -186,6 +192,12 @@ msgstr "最近觀看的節目"
 msgid "Refresh Library"
 msgstr "更新資料庫"
 
+msgid "Search"
+msgstr "搜尋"
+
+msgid "Search Plex Library"
+msgstr "搜尋 Plex 資料庫"
+
 msgid "Season"
 msgstr "季"
 
@@ -251,3 +263,15 @@ msgstr "說明文件"
 
 msgid "Writers"
 msgstr "編劇"
+
+msgid ""
+"Your aTV firmware version is too old to run this version of PlexConnect.\n"
+"Please use the v0.1-iOS-pre5.1 branch available from:-\n"
+"https://github.com/iBaa/PlexConnect"
+msgstr ""
+"您的 Apple TV 系統版本太舊，無法使用這個版本的 PlexConnect。\n"
+"請到以下網址取得 v0.1-iOS-pre5.1 分支版:\n"
+"https://github.com/iBaa/PlexConnect"
+
+msgid "aTV firmware version 5.0.2 or lower."
+msgstr "Apple TV 系統版本低於 5.0.2"
