@@ -43,8 +43,8 @@ function log(msg)
  */
 function selectAudioAndSubs(addrPMS, ratingKey) {
 	var xmlstr = '<?xml version="1.0" encoding="UTF-8"?><atv><head><script src="http://atv.plexconnect/js/selectAudioAndSubs.js"/></head> \
-                <body><optionDialog id="optionDialog"><header><simpleHeader><title>Select Tracks</title></simpleHeader></header> \
-								<menu><sections><menuSection><header><horizontalDivider alignment="center"><title>Audio Track</title></horizontalDivider> \
+                <body><optionDialog id="optionDialog"><header><simpleHeader><title>{{TEXT(Select Tracks)}}</title></simpleHeader></header> \
+								<menu><sections><menuSection><header><horizontalDivider alignment="center"><title>{{TEXT(Audio Track)}}</title></horizontalDivider> \
 								</header><items>';
 
 	var streams = document.evaluateXPath('//stream');
@@ -63,8 +63,8 @@ function selectAudioAndSubs(addrPMS, ratingKey) {
       xmlstr = xmlstr + '</oneLineMenuItem>';
     }
   }
-  xmlstr = xmlstr + '</items></menuSection><menuSection><header><horizontalDivider alignment="center"><title>Subtitle Track</title></horizontalDivider></header><items>';
-	xmlstr = xmlstr + '<oneLineMenuItem id="sub99" onSelect="selectSubStream(\'' + addrPMS + '\', \'' + ratingKey + '\', 0); toggleSubCheck(\'99\')"><label>None</label>';
+  xmlstr = xmlstr + '</items></menuSection><menuSection><header><horizontalDivider alignment="center"><title>{{TEXT(Subtitle Track)}}</title></horizontalDivider></header><items>';
+	xmlstr = xmlstr + '<oneLineMenuItem id="sub99" onSelect="selectSubStream(\'' + addrPMS + '\', \'' + ratingKey + '\', 0); toggleSubCheck(\'99\')"><label>{{TEXT(None)}}</label>';
 	
 	var noSubs = true;
 	var noSubsSelected = true;

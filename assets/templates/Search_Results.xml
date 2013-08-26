@@ -19,7 +19,7 @@
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"
                              onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                              onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')"
-                             onHoldSelect="scrobbleMenu('Movie', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
+                             onHoldSelect="scrobbleMenu('{{TEXT(Movie)}}', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
                 {{COPY(Video:type::movie=COPY|episode=)}}
                 {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
                 <label>{{VAL(title)}}</label>
@@ -39,7 +39,7 @@
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"
                              onPlay="atv.loadURL('{{URL(key)}}')"
                              onSelect="atv.loadURL('{{URL(key)}}')"
-                             onHoldSelect="scrobbleMenu('Show', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
+                             onHoldSelect="scrobbleMenu('{{TEXT(Show)}}', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
                 {{COPY(Directory)}}
                 {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
                 <label>{{VAL(title)}}</label>
@@ -59,7 +59,7 @@
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"
                              onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                              onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')"
-                             onHoldSelect="scrobbleMenu('Episode', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
+                             onHoldSelect="scrobbleMenu('{{TEXT(Episode)}}', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
                 {{COPY(Video:type::episode=COPY|movie=)}}
                 {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
                 <label>{{VAL(title)}}</label>

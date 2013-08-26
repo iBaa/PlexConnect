@@ -29,7 +29,7 @@
                   <moviePoster id="Show_Bookcase_{{VAL(key)}}"
                               onPlay="atv.loadURL('{{URL(key)}}')"
                               onSelect="atv.loadURL('{{URL(key)}}')"
-                              onHoldSelect="scrobbleMenu('Show', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
+                              onHoldSelect="scrobbleMenu('{{TEXT(Show)}}', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
                     {{COPY(@seasons/Directory)}}
                     <title>{{VAL(title)}}</title>
                     <image>{{IMAGEURL(thumb)}}</image>

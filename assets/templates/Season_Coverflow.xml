@@ -21,7 +21,7 @@
               <items>
                 <goldenPoster id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key)}}')"
                                               onSelect="atv.loadURL('{{URL(key)}}')"
-                                              onHoldSelect="scrobbleMenu('Season', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
+                                              onHoldSelect="scrobbleMenu('{{TEXT(Season)}}', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
                   {{COPY(Directory)}}
                   <title>{{VAL(title)}}</title>
                   <image>{{IMAGEURL(thumb)}}</image>

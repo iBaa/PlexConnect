@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import os
 import sys
 from os import sep
 import ConfigParser
@@ -91,6 +92,23 @@ class CSettings():
     def getSetting(self, option):
         dprint(__name__, 1, "getsetting {0}={1}", option, self.cfg.get(self.section, option))
         return self.cfg.get(self.section, option)
+
+
+
+g_Translations = {}
+
+def getTranslation(language):
+    global g_Translations
+    if language not in g_Translations:
+        import gettext
+        filename = os.path.join(sys.path[0], 'assets', 'locales', language, 'plexconnect.mo')
+        try:
+            fp = open(filename, 'rb')
+            g_Translations[language] = gettext.GNUTranslations(fp)
+            fp.close()
+        except IOError:
+            g_Translations[language] = gettext.NullTranslations()
+    return g_Translations[language]
 
 
 

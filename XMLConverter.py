@@ -39,6 +39,7 @@ from urlparse import urlparse
 from urllib import quote_plus
 
 import Settings, ATVSettings
+from Settings import getTranslation
 import PlexGDM
 from Debug import *  # dprint()
 
@@ -53,20 +54,6 @@ g_ATVSettings = None
 def setATVSettings(cfg):
     global g_ATVSettings
     g_ATVSettings = cfg
-
-g_Translations = {}
-def getTranslation(language):
-    global g_Translations
-    if language not in g_Translations:
-        import gettext
-        filename = os.path.join(sys.path[0], 'assets', 'locales', language, 'plexconnect.mo')
-        try:
-            fp = open(filename, 'rb')
-            g_Translations[language] = gettext.GNUTranslations(fp)
-            fp.close()
-        except IOError:
-            g_Translations[language] = gettext.NullTranslations()
-    return g_Translations[language]
 
 
 

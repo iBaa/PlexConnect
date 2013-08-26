@@ -19,7 +19,7 @@
               <twoLineEnhancedMenuItem id="{{VAL(ratingKey)}}"
                                          onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                                          onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
-                                         onHoldSelect="scrobbleMenu('Episode', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
+                                         onHoldSelect="scrobbleMenu('{{TEXT(Episode)}}', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
                 {{COPY(Video:index::=|0 =COPY)}}
                 <label>{{VAL(title)}}</label>
                 <ordinal>{{VAL(index)}}</ordinal>

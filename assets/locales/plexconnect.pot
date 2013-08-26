@@ -32,6 +32,9 @@ msgstr ""
 msgid "Audio Boost %"
 msgstr ""
 
+msgid "Audio Track"
+msgstr ""
+
 msgid "Audio/Subs"
 msgstr ""
 
@@ -62,6 +65,9 @@ msgstr ""
 msgid "By Year"
 msgstr ""
 
+msgid "Change Artwork"
+msgstr ""
+
 msgid "Channels"
 msgstr ""
 
@@ -69,6 +75,9 @@ msgid "Clock Position"
 msgstr ""
 
 msgid "Collections"
+msgstr ""
+
+msgid "Current Artwork"
 msgstr ""
 
 msgid "Decades"
@@ -84,6 +93,9 @@ msgid "Directors"
 msgstr ""
 
 msgid "Discover"
+msgstr ""
+
+msgid "Episode"
 msgstr ""
 
 msgid "Episodes"
@@ -116,10 +128,19 @@ msgstr ""
 msgid "Library Refresh in Progress."
 msgstr ""
 
+msgid "Mark as Unwatched"
+msgstr ""
+
+msgid "Mark as Watched"
+msgstr ""
+
 msgid "More"
 msgstr ""
 
 msgid "More..."
+msgstr ""
+
+msgid "Movie"
 msgstr ""
 
 msgid "Movie Navigation Bar"
@@ -149,7 +170,13 @@ msgstr ""
 msgid "No episodes"
 msgstr ""
 
+msgid "None"
+msgstr ""
+
 msgid "On Deck"
+msgstr ""
+
+msgid "On Deck Episode"
 msgstr ""
 
 msgid "Overscan Adjust"
@@ -185,6 +212,9 @@ msgstr ""
 msgid "Recently Aired"
 msgstr ""
 
+msgid "Recently Aired Episode"
+msgstr ""
+
 msgid "Recently Released"
 msgstr ""
 
@@ -209,7 +239,16 @@ msgstr ""
 msgid "Season View"
 msgstr ""
 
+msgid "Select Artwork"
+msgstr ""
+
+msgid "Select Tracks"
+msgstr ""
+
 msgid "Settings"
+msgstr ""
+
+msgid "Show"
 msgstr ""
 
 msgid "Show Clock"
@@ -231,6 +270,9 @@ msgid "SlideShow"
 msgstr ""
 
 msgid "Subtitle Size %"
+msgstr ""
+
+msgid "Subtitle Track"
 msgstr ""
 
 msgid "TV Show Navigation Bar"
@@ -261,6 +303,9 @@ msgid "Video"
 msgstr ""
 
 msgid "Video Player OSD"
+msgstr ""
+
+msgid "View Show"
 msgstr ""
 
 msgid "Wiki/Docs"
