@@ -1,0 +1,278 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Plex Connect\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-08-25 08:50+0800\n"
+"PO-Revision-Date: 2013-08-26 12:33+0100\n"
+"Last-Translator: Martin Aronsen <martin.aro@gmail.com>\n"
+"Language-Team: Martin Aronsen <martin.aro@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"Language: nb_NO\n"
+
+msgid "Actor View"
+msgstr "Skuespillervisning"
+
+msgid "Actors"
+msgstr "Skuespillere"
+
+msgid "All Movies"
+msgstr "Alle Filmer"
+
+msgid "All Shows"
+msgstr "Alle TV-program"
+
+msgid "Appearance"
+msgstr "Utseende"
+
+msgid "Audio"
+msgstr "Lyd"
+
+msgid "Audio Boost %"
+msgstr "Lydforsterking i %"
+
+msgid "Audio/Subs"
+msgstr "Lyd/Undertekst"
+
+msgid "Authors"
+msgstr "Forfattere"
+
+msgid "By Collection"
+msgstr "Etter samling"
+
+msgid "By Content Rating"
+msgstr "Etter rangering"
+
+msgid "By Country"
+msgstr "Etter land"
+
+msgid "By First Letter"
+msgstr "Etter første bokstav"
+
+msgid "By Folder"
+msgstr "Etter mappe"
+
+msgid "By Rating"
+msgstr "Etter rangering"
+
+msgid "By Resolution"
+msgstr "Etter oppløsning"
+
+msgid "By Year"
+msgstr "Etter år"
+
+msgid "Channels"
+msgstr "Kanaler"
+
+msgid "Clock Position"
+msgstr "Klokkeposisjon"
+
+msgid "Collections"
+msgstr "Samlinger"
+
+msgid "Decades"
+msgstr "Tiår"
+
+msgid "Details"
+msgstr "Detaljer"
+
+msgid "Director"
+msgstr "Regissør"
+
+msgid "Directors"
+msgstr "Regissører"
+
+msgid "Discover"
+msgstr "Oppdag"
+
+msgid "Episodes"
+msgstr "Episoder"
+
+msgid "Force Direct Play"
+msgstr "Tving direkteavspilling"
+
+msgid "Force Transcode"
+msgstr "Tving transkoding"
+
+msgid "Forum"
+msgstr "Forum"
+
+msgid "Genre"
+msgstr "Sjanger"
+
+msgid "Genres"
+msgstr "Sjangre"
+
+msgid "Homepage"
+msgstr "Nettside"
+
+msgid "Length"
+msgstr "Lengde"
+
+msgid "Library"
+msgstr "Bibliotek"
+
+msgid "More"
+msgstr "Mer"
+
+msgid "More..."
+msgstr "Mer..."
+
+msgid "Movie Navigation Bar"
+msgstr "Navigasjonsfelt for filmer"
+
+msgid "Movie Options"
+msgstr "Filminnstillinger"
+
+msgid "Movie View"
+msgstr "Filmvisning"
+
+msgid "Movies"
+msgstr "Filmer"
+
+msgid "No Seasons"
+msgstr "Ingen sesonger"
+
+msgid "No Unwatched Movies"
+msgstr "Ingen usette filmer"
+
+msgid "No Unwatched Shows"
+msgstr "ingen usette show"
+
+msgid "No Unwatched Shows."
+msgstr "Ingen usette show."
+
+msgid "No episodes"
+msgstr "Ingen episoder"
+
+msgid "On Deck"
+msgstr "Pågående"
+
+msgid "Overscan Adjust"
+msgstr "Justér overscan"
+
+msgid "PMS"
+msgstr "PMS"
+
+msgid "Photo"
+msgstr "Bilde"
+
+msgid "Play"
+msgstr "Spill av"
+
+msgid "Plex Media Server"
+msgstr "Plex Media Server"
+
+msgid "Plex Media Server: No Channels Available"
+msgstr "Plex Media Server: Ingen kanaler tilgjengelig"
+
+msgid "Plex Media Server: No Items Available"
+msgstr "Plex Media Server: Ingen elementer tilgjengelig"
+
+msgid "Producers"
+msgstr "Produsenter"
+
+msgid "Recently Added"
+msgstr "Nylig lagt til"
+
+msgid "Recently Aired"
+msgstr "Nylig vist"
+
+msgid "Recently Released"
+msgstr "Nylig utgitt"
+
+msgid "Recently Viewed"
+msgstr "Nylig sett"
+
+msgid "Recently Viewed Shows"
+msgstr "Nylige viste show"
+
+msgid "Refresh Library"
+msgstr "Oppdater bibliotek"
+
+msgid "Search"
+msgstr "Søk"
+
+msgid "Search Plex Library"
+msgstr "Søk i Plexbiblioteket"
+
+msgid "Season"
+msgstr "Sesong"
+
+msgid "Season View"
+msgstr "Sesongvisning"
+
+msgid "Settings"
+msgstr "Innstillinger"
+
+msgid "Show Clock"
+msgstr "Vis klokke"
+
+msgid "Show End Time"
+msgstr "Vis sluttid"
+
+msgid "Show Photos"
+msgstr "Vis vilder"
+
+msgid "Show Unwatched Count"
+msgstr "Vis antall usette elementer"
+
+msgid "Shows"
+msgstr "Programmer"
+
+msgid "SlideShow"
+msgstr "Lysbildefremvisning"
+
+msgid "Subtitle Size %"
+msgstr "Undertekststørrelse i %"
+
+msgid "TV Show Navigation Bar"
+msgstr "Navigasjonsfelt for TV-program"
+
+msgid "TV Show Options"
+msgstr "Instillinger for TV-program"
+
+msgid "TV Show View"
+msgstr "TV-programvisning"
+
+msgid "Time Format"
+msgstr "Tidsformat"
+
+msgid "Transcoder"
+msgstr "Transkoder"
+
+msgid "Transcoder Quality"
+msgstr "Transkoderkvalitet"
+
+msgid "Unwatched"
+msgstr "Usette"
+
+msgid "Version"
+msgstr "Versjon"
+
+msgid "Video"
+msgstr "Video"
+
+msgid "Video Player OSD"
+msgstr "Skjermvisning"
+
+msgid "Wiki/Docs"
+msgstr "Wiki/Dokumentasjon"
+
+msgid "Writers"
+msgstr "Manusforfattere"
+
+msgid ""
+"Your aTV firmware version is too old to run this version of PlexConnect.\n"
+"Please use the v0.1-iOS-pre5.1 branch available from:-\n"
+"https://github.com/iBaa/PlexConnect"
+msgstr ""
+"Programvaren på din aTV er for gammel til å kjøre denne versjonen av "
+"PlexConnect.\n"
+"Vennligst bruk 'v0.1-iOS-pre5.1'-grenen tilgjengelig på:-\n"
+"https://github.com/iBaa/PlexConnect"
+
+msgid "aTV firmware version 5.0.2 or lower."
+msgstr "aTV-programvareversjon 5.0.2 eller lavere"
