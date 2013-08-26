@@ -7,7 +7,7 @@
             <title>{{TEXT(Search Plex Library)}}</title>
           </simpleHeader>
         </header>
-      <baseURL>http://atv.plexconnect/search?type=4&amp;query=</baseURL>
+      <baseURL>{{URL(:/search?type=4&amp;query=)}}</baseURL>
     </search>
   </body>
 </atv>

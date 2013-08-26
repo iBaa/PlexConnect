@@ -113,6 +113,9 @@ msgstr ""
 msgid "Library"
 msgstr ""
 
+msgid "Library Refresh in Progress."
+msgstr ""
+
 msgid "More"
 msgstr ""
 
@@ -168,6 +171,9 @@ msgid "Plex Media Server: No Channels Available"
 msgstr ""
 
 msgid "Plex Media Server: No Items Available"
+msgstr ""
+
+msgid "Press menu to return."
 msgstr ""
 
 msgid "Producers"
@@ -272,3 +278,14 @@ msgstr ""
 msgid "aTV firmware version 5.0.2 or lower."
 msgstr ""
 
+msgid "{0:0d}x{1:02d} {2}"
+msgstr ""
+
+msgid "{0:d} Minutes"
+msgstr ""
+
+msgid "{0:d}hr {1:d}min"
+msgstr ""
+
+msgid "{0} unwatched"
+msgstr ""

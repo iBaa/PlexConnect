@@ -27,6 +27,8 @@ import string, cgi, time
 import copy  # deepcopy()
 from os import sep
 import httplib, socket
+import re
+from operator import itemgetter
 
 try:
     import xml.etree.cElementTree as etree
@@ -250,11 +252,22 @@ def XML_PMS2aTV(address, path, options):
     cmd = ''
     if 'PlexConnect' in options:
         cmd = options['PlexConnect']
+    dprint(__name__, 1, "PlexConnect Cmd: "+cmd)
+    
     if not 'PlexConnectUDID' in options:
         dprint(__name__, 1, "no PlexConnectUDID - pick 007")
         options['PlexConnectUDID'] = '007'
     
-    dprint(__name__, 1, "PlexConnect Cmd: "+cmd)
+    options['aTVLanguage'] = 'en'
+    if 'aTVLanguages' in options:
+        languages = re.findall('(\w{2}(?:[-_]\w{2})?)(?:;q=(\d+(?:\.\d+)?))?', options['aTVLanguages'])
+        languages = [(lang.replace('-', '_'), float(quot) if quot else 1.) for (lang, quot) in languages]
+        languages = sorted(languages, key=itemgetter(1), reverse=True)
+        for lang, quot in languages:
+            if os.path.exists(os.path.join(sys.path[0], 'assets', 'locales', lang, 'plexconnect.mo')):
+                options['aTVLanguage'] = lang
+                break
+    dprint(__name__, 1, "aTVLanguage: "+options['aTVLanguage'])
     
     # XML Template selector
     # - PlexConnect command
@@ -818,8 +831,7 @@ class CCommandHelper():
         return val
     
     def _(self, msgid):
-        language = g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'language')
-        return getTranslation(language).ugettext(msgid)
+        return getTranslation(self.options['aTVLanguage']).ugettext(msgid)
 
 
 
@@ -1044,7 +1056,7 @@ class CCommandCollection(CCommandHelper):
         parentIndex, leftover, dfltd = self.getKey(src, srcXML, param)  # getKey "defaults" if nothing found.
         index, leftover, dfltd = self.getKey(src, srcXML, leftover)
         title, leftover, dfltd = self.getKey(src, srcXML, leftover)
-        out = "{0:0d}x{1:02d} ".format(int(parentIndex), int(index)) + title
+        out = self._("{0:0d}x{1:02d} {2}").format(int(parentIndex), int(index), title)
         return out
     
     def ATTRIB_sendToATV(self, src, srcXML, param):
@@ -1065,8 +1077,8 @@ class CCommandCollection(CCommandHelper):
             min = int(duration)/1000/60
             hour = min/60
             min = min%60
-            if hour == 0: return "%d Minutes" % (min)
-            else: return "%dhr %dmin" % (hour, min)            
+            if hour == 0: return self._("{0:d} Minutes").format(min)
+            else: return self._("{0:d}hr {1:d}min").format(hour, min)
             
         return ""
     
@@ -1088,7 +1100,7 @@ class CCommandCollection(CCommandHelper):
         total, leftover, dfltd = self.getKey(src, srcXML, param)
         viewed, leftover, dfltd = self.getKey(src, srcXML, leftover)
         unwatched = int(total) - int(viewed)
-        if unwatched > 0: return str(unwatched) + " unwatched"
+        if unwatched > 0: return self._("{0} unwatched").format(unwatched)
         else: return ""
     
     def ATTRIB_TEXT(self, src, srcXML, param):
