@@ -38,7 +38,7 @@ options = { \
     'clockposition'     :('Center', 'Right', 'Left'), \
     'showendtime'       :('True', 'False'), \
     'timeformat'        :('24 Hour', '12 Hour'), \
-    'language'          :('en_US', 'zh_TW', 'nb_NO' ), \
+    'language'          :('en_US', 'nb_NO', 'zh_TW' ), \
     'pms_uuid'          :('*', ), \
     }
     
