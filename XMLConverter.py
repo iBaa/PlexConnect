@@ -27,6 +27,8 @@ import string, cgi, time
 import copy  # deepcopy()
 from os import sep
 import httplib, socket
+import re
+from operator import itemgetter
 
 try:
     import xml.etree.cElementTree as etree
@@ -250,11 +252,22 @@ def XML_PMS2aTV(address, path, options):
     cmd = ''
     if 'PlexConnect' in options:
         cmd = options['PlexConnect']
+    dprint(__name__, 1, "PlexConnect Cmd: "+cmd)
+    
     if not 'PlexConnectUDID' in options:
         dprint(__name__, 1, "no PlexConnectUDID - pick 007")
         options['PlexConnectUDID'] = '007'
     
-    dprint(__name__, 1, "PlexConnect Cmd: "+cmd)
+    options['aTVLanguage'] = 'en'
+    if 'aTVLanguages' in options:
+        languages = re.findall('(\w{2}(?:[-_]\w{2})?)(?:;q=(\d+(?:\.\d+)?))?', options['aTVLanguages'])
+        languages = [(lang.replace('-', '_'), float(quot) if quot else 1.) for (lang, quot) in languages]
+        languages = sorted(languages, key=itemgetter(1), reverse=True)
+        for lang, quot in languages:
+            if os.path.exists(os.path.join(sys.path[0], 'assets', 'locales', lang, 'plexconnect.mo')):
+                options['aTVLanguage'] = lang
+                break
+    dprint(__name__, 1, "aTVLanguage: "+options['aTVLanguage'])
     
     # XML Template selector
     # - PlexConnect command
@@ -818,8 +831,7 @@ class CCommandHelper():
         return val
     
     def _(self, msgid):
-        language = g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'language')
-        return getTranslation(language).ugettext(msgid)
+        return getTranslation(self.options['aTVLanguage']).ugettext(msgid)
 
 
 

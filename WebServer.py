@@ -70,7 +70,10 @@ class MyHandler(BaseHTTPRequestHandler):
                     options[parts[0]] = ''
                 else:
                     options[parts[0]] = urllib.unquote(parts[1])
-                    
+            
+            # get aTV language setting
+            options['aTVLanguages'] = self.headers.get('Accept-Language', 'en')
+            
             dprint(__name__, 2, "cleaned path:\n{0}", self.path)
             dprint(__name__, 2, "request options:\n{0}", options)
             
