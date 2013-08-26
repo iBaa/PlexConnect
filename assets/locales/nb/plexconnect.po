@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-25 08:50+0800\n"
-"PO-Revision-Date: 2013-08-26 12:33+0100\n"
+"PO-Revision-Date: 2013-08-26 23:05+0100\n"
 "Last-Translator: Martin Aronsen <martin.aro@gmail.com>\n"
 "Language-Team: Martin Aronsen <martin.aro@gmail.com>\n"
+"Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
-"Language: nb\n"
 
 msgid "Actor View"
 msgstr "Skuespillervisning"
@@ -114,6 +114,9 @@ msgstr "Lengde"
 msgid "Library"
 msgstr "Bibliotek"
 
+msgid "Library Refresh in Progress."
+msgstr "Bibliotekoppdatering pågår."
+
 msgid "More"
 msgstr "Mer"
 
@@ -170,6 +173,9 @@ msgstr "Plex Media Server: Ingen kanaler tilgjengelig"
 
 msgid "Plex Media Server: No Items Available"
 msgstr "Plex Media Server: Ingen elementer tilgjengelig"
+
+msgid "Press menu to return."
+msgstr "Trykk på menyknappen for å gå tilbake."
 
 msgid "Producers"
 msgstr "Produsenter"
@@ -276,3 +282,15 @@ msgstr ""
 
 msgid "aTV firmware version 5.0.2 or lower."
 msgstr "aTV-programvareversjon 5.0.2 eller lavere"
+
+msgid "{0:0d}x{1:02d} {2}"
+msgstr "{0:0d}x{1:02d} {2}"
+
+msgid "{0:d} Minutes"
+msgstr "{0:d} minutter."
+
+msgid "{0:d}hr {1:d}min"
+msgstr "{0:d}t {1:d}min"
+
+msgid "{0} unwatched"
+msgstr "{0} usette"
