@@ -12,6 +12,9 @@ import sys
 import string, cgi, time
 from os import sep
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+from threading import Thread
+from SocketServer import ThreadingMixIn
+import ssl
 from multiprocessing import Pipe  # inter process communication
 import urllib
 import signal
@@ -99,7 +102,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     self.wfile.write(f.read())
                     f.close()
                     return
-                
+
                 # serve all other .js files to aTV
                 if self.path.endswith(".js"):
                     dprint(__name__, 1, "serving  " + sys.path[0] + sep + "assets" + self.path.replace('/',sep))
@@ -154,6 +157,9 @@ class MyHandler(BaseHTTPRequestHandler):
             self.send_error(404,"File Not Found: %s" % self.path)
 
 
+class ThreadingHTTPServer(ThreadingMixIn, HTTPServer):
+    pass
+
 
 def Run(cmdPipe, param):
     if not __name__ == '__main__':
@@ -163,16 +169,26 @@ def Run(cmdPipe, param):
     
     cfg_IP_WebServer = param['CSettings'].getSetting('ip_webserver')
     cfg_Port_WebServer = param['CSettings'].getSetting('port_webserver')
+    cfg_Port_SSL = param['CSettings'].getSetting('port_ssl')
     try:
-        server = HTTPServer((cfg_IP_WebServer,int(cfg_Port_WebServer)), MyHandler)
+        server_ssl = ThreadingHTTPServer((cfg_IP_WebServer,int(cfg_Port_SSL)), MyHandler)
+        server = ThreadingHTTPServer((cfg_IP_WebServer,int(cfg_Port_WebServer)), MyHandler)
+        certfile = param['CSettings'].getSetting('certfile')
+        server_ssl.socket = ssl.wrap_socket(server_ssl.socket, certfile=certfile, server_side=True)
+
         server.timeout = 1
+        server_ssl.timeout = 1
         sa = server.socket.getsockname()
+        sa_ssl = server_ssl.socket.getsockname()
+        http_thread = Thread(target=server.serve_forever).start()
+        ssl_thread = Thread(target=server_ssl.serve_forever).start()
     except Exception, e:
         dprint(__name__, 0, "Failed to connect to HTTP on {0} port {1}: {2}", cfg_IP_WebServer, cfg_Port_WebServer, e)
         sys.exit(1)
         
     dprint(__name__, 0, "***")
     dprint(__name__, 0, "WebServer: Serving HTTP on {0} port {1}.", sa[0], sa[1])
+    dprint(__name__, 0, "WebServer: Serving HTTPS on {0} port {1}.", sa_ssl[0], sa_ssl[1])
     dprint(__name__, 0, "***")
     
     setParams(param)
@@ -180,17 +196,17 @@ def Run(cmdPipe, param):
     cfg = ATVSettings.CATVSettings()
     XMLConverter.setATVSettings(cfg)
     XMLConverter.discoverPMS()
+
     
     try:
+
         while True:
             # check command
             if cmdPipe.poll():
                 cmd = cmdPipe.recv()
                 if cmd=='shutdown':
                     break
-            
-            # do your work (with timeout)
-            server.handle_request()
+            time.sleep(1)
     
     except KeyboardInterrupt:
         signal.signal(signal.SIGINT, signal.SIG_IGN)  # we heard you!
@@ -199,7 +215,8 @@ def Run(cmdPipe, param):
         dprint(__name__, 0, "Shutting down.")
         cfg.saveSettings()
         del cfg
-        server.socket.close()
+        server.shutdown()
+        server_ssl.shutdown()
 
 
 
