@@ -12,6 +12,7 @@ import sys
 import string, cgi, time
 from os import sep
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+import ssl
 from multiprocessing import Pipe  # inter process communication
 import urllib
 import signal
@@ -163,16 +164,24 @@ def Run(cmdPipe, param):
     
     cfg_IP_WebServer = param['CSettings'].getSetting('ip_webserver')
     cfg_Port_WebServer = param['CSettings'].getSetting('port_webserver')
+    cfg_Port_SSL = param['CSettings'].getSetting('port_ssl')
     try:
+        server_ssl = HTTPServer((cfg_IP_WebServer,int(cfg_Port_SSL)), MyHandler)
         server = HTTPServer((cfg_IP_WebServer,int(cfg_Port_WebServer)), MyHandler)
+        certfile = param['CSettings'].getSetting('certfile')
+        server_ssl.socket = ssl.wrap_socket(server_ssl.socket, certfile=certfile, server_side=True)
+
         server.timeout = 1
+        server_ssl.timeout = 1
         sa = server.socket.getsockname()
+        sa_ssl = server_ssl.socket.getsockname()
     except Exception, e:
         dprint(__name__, 0, "Failed to connect to HTTP on {0} port {1}: {2}", cfg_IP_WebServer, cfg_Port_WebServer, e)
         sys.exit(1)
         
     dprint(__name__, 0, "***")
     dprint(__name__, 0, "WebServer: Serving HTTP on {0} port {1}.", sa[0], sa[1])
+    dprint(__name__, 0, "WebServer: Serving HTTPS on {0} port {1}.", sa_ssl[0], sa_ssl[1])
     dprint(__name__, 0, "***")
     
     setParams(param)
@@ -190,6 +199,7 @@ def Run(cmdPipe, param):
                     break
             
             # do your work (with timeout)
+            server_ssl.handle_request()
             server.handle_request()
     
     except KeyboardInterrupt:
@@ -200,6 +210,7 @@ def Run(cmdPipe, param):
         cfg.saveSettings()
         del cfg
         server.socket.close()
+        server_ssl.socket.close()
 
 
 
