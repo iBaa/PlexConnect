@@ -206,6 +206,7 @@ def Run(cmdPipe, param):
                 cmd = cmdPipe.recv()
                 if cmd=='shutdown':
                     break
+            time.sleep(1)
     
     except KeyboardInterrupt:
         signal.signal(signal.SIGINT, signal.SIG_IGN)  # we heard you!
