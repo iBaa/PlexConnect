@@ -471,5 +471,6 @@ if __name__ == '__main__':
     
     param['IP_self'] = '192.168.178.20'
     param['HostToIntercept'] = 'trailers.apple.com'
+    param['HostOfPlexConnect'] = 'atv.plexconnect'
     
     Run(cmdPipe[1], param)
