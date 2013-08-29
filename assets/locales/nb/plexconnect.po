@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-25 08:50+0800\n"
-"PO-Revision-Date: 2013-08-26 23:05+0100\n"
+"PO-Revision-Date: 2013-08-29 02:32+0100\n"
 "Last-Translator: Martin Aronsen <martin.aro@gmail.com>\n"
 "Language-Team: Martin Aronsen <martin.aro@gmail.com>\n"
 "Language: nb\n"
@@ -22,7 +22,7 @@ msgid "All Movies"
 msgstr "Alle Filmer"
 
 msgid "All Shows"
-msgstr "Alle TV-program"
+msgstr "Alle TV-programmer"
 
 msgid "Appearance"
 msgstr "Utseende"
@@ -37,7 +37,7 @@ msgid "Audio/Subs"
 msgstr "Lyd/Undertekst"
 
 msgid "Authors"
-msgstr "Forfattere"
+msgstr "Utviklere"
 
 msgid "By Collection"
 msgstr "Etter samling"
@@ -142,10 +142,10 @@ msgid "No Unwatched Movies"
 msgstr "Ingen usette filmer"
 
 msgid "No Unwatched Shows"
-msgstr "ingen usette show"
+msgstr "ingen usette TV-programmer"
 
 msgid "No Unwatched Shows."
-msgstr "Ingen usette show."
+msgstr "Ingen usette TV-programmer."
 
 msgid "No episodes"
 msgstr "Ingen episoder"
@@ -238,7 +238,7 @@ msgid "TV Show Navigation Bar"
 msgstr "Navigasjonsfelt for TV-program"
 
 msgid "TV Show Options"
-msgstr "Instillinger for TV-program"
+msgstr "Innstillinger for TV-program"
 
 msgid "TV Show View"
 msgstr "TV-programvisning"
