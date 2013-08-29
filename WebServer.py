@@ -186,8 +186,8 @@ def Run(cmdPipe, param):
         server_ssl.socket = ssl.wrap_socket(server_ssl.socket, certfile=certfile, server_side=True)
         server_ssl.timeout = 1
         thread_ssl = Thread(target=server_ssl.serve_forever).start()
-    except:
-        dprint(__name__, 0, "Failed to connect to HTTPS on {0} port {1}: {2}", cfg_IP_WebServer, cfg_Port_ssl, e)
+    except Exception, e:
+        dprint(__name__, 0, "Failed to connect to HTTPS on {0} port {1}: {2}", cfg_IP_WebServer, cfg_Port_SSL, e)
         server.shutdown()
         sys.exit(1)
     
