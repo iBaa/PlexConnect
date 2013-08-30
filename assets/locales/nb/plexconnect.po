@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-25 08:50+0800\n"
-"PO-Revision-Date: 2013-08-29 02:32+0100\n"
+"PO-Revision-Date: 2013-08-30 13:41+0100\n"
 "Last-Translator: Martin Aronsen <martin.aro@gmail.com>\n"
 "Language-Team: Martin Aronsen <martin.aro@gmail.com>\n"
 "Language: nb\n"
@@ -34,7 +34,7 @@ msgid "Audio Boost %"
 msgstr "Lydforsterking i %"
 
 msgid "Audio/Subs"
-msgstr "Lyd/Undertekst"
+msgstr "Lyd/Teksting"
 
 msgid "Authors"
 msgstr "Utviklere"
@@ -82,7 +82,7 @@ msgid "Director"
 msgstr "Regissør"
 
 msgid "Directors"
-msgstr "Regissører"
+msgstr "Regi"
 
 msgid "Discover"
 msgstr "Oppdag"
@@ -193,7 +193,7 @@ msgid "Recently Viewed"
 msgstr "Nylig sett"
 
 msgid "Recently Viewed Shows"
-msgstr "Nylige viste show"
+msgstr "Nylig viste programmer"
 
 msgid "Refresh Library"
 msgstr "Oppdater bibliotek"
@@ -220,7 +220,7 @@ msgid "Show End Time"
 msgstr "Vis sluttid"
 
 msgid "Show Photos"
-msgstr "Vis vilder"
+msgstr "Vis bilder"
 
 msgid "Show Unwatched Count"
 msgstr "Vis antall usette elementer"
@@ -235,10 +235,10 @@ msgid "Subtitle Size %"
 msgstr "Undertekststørrelse i %"
 
 msgid "TV Show Navigation Bar"
-msgstr "Navigasjonsfelt for TV-program"
+msgstr "Navigasjonsfelt for TV-programmer"
 
 msgid "TV Show Options"
-msgstr "Innstillinger for TV-program"
+msgstr "Innstillinger for TV-programmer"
 
 msgid "TV Show View"
 msgstr "TV-programvisning"
