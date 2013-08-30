@@ -26,6 +26,7 @@ g_settings = { \
     'prevent_atv_update'           :('True', 'False'), \
     \
     'enable_plexconnect_autodetect':('True', 'False'), \
+    'wait_for_plex':('True', 'False'), \
     'ip_plexconnect'  :('0.0.0.0',), \
     \
     'ip_webserver'    :('0.0.0.0',), \

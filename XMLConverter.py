@@ -232,6 +232,11 @@ def discoverPMS():
     
     else:
         PMS_list = PlexGDM.Run()
+        if g_param['CSettings'].getSetting('wait_for_plex')=='True':
+            while len(PMS_list)==0:
+	                dprint(__name__, 0, "PlexGDM - no PMS found - Waiting 15 seconds for Plex")
+	                time.sleep(15)
+                        PMS_list = PlexGDM.Run()
         opts = ()
         for PMS_uuid in PMS_list.keys():
             opts = opts + (PMS_uuid, )
