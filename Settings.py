@@ -14,6 +14,7 @@ PMS: plexgdm, ip_pms, port_pms
 DNS: ip_dnsmaster - IP of Router, ISP's DNS, ... [dflt: google public DNS]
 IP_self: enable_plexconnect_autodetect, ip_plexconnect - manual override for VPN usage
 HTTP: ip_webserver, port_webserver - override when using webserver + forwarding to PlexConnect
+HTTPS: port_ssl, certfile - 
 """
 g_settings = { \
     'enable_plexgdm'  :('True', 'False'), \
@@ -29,6 +30,8 @@ g_settings = { \
     \
     'ip_webserver'    :('0.0.0.0',), \
     'port_webserver'  :('80',), \
+    'port_ssl'        :('443',), \
+    'certfile'        :('./assets/certificates/trailers.pem',), \
     \
     'loglevel'        :('Normal', 'High'), \
     'logpath'         :('.',), \

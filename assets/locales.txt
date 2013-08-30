@@ -1,5 +1,6 @@
 a big "thanks" for the translations to...
 
+de    - Dennis Oderwald <oderwald@comyo-media.de>
 en    - Grey Lee <bcse@bcse.tw> (default - no change from source code)
-no    - Martin Aronsen <martin.aro@gmail.com>
+nb    - Martin Aronsen <martin.aro@gmail.com>
 zh_TW - Grey Lee <bcse@bcse.tw>

@@ -52,6 +52,13 @@
                   <link>{{URL(key)}}/contentRating?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
                 </preview>
               </oneLineMenuItem>
+              
+              <oneLineMenuItem id="firstCharacter" onPlay="atv.loadURL('{{URL(key)}}/firstCharacter&amp;PlexConnect=DirectoryWithPreview')" onSelect="atv.loadURL('{{URL(key)}}/firstCharacter&amp;PlexConnect=DirectoryWithPreview')">
+                <label>{{TEXT(By First Letter)}}</label>
+                <preview>
+                  <link>{{URL(key)}}/firstCharacter?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
+                </preview>
+              </oneLineMenuItem>
 
               <oneLineMenuItem id="folder" onPlay="atv.loadURL('{{URL(key)}}/folder&amp;PlexConnect=ByFolder')" onSelect="atv.loadURL('{{URL(key)}}/folder&amp;PlexConnect=ByFolder')">
                 <label>{{TEXT(By Folder)}}</label>
