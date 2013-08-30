@@ -232,6 +232,11 @@ def discoverPMS():
     
     else:
         PMS_list = PlexGDM.Run()
+        if g_param['CSettings'].getSetting('wait_for_plex')=='True':
+            while len(PMS_list)==0:
+	                dprint(__name__, 0, "PlexGDM - no PMS found - Waiting 15 seconds for Plex")
+	                time.sleep(15)
+                        PMS_list = PlexGDM.Run()
         opts = ()
         for PMS_uuid in PMS_list.keys():
             opts = opts + (PMS_uuid, )
@@ -359,7 +364,11 @@ def XML_PMS2aTV(address, path, options):
     elif cmd=='SettingsTVShows':
         XMLtemplate = 'Settings_TVShows.xml'
         path = ''  # clear path - we don't need PMS-XML
-        
+    
+    elif cmd=='SettingsMyPlex':
+    	XMLtemplate = 'Settings_MyPlex.xml'
+    	path = ''  # clear path - we don't need PMS-XML
+            
     elif cmd.startswith('SettingsToggle:'):
         opt = cmd[len('SettingsToggle:'):]  # cut command:
         parts = opt.split('+')
@@ -377,7 +386,7 @@ def XML_PMS2aTV(address, path, options):
         
     elif path.startswith('/search?'):
         XMLtemplate = 'Search_Results.xml'
-    
+        
     # determine PMS address
     PMS_list = g_param['PMS_list']
     PMS_uuid = g_ATVSettings.getSetting(options['PlexConnectUDID'], 'pms_uuid')

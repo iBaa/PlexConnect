@@ -112,6 +112,22 @@
               </oneLineMenuItem>
             </items>
           </menuSection>
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+	        <title>{{TEXT(MyPlex)}}</title>
+              </horizontalDivider>
+            </header>
+            <items>
+              <oneLineMenuItem id="MyPlex" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsMyPlex')">
+	        <label>{{TEXT(MyPlex)}}</label>
+	        <accessories>
+	          <arrow/>
+	    	</accessories>
+	      </oneLineMenuItem>
+	    </items>
+
+          </menuSection>
         </sections>
       </menu>
     </listWithPreview>

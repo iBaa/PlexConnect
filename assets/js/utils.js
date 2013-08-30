@@ -77,6 +77,37 @@ function loadMenuPage(event)
     req.send();
 };
 
+/*
+ * display dialog to user
+ */
+atv.showDialog = function(message, description)
+{
+    var dialogXML = '<?xml version="1.0" encoding="UTF-8"?> \
+                    <atv> \
+                    <body> \
+                    <dialog id="com.plexconnect.dialog"> \
+                    <title><![CDATA[' + message + ']]></title> \
+ 	            <description><![CDATA[' + description + ']]></description> \
+                    </dialog> \
+                    </body> \
+                    </atv>';
+ 
+    atv.loadXML(atv.parseXML(dialogXML));
+};
+
+/*
+ * create a text input page.
+ */
+atv.showInputTextPage = function(input_type, input_title, input_instructions, callback, defaultvalue)
+{
+    var textEntry = new atv.TextEntry();
+    textEntry.type = input_type;
+    textEntry.title = input_title;
+    textEntry.instructions = input_instructions;
+    textEntry.defaultValue = defaultvalue;
+    textEntry.onSubmit = callback;
+    textEntry.show();
+};
 
 
 /*
