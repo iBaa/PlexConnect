@@ -77,6 +77,9 @@ function loadMenuPage(event)
     req.send();
 };
 
+/*
+ * display dialog to user
+ */
 atv.showDialog = function(message, description)
 {
     var dialogXML = '<?xml version="1.0" encoding="UTF-8"?> \
@@ -91,7 +94,10 @@ atv.showDialog = function(message, description)
  
     atv.loadXML(atv.parseXML(dialogXML));
 };
- 
+
+/*
+ * create a text input page.
+ */
 atv.showInputTextPage = function(input_type, input_title, input_instructions, callback, defaultvalue)
 {
     var textEntry = new atv.TextEntry();
@@ -103,10 +109,6 @@ atv.showInputTextPage = function(input_type, input_title, input_instructions, ca
     textEntry.show();
 };
 
-function testval(keyword)
-{
-    atv.showDialog("test", keyword);
-};
 
 /*
  * override stock atv.loadURL() function, adding UDID if directed to PlexConnect
@@ -143,5 +145,3 @@ atv.loadAndSwapURL = function(url)
     
     iOS_atv_loadAndSwapURL(url);
 };
-
-atv.show
