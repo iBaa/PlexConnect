@@ -31,6 +31,7 @@ g_settings = { \
     'ip_webserver'    :('0.0.0.0',), \
     'port_webserver'  :('80',), \
     'port_ssl'        :('443',), \
+    'port_dns_server' :('53',), \
     'certfile'        :('./assets/certificates/trailers.pem',), \
     \
     'loglevel'        :('Normal', 'High'), \
