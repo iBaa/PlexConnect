@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-25 08:50+0800\n"
-"PO-Revision-Date: 2013-08-30 13:41+0100\n"
+"POT-Creation-Date: 2013-08-31 12:11:14+0000\n"
+"PO-Revision-Date: 2013-09-01 01:26+0100\n"
 "Last-Translator: Martin Aronsen <martin.aro@gmail.com>\n"
 "Language-Team: Martin Aronsen <martin.aro@gmail.com>\n"
 "Language: nb\n"
@@ -32,6 +32,9 @@ msgstr "Lyd"
 
 msgid "Audio Boost %"
 msgstr "Lydforsterking i %"
+
+msgid "Audio Track"
+msgstr "Lydspor"
 
 msgid "Audio/Subs"
 msgstr "Lyd/Teksting"
@@ -63,6 +66,9 @@ msgstr "Etter oppløsning"
 msgid "By Year"
 msgstr "Etter år"
 
+msgid "Change Artwork"
+msgstr "Bytt filmplakat"
+
 msgid "Channels"
 msgstr "Kanaler"
 
@@ -71,6 +77,9 @@ msgstr "Klokkeposisjon"
 
 msgid "Collections"
 msgstr "Samlinger"
+
+msgid "Current Artwork"
+msgstr "Valgt filmplakat"
 
 msgid "Decades"
 msgstr "Tiår"
@@ -86,6 +95,9 @@ msgstr "Regi"
 
 msgid "Discover"
 msgstr "Oppdag"
+
+msgid "Episode"
+msgstr "Episode"
 
 msgid "Episodes"
 msgstr "Episoder"
@@ -117,11 +129,20 @@ msgstr "Bibliotek"
 msgid "Library Refresh in Progress."
 msgstr "Bibliotekoppdatering pågår."
 
+msgid "Mark as Unwatched"
+msgstr "Merk som usett"
+
+msgid "Mark as Watched"
+msgstr "Merk som sett"
+
 msgid "More"
 msgstr "Mer"
 
 msgid "More..."
 msgstr "Mer..."
+
+msgid "Movie"
+msgstr "Filme"
 
 msgid "Movie Navigation Bar"
 msgstr "Navigasjonsfelt for filmer"
@@ -150,8 +171,14 @@ msgstr "Ingen usette TV-programmer."
 msgid "No episodes"
 msgstr "Ingen episoder"
 
+msgid "None"
+msgstr "Ingen"
+
 msgid "On Deck"
 msgstr "Pågående"
+
+msgid "On Deck Episode"
+msgstr "Pågående episode"
 
 msgid "Overscan Adjust"
 msgstr "Justér overscan"
@@ -186,6 +213,9 @@ msgstr "Nylig lagt til"
 msgid "Recently Aired"
 msgstr "Nylig vist"
 
+msgid "Recently Aired Episode"
+msgstr "Nylig vist episode"
+
 msgid "Recently Released"
 msgstr "Nylig utgitt"
 
@@ -210,8 +240,17 @@ msgstr "Sesong"
 msgid "Season View"
 msgstr "Sesongvisning"
 
+msgid "Select Artwork"
+msgstr "Velg filmplakat"
+
+msgid "Select Tracks"
+msgstr "Velg spor"
+
 msgid "Settings"
 msgstr "Innstillinger"
+
+msgid "Show"
+msgstr "TV-program"
 
 msgid "Show Clock"
 msgstr "Vis klokke"
@@ -233,6 +272,9 @@ msgstr "Lysbildefremvisning"
 
 msgid "Subtitle Size %"
 msgstr "Undertekststørrelse i %"
+
+msgid "Subtitle Track"
+msgstr "Undertekstspor"
 
 msgid "TV Show Navigation Bar"
 msgstr "Navigasjonsfelt for TV-programmer"
@@ -263,6 +305,9 @@ msgstr "Video"
 
 msgid "Video Player OSD"
 msgstr "Skjermvisning"
+
+msgid "View Show"
+msgstr "Vis TV-program"
 
 msgid "Wiki/Docs"
 msgstr "Wiki/Dokumentasjon"
