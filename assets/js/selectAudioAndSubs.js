@@ -42,10 +42,28 @@ function log(msg)
  * Build Audio/Subtitle menu
  */
 function selectAudioAndSubs(addrPMS, ratingKey) {
-	var xmlstr = '<?xml version="1.0" encoding="UTF-8"?><atv><head><script src="http://atv.plexconnect/js/selectAudioAndSubs.js"/></head> \
-                <body><optionDialog id="optionDialog"><header><simpleHeader><title>Select Tracks</title></simpleHeader></header> \
-								<menu><sections><menuSection><header><horizontalDivider alignment="center"><title>Audio Track</title></horizontalDivider> \
-								</header><items>';
+  var xmlstr =
+'<?xml version="1.0" encoding="UTF-8"?> \
+<atv> \
+  <head> \
+    <script src="http://atv.plexconnect/js/selectAudioAndSubs.js"/> \
+  </head> \
+  <body> \
+    <optionDialog id="optionDialog"> \
+      <header> \
+        <simpleHeader> \
+          <title>{{TEXT(Select Tracks)}}</title> \
+        </simpleHeader> \
+      </header> \
+      <menu> \
+        <sections> \
+          <menuSection> \
+            <header> \
+              <horizontalDivider alignment="center"> \
+                <title>{{TEXT(Audio Track)}}</title> \
+              </horizontalDivider> \
+            </header> \
+            <items>';
 
 	var streams = document.evaluateXPath('//stream');
   
@@ -54,17 +72,33 @@ function selectAudioAndSubs(addrPMS, ratingKey) {
     var stream = streams[i]
     if (stream.getElementByTagName('streamType').textContent == '2')
     { 
-      xmlstr = xmlstr + '<oneLineMenuItem id="audio' + i.toString() + '" onSelect="selectAudioStream(\'' + addrPMS + '\', \'' + ratingKey + '\', ' + stream.getElementByTagName('id').textContent + '); toggleAudioCheck(\'' + i.toString() + '\')">';
-      xmlstr = xmlstr + '<label>' + stream.getElementByTagName('language').textContent + ' (' + stream.getElementByTagName('codec').textContent + ')</label>';
-			if (stream.getElementByTagName('selected').textContent == '1')
-			{
-				xmlstr = xmlstr + '<accessories><checkMark/></accessories>';
-			}
-      xmlstr = xmlstr + '</oneLineMenuItem>';
+      xmlstr = xmlstr + '\
+                <oneLineMenuItem id="audio' + i.toString() + '" onSelect="selectAudioStream(\'' + addrPMS + '\', \'' + ratingKey + '\', ' + stream.getElementByTagName('id').textContent + '); toggleAudioCheck(\'' + i.toString() + '\')"> \
+                <label>' + stream.getElementByTagName('language').textContent + ' (' + stream.getElementByTagName('codec').textContent + ')</label>';
+      if (stream.getElementByTagName('selected').textContent == '1')
+      {
+        xmlstr = xmlstr + ' \
+                <accessories> \
+                  <checkMark/> \
+                </accessories>';
+      }
+      xmlstr = xmlstr + ' \
+              </oneLineMenuItem>';
     }
   }
-  xmlstr = xmlstr + '</items></menuSection><menuSection><header><horizontalDivider alignment="center"><title>Subtitle Track</title></horizontalDivider></header><items>';
-	xmlstr = xmlstr + '<oneLineMenuItem id="sub99" onSelect="selectSubStream(\'' + addrPMS + '\', \'' + ratingKey + '\', 0); toggleSubCheck(\'99\')"><label>None</label>';
+  xmlstr = xmlstr + ' \
+            </items> \
+          </menuSection> \
+          <menuSection> \
+            <header> \
+              <horizontalDivider alignment="center"> \
+                <title>{{TEXT(Subtitle Track)}}</title> \
+              </horizontalDivider> \
+            </header> \
+            <items>';
+  xmlstr = xmlstr + ' \
+              <oneLineMenuItem id="sub99" onSelect="selectSubStream(\'' + addrPMS + '\', \'' + ratingKey + '\', 0); toggleSubCheck(\'99\')"> \
+                <label>{{TEXT(None)}}</label>';
 	
 	var noSubs = true;
 	var noSubsSelected = true;
@@ -74,26 +108,43 @@ function selectAudioAndSubs(addrPMS, ratingKey) {
 		if  ((streams[i].getElementByTagName('streamType').textContent == '3')&& 
 				(streams[i].getElementByTagName('selected').textContent == '1')) noSubsSelected = false;
 	}
-	if ((noSubs)||(noSubsSelected)) xmlstr = xmlstr + '<accessories><checkMark/></accessories>';
+	if ((noSubs)||(noSubsSelected))
+	  xmlstr = xmlstr + ' \
+                <accessories> \
+                  <checkMark/> \
+                </accessories>';
 		
-	xmlstr = xmlstr + '</oneLineMenuItem>';
+	xmlstr = xmlstr + ' \
+              </oneLineMenuItem>';
 	
 	for(var i = 0; i < streams.length; ++i)
 	{
     var stream = streams[i]
     if (stream.getElementByTagName('streamType').textContent == '3')
     { 
-      xmlstr = xmlstr + '<oneLineMenuItem id="sub' + i.toString() + '" onSelect="selectSubStream(\'' + addrPMS + '\', \'' + ratingKey + '\', ' + stream.getElementByTagName('id').textContent + '); toggleSubCheck(\'' + i.toString() + '\')">';
-      xmlstr = xmlstr + '<label>' + stream.getElementByTagName('language').textContent + ' (' + stream.getElementByTagName('format').textContent + ')</label>';
+      xmlstr = xmlstr + ' \
+              <oneLineMenuItem id="sub' + i.toString() + '" onSelect="selectSubStream(\'' + addrPMS + '\', \'' + ratingKey + '\', ' + stream.getElementByTagName('id').textContent + '); toggleSubCheck(\'' + i.toString() + '\')"> \
+                <label>' + stream.getElementByTagName('language').textContent + ' (' + stream.getElementByTagName('format').textContent + ')</label>';
 			if (stream.getElementByTagName('selected').textContent == '1')
 			{
-				xmlstr = xmlstr + '<accessories><checkMark/></accessories>';
+				xmlstr = xmlstr + ' \
+                <accessories> \
+                  <checkMark/> \
+                </accessories>';
 			}
-      xmlstr = xmlstr + '</oneLineMenuItem>';
+      xmlstr = xmlstr + ' \
+              </oneLineMenuItem>';
     }
   }
 	
-	xmlstr = xmlstr + '</items></menuSection></sections></menu></optionDialog></body></atv>';
+	xmlstr = xmlstr + ' \
+            </items> \
+          </menuSection> \
+        </sections> \
+      </menu> \
+    </optionDialog> \
+  </body> \
+</atv>';
   var doc = atv.parseXML(xmlstr);
   atv.loadXML(doc);	
 };	
