@@ -27,6 +27,7 @@ except ImportError:
 import Settings, ATVSettings
 from Debug import *  # dprint()
 import XMLConverter  # XML_PMS2aTV, XML_PlayVideo
+import Localize
 
 
 
@@ -75,7 +76,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     options[parts[0]] = urllib.unquote(parts[1])
             
             # get aTV language setting
-            options['aTVLanguages'] = self.headers.get('Accept-Language', 'en')
+            options['aTVLanguage'] = Localize.pickLanguage(self.headers.get('Accept-Language', 'en'))
             
             dprint(__name__, 2, "cleaned path:\n{0}", self.path)
             dprint(__name__, 2, "request options:\n{0}", options)
@@ -97,7 +98,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     dprint(__name__, 1, "serving application.js")
                     f = open(sys.path[0] + sep + "assets" + sep + "js" + sep + "application.js")
                     self.send_response(200)
-                    self.send_header('Content-type', 'text/html')
+                    self.send_header('Content-type', 'text/javascript')
                     self.end_headers()
                     self.wfile.write(f.read())
                     f.close()
@@ -108,9 +109,9 @@ class MyHandler(BaseHTTPRequestHandler):
                     dprint(__name__, 1, "serving  " + sys.path[0] + sep + "assets" + self.path.replace('/',sep))
                     f = open(sys.path[0] + sep + "assets" + self.path.replace('/',sep))
                     self.send_response(200)
-                    self.send_header('Content-type', 'text/html')
+                    self.send_header('Content-type', 'text/javascript')
                     self.end_headers()
-                    self.wfile.write(f.read())
+                    self.wfile.write(Localize.replaceTEXT(f.read(), options['aTVLanguage']))
                     f.close()
                     return
                 

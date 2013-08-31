@@ -9,15 +9,15 @@ function scrobbleMenu(type, ratingKey, addrPMS) {
 	if (type.search(/Deck|Recently/) !== -1)
 	{
   		xmlstr += '<oneLineMenuItem id="item1" onSelect="viewShow(\'' + addrPMS + '\', \'' + ratingKey + '\');atv.unloadPage();"> \
-					<label>                  View Show</label></oneLineMenuItem>';
+					<label>{{TEXT(View Show)}}</label></oneLineMenuItem>';
 	}
 	
 	xmlstr += '<oneLineMenuItem id="item2" onSelect="scrobble(\'' + addrPMS + '\', \'' + ratingKey + '\');atv.unloadPage();"> \
-				<label>             Mark as Watched</label></oneLineMenuItem> \
+				<label>{{TEXT(Mark as Watched)}}</label></oneLineMenuItem> \
                 <oneLineMenuItem id="item3" onSelect="unscrobble(\'' + addrPMS + '\', \'' + ratingKey + '\');atv.unloadPage();"> \
-                <label>           Mark as Unwatched</label></oneLineMenuItem> \
+                <label>{{TEXT(Mark as Unwatched)}}</label></oneLineMenuItem> \
 								<oneLineMenuItem id="item4" onSelect="selectArtwork(\'' + addrPMS + '\', \'' + ratingKey + '\');"> \
-                <label>              Change Artwork</label></oneLineMenuItem> \
+                <label>{{TEXT(Change Artwork)}}</label></oneLineMenuItem> \
                 </items></optionList></body></atv>';
  	var doc = atv.parseXML(xmlstr);
 	atv.loadXML(doc);
@@ -70,7 +70,7 @@ function selectArtwork(addrPMS, ratingKey) {
 	if (posters.length <= 5) colCount = posters.length.toString();
 	
 	var xml = '<?xml version="1.0" encoding="UTF-8"?><atv><head><script src="http://atv.plexconnect/js/scrobble.js"/></head> \
-						<body><scroller id="poster_selector"><header><simpleHeader><title>Select Artwork</title></simpleHeader></header> \
+						<body><scroller id="poster_selector"><header><simpleHeader><title>{{TEXT(Select Artwork)}}</title></simpleHeader></header> \
 						<items><collectionDivider alignment="left"><title></title></collectionDivider><shelf id="coverflow" columnCount="' + colCount +'"> \
 						<sections><shelfSection><items>';
 
@@ -81,7 +81,7 @@ function selectArtwork(addrPMS, ratingKey) {
 		var posterURL = poster.getAttribute('key');
 		var selected = poster.getAttribute('selected');
 		var title = '';
-		if (selected == '1') title = 'Current Artwork';
+		if (selected == '1') title = '{{TEXT(Current Artwork)}}';
 		xml = xml + '<goldenPoster id="poster" alwaysShowTitles="true" onSelect="loadNewArtwork(\'' + addrPMS + '\', \'' + ratingKey + '\', \'' + posterURL + '\');atv.unloadPage();">';
 		xml = xml + '<title>' + title + '</title><image>http://' + addrPMS + posterThumb + '</image>';
 		xml = xml + '<defaultImage>resource://Poster.png</defaultImage></goldenPoster>';
