@@ -111,7 +111,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     self.send_response(200)
                     self.send_header('Content-type', 'text/javascript')
                     self.end_headers()
-                    self.wfile.write(Localize.replaceTEXT(f.read(), options['aTVLanguage']))
+                    self.wfile.write(Localize.replaceTEXT(f.read(), options['aTVLanguage']).encode('utf-8'))
                     f.close()
                     return
                 
