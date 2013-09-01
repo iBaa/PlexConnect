@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-25 08:50+0800\n"
-"PO-Revision-Date: 2013-08-26 04:02+0800\n"
+"POT-Creation-Date: 2013-08-31 12:11:14+0000\n"
+"PO-Revision-Date: 2013-09-01 07:42+0800\n"
 "Last-Translator: Grey Lee <bcse@bcse.tw>\n"
 "Language-Team: Grey Lee <bcse@bcse.tw>\n"
 "Language: zh_TW\n"
@@ -32,6 +32,9 @@ msgstr "音效"
 
 msgid "Audio Boost %"
 msgstr "音量增益 %"
+
+msgid "Audio Track"
+msgstr "音軌"
 
 msgid "Audio/Subs"
 msgstr "音訊/字幕"
@@ -63,6 +66,9 @@ msgstr "依解析度"
 msgid "By Year"
 msgstr "依年份"
 
+msgid "Change Artwork"
+msgstr "更換圖片"
+
 msgid "Channels"
 msgstr "頻道"
 
@@ -71,6 +77,9 @@ msgstr "時鐘位置"
 
 msgid "Collections"
 msgstr "系列"
+
+msgid "Current Artwork"
+msgstr "目前圖片"
 
 msgid "Decades"
 msgstr "年代"
@@ -86,6 +95,9 @@ msgstr "導演"
 
 msgid "Discover"
 msgstr "搜尋伺服器"
+
+msgid "Episode"
+msgstr "影集"
 
 msgid "Episodes"
 msgstr "集"
@@ -117,11 +129,20 @@ msgstr "資料庫"
 msgid "Library Refresh in Progress."
 msgstr "資料庫更新中。"
 
+msgid "Mark as Unwatched"
+msgstr "標示為未觀看"
+
+msgid "Mark as Watched"
+msgstr "標示為已觀看"
+
 msgid "More"
 msgstr "更多"
 
 msgid "More..."
 msgstr "更多⋯"
+
+msgid "Movie"
+msgstr "電影"
 
 msgid "Movie Navigation Bar"
 msgstr "電影主選單"
@@ -150,8 +171,14 @@ msgstr "您沒有未觀看的電視節目。"
 msgid "No episodes"
 msgstr "沒有集數"
 
+msgid "None"
+msgstr "關閉"
+
 msgid "On Deck"
 msgstr "首頁"
+
+msgid "On Deck Episode"
+msgstr "最近看過影集"
 
 msgid "Overscan Adjust"
 msgstr "Overscan 選項"
@@ -186,6 +213,9 @@ msgstr "最近加入"
 msgid "Recently Aired"
 msgstr "最近播出"
 
+msgid "Recently Aired Episode"
+msgstr "最近播出影集"
+
 msgid "Recently Released"
 msgstr "最近發行"
 
@@ -210,8 +240,17 @@ msgstr "季"
 msgid "Season View"
 msgstr "季檢視"
 
+msgid "Select Artwork"
+msgstr "選擇圖片"
+
+msgid "Select Tracks"
+msgstr "選擇音軌及字幕"
+
 msgid "Settings"
 msgstr "設定"
+
+msgid "Show"
+msgstr "節目"
 
 msgid "Show Clock"
 msgstr "顯示時鐘"
@@ -233,6 +272,9 @@ msgstr "幻燈片秀"
 
 msgid "Subtitle Size %"
 msgstr "字幕大小 %"
+
+msgid "Subtitle Track"
+msgstr "字幕"
 
 msgid "TV Show Navigation Bar"
 msgstr "電視節目主選單"
@@ -263,6 +305,9 @@ msgstr "影片"
 
 msgid "Video Player OSD"
 msgstr "播放器外觀"
+
+msgid "View Show"
+msgstr "檢視節目"
 
 msgid "Wiki/Docs"
 msgstr "說明文件"
