@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-25 08:50+0800\n"
-"PO-Revision-Date: 2013-08-26 12:33+0100\n"
+"POT-Creation-Date: 2013-08-31 12:11:14+0000\n"
+"PO-Revision-Date: 2013-09-01 01:33+0100\n"
 "Last-Translator: Martin Aronsen <martin.aro@gmail.com>\n"
 "Language-Team: Martin Aronsen <martin.aro@gmail.com>\n"
+"Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
-"Language: nb\n"
 
 msgid "Actor View"
 msgstr "Skuespillervisning"
@@ -22,7 +22,7 @@ msgid "All Movies"
 msgstr "Alle Filmer"
 
 msgid "All Shows"
-msgstr "Alle TV-program"
+msgstr "Alle TV-programmer"
 
 msgid "Appearance"
 msgstr "Utseende"
@@ -33,11 +33,14 @@ msgstr "Lyd"
 msgid "Audio Boost %"
 msgstr "Lydforsterking i %"
 
+msgid "Audio Track"
+msgstr "Lydspor"
+
 msgid "Audio/Subs"
-msgstr "Lyd/Undertekst"
+msgstr "Lyd/Teksting"
 
 msgid "Authors"
-msgstr "Forfattere"
+msgstr "Utviklere"
 
 msgid "By Collection"
 msgstr "Etter samling"
@@ -63,6 +66,9 @@ msgstr "Etter oppløsning"
 msgid "By Year"
 msgstr "Etter år"
 
+msgid "Change Artwork"
+msgstr "Bytt filmplakat"
+
 msgid "Channels"
 msgstr "Kanaler"
 
@@ -71,6 +77,9 @@ msgstr "Klokkeposisjon"
 
 msgid "Collections"
 msgstr "Samlinger"
+
+msgid "Current Artwork"
+msgstr "Valgt filmplakat"
 
 msgid "Decades"
 msgstr "Tiår"
@@ -82,10 +91,13 @@ msgid "Director"
 msgstr "Regissør"
 
 msgid "Directors"
-msgstr "Regissører"
+msgstr "Regi"
 
 msgid "Discover"
 msgstr "Oppdag"
+
+msgid "Episode"
+msgstr "Episode"
 
 msgid "Episodes"
 msgstr "Episoder"
@@ -114,11 +126,23 @@ msgstr "Lengde"
 msgid "Library"
 msgstr "Bibliotek"
 
+msgid "Library Refresh in Progress."
+msgstr "Bibliotekoppdatering pågår."
+
+msgid "Mark as Unwatched"
+msgstr "Merk som usett"
+
+msgid "Mark as Watched"
+msgstr "Merk som sett"
+
 msgid "More"
 msgstr "Mer"
 
 msgid "More..."
 msgstr "Mer..."
+
+msgid "Movie"
+msgstr "Film"
 
 msgid "Movie Navigation Bar"
 msgstr "Navigasjonsfelt for filmer"
@@ -139,16 +163,22 @@ msgid "No Unwatched Movies"
 msgstr "Ingen usette filmer"
 
 msgid "No Unwatched Shows"
-msgstr "ingen usette show"
+msgstr "ingen usette TV-programmer"
 
 msgid "No Unwatched Shows."
-msgstr "Ingen usette show."
+msgstr "Ingen usette TV-programmer."
 
 msgid "No episodes"
 msgstr "Ingen episoder"
 
+msgid "None"
+msgstr "Ingen"
+
 msgid "On Deck"
 msgstr "Pågående"
+
+msgid "On Deck Episode"
+msgstr "Pågående episode"
 
 msgid "Overscan Adjust"
 msgstr "Justér overscan"
@@ -171,6 +201,9 @@ msgstr "Plex Media Server: Ingen kanaler tilgjengelig"
 msgid "Plex Media Server: No Items Available"
 msgstr "Plex Media Server: Ingen elementer tilgjengelig"
 
+msgid "Press menu to return."
+msgstr "Trykk på menyknappen for å gå tilbake."
+
 msgid "Producers"
 msgstr "Produsenter"
 
@@ -180,6 +213,9 @@ msgstr "Nylig lagt til"
 msgid "Recently Aired"
 msgstr "Nylig vist"
 
+msgid "Recently Aired Episode"
+msgstr "Nylig vist episode"
+
 msgid "Recently Released"
 msgstr "Nylig utgitt"
 
@@ -187,7 +223,7 @@ msgid "Recently Viewed"
 msgstr "Nylig sett"
 
 msgid "Recently Viewed Shows"
-msgstr "Nylige viste show"
+msgstr "Nylig viste programmer"
 
 msgid "Refresh Library"
 msgstr "Oppdater bibliotek"
@@ -204,8 +240,17 @@ msgstr "Sesong"
 msgid "Season View"
 msgstr "Sesongvisning"
 
+msgid "Select Artwork"
+msgstr "Velg filmplakat"
+
+msgid "Select Tracks"
+msgstr "Velg spor"
+
 msgid "Settings"
 msgstr "Innstillinger"
+
+msgid "Show"
+msgstr "TV-program"
 
 msgid "Show Clock"
 msgstr "Vis klokke"
@@ -214,7 +259,7 @@ msgid "Show End Time"
 msgstr "Vis sluttid"
 
 msgid "Show Photos"
-msgstr "Vis vilder"
+msgstr "Vis bilder"
 
 msgid "Show Unwatched Count"
 msgstr "Vis antall usette elementer"
@@ -228,11 +273,14 @@ msgstr "Lysbildefremvisning"
 msgid "Subtitle Size %"
 msgstr "Undertekststørrelse i %"
 
+msgid "Subtitle Track"
+msgstr "Undertekstspor"
+
 msgid "TV Show Navigation Bar"
-msgstr "Navigasjonsfelt for TV-program"
+msgstr "Navigasjonsfelt for TV-programmer"
 
 msgid "TV Show Options"
-msgstr "Instillinger for TV-program"
+msgstr "Innstillinger for TV-programmer"
 
 msgid "TV Show View"
 msgstr "TV-programvisning"
@@ -258,6 +306,9 @@ msgstr "Video"
 msgid "Video Player OSD"
 msgstr "Skjermvisning"
 
+msgid "View Show"
+msgstr "Vis TV-program"
+
 msgid "Wiki/Docs"
 msgstr "Wiki/Dokumentasjon"
 
@@ -276,3 +327,15 @@ msgstr ""
 
 msgid "aTV firmware version 5.0.2 or lower."
 msgstr "aTV-programvareversjon 5.0.2 eller lavere"
+
+msgid "{0:0d}x{1:02d} {2}"
+msgstr "{0:0d}x{1:02d} {2}"
+
+msgid "{0:d} Minutes"
+msgstr "{0:d} minutter."
+
+msgid "{0:d}hr {1:d}min"
+msgstr "{0:d}t {1:d}min"
+
+msgid "{0} unwatched"
+msgstr "{0} usette"
