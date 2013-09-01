@@ -27,8 +27,8 @@ import string, cgi, time
 import copy  # deepcopy()
 from os import sep
 import httplib, socket
-import re
-from operator import itemgetter
+
+
 
 try:
     import xml.etree.cElementTree as etree
@@ -43,6 +43,7 @@ from urllib import quote_plus
 import Settings, ATVSettings
 import PlexGDM
 from Debug import *  # dprint()
+import Localize
 
 
 
@@ -55,20 +56,6 @@ g_ATVSettings = None
 def setATVSettings(cfg):
     global g_ATVSettings
     g_ATVSettings = cfg
-
-g_Translations = {}
-def getTranslation(language):
-    global g_Translations
-    if language not in g_Translations:
-        import gettext
-        filename = os.path.join(sys.path[0], 'assets', 'locales', language, 'plexconnect.mo')
-        try:
-            fp = open(filename, 'rb')
-            g_Translations[language] = gettext.GNUTranslations(fp)
-            fp.close()
-        except IOError:
-            g_Translations[language] = gettext.NullTranslations()
-    return g_Translations[language]
 
 
 
@@ -258,16 +245,9 @@ def XML_PMS2aTV(address, path, options):
         dprint(__name__, 1, "no PlexConnectUDID - pick 007")
         options['PlexConnectUDID'] = '007'
     
-    options['aTVLanguage'] = 'en'
-    if 'aTVLanguages' in options:
-        languages = re.findall('(\w{2}(?:[-_]\w{2})?)(?:;q=(\d+(?:\.\d+)?))?', options['aTVLanguages'])
-        languages = [(lang.replace('-', '_'), float(quot) if quot else 1.) for (lang, quot) in languages]
-        languages = sorted(languages, key=itemgetter(1), reverse=True)
-        for lang, quot in languages:
-            if os.path.exists(os.path.join(sys.path[0], 'assets', 'locales', lang, 'plexconnect.mo')):
-                options['aTVLanguage'] = lang
-                break
-    dprint(__name__, 1, "aTVLanguage: "+options['aTVLanguage'])
+    if not 'aTVLanguage' in options:
+        dprint(__name__, 1, "no aTVLanguage - pick en")
+        options['aTVLanguage'] = 'en'
     
     # XML Template selector
     # - PlexConnect command
@@ -831,7 +811,7 @@ class CCommandHelper():
         return val
     
     def _(self, msgid):
-        return getTranslation(self.options['aTVLanguage']).ugettext(msgid)
+        return Localize.getTranslation(self.options['aTVLanguage']).ugettext(msgid)
 
 
 

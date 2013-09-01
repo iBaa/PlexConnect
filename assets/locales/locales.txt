@@ -1,0 +1,22 @@
+POT:
+- grab "genpot" by bcse: https://gist.github.com/bcse/6357484
+  (like "pygettext.py", but also handles out .xml and .js files)
+- configure "base_path"
+- execute "python genpot.py > plexconnect.pot"
+
+PO:
+- http://www.getlocalization.com/PlexConnect/
+
+MO:
+- "msgfmt.py plexconnect.po"
+
+
+
+Big thanks to Grey Lee <bcse@bcse.tw> for big parts of the internationalization source code!
+
+Another big thanks for the initial translations to...
+
+de    - Dennis Oderwald <oderwald@comyo-media.de>
+en    - Grey Lee <bcse@bcse.tw> (default - no change from source code)
+nb    - Martin Aronsen <martin.aro@gmail.com>
+zh_TW - Grey Lee <bcse@bcse.tw>
