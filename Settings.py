@@ -22,6 +22,7 @@ g_settings = { \
     'port_pms'        :('32400',), \
     \
     'enable_dnsserver':('True', 'False'), \
+    'port_dnsserver'  :('53',), \
     'ip_dnsmaster'    :('8.8.8.8',), \
     'prevent_atv_update'           :('True', 'False'), \
     \

@@ -318,14 +318,15 @@ def Run(cmdPipe, param):
     dinit(__name__, param)  # init logging, DNSServer process
     
     cfg_IP_self = param['IP_self']
+    cfg_Port_DNSServer = param['CSettings'].getSetting('port_dnsserver')
     cfg_IP_DNSMaster = param['CSettings'].getSetting('ip_dnsmaster')
     
     try:
         DNS = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         DNS.settimeout(5.0)
-        DNS.bind(('',53))
+        DNS.bind(('',int(cfg_Port_DNSServer)))
     except Exception, e:
-        dprint(__name__, 0, "Failed to create socket on UDP port 53: {0}", e)
+        dprint(__name__, 0, "Failed to create socket on UDP port {0}: {1}", cfg_Port_DNSServer, e)
         sys.exit(1)
     
     try:
@@ -346,7 +347,7 @@ def Run(cmdPipe, param):
         restrain = ['mesu.apple.com', 'appldnld.apple.com', 'appldnld.apple.com.edgesuite.net']
     
     dprint(__name__, 0, "***")
-    dprint(__name__, 0, "Starting up.")
+    dprint(__name__, 0, "DNSServer: Serving DNS on port {0}.", cfg_Port_DNSServer)
     dprint(__name__, 1, "intercept: {0} => {1}", intercept, cfg_IP_self)
     dprint(__name__, 1, "restrain: {0} => 127.0.0.1", restrain)
     dprint(__name__, 1, "forward other to higher level DNS: "+cfg_IP_DNSMaster)
