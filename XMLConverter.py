@@ -523,7 +523,7 @@ def XML_ExpandNode(elem, child, src, srcXML, text_tail):
                 child.tail = line
             
             try:
-                res = eval("g_CommandCollection.TREE_"+cmd+"(elem, child, src, srcXML, '"+param+"')")
+                res = getattr(g_CommandCollection, 'TREE_'+cmd)(elem, child, src, srcXML, param)
             except:
                 dprint(__name__, 0, "XML_ExpandNode - Error in cmd {0}, line {1}\n{2}", cmd, line, traceback.format_exc())
             
@@ -589,7 +589,7 @@ def XML_ExpandLine(src, srcXML, line):
         if hasattr(CCommandCollection, 'ATTRIB_'+cmd):  # expand line, work VAL, EVAL...
             
             try:
-                res = eval("g_CommandCollection.ATTRIB_"+cmd+"(src, srcXML, '"+param+"')")
+                res = getattr(g_CommandCollection, 'ATTRIB_'+cmd)(src, srcXML, param)
                 line = line[:cmd_start] + res + line[cmd_end+2:]
                 pos = cmd_start+len(res)
             except:
