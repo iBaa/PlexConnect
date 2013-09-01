@@ -319,13 +319,14 @@ def Run(cmdPipe, param):
     
     cfg_IP_self = param['IP_self']
     cfg_IP_DNSMaster = param['CSettings'].getSetting('ip_dnsmaster')
+    cfg_Port_DNS_Server = param['CSettings'].getSetting('port_dns_server')
     
     try:
         DNS = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         DNS.settimeout(5.0)
-        DNS.bind(('',53))
+        DNS.bind(('',int(cfg_Port_DNS_Server)))
     except Exception, e:
-        dprint(__name__, 0, "Failed to create socket on UDP port 53: {0}", e)
+        dprint(__name__, 0, "Failed to create socket on UDP port {0}: {1}", cfg_Port_DNS_Server, e)
         sys.exit(1)
     
     try:
