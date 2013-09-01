@@ -173,6 +173,21 @@ def Run(cmdPipe, param):
     cfg_IP_WebServer = param['CSettings'].getSetting('ip_webserver')
     cfg_Port_WebServer = param['CSettings'].getSetting('port_webserver')
     cfg_Port_SSL = param['CSettings'].getSetting('port_ssl')
+    
+    if param['CSettings'].getSetting('certfile').startswith('.'):
+        # relative to current path
+        cfg_certfile = sys.path[0] + sep + param['CSettings'].getSetting('certfile')
+    else:
+        # absolute path
+        cfg_certfile = param['CSettings'].getSetting('certfile')
+    
+    try:
+        certfile = open(cfg_certfile, 'r')
+    except:
+        dprint(__name__, 0, "Failed to access certificate: {0}", cfg_certfile)
+        sys.exit(1)
+    certfile.close()
+    
     try:
         server = ThreadingHTTPServer((cfg_IP_WebServer,int(cfg_Port_WebServer)), MyHandler)
         server.timeout = 1
@@ -183,8 +198,7 @@ def Run(cmdPipe, param):
     
     try:
         server_ssl = ThreadingHTTPServer((cfg_IP_WebServer,int(cfg_Port_SSL)), MyHandler)
-        certfile = param['CSettings'].getSetting('certfile')
-        server_ssl.socket = ssl.wrap_socket(server_ssl.socket, certfile=certfile, server_side=True)
+        server_ssl.socket = ssl.wrap_socket(server_ssl.socket, certfile=cfg_certfile, server_side=True)
         server_ssl.timeout = 1
         thread_ssl = Thread(target=server_ssl.serve_forever).start()
     except Exception, e:

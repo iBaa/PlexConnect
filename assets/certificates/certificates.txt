@@ -1,0 +1,25 @@
+certificates
+
+(Mac)
+- required: Apple Configurator or iPhone Configuration Utility
+
+- openssl req -new -nodes -newkey rsa:2048 -out trailers.pem -keyout trailers.key -x509 -days 365 -subj "/C=US/CN=trailers.apple.com"
+- openssl x509 -in trailers.pem -outform der -out trailers.cer && cat trailers.key >> trailers.pem
+
+- create aTV profile
+- install aTV profile (micro USB)
+
+(Win)
+- required: OpenSSL - http://www.slproweb.com/products/Win32OpenSSL.html
+- required: iPhone Configuration Utility
+
+- openssl.exe req -new -nodes -newkey rsa:2048 -out trailers.pem -keyout trailers.key -x509 -days 365 -subj "/C=US/CN=trailers.apple.com" -config openssl.cfg
+- openssl.exe x509 -in trailers.pem -outform der -out trailers.der
+- type trailers.key >> trailers.pem
+
+- create aTV profile
+- install aTV profile (micro USB)
+
+
+
+Thanks to Paul Kehrer (reaperhulk, http://langui.sh/2013/08/27/appletv-ssl-plexconnect/) for all his help!
