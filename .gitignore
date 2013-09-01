@@ -12,3 +12,5 @@ PlexConnect.log
 *.key
 
 *.pem
+
+*.der
