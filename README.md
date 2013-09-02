@@ -1,3 +1,26 @@
+# Plex Connect - Vagrant fork
+This fork of PlexConnect is configured to use [Vagrant][http://vagrantup.com] for simple deployment using a VirtualBox vm.
+
+## Usage
+Both [Vagrant][http://vagrantup.com] and [VirtualBox][http://virtualbox.org] must be installed as prerequisites.
+
+```sh
+# Installation
+git clone https://github.com/murrayju/PlexConnect.git
+
+cd PlexConnect
+git pull # if you need to update
+```
+
+Before you start, be sure to copy your `trailers.pem` to `assets\certificates\`. Also, depending on your network, you may need to edit `SettingsBase.cfg` to manually specify the IP address for Plex Media Server.
+
+```sh
+# Run
+vagrant up
+```
+
+If all goes well, everything will start up automatically. Check the console output for IP_self, which is the address that you should configure the AppleTV DNS to point to.
+
 # Plex Connect
 or: "Plex @ aTV - think different..."
 
