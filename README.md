@@ -1,8 +1,8 @@
 # Plex Connect - Vagrant fork
-This fork of PlexConnect is configured to use [Vagrant][http://vagrantup.com] for simple deployment using a VirtualBox vm.
+This fork of PlexConnect is configured to use [Vagrant](http://vagrantup.com) for simple deployment using a VirtualBox vm.
 
 ## Usage
-Both [Vagrant][http://vagrantup.com] and [VirtualBox][http://virtualbox.org] must be installed as prerequisites.
+Both [Vagrant](http://vagrantup.com) and [VirtualBox](http://virtualbox.org) must be installed as prerequisites.
 
 ```sh
 # Installation
