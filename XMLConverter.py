@@ -1013,7 +1013,7 @@ class CCommandCollection(CCommandHelper):
                 res = Video.get('key','')
                 res = PlexAPI_getTranscodePath(self.options, res)
         else:
-            dprint(__name__, 0, "MEDIAPATH - element not found: {0}", params)
+            dprint(__name__, 0, "MEDIAPATH - element not found: {0}", param)
             res = 'FILE_NOT_FOUND'  # not found?
         
         if res.startswith('/'):  # internal full path.
