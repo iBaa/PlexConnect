@@ -99,11 +99,26 @@ def startup():
             dprint('PlexConnect', 0, "WebServer not alive. Shutting down.")
             running = False
     
+    # init WebServer_SSL
+    if running:
+        master, slave = Pipe()  # endpoint [0]-PlexConnect, [1]-WebServer
+        proc = Process(target=WebServer.Run_SSL, args=(slave, param))
+        proc.start()
+        
+        time.sleep(0.1)
+        if proc.is_alive():
+            procs['WebServer_SSL'] = proc
+            pipes['WebServer_SSL'] = master
+        else:
+            dprint('PlexConnect', 0, "WebServer_SSL not alive. Shutting down.")
+            running = False
+    
     # not started successful - clean up
     if not running:
         cmdShutdown()
         shutdown()
-        sys.exit(1)
+    
+    return running
 
 def run():
     while running:
@@ -146,8 +161,9 @@ if __name__=="__main__":
     dprint('PlexConnect', 0, "Press CTRL-C to shut down.")
     dprint('PlexConnect', 0, "***")
     
-    startup()
+    success = startup()
     
-    run()
-    
-    shutdown()
+    if success:
+        run()
+        
+        shutdown()

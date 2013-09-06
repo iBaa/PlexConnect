@@ -5,6 +5,11 @@ Sources:
 http://fragments.turtlemeat.com/pythonwebserver.php
 http://www.linuxjournal.com/content/tech-tip-really-simple-http-server-python
 ...stackoverflow.com and such
+
+after 27Aug - Apple's switch to https:
+- added https WebServer with SSL encryption - needs valid (private) vertificate on aTV and server
+- for additional information see http://langui.sh/2013/08/27/appletv-ssl-plexconnect/
+Thanks to reaperhulk for showing this solution!
 """
 
 
@@ -13,16 +18,9 @@ import string, cgi, time
 from os import sep
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 import ssl
-from threading import Thread
-from SocketServer import ThreadingMixIn
 from multiprocessing import Pipe  # inter process communication
 import urllib
 import signal
-
-try:
-    import xml.etree.cElementTree as etree
-except ImportError:
-    import xml.etree.ElementTree as etree
 
 import Settings, ATVSettings
 from Debug import *  # dprint()
@@ -159,12 +157,56 @@ class MyHandler(BaseHTTPRequestHandler):
 
 
 
-class ThreadingHTTPServer(ThreadingMixIn, HTTPServer):
-    pass
-
-
-
 def Run(cmdPipe, param):
+    if not __name__ == '__main__':
+        signal.signal(signal.SIGINT, signal.SIG_IGN)
+    
+    dinit(__name__, param)  # init logging, WebServer process
+    
+    cfg_IP_WebServer = param['CSettings'].getSetting('ip_webserver')
+    cfg_Port_WebServer = param['CSettings'].getSetting('port_webserver')
+    try:
+        server = HTTPServer((cfg_IP_WebServer,int(cfg_Port_WebServer)), MyHandler)
+        server.timeout = 1
+    except Exception, e:
+        dprint(__name__, 0, "Failed to connect to HTTP on {0} port {1}: {2}", cfg_IP_WebServer, cfg_Port_WebServer, e)
+        sys.exit(1)
+    
+    socketinfo = server.socket.getsockname()
+    
+    dprint(__name__, 0, "***")
+    dprint(__name__, 0, "WebServer: Serving HTTP on {0} port {1}.", socketinfo[0], socketinfo[1])
+    dprint(__name__, 0, "***")
+    
+    setParams(param)
+    XMLConverter.setParams(param)
+    cfg = ATVSettings.CATVSettings()
+    XMLConverter.setATVSettings(cfg)
+    XMLConverter.discoverPMS()
+    
+    try:
+        while True:
+            # check command
+            if cmdPipe.poll():
+                cmd = cmdPipe.recv()
+                if cmd=='shutdown':
+                    break
+            
+            # do your work (with timeout)
+            server.handle_request()
+    
+    except KeyboardInterrupt:
+        signal.signal(signal.SIGINT, signal.SIG_IGN)  # we heard you!
+        dprint(__name__, 0,"^C received.")
+    finally:
+        dprint(__name__, 0, "Shutting down.")
+        cfg.saveSettings()
+        del cfg
+        server.socket.close()
+
+
+
+def Run_SSL(cmdPipe, param):
     if not __name__ == '__main__':
         signal.signal(signal.SIGINT, signal.SIG_IGN)
     
@@ -189,36 +231,20 @@ def Run(cmdPipe, param):
     certfile.close()
     
     try:
-        server = ThreadingHTTPServer((cfg_IP_WebServer,int(cfg_Port_WebServer)), MyHandler)
+        server = HTTPServer((cfg_IP_WebServer,int(cfg_Port_SSL)), MyHandler)
+        server.socket = ssl.wrap_socket(server.socket, certfile=cfg_certfile, server_side=True)
         server.timeout = 1
-        thread_WebServer = Thread(target=server.serve_forever).start()
-    except Exception, e:
-        dprint(__name__, 0, "Failed to connect to HTTP on {0} port {1}: {2}", cfg_IP_WebServer, cfg_Port_WebServer, e)
-        sys.exit(1)
-    
-    try:
-        server_ssl = ThreadingHTTPServer((cfg_IP_WebServer,int(cfg_Port_SSL)), MyHandler)
-        server_ssl.socket = ssl.wrap_socket(server_ssl.socket, certfile=cfg_certfile, server_side=True)
-        server_ssl.timeout = 1
-        thread_ssl = Thread(target=server_ssl.serve_forever).start()
     except Exception, e:
         dprint(__name__, 0, "Failed to connect to HTTPS on {0} port {1}: {2}", cfg_IP_WebServer, cfg_Port_SSL, e)
-        server.shutdown()
         sys.exit(1)
     
     socketinfo = server.socket.getsockname()
-    socketinfo_ssl = server_ssl.socket.getsockname()
     
     dprint(__name__, 0, "***")
-    dprint(__name__, 0, "WebServer: Serving HTTP on {0} port {1}.", socketinfo[0], socketinfo[1])
-    dprint(__name__, 0, "WebServer: Serving HTTPS on {0} port {1}.", socketinfo_ssl[0], socketinfo_ssl[1])
+    dprint(__name__, 0, "WebServer: Serving HTTPS on {0} port {1}.", socketinfo[0], socketinfo[1])
     dprint(__name__, 0, "***")
     
     setParams(param)
-    XMLConverter.setParams(param)
-    cfg = ATVSettings.CATVSettings()
-    XMLConverter.setATVSettings(cfg)
-    XMLConverter.discoverPMS()
     
     try:
         while True:
@@ -228,18 +254,15 @@ def Run(cmdPipe, param):
                 if cmd=='shutdown':
                     break
             
-            # do something important
-            time.sleep(1)
+            # do your work (with timeout)
+            server.handle_request()
     
     except KeyboardInterrupt:
         signal.signal(signal.SIGINT, signal.SIG_IGN)  # we heard you!
         dprint(__name__, 0,"^C received.")
     finally:
         dprint(__name__, 0, "Shutting down.")
-        cfg.saveSettings()
-        del cfg
-        server.shutdown()
-        server_ssl.shutdown()
+        server.socket.close()
 
 
 
@@ -252,4 +275,7 @@ if __name__=="__main__":
     param['HostToIntercept'] = 'trailers.apple.com'
     param['HostOfPlexConnect'] = 'atv.plexconnect'
     
-    Run(cmdPipe[1], param)
+    if len(sys.argv)==1:
+        Run(cmdPipe[1], param)
+    elif len(sys.argv)==2 and sys.argv[1]=='SSL':
+        Run_SSL(cmdPipe[1], param)
