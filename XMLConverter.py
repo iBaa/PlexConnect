@@ -27,7 +27,7 @@ import string, cgi, time
 import copy  # deepcopy()
 from os import sep
 import httplib, socket
-
+import re
 
 
 try:
@@ -39,6 +39,7 @@ import time, uuid, hmac, hashlib, base64
 from urllib import urlencode
 from urlparse import urlparse
 from urllib import quote_plus
+from urllib import FancyURLopener
 
 import Settings, ATVSettings
 import PlexGDM
@@ -135,10 +136,15 @@ def XML_PlayVideo_ChannelsV1(path):
 # GetURL
 # Source (somewhat): https://github.com/hippojay/plugin.video.plexbmc
 """
-def GetURL(address, path):
+def GetURL(address, path, authToken):
     try:
         conn = httplib.HTTPConnection(address, timeout=10)
-        conn.request("GET", path)
+        headers = {}
+        try:
+            headers = {'X-Plex-Token' : authToken}
+        except KeyError:
+            pass
+        conn.request("GET", path, None, headers)
         data = conn.getresponse()
         if int(data.status) == 200:
             link=data.read()
@@ -174,7 +180,7 @@ def GetURL(address, path):
 # - receive reply from PMS
 # - translate and feed back to aTV
 """
-def XML_ReadFromURL(address, path):
+def XML_ReadFromURL(address, path, authToken):
     address = g_param['Addr_PMS']
     # address[0]+':'+str(address[1])  <- address should be this. ReadFromURL gets called with bad parameters?
     xargs = PlexAPI_getXArgs()
@@ -183,7 +189,7 @@ def XML_ReadFromURL(address, path):
     else:
         path = path + '?' + urlencode(xargs)
     
-    XMLstring = GetURL(address, path)
+    XMLstring = GetURL(address, path, authToken)
     if XMLstring==False:
         dprint(__name__, 0, 'No Response from Plex Media Server')
         return False
@@ -234,6 +240,43 @@ def discoverPMS():
 
 
 
+def validateMyPlex(username, password, PlexConnectUDID):
+
+    class authURLOpener(FancyURLopener):
+    	def setpasswd(self, user, passwd):
+    	    self.__user = user
+    	    self.__passwd = passwd
+    	    self.__retries = 0
+    	    
+    	def prompt_user_passwd(self, host, realm):
+	    if self.__retries<1:
+                self.__retries += 1
+	        return self.__user, self.__passwd
+	    else:
+	        raise IOError('Auth Failed!')
+                return
+
+                    
+    urlopener = authURLOpener()
+    urlopener.setpasswd(username, password)
+    urlopener.addheader('X-Plex-Client-Identifier', PlexConnectUDID) 
+    
+    results = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\t<user authenticationToken=\"no-token\">\n\t\t<authentication-token>no-token</authentication-token>\n\t</user>\n"
+    
+    try:
+    	fd = urlopener.open('https://my.plexapp.com/users/sign_in.xml', {})
+    except IOError:
+	return results
+	    
+    try:
+        results = str(fd.read())
+	    	
+    finally:  
+        fd.close()  
+       	return results
+
+
+    	    
 def XML_PMS2aTV(address, path, options):
 
     cmd = ''
@@ -340,6 +383,42 @@ def XML_PMS2aTV(address, path, options):
         XMLtemplate = 'Settings_TVShows.xml'
         path = ''  # clear path - we don't need PMS-XML
         
+    elif cmd=='SettingsMyPlex':
+	XMLtemplate = 'Settings_MyPlex.xml'
+	path = ''  # clear path - we don't need PMS-XML
+	    	
+    elif cmd.startswith('LoginMyPlex:'):
+        opt = cmd[len('LoginMyPlex:'):]  # cut command:
+        parts = opt.split('+')
+    	dprint(__name__, 2, "MyPlex->Checking Service...")
+    	XMLresults = validateMyPlex(parts[0], parts[1], options['PlexConnectUDID'])
+	    	
+    	if 'no-token' in XMLresults:
+    	    g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexuser", "")
+	    g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexpassword", "")
+	    g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplex_uuid", "")
+	    g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexenabled", "False")
+	    XMLtemplate = 'MyPlexAuthError.xml'
+	    path = ''
+	else:
+	    token = re.findall(r'authenticationToken="(.*)"', XMLresults)[0]
+	    g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexuser", parts[0])
+	    g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexpassword", parts[1])
+	    g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplex_uuid", token)
+	    g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexenabled", "True")
+	    XMLtemplate = 'MyPlexAuthOK.xml'
+	    path = ''
+	    	
+    elif cmd.startswith('LogoutMyPlex'):
+    	dprint(__name__, 2, "MyPlex->Logging Out...")
+    	g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexuser", "")
+	g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexpassword", "")
+	g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplex_uuid", "")
+	g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexenabled", "False")
+	XMLtemplate = 'MyPlexLogout.xml'
+	path = ''
+            
+        
     elif cmd.startswith('SettingsToggle:'):
         opt = cmd[len('SettingsToggle:'):]  # cut command:
         parts = opt.split('+')
@@ -379,7 +458,7 @@ def XML_PMS2aTV(address, path, options):
         if not PMS_uuid in PMS_list:
             return XML_Error('PlexConnect', 'Selected Plex Media Server not Online')
         
-        PMS = XML_ReadFromURL(address, path)
+        PMS = XML_ReadFromURL(address, path, g_ATVSettings.getSetting(options['PlexConnectUDID'], 'myplex_uuid'))
         if PMS==False:
             return XML_Error('PlexConnect', 'No Response from Plex Media Server')
     
@@ -884,7 +963,7 @@ class CCommandCollection(CCommandHelper):
         else:  # internal path, add-on
             path = self.path[srcXML] + '/' + key
         
-        PMS = XML_ReadFromURL('address', path)
+        PMS = XML_ReadFromURL('address', path, g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'myplex_uuid'))
         self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML
         self.path[tag] = path  # store base path
         
@@ -1005,7 +1084,7 @@ class CCommandCollection(CCommandHelper):
                 
                 if Media.get('indirect',None):  # indirect... todo: select suitable resolution, today we just take first Media
                     key, leftover, dfltd = self.getKey(Media, srcXML, 'Part/key')
-                    PMS = XML_ReadFromURL(g_param['Addr_PMS'], key)  # todo... check key for trailing '/' or even 'http'
+                    PMS = XML_ReadFromURL(g_param['Addr_PMS'], key, g_ATVSettings.getSetting(options['PlexConnectUDID'], 'myplex_uuid'))  # todo... check key for trailing '/' or even 'http'
                     res, leftover, dfltd = self.getKey(PMS.getroot(), srcXML, 'Video/Media/Part/key')
                 
             else:
