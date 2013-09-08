@@ -139,6 +139,7 @@ def XML_PlayVideo_ChannelsV1(path):
 def GetURL(address, path, authToken):
     try:
         conn = httplib.HTTPConnection(address, timeout=10)
+        dprint(__name__, 0, authToken)
         headers = {}
         try:
             headers = {'X-Plex-Token' : authToken}
