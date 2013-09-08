@@ -7,7 +7,7 @@
     <itemDetail id="com.apple.trailers">
 		<title>{{VAL(Video/title)}}</title>
 		<subtitle>{{VAL(Video/studio)}}</subtitle>
-		<rating>{{VAL(Video/contentRating)}}</rating>
+		<rating>{{contentRating(Video/contentRating)}}</rating>
 		<summary>{{VAL(Video/summary)}}</summary>
 		<image style="squarePoster">{{IMAGEURL(Video/thumb)}}</image>
 		<defaultImage>resource://Poster.png</defaultImage>
