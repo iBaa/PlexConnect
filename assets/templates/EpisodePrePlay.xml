@@ -8,7 +8,7 @@
     <itemDetail id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}&amp;PlexConnect=EpisodePrePlay')">
       <title>{{VAL(Video/index)}}. {{VAL(Video/title)}}</title>
       <subtitle>{{VAL(Video/studio)}}</subtitle>
-      <rating>{{VAL(Video/contentRating)}}</rating>
+      <rating>{{contentRating(Video/contentRating)}}</rating>
       <summary>{{VAL(Video/summary)}}</summary>
       <image style="sixteenByNinePoster">{{BIGIMAGEURL(Video/thumb)}}</image>
       <defaultImage>resource://16x9.png</defaultImage>
