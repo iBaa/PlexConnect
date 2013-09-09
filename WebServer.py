@@ -143,7 +143,6 @@ class MyHandler(BaseHTTPRequestHandler):
                     self.send_header('Content-type', 'text/xml')
                     self.end_headers()
                     self.wfile.write(XML)
-                    dprint(__name__, 0, "Page Content: {0}", XML)
                     return
                 
                 """
