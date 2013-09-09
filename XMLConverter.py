@@ -323,6 +323,10 @@ def XML_PMS2aTV(address, path, options):
             dprint(__name__, 1, "Token: " +MyPlexToken)
             
             path = MyPlexPath
+            
+        if path=="/library/sections":
+            global MyPlexServer
+            MyPlexServer = None
    
    
     
@@ -562,8 +566,6 @@ def XML_PMS2aTV(address, path, options):
     else:
         if MyPlexEnabled:
             XMLtemplate = 'MyPlexDirectory.xml'
-            global MyPlexServer
-            MyPlexServer = None
         else:
             XMLtemplate = 'Directory.xml'
     
