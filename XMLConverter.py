@@ -58,11 +58,12 @@ def setATVSettings(cfg):
     global g_ATVSettings
     g_ATVSettings = cfg
 
-global MyPlexServer
 MyPlexServer = None
-
-global MyPlexToken
-MyPlexToken = None
+def setGlobals():
+    global MyPlexServer
+    MyPlexServer = None
+    global MyPlexToken
+    MyPlexToken = None
 
 # links to CMD class for module wide usage
 g_CommandCollection = None
@@ -304,8 +305,6 @@ def XML_PMS2aTV(address, path, options):
         dprint(__name__, 1, "no aTVLanguage - pick en")
         options['aTVLanguage'] = 'en'
     
-    dprint(__name__, 0, "Path:" +path)
-    
     MyPlexEnabled = False
     if "/myplex/" in path:
         MyPlexEnabled = True
@@ -440,14 +439,11 @@ def XML_PMS2aTV(address, path, options):
             path = ''
     
     elif cmd.startswith('LogoutMyPlex'):
-        #dprint(__name__, 2, "MyPlex->Logging Out...")
-        #g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexuser", "")
-        #g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplex_uuid", "")
-        #XMLtemplate = 'MyPlexLogout.xml'
-        #path = ''
-        dprint(__name__, 0, "MyPlex Server Cache(Debug)")
-        cacheMyPlexServers(g_ATVSettings.getSetting(options['PlexConnectUDID'], "myplex_uuid"))
-            
+        dprint(__name__, 2, "MyPlex->Logging Out...")
+        g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexuser", "")
+        g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplex_uuid", "")
+        XMLtemplate = 'MyPlexLogout.xml'
+        path = ''            
         
     elif cmd.startswith('SettingsToggle:'):
         opt = cmd[len('SettingsToggle:'):]  # cut command:
@@ -481,6 +477,7 @@ def XML_PMS2aTV(address, path, options):
         else:
             g_param['Addr_PMS'] = '127.0.0.1:32400'  # no PMS available. Addr stupid but valid.
     else:
+        global MyPlexServer
         if MyPlexServer==None:
             g_param['Addr_PMS'] = 'my.plexapp.com:443'
             MyPlexServerUUID = g_ATVSettings.getSetting(options['PlexConnectUDID'], 'myplex_uuid')
@@ -491,7 +488,6 @@ def XML_PMS2aTV(address, path, options):
     
     # request PMS XML
     if not path=='':
-        dprint(__name__, 0, g_param['Addr_PMS'])
         if len(PMS_list)==0:
             # PlexGDM
             if not discoverPMS():
@@ -566,6 +562,8 @@ def XML_PMS2aTV(address, path, options):
     else:
         if MyPlexEnabled:
             XMLtemplate = 'MyPlexDirectory.xml'
+            global MyPlexServer
+            MyPlexServer = None
         else:
             XMLtemplate = 'Directory.xml'
     
@@ -1241,6 +1239,7 @@ class CCommandCollection(CCommandHelper):
 
 
 if __name__=="__main__":
+    
     cfg = Settings.CSettings()
     param = {}
     param['CSettings'] = cfg
@@ -1248,6 +1247,7 @@ if __name__=="__main__":
     param['Addr_PMS'] = '*Addr_PMS*'
     param['HostToIntercept'] = 'trailers.apple.com'
     setParams(param)
+    setGlobals()
     
     cfg = ATVSettings.CATVSettings()
     setATVSettings(cfg)
