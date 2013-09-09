@@ -44,18 +44,18 @@
               </horizontalDivider>
             </header>
             <items>
-	      <oneLineMenuItem id="MyPlexLogIn" onSelect="myPlexLogin()">
-	        <label>{{TEXT(Log In)}}</label>
-	        <accessories>
-		  <arrow/>
+              <oneLineMenuItem id="MyPlexLogIn" onSelect="myPlexLogin()">
+                <label>{{TEXT(Log In)}}</label>
+                <accessories>
+                  <arrow/>
                 </accessories>
-	      </oneLineMenuItem>
-	      <oneLineMenuItem id="MyPlexLogOut" onSelect="myPlexLogout()">
-	      	<label>{{TEXT(Log Out)}}</label>
-	        <accessories>
-	          <arrow/>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="MyPlexLogOut" onSelect="myPlexLogout()">
+                <label>{{TEXT(Log Out)}}</label>
+                <accessories>
+                  <arrow/>
                 </accessories>
-	      </oneLineMenuItem>
+              </oneLineMenuItem>
             </items>
           </menuSection>
           <menuSection>
@@ -72,10 +72,6 @@
               <oneLineMenuItem id="MyPlex_UUID">
                 <label>{{TEXT(MyPlex UUID)}}</label>
                 <rightLabel>{{SETTING(MyPlex_UUID)}}</rightLabel>
-              </oneLineMenuItem>
-              <oneLineMenuItem id="MyPlexEnable">
-                <label>{{TEXT(Enabled)}}</label>
-                <rightLabel>{{SETTING(MyPlexEnabled)}}</rightLabel>
               </oneLineMenuItem>
             </items>
           </menuSection>

@@ -40,10 +40,8 @@ options = { \
     'timeformat'        :('24 Hour', '12 Hour'), \
     'language'          :('en_US', 'zh_TW' ), \
     'pms_uuid'          :('*', ), \
-    'myplexuser'	:('', ), \
-    'myplexpassword'	:('', ), \
-    'myplexenabled'	:('False', 'True'), \
-    'myplex_uuid'	:('', ), \
+    'myplexuser'        :('', ), \
+    'myplex_uuid'       :('', ), \
     }
     
 # comment on forcedirectplay -> if true, this has higher priority than forcetranscode

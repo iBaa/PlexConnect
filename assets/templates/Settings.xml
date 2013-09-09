@@ -78,11 +78,11 @@
                 <label>{{TEXT(Force Transcode)}}</label>
                 <rightLabel>{{SETTING(forcetranscode)}}</rightLabel>
               </oneLineMenuItem>
-							<oneLineMenuItem id="TranscodeQuality" onSelect="toggleSettings('TranscodeQuality', 'Settings')">
+              <oneLineMenuItem id="TranscodeQuality" onSelect="toggleSettings('TranscodeQuality', 'Settings')">
                 <label>{{TEXT(Transcoder Quality)}}</label>
                 <rightLabel>{{SETTING(transcodequality)}}</rightLabel>
               </oneLineMenuItem>
-							<oneLineMenuItem id="SubtitleSize" onSelect="toggleSettings('SubtitleSize', 'Settings')">
+              <oneLineMenuItem id="SubtitleSize" onSelect="toggleSettings('SubtitleSize', 'Settings')">
                 <label>{{TEXT(Subtitle Size %)}}</label>
                 <rightLabel>{{SETTING(subtitlesize)}}</rightLabel>
               </oneLineMenuItem>
@@ -115,17 +115,17 @@
           <menuSection>
             <header>
               <horizontalDivider alignment="left">
-	        <title>{{TEXT(MyPlex)}}</title>
+            <title>{{TEXT(MyPlex)}}</title>
               </horizontalDivider>
             </header>
             <items>
               <oneLineMenuItem id="MyPlex" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsMyPlex')">
-	        <label>{{TEXT(MyPlex)}}</label>
-	        <accessories>
-	          <arrow/>
-	    	</accessories>
-	      </oneLineMenuItem>
-	    </items>
+                <label>{{TEXT(MyPlex)}}</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
+              </oneLineMenuItem>
+            </items>
 
           </menuSection>
         </sections>
