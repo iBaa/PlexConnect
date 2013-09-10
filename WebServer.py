@@ -52,7 +52,7 @@ class MyHandler(BaseHTTPRequestHandler):
             dprint(__name__, 2, "http request header:\n{0}", self.headers)
             dprint(__name__, 2, "http request path:\n{0}", self.path)
             
-            # brake up path, separate PlexConnect options
+            # break up path, separate PlexConnect options
             options = {}
             while True:
                 cmd_start = self.path.find('&PlexConnect')
@@ -73,11 +73,21 @@ class MyHandler(BaseHTTPRequestHandler):
                 else:
                     options[parts[0]] = urllib.unquote(parts[1])
             
+            # break up path, separate additional arguments
+            # clean path needed for filetype decoding... has to be merged back when forwarded.
+            parts = self.path.split('?', 1)
+            if len(parts)==1:
+                args = ''
+            else:
+                self.path = parts[0]
+                args = '?'+parts[1]
+            
             # get aTV language setting
             options['aTVLanguage'] = Localize.pickLanguage(self.headers.get('Accept-Language', 'en'))
             
             dprint(__name__, 2, "cleaned path:\n{0}", self.path)
-            dprint(__name__, 2, "request options:\n{0}", options)
+            dprint(__name__, 2, "PlexConnect options:\n{0}", options)
+            dprint(__name__, 2, "additional arguments:\n{0}", args)
             
             if 'User-Agent' in self.headers and \
                'AppleTV' in self.headers['User-Agent']:
@@ -138,7 +148,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 # get everything else from XMLConverter - formerly limited to trailing "/" and &PlexConnect Cmds
                 if True:
                     dprint(__name__, 1, "serving .xml: "+self.path)
-                    XML = XMLConverter.XML_PMS2aTV(self.client_address, self.path, options)
+                    XML = XMLConverter.XML_PMS2aTV(self.client_address, self.path + args, options)
                     self.send_response(200)
                     self.send_header('Content-type', 'text/xml')
                     self.end_headers()
