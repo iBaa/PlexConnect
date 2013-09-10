@@ -332,8 +332,8 @@ def XML_PMS2aTV(address, path, options):
             MyPlexPath = re.findall(r'URL=http://[0-9\.]+:[0-9]+([^&?]+)', path)[0]
             MyPlexServer = re.findall(r'URL=http://([0-9\.]+:[0-9]+)[^&?]+', path)[0]
                         
-            dprint(__name__, 1, "MyPlex-> Server: " +MyPlexServer)
-            dprint(__name__, 1, "MyPlex-> Request Path: " +MyPlexPath)
+            dprint(__name__, 0, "MyPlex-> Server: " +MyPlexServer)
+            dprint(__name__, 0, "MyPlex-> Request Path: " +MyPlexPath)
             
             path = MyPlexPath
             g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexcurserver", MyPlexServer)
@@ -593,6 +593,10 @@ def XML_PMS2aTV(address, path, options):
     # get XMLtemplate
     aTVTree = etree.parse(sys.path[0]+'/assets/templates/'+XMLtemplate)
     aTVroot = aTVTree.getroot()
+    
+    #if MyPlexEnabled:
+    #    path = "/myplex" + path
+    #dprint(__name__, 0, "CCPath: {0}", path)
     
     # convert PMS XML to aTV XML using provided XMLtemplate
     global g_CommandCollection
@@ -1039,7 +1043,14 @@ class CCommandCollection(CCommandHelper):
             path = self.path[srcXML] + '/' + key
         
         myplexauthcache = literal_eval(g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'myplexauthcache'))
+        #dprint(__name__, 0, path)
+        #if "/myplex/" in path:
+        #    PMS = XML_ReadFromURL('address', path[len('/myplex'):], myplexauthcache)
+        #else:
+        #    PMS = XML_ReadFromURL('address', path, myplexauthcache)
+        
         PMS = XML_ReadFromURL('address', path, myplexauthcache)
+        
         self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML
         self.path[tag] = path  # store base path
         
@@ -1097,6 +1108,7 @@ class CCommandCollection(CCommandHelper):
         return self.imageUrl(self.path[srcXML], key, 384, 384)
             
     def imageUrl(self, path, key, width, height):
+    
         if key.startswith('/'):  # internal full path.
             res = 'http://127.0.0.1:32400' + key
         elif key.startswith('http://'):  # external address
@@ -1142,7 +1154,7 @@ class CCommandCollection(CCommandHelper):
         # check "Media" element and get key
         if Media!=None:
             UDID = self.options['PlexConnectUDID']
-            
+            dprint(__name__, 0, "Video Key {0}", Video.get('key', ''))
             if g_ATVSettings.getSetting(UDID, 'forcedirectplay')=='True' \
                or \
                g_ATVSettings.getSetting(UDID, 'forcetranscode')!='True' and \
@@ -1166,8 +1178,9 @@ class CCommandCollection(CCommandHelper):
                 
             else:
                 # request transcoding
+                res = Video.get('key','') 
                 res = PlexAPI_getTranscodePath(self.options, res)
-                dprint(__name__, 0, "Vid in block 2 (transcode)")
+                
         else:
             dprint(__name__, 0, "MEDIAPATH - element not found: {0}", param)
             res = 'FILE_NOT_FOUND'  # not found?
@@ -1270,7 +1283,6 @@ if __name__=="__main__":
     param['Addr_PMS'] = '*Addr_PMS*'
     param['HostToIntercept'] = 'trailers.apple.com'
     setParams(param)
-    setGlobals()
     
     cfg = ATVSettings.CATVSettings()
     setATVSettings(cfg)
