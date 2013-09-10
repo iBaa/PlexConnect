@@ -28,6 +28,7 @@ import copy  # deepcopy()
 from os import sep
 import httplib, socket
 import re
+from ast import literal_eval
 
 
 try:
@@ -57,13 +58,6 @@ g_ATVSettings = None
 def setATVSettings(cfg):
     global g_ATVSettings
     g_ATVSettings = cfg
-
-MyPlexServer = None
-def setGlobals():
-    global MyPlexServer
-    MyPlexServer = None
-    global MyPlexToken
-    MyPlexToken = None
 
 # links to CMD class for module wide usage
 g_CommandCollection = None
@@ -145,15 +139,19 @@ def GetURL(address, path, authToken):
     try:
         if address=="my.plexapp.com:443":
             conn = httplib.HTTPSConnection(address)
-            path = "/pms/system" + path
+            #path = "/pms/system" + path
         else:
             conn = httplib.HTTPConnection(address, timeout=10)
+        
         headers = {}
+        
         try:
-            headers = {'X-Plex-Token' : authToken}
+            token = authToken[address]
+            headers = {'X-Plex-Token' : token}
+            conn.request("GET", path, None, headers)
         except KeyError:
-            pass
-        conn.request("GET", path, None, headers)
+            conn.request("GET", path)
+            
         data = conn.getresponse()
         if int(data.status) == 200:
             link=data.read()
@@ -289,6 +287,26 @@ def validateMyPlex(username, password, PlexConnectUDID):
         return authToken
 
 
+def getMyPlexTokenCache(PlexConnectUDID):
+    token = g_ATVSettings.getSetting(PlexConnectUDID, "myplex_uuid")
+    tokenCache = { "my.plexapp.com:443" : token}
+    XMLstring = GetURL("my.plexapp.com:443", "/pms/servers", tokenCache)
+    if XMLstring==False:
+        dprint(__name__, 0, 'No Response from Plex Media Server')
+        return False
+        
+    # parse from memory
+    XMLroot = etree.fromstring(XMLstring)    
+        
+    # XML root to ElementTree
+    XML = etree.ElementTree(XMLroot)
+    
+    for servers in XML.findall("Server"):
+        serverIndex = servers.get("host") + ":" + servers.get("port") 
+        tokenCache[serverIndex] = servers.get("accessToken")
+    
+    return tokenCache
+
         
 def XML_PMS2aTV(address, path, options):
 
@@ -305,28 +323,26 @@ def XML_PMS2aTV(address, path, options):
         dprint(__name__, 1, "no aTVLanguage - pick en")
         options['aTVLanguage'] = 'en'
     
+        
     MyPlexEnabled = False
     if "/myplex/" in path:
         MyPlexEnabled = True
         path = path[len('/myplex'):]
         if path.startswith("/passthru"):
             MyPlexPath = re.findall(r'URL=http://[0-9\.]+:[0-9]+([^&?]+)', path)[0]
-            
-            global MyPlexServer
             MyPlexServer = re.findall(r'URL=http://([0-9\.]+:[0-9]+)[^&?]+', path)[0]
-            
-            global MyPlexToken
-            MyPlexToken = re.findall(r'token=([^?&]+)', path)[0]
-            
-            dprint(__name__, 1, "Server: " +MyPlexServer)
-            dprint(__name__, 1, "Path: " +MyPlexPath)
-            dprint(__name__, 1, "Token: " +MyPlexToken)
+                        
+            dprint(__name__, 1, "MyPlex-> Server: " +MyPlexServer)
+            dprint(__name__, 1, "MyPlex-> Request Path: " +MyPlexPath)
             
             path = MyPlexPath
+            g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexcurserver", MyPlexServer)
             
         if path=="/library/sections":
-            global MyPlexServer
-            MyPlexServer = None
+            myplexauthcache = getMyPlexTokenCache(options['PlexConnectUDID'])
+            #reload auth cache on "MyPlex" page.
+            g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexauthcache", str(myplexauthcache))
+            g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexcurserver", "")
    
    
     
@@ -468,8 +484,13 @@ def XML_PMS2aTV(address, path, options):
         XMLtemplate = 'Search_Results.xml'
     
     # determine PMS address
+    myplexauthcache = {}
     myplexuser = g_ATVSettings.getSetting(options['PlexConnectUDID'], 'myplexuser')
-    MyPlexServerUUID = None
+    authstring = g_ATVSettings.getSetting(options['PlexConnectUDID'], 'myplexauthcache')
+    if authstring!="":
+        myplexauthcache = literal_eval(authstring)
+    myplexcurserver = g_ATVSettings.getSetting(options['PlexConnectUDID'], "myplexcurserver")
+
     PMS_list = g_param['PMS_list']
     PMS_uuid = g_ATVSettings.getSetting(options['PlexConnectUDID'], 'pms_uuid')
     if not PMS_uuid in PMS_list:
@@ -481,13 +502,11 @@ def XML_PMS2aTV(address, path, options):
         else:
             g_param['Addr_PMS'] = '127.0.0.1:32400'  # no PMS available. Addr stupid but valid.
     else:
-        global MyPlexServer
-        if MyPlexServer==None:
+        if myplexcurserver=="":
             g_param['Addr_PMS'] = 'my.plexapp.com:443'
-            MyPlexServerUUID = g_ATVSettings.getSetting(options['PlexConnectUDID'], 'myplex_uuid')
+            path = "/pms/system" + path
         else:
-            g_param['Addr_PMS'] = MyPlexServer
-            MyPlexServerUUID = MyPlexToken
+            g_param['Addr_PMS'] = myplexcurserver
         
     
     # request PMS XML
@@ -500,7 +519,7 @@ def XML_PMS2aTV(address, path, options):
         if not PMS_uuid in PMS_list:
             return XML_Error('PlexConnect', 'Selected Plex Media Server not Online')
         
-        PMS = XML_ReadFromURL(address, path, MyPlexServerUUID)
+        PMS = XML_ReadFromURL(address, path, myplexauthcache)
         if PMS==False:
             return XML_Error('PlexConnect', 'No Response from Plex Media Server')
     
@@ -1019,7 +1038,8 @@ class CCommandCollection(CCommandHelper):
         else:  # internal path, add-on
             path = self.path[srcXML] + '/' + key
         
-        PMS = XML_ReadFromURL('address', path, g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'myplex_uuid'))
+        myplexauthcache = literal_eval(g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'myplexauthcache'))
+        PMS = XML_ReadFromURL('address', path, myplexauthcache)
         self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML
         self.path[tag] = path  # store base path
         
@@ -1140,13 +1160,14 @@ class CCommandCollection(CCommandHelper):
                 
                 if Media.get('indirect',None):  # indirect... todo: select suitable resolution, today we just take first Media
                     key, leftover, dfltd = self.getKey(Media, srcXML, 'Part/key')
-                    PMS = XML_ReadFromURL(g_param['Addr_PMS'], key, g_ATVSettings.getSetting(options['PlexConnectUDID'], 'myplex_uuid'))  # todo... check key for trailing '/' or even 'http'
+                    myplexauthcache = literal_eval(g_ATVSettings.getSetting(options['PlexConnectUDID'], 'myplexauthcache'))
+                    PMS = XML_ReadFromURL(g_param['Addr_PMS'], key, myplexauthcache)  # todo... check key for trailing '/' or even 'http'
                     res, leftover, dfltd = self.getKey(PMS.getroot(), srcXML, 'Video/Media/Part/key')
                 
             else:
                 # request transcoding
-                res = Video.get('key','')
                 res = PlexAPI_getTranscodePath(self.options, res)
+                dprint(__name__, 0, "Vid in block 2 (transcode)")
         else:
             dprint(__name__, 0, "MEDIAPATH - element not found: {0}", param)
             res = 'FILE_NOT_FOUND'  # not found?

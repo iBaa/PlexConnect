@@ -42,6 +42,8 @@ options = { \
     'pms_uuid'          :('*', ), \
     'myplexuser'        :('', ), \
     'myplex_uuid'       :('', ), \
+    'myplexauthcache'   :('', ), \
+    'myplexcurserver'   :('', ), \
     }
     
 # comment on forcedirectplay -> if true, this has higher priority than forcetranscode
