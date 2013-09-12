@@ -323,29 +323,17 @@ def XML_PMS2aTV(address, path, options):
         dprint(__name__, 1, "no aTVLanguage - pick en")
         options['aTVLanguage'] = 'en'
     
-        
-    MyPlexEnabled = False
-    if "/myplex/" in path:
-        MyPlexEnabled = True
-        path = path[len('/myplex'):]
-        if path.startswith("/passthru"):
-            MyPlexPath = re.findall(r'URL=http://[0-9\.]+:[0-9]+([^&?]+)', path)[0]
-            MyPlexServer = re.findall(r'URL=http://([0-9\.]+:[0-9]+)[^&?]+', path)[0]
-                        
-            dprint(__name__, 0, "MyPlex-> Server: " +MyPlexServer)
-            dprint(__name__, 0, "MyPlex-> Request Path: " +MyPlexPath)
-            
-            path = MyPlexPath
-            g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexcurserver", MyPlexServer)
-            
-        if path=="/library/sections":
-            myplexauthcache = getMyPlexTokenCache(options['PlexConnectUDID'])
-            #reload auth cache on "MyPlex" page.
-            g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexauthcache", str(myplexauthcache))
-            g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexcurserver", "")
-   
-   
-    
+    if path.startswith("/passthru"):
+        MyPlexPath = re.findall(r'URL=http://[a-z0-9\.:]+([^&?]+)', path)[0]
+        MyPlexServer = re.findall(r'URL=http://([a-z0-9\.:]+)[^&?]+', path)[0]
+                                            
+        path = MyPlexPath
+        g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexcurserver", MyPlexServer)
+        if MyPlexServer != "atv.plexconnect":
+            g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexenabled", 'True')
+        else:
+            g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexenabled", 'False')
+                
     # XML Template selector
     # - PlexConnect command
     # - path
@@ -496,7 +484,7 @@ def XML_PMS2aTV(address, path, options):
     if not PMS_uuid in PMS_list:
         g_ATVSettings.checkSetting(options['PlexConnectUDID'], 'pms_uuid')  # verify PMS_uuid
         PMS_uuid = g_ATVSettings.getSetting(options['PlexConnectUDID'], 'pms_uuid')
-    if MyPlexEnabled==False:
+    if myplexcurserver == "atv.plexconnect":
         if PMS_uuid in PMS_list:
             g_param['Addr_PMS'] = PMS_list[PMS_uuid]['ip'] +':'+ PMS_list[PMS_uuid]['port']
         else:
@@ -583,20 +571,13 @@ def XML_PMS2aTV(address, path, options):
         XMLtemplate = 'Photo.xml'
     
     else:
-        if MyPlexEnabled:
-            XMLtemplate = 'MyPlexDirectory.xml'
-        else:
-            XMLtemplate = 'Directory.xml'
+        XMLtemplate = 'Directory.xml'
     
     dprint(__name__, 1, "XMLTemplate: "+XMLtemplate)
     
     # get XMLtemplate
     aTVTree = etree.parse(sys.path[0]+'/assets/templates/'+XMLtemplate)
     aTVroot = aTVTree.getroot()
-    
-    #if MyPlexEnabled:
-    #    path = "/myplex" + path
-    #dprint(__name__, 0, "CCPath: {0}", path)
     
     # convert PMS XML to aTV XML using provided XMLtemplate
     global g_CommandCollection
@@ -611,15 +592,7 @@ def XML_PMS2aTV(address, path, options):
     dprint(__name__, 1, XML_prettystring(aTVTree))
     dprint(__name__, 1, "====== aTV-XML finished ======")
   
-    retval = etree.tostring(aTVroot)
-    
-    #This is garbage proof of concept crap that works but should be done better.
-    if MyPlexEnabled:
-        retval = retval.replace("atv.plexconnect", "atv.plexconnect/myplex")
-        retval = retval.replace("atv.plexconnect/myplex/js", "atv.plexconnect/js")
-        retval = retval.replace("onVolatileReload=\"updatePage(\'/", "onVolatileReload=\"updatePage('/myplex/")
-        
-    return retval
+    return etree.tostring(aTVroot)
 
 
 def XML_ExpandTree(elem, src, srcXML):
@@ -1027,30 +1000,28 @@ class CCommandCollection(CCommandHelper):
         tag, leftover = self.getParam(src, param)
         key, leftover, dfltd = self.getKey(src, srcXML, leftover)
         
+        MyPlexPath = None
+        
         if key.startswith('/'):  # internal full path.
             path = key
-        #elif key.startswith('http://'):  # external address
-        #    path = key
-        #    hijack = g_param['HostToIntercept']
-        #    if hijack in path:
-        #        dprint(__name__, 1, "twisting...")
-        #        hijack_twisted = hijack[::-1]
-        #        path = path.replace(hijack, hijack_twisted)
-        #        dprint(__name__, 1, path)
+        elif key.startswith('my.plexapp.com'):  # external address
+            path = key
+            MyPlexPath = path[len('my.plexapp.com'):]
         elif key == '':  # internal path
             path = self.path[srcXML]
         else:  # internal path, add-on
             path = self.path[srcXML] + '/' + key
         
         myplexauthcache = literal_eval(g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'myplexauthcache'))
-        #dprint(__name__, 0, path)
-        #if "/myplex/" in path:
-        #    PMS = XML_ReadFromURL('address', path[len('/myplex'):], myplexauthcache)
-        #else:
-        #    PMS = XML_ReadFromURL('address', path, myplexauthcache)
+        if MyPlexPath == None:
+            PMS = XML_ReadFromURL('address', path, myplexauthcache)
+        else:
+            switchback = g_param['Addr_PMS']
+            g_param['Addr_PMS'] = "my.plexapp.com:443"
+            PMS = XML_ReadFromURL('address', MyPlexPath, myplexauthcache)
+            g_param['Addr_PMS'] = switchback
         
-        PMS = XML_ReadFromURL('address', path, myplexauthcache)
-        
+        dprint(__name__, 0, "ADDXML: {0}", PMS)
         self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML
         self.path[tag] = path  # store base path
         
@@ -1108,9 +1079,17 @@ class CCommandCollection(CCommandHelper):
         return self.imageUrl(self.path[srcXML], key, 384, 384)
             
     def imageUrl(self, path, key, width, height):
-    
+        myplexauthcache = literal_eval(g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'myplexauthcache'))
+        token = None
+        try:
+            token = myplexauthcache[g_param['Addr_PMS']]
+        except KeyError:
+            pass
         if key.startswith('/'):  # internal full path.
-            res = 'http://127.0.0.1:32400' + key
+            if token==None:
+                res = 'http://127.0.0.1:32400' + key
+            else:
+                res = 'http://' + g_param['Addr_PMS'] + key
         elif key.startswith('http://'):  # external address
             res = key
             hijack = g_param['HostToIntercept']
@@ -1120,12 +1099,19 @@ class CCommandCollection(CCommandHelper):
                 res = res.replace(hijack, hijack_twisted)
                 dprint(__name__, 1, res)
         else:
-            res = 'http://127.0.0.1:32400' + path + '/' + key
+            if token==None:
+                res = 'http://127.0.0.1:32400' + path + '/' + key
+            else:
+                res = 'http://' + g_param['Addr_PMS'] + path + '/' + key
         
         # This is bogus (note the extra path component) but ATV is stupid when it comes to caching images, it doesn't use querystrings.
         # Fortunately PMS is lenient...
         #
-        return 'http://' + g_param['Addr_PMS'] + '/photo/:/transcode/%s/?width=%d&height=%d&url=' % (quote_plus(res), width, height) + quote_plus(res)
+        if token==None:
+            return 'http://' + g_param['Addr_PMS'] + '/photo/:/transcode/%s/?width=%d&height=%d&url=' % (quote_plus(res), width, height) + quote_plus(res)
+        else:
+            return res + "?X-Plex-Token=" + token
+            
             
     def ATTRIB_URL(self, src, srcXML, param):
         key, leftover, dfltd = self.getKey(src, srcXML, param)
@@ -1146,6 +1132,12 @@ class CCommandCollection(CCommandHelper):
         return res
     
     def ATTRIB_MEDIAURL(self, src, srcXML, param):
+        myplexauthcache = literal_eval(g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'myplexauthcache'))
+        token = None
+        try:
+            token = myplexauthcache[g_param['Addr_PMS']]
+        except KeyError:
+            pass
         Video, leftover = self.getElement(src, srcXML, param)
         
         if Video!=None:
@@ -1163,7 +1155,8 @@ class CCommandCollection(CCommandHelper):
                g_ATVSettings.getSetting(UDID, 'forcetranscode')!='True' and \
                Media.get('container','-') in ("mov", "mp4") and \
                Media.get('videoCodec','-') in ("mpeg4", "h264", "drmi") and \
-               Media.get('audioCodec','-') in ("aac", "ac3", "drms"):
+               Media.get('audioCodec','-') in ("aac", "ac3", "drms") and \
+               token==None:
                 # direct play for...
                 #    force direct play
                 # or HTTP live stream
@@ -1179,7 +1172,13 @@ class CCommandCollection(CCommandHelper):
             else:
                 # request transcoding
                 res = Video.get('key','') 
+                if token!=None:
+                    changeback = g_ATVSettings.getSetting(UDID, 'transcodequality') 
+                    g_ATVSettings.setSetting(UDID, 'transcodequality', '720p 3.0Mbps')
+                    
                 res = PlexAPI_getTranscodePath(self.options, res)
+                if token!=None:
+                    g_ATVSettings.setSetting(UDID, 'transcodequality', changeback)
                 
         else:
             dprint(__name__, 0, "MEDIAPATH - element not found: {0}", param)

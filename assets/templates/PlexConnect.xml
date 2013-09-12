@@ -22,10 +22,10 @@
           <title>{{TEXT(Settings)}}</title>
           <url>{{URL(:/&amp;PlexConnect=Settings)}}</url>
         </navigationItem>
-        <navigationItem id="MyPlex">
+        <!--navigationItem id="MyPlex">
           <title>{{TEXT(MyPlex)}}</title>
           <url>{{URL(:/myplex/library/sections)}}</url>
-        </navigationItem>
+        </navigationItem-->
       </navigation>
     </viewWithNavigationBar>
   </body>

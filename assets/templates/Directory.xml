@@ -4,6 +4,7 @@
   </head>
 
   <body>
+    {{ADDXML(MyPlex::my.plexapp.com/pms/system/library/sections)}}
     <listWithPreview id="com.sample.menu-items-with-sections">
     {{CUT(size:CUT:0=CUT|1=)}}
       <header>
@@ -22,7 +23,7 @@
               <!-- content="", "secondary", "items" -->
               <oneLineMenuItem id="{{VAL(key)}}"
                                        onPlay="atv.loadURL('{{URL(key)}}')"
-                                       onSelect="atv.loadURL('{{URL(key)}}')">
+                                       onSelect="atv.loadURL('http://atv.plexconnect/passthru?URL={{URL(key)}}')">
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>
                 <preview>
@@ -30,7 +31,7 @@
                   <link>{{URL(key)}}/recentlyAdded?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20&amp;PlexConnect=SectionPreview-{{VAL(type)}}</link>{{CUT(type:CUT:a=CUT|photo=|q=CUT)}}
                 </preview>
               </oneLineMenuItem>
-
+              
               <!-- Artist -->
               <!-- viewgroup="secondary" -->
               <!-- content="artists" -->
@@ -92,6 +93,27 @@
                 </preview>
               </oneLineMenuItem>
 
+            </items>
+          </menuSection>
+          <menuSection>
+            {{CUT(@MyPlex/size:CUT:0=CUT|1=)}}
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{TEXT(MyPlex Libraries)}}</title>
+              </horizontalDivider>
+            </header>
+            <items>
+              {{CUT(@MyPlex/size:CUT:0=CUT|1=)}}
+              <oneLineMenuItem id="{{VAL(key)}}"
+                                       onPlay="atv.loadURL('{{URL(key)}}')"
+                                       onSelect="atv.loadURL('http://atv.plexconnect/passthru?URL={{URL(key)}}')">
+                {{COPY(@MyPlex/Directory)}}
+                <label>{{VAL(serverName)}} : {{VAL(title)}}</label>
+                <preview>
+                  <link>{{URL(key)}}/recentlyAdded?stack=1&amp;X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20&amp;PlexConnect=SectionPreview-{{VAL(type)}}</link>{{CUT(type::a=|photo=CUT|q=)}}
+                  <link>{{URL(key)}}/recentlyAdded?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20&amp;PlexConnect=SectionPreview-{{VAL(type)}}</link>{{CUT(type:CUT:a=CUT|photo=|q=CUT)}}
+                </preview>
+              </oneLineMenuItem>
             </items>
           </menuSection>
         </sections>

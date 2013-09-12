@@ -44,6 +44,7 @@ options = { \
     'myplex_uuid'       :('', ), \
     'myplexauthcache'   :('', ), \
     'myplexcurserver'   :('', ), \
+    'myplexenabled'     :('', ), \
     }
     
 # comment on forcedirectplay -> if true, this has higher priority than forcetranscode
