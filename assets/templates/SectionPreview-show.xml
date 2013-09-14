@@ -4,14 +4,14 @@
      <preview>
         <paradePreview inOrder="true">
           <image>
-            {{COPY(Directory)}}
+            {{COPY(Directory:thumb::=COPY)}}
             {{BIGIMAGEURL(parentThumb)}}
           </image>
         </paradePreview>{{CUT(size:CUT:0=CUT|0 =|1=CUT|1 =|2=CUT|2 =|3=CUT|4=CUT|5=CUT|6=)}}
         
         <crossFadePreview>
           <image>
-            {{COPY(Directory)}}
+            {{COPY(Directory:thumb::=COPY)}}
             {{BIGIMAGEURL(parentThumb)}}
           </image>
         </crossFadePreview>{{CUT(size::0=|0 =CUT|1=|1 =CUT|2=|2 =CUT|3=|4=|5=|6=CUT)}}
