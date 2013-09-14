@@ -151,6 +151,8 @@ def GetURL(address, path, authToken):
             conn.request("GET", path, None, headers)
         except KeyError:
             conn.request("GET", path)
+        except TypeError:
+            conn.request("GET", path)
             
         data = conn.getresponse()
         if int(data.status) == 200:
@@ -322,6 +324,15 @@ def XML_PMS2aTV(address, path, options):
     if not 'aTVLanguage' in options:
         dprint(__name__, 1, "no aTVLanguage - pick en")
         options['aTVLanguage'] = 'en'
+    
+    if path=="/library/sections":
+        myplexauthcache = getMyPlexTokenCache(options['PlexConnectUDID'])  
+        #reload auth cache on "MyPlex" page.  
+        g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexauthcache", str(myplexauthcache))  
+
+    
+    if path=="/library/sections" or path=="/PlexConnect.xml":
+        g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexcurserver", "atv.plexconnect")
     
     if path.startswith("/passthru"):
         MyPlexPath = re.findall(r'URL=http://[a-z0-9\.:]+([^&?]+)', path)[0]
@@ -1021,7 +1032,6 @@ class CCommandCollection(CCommandHelper):
             PMS = XML_ReadFromURL('address', MyPlexPath, myplexauthcache)
             g_param['Addr_PMS'] = switchback
         
-        dprint(__name__, 0, "ADDXML: {0}", PMS)
         self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML
         self.path[tag] = path  # store base path
         
@@ -1079,11 +1089,16 @@ class CCommandCollection(CCommandHelper):
         return self.imageUrl(self.path[srcXML], key, 384, 384)
             
     def imageUrl(self, path, key, width, height):
-        myplexauthcache = literal_eval(g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'myplexauthcache'))
+        myplexauthcache = {}
+        authstring = g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'myplexauthcache')
+        if authstring!="":
+            myplexauthcache = literal_eval(authstring)
         token = None
         try:
             token = myplexauthcache[g_param['Addr_PMS']]
         except KeyError:
+            pass
+        except TypeError:
             pass
         if key.startswith('/'):  # internal full path.
             if token==None:
