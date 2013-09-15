@@ -1034,7 +1034,7 @@ class CCommandCollection(CCommandHelper):
         
         myplexauthcache = literal_eval(g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'myplexauthcache'))
         if MyPlexPath == None:
-            PMS = XML_ReadFromURL('address', path, myplexauthcache)
+            PMS = XML_ReadFromURL(g_param['Addr_PMS'], path, myplexauthcache)
         else:
             switchback = g_param['Addr_PMS']
             g_param['Addr_PMS'] = "my.plexapp.com:443"
