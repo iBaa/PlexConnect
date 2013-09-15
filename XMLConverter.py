@@ -190,8 +190,6 @@ def GetURL(address, path, authToken):
 # - translate and feed back to aTV
 """
 def XML_ReadFromURL(address, path, authToken):
-    address = g_param['Addr_PMS']
-    # address[0]+':'+str(address[1])  <- address should be this. ReadFromURL gets called with bad parameters?
     xargs = PlexAPI_getXArgs()
     if path.find('?')>=0:
         path = path + '&' + urlencode(xargs)
@@ -483,6 +481,8 @@ def XML_PMS2aTV(address, path, options):
         XMLtemplate = 'Search_Results.xml'
     
     # determine PMS address
+    # check PMS availability
+    # determine PMS address
     myplexauthcache = {}
     myplexuser = g_ATVSettings.getSetting(options['PlexConnectUDID'], 'myplexuser')
     authstring = g_ATVSettings.getSetting(options['PlexConnectUDID'], 'myplexauthcache')
@@ -492,9 +492,20 @@ def XML_PMS2aTV(address, path, options):
 
     PMS_list = g_param['PMS_list']
     PMS_uuid = g_ATVSettings.getSetting(options['PlexConnectUDID'], 'pms_uuid')
-    if not PMS_uuid in PMS_list:
+    
+    # we need PMS but don't see selected one: re-discover (PlexGDM)
+    if not path=='' and not PMS_uuid in PMS_list:
+        if not discoverPMS():
+            return XML_Error('PlexConnect', 'No Plex Media Server in Proximity')
+        PMS_list = g_param['PMS_list']
         g_ATVSettings.checkSetting(options['PlexConnectUDID'], 'pms_uuid')  # verify PMS_uuid
         PMS_uuid = g_ATVSettings.getSetting(options['PlexConnectUDID'], 'pms_uuid')
+    if PMS_uuid in PMS_list:
+        g_param['Addr_PMS'] = PMS_list[PMS_uuid]['ip'] +':'+ PMS_list[PMS_uuid]['port']
+    
+    # determine PMS IP address
+    if PMS_uuid in PMS_list:
+        g_param['Addr_PMS'] = PMS_list[PMS_uuid]['ip'] +':'+ PMS_list[PMS_uuid]['port']
     if myplexcurserver == "atv.plexconnect":
         if PMS_uuid in PMS_list:
             g_param['Addr_PMS'] = PMS_list[PMS_uuid]['ip'] +':'+ PMS_list[PMS_uuid]['port']
@@ -518,11 +529,9 @@ def XML_PMS2aTV(address, path, options):
         if not PMS_uuid in PMS_list:
             return XML_Error('PlexConnect', 'Selected Plex Media Server not Online')
         
-        PMS = XML_ReadFromURL(address, path, myplexauthcache)
+        PMS = XML_ReadFromURL(g_param['Addr_PMS'], path, myplexauthcache)
         if PMS==False:
             return XML_Error('PlexConnect', 'No Response from Plex Media Server')
-    
-   
         PMSroot = PMS.getroot()
         
         dprint(__name__, 1, "viewGroup: "+PMSroot.get('ViewGroup','None'))
@@ -1029,7 +1038,7 @@ class CCommandCollection(CCommandHelper):
         else:
             switchback = g_param['Addr_PMS']
             g_param['Addr_PMS'] = "my.plexapp.com:443"
-            PMS = XML_ReadFromURL('address', MyPlexPath, myplexauthcache)
+            PMS = XML_ReadFromURL(g_param['Addr_PMS'], MyPlexPath, myplexauthcache)
             g_param['Addr_PMS'] = switchback
         
         self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML
