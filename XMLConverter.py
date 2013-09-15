@@ -331,7 +331,7 @@ def XML_PMS2aTV(address, path, options):
         g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexauthcache", str(myplexauthcache))  
 
     
-    if path=="/library/sections" or path=="/PlexConnect.xml":
+    if path=="/library/sections" or path=="/PlexConnect.xml" or path=="/channels/all":
         g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexcurserver", "atv.plexconnect")
     
     if path.startswith("/passthru"):
@@ -1161,7 +1161,6 @@ class CCommandCollection(CCommandHelper):
         # check "Media" element and get key
         if Media!=None:
             UDID = self.options['PlexConnectUDID']
-            dprint(__name__, 0, "Video Key {0}", Video.get('key', ''))
             if g_ATVSettings.getSetting(UDID, 'forcedirectplay')=='True' \
                or \
                g_ATVSettings.getSetting(UDID, 'forcetranscode')!='True' and \
