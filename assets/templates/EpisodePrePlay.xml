@@ -83,6 +83,32 @@
         </shelf>
       </centerShelf>
 
+      <divider>
+        <smallCollectionDivider alignment="left">
+          <title>Episodes</title>
+        </smallCollectionDivider>
+      </divider>
+      {{ADDXML(parent:Video/parentKey)}}
+      {{ADDXML(parentEpisodes:@parent/Directory/key)}}
+
+      <bottomShelf>
+        <shelf id="bottomShelf" columnCount="5">
+          <sections>
+            <shelfSection>
+              <items>
+                <sixteenByNinePoster related="true" alwaysShowTitles="true" id="shelf_item_1" 
+                                    onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')">
+                  {{COPY(@parentEpisodes/Video)}}
+                  <title>{{VAL(index)}}. {{VAL(title)}}</title>
+                  <image>{{IMAGEURL(thumb)}}</image>
+                  <defaultImage>resource://16X9.png</defaultImage>
+                </sixteenByNinePoster>
+              </items>
+            </shelfSection>
+          </sections>
+        </shelf>
+      </bottomShelf>
+
 		</itemDetail>
 	</body>
 </atv>
