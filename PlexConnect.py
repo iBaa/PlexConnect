@@ -7,7 +7,8 @@ Sources:
 inter-process-communication (queue): http://pymotw.com/2/multiprocessing/communication.html
 """
 
-
+import time
+time.sleep (1)
 import sys, time
 from os import sep
 import socket
