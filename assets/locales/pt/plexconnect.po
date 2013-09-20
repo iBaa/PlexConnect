@@ -6,7 +6,7 @@ msgstr ""
 "PO-Revision-Date: 2013-08-25 20:29+0800\n"
 "Last-Translator: Grey Lee <bcse@bcse.tw>\n"
 "Language-Team: Grey Lee <bcse@bcse.tw>\n"
-"Language: zh_TW\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -14,195 +14,195 @@ msgstr ""
 ""
 
 msgid "Actor View"
-msgstr "演員檢視"
+msgstr "Vista dos Atores"
 
 
 msgid "Actors"
-msgstr "演員"
+msgstr "Atores"
 
 
 msgid "All Movies"
-msgstr "所有電影"
+msgstr "Todos os Filmes"
 
 
 msgid "All Shows"
-msgstr "所有節目"
+msgstr "Todas as Séries"
 
 
 msgid "Appearance"
-msgstr "外觀"
+msgstr "Aparência"
 
 
 msgid "Audio"
-msgstr "音效"
+msgstr "Som"
 
 
 msgid "Audio Boost %"
-msgstr "音量增益 %"
+msgstr "Aumento do Som %"
 
 
 msgid "Audio/Subs"
-msgstr "音訊/字幕"
+msgstr "Som/Legenda"
 
 
 msgid "Authors"
-msgstr "作者"
+msgstr "Autores"
 
 
 msgid "By Collection"
-msgstr "依系列"
+msgstr "Por Coleção"
 
 
 msgid "By Content Rating"
-msgstr "依內容分級"
+msgstr "Por Classificação de Conteúdo"
 
 
 msgid "By Country"
-msgstr "依國家"
+msgstr "Por País"
 
 
 msgid "By First Letter"
-msgstr "依名稱"
+msgstr "Por Ordem Alfabética"
 
 
 msgid "By Folder"
-msgstr "依資料夾"
+msgstr "Por Pasta"
 
 
 msgid "By Rating"
-msgstr "依喜好程度"
+msgstr "Por Classificação"
 
 
 msgid "By Resolution"
-msgstr "依解析度"
+msgstr "Por Resolução"
 
 
 msgid "By Year"
-msgstr "依年份"
+msgstr "Por Ano"
 
 
 msgid "Channels"
-msgstr "頻道"
+msgstr "Canais"
 
 
 msgid "Clock Position"
-msgstr "時鐘位置"
+msgstr "Posição do Tempo"
 
 
 msgid "Collections"
-msgstr "系列"
+msgstr "Coleções"
 
 
 msgid "Decades"
-msgstr "年代"
+msgstr "Décadas"
 
 
 msgid "Details"
-msgstr "詳細資訊"
+msgstr "Detalhes"
 
 
 msgid "Director"
-msgstr "導演"
+msgstr "Diretor"
 
 
 msgid "Directors"
-msgstr "導演"
+msgstr "Diretores"
 
 
 msgid "Discover"
-msgstr "搜尋伺服器"
+msgstr "Descobrir"
 
 
 msgid "Episodes"
-msgstr "集"
+msgstr "Episódios"
 
 
 msgid "Force Direct Play"
-msgstr "強制直接播放"
+msgstr "Forçar 'Direct Play'"
 
 
 msgid "Force Transcode"
-msgstr "強制轉碼"
+msgstr "Forçar Transcodificação"
 
 
 msgid "Forum"
-msgstr "討論區"
+msgstr "Fórum"
 
 
 msgid "Genre"
-msgstr "類型"
+msgstr "Gênero"
 
 
 msgid "Genres"
-msgstr "類型"
+msgstr "Gêneros"
 
 
 msgid "Homepage"
-msgstr "首頁"
+msgstr "Página Principal"
 
 
 msgid "Length"
-msgstr "長度"
+msgstr "Duração"
 
 
 msgid "Library"
-msgstr "資料庫"
+msgstr "Biblioteca"
 
 
 msgid "Library Refresh in Progress."
-msgstr "資料庫更新中。"
+msgstr "Atualização da Biblioteca em Progresso."
 
 
 msgid "More"
-msgstr "更多"
+msgstr "Mais"
 
 
 msgid "More..."
-msgstr "更多⋯"
+msgstr "Mais..."
 
 
 msgid "Movie Navigation Bar"
-msgstr "電影主選單"
+msgstr "Barra de Navegação de Filmes"
 
 
 msgid "Movie Options"
-msgstr "電影選項"
+msgstr "Opção dos Filmes"
 
 
 msgid "Movie View"
-msgstr "電影檢視"
+msgstr "Visualização dos Filmes"
 
 
 msgid "Movies"
-msgstr "電影"
+msgstr "Filmes"
 
 
 msgid "No Seasons"
-msgstr "沒有季數"
+msgstr "Sem Temporadas"
 
 
 msgid "No Unwatched Movies"
-msgstr "您沒有未觀看的電影"
+msgstr "Sem Filmes não assistidos"
 
 
 msgid "No Unwatched Shows"
-msgstr "您沒有未觀看的電視節目"
+msgstr "Séries não assistidas"
 
 
 msgid "No Unwatched Shows."
-msgstr "您沒有未觀看的電視節目。"
+msgstr "Séries não assistidas."
 
 
 msgid "No episodes"
-msgstr "沒有集數"
+msgstr "Sem Episódios"
 
 
 msgid "On Deck"
-msgstr "首頁"
+msgstr "Em Progresso"
 
 
 msgid "Overscan Adjust"
-msgstr "Overscan 選項"
+msgstr "Ajuste"
 
 
 msgid "PMS"
@@ -210,179 +210,177 @@ msgstr "PMS"
 
 
 msgid "Photo"
-msgstr "照片"
+msgstr "Foto"
 
 
 msgid "Play"
-msgstr "播放"
+msgstr "Play"
 
 
 msgid "Plex Media Server"
-msgstr "Plex 媒體伺服器"
+msgstr "Plex Media Server"
 
 
 msgid "Plex Media Server: No Channels Available"
-msgstr "Plex 媒體伺服器: 沒有可用的頻道"
+msgstr "Plex Media Server: Sem Canais Disponível"
 
 
 msgid "Plex Media Server: No Items Available"
-msgstr "Plex 媒體伺服器: 沒有可用的項目"
+msgstr "Plex Media Server: Sem Ítens Disponíveis"
 
 
 msgid "Press menu to return."
-msgstr "請按下 Menu 以返回。"
+msgstr "Pressione menu para voltar."
 
 
 msgid "Producers"
-msgstr "製作人"
+msgstr "Produtores"
 
 
 msgid "Recently Added"
-msgstr "最近加入"
+msgstr "Adicionado Recentemente"
 
 
 msgid "Recently Aired"
-msgstr "最近播出"
+msgstr "No Ar"
 
 
 msgid "Recently Released"
-msgstr "最近發行"
+msgstr "Lançado Recentemente"
 
 
 msgid "Recently Viewed"
-msgstr "最近觀看"
+msgstr "Visto Recentemente"
 
 
 msgid "Recently Viewed Shows"
-msgstr "最近觀看的節目"
+msgstr "Séries Vistas Recentementes"
 
 
 msgid "Refresh Library"
-msgstr "更新資料庫"
+msgstr "Atualizar Biblioteca"
 
 
 msgid "Search"
-msgstr "搜尋"
+msgstr "Procurar"
 
 
 msgid "Search Plex Library"
-msgstr "搜尋 Plex 資料庫"
+msgstr "Procurar na Biblioteca do Plex"
 
 
 msgid "Season"
-msgstr "季"
+msgstr "Temporada"
 
 
 msgid "Season View"
-msgstr "季檢視"
+msgstr "Temporada Vista"
 
 
 msgid "Settings"
-msgstr "設定"
+msgstr "Ajustes"
 
 
 msgid "Show Clock"
-msgstr "顯示時鐘"
+msgstr "Mostrar Relógio"
 
 
 msgid "Show End Time"
-msgstr "顯示結束時間"
+msgstr "Mostrar Hora de Finalização"
 
 
 msgid "Show Photos"
-msgstr "顯示照片"
+msgstr "Mostrar Fotos"
 
 
 msgid "Show Unwatched Count"
-msgstr "顯示未觀看的數量"
+msgstr "Mostrar Contador de não vistos"
 
 
 msgid "Shows"
-msgstr "節目"
+msgstr "Séries"
 
 
 msgid "SlideShow"
-msgstr "幻燈片秀"
+msgstr "SlideShow"
 
 
 msgid "Subtitle Size %"
-msgstr "字幕大小 %"
+msgstr "Tamanho da Legenda %"
 
 
 msgid "TV Show Navigation Bar"
-msgstr "電視節目主選單"
+msgstr "Barra de Navegação do Seriado"
 
 
 msgid "TV Show Options"
-msgstr "電視節目選項"
+msgstr "Opções do Seriado"
 
 
 msgid "TV Show View"
-msgstr "電視節目檢視"
+msgstr "Visualização do Seriado"
 
 
 msgid "Time Format"
-msgstr "時間格式"
+msgstr "Formato do Relógio"
 
 
 msgid "Transcoder"
-msgstr "轉碼器"
+msgstr "Transcoder"
 
 
 msgid "Transcoder Quality"
-msgstr "轉碼品質"
+msgstr "Qualidade do Transcode"
 
 
 msgid "Unwatched"
-msgstr "未觀看"
+msgstr "Não visto"
 
 
 msgid "Version"
-msgstr "版本"
+msgstr "Versão"
 
 
 msgid "Video"
-msgstr "影片"
+msgstr "Vídeo"
 
 
 msgid "Video Player OSD"
-msgstr "播放器外觀"
+msgstr "OSD do Reprodutor"
 
 
 msgid "Wiki/Docs"
-msgstr "說明文件"
+msgstr "Wiki/Documentos"
 
 
 msgid "Writers"
-msgstr "編劇"
+msgstr "Escritores"
 
 
 msgid "Your aTV firmware version is too old to run this version of PlexConnect.\n"
 "Please use the v0.1-iOS-pre5.1 branch available from:-\n"
 "https://github.com/iBaa/PlexConnect"
-msgstr "您的 Apple TV 系統版本太舊，無法使用這個版本的 PlexConnect。\n"
-"\n"
-"請到以下網址取得 v0.1-iOS-pre5.1 分支版:\n"
-"\n"
+msgstr "Sua versão firmware da AppleTV é muito velha para rodar PlexConnect.\n"
+"Por favor, use pelo menos a versão v0.1-iOS-pre5.1 disponível no:-\n"
 "https://github.com/iBaa/PlexConnect"
 
 
 msgid "aTV firmware version 5.0.2 or lower."
-msgstr "Apple TV 系統版本低於 5.0.2"
+msgstr "Versão de Firmware da AppleTV 50.2 ou mais antiga."
 
 
 msgid "{0:0d}x{1:02d} {2}"
-msgstr "第{0:d}季 第{1:d}集 {2}"
+msgstr "{0:0d}x{1:02d} {2}"
 
 
 msgid "{0:d} Minutes"
-msgstr "{0:d} 分鐘"
+msgstr "{0:d} Minutos"
 
 
 msgid "{0:d}hr {1:d}min"
-msgstr "{0:d} 小時 {1:d} 分鐘"
+msgstr "{0:d}hr {1:d}min"
 
 
 msgid "{0} unwatched"
-msgstr "{0} 集未觀看"
+msgstr "{0} não visto"
 

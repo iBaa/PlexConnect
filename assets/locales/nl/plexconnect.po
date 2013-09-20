@@ -1,0 +1,448 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Plex Connect\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-08-31 12:11:14+0000\n"
+"PO-Revision-Date: 2013-09-17 11:30+0100\n"
+"Last-Translator: Robert van der Zaan <Robertvanderzaan@gmail.com>\n"
+"Language-Team: Robert van der Zaan <robertvanderzaan@gmail.com>\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+""
+
+msgid "Actor View"
+msgstr "Per Acteur"
+
+
+msgid "Actors"
+msgstr "Acteurs"
+
+
+msgid "All Movies"
+msgstr "Alle films"
+
+
+msgid "All Shows"
+msgstr "Alle series"
+
+
+msgid "Appearance"
+msgstr "Schermindeling"
+
+
+msgid "Audio"
+msgstr "Audio"
+
+
+msgid "Audio Boost %"
+msgstr "Audioversterking %"
+
+
+msgid "Audio Track"
+msgstr "Audio"
+
+
+msgid "Audio/Subs"
+msgstr "Audio/Ondertiteling"
+
+
+msgid "Authors"
+msgstr "Auteurs"
+
+
+msgid "By Collection"
+msgstr "Op verzameling"
+
+
+msgid "By Content Rating"
+msgstr "Op \"Kijkwijzer\""
+
+
+msgid "By Country"
+msgstr "Op land"
+
+
+msgid "By First Letter"
+msgstr "Op eerste letter"
+
+
+msgid "By Folder"
+msgstr "Op map"
+
+
+msgid "By Rating"
+msgstr "Op waardering"
+
+
+msgid "By Resolution"
+msgstr "Op resolutie"
+
+
+msgid "By Year"
+msgstr "Op jaar"
+
+
+msgid "Change Artwork"
+msgstr "Wijzig illustraties"
+
+
+msgid "Channels"
+msgstr "Kanalen"
+
+
+msgid "Clock Position"
+msgstr "Positie klok"
+
+
+msgid "Collections"
+msgstr "Verzamelingen"
+
+
+msgid "Current Artwork"
+msgstr "Huidige illustraties"
+
+
+msgid "Decades"
+msgstr "Decennia"
+
+
+msgid "Details"
+msgstr "Details"
+
+
+msgid "Director"
+msgstr "Regisseur"
+
+
+msgid "Directors"
+msgstr "Regisseurs"
+
+
+msgid "Discover"
+msgstr "Gevonden"
+
+
+msgid "Episode"
+msgstr "Aflevering"
+
+
+msgid "Episodes"
+msgstr "Afleveringen"
+
+
+msgid "Force Direct Play"
+msgstr "Forceer direct spelen"
+
+
+msgid "Force Transcode"
+msgstr "Forceer transcoderen"
+
+
+msgid "Forum"
+msgstr "Forum"
+
+
+msgid "Genre"
+msgstr "Genre"
+
+
+msgid "Genres"
+msgstr "Genres"
+
+
+msgid "Homepage"
+msgstr "Home page"
+
+
+msgid "Length"
+msgstr "Duur"
+
+
+msgid "Library"
+msgstr "Bibliotheek"
+
+
+msgid "Library Refresh in Progress."
+msgstr "Bezig met bijwerken van bibliotheek"
+
+
+msgid "Mark as Unwatched"
+msgstr "Markeer als ongekeken"
+
+
+msgid "Mark as Watched"
+msgstr "Markeer als gekeken"
+
+
+msgid "More"
+msgstr "Meer"
+
+
+msgid "More..."
+msgstr "Meer..."
+
+
+msgid "Movie"
+msgstr "Film"
+
+
+msgid "Movie Navigation Bar"
+msgstr "Navigatiebalk films"
+
+
+msgid "Movie Options"
+msgstr "Filmopties"
+
+
+msgid "Movie View"
+msgstr "Filmoverzicht"
+
+
+msgid "Movies"
+msgstr "Films"
+
+
+msgid "No Seasons"
+msgstr "Geen seizoenen"
+
+
+msgid "No Unwatched Movies"
+msgstr "Geen ongekeken films"
+
+
+msgid "No Unwatched Shows"
+msgstr "Geen ongekeken series"
+
+
+msgid "No Unwatched Shows."
+msgstr "Geen ongekeken series."
+
+
+msgid "No episodes"
+msgstr "Geen afleveringen"
+
+
+msgid "None"
+msgstr "Geen"
+
+
+msgid "On Deck"
+msgstr "Deels gekeken"
+
+
+msgid "On Deck Episode"
+msgstr "Deels gekeken aflevering"
+
+
+msgid "Overscan Adjust"
+msgstr "Bijstelling overscan"
+
+
+msgid "PMS"
+msgstr "PMS"
+
+
+msgid "Photo"
+msgstr "Foto"
+
+
+msgid "Play"
+msgstr "Afspelen"
+
+
+msgid "Plex Media Server"
+msgstr "Plex Media Server"
+
+
+msgid "Plex Media Server: No Channels Available"
+msgstr "Plex Media Server: Geen kanalen beschikbaar"
+
+
+msgid "Plex Media Server: No Items Available"
+msgstr "Plex Media Server: Geen items beschikbaar"
+
+
+msgid "Press menu to return."
+msgstr "Druk op 'Menu' om terug te gaan"
+
+
+msgid "Producers"
+msgstr "Producenten"
+
+
+msgid "Recently Added"
+msgstr "Recent toegevoegd"
+
+
+msgid "Recently Aired"
+msgstr "Recent uitgezonden"
+
+
+msgid "Recently Aired Episode"
+msgstr "Recent uitgezonden aflevering"
+
+
+msgid "Recently Released"
+msgstr "Recent uitgekomen"
+
+
+msgid "Recently Viewed"
+msgstr "Recent gekeken"
+
+
+msgid "Recently Viewed Shows"
+msgstr "Recent gekeken series"
+
+
+msgid "Refresh Library"
+msgstr "Bibiotheek bijwerken"
+
+
+msgid "Search"
+msgstr "Zoek"
+
+
+msgid "Search Plex Library"
+msgstr "Zoek in Plex bibliotheek"
+
+
+msgid "Season"
+msgstr "Seizoen"
+
+
+msgid "Season View"
+msgstr "Op seizoen"
+
+
+msgid "Select Artwork"
+msgstr "Selecteer illustraties"
+
+
+msgid "Select Tracks"
+msgstr "Kies sporen"
+
+
+msgid "Settings"
+msgstr "Instellingen"
+
+
+msgid "Show"
+msgstr "Serie"
+
+
+msgid "Show Clock"
+msgstr "Toon klok"
+
+
+msgid "Show End Time"
+msgstr "Toon eindtijd"
+
+
+msgid "Show Photos"
+msgstr "Toon foto's"
+
+
+msgid "Show Unwatched Count"
+msgstr "Toon aantal ongekeken items"
+
+
+msgid "Shows"
+msgstr "Series"
+
+
+msgid "SlideShow"
+msgstr "Dia-vertoning"
+
+
+msgid "Subtitle Size %"
+msgstr "Grootte ondertiteling in %"
+
+
+msgid "Subtitle Track"
+msgstr "Ondertiteling"
+
+
+msgid "TV Show Navigation Bar"
+msgstr "Navigatiebalk series"
+
+
+msgid "TV Show Options"
+msgstr "Serie-opties"
+
+
+msgid "TV Show View"
+msgstr "TV-serie overzicht"
+
+
+msgid "Time Format"
+msgstr "Tijdformaat "
+
+
+msgid "Transcoder"
+msgstr "Transcoder"
+
+
+msgid "Transcoder Quality"
+msgstr "Kwaliteit transcoder"
+
+
+msgid "Unwatched"
+msgstr "Ongekeken"
+
+
+msgid "Version"
+msgstr "Verie"
+
+
+msgid "Video"
+msgstr "Video"
+
+
+msgid "Video Player OSD"
+msgstr "Videospeler OSD"
+
+
+msgid "View Show"
+msgstr "Bekijk serie"
+
+
+msgid "Wiki/Docs"
+msgstr "Wiki/Docs"
+
+
+msgid "Writers"
+msgstr "Schrijvers"
+
+
+msgid ""
+"Your aTV firmware version is too old to run this version of PlexConnect.\n"
+"Please use the v0.1-iOS-pre5.1 branch available from:-\n"
+"https://github.com/iBaa/PlexConnect"
+msgstr ""
+"Uw aTV firmware version is te oud voor deze versie van PlexConnect.\n"
+"Gebruik de v0.1-iOS-pre5.1 branch op:-\n"
+"https://github.com/iBaa/PlexConnect"
+
+
+msgid "aTV firmware version 5.0.2 or lower."
+msgstr "aTV firmware versie 5.0.2 of lager."
+
+
+msgid "{0:0d}x{1:02d} {2}"
+msgstr "{0:0d}x{1:02d} {2}"
+
+
+msgid "{0:d} Minutes"
+msgstr "{0:d} Minuten"
+
+
+msgid "{0:d}hr {1:d}min"
+msgstr "{0:d}hr {1:d}min"
+
+
+msgid "{0} unwatched"
+msgstr "{0} ongekeken"
+
