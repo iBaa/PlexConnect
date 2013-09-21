@@ -1,10 +1,10 @@
-# Plex Connect
+# PlexConnect
 or: "Plex @ aTV - think different..."
 
 We all want the pleasure of Plex on the big screen - in this case driven by an AppleTV.
 Unfortunately there are officially no Apps allowed on AppleTV, most of the time a jailbreak is late (iOS 5.2?) or not available at all (aTV3).
 
-This is a collection of files developed for the little project described in [Plex Forum][].
+This is a collection of files developed for the little project described in this [Plex Forum thread][].
 See also the discontinued [ATVBrowser][] for a project with similar purpose, all javascript.
 
 For more information, like detailed Installation Guides, FAQs and similar, visit the [Wiki][].
@@ -17,31 +17,40 @@ The basic idea is, to...
 - re-work the reply to fit into AppleTV's XML communication scheme
 - let iOS do the rest
 
+
 ## Requirements
-Python 2.x series with 2.7 being the minimum (Python 3.x is not supported)
+- Python 2.6.x with minor issues: ElementTree doesn't support tag indices.
+- Python 2.7.x recommended.
+
 
 ## Installation
-  ```sh
-  # Installation
-  git clone https://github.com/iBaa/PlexConnect.git
-  # Updating
-  cd PlexConnect
-  git pull
-  ```
-  > If you don't have Git, you can download [ZIP][] file and extract files to a local directory.
+```sh
+# Installation
+git clone https://github.com/iBaa/PlexConnect.git
+# Updating
+cd PlexConnect
+git pull
+```
+> If you don't have Git, you can download [ZIP][] file and extract files to a local directory.
+
+- create HTTPS/SSL certificate
+- install certificate to ```assets/certificate/```
+- install certificate on aTV
+
+See the [Wiki - Install guides][] for additional documentation.
 
 
 ## Usage
-  ```sh
-  # Run with root privileges
-  sudo ./PlexConnect.py
-  ```
-  > Depending on your OS, you might only need ```PlexConnect.py```. Or ```python PlexConnect.py``` or ...
+```sh
+# Run with root privileges
+sudo ./PlexConnect.py
+```
+> Depending on your OS, you might only need ```PlexConnect.py```. Or ```python PlexConnect.py``` or ...
 
 - set your AppleTV's DNS address to the computer running PlexConnect
 - run the Trailer App
 
-See the [Wiki][] for more details, configuration and advanced settings.
+See the [Wiki - Advanced Settings][] for more details on configuration and advanced settings.
 
 
 ## More detailed Information about the files
@@ -60,12 +69,21 @@ This script contains the XML adaption from Plex Media Server's response to valid
 Basic settings collection. Creates ```Settings.cfg``` at first run - which may be modified externally.
 * __ATVSettings.py__ - 
 Handles the aTV settings like ViewModes or Transcoder options. Stores aTV settings in ```ATVSettings.cfg```.
+* __Localize.py__ -
+Holds a couple of utility functions for text translation purposes. Uses dictionaries from ```assets/locales/```.
 
-## Disclaimer
-The software is provided as is. It might work as expected - or not. Just don't blame me.
+
+## License and Disclaimer
+This software is open-sourced under the MIT Licence (see ```license.txt``` for the full license).
+So within some limits, you can do with the code whatever you want. However, if you like and/or want to re-use it, we really appreciate a [Donation][].
+
+The software is provided as is. It might work as expected - or not. Just don't blame us.
 
 
 [ATVBrowser]: https://github.com/finkdiff/ATVBrowser-script/tree/atvxml
-[Plex Forum]: http://forums.plexapp.com/index.php/topic/57831-plex-atv-think-different
+[Plex Forum thread]: http://forums.plexapp.com/index.php/topic/57831-plex-atv-think-different
 [ZIP]: https://github.com/iBaa/PlexConnect/archive/master.zip
 [Wiki]: https://github.com/iBaa/PlexConnect/wiki
+[Wiki - Install guides]: https://github.com/iBaa/PlexConnect/wiki/Install-guides
+[Wiki - Advanced Settings]: https://github.com/iBaa/PlexConnect/wiki/Settings-for-advanced-use-and-troubleshooting
+[Donation]: http://forums.plexapp.com/index.php/topic/80675-donations-donations/
