@@ -33,7 +33,9 @@
                 <preview>
                   <keyedPreview>
                     <title>{{VAL(title)}}</title>
-                    <summary>{{VAL(summary)}}</summary>
+                    <summary>{{VAL(summary)}}</summary>{{CUT($showsynopsis::Hide=CUT|Show=)}}
+                    <summary>{{VAL(summary)}}</summary>{{CUT(viewCount:CUT:=)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
+                    <summary>{{TEXT(Synopsis hidden.)}}</summary>{{CUT(viewCount)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
                     <image>{{IMAGEURL(thumb)}}</image>
                   </keyedPreview>
                 </preview>

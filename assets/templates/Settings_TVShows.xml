@@ -49,6 +49,10 @@
                 <label>{{TEXT(Show Unwatched Count)}}</label>
                 <rightLabel>{{SETTING(showunwatched)}}</rightLabel>
               </oneLineMenuItem>
+              <oneLineMenuItem id="ShowSynopsis" onSelect="toggleSettings('ShowSynopsis', 'Settings_TVShows')">
+                <label>{{TEXT(Unwatched Synopsis)}}</label>
+                <rightLabel>{{SETTING(showsynopsis)}}</rightLabel>
+              </oneLineMenuItem>
             </items>
           </menuSection>
 
