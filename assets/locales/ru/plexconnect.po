@@ -1,0 +1,386 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Plex Connect\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-08-25 08:50+0800\n"
+"PO-Revision-Date: 2013-08-25 20:29+0800\n"
+"Last-Translator: Grey Lee <bcse@bcse.tw>\n"
+"Language-Team: Grey Lee <bcse@bcse.tw>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+""
+
+msgid "Actor View"
+msgstr "Просмотр актёров"
+
+
+msgid "Actors"
+msgstr "Актеры"
+
+
+msgid "All Movies"
+msgstr "Все фильмы"
+
+
+msgid "All Shows"
+msgstr "Все сериалы"
+
+
+msgid "Appearance"
+msgstr "Внешний вид"
+
+
+msgid "Audio"
+msgstr "Аудио"
+
+
+msgid "Audio Boost %"
+msgstr "Усиление аудио %"
+
+
+msgid "Audio/Subs"
+msgstr "Аудио/Субтитры"
+
+
+msgid "Authors"
+msgstr "Авторы"
+
+
+msgid "By Collection"
+msgstr "По коллекции"
+
+
+msgid "By Content Rating"
+msgstr "По рейтингу"
+
+
+msgid "By Country"
+msgstr "По стране"
+
+
+msgid "By First Letter"
+msgstr "По первой букве"
+
+
+msgid "By Folder"
+msgstr "По папке"
+
+
+msgid "By Rating"
+msgstr "По рейтингу"
+
+
+msgid "By Resolution"
+msgstr "По разрешению"
+
+
+msgid "By Year"
+msgstr "По годам"
+
+
+msgid "Channels"
+msgstr "Каналы"
+
+
+msgid "Clock Position"
+msgstr "Позиция для часов"
+
+
+msgid "Collections"
+msgstr "Коллекции"
+
+
+msgid "Decades"
+msgstr "Декады"
+
+
+msgid "Details"
+msgstr "Подробности"
+
+
+msgid "Director"
+msgstr "Директор"
+
+
+msgid "Directors"
+msgstr "Директора"
+
+
+msgid "Discover"
+msgstr "Узнать"
+
+
+msgid "Episodes"
+msgstr "Эпизоды"
+
+
+msgid "Force Direct Play"
+msgstr "Прямое воспроизведение"
+
+
+msgid "Force Transcode"
+msgstr "Прямое перекодирование"
+
+
+msgid "Forum"
+msgstr "Форум"
+
+
+msgid "Genre"
+msgstr "Жанр"
+
+
+msgid "Genres"
+msgstr "Жанры"
+
+
+msgid "Homepage"
+msgstr "Сайт"
+
+
+msgid "Length"
+msgstr "Длительность"
+
+
+msgid "Library"
+msgstr "Библиотека"
+
+
+msgid "Library Refresh in Progress."
+msgstr "Идет обновление библиотеки."
+
+
+msgid "More"
+msgstr "Ещё"
+
+
+msgid "More..."
+msgstr "Еще..."
+
+
+msgid "Movie Navigation Bar"
+msgstr "Панель навигации по фильмам"
+
+
+msgid "Movie Options"
+msgstr "Настройки фильмов"
+
+
+msgid "Movie View"
+msgstr "Просмотр фильмов"
+
+
+msgid "Movies"
+msgstr "Фильмы"
+
+
+msgid "No Seasons"
+msgstr "Нет сезонов"
+
+
+msgid "No Unwatched Movies"
+msgstr "Нет непросмотренных фильмов."
+
+
+msgid "No Unwatched Shows"
+msgstr "Нет непросмотренных сериалов"
+
+
+msgid "No Unwatched Shows."
+msgstr "Нет непросмотренных сериалов."
+
+
+msgid "No episodes"
+msgstr "Нет эпизодов"
+
+
+msgid "On Deck"
+msgstr "Готов к действиям"
+
+
+msgid "Overscan Adjust"
+msgstr "Настройка развертки"
+
+
+msgid "PMS"
+msgstr "PMS"
+
+
+msgid "Photo"
+msgstr "Фото"
+
+
+msgid "Play"
+msgstr "Play"
+
+
+msgid "Plex Media Server"
+msgstr "Plex Медиа Сервер"
+
+
+msgid "Plex Media Server: No Channels Available"
+msgstr "Plex Media Server: Нет доступных каналов."
+
+
+msgid "Plex Media Server: No Items Available"
+msgstr "Plex Media Server: Нет доступных товаров."
+
+
+msgid "Press menu to return."
+msgstr "Нажмите MENU для возврата"
+
+
+msgid "Producers"
+msgstr "Продюсеры"
+
+
+msgid "Recently Added"
+msgstr "Недавно добавленные"
+
+
+msgid "Recently Aired"
+msgstr "Недавно переданные"
+
+
+msgid "Recently Released"
+msgstr "Недавно вышедшие"
+
+
+msgid "Recently Viewed"
+msgstr "Недавно просмотренные"
+
+
+msgid "Recently Viewed Shows"
+msgstr "Последние просмотренные сериалы."
+
+
+msgid "Refresh Library"
+msgstr "Обновить библиотеку"
+
+
+msgid "Search"
+msgstr "Поиск"
+
+
+msgid "Search Plex Library"
+msgstr "Поиск в библиотеке Plex"
+
+
+msgid "Season"
+msgstr "Сезон "
+
+
+msgid "Season View"
+msgstr "Просмотр сезона"
+
+
+msgid "Settings"
+msgstr "Настройки"
+
+
+msgid "Show Clock"
+msgstr "Показать часы"
+
+
+msgid "Show End Time"
+msgstr "Показать время завершения"
+
+
+msgid "Show Photos"
+msgstr "Показать фотографии"
+
+
+msgid "Show Unwatched Count"
+msgstr "Показать непросмотренные"
+
+
+msgid "Shows"
+msgstr "Сериалы"
+
+
+msgid "SlideShow"
+msgstr "Слайдшоу"
+
+
+msgid "Subtitle Size %"
+msgstr "Размер субтитров %"
+
+
+msgid "TV Show Navigation Bar"
+msgstr "Панел навигации по сериалам"
+
+
+msgid "TV Show Options"
+msgstr "Настройки сериалов"
+
+
+msgid "TV Show View"
+msgstr "Прсмотрт ТВ сериалов"
+
+
+msgid "Time Format"
+msgstr "Формат времени"
+
+
+msgid "Transcoder"
+msgstr "Транскодер"
+
+
+msgid "Transcoder Quality"
+msgstr "Качество транскодера"
+
+
+msgid "Unwatched"
+msgstr "Непросмотренные"
+
+
+msgid "Version"
+msgstr "Версия"
+
+
+msgid "Video"
+msgstr "Видео"
+
+
+msgid "Video Player OSD"
+msgstr "Экранный видео плеер"
+
+
+msgid "Wiki/Docs"
+msgstr "Wiki/Docs"
+
+
+msgid "Writers"
+msgstr "Писатели"
+
+
+msgid "Your aTV firmware version is too old to run this version of PlexConnect.\n"
+"Please use the v0.1-iOS-pre5.1 branch available from:-\n"
+"https://github.com/iBaa/PlexConnect"
+msgstr "Версия прошивки aTV устарела , чтобы запустить эту версию PlexConnect.\n"
+"Пожалуйста, используйте v0.1-iOS-pre5.1 доступную\n"
+"https://github.com/iBaa/PlexConnect"
+
+
+msgid "aTV firmware version 5.0.2 or lower."
+msgstr "Версия прошивки aTV 5.0.2 или ниже."
+
+
+msgid "{0:0d}x{1:02d} {2}"
+msgstr "{0:0d}x{1:02d} {2}"
+
+
+msgid "{0:d} Minutes"
+msgstr "{0:d} минут "
+
+
+msgid "{0:d}hr {1:d}min"
+msgstr "{0:d}часов  {1:d}минут"
+
+
+msgid "{0} unwatched"
+msgstr "{0} непросмотренных"
+

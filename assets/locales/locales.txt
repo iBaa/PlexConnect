@@ -14,9 +14,45 @@ MO:
 
 Big thanks to Grey Lee <bcse@bcse.tw> for big parts of the internationalization source code!
 
-Another big thanks for the initial translations to...
+Another big thanks to all those doing the translations at http://www.getlocalization.com/PlexConnect/
 
-de    - Dennis Oderwald <oderwald@comyo-media.de>
-en    - Grey Lee <bcse@bcse.tw> (default - no change from source code)
-nb    - Martin Aronsen <martin.aro@gmail.com>
-zh_TW - Grey Lee <bcse@bcse.tw>
+
+
+CountryCodes
+getLocal - codes used at http://www.getlocalization.com/PlexConnect/
+aTV - codes as of iOS 5.2.1
+
+getLocal    aTV         description
+
+en          en          english
+fr          fr          french (francais)
+de          de          german
+            ja          japanese
+nl          nl          netherlands
+it          it          italiano
+es          es          Spanish (espanol)
+            pt_PT       portuguese (Portugal)
+da          da          dansk
+            fi          finnish (suomi)
+no          nb          norse (norsk, Norway)
+sv          sv          svenska/Sweden
+            ko          Korean
+            zh_CN       Chinese (People's Republic of China)
+zh-TW       zh_TW       Chinese (Taiwan)
+ru          ru          Russian
+pl-PL       pl          poland
+pr-BR       pt          portuguese (Brasil)
+            en_GB       British English
+            ro          Romania
+            tr          Turkey
+            ca          catala
+            el          greek
+            hu          magyar (Hungary)
+            cs          cestina
+he          uk          Hebrew?
+            id          Indonesian (Bahasa Indonesia)
+            vi          Vietnam (Tieng Viet)
+            ms          ? (Bahasa Melayu)
+            th          Thai (Thailand)
+            sk          Slovene (Slovenicina)
+            hr          Croatian (Hrvatski)

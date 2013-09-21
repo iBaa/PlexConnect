@@ -100,7 +100,8 @@ def startup():
             running = False
     
     # init WebServer_SSL
-    if running:
+    if running and \
+       cfg.getSetting('enable_webserver_ssl')=='True':
         master, slave = Pipe()  # endpoint [0]-PlexConnect, [1]-WebServer
         proc = Process(target=WebServer.Run_SSL, args=(slave, param))
         proc.start()
