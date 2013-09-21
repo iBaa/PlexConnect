@@ -61,6 +61,10 @@
                   <arrow/>
                 </accessories>
               </oneLineMenuItem>
+              <oneLineMenuItem id="DurationFormat" onSelect="toggleSettings('DurationFormat', 'Settings')">
+                <label>{{TEXT(Duration Format)}}</label>
+                <rightLabel>{{SETTING(durationformat)}}</rightLabel>
+              </oneLineMenuItem>
             </items>
           </menuSection>
           <menuSection>

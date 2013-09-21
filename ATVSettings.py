@@ -12,8 +12,10 @@ from Debug import *  # dprint()
 options = { \
     'movieview'         :('Grid', 'List'), \
     'actorview'         :('Movies', 'Portrait'), \
+    'listviewmetadata'  :('Show', 'Hide'), \
     'showview'          :('List', 'Grid', 'Bookcase'), \
     'seasonview'        :('List', 'Coverflow'), \
+    'durationformat'    :('Hours/Minutes', 'Minutes'), \
     'movies_navbar_unwatched'   :('checked', 'unchecked'), \
     'movies_navbar_collections' :('checked', 'unchecked'), \
     'movies_navbar_genres'      :('checked', 'unchecked'), \
