@@ -171,7 +171,7 @@ function myPlex()
         req.open('GET', url, false);
         req.send();
         doc=req.responseXML;
-        atv.loadXML(doc);
+        atv.loadAndSwapXML(doc);
     };
     
     this.logout = function()
@@ -183,7 +183,7 @@ function myPlex()
         req.open('GET', url, false);
         req.send();
         doc=req.responseXML;
-        atv.loadXML(doc);
+        atv.loadAndSwapXML(doc);
     };
 
     

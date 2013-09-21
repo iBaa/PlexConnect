@@ -4,7 +4,7 @@
   </head>
 
   <body>
-    {{ADDXML(MyPlex::my.plexapp.com/pms/system/library/sections)}}
+    {{ADDXML(MyPlex::myplexsections)}}
     <listWithPreview id="com.sample.menu-items-with-sections">
     {{CUT(size:CUT:0=CUT|1=)}}
       <header>
@@ -95,8 +95,8 @@
 
             </items>
           </menuSection>
-          <menuSection>
-            {{CUT(@MyPlex/size:CUT:0=CUT|1=)}}
+          {{CUT(@MyPlex/size:CUT:0=CUT|1=)}}
+          <menuSection>  
             <header>
               <horizontalDivider alignment="left">
                 <title>{{TEXT(MyPlex Libraries)}}</title>

@@ -7,7 +7,7 @@
             <title>Authentication Successful!</title>
           </simpleHeader>
         </header>
-        <description>Successfully Authenticated to MyPlex. Please note that you will be ejected from PlexConnect to apply MyPlex status change.</description>
+        <description>Successfully Authenticated to MyPlex!</description>
         <menu>
           <initialSelection>
             <row>1</row>
@@ -15,7 +15,7 @@
           <sections>
             <menuSection>
               <items>
-                <oneLineMenuItem id="list_0" accessibilityLabel="Option 1" onSelect="atv.exitApp();">
+                <oneLineMenuItem id="list_0" accessibilityLabel="Option 1" onSelect="atv.loadAndSwapURL('{{URL(:/)}}&amp;PlexConnect=SettingsMyPlex');">
                   <label>OK</label>
                 </oneLineMenuItem>
               </items>
