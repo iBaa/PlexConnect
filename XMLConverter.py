@@ -490,7 +490,10 @@ def XML_PMS2aTV(address, path, options):
         XMLtemplate = 'Photo.xml'
     
     else:
-        XMLtemplate = 'Directory.xml'
+        if PlexMgr.myPlexLoggedIn()!=True:
+            XMLtemplate = 'Directory.xml'
+        else:
+            XMLtemplate = 'DirectoryMyPlex.xml'
     
     dprint(__name__, 1, "XMLTemplate: "+XMLtemplate)
     
