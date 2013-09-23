@@ -1139,13 +1139,16 @@ class CCommandCollection(CCommandHelper):
     
     def ATTRIB_getDurationString(self, src, srcXML, param):
         duration, leftover, dfltd = self.getKey(src, srcXML, param)
-        if len(duration) > 0:
-            min = int(duration)/1000/60
-            hour = min/60
-            min = min%60
-            if hour == 0: return self._("{0:d} Minutes").format(min)
-            else: return self._("{0:d}hr {1:d}min").format(hour, min)
-            
+        min = int(duration)/1000/60
+        UDID = self.options['PlexConnectUDID']
+        if g_ATVSettings.getSetting(UDID, 'durationformat') == 'Minutes':
+            return self._("{0:d} Minutes").format(min)
+        else:
+            if len(duration) > 0:
+                hour = min/60
+                min = min%60
+                if hour == 0: return self._("{0:d} Minutes").format(min)
+                else: return self._("{0:d}hr {1:d}min").format(hour, min)
         return ""
     
     def ATTRIB_contentRating(self, src, srcXML, param):

@@ -12,8 +12,10 @@ from Debug import *  # dprint()
 options = { \
     'movieview'         :('Grid', 'List'), \
     'actorview'         :('Movies', 'Portrait'), \
+    'listviewmetadata'  :('Show', 'Hide'), \
     'showview'          :('List', 'Grid', 'Bookcase'), \
     'seasonview'        :('List', 'Coverflow'), \
+    'durationformat'    :('Hours/Minutes', 'Minutes'), \
     'movies_navbar_unwatched'   :('checked', 'unchecked'), \
     'movies_navbar_collections' :('checked', 'unchecked'), \
     'movies_navbar_genres'      :('checked', 'unchecked'), \
@@ -33,6 +35,7 @@ options = { \
     'subtitlesize'      :('100', '125', '150', '50', '75'), \
     'audioboost'        :('100', '175', '225', '300'), \
     'showunwatched'     :('True', 'False'), \
+    'showsynopsis'      :('Hide', 'Show'), \
     'showplayerclock'   :('True', 'False'), \
     'overscanadjust'    :('0', '1', '2', '3', '-3', '-2', '-1'), \
     'clockposition'     :('Center', 'Right', 'Left'), \
