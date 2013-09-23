@@ -1052,8 +1052,21 @@ class CCommandCollection(CCommandHelper):
         # check "Media" element and get key
         if Media!=None:
             UDID = self.options['PlexConnectUDID']
-            if token=="" and \
-               g_ATVSettings.getSetting(UDID, 'forcedirectplay')=='True' \
+            
+            #grab the current settings. 
+            transcodequality = g_ATVSettings.getSetting(UDID, 'transcodequality') 
+            forcetranscode = g_ATVSettings.getSetting(UDID, 'forcetranscode') 
+            forcedirectplay = g_ATVSettings.getSetting(UDID, 'forcedirectplay') 
+            
+            #if it's myplex, we should force transcode, disable directplay and set a reasonable speed.
+            #todo: speed should be configurable.
+            if token!="":
+                g_ATVSettings.setSetting(UDID, 'transcodequality', '480p 2.0Mbps')
+                g_ATVSettings.setSetting(UDID, 'forcetranscode', 'True')
+                g_ATVSettings.setSetting(UDID, 'forcedirectplay', 'False')
+                        
+            
+            if g_ATVSettings.getSetting(UDID, 'forcedirectplay')=='True' \
                or \
                g_ATVSettings.getSetting(UDID, 'forcetranscode')!='True' and \
                Media.get('protocol','-') in ("hls") \
@@ -1076,15 +1089,15 @@ class CCommandCollection(CCommandHelper):
             else:
                 # request transcoding
                 res = Video.get('key','') 
-                dprint(__name__, 0, "We got in there!")
-                if token!="":
-                    changeback = g_ATVSettings.getSetting(UDID, 'transcodequality') 
-                    g_ATVSettings.setSetting(UDID, 'transcodequality', '720p 3.0Mbps')
-                    
+                                    
                 res = PlexAPI_getTranscodePath(self.options, res)
-                if token!="":
-                    g_ATVSettings.setSetting(UDID, 'transcodequality', changeback)
-                
+            
+            #restore the settings
+            if token!="":
+                g_ATVSettings.setSetting(UDID, 'transcodequality', transcodequality)
+                g_ATVSettings.setSetting(UDID, 'forcetranscode', forcetranscode)
+                g_ATVSettings.setSetting(UDID, 'forcedirectplay', forcedirectplay)
+            
         else:
             dprint(__name__, 0, "MEDIAPATH - element not found: {0}", param)
             res = 'FILE_NOT_FOUND'  # not found?
