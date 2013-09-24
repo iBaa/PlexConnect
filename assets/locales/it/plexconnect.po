@@ -14,371 +14,373 @@ msgstr ""
 ""
 
 msgid "Actor View"
-msgstr ""
+msgstr "Vista Attore"
 
 
 msgid "Actors"
-msgstr ""
+msgstr "Attori"
 
 
 msgid "All Movies"
-msgstr ""
+msgstr "Tutti i Film"
 
 
 msgid "All Shows"
-msgstr ""
+msgstr "Tutte le Serie"
 
 
 msgid "Appearance"
-msgstr ""
+msgstr "Aspetto"
 
 
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 
 msgid "Audio Boost %"
-msgstr ""
+msgstr "Incremento audio %"
 
 
 msgid "Audio/Subs"
-msgstr ""
+msgstr "Audio/Sottotitoli"
 
 
 msgid "Authors"
-msgstr ""
+msgstr "Autori"
 
 
 msgid "By Collection"
-msgstr ""
+msgstr "Per Raccolta"
 
 
 msgid "By Content Rating"
-msgstr ""
+msgstr "Per classificazione contenuto"
 
 
 msgid "By Country"
-msgstr ""
+msgstr "Per nazionalità"
 
 
 msgid "By First Letter"
-msgstr ""
+msgstr "Per nome"
 
 
 msgid "By Folder"
-msgstr ""
+msgstr "Per cartella"
 
 
 msgid "By Rating"
-msgstr ""
+msgstr "Per valutazione"
 
 
 msgid "By Resolution"
-msgstr ""
+msgstr "Per risoluzione"
 
 
 msgid "By Year"
-msgstr ""
+msgstr "Per anno"
 
 
 msgid "Channels"
-msgstr ""
+msgstr "Canali"
 
 
 msgid "Clock Position"
-msgstr ""
+msgstr "Posizione orologio"
 
 
 msgid "Collections"
-msgstr ""
+msgstr "Raccolte"
 
 
 msgid "Decades"
-msgstr ""
+msgstr "Decadi"
 
 
 msgid "Details"
-msgstr ""
+msgstr "Dettagli"
 
 
 msgid "Director"
-msgstr ""
+msgstr "Regista"
 
 
 msgid "Directors"
-msgstr ""
+msgstr "Registi"
 
 
 msgid "Discover"
-msgstr ""
+msgstr "Scopri"
 
 
 msgid "Episodes"
-msgstr ""
+msgstr "Episodi"
 
 
 msgid "Force Direct Play"
-msgstr ""
+msgstr "Forza riproduzione diretta"
 
 
 msgid "Force Transcode"
-msgstr ""
+msgstr "Forza conversione"
 
 
 msgid "Forum"
-msgstr ""
+msgstr "Forum"
 
 
 msgid "Genre"
-msgstr ""
+msgstr "Genere"
 
 
 msgid "Genres"
-msgstr ""
+msgstr "Generi"
 
 
 msgid "Homepage"
-msgstr ""
+msgstr "Homepage"
 
 
 msgid "Length"
-msgstr ""
+msgstr "Durata"
 
 
 msgid "Library"
-msgstr ""
+msgstr "Libreria"
 
 
 msgid "Library Refresh in Progress."
-msgstr ""
+msgstr "Aggiornamento della Libreria in corso."
 
 
 msgid "More"
-msgstr ""
+msgstr "Altro"
 
 
 msgid "More..."
-msgstr ""
+msgstr "Altro..."
 
 
 msgid "Movie Navigation Bar"
-msgstr ""
+msgstr "Barra di navigazione Film"
 
 
 msgid "Movie Options"
-msgstr ""
+msgstr "Opzioni Film"
 
 
 msgid "Movie View"
-msgstr ""
+msgstr "Vista Film"
 
 
 msgid "Movies"
-msgstr ""
+msgstr "Film"
 
 
 msgid "No Seasons"
-msgstr ""
+msgstr "Nessuna stagione"
 
 
 msgid "No Unwatched Movies"
-msgstr ""
+msgstr "Nessun film non visto"
 
 
 msgid "No Unwatched Shows"
-msgstr ""
+msgstr "Nessuna serie non vista"
 
 
 msgid "No Unwatched Shows."
-msgstr ""
+msgstr "Nessuna serie non vista."
 
 
 msgid "No episodes"
-msgstr ""
+msgstr "Nessun episodio"
 
 
 msgid "On Deck"
-msgstr ""
+msgstr "In primo piano"
 
 
 msgid "Overscan Adjust"
-msgstr ""
+msgstr "Correzione overscan"
 
 
 msgid "PMS"
-msgstr ""
+msgstr "PMS"
 
 
 msgid "Photo"
-msgstr ""
+msgstr "Foto"
 
 
 msgid "Play"
-msgstr ""
+msgstr "Riproduci"
 
 
 msgid "Plex Media Server"
-msgstr ""
+msgstr "Plex Media Server"
 
 
 msgid "Plex Media Server: No Channels Available"
-msgstr ""
+msgstr "Plex Media Server: Nessun Canale disponibile"
 
 
 msgid "Plex Media Server: No Items Available"
-msgstr ""
+msgstr "Plex Media Server: Nessun elemento disponibile"
 
 
 msgid "Press menu to return."
-msgstr ""
+msgstr "Premere menu per tornare indietro."
 
 
 msgid "Producers"
-msgstr ""
+msgstr "Produttori"
 
 
 msgid "Recently Added"
-msgstr ""
+msgstr "Aggiunti di recente"
 
 
 msgid "Recently Aired"
-msgstr ""
+msgstr "Trasmessi di recente"
 
 
 msgid "Recently Released"
-msgstr ""
+msgstr "Usciti di recente"
 
 
 msgid "Recently Viewed"
-msgstr ""
+msgstr "Visti di recente"
 
 
 msgid "Recently Viewed Shows"
-msgstr ""
+msgstr "Serie viste di recente"
 
 
 msgid "Refresh Library"
-msgstr ""
+msgstr "Aggiorna Libreria"
 
 
 msgid "Search"
-msgstr ""
+msgstr "Cerca"
 
 
 msgid "Search Plex Library"
-msgstr ""
+msgstr "Cerca nella Libreria Plex"
 
 
 msgid "Season"
-msgstr ""
+msgstr "Stagione"
 
 
 msgid "Season View"
-msgstr ""
+msgstr "Vista Stagione"
 
 
 msgid "Settings"
-msgstr ""
+msgstr "Impostazioni"
 
 
 msgid "Show Clock"
-msgstr ""
+msgstr "Mostra orologio"
 
 
 msgid "Show End Time"
-msgstr ""
+msgstr "Mostra orario alla fine"
 
 
 msgid "Show Photos"
-msgstr ""
+msgstr "Mostra Foto"
 
 
 msgid "Show Unwatched Count"
-msgstr ""
+msgstr "Mostra conteggio non visti"
 
 
 msgid "Shows"
-msgstr ""
+msgstr "Serie"
 
 
 msgid "SlideShow"
-msgstr ""
+msgstr "Presentazione"
 
 
 msgid "Subtitle Size %"
-msgstr ""
+msgstr "Dimensione sottotitoli %"
 
 
 msgid "TV Show Navigation Bar"
-msgstr ""
+msgstr "Barra di navigazione Serie TV"
 
 
 msgid "TV Show Options"
-msgstr ""
+msgstr "Opzioni Serie TV"
 
 
 msgid "TV Show View"
-msgstr ""
+msgstr "Vista  Serie TV"
 
 
 msgid "Time Format"
-msgstr ""
+msgstr "Formato orario"
 
 
 msgid "Transcoder"
-msgstr ""
+msgstr "Convertitore"
 
 
 msgid "Transcoder Quality"
-msgstr ""
+msgstr "Qualità di conversione"
 
 
 msgid "Unwatched"
-msgstr ""
+msgstr "Non visti"
 
 
 msgid "Version"
-msgstr ""
+msgstr "Versione"
 
 
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 
 msgid "Video Player OSD"
-msgstr ""
+msgstr "OSD riproduzione video"
 
 
 msgid "Wiki/Docs"
-msgstr ""
+msgstr "Wiki/Docs"
 
 
 msgid "Writers"
-msgstr ""
+msgstr "Sceneggiatori"
 
 
 msgid "Your aTV firmware version is too old to run this version of PlexConnect.\n"
 "Please use the v0.1-iOS-pre5.1 branch available from:-\n"
 "https://github.com/iBaa/PlexConnect"
-msgstr ""
+msgstr "Il firmware della vostra aTV è troppo datato per eseguire questa versione di PlexConnect.\n"
+"Per favore usate il branch v0.1-iOS-pre5.1 disponibile su:-\n"
+"https://github.com/iBaa/PlexConnect"
 
 
 msgid "aTV firmware version 5.0.2 or lower."
-msgstr ""
+msgstr "Versione del firmware aTV 5.0.2 o inferiore."
 
 
 msgid "{0:0d}x{1:02d} {2}"
-msgstr ""
+msgstr "{0:0d}x{1:02d} {2}"
 
 
 msgid "{0:d} Minutes"
-msgstr ""
+msgstr "{0:d} minuti"
 
 
 msgid "{0:d}hr {1:d}min"
-msgstr ""
+msgstr "{0:d} ore {1:d} min"
 
 
 msgid "{0} unwatched"
-msgstr ""
+msgstr "{0} non visti"
 

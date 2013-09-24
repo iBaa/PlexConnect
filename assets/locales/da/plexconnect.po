@@ -6,7 +6,7 @@ msgstr ""
 "PO-Revision-Date: 2013-08-25 20:29+0800\n"
 "Last-Translator: Grey Lee <bcse@bcse.tw>\n"
 "Language-Team: Grey Lee <bcse@bcse.tw>\n"
-"Language: sv\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -14,373 +14,371 @@ msgstr ""
 ""
 
 msgid "Actor View"
-msgstr "Skådespelarvy"
+msgstr ""
 
 
 msgid "Actors"
-msgstr "Skådespelare"
+msgstr ""
 
 
 msgid "All Movies"
-msgstr "Alla Filmer"
+msgstr ""
 
 
 msgid "All Shows"
-msgstr "Alla Serier"
+msgstr ""
 
 
 msgid "Appearance"
-msgstr "Utseende"
+msgstr ""
 
 
 msgid "Audio"
-msgstr "Ljud"
+msgstr ""
 
 
 msgid "Audio Boost %"
-msgstr "Ljudförstärkning %"
+msgstr ""
 
 
 msgid "Audio/Subs"
-msgstr "Ljud/Undertext"
+msgstr ""
 
 
 msgid "Authors"
-msgstr "Författare"
+msgstr ""
 
 
 msgid "By Collection"
-msgstr "Efter Samling"
+msgstr ""
 
 
 msgid "By Content Rating"
-msgstr "Efter Åldersgräns"
+msgstr ""
 
 
 msgid "By Country"
-msgstr "Efter Land"
+msgstr ""
 
 
 msgid "By First Letter"
-msgstr "Efter Första Bokstav"
+msgstr ""
 
 
 msgid "By Folder"
-msgstr "Efter Katalog"
+msgstr ""
 
 
 msgid "By Rating"
-msgstr "Efter Betyg"
+msgstr ""
 
 
 msgid "By Resolution"
-msgstr "Efter Upplösning"
+msgstr ""
 
 
 msgid "By Year"
-msgstr "Efter År"
+msgstr ""
 
 
 msgid "Channels"
-msgstr "Kanaler"
+msgstr ""
 
 
 msgid "Clock Position"
-msgstr "Klockans Position"
+msgstr ""
 
 
 msgid "Collections"
-msgstr "Samlingar"
+msgstr ""
 
 
 msgid "Decades"
-msgstr "Årtionden"
+msgstr ""
 
 
 msgid "Details"
-msgstr "Detaljer"
+msgstr ""
 
 
 msgid "Director"
-msgstr "Regissör"
+msgstr ""
 
 
 msgid "Directors"
-msgstr "Regissörer"
+msgstr ""
 
 
 msgid "Discover"
-msgstr "Upptäck"
+msgstr ""
 
 
 msgid "Episodes"
-msgstr "Avsnitt"
+msgstr ""
 
 
 msgid "Force Direct Play"
-msgstr "Tvinga Direktspelning"
+msgstr ""
 
 
 msgid "Force Transcode"
-msgstr "Tvinga Omkodning"
+msgstr ""
 
 
 msgid "Forum"
-msgstr "Forum"
+msgstr ""
 
 
 msgid "Genre"
-msgstr "Genre"
+msgstr ""
 
 
 msgid "Genres"
-msgstr "Genrer"
+msgstr ""
 
 
 msgid "Homepage"
-msgstr "Hemsida"
+msgstr ""
 
 
 msgid "Length"
-msgstr "Längd"
+msgstr ""
 
 
 msgid "Library"
-msgstr "Bibliotek"
+msgstr ""
 
 
 msgid "Library Refresh in Progress."
-msgstr "Biblioteksuppdatering pågår"
+msgstr ""
 
 
 msgid "More"
-msgstr "Mer"
+msgstr ""
 
 
 msgid "More..."
-msgstr "Mer..."
+msgstr ""
 
 
 msgid "Movie Navigation Bar"
-msgstr "Navigationsfält för filmer"
+msgstr ""
 
 
 msgid "Movie Options"
-msgstr "Filminställningar"
+msgstr ""
 
 
 msgid "Movie View"
-msgstr "Filmlistevy"
+msgstr ""
 
 
 msgid "Movies"
-msgstr "Filmer"
+msgstr ""
 
 
 msgid "No Seasons"
-msgstr "Inga Säsonger"
+msgstr ""
 
 
 msgid "No Unwatched Movies"
-msgstr "Inga Osedda Filmer"
+msgstr ""
 
 
 msgid "No Unwatched Shows"
-msgstr "Inga Osedda Serier"
+msgstr ""
 
 
 msgid "No Unwatched Shows."
-msgstr "Inga Osedda Serier."
+msgstr ""
 
 
 msgid "No episodes"
-msgstr "Inga avsnitt"
+msgstr ""
 
 
 msgid "On Deck"
-msgstr "Pågående"
+msgstr ""
 
 
 msgid "Overscan Adjust"
-msgstr "Justera Överskanning"
+msgstr ""
 
 
 msgid "PMS"
-msgstr "PMS"
+msgstr ""
 
 
 msgid "Photo"
-msgstr "Foto"
+msgstr ""
 
 
 msgid "Play"
-msgstr "Spela"
+msgstr ""
 
 
 msgid "Plex Media Server"
-msgstr "Plex Media Server"
+msgstr ""
 
 
 msgid "Plex Media Server: No Channels Available"
-msgstr "Plex Media Server: Inga Kanaler Tillgängliga"
+msgstr ""
 
 
 msgid "Plex Media Server: No Items Available"
-msgstr "Plex Media Server: Inga Objekt Tillgängliga"
+msgstr ""
 
 
 msgid "Press menu to return."
-msgstr "Tryck Meny för att återvända"
+msgstr ""
 
 
 msgid "Producers"
-msgstr "Producenter"
+msgstr ""
 
 
 msgid "Recently Added"
-msgstr "Nyligen Tillagda"
+msgstr ""
 
 
 msgid "Recently Aired"
-msgstr "Nyligen Visade"
+msgstr ""
 
 
 msgid "Recently Released"
-msgstr "Nyligen Släppta"
+msgstr ""
 
 
 msgid "Recently Viewed"
-msgstr "Nyligen Sedda"
+msgstr ""
 
 
 msgid "Recently Viewed Shows"
-msgstr "Nyligen Sedda Serier"
+msgstr ""
 
 
 msgid "Refresh Library"
-msgstr " Uppdatera Bibliotek"
+msgstr ""
 
 
 msgid "Search"
-msgstr "Sök"
+msgstr ""
 
 
 msgid "Search Plex Library"
-msgstr "Sök i Plex Bibliotek"
+msgstr ""
 
 
 msgid "Season"
-msgstr "Säsong"
+msgstr ""
 
 
 msgid "Season View"
-msgstr "Säsongsvy"
+msgstr ""
 
 
 msgid "Settings"
-msgstr "Inställningar"
+msgstr ""
 
 
 msgid "Show Clock"
-msgstr "Visa Klocka"
+msgstr ""
 
 
 msgid "Show End Time"
-msgstr "Visa Sluttid"
+msgstr ""
 
 
 msgid "Show Photos"
-msgstr "Visa Foton"
+msgstr ""
 
 
 msgid "Show Unwatched Count"
-msgstr "Visa Antal Osedda"
+msgstr ""
 
 
 msgid "Shows"
-msgstr "Serier"
+msgstr ""
 
 
 msgid "SlideShow"
-msgstr " Bildspel"
+msgstr ""
 
 
 msgid "Subtitle Size %"
-msgstr "Undertext storlek %"
+msgstr ""
 
 
 msgid "TV Show Navigation Bar"
-msgstr "Navigationsfält för TV-Serier"
+msgstr ""
 
 
 msgid "TV Show Options"
-msgstr "TV-Serie inställningar"
+msgstr ""
 
 
 msgid "TV Show View"
-msgstr "TV-Serie Vy"
+msgstr ""
 
 
 msgid "Time Format"
-msgstr "Tidsformat"
+msgstr ""
 
 
 msgid "Transcoder"
-msgstr "Omkodare"
+msgstr ""
 
 
 msgid "Transcoder Quality"
-msgstr "Omkodningskvalité"
+msgstr ""
 
 
 msgid "Unwatched"
-msgstr "Osett"
+msgstr ""
 
 
 msgid "Version"
-msgstr "Version"
+msgstr ""
 
 
 msgid "Video"
-msgstr "Video"
+msgstr ""
 
 
 msgid "Video Player OSD"
-msgstr "Videospelare OSD"
+msgstr ""
 
 
 msgid "Wiki/Docs"
-msgstr "Wiki/Dokumentation"
+msgstr ""
 
 
 msgid "Writers"
-msgstr "Författare"
+msgstr ""
 
 
 msgid "Your aTV firmware version is too old to run this version of PlexConnect.\n"
 "Please use the v0.1-iOS-pre5.1 branch available from:-\n"
 "https://github.com/iBaa/PlexConnect"
-msgstr "Din aTV mjukvaruversion är för gammal för att köra den här versionen av PlexConnect.\n"
-"Var vänlig använd v0.1-iOS-pre5.1 grenen från:\n"
-"https://github.com/iBaa/PlexConnect"
+msgstr ""
 
 
 msgid "aTV firmware version 5.0.2 or lower."
-msgstr "aTV mjukvaruversion 5.0.2 eller lägre"
+msgstr ""
 
 
 msgid "{0:0d}x{1:02d} {2}"
-msgstr "{0:0d}x{1:02d} {2}"
+msgstr ""
 
 
 msgid "{0:d} Minutes"
-msgstr "{0:d} Minuter"
+msgstr ""
 
 
 msgid "{0:d}hr {1:d}min"
-msgstr "{0:d}hr {1:d}min"
+msgstr ""
 
 
 msgid "{0} unwatched"
-msgstr "{0} osett"
+msgstr ""
 
