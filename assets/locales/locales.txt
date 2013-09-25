@@ -29,7 +29,7 @@ fr          fr          french (francais)
 de          de          german
             ja          japanese
 nl          nl          netherlands
-it          it          italiano
+it          it          Italiano
 es          es          Spanish (espanol)
             pt_PT       portuguese (Portugal)
 da          da          dansk
@@ -45,14 +45,19 @@ pr-BR       pt          portuguese (Brasil)
             en_GB       British English
             ro          Romania
             tr          Turkey
-            ca          catala
-            el          greek
+            ca          catalan
+grk         el          greek
             hu          magyar (Hungary)
             cs          cestina
-he          uk          Hebrew?
+            uk          Ukrainian
             id          Indonesian (Bahasa Indonesia)
             vi          Vietnam (Tieng Viet)
             ms          ? (Bahasa Melayu)
             th          Thai (Thailand)
             sk          Slovene (Slovenicina)
             hr          Croatian (Hrvatski)
+
+
+unsupported by aTV
+
+he          --          Hebrew
