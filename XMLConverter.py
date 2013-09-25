@@ -395,6 +395,7 @@ def XML_PMS2aTV(address, path, options):
     
     #preferred uuid:
     PMS_uuid = g_ATVSettings.getSetting(options['PlexConnectUDID'], 'pms_uuid')
+    enableGDM = g_param['CSettings'].getSetting('enable_plexgdm')
 
     if PlexMgr.currentServer=="Preferred":
         #This will force Plex to use the default local server.
@@ -402,7 +403,11 @@ def XML_PMS2aTV(address, path, options):
     
         # we need PMS but don't see selected one: re-discover (PlexGDM)
         if not path=='' and PlexMgr.getServer(PMS_uuid)==None:
-            rediscover = PlexMgr.discoverPMS(True)
+            if enableGDM=='True':
+                rediscover = PlexMgr.discoverPMS(True)
+            else:
+                rediscover = PlexMgr.discoverPMS(True, g_param['CSettings'].getSetting('ip_pms'), g_param['CSettings'].getSetting('port_pms'))
+
             g_ATVSettings.setOptions('pms_uuid', PlexMgr.getLocalServerNames())
             if not rediscover:
                 return XML_Error('PlexConnect', 'No Plex Media Server in Proximity')
@@ -934,6 +939,12 @@ class CCommandCollection(CCommandHelper):
             # parse from memory
             XMLroot = etree.fromstring(PlexMgr.getXML(False))    
                 
+            # XML root to ElementTree
+            PMS = etree.ElementTree(XMLroot)
+        elif key.startswith('localsections'):
+            # parse from memory
+            XMLroot = etree.fromstring(PlexMgr.getXML(True))    
+                            
             # XML root to ElementTree
             PMS = etree.ElementTree(XMLroot)
         else:
