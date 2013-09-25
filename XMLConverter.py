@@ -226,7 +226,12 @@ def XML_PMS2aTV(address, path, options):
     
     
     if path=="/library/sections":
-        PlexMgr.discoverPMS()
+        enableGDM = g_param['CSettings'].getSetting('enable_plexgdm')
+        if enableGDM=='True':
+            rediscover = PlexMgr.discoverPMS(False)
+        else:
+            rediscover = PlexMgr.discoverPMS(False, g_param['CSettings'].getSetting('ip_pms'), g_param['CSettings'].getSetting('port_pms'))
+
         g_ATVSettings.setOptions('pms_uuid', PlexMgr.getLocalServerNames())
                 
         if PlexMgr.myPlexLoggedIn()==True:
@@ -380,7 +385,12 @@ def XML_PMS2aTV(address, path, options):
     
     elif cmd.startswith('Discover'):
         #Force Discovery.
-        PlexMgr.discoverPMS(True)
+        enableGDM = g_param['CSettings'].getSetting('enable_plexgdm')
+        if enableGDM=='True':
+            rediscover = PlexMgr.discoverPMS(True)
+        else:
+            rediscover = PlexMgr.discoverPMS(True, g_param['CSettings'].getSetting('ip_pms'), g_param['CSettings'].getSetting('port_pms'))
+
         g_ATVSettings.setOptions('pms_uuid', PlexMgr.getLocalServerNames())
         
         if PlexMgr.myPlexLoggedIn()==True:
