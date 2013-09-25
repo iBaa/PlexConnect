@@ -226,7 +226,7 @@ msgstr "Plex Media Server: Нет доступных каналов."
 
 
 msgid "Plex Media Server: No Items Available"
-msgstr "Plex Media Server: Нет доступных товаров."
+msgstr "Plex Media Server: Нет доступных дополнений."
 
 
 msgid "Press menu to return."
@@ -242,7 +242,7 @@ msgstr "Недавно добавленные"
 
 
 msgid "Recently Aired"
-msgstr "Недавно переданные"
+msgstr "Недавно показанное"
 
 
 msgid "Recently Released"
@@ -290,7 +290,7 @@ msgstr "Показать время завершения"
 
 
 msgid "Show Photos"
-msgstr "Показать фотографии"
+msgstr " Просмотр Фотографий"
 
 
 msgid "Show Unwatched Count"

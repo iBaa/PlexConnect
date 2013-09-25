@@ -360,7 +360,8 @@ msgstr "Scénaristes"
 msgid "Your aTV firmware version is too old to run this version of PlexConnect.\n"
 "Please use the v0.1-iOS-pre5.1 branch available from:-\n"
 "https://github.com/iBaa/PlexConnect"
-msgstr "La version du firmware de votre aTV est trop ancienne pour utiliser cette version de PlexConnect.nVeuillez utiliser la version  v0.1-iOS-pre5.1 disponible depuis:-\n"
+msgstr "La version du firmware de votre aTV est trop ancien pour utiliser cette version de PlexConnect.\n"
+"Veuillez utiliser la branche v0.1-iOS-pre5.1 disponible à l'adresse :\n"
 "https://github.com/iBaa/PlexConnect"
 
 
