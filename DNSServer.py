@@ -324,7 +324,7 @@ def Run(cmdPipe, param):
     try:
         DNS = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         DNS.settimeout(5.0)
-        DNS.bind(('',int(cfg_Port_DNSServer)))
+        DNS.bind((cfg_IP_self, int(cfg_Port_DNSServer)))
     except Exception, e:
         dprint(__name__, 0, "Failed to create socket on UDP port {0}: {1}", cfg_Port_DNSServer, e)
         sys.exit(1)
@@ -332,7 +332,7 @@ def Run(cmdPipe, param):
     try:
         DNS_forward = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         DNS_forward.settimeout(5.0)
-        DNS_forward.bind(('', 0))  # 0 -> next free public port
+        DNS_forward.bind((cfg_IP_self, 0))  # 0 -> next free public port
         # todo: do we need bind?
     except Exception, e:
         dprint(__name__, 0, "Failed to create socket on UDP port 49152: {0}", e)
@@ -347,7 +347,7 @@ def Run(cmdPipe, param):
         restrain = ['mesu.apple.com', 'appldnld.apple.com', 'appldnld.apple.com.edgesuite.net']
     
     dprint(__name__, 0, "***")
-    dprint(__name__, 0, "DNSServer: Serving DNS on port {0}.", cfg_Port_DNSServer)
+    dprint(__name__, 0, "DNSServer: Serving DNS on {0} port {1}.", cfg_IP_self, cfg_Port_DNSServer)
     dprint(__name__, 1, "intercept: {0} => {1}", intercept, cfg_IP_self)
     dprint(__name__, 1, "restrain: {0} => 127.0.0.1", restrain)
     dprint(__name__, 1, "forward other to higher level DNS: "+cfg_IP_DNSMaster)

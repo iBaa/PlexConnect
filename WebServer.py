@@ -173,7 +173,7 @@ def Run(cmdPipe, param):
     
     dinit(__name__, param)  # init logging, WebServer process
     
-    cfg_IP_WebServer = param['CSettings'].getSetting('ip_webserver')
+    cfg_IP_WebServer = param['IP_self']
     cfg_Port_WebServer = param['CSettings'].getSetting('port_webserver')
     try:
         server = HTTPServer((cfg_IP_WebServer,int(cfg_Port_WebServer)), MyHandler)
@@ -222,8 +222,7 @@ def Run_SSL(cmdPipe, param):
     
     dinit(__name__, param)  # init logging, WebServer process
     
-    cfg_IP_WebServer = param['CSettings'].getSetting('ip_webserver')
-    cfg_Port_WebServer = param['CSettings'].getSetting('port_webserver')
+    cfg_IP_WebServer = param['IP_self']
     cfg_Port_SSL = param['CSettings'].getSetting('port_ssl')
     
     if param['CSettings'].getSetting('certfile').startswith('.'):
