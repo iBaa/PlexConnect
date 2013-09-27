@@ -332,8 +332,6 @@ def Run(cmdPipe, param):
     try:
         DNS_forward = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         DNS_forward.settimeout(5.0)
-        DNS_forward.bind((cfg_IP_self, 0))  # 0 -> next free public port
-        # todo: do we need bind?
     except Exception, e:
         dprint(__name__, 0, "Failed to create socket on UDP port 49152: {0}", e)
         sys.exit(1)
