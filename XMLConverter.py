@@ -309,10 +309,13 @@ def XML_PMS2aTV(address, path, options):
     
     elif cmd == 'AllShows':
         XMLtemplate = 'Show_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'showview')+'.xml'  
-    
+          
     elif cmd == 'TVSecondary':
         XMLtemplate = 'TVSecondary.xml'
-    
+        
+    elif cmd == 'PhotoSecondary':
+        XMLtemplate = 'PhotoSecondary.xml'
+        
     elif cmd == 'Directory':
         XMLtemplate = 'Directory.xml'
     
@@ -396,7 +399,10 @@ def XML_PMS2aTV(address, path, options):
     
     elif PMSroot.get('viewGroup','')=="secondary" and (PMSroot.get('art','').find('show') != -1 or PMSroot.get('thumb','').find('show') != -1):
         XMLtemplate = 'TVSectionTopLevel.xml'
-    
+        
+    elif PMSroot.get('viewGroup','')=="secondary" and (PMSroot.get('art','').find('photo') != -1 or PMSroot.get('thumb','').find('photo') != -1):
+        XMLtemplate = 'PhotoSectionTopLevel.xml'
+        
     elif PMSroot.get('viewGroup','')=="secondary":
         XMLtemplate = 'Directory.xml'
     
