@@ -74,19 +74,15 @@
               </horizontalDivider>
             </header>
             <items>
-              <oneLineMenuItem id="ForceDirectPlay" onSelect="toggleSettings('ForceDirectPlay', 'Settings')">
-                <label>{{TEXT(Force Direct Play)}}</label>
-                <rightLabel>{{SETTING(forcedirectplay)}}</rightLabel>
+              <oneLineMenuItem id="TranscoderAction" onSelect="toggleSettings('TranscoderAction', 'Settings')">
+                <label>{{TEXT(Transcoder Action)}}</label>
+                <rightLabel>{{SETTING(transcoderaction)}}</rightLabel>
               </oneLineMenuItem>
-              <oneLineMenuItem id="ForceTranscode" onSelect="toggleSettings('ForceTranscode', 'Settings')">
-                <label>{{TEXT(Force Transcode)}}</label>
-                <rightLabel>{{SETTING(forcetranscode)}}</rightLabel>
-              </oneLineMenuItem>
-							<oneLineMenuItem id="TranscodeQuality" onSelect="toggleSettings('TranscodeQuality', 'Settings')">
+              <oneLineMenuItem id="TranscodeQuality" onSelect="toggleSettings('TranscodeQuality', 'Settings')">
                 <label>{{TEXT(Transcoder Quality)}}</label>
                 <rightLabel>{{SETTING(transcodequality)}}</rightLabel>
               </oneLineMenuItem>
-							<oneLineMenuItem id="SubtitleSize" onSelect="toggleSettings('SubtitleSize', 'Settings')">
+              <oneLineMenuItem id="SubtitleSize" onSelect="toggleSettings('SubtitleSize', 'Settings')">
                 <label>{{TEXT(Subtitle Size %)}}</label>
                 <rightLabel>{{SETTING(subtitlesize)}}</rightLabel>
               </oneLineMenuItem>
