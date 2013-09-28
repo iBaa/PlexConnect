@@ -624,6 +624,7 @@ def PlexAPI_getTranscodePath(options, path):
                 '1080p 12.0Mbps' :('1920x1080', '90', '12000'), \
                 '1080p 20.0Mbps' :('1920x1080', '100', '20000'), \
                 '1080p 40.0Mbps' :('1920x1080', '100', '40000') }
+    setAction = g_ATVSettings.getSetting(UDID, 'transcoderaction')
     setQuality = g_ATVSettings.getSetting(UDID, 'transcodequality')
     vRes = quality[setQuality][0]
     vQ = quality[setQuality][1]
@@ -640,8 +641,8 @@ def PlexAPI_getTranscodePath(options, path):
     args['videoResolution'] = vRes
     args['maxVideoBitrate'] = mVB
     args['videoQuality'] = vQ
-    args['directStream'] = '1'
-    args['directPlay'] = '0'
+    args['directStream'] = '0' if setAction=='Transcode' else '1'
+    # 'directPlay' - handled by the client in MEDIARUL()
     args['subtitleSize'] = sS
     args['audioBoost'] = aB
     args['fastSeek'] = '1'
@@ -991,12 +992,12 @@ class CCommandCollection(CCommandHelper):
         if Media!=None:
             UDID = self.options['PlexConnectUDID']
             
-            if g_ATVSettings.getSetting(UDID, 'forcedirectplay')=='True' \
+            if g_ATVSettings.getSetting(UDID, 'transcoderaction')=='DirectPlay' \
                or \
-               g_ATVSettings.getSetting(UDID, 'forcetranscode')!='True' and \
+               g_ATVSettings.getSetting(UDID, 'transcoderaction')=='Auto' and \
                Media.get('protocol','-') in ("hls") \
                or \
-               g_ATVSettings.getSetting(UDID, 'forcetranscode')!='True' and \
+               g_ATVSettings.getSetting(UDID, 'transcoderaction')=='Auto' and \
                Media.get('container','-') in ("mov", "mp4") and \
                Media.get('videoCodec','-') in ("mpeg4", "h264", "drmi") and \
                Media.get('audioCodec','-') in ("aac", "ac3", "drms"):
