@@ -17,13 +17,13 @@
 
       <table>
         <columnDefinitions>
-          <columnDefinition width="30" alignment="left">
+          <columnDefinition width="35" alignment="left">
             <title>{{TEXT(Details)}}</title>
           </columnDefinition>
-          <columnDefinition width="30" alignment="left">
+          <columnDefinition width="35" alignment="left">
             <title>{{TEXT(Directors)}}</title>
           </columnDefinition>
-          <columnDefinition width="30" alignment="left">
+          <columnDefinition width="35" alignment="left">
             <title>{{TEXT(Writers)}}</title>
           </columnDefinition>
         </columnDefinitions>
