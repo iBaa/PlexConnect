@@ -1090,6 +1090,11 @@ class CCommandCollection(CCommandHelper):
         if unwatched > 0: return self._("{0} unwatched").format(unwatched)
         else: return ""
     
+    def ATTRIB_airedDate(self, src, srcXML, param):
+        date, leftover, dfltd = self.getKey(src, srcXML, param)
+        parts = date.split('-')
+        return parts[2] + "/" + parts[1] + "/" + parts[0][2:] 
+
     def ATTRIB_TEXT(self, src, srcXML, param):
         return self._(param)
     
