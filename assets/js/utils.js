@@ -31,10 +31,11 @@ if( atv.Element ) {
 /*
  * ATVLogger
  */
-function log(msg)
+function log(msg, level)
 {
+    level = level || 1;
     var req = new XMLHttpRequest();
-    var url = "http://atv.plexconnect/" + "&PlexConnectLog=" + encodeURIComponent(msg);
+    var url = "http://atv.plexconnect/" + "&PlexConnectATVLogLevel=" + level.toString() + "&PlexConnectLog=" + encodeURIComponent(msg);
     req.open('GET', url, true);
     req.send();
 };

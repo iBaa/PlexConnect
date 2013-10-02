@@ -315,10 +315,13 @@ def XML_PMS2aTV(address, path, options):
     
     elif cmd == 'AllShows':
         XMLtemplate = 'Show_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'showview')+'.xml'  
-    
+          
     elif cmd == 'TVSecondary':
         XMLtemplate = 'TVSecondary.xml'
-    
+        
+    elif cmd == 'PhotoSecondary':
+        XMLtemplate = 'PhotoSecondary.xml'
+        
     elif cmd == 'Directory':
         XMLtemplate = 'Directory.xml'
     
@@ -463,7 +466,10 @@ def XML_PMS2aTV(address, path, options):
     
     elif PMSroot.get('viewGroup','')=="secondary" and (PMSroot.get('art','').find('show') != -1 or PMSroot.get('thumb','').find('show') != -1):
         XMLtemplate = 'TVSectionTopLevel.xml'
-    
+        
+    elif PMSroot.get('viewGroup','')=="secondary" and (PMSroot.get('art','').find('photo') != -1 or PMSroot.get('thumb','').find('photo') != -1):
+        XMLtemplate = 'PhotoSectionTopLevel.xml'
+        
     elif PMSroot.get('viewGroup','')=="secondary":
         XMLtemplate = 'Directory.xml'
     
@@ -690,6 +696,7 @@ def PlexAPI_getTranscodePath(options, path):
                 '1080p 12.0Mbps' :('1920x1080', '90', '12000'), \
                 '1080p 20.0Mbps' :('1920x1080', '100', '20000'), \
                 '1080p 40.0Mbps' :('1920x1080', '100', '40000') }
+    setAction = g_ATVSettings.getSetting(UDID, 'transcoderaction')
     setQuality = g_ATVSettings.getSetting(UDID, 'transcodequality')
     vRes = quality[setQuality][0]
     vQ = quality[setQuality][1]
@@ -706,8 +713,8 @@ def PlexAPI_getTranscodePath(options, path):
     args['videoResolution'] = vRes
     args['maxVideoBitrate'] = mVB
     args['videoQuality'] = vQ
-    args['directStream'] = '1'
-    args['directPlay'] = '0'
+    args['directStream'] = '0' if setAction=='Transcode' else '1'
+    # 'directPlay' - handled by the client in MEDIARUL()
     args['subtitleSize'] = sS
     args['audioBoost'] = aB
     args['fastSeek'] = '1'
@@ -1080,23 +1087,21 @@ class CCommandCollection(CCommandHelper):
             
             #grab the current settings. 
             transcodequality = g_ATVSettings.getSetting(UDID, 'transcodequality') 
-            forcetranscode = g_ATVSettings.getSetting(UDID, 'forcetranscode') 
-            forcedirectplay = g_ATVSettings.getSetting(UDID, 'forcedirectplay') 
+            transcoderaction = g_ATVSettings.getSetting(UDID, 'transcoderaction')  
             
             #if it's myplex, we should force transcode, disable directplay and set a reasonable speed.
             #todo: speed should be configurable.
             if token!="":
                 g_ATVSettings.setSetting(UDID, 'transcodequality', '480p 2.0Mbps')
-                g_ATVSettings.setSetting(UDID, 'forcetranscode', 'True')
-                g_ATVSettings.setSetting(UDID, 'forcedirectplay', 'False')
+                g_ATVSettings.setSetting(UDID, 'transcoderaction', 'Transcode')
                         
             
-            if g_ATVSettings.getSetting(UDID, 'forcedirectplay')=='True' \
+            if g_ATVSettings.getSetting(UDID, 'transcoderaction')=='DirectPlay' \
                or \
-               g_ATVSettings.getSetting(UDID, 'forcetranscode')!='True' and \
+               g_ATVSettings.getSetting(UDID, 'transcoderaction')=='Auto' and \
                Media.get('protocol','-') in ("hls") \
                or \
-               g_ATVSettings.getSetting(UDID, 'forcetranscode')!='True' and \
+               g_ATVSettings.getSetting(UDID, 'transcoderaction')=='Auto' and \
                Media.get('container','-') in ("mov", "mp4") and \
                Media.get('videoCodec','-') in ("mpeg4", "h264", "drmi") and \
                Media.get('audioCodec','-') in ("aac", "ac3", "drms"):
@@ -1114,14 +1119,12 @@ class CCommandCollection(CCommandHelper):
             else:
                 # request transcoding
                 res = Video.get('key','') 
-                                    
                 res = PlexAPI_getTranscodePath(self.options, res)
             
             #restore the settings
             if token!="":
                 g_ATVSettings.setSetting(UDID, 'transcodequality', transcodequality)
-                g_ATVSettings.setSetting(UDID, 'forcetranscode', forcetranscode)
-                g_ATVSettings.setSetting(UDID, 'forcedirectplay', forcedirectplay)
+                g_ATVSettings.setSetting(UDID, 'transcoderaction', transcoderaction)
             
         else:
             dprint(__name__, 0, "MEDIAPATH - element not found: {0}", param)

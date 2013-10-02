@@ -17,6 +17,7 @@ dlevels = { "PlexConnect": 0, \
             "Settings"   : 0, \
             "ATVSettings": 0, \
             "Localize"   : 0, \
+            "ATVLogger"  : 0, \
           }
 
 

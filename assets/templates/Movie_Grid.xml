@@ -5,7 +5,7 @@
   </head>
   
   <body>
-    <scroller id="com.sample.movie-grid" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
+    <scroller id="com.sample.movie-grid">
       <header>
         <simpleHeader>
           <title>{{VAL(title1)}}</title>

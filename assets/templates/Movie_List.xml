@@ -5,7 +5,7 @@
   </head>
 
   <body>
-    <listWithPreview id="Movie_List" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
+    <listWithPreview id="Movie_List">
       <header>
         <simpleHeader>
           <title>{{VAL(title1)}}</title>

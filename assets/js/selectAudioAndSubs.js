@@ -27,16 +27,6 @@ if(atv.Element)
 		return undefined;
 	};
 };
-/*
- * ATVLogger
- */
-function log(msg)
-{
-		var req = new XMLHttpRequest();
-		var url = "http://atv.plexconnect/" + "&PlexConnectLog=" + encodeURIComponent(msg);
-		req.open('GET', url, true);
-		req.send();
-};
 
 /*
  * Build Audio/Subtitle menu

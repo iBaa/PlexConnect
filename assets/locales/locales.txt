@@ -24,35 +24,40 @@ aTV - codes as of iOS 5.2.1
 
 getLocal    aTV         description
 
-en          en          english
-fr          fr          french (francais)
-de          de          german
-            ja          japanese
-nl          nl          netherlands
-it          it          italiano
-es          es          Spanish (espanol)
-            pt_PT       portuguese (Portugal)
-da          da          dansk
-            fi          finnish (suomi)
-no          nb          norse (norsk, Norway)
-sv          sv          svenska/Sweden
-            ko          Korean
-            zh_CN       Chinese (People's Republic of China)
-zh-TW       zh_TW       Chinese (Taiwan)
-ru          ru          Russian
-pl-PL       pl          poland
-pr-BR       pt          portuguese (Brasil)
+en          en          English
+fr          fr          Français (French)
+de          de          Deutsch (German)
+            ja          日本語 (Japanese)
+nl          nl          Nederlands (Dutch)
+it          it          Italiano (Italian)
+es          es          Español (Spanish)
+            pt_PT       Português (Portugal) (Portuguese Portugal)
+da          da          Dansk (Danish)
+            fi          Suomi (Finnish)
+no          nb          Norse (Norwegian)
+sv          sv          Svenska (Swedish)
+            ko          한국어 (Korean)
+            zh_CN       简体中文 (Simplified Chinese)
+zh-TW       zh_TW       繁體中文 (Traditional Chinese)
+ru          ru          Русский (Russian)
+pl-PL       pl          Polski (Polish)
+pt-BR       pt          Português (Brasil) (Portuguese Brasil)
             en_GB       British English
-            ro          Romania
-            tr          Turkey
-            ca          catala
-            el          greek
-            hu          magyar (Hungary)
-            cs          cestina
-he          uk          Hebrew?
-            id          Indonesian (Bahasa Indonesia)
-            vi          Vietnam (Tieng Viet)
-            ms          ? (Bahasa Melayu)
-            th          Thai (Thailand)
-            sk          Slovene (Slovenicina)
+            ro          Română (Romanian)
+            tr          Türkçe (Turkish)
+            ca          Català (Catalan)
+grk         el          Ελληνικά (Greek)
+            hu          Magyar (Hungarian)
+            cs          Čeština (Czech)
+            uk          Українська (Ukrainian)
+            id          Bahasa Indonesia (Indonesian)
+            vi          Tiếng Việt (Vietnamese)
+            ms          Bahasa Melayu (Malay)
+            th          ไทย (Thai)
+            sk          Slovenščina (Slovene)
             hr          Croatian (Hrvatski)
+
+
+unsupported by aTV
+
+he          --          עִבְרִית (Hebrew)

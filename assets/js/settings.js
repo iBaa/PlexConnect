@@ -25,17 +25,6 @@ if( atv.Element ) {
 }
 
 /*
- * ATVLogger
- */
-function log(msg)
-{
-	var req = new XMLHttpRequest();
-  var url = "http://atv.plexconnect/" + "&PlexConnectLog=" + encodeURIComponent(msg);
-	req.open('GET', url, true);
-	req.send();
-};
-
-/*
  * update Settings
  */
 function toggleSettings(opt, template) 

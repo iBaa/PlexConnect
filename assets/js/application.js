@@ -13,11 +13,15 @@ function loadPage(url)
 };
 
 /*
- * ATVlogger
+ * ATVLogger
  */
-function log(msg)
+function log(msg, level)
 {
-  loadPage("http://atv.plexconnect/" + "&PlexConnectLog=" + encodeURIComponent(msg) );
+    level = level || 1;
+    var req = new XMLHttpRequest();
+    var url = "http://atv.plexconnect/" + "&PlexConnectATVLogLevel=" + level.toString() + "&PlexConnectLog=" + encodeURIComponent(msg);
+    req.open('GET', url, true);
+    req.send();
 };
 
  /*
