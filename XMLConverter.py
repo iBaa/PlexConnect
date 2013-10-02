@@ -429,6 +429,7 @@ def XML_PMS2aTV(address, path, options):
             pSrv = PlexMgr.getServer(PMS_uuid)
             g_param['Addr_PMS'] = pSrv.address +':'+ pSrv.port
             
+            
     else:
         g_param['Addr_PMS'] = PlexMgr.currentServer
     

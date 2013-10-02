@@ -82,6 +82,37 @@ class CServer():
             #and add the sections
             self.sections.append(CSection(dir.get('title'), dir.get('type'), dir.get('key')))
             dprint(__name__, 2, "{0} : Found section: {1}", self.name, dir.get('title'))
+
+    def getSearchXML(self, query):
+        #this function will return the search XML for this server.
+        passthruURL = 'http://atv.plexconnect/passthru?URL=http://' + self.address + ':' + self.port
+        conn = HTTPConnection(self.address + ":" + self.port)
+        path = '/search?type=4&query=' + query
+        headers = {}
+                
+        if self.token!=None:
+            headers = {'X-Plex-Token' : self.token}
+                        
+        try:
+            conn.request('GET', path, None, headers)
+            responseXML = str(conn.getresponse().read())
+        except:
+            dprint(__name__, 0, 'No Response from myPlex Server')
+            return False
+                            
+        #get the XML
+        root = ET.fromstring(responseXML)
+                            
+        #and parse it
+        XML = ET.ElementTree(root)
+        for vid in XML.findall('Video'):
+            vid.set('key', passthruURL + vid.get('key'))
+            #Will need to fix art/thumb here...
+            
+        for part in XML.iter('Part'):
+            part.set('key', passthruURL + part.get('key'))
+            
+        return ET.tostring(root)
             
     def sectionsToXML(self):
         #this function actually turns all the sections into a malformed chunk of XML. 
