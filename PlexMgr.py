@@ -409,7 +409,7 @@ class CPlexMgr():
                     if self.getServerByUUID(server.get('machineIdentifier'))!=None:
                         dprint(__name__, 0, "Not adding server: {0} - Already in Local List", server.get('name'))
                         dprint(__name__, 0, "Updating token..")
-                        self.getServerByUUID(server.get('machineIdentifier')).setToken(server.get('token'))
+                        self.getServerByUUID(server.get('machineIdentifier')).setToken(server.get('accessToken'))
                     else:
                         if server.get('localAddresses').find(',')==-1:
                             #Add the server.
