@@ -83,6 +83,9 @@ class CServer():
             self.sections.append(CSection(dir.get('title'), dir.get('type'), dir.get('key')))
             dprint(__name__, 2, "{0} : Found section: {1}", self.name, dir.get('title'))
 
+    def isMyPlex(self):
+        return self.token != None
+
     def getSearchXML(self, query):
         #this function will return the search XML for this server.
         passthruURL = 'http://atv.plexconnect/passthru?URL=http://' + self.address + ':' + self.port
@@ -291,7 +294,7 @@ class CPlexMgr():
             port = "32400"
             if staticPort!=None:
                 port = staticPort
-            self.addServer(PMS_uuid, PMS_uuid, staticServer, port, None)
+            self.addLocalServer(PMS_uuid, PMS_uuid, staticServer, port, None)
             dprint(__name__, 0, "PlexGDM off - PMS from settings: {0}:{1}", self.getServer(PMS_uuid).address, self.getServer(PMS_uuid).port)
     
         else:
@@ -347,7 +350,7 @@ class CPlexMgr():
                             elif "Port:" in each:
                                 GDM_PORT = each.split(':')[1].strip()
                         
-                    self.addServer(GDM_UUID, GDM_NAME, GDM_IP, GDM_PORT, None)
+                    self.addLocalServer(GDM_UUID, GDM_NAME, GDM_IP, GDM_PORT, None)
                 
             if self.servers==[]:
                 dprint(__name__, 0, "GDM: No servers discovered")
@@ -400,37 +403,38 @@ class CPlexMgr():
                 #first test. Let's see if the server is local.
                 if server.get('address')==utils.getExternalIP():
                     #if we're here, it means that a myPlex server is actually local
-                    dprint(__name__, 0, "Hmm: {0}", server.get('name'))
                     if self.getServer(server.get('machineIdentifier'))!=None:
                         dprint(__name__, 0, "Not adding server: {0} - Already in Local List", server.get('name'))
                     else:
                         if server.get('localAddresses').find(',')==-1:
                             #Add the server.
-                            self.addServer(server.get('machineIdentifier'), server.get('name'), server.get('localAddresses'), server.get('port'), None)
+                            self.addLocalServer(server.get('machineIdentifier'), server.get('name'), server.get('localAddresses'), server.get('port'), server.get('accessToken'))
                             dprint(__name__, 0, " myPlex - found local library: {0}:{1}", self.getServer(server.get('machineIdentifier')).address, self.getServer(server.get('machineIdentifier')).port)
                         else:
                             #Just grab the first local address
                             #TODO: Other clients will hit all local addresses looking for lowest latency and decide that way.
-                            self.addServer(server.get('machineIdentifier'), server.get('name'), server.get('localAddresses').split(',')[0], server.get('port'), None)
+                            self.addLocalServer(server.get('machineIdentifier'), server.get('name'), server.get('localAddresses').split(',')[0], server.get('port'), server.get('accessToken'))
                             dprint(__name__, 0, " myPlex - found local library: {0}:{1}", self.getServer(server.get('machineIdentifier')).address, self.getServer(server.get('machineIdentifier')).port)
                 else:
                     if self.getServer(server.get('machineIdentifier'))!=None:
                         dprint(__name__, 0, "Not adding server: {0} - Already in myPlex List", server.get('name'))
                     else:
                         #if we're here, it's a remote myPlex server.
-                        self.addServer(server.get('machineIdentifier'), server.get('name'), server.get('address'), server.get('port'), server.get('accessToken'))
+                        self.addRemoteServer(server.get('machineIdentifier'), server.get('name'), server.get('address'), server.get('port'), server.get('accessToken'))
                         dprint(__name__, 0, " myPlex - found remote library: {0}:{1}", self.getServer(server.get('machineIdentifier')).address, self.getServer(server.get('machineIdentifier')).port)
         
             self.lastmyPlex = datetime.now()
 
     #add the server to the list and grab the sections immediately.        
-    def addServer(self, uuid, name, address, port, token):
+    def addLocalServer(self, uuid, name, address, port, token):
         newServer = CServer(uuid, name, address, port, token)
         newServer.discoverSections()
-        if token==None:
-            self.servers.append(newServer)
-        else:
-            self.sharedServers.append(newServer)
+        self.servers.append(newServer)
+        
+    def addRemoteServer(self, uuid, name, address, port, token):
+        newServer = CServer(uuid, name, address, port, token)
+        newServer.discoverSections()
+        self.sharedServers.append(newServer)
     
     #return a handle to a server class, given a UUID, or returns None if the server doesn't exist.
     def getServer(self, uuid):
@@ -442,8 +446,8 @@ class CPlexMgr():
                 return server
         
         return None
-
-    
+           
+       
 if __name__=="__main__":
     dprint(__name__, 0, "Welcome to your class")
     #Plex = CPlexMgr('UDID')
