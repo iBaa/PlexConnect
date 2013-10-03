@@ -224,7 +224,6 @@ def XML_PMS2aTV(address, path, options):
     #Create it from state - if a .p file exists for this UDID, it will depickle and restore the state, otherwise, it just creates a new one.
     PlexMgr = CPlexMgr.from_state(options['PlexConnectUDID'])
     
-    
     if path=="/library/sections":
         enableGDM = g_param['CSettings'].getSetting('enable_plexgdm')
         if enableGDM=='True':
@@ -415,7 +414,7 @@ def XML_PMS2aTV(address, path, options):
         
     
         # we need PMS but don't see selected one: re-discover (PlexGDM)
-        if not path=='' and PlexMgr.getServer(PMS_uuid)==None:
+        if not path=='' and PlexMgr.getServerByUUID(PMS_uuid)==None:
             if enableGDM=='True':
                 rediscover = PlexMgr.discoverPMS(True)
             else:
@@ -428,8 +427,8 @@ def XML_PMS2aTV(address, path, options):
             PMS_uuid = g_ATVSettings.getSetting(options['PlexConnectUDID'], 'pms_uuid')
     
         # determine PMS IP address
-        if PlexMgr.getServer(PMS_uuid)!=None:
-            pSrv = PlexMgr.getServer(PMS_uuid)
+        if PlexMgr.getServerByUUID(PMS_uuid)!=None:
+            pSrv = PlexMgr.getServerByUUID(PMS_uuid)
             g_param['Addr_PMS'] = pSrv.address +':'+ pSrv.port
             
             
@@ -444,7 +443,7 @@ def XML_PMS2aTV(address, path, options):
             if not PlexMgr.discoverPMS(True):
                 return XML_Error('PlexConnect', 'No Plex Media Server in Proximity')
         
-        if PlexMgr.getServer(PMS_uuid)==None:
+        if PlexMgr.getServerByUUID(PMS_uuid)==None:
             return XML_Error('PlexConnect', 'Selected Plex Media Server not Online')
         
         PMS = XML_ReadFromURL(g_param['Addr_PMS'], path, PlexMgr.getTokenFromAddress(g_param['Addr_PMS']))
@@ -1091,7 +1090,8 @@ class CCommandCollection(CCommandHelper):
             
             #if it's myplex, we should force transcode, disable directplay and set a reasonable speed.
             #todo: speed should be configurable.
-            if token!="":
+            srv = PlexMgr.getServerByIP(g_param['Addr_PMS'])
+            if token!="" and PlexMgr.isServerLocal(srv)==False:
                 g_ATVSettings.setSetting(UDID, 'transcodequality', '480p 2.0Mbps')
                 g_ATVSettings.setSetting(UDID, 'transcoderaction', 'Transcode')
                         
@@ -1216,7 +1216,7 @@ class CCommandCollection(CCommandHelper):
             return "[no Server in Proximity]"
         else:
             PMS_uuid = g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'pms_uuid')
-            pSrv = PlexMgr.getServer(PMS_uuid)
+            pSrv = PlexMgr.getServerByUUID(PMS_uuid)
             if pSrv!=None:
                 return pSrv.name.decode('utf-8', 'replace')  # return as utf-8
             else:

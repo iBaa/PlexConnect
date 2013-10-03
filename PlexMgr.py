@@ -50,6 +50,9 @@ class CServer():
         self.lastSection = None
         dprint(__name__, 2, "Init class CServer")
     
+    def setToken(self, token):
+        self.token = token
+
     def discoverSections(self, force=False):
         if self.lastSection!=None and (datetime.now() - self.lastSection).total_seconds()<3600 and force==False:
             dprint(__name__, 0, "Nothing doing. Cache time less than 1h threshold")
@@ -295,7 +298,7 @@ class CPlexMgr():
             if staticPort!=None:
                 port = staticPort
             self.addLocalServer(PMS_uuid, PMS_uuid, staticServer, port, None)
-            dprint(__name__, 0, "PlexGDM off - PMS from settings: {0}:{1}", self.getServer(PMS_uuid).address, self.getServer(PMS_uuid).port)
+            dprint(__name__, 0, "PlexGDM off - PMS from settings: {0}:{1}", self.getServerByUUID(PMS_uuid).address, self.getServerByUUID(PMS_uuid).port)
     
         else:
             #Based on GDM, adapted for CServer class.
@@ -403,25 +406,27 @@ class CPlexMgr():
                 #first test. Let's see if the server is local.
                 if server.get('address')==utils.getExternalIP():
                     #if we're here, it means that a myPlex server is actually local
-                    if self.getServer(server.get('machineIdentifier'))!=None:
+                    if self.getServerByUUID(server.get('machineIdentifier'))!=None:
                         dprint(__name__, 0, "Not adding server: {0} - Already in Local List", server.get('name'))
+                        dprint(__name__, 0, "Updating token..")
+                        self.getServerByUUID(server.get('machineIdentifier')).setToken(server.get('token'))
                     else:
                         if server.get('localAddresses').find(',')==-1:
                             #Add the server.
                             self.addLocalServer(server.get('machineIdentifier'), server.get('name'), server.get('localAddresses'), server.get('port'), server.get('accessToken'))
-                            dprint(__name__, 0, " myPlex - found local library: {0}:{1}", self.getServer(server.get('machineIdentifier')).address, self.getServer(server.get('machineIdentifier')).port)
+                            dprint(__name__, 0, " myPlex - found local library: {0}:{1}", self.getServerByUUID(server.get('machineIdentifier')).address, self.getServer(server.get('machineIdentifier')).port)
                         else:
                             #Just grab the first local address
                             #TODO: Other clients will hit all local addresses looking for lowest latency and decide that way.
                             self.addLocalServer(server.get('machineIdentifier'), server.get('name'), server.get('localAddresses').split(',')[0], server.get('port'), server.get('accessToken'))
-                            dprint(__name__, 0, " myPlex - found local library: {0}:{1}", self.getServer(server.get('machineIdentifier')).address, self.getServer(server.get('machineIdentifier')).port)
+                            dprint(__name__, 0, " myPlex - found local library: {0}:{1}", self.getServerByUUID(server.get('machineIdentifier')).address, self.getServer(server.get('machineIdentifier')).port)
                 else:
-                    if self.getServer(server.get('machineIdentifier'))!=None:
+                    if self.getServerByUUID(server.get('machineIdentifier'))!=None:
                         dprint(__name__, 0, "Not adding server: {0} - Already in myPlex List", server.get('name'))
                     else:
                         #if we're here, it's a remote myPlex server.
                         self.addRemoteServer(server.get('machineIdentifier'), server.get('name'), server.get('address'), server.get('port'), server.get('accessToken'))
-                        dprint(__name__, 0, " myPlex - found remote library: {0}:{1}", self.getServer(server.get('machineIdentifier')).address, self.getServer(server.get('machineIdentifier')).port)
+                        dprint(__name__, 0, " myPlex - found remote library: {0}:{1}", self.getServerByUUID(server.get('machineIdentifier')).address, self.getServerByUUID(server.get('machineIdentifier')).port)
         
             self.lastmyPlex = datetime.now()
 
@@ -437,7 +442,7 @@ class CPlexMgr():
         self.sharedServers.append(newServer)
     
     #return a handle to a server class, given a UUID, or returns None if the server doesn't exist.
-    def getServer(self, uuid):
+    def getServerByUUID(self, uuid):
         for server in self.servers:
             if server.uuid==uuid:
                 return server
@@ -446,6 +451,54 @@ class CPlexMgr():
                 return server
         
         return None
+
+    #return a handle to a server class, given an IP.
+    def getServerByIP(self, ip):
+        for server in self.servers:
+            if server.address==ip:
+                return server
+        for server in self.sharedServers:
+            if server.address==ip:
+                return server
+        return None
+
+    def isServerLocal(self, server):
+        for srv in self.servers:
+            if srv==server:
+                return True
+                
+        #you'll make it here if you never find a server.    
+        return False
+
+    #work in progress - nothing to see here yet.
+    def searchAllServers(self, query):
+        xml_combined = None
+        for server in self.servers:
+            root = ET.fromstring(server.getSearchXML(query))
+            data = ET.ElementTree(root).getchildren()
+            
+            for cont in data.iter('MediaContainer'):
+                if xml_combined is None:
+                    xml_combined = data
+                    #insertion_point = xml_combined.findall("./MediaContainer")[0]
+                    insertion_point = data
+                else:
+                    insertion_point.append(cont)
+
+        for server in self.sharedServers:
+            data = ET.ElementTree(ET.fromstring(server.getSearchXML(query)))
+
+            for cont in data.iter('MediaContainer'):
+                if xml_combined is None:
+                    xml_combined = data
+                    #insertion_point = xml_combined.findall("./MediaContainer")[0]
+                    insertion_point = data
+                else:
+                    insertion_point.append(cont)
+
+        dprint(__name__, 0, "test: {0}", ET.tostring(xml_combined))
+        return ET.tostring(xml_combined)
+        
            
        
 if __name__=="__main__":

@@ -16,3 +16,7 @@ PlexConnect.log
 *.der
 
 *.p
+
+*.sln
+
+*.suo
