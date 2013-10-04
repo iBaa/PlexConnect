@@ -235,10 +235,18 @@ class CPlexMgr():
     #given an address or address:port combo, this returns a myplex token.
     def getTokenFromAddress(self, address):
         if address.find(':')==-1:
+            for server in self.servers:
+                if server.address==address:
+                    return server.token
+
             for server in self.sharedServers:
                 if server.address==address:
                     return server.token
         else:
+            for server in self.servers:
+                if server.address==address.split(":")[0]:
+                    return server.token
+
             for server in self.sharedServers:
                 if server.address==address.split(":")[0]:
                     return server.token
@@ -409,7 +417,7 @@ class CPlexMgr():
                     if self.getServerByUUID(server.get('machineIdentifier'))!=None:
                         dprint(__name__, 0, "Not adding server: {0} - Already in Local List", server.get('name'))
                         dprint(__name__, 0, "Updating token..")
-                        self.getServerByUUID(server.get('machineIdentifier')).setToken(server.get('accessToken'))
+                        self.setTokenByUUID(server.get('machineIdentifier'), server.get('accessToken'))
                     else:
                         if server.get('localAddresses').find(',')==-1:
                             #Add the server.
@@ -461,6 +469,15 @@ class CPlexMgr():
             if server.address==ip:
                 return server
         return None
+
+    def setTokenByUUID(self, uuid, token):
+        for server in self.servers:
+            if server.uuid==uuid:
+                dprint(__name__, 0, "IN HERE!!!! Token={0}", token)
+                newserver = CServer(server.uuid, server.name, server.address, server.port, token)
+                newserver.discoverSections(True)
+                self.servers.remove(server)
+                self.servers.append(newserver)
 
     def isServerLocal(self, server):
         for srv in self.servers:
