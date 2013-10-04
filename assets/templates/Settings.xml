@@ -36,6 +36,42 @@
 
       <menu>
         <sections>
+          
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{TEXT(Plex Media Server)}}</title>
+              </horizontalDivider>
+            </header>
+            <items>
+              <oneLineMenuItem id="PMS_uuid" onSelect="toggleSettings('PMS_uuid', 'Settings')">
+                <label>{{TEXT(PMS)}}</label>
+                <rightLabel>{{PMSNAME()}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="discover" onSelect="discover('discover','PMS_uuid')">
+                <label>{{TEXT(Discover)}}</label>
+                <rightLabel>Plex Media Servers: {{PMSCOUNT()}}</rightLabel>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="MyPlexSignInOut" onSelect="myPlexSignInOut()">{{CUT($myplex_auth::=| =CUT)}}
+                <label>{{TEXT(MyPlex Sign In)}}</label>
+                <rightLabel></rightLabel>
+                <accessories>
+                  <arrow/>
+                </accessories>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="MyPlexSignInOut" onSelect="myPlexSignInOut()">{{CUT($myplex_auth:CUT:=CUT| =)}}
+                <label>{{TEXT(MyPlex Sign Out)}}</label>
+                <rightLabel>{{SETTING(myplex_user)}}</rightLabel>
+                <accessories></accessories>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="refreshLibrary" onSelect="refreshLibrary('{{ADDR_PMS()}}')">
+                <label>{{TEXT(Refresh Library)}}</label>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+          
           <menuSection>
             <header>
               <horizontalDivider alignment="left">
@@ -67,6 +103,7 @@
               </oneLineMenuItem>
             </items>
           </menuSection>
+          
           <menuSection>
             <header>
               <horizontalDivider alignment="left">
@@ -92,26 +129,7 @@
               </oneLineMenuItem>
             </items>
           </menuSection>
-          <menuSection>
-            <header>
-              <horizontalDivider alignment="left">
-                <title>{{TEXT(Plex Media Server)}}</title>
-              </horizontalDivider>
-            </header>
-            <items>
-              <oneLineMenuItem id="discover" onSelect="discover('discover','PMS_uuid')">
-                <label>{{TEXT(Discover)}}</label>
-                <rightLabel>Plex Media Servers: {{PMSCOUNT()}}</rightLabel>
-              </oneLineMenuItem>
-              <oneLineMenuItem id="PMS_uuid" onSelect="toggleSettings('PMS_uuid', 'Settings')">
-                <label>{{TEXT(PMS)}}</label>
-                <rightLabel>{{PMSNAME()}}</rightLabel>
-              </oneLineMenuItem>
-              <oneLineMenuItem id="refreshLibrary" onSelect="refreshLibrary('{{ADDR_PMS()}}')">
-                <label>{{TEXT(Refresh Library)}}</label>
-              </oneLineMenuItem>
-            </items>
-          </menuSection>
+          
         </sections>
       </menu>
     </listWithPreview>
