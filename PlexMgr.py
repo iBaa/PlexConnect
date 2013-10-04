@@ -50,9 +50,6 @@ class CServer():
         self.lastSection = None
         dprint(__name__, 2, "Init class CServer")
     
-    def setToken(self, token):
-        self.token = token
-
     def discoverSections(self, force=False):
         if self.lastSection!=None and (datetime.now() - self.lastSection).total_seconds()<3600 and force==False:
             dprint(__name__, 0, "Nothing doing. Cache time less than 1h threshold")
@@ -417,8 +414,7 @@ class CPlexMgr():
                     if self.getServerByUUID(server.get('machineIdentifier'))!=None:
                         dprint(__name__, 0, "Not adding server: {0} - Already in Local List", server.get('name'))
                         dprint(__name__, 0, "Updating token..")
-                        #self.setTokenByUUID(server.get('machineIdentifier'), server.get('accessToken'))
-                        self.getServerByUUID(server.get('machineIdentifier')).setToken(server.get('accessToken'))
+                        self.setTokenByUUID(server.get('machineIdentifier'), server.get('accessToken'))
                     else:
                         if server.get('localAddresses').find(',')==-1:
                             #Add the server.
@@ -461,6 +457,8 @@ class CPlexMgr():
         
         return None
 
+
+
     #return a handle to a server class, given an IP.
     def getServerByIP(self, ip):
         if ip.find(':')==-1: 
@@ -475,6 +473,14 @@ class CPlexMgr():
             if server.address==addr:
                 return server
         return None
+
+    def setTokenByUUID(self, uuid, token):
+        for server in self.servers:
+            if server.uuid==uuid:
+                newserver = CServer(server.uuid, server.name, server.address, server.port, token)
+                newserver.discoverSections(True)
+                self.servers.remove(server)
+                self.servers.append(newserver)
 
 
     def isServerLocal(self, server):
