@@ -445,8 +445,7 @@ def XML_PMS2aTV(address, path, options):
         
         if PlexMgr.getServerByUUID(PMS_uuid)==None:
             return XML_Error('PlexConnect', 'Selected Plex Media Server not Online')
-        dprint(__name__, 0, "Address: {0}", g_param['Addr_PMS'])
-        dprint(__name__, 0, "Token: {0}", PlexMgr.getTokenFromAddress(g_param['Addr_PMS']))
+        
         PMS = XML_ReadFromURL(g_param['Addr_PMS'], path, PlexMgr.getTokenFromAddress(g_param['Addr_PMS']))
         if PMS==False:
             return XML_Error('PlexConnect', 'No Response from Plex Media Server')
@@ -1093,6 +1092,7 @@ class CCommandCollection(CCommandHelper):
             #todo: speed should be configurable.
             srv = PlexMgr.getServerByIP(g_param['Addr_PMS'])
             if token!="" and PlexMgr.isServerLocal(srv)==False:
+                dprint(__name__, 0, "Changing Remote Transcode")
                 g_ATVSettings.setSetting(UDID, 'transcodequality', '480p 2.0Mbps')
                 g_ATVSettings.setSetting(UDID, 'transcoderaction', 'Transcode')
                         

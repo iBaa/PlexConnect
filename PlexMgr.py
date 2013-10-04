@@ -234,7 +234,7 @@ class CPlexMgr():
     
     #given an address or address:port combo, this returns a myplex token.
     def getTokenFromAddress(self, address):
-        if address.find(':')==-1:
+        if address.find(':')==-1: 
             for server in self.servers:
                 if server.address==address:
                     return server.token
@@ -463,26 +463,23 @@ class CPlexMgr():
 
     #return a handle to a server class, given an IP.
     def getServerByIP(self, ip):
+        if ip.find(':')==-1: 
+            addr = ip
+        else:
+            addr = ip.split(":")[0]
+        dprint(__name__, 0, "lookin for server: {0}", addr)
         for server in self.servers:
-            if server.address==ip:
+            if server.address==addr:
                 return server
         for server in self.sharedServers:
-            if server.address==ip:
+            if server.address==addr:
                 return server
         return None
 
-    def setTokenByUUID(self, uuid, token):
-        for server in self.servers:
-            if server.uuid==uuid:
-                dprint(__name__, 0, "IN HERE!!!! Token={0}", token)
-                newserver = CServer(server.uuid, server.name, server.address, server.port, token)
-                newserver.discoverSections(True)
-                self.servers.remove(server)
-                self.servers.append(newserver)
 
     def isServerLocal(self, server):
         for srv in self.servers:
-            if srv==server:
+            if srv.address == server.address:
                 return True
                 
         #you'll make it here if you never find a server.    
