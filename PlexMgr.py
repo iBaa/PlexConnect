@@ -357,8 +357,9 @@ class CPlexMgr():
                                 GDM_NAME = each.split(':')[1].strip()
                             elif "Port:" in each:
                                 GDM_PORT = each.split(':')[1].strip()
-                        
-                    self.addLocalServer(GDM_UUID, GDM_NAME, GDM_IP, GDM_PORT, None)
+                     
+                    if(self.getServerByUUID(GDM_UUID)==None):   
+                        self.addLocalServer(GDM_UUID, GDM_NAME, GDM_IP, GDM_PORT, None)
                 
             if self.servers==[]:
                 dprint(__name__, 0, "GDM: No servers discovered")
