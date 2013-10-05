@@ -23,8 +23,8 @@
           <url>{{URL(:/&amp;PlexConnect=Settings)}}</url>
         </navigationItem>
         <!--navigationItem id="MyPlex">
-          <title>MyPlex</title>
-          <url>http://atv.plexconnect/...</url>
+          <title>{{TEXT(MyPlex)}}</title>
+          <url>{{URL(:/myplex/library/sections)}}</url>
         </navigationItem-->
       </navigation>
     </viewWithNavigationBar>

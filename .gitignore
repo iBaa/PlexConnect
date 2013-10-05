@@ -1,3 +1,6 @@
+.gitattributes
+
+*.pyproj
 
 *.pyc
 
@@ -14,3 +17,9 @@ PlexConnect.log
 *.pem
 
 *.der
+
+*.p
+
+*.sln
+
+*.suo

@@ -4,6 +4,7 @@
   </head>
 
   <body>
+    {{ADDXML(MyPlex::myplexsections)}}
     <listWithPreview id="com.sample.menu-items-with-sections">
     {{CUT(size:CUT:0=CUT|1=)}}
       <header>
@@ -31,6 +32,7 @@
                 </preview>
               </oneLineMenuItem>
 
+              
               <!-- Artist -->
               <!-- viewgroup="secondary" -->
               <!-- content="artists" -->
