@@ -1,20 +1,10 @@
 #!/usr/bin/env python
 
 from Debug import * #dprint()
-from urllib2 import urlopen
-
 from httplib import HTTPSConnection
 from httplib import HTTPConnection
-
-#try:
-    #import cpickle as pickle
-#except ImportError:
-    #import pickle
-
-#import pickle
-import socket
 from datetime import datetime
-import xml.dom.minidom
+import socket
 
 try:
     import xml.etree.cElementTree as ET
@@ -153,8 +143,8 @@ class CPlexMgr():
         self.atvUDID = udid
 
         #myPlex stuff
-        self.myplex_user = g_ATVSettings.getSetting(udid, "myplexuser")
-        self.myplex_token = g_ATVSettings.getSetting(udid, "myplex_uuid")
+        self.myplex_user = g_ATVSettings.getSetting(udid, "myplex_user")
+        self.myplex_token = g_ATVSettings.getSetting(udid, "myplex_auth")
 
         #simple caching
         self.lastPMS = None
@@ -163,31 +153,6 @@ class CPlexMgr():
         #keep it together
         self.currentServer = "Preferred"
 
-
-    #a constructor that will attempt to create the manager with preserved state.
-    #@classmethod
-    #def from_state(cls, udid):
-        #try:
-            #dprint(__name__, 2, "Attempting to restore state...")
-            #dprint(__name__, 2, "Opening File...")
-            #f = open(udid + '.p', 'rb')
-            #dprint(__name__, 2, "Attempting unpickle...")
-            #cls = pickle.load(f)
-            #f.close()
-            #dprint(__name__, 2, "State restored successfully!")
-            #return cls
-        #except:
-            #dprint(__name__, 2, "Unable to restore state")
-            #return cls(udid)
-
-    ##destructor that automatically saves the state.
-    #def __del__(self):
-        #f = open(self.atvUDID + '.p', 'wb')
-        #pickle.dump(self, f)
-        #f.close()
-        #dprint(__name__, 2, "Deinit class CPlexMgr")
-
-    #debug function to get a list of servers.
     def listServers(self):
         for server in self.servers:
             dprint(__name__, 0, "Local: {0}", server.name)
@@ -249,40 +214,6 @@ class CPlexMgr():
                 if server.address==address.split(":")[0]:
                     return server.token
         return ""
-
-    #login to myplex.
-    def myPlexLogin(self, username, password):
-        dprint(__name__, 0, "Attempt to log in to MyPlex!")
-
-        opener = utils.BasicAuth()
-        opener.setpasswd(username, password)
-        # add our headers
-        opener.addheader('X-Plex-Client-Identifier', self.atvUDID)
-        opener.addheader('X-Plex-Product', 'PlexConnect')
-        opener.addheader('X-Plex-Version', '0.2')
-        opener.addheader('X-Plex-Platform', 'iOS')
-        opener.addheader('X-Plex-Device', 'AppleTV3,1')
-        opener.addheader('X-Plex-Platform-Version', '5.3')
-
-        # use the opener to fetch a URL
-        try:
-            responseXML = str(opener.open('https://' + MyPlexURL + '/users/sign_in.xml', {}).read())
-            root = ET.fromstring(responseXML)
-            self.myplex_token = root.findall('authentication-token')[0].text
-            self.myplex_user = root.findall('username')[0].text
-            dprint(__name__, 0, "Logged into myPlex as {0}", self.myplex_user)
-
-            return True
-        except:
-            dprint(__name__, 0, "Unable to log into myPlex")
-            #do logoff stuff
-            self.myPlexLogout
-            return False
-
-    def myPlexLogout(self):
-        self.myplex_token = None
-        self.myplex_user = None
-        sharedServers = []
 
     def myPlexLoggedIn(self):
         return self.myplex_token!=None
@@ -459,8 +390,6 @@ class CPlexMgr():
 
         return None
 
-
-
     #return a handle to a server class, given an IP.
     def getServerByIP(self, ip):
         if ip.find(':')==-1:
@@ -521,7 +450,6 @@ class CPlexMgr():
 
         dprint(__name__, 0, "test: {0}", ET.tostring(xml_combined))
         return ET.tostring(xml_combined)
-
 
 
 if __name__=="__main__":
