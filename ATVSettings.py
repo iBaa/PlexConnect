@@ -41,11 +41,8 @@ options = { \
     'showendtime'       :('True', 'False'), \
     'timeformat'        :('24 Hour', '12 Hour'), \
     'pms_uuid'          :('*', ), \
-    'myplexuser'        :('', ), \
-    'myplex_uuid'       :('', ), \
-    'myplexauthcache'   :('', ), \
-    'myplexcurserver'   :('', ), \
-    'myplexenabled'     :('', ), \
+    'myplex_user'       :('*', ), \
+    'myplex_auth'       :('*', ), \
     }
 
 

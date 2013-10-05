@@ -16,6 +16,13 @@ http://trailers.apple.com/appletv/us/nav.xml
 
 PlexAPI_getTranscodePath() based on getTranscodeURL from pyplex/plexAPI
 https://github.com/megawubs/pyplex/blob/master/plexAPI/info.py
+
+Basic Authentication:
+http://www.voidspace.org.uk/python/articles/urllib2.shtml
+http://www.voidspace.org.uk/python/articles/authentication.shtml
+http://stackoverflow.com/questions/2407126/python-urllib2-basic-auth-problem
+http://stackoverflow.com/questions/111945/is-there-any-way-to-do-http-put-in-python
+(and others...)
 """
 
 
@@ -27,8 +34,15 @@ import string, cgi, time
 import copy  # deepcopy()
 from os import sep
 import httplib, socket
+<<<<<<< HEAD
 import re
 from ast import literal_eval
+||||||| merged common ancestors
+
+=======
+import urllib2
+
+>>>>>>> c0ccb7ea5564d55982b6e5881405e00807d28350
 
 
 try:
@@ -387,7 +401,41 @@ def XML_PMS2aTV(address, path, options):
         dprint(__name__, 2, "ATVSettings->Toggle: {0} in template: {1}", parts[0], parts[1])
 
         path = ''  # clear path - we don't need PMS-XML
+<<<<<<< HEAD
 
+||||||| merged common ancestors
+    
+=======
+        
+    elif cmd==('MyPlexLogin'):
+        dprint(__name__, 2, "MyPlex->Logging In...")
+        if not 'PlexConnectCredentials' in options:
+            return XML_Error('PlexConnect', 'MyPlex Sign In called without Credentials.')
+        
+        parts = options['PlexConnectCredentials'].split(':',1)        
+        (username, auth_token) = PlexAPI_MyPlexSignIn(parts[0], parts[1], options['PlexConnectUDID'])
+        
+        UDID = options['PlexConnectUDID']
+        g_ATVSettings.setSetting(UDID, 'myplex_user', username)
+        g_ATVSettings.setSetting(UDID, 'myplex_auth', auth_token)
+        
+        XMLtemplate = 'Settings.xml'
+        path = ''  # clear path - we don't need PMS-XML
+    
+    elif cmd=='MyPlexLogout':
+        dprint(__name__, 2, "MyPlex->Logging Out...")
+        
+        UDID = options['PlexConnectUDID']
+        auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
+        PlexAPI_MyPlexSignOut(auth_token)
+        
+        g_ATVSettings.setSetting(UDID, 'myplex_user', '')
+        g_ATVSettings.setSetting(UDID, 'myplex_auth', '')
+        
+        XMLtemplate = 'Settings.xml'
+        path = ''  # clear path - we don't need PMS-XML
+    
+>>>>>>> c0ccb7ea5564d55982b6e5881405e00807d28350
     elif cmd.startswith('Discover'):
         #Force Discovery.
         enableGDM = g_param['CSettings'].getSetting('enable_plexgdm')
@@ -742,6 +790,84 @@ def PlexAPI_getXArgs(options=None):
     xargs['X-Plex-Client-Capabilities'] = "protocols=http-live-streaming,http-mp4-streaming,http-streaming-video,http-streaming-video-720p,http-mp4-video,http-mp4-video-720p;videoDecoders=h264{profile:high&resolution:1080&level:41};audioDecoders=mp3,aac{bitrate:160000}"
 
     return xargs
+
+
+
+def PlexAPI_MyPlexSignIn(username, password, UDID):
+    # MyPlex web address
+    MyPlexHost = 'my.plexapp.com'
+    MyPlexSignInPath = '/users/sign_in.xml'
+    MyPlexURL = 'https://' + MyPlexHost + MyPlexSignInPath
+    
+    # create POST request
+    request = urllib2.Request(MyPlexURL)
+    request.add_header('X-Plex-Client-Identifier', UDID)  # xarg needed for MyPlex device identification
+    request.get_method = lambda: 'POST'  # turn into 'POST' - done automatically with data!=None. But we don't have data.
+    
+    # no certificate, will fail with "401 - Authentification required"
+    """
+    try:
+        f = urllib2.urlopen(request)
+    except urllib2.HTTPError, e:
+        print e.headers
+        print "has WWW_Authenticate:", e.headers.has_key('WWW-Authenticate')
+        print
+    """
+    
+    # provide credentials
+    ### optional... when 'realm' is unknown
+    ##passmanager = urllib2.HTTPPasswordMgrWithDefaultRealm()
+    ##passmanager.add_password(None, address, username, password)  # None: default "realm"
+    passmanager = urllib2.HTTPPasswordMgr()
+    passmanager.add_password(MyPlexHost, MyPlexURL, username, password)  # realm = 'my.plexapp.com'
+    authhandler = urllib2.HTTPBasicAuthHandler(passmanager)
+    urlopener = urllib2.build_opener(authhandler)
+    
+    # sign in, get MyPlex response
+    try:
+        f = urlopener.open(request)
+        response = f.read()
+    except urllib2.HTTPError, e:
+        if e.code==401:
+            dprint(__name__, 0, 'Authentication failed')
+            return ('', '')
+        else:
+            raise
+    
+    dprint(__name__, 1, "====== MyPlex sign in XML ======")
+    dprint(__name__, 1, response)
+    dprint(__name__, 1, "====== MyPlex sign in XML finished ======")
+    
+    # analyse response
+    XMLTree = etree.ElementTree(etree.fromstring(response))
+    
+    username = ''
+    authtoken = ''
+    el_username = XMLTree.find('username')
+    el_authtoken = XMLTree.find('authentication-token')    
+    if not el_username is None and \
+       not el_authtoken is None:
+        username = el_username.text
+        authtoken = el_authtoken.text
+    
+    return (username, authtoken)
+
+def PlexAPI_MyPlexSignOut(authtoken):
+    # MyPlex web address
+    MyPlexHost = 'my.plexapp.com'
+    MyPlexSignOutPath = '/users/sign_out.xml'
+    MyPlexURL = 'http://' + MyPlexHost + MyPlexSignOutPath
+    
+    # create POST request
+    request = urllib2.Request(MyPlexURL)
+    request.add_header('X-Plex-Token', authtoken)
+    request.get_method = lambda: 'POST'  # turn into 'POST' - done automatically with data!=None. But we don't have data.
+    
+    response = urllib2.urlopen(request).read()
+    
+    dprint(__name__, 1, "====== MyPlex sign out XML ======")
+    dprint(__name__, 1, response)
+    dprint(__name__, 1, "====== MyPlex sign out XML finished ======")
 
 
 
