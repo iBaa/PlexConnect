@@ -16,6 +16,13 @@ http://trailers.apple.com/appletv/us/nav.xml
 
 PlexAPI_getTranscodePath() based on getTranscodeURL from pyplex/plexAPI
 https://github.com/megawubs/pyplex/blob/master/plexAPI/info.py
+
+Basic Authentication:
+http://www.voidspace.org.uk/python/articles/urllib2.shtml
+http://www.voidspace.org.uk/python/articles/authentication.shtml
+http://stackoverflow.com/questions/2407126/python-urllib2-basic-auth-problem
+http://stackoverflow.com/questions/111945/is-there-any-way-to-do-http-put-in-python
+(and others...)
 """
 
 
@@ -27,8 +34,10 @@ import string, cgi, time
 import copy  # deepcopy()
 from os import sep
 import httplib, socket
+import urllib2
 import re
 from ast import literal_eval
+
 
 
 try:
@@ -58,6 +67,8 @@ g_ATVSettings = None
 def setATVSettings(cfg):
     global g_ATVSettings
     g_ATVSettings = cfg
+
+
 
 # links to CMD class for module wide usage
 g_CommandCollection = None
@@ -202,6 +213,7 @@ def XML_ReadFromURL(address, path, authToken):
     dprint(__name__, 1, "====== received XML-PMS ======")
     dprint(__name__, 1, XML_prettystring(XML))
     dprint(__name__, 1, "====== XML-PMS finished ======")
+
     return XML
 
 
@@ -224,7 +236,6 @@ def XML_PMS2aTV(address, path, options):
     #Create it from state - if a .p file exists for this UDID, it will depickle and restore the state, otherwise, it just creates a new one.
     if options['PlexConnectUDID'] not in options['PlexMgr']:
         options['PlexMgr'][options['PlexConnectUDID']] = CPlexMgr(options['PlexConnectUDID'], g_ATVSettings)
-    #PlexMgr = CPlexMgr.from_state(options['PlexConnectUDID'])
     PlexMgr = options['PlexMgr'][options['PlexConnectUDID']]
 
     if path=="/library/sections":
@@ -349,36 +360,6 @@ def XML_PMS2aTV(address, path, options):
         XMLtemplate = 'Settings_TVShows.xml'
         path = ''  # clear path - we don't need PMS-XML
 
-    elif cmd=='SettingsMyPlex':
-        XMLtemplate = 'Settings_MyPlex.xml'
-        path = ''  # clear path - we don't need PMS-XML
-
-    elif cmd.startswith('LoginMyPlex:'):
-        opt = cmd[len('LoginMyPlex:'):]  # cut command:
-        parts = opt.split('+')
-        dprint(__name__, 2, "MyPlex->Checking Service...")
-        PlexMgr.myPlexLogin(parts[0], parts[1])
-
-        if PlexMgr.myPlexLoggedIn()==False:
-            #I don't know if I should bother keeping this state.. I'll do it for now.
-            g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexuser", "")
-            g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplex_uuid", "")
-            XMLtemplate = 'MyPlexAuthError.xml'
-            path = ''
-        else:
-            g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexuser", parts[0])
-            g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplex_uuid", PlexMgr.myplex_token)
-            XMLtemplate = 'MyPlexAuthOK.xml'
-            path = ''
-
-    elif cmd.startswith('LogoutMyPlex'):
-        dprint(__name__, 2, "MyPlex->Logging Out...")
-        PlexMgr.myPlexLogout()
-        g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplexuser", "")
-        g_ATVSettings.setSetting(options['PlexConnectUDID'], "myplex_uuid", "")
-        XMLtemplate = 'MyPlexLogout.xml'
-        path = ''
-
     elif cmd.startswith('SettingsToggle:'):
         opt = cmd[len('SettingsToggle:'):]  # cut command:
         parts = opt.split('+')
@@ -387,6 +368,43 @@ def XML_PMS2aTV(address, path, options):
         dprint(__name__, 2, "ATVSettings->Toggle: {0} in template: {1}", parts[0], parts[1])
 
         path = ''  # clear path - we don't need PMS-XML
+
+    elif cmd==('MyPlexLogin'):
+        dprint(__name__, 2, "MyPlex->Logging In...")
+        if not 'PlexConnectCredentials' in options:
+            return XML_Error('PlexConnect', 'MyPlex Sign In called without Credentials.')
+
+        parts = options['PlexConnectCredentials'].split(':',1)
+        (username, auth_token) = PlexAPI_MyPlexSignIn(parts[0], parts[1], options['PlexConnectUDID'])
+
+        UDID = options['PlexConnectUDID']
+        g_ATVSettings.setSetting(UDID, 'myplex_user', username)
+        g_ATVSettings.setSetting(UDID, 'myplex_auth', auth_token)
+
+        # Reset PlexMgr
+        options['PlexMgr'][options['PlexConnectUDID']] = CPlexMgr(options['PlexConnectUDID'], g_ATVSettings)
+        PlexMgr = options['PlexMgr'][options['PlexConnectUDID']]
+
+        XMLtemplate = 'Settings.xml'
+        path = ''  # clear path - we don't need PMS-XML
+
+    elif cmd=='MyPlexLogout':
+        dprint(__name__, 2, "MyPlex->Logging Out...")
+
+        UDID = options['PlexConnectUDID']
+        auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
+        PlexAPI_MyPlexSignOut(auth_token)
+
+        g_ATVSettings.setSetting(UDID, 'myplex_user', '')
+        g_ATVSettings.setSetting(UDID, 'myplex_auth', '')
+
+        # Reset PlexMgr
+        options['PlexMgr'][options['PlexConnectUDID']] = CPlexMgr(options['PlexConnectUDID'], g_ATVSettings)
+        PlexMgr = options['PlexMgr'][options['PlexConnectUDID']]
+
+        XMLtemplate = 'Settings.xml'
+        path = ''  # clear path - we don't need PMS-XML
+
 
     elif cmd.startswith('Discover'):
         #Force Discovery.
@@ -408,7 +426,7 @@ def XML_PMS2aTV(address, path, options):
     elif path.startswith('/search?'):
         XMLtemplate = 'Search_Results.xml'
 
-    #preferred uuid:
+    # check PMS availability
     PMS_uuid = g_ATVSettings.getSetting(options['PlexConnectUDID'], 'pms_uuid')
     enableGDM = g_param['CSettings'].getSetting('enable_plexgdm')
 
@@ -452,6 +470,7 @@ def XML_PMS2aTV(address, path, options):
         PMS = XML_ReadFromURL(g_param['Addr_PMS'], path, PlexMgr.getTokenFromAddress(g_param['Addr_PMS']))
         if PMS==False:
             return XML_Error('PlexConnect', 'No Response from Plex Media Server')
+
         PMSroot = PMS.getroot()
 
         dprint(__name__, 1, "viewGroup: "+PMSroot.get('ViewGroup','None'))
@@ -745,6 +764,84 @@ def PlexAPI_getXArgs(options=None):
 
 
 
+def PlexAPI_MyPlexSignIn(username, password, UDID):
+    # MyPlex web address
+    MyPlexHost = 'my.plexapp.com'
+    MyPlexSignInPath = '/users/sign_in.xml'
+    MyPlexURL = 'https://' + MyPlexHost + MyPlexSignInPath
+
+    # create POST request
+    request = urllib2.Request(MyPlexURL)
+    request.add_header('X-Plex-Client-Identifier', UDID)  # xarg needed for MyPlex device identification
+    request.get_method = lambda: 'POST'  # turn into 'POST' - done automatically with data!=None. But we don't have data.
+
+    # no certificate, will fail with "401 - Authentification required"
+    """
+    try:
+        f = urllib2.urlopen(request)
+    except urllib2.HTTPError, e:
+        print e.headers
+        print "has WWW_Authenticate:", e.headers.has_key('WWW-Authenticate')
+        print
+    """
+
+    # provide credentials
+    ### optional... when 'realm' is unknown
+    ##passmanager = urllib2.HTTPPasswordMgrWithDefaultRealm()
+    ##passmanager.add_password(None, address, username, password)  # None: default "realm"
+    passmanager = urllib2.HTTPPasswordMgr()
+    passmanager.add_password(MyPlexHost, MyPlexURL, username, password)  # realm = 'my.plexapp.com'
+    authhandler = urllib2.HTTPBasicAuthHandler(passmanager)
+    urlopener = urllib2.build_opener(authhandler)
+
+    # sign in, get MyPlex response
+    try:
+        f = urlopener.open(request)
+        response = f.read()
+    except urllib2.HTTPError, e:
+        if e.code==401:
+            dprint(__name__, 0, 'Authentication failed')
+            return ('', '')
+        else:
+            raise
+
+    dprint(__name__, 1, "====== MyPlex sign in XML ======")
+    dprint(__name__, 1, response)
+    dprint(__name__, 1, "====== MyPlex sign in XML finished ======")
+
+    # analyse response
+    XMLTree = etree.ElementTree(etree.fromstring(response))
+
+    username = ''
+    authtoken = ''
+    el_username = XMLTree.find('username')
+    el_authtoken = XMLTree.find('authentication-token')
+    if not el_username is None and \
+       not el_authtoken is None:
+        username = el_username.text
+        authtoken = el_authtoken.text
+
+    return (username, authtoken)
+
+def PlexAPI_MyPlexSignOut(authtoken):
+    # MyPlex web address
+    MyPlexHost = 'my.plexapp.com'
+    MyPlexSignOutPath = '/users/sign_out.xml'
+    MyPlexURL = 'http://' + MyPlexHost + MyPlexSignOutPath
+
+    # create POST request
+    request = urllib2.Request(MyPlexURL)
+    request.add_header('X-Plex-Token', authtoken)
+    request.get_method = lambda: 'POST'  # turn into 'POST' - done automatically with data!=None. But we don't have data.
+
+    response = urllib2.urlopen(request).read()
+
+    dprint(__name__, 1, "====== MyPlex sign out XML ======")
+    dprint(__name__, 1, response)
+    dprint(__name__, 1, "====== MyPlex sign out XML finished ======")
+
+
+
 """
 # Command expander classes
 # CCommandHelper():
@@ -944,13 +1041,20 @@ class CCommandCollection(CCommandHelper):
             return False  # tree unchanged
 
     def TREE_ADDXML(self, elem, child, src, srcXML, param):
-        #PlexMgr = CPlexMgr.from_state(self.options['PlexConnectUDID'])
         PlexMgr = self.options['PlexMgr'][self.options['PlexConnectUDID']]
         tag, leftover = self.getParam(src, param)
         key, leftover, dfltd = self.getKey(src, srcXML, leftover)
 
         if key.startswith('/'):  # internal full path.
             path = key
+        #elif key.startswith('http://'):  # external address
+        #    path = key
+        #    hijack = g_param['HostToIntercept']
+        #    if hijack in path:
+        #        dprint(__name__, 1, "twisting...")
+        #        hijack_twisted = hijack[::-1]
+        #        path = path.replace(hijack, hijack_twisted)
+        #        dprint(__name__, 1, path)
         elif key == '':  # internal path
             path = self.path[srcXML]
         else:  # internal path, add-on
@@ -1028,7 +1132,6 @@ class CCommandCollection(CCommandHelper):
         return self.imageUrl(self.path[srcXML], key, 384, 384)
 
     def imageUrl(self, path, key, width, height):
-        #token = CPlexMgr.from_state(self.options['PlexConnectUDID']).getTokenFromAddress(g_param['Addr_PMS'])
         token =  PlexMgr = self.options['PlexMgr'][self.options['PlexConnectUDID']].getTokenFromAddress(g_param['Addr_PMS'])
 
         if key.startswith('/'):  # internal full path.
@@ -1078,7 +1181,6 @@ class CCommandCollection(CCommandHelper):
         return res
 
     def ATTRIB_MEDIAURL(self, src, srcXML, param):
-        #PlexMgr = CPlexMgr.from_state(self.options['PlexConnectUDID'])
         PlexMgr = self.options['PlexMgr'][self.options['PlexConnectUDID']]
         token = PlexMgr.getTokenFromAddress(g_param['Addr_PMS'])
         Video, leftover = self.getElement(src, srcXML, param)
@@ -1211,13 +1313,10 @@ class CCommandCollection(CCommandHelper):
         return self._(param)
 
     def ATTRIB_PMSCOUNT(self, src, srcXML, param):
-        #return str(len(CPlexMgr.from_state(self.options['PlexConnectUDID']).servers))
         return str(len(self.options['PlexMgr'][self.options['PlexConnectUDID']].servers))
 
     def ATTRIB_PMSNAME(self, src, srcXML, param):
-
         UDID = self.options['PlexConnectUDID']
-        #PlexMgr = CPlexMgr.from_state(UDID)
         PlexMgr = self.options['PlexMgr'][self.options['PlexConnectUDID']]
         PMS_uuid = g_ATVSettings.getSetting(UDID, 'pms_uuid')
 
@@ -1234,7 +1333,6 @@ class CCommandCollection(CCommandHelper):
 
 
 if __name__=="__main__":
-
     cfg = Settings.CSettings()
     param = {}
     param['CSettings'] = cfg
