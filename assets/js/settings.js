@@ -120,8 +120,7 @@ function refreshLibrary(addrPMS)
 
 myPlexSignInOut = function()
 {
-    var _cancel = '{{TEXT([cancelled])}}'
-    var _failed = '{{TEXT([failed])}}'
+    var _failed = '{{TEXT(Failed)}}'
     
     var _myPlexElem = document.getElementById('MyPlexSignInOut')
     if (!_myPlexElem) return;  // error - element not found
@@ -188,7 +187,6 @@ myPlexSignInOut = function()
         {
             hidePict(_myPlexElem, 'spinner');
             showPict(_myPlexElem, 'arrow');
-            setLabel(_myPlexElem, 'rightLabel', _cancel);
         };
         
         doLogin = function()
@@ -252,7 +250,6 @@ myPlexSignInOut = function()
     var username = getLabel(_myPlexElem, 'rightLabel');
     
     if (username == '' ||
-        username == _cancel ||
         username == _failed)
     {
         SignIn()

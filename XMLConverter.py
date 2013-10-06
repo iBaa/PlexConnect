@@ -183,7 +183,7 @@ def GetURL(address, path):
 # - translate and feed back to aTV
 """
 def XML_ReadFromURL(address, path):
-    xargs = PlexAPI_getXArgs()
+    xargs = PlexAPI_XArgsDeviceInfo()
     if path.find('?')>=0:
         path = path + '&' + urlencode(xargs)
     else:
@@ -364,7 +364,7 @@ def XML_PMS2aTV(address, path, options):
             return XML_Error('PlexConnect', 'MyPlex Sign In called without Credentials.')
         
         parts = options['PlexConnectCredentials'].split(':',1)        
-        (username, auth_token) = PlexAPI_MyPlexSignIn(parts[0], parts[1], options['PlexConnectUDID'])
+        (username, auth_token) = PlexAPI_MyPlexSignIn(parts[0], parts[1], options)
         
         UDID = options['PlexConnectUDID']
         g_ATVSettings.setSetting(UDID, 'myplex_user', username)
@@ -684,15 +684,18 @@ def PlexAPI_getTranscodePath(options, path):
     args['fastSeek'] = '1'
     args['path'] = path
     
-    xargs = PlexAPI_getXArgs(options)
+    xargs = PlexAPI_XArgsDeviceInfo(options)
+    xargs['X-Plex-Client-Capabilities'] = "protocols=http-live-streaming,http-mp4-streaming,http-streaming-video,http-streaming-video-720p,http-mp4-video,http-mp4-video-720p;videoDecoders=h264{profile:high&resolution:1080&level:41};audioDecoders=mp3,aac{bitrate:160000}"
     
     return transcodePath + urlencode(args) + '&' + urlencode(xargs)
 
-def PlexAPI_getXArgs(options=None):
+def PlexAPI_XArgsDeviceInfo(options=None):
     xargs = dict()
     xargs['X-Plex-Device'] = 'AppleTV'
     xargs['X-Plex-Model'] = '3,1' # Base it on AppleTV model.
     if not options is None:
+        if 'PlexConnectUDID' in options:
+            xargs['X-Plex-Client-Identifier'] = options['PlexConnectUDID']  # UDID for MyPlex device identification
         if 'PlexConnectATVName' in options:
             xargs['X-Plex-Device-Name'] = options['PlexConnectATVName'] # "friendly" name: aTV-Settings->General->Name.
     xargs['X-Plex-Platform'] = 'iOS'
@@ -701,13 +704,11 @@ def PlexAPI_getXArgs(options=None):
     xargs['X-Plex-Product'] = 'PlexConnect'
     xargs['X-Plex-Version'] = '0.2'
     
-    xargs['X-Plex-Client-Capabilities'] = "protocols=http-live-streaming,http-mp4-streaming,http-streaming-video,http-streaming-video-720p,http-mp4-video,http-mp4-video-720p;videoDecoders=h264{profile:high&resolution:1080&level:41};audioDecoders=mp3,aac{bitrate:160000}"
-    
     return xargs
 
 
 
-def PlexAPI_MyPlexSignIn(username, password, UDID):
+def PlexAPI_MyPlexSignIn(username, password, options):
     # MyPlex web address
     MyPlexHost = 'my.plexapp.com'
     MyPlexSignInPath = '/users/sign_in.xml'
@@ -715,7 +716,9 @@ def PlexAPI_MyPlexSignIn(username, password, UDID):
     
     # create POST request
     request = urllib2.Request(MyPlexURL)
-    request.add_header('X-Plex-Client-Identifier', UDID)  # xarg needed for MyPlex device identification
+    xargs = PlexAPI_XArgsDeviceInfo(options)
+    for opt in xargs:
+        request.add_header(opt, xargs[opt])
     request.get_method = lambda: 'POST'  # turn into 'POST' - done automatically with data!=None. But we don't have data.
     
     # no certificate, will fail with "401 - Authentification required"
@@ -1216,13 +1219,13 @@ class CCommandCollection(CCommandHelper):
         PMS_uuid = g_ATVSettings.getSetting(UDID, 'pms_uuid')
         
         if len(PMS_list)==0:
-            return "[no Server in Proximity]"
+            return "No Server in Proximity"
         else:
             PMS_uuid = g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'pms_uuid')
             if PMS_uuid in PMS_list:
                 return PMS_list[PMS_uuid]['serverName'].decode('utf-8', 'replace')  # return as utf-8
             else:
-                return '[PMS_uuid not found]'
+                return 'PMS_uuid not found'
 
 
 
