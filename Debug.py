@@ -10,7 +10,7 @@ debug levels (examples):
 """
 
 dlevels = { "PlexConnect": 0, \
-            "PlexGDM"    : 0, \
+            "PlexAPI"    : 0, \
             "DNSServer"  : 1, \
             "WebServer"  : 1, \
             "XMLConverter" : 0, \
@@ -23,6 +23,11 @@ dlevels = { "PlexConnect": 0, \
 
 
 import time
+
+try:
+    import xml.etree.cElementTree as etree
+except ImportError:
+    import xml.etree.ElementTree as etree
 
 
 
@@ -78,6 +83,31 @@ def dprint(src, dlevel, *args):
                 print src+": "+asc_args[0]
             else:
                 print src+": "+asc_args[0].format(*asc_args[1:])
+
+
+
+"""
+# XML in-place prettyprint formatter
+# Source: http://stackoverflow.com/questions/749796/pretty-printing-xml-in-python
+"""
+def indent(elem, level=0):
+    i = "\n" + level*"  "
+    if len(elem):
+        if not elem.text or not elem.text.strip():
+            elem.text = i + "  "
+        if not elem.tail or not elem.tail.strip():
+            elem.tail = i
+        for elem in elem:
+            indent(elem, level+1)
+        if not elem.tail or not elem.tail.strip():
+            elem.tail = i
+    else:
+        if level and (not elem.tail or not elem.tail.strip()):
+            elem.tail = i
+
+def prettyXML(XML):
+    indent(XML.getroot())
+    return(etree.tostring(XML.getroot()))
 
 
 

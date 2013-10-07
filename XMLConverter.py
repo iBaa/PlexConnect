@@ -13,16 +13,6 @@ http://trailers.apple.com/appletv/us/nav.xml
 ->top trailers: http://trailers.apple.com/appletv/us/index.xml
 ->calendar:     http://trailers.apple.com/appletv/us/calendar.xml
 ->browse:       http://trailers.apple.com/appletv/us/browse.xml
-
-PlexAPI_getTranscodePath() based on getTranscodeURL from pyplex/plexAPI
-https://github.com/megawubs/pyplex/blob/master/plexAPI/info.py
-
-Basic Authentication:
-http://www.voidspace.org.uk/python/articles/urllib2.shtml
-http://www.voidspace.org.uk/python/articles/authentication.shtml
-http://stackoverflow.com/questions/2407126/python-urllib2-basic-auth-problem
-http://stackoverflow.com/questions/111945/is-there-any-way-to-do-http-put-in-python
-(and others...)
 """
 
 
@@ -33,10 +23,6 @@ import inspect
 import string, cgi, time
 import copy  # deepcopy()
 from os import sep
-import httplib, socket
-import urllib2
-
-
 
 try:
     import xml.etree.cElementTree as etree
@@ -49,8 +35,8 @@ from urlparse import urlparse
 from urllib import quote_plus
 
 import Settings, ATVSettings
-import PlexGDM
-from Debug import *  # dprint()
+import PlexAPI
+from Debug import *  # dprint(), prettyXML()
 import Localize
 
 
@@ -69,35 +55,6 @@ def setATVSettings(cfg):
 
 # links to CMD class for module wide usage
 g_CommandCollection = None
-
-
-
-"""
-# XML in-place prettyprint formatter
-# Source: http://stackoverflow.com/questions/749796/pretty-printing-xml-in-python
-"""
-def indent(elem, level=0):
-    i = "\n" + level*"  "
-    if len(elem):
-        if not elem.text or not elem.text.strip():
-            elem.text = i + "  "
-        if not elem.tail or not elem.tail.strip():
-            elem.tail = i
-        for elem in elem:
-            indent(elem, level+1)
-        if not elem.tail or not elem.tail.strip():
-            elem.tail = i
-    else:
-        if level and (not elem.tail or not elem.tail.strip()):
-            elem.tail = i
-
-def XML_prettyprint(XML):
-    indent(XML.getroot())
-    XML.write(sys.stdout)
-
-def XML_prettystring(XML):
-    indent(XML.getroot())
-    return(etree.tostring(XML.getroot()))
 
 
 
@@ -139,75 +96,6 @@ def XML_PlayVideo_ChannelsV1(path):
 
 
 
-"""
-# GetURL
-# Source (somewhat): https://github.com/hippojay/plugin.video.plexbmc
-"""
-def GetURL(address, path):
-    try:
-        conn = httplib.HTTPConnection(address, timeout=10)
-        conn.request("GET", path)
-        data = conn.getresponse()
-        if int(data.status) == 200:
-            link=data.read()
-            return link
-        
-        elif ( int(data.status) == 301 ) or ( int(data.status) == 302 ):
-            return data.getheader('Location')
-        
-        elif int(data.status) >= 400:
-            error = "HTTP response error: " + str(data.status) + " " + str(data.reason)
-            dprint(__name__, 0, error)
-            return False
-        
-        else:      
-            link=data.read()
-            return link
-    
-    except socket.gaierror :
-        error = "Unable to lookup host: " + g_param['Addr_PMS'] + "\nCheck host name is correct"
-        dprint(__name__, 0, error)
-        return False
-    except socket.error, msg : 
-        error = "Unable to connect to " + g_param['Addr_PMS'] + "\nReason: " + str(msg)
-        dprint(__name__, 0, error)
-        return False
-
-
-
-"""
-# XML converter functions
-# - get request from aTV
-# - translate and send to PMS
-# - receive reply from PMS
-# - translate and feed back to aTV
-"""
-def XML_ReadFromURL(address, path):
-    xargs = PlexAPI_XArgsDeviceInfo()
-    if path.find('?')>=0:
-        path = path + '&' + urlencode(xargs)
-    else:
-        path = path + '?' + urlencode(xargs)
-    
-    XMLstring = GetURL(address, path)
-    if XMLstring==False:
-        dprint(__name__, 0, 'No Response from Plex Media Server')
-        return False
-    
-    # parse from memory
-    XMLroot = etree.fromstring(XMLstring)    
-    
-    # XML root to ElementTree
-    XML = etree.ElementTree(XMLroot)
-    
-    dprint(__name__, 1, "====== received XML-PMS ======")
-    dprint(__name__, 1, XML_prettystring(XML))
-    dprint(__name__, 1, "====== XML-PMS finished ======")
-    
-    return XML
-
-
-
 def discoverPMS():
     global g_param
     if g_param['CSettings'].getSetting('enable_plexgdm')=='False':
@@ -224,7 +112,7 @@ def discoverPMS():
         dprint(__name__, 0, "PlexGDM off - PMS from settings: {0}:{1}", PMS_list[PMS_uuid]['ip'], PMS_list[PMS_uuid]['port'])
     
     else:
-        PMS_list = PlexGDM.Run()
+        PMS_list = PlexAPI.PlexGDM()
         opts = ()
         for PMS_uuid in PMS_list.keys():
             opts = opts + (PMS_uuid, )
@@ -240,6 +128,13 @@ def discoverPMS():
 
 
 
+"""
+# XML converter functions
+# - translate aTV request and send to PMS
+# - receive reply from PMS
+# - select XML template
+# - translate to aTV XML
+"""
 def XML_PMS2aTV(address, path, options):
 
     cmd = ''
@@ -364,7 +259,7 @@ def XML_PMS2aTV(address, path, options):
             return XML_Error('PlexConnect', 'MyPlex Sign In called without Credentials.')
         
         parts = options['PlexConnectCredentials'].split(':',1)        
-        (username, auth_token) = PlexAPI_MyPlexSignIn(parts[0], parts[1], options)
+        (username, auth_token) = PlexAPI.MyPlexSignIn(parts[0], parts[1], options)
         
         UDID = options['PlexConnectUDID']
         g_ATVSettings.setSetting(UDID, 'myplex_user', username)
@@ -378,7 +273,7 @@ def XML_PMS2aTV(address, path, options):
         
         UDID = options['PlexConnectUDID']
         auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
-        PlexAPI_MyPlexSignOut(auth_token)
+        PlexAPI.MyPlexSignOut(auth_token)
         
         g_ATVSettings.setSetting(UDID, 'myplex_user', '')
         g_ATVSettings.setSetting(UDID, 'myplex_auth', '')
@@ -415,7 +310,7 @@ def XML_PMS2aTV(address, path, options):
     
     # request PMS XML
     if not path=='':
-        PMS = XML_ReadFromURL(g_param['Addr_PMS'], path)
+        PMS = PlexAPI.getXMLFromPMS(g_param['Addr_PMS'], path)
         if PMS==False:
             return XML_Error('PlexConnect', 'No Response from Plex Media Server')
         
@@ -497,10 +392,11 @@ def XML_PMS2aTV(address, path, options):
     del g_CommandCollection
     
     dprint(__name__, 1, "====== generated aTV-XML ======")
-    dprint(__name__, 1, XML_prettystring(aTVTree))
+    dprint(__name__, 1, prettyXML(aTVTree))
     dprint(__name__, 1, "====== aTV-XML finished ======")
-  
+    
     return etree.tostring(aTVroot)
+
 
 
 def XML_ExpandTree(elem, src, srcXML):
@@ -644,147 +540,6 @@ def XML_ExpandLine(src, srcXML, line):
         
         dprint(__name__, 2, "XML_ExpandLine: {0} - done", line)
     return line
-
-"""
-# PlexAPI
-"""
-def PlexAPI_getTranscodePath(options, path):
-    UDID = options['PlexConnectUDID']
-    transcodePath = '/video/:/transcode/universal/start.m3u8?'
-    
-    quality = { '480p 2.0Mbps' :('720x480', '60', '2000'), \
-                '720p 3.0Mbps' :('1280x720', '75', '3000'), \
-                '720p 4.0Mbps' :('1280x720', '100', '4000'), \
-                '1080p 8.0Mbps' :('1920x1080', '60', '8000'), \
-                '1080p 10.0Mbps' :('1920x1080', '75', '10000'), \
-                '1080p 12.0Mbps' :('1920x1080', '90', '12000'), \
-                '1080p 20.0Mbps' :('1920x1080', '100', '20000'), \
-                '1080p 40.0Mbps' :('1920x1080', '100', '40000') }
-    setAction = g_ATVSettings.getSetting(UDID, 'transcoderaction')
-    setQuality = g_ATVSettings.getSetting(UDID, 'transcodequality')
-    vRes = quality[setQuality][0]
-    vQ = quality[setQuality][1]
-    mVB = quality[setQuality][2]
-    dprint(__name__, 1, "Setting transcode quality Res:{0} Q:{1} {2}Mbps", vRes, vQ, mVB)
-    sS = g_ATVSettings.getSetting(UDID, 'subtitlesize')
-    dprint(__name__, 1, "Subtitle size: {0}", sS)
-    aB = g_ATVSettings.getSetting(UDID, 'audioboost')
-    dprint(__name__, 1, "Audio Boost: {0}", aB)
-    
-    args = dict()
-    args['session'] = UDID
-    args['protocol'] = 'hls'
-    args['videoResolution'] = vRes
-    args['maxVideoBitrate'] = mVB
-    args['videoQuality'] = vQ
-    args['directStream'] = '0' if setAction=='Transcode' else '1'
-    # 'directPlay' - handled by the client in MEDIARUL()
-    args['subtitleSize'] = sS
-    args['audioBoost'] = aB
-    args['fastSeek'] = '1'
-    args['path'] = path
-    
-    xargs = PlexAPI_XArgsDeviceInfo(options)
-    xargs['X-Plex-Client-Capabilities'] = "protocols=http-live-streaming,http-mp4-streaming,http-streaming-video,http-streaming-video-720p,http-mp4-video,http-mp4-video-720p;videoDecoders=h264{profile:high&resolution:1080&level:41};audioDecoders=mp3,aac{bitrate:160000}"
-    
-    return transcodePath + urlencode(args) + '&' + urlencode(xargs)
-
-def PlexAPI_XArgsDeviceInfo(options=None):
-    xargs = dict()
-    xargs['X-Plex-Device'] = 'AppleTV'
-    xargs['X-Plex-Model'] = '3,1' # Base it on AppleTV model.
-    if not options is None:
-        if 'PlexConnectUDID' in options:
-            xargs['X-Plex-Client-Identifier'] = options['PlexConnectUDID']  # UDID for MyPlex device identification
-        if 'PlexConnectATVName' in options:
-            xargs['X-Plex-Device-Name'] = options['PlexConnectATVName'] # "friendly" name: aTV-Settings->General->Name.
-    xargs['X-Plex-Platform'] = 'iOS'
-    xargs['X-Plex-Client-Platform'] = 'iOS'
-    xargs['X-Plex-Platform-Version'] = '5.3' # Base it on AppleTV OS version.
-    xargs['X-Plex-Product'] = 'PlexConnect'
-    xargs['X-Plex-Version'] = '0.2'
-    
-    return xargs
-
-
-
-def PlexAPI_MyPlexSignIn(username, password, options):
-    # MyPlex web address
-    MyPlexHost = 'my.plexapp.com'
-    MyPlexSignInPath = '/users/sign_in.xml'
-    MyPlexURL = 'https://' + MyPlexHost + MyPlexSignInPath
-    
-    # create POST request
-    request = urllib2.Request(MyPlexURL)
-    xargs = PlexAPI_XArgsDeviceInfo(options)
-    for opt in xargs:
-        request.add_header(opt, xargs[opt])
-    request.get_method = lambda: 'POST'  # turn into 'POST' - done automatically with data!=None. But we don't have data.
-    
-    # no certificate, will fail with "401 - Authentification required"
-    """
-    try:
-        f = urllib2.urlopen(request)
-    except urllib2.HTTPError, e:
-        print e.headers
-        print "has WWW_Authenticate:", e.headers.has_key('WWW-Authenticate')
-        print
-    """
-    
-    # provide credentials
-    ### optional... when 'realm' is unknown
-    ##passmanager = urllib2.HTTPPasswordMgrWithDefaultRealm()
-    ##passmanager.add_password(None, address, username, password)  # None: default "realm"
-    passmanager = urllib2.HTTPPasswordMgr()
-    passmanager.add_password(MyPlexHost, MyPlexURL, username, password)  # realm = 'my.plexapp.com'
-    authhandler = urllib2.HTTPBasicAuthHandler(passmanager)
-    urlopener = urllib2.build_opener(authhandler)
-    
-    # sign in, get MyPlex response
-    try:
-        f = urlopener.open(request)
-        response = f.read()
-    except urllib2.HTTPError, e:
-        if e.code==401:
-            dprint(__name__, 0, 'Authentication failed')
-            return ('', '')
-        else:
-            raise
-    
-    dprint(__name__, 1, "====== MyPlex sign in XML ======")
-    dprint(__name__, 1, response)
-    dprint(__name__, 1, "====== MyPlex sign in XML finished ======")
-    
-    # analyse response
-    XMLTree = etree.ElementTree(etree.fromstring(response))
-    
-    username = ''
-    authtoken = ''
-    el_username = XMLTree.find('username')
-    el_authtoken = XMLTree.find('authentication-token')    
-    if not el_username is None and \
-       not el_authtoken is None:
-        username = el_username.text
-        authtoken = el_authtoken.text
-    
-    return (username, authtoken)
-
-def PlexAPI_MyPlexSignOut(authtoken):
-    # MyPlex web address
-    MyPlexHost = 'my.plexapp.com'
-    MyPlexSignOutPath = '/users/sign_out.xml'
-    MyPlexURL = 'http://' + MyPlexHost + MyPlexSignOutPath
-    
-    # create POST request
-    request = urllib2.Request(MyPlexURL)
-    request.add_header('X-Plex-Token', authtoken)
-    request.get_method = lambda: 'POST'  # turn into 'POST' - done automatically with data!=None. But we don't have data.
-    
-    response = urllib2.urlopen(request).read()
-    
-    dprint(__name__, 1, "====== MyPlex sign out XML ======")
-    dprint(__name__, 1, response)
-    dprint(__name__, 1, "====== MyPlex sign out XML finished ======")
 
 
 
@@ -1005,7 +760,7 @@ class CCommandCollection(CCommandHelper):
         else:  # internal path, add-on
             path = self.path[srcXML] + '/' + key
         
-        PMS = XML_ReadFromURL(g_param['Addr_PMS'], path)
+        PMS = PlexAPI.getXMLFromPMS(g_param['Addr_PMS'], path)
         self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML
         self.path[tag] = path  # store base path
         
@@ -1126,13 +881,13 @@ class CCommandCollection(CCommandHelper):
                 
                 if Media.get('indirect',None):  # indirect... todo: select suitable resolution, today we just take first Media
                     key, leftover, dfltd = self.getKey(Media, srcXML, 'Part/key')
-                    PMS = XML_ReadFromURL(g_param['Addr_PMS'], key)  # todo... check key for trailing '/' or even 'http'
+                    PMS = PlexAPI.getXMLFromPMS(g_param['Addr_PMS'], key)  # todo... check key for trailing '/' or even 'http'
                     res, leftover, dfltd = self.getKey(PMS.getroot(), srcXML, 'Video/Media/Part/key')
                 
             else:
                 # request transcoding
                 res = Video.get('key','')
-                res = PlexAPI_getTranscodePath(self.options, res)
+                res = PlexAPI.getTranscodePath(res, self.options, g_ATVSettings)
         else:
             dprint(__name__, 0, "MEDIAPATH - element not found: {0}", param)
             res = 'FILE_NOT_FOUND'  # not found?
@@ -1248,7 +1003,7 @@ if __name__=="__main__":
             </PMS>'
     PMSroot = etree.fromstring(_XML)
     PMSTree = etree.ElementTree(PMSroot)
-    XML_prettyprint(PMSTree)
+    print prettyXML(PMSTree)
     
     print
     print "load aTV XML template"
@@ -1268,7 +1023,7 @@ if __name__=="__main__":
             </aTV>'
     aTVroot = etree.fromstring(_XML)
     aTVTree = etree.ElementTree(aTVroot)
-    XML_prettyprint(aTVTree)
+    print prettyXML(aTVTree)
     
     print
     print "unpack PlexConnect COPY/CUT commands"
@@ -1281,11 +1036,11 @@ if __name__=="__main__":
     
     print
     print "resulting aTV XML"
-    XML_prettyprint(aTVTree)
+    print prettyXML(aTVTree)
     
     print
     #print "store aTV XML"
-    #str = XML_prettystring(aTVTree)
+    #str = prettyXML(aTVTree)
     #f=open(sys.path[0]+'/XML/aTV_fromTmpl.xml', 'w')
     #f.write(str)
     #f.close()

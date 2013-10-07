@@ -56,8 +56,8 @@ See the [Wiki - Advanced Settings][] for more details on configuration and advan
 ## More detailed Information about the files
 * __PlexConnect.py__ - 
 Main script file, invoking the DNSServer and WebServer into seperate processes.
-* __PlexGDM.py__ - 
-Auto discovery of running Plex Media Servers: Good Day Mate!
+* __PlexAPI.py__ - 
+Collection of Plex Media Server/MyPlex "connector functions": Auto discovery of running PMSs: Good Day Mate! // XML interface to local PMSs // MyPlex integration
 * __DNSServer.py__ - 
 This is a small DNS server (hence the name) that is now called whenever aTV needs to resolve an internet address. To hijack the trailer App, we will intercept and re-route all queries to trailers.apple.com. Every other query will be forwarded to the next, your original DNS.
 * __WebServer.py__ - 
