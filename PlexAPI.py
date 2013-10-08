@@ -135,18 +135,22 @@ Plex Media Server communication
 parameters:
     host
     path
+    options - dict() of PlexConnect-options as received from aTV
+    authtoken - authentication answer from MyPlex Sign In
 result:
     returned XML or 'False' in case of error
 """
-def getXMLFromPMS(host, path):
-    xargs = getXArgsDeviceInfo()
-    if path.find('?')>=0:
-        path = path + '&' + urlencode(xargs)
-    else:
-        path = path + '?' + urlencode(xargs)
-    
+def getXMLFromPMS(host, path, options=None, authtoken=None):
     URL = "http://" + host + path
-    request = urllib2.Request(URL)
+    xargs = getXArgsDeviceInfo(options)
+    if authtoken:
+        xargs['X-Plex-Token'] = authtoken
+    
+    dprint(__name__, 0, "host: {0}", host)
+    dprint(__name__, 0, "path: {0}", path)
+    dprint(__name__, 0, "xargs: {0}", xargs)
+    
+    request = urllib2.Request(URL, None, xargs)
     try:
         response = urllib2.urlopen(request)
     except urllib2.URLError as e:
@@ -207,10 +211,8 @@ def MyPlexSignIn(username, password, options):
     MyPlexURL = 'https://' + MyPlexHost + MyPlexSignInPath
     
     # create POST request
-    request = urllib2.Request(MyPlexURL)
     xargs = getXArgsDeviceInfo(options)
-    for opt in xargs:
-        request.add_header(opt, xargs[opt])
+    request = urllib2.Request(MyPlexURL, None, xargs)
     request.get_method = lambda: 'POST'  # turn into 'POST' - done automatically with data!=None. But we don't have data.
     
     # no certificate, will fail with "401 - Authentification required"
@@ -272,8 +274,8 @@ def MyPlexSignOut(authtoken):
     MyPlexURL = 'http://' + MyPlexHost + MyPlexSignOutPath
     
     # create POST request
-    request = urllib2.Request(MyPlexURL)
-    request.add_header('X-Plex-Token', authtoken)
+    xargs = { 'X-Plex-Token': authtoken }
+    request = urllib2.Request(MyPlexURL, None, xargs)
     request.get_method = lambda: 'POST'  # turn into 'POST' - done automatically with data!=None. But we don't have data.
     
     response = urllib2.urlopen(request).read()
@@ -297,9 +299,6 @@ result:
 """
 def getTranscodePath(path, options, ATVSettings):
     UDID = options['PlexConnectUDID']
-    ###
-    g_ATVSettings = ATVSettings
-    ###
     
     transcodePath = '/video/:/transcode/universal/start.m3u8?'
     
@@ -311,15 +310,15 @@ def getTranscodePath(path, options, ATVSettings):
                 '1080p 12.0Mbps' :('1920x1080', '90', '12000'), \
                 '1080p 20.0Mbps' :('1920x1080', '100', '20000'), \
                 '1080p 40.0Mbps' :('1920x1080', '100', '40000') }
-    setAction = g_ATVSettings.getSetting(UDID, 'transcoderaction')
-    setQuality = g_ATVSettings.getSetting(UDID, 'transcodequality')
+    setAction = ATVSettings.getSetting(UDID, 'transcoderaction')
+    setQuality = ATVSettings.getSetting(UDID, 'transcodequality')
     vRes = quality[setQuality][0]
     vQ = quality[setQuality][1]
     mVB = quality[setQuality][2]
     dprint(__name__, 1, "Setting transcode quality Res:{0} Q:{1} {2}Mbps", vRes, vQ, mVB)
-    sS = g_ATVSettings.getSetting(UDID, 'subtitlesize')
+    sS = ATVSettings.getSetting(UDID, 'subtitlesize')
     dprint(__name__, 1, "Subtitle size: {0}", sS)
-    aB = g_ATVSettings.getSetting(UDID, 'audioboost')
+    aB = ATVSettings.getSetting(UDID, 'audioboost')
     dprint(__name__, 1, "Audio Boost: {0}", aB)
     
     args = dict()
@@ -343,24 +342,53 @@ def getTranscodePath(path, options, ATVSettings):
 
 
 if __name__ == '__main__':
+    testPlexGDM = 0
+    testLocalPMS = 1
+    testMyPlexXML = 0
+    testMyPlexSignIn = 0
+    testMyPlexSignOut = 0
+    
+    username = 'abc'
+    password = 'def'
+    token = 'xyz'
+    
+    
     # test PlexGDM
-    print "*** PlexGDM"
-    PMS_list = PlexGDM()
-    print PMS_list
+    if testPlexGDM:
+        dprint('', 0, "*** PlexGDM")
+        PMS_list = PlexGDM()
+        dprint('', 0, PMS_list)
     
-    # test "get PMS XML"
     
-    # test MyPlex Sign in/Sign Out
-    print "*** MyPlex"
-    options = {'PlexConnectUDID':'007'}
+    # test XML from local PMS
+    if testLocalPMS:
+        dprint('', 0, "*** XML from local PMS")
+        XML = getXMLFromPMS('127.0.0.1:32400', '/library/sections')
     
-    (name, token) = MyPlexSignIn('username', 'password', options)
-    if name=='' and token=='':
-        print "Authentication failed"
-    else:
-        print "logged in:", name, token
+    
+    # test XML from MyPlex
+    if testMyPlexXML:
+        dprint('', 0, "*** XML from MyPlex")
+        XML = getXMLFromPMS('my.plexapp.com', '/pms/servers', None, token)
+        XML = getXMLFromPMS('my.plexapp.com', '/pms/system/library/sections', None, token)
+    
+    
+    # test MyPlex Sign In
+    if testMyPlexSignIn:
+        dprint('', 0, "*** MyPlex Sign In")
+        options = {'PlexConnectUDID':'007'}
         
+        (user, token) = MyPlexSignIn(username, password, options)
+        if user=='' and token=='':
+            dprint('', 0, "Authentication failed")
+        else:
+            dprint('', 0, "logged in: {0}, {1}", user, token)
+    
+    
+    # test MyPlex Sign out
+    if testMyPlexSignOut:
+        dprint('', 0, "*** MyPlex Sign Out")
         MyPlexSignOut(token)
-        print "logged out"
+        dprint('', 0, "logged out")
     
     # test transcoder
