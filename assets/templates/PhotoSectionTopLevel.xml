@@ -5,24 +5,24 @@
   </head>
 	<body>
 		<viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadItem(event)" volatile="true" onVolatileReload="updatePage('{{ADDPATH()}}');">
-			<navigation currentIndex="0">
+			<navigation currentIndex="1">
 
-				<navigationItem id="All Photos">
+				<navigationItem id="0">
 					<title>{{TEXT(All Photos)}}</title>
 					<url>{{URL(key)}}/all</url>
 				</navigationItem>
 
-        <navigationItem id="Recently Added">
+        <navigationItem id="1">
 					<title>{{TEXT(Recently Added)}}</title>
 					<url>{{URL(key)}}/recentlyAdded</url>
 				</navigationItem>
 
-				<navigationItem id="Year">
+				<navigationItem id="2">
 					<title>{{TEXT(Year)}}</title>
 					<url>{{URL(key)}}/year&amp;PlexConnect=DirectoryWithPreview</url>
 				</navigationItem>
 
-				<navigationItem id="More...">
+				<navigationItem id="3">
 					<title>{{TEXT(More...)}}</title>
 					<url>{{URL(key)}}&amp;PlexConnect=PhotoSecondary</url>
 				</navigationItem>
