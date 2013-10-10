@@ -351,11 +351,22 @@ atv.onAppEntry = function()
     firmVer = fv[0] + "." + fv[1];
     if (parseFloat(firmVer) >= 5.1)
     {
-        atv.loadURL("http://atv.plexconnect/PlexConnect.xml");
+        atv.loadURL("http://atv.plexconnect/PlexConnect.xml&PlexConnectUDID=" + atv.device.udid);
     }
     else
     {
-        atv.loadURL("http://atv.plexconnect/VersionError.xml");
+        var xmlstr =
+'<?xml version="1.0" encoding="UTF-8"?> \
+<atv> \
+  <body> \
+    <dialog id="com.sample.error-dialog"> \
+      <title>PlexConnect</title> \
+      <description>ATV firmwares lower 5.1 are no longer supported. Please think about updating.</description> \
+    </dialog> \
+  </body> \
+</atv>';
+        
+        var doc = atv.parseXML(xmlstr);
+        atv.loadXML(doc);
     }
 };
-
