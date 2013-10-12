@@ -99,23 +99,22 @@ class MyHandler(BaseHTTPRequestHandler):
                     self.send_header('Content-type', 'text/plain')
                     self.end_headers()
                     return
-                
-                # serve "application.js" to aTV
-                # disregard the path - it is different for different iOS versions
-                if self.path.endswith("application.js"):
-                    dprint(__name__, 1, "serving application.js")
-                    f = open(sys.path[0] + sep + "assets" + sep + "js" + sep + "application.js")
+                    
+                # serve "*.cer" - Serve up certificate file to atv
+                if self.path.endswith(".cer"):
+                    dprint(__name__, 1, "serving *.cer: "+self.path)
+                    f = open(sys.path[0] + sep + "assets" + sep + "certificates" + self.path, "rb")
                     self.send_response(200)
-                    self.send_header('Content-type', 'text/javascript')
+                    self.send_header('Content-type', 'text/xml')
                     self.end_headers()
                     self.wfile.write(f.read())
                     f.close()
-                    return
+                    return 
                 
-                # serve all other .js files to aTV
+                # serve .js files to aTV
                 if self.path.endswith(".js"):
-                    dprint(__name__, 1, "serving  " + sys.path[0] + sep + "assets" + self.path.replace('/',sep))
-                    f = open(sys.path[0] + sep + "assets" + self.path.replace('/',sep))
+                    dprint(__name__, 1, "serving  " + sys.path[0] + sep + "assets" + self.path.replace('/',sep).replace('appletv\us\\', ''))
+                    f = open(sys.path[0] + sep + "assets" + self.path.replace('/',sep).replace('appletv\us\\', ''))
                     self.send_response(200)
                     self.send_header('Content-type', 'text/javascript')
                     self.end_headers()
