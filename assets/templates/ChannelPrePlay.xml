@@ -9,7 +9,7 @@
 		<subtitle>{{VAL(Video/studio)}}</subtitle>
 		<rating>{{contentRating(Video/contentRating)}}</rating>
 		<summary>{{VAL(Video/summary)}}</summary>
-		<image style="squarePoster">{{IMAGEURL(Video/thumb)}}</image>
+		<image style="squarePoster">{{IMAGEURL(Video/thumb::384)}}</image>
 		<defaultImage>resource://Poster.png</defaultImage>
 
 		<centerShelf>

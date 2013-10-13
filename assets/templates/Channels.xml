@@ -33,10 +33,10 @@
                                        onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelsVideo')">
                 {{COPY(@VideoChannels/Directory)}}
                 <label>{{VAL(title)}}</label>
-                <image>{{IMAGEURL(thumb)}}</image>
+                <image>{{IMAGEURL(thumb::384)}}</image>
                 <preview>
                   <crossFadePreview>
-                    <image>{{BIGIMAGEURL(thumb)}}</image>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
                   </crossFadePreview>
                 </preview>
               </twoLineEnhancedMenuItem>
@@ -56,10 +56,10 @@
                                        onSelect="atv.loadURL('{{URL(key)}}')">
                 {{COPY(@AudioChannels/Directory)}}
                 <label>{{VAL(title)}}</label>
-                <image>{{IMAGEURL(thumb)}}</image>
+                <image>{{IMAGEURL(thumb::384)}}</image>
                 <preview>
                   <crossFadePreview>
-                    <image>{{BIGIMAGEURL(thumb)}}</image>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
                   </crossFadePreview>
                 </preview>
               </twoLineEnhancedMenuItem>
@@ -79,10 +79,10 @@
                                        onSelect="atv.loadURL('{{URL(key)}}')">
                 {{COPY(@PhotoChannels/Directory)}}
                 <label>{{VAL(title)}}</label>
-                <image>{{IMAGEURL(thumb)}}</image>
+                <image>{{IMAGEURL(thumb::384)}}</image>
                 <preview>
                   <crossFadePreview>
-                    <image>{{BIGIMAGEURL(thumb)}}</image>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
                   </crossFadePreview>
                 </preview>
               </twoLineEnhancedMenuItem>

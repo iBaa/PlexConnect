@@ -24,7 +24,7 @@
 								<rightLabel>{{unwatchedCountList(leafCount:0:viewedLeafCount:0)}}</rightLabel>{{CUT($showunwatched::False=CUT|True=)}}
                 <preview>
                   <crossFadePreview>
-                    <image>{{BIGIMAGEURL(thumb)}}</image>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
                   </crossFadePreview>
                 </preview>
               </oneLineMenuItem>{{CUT(Directory/title:CUT:=)}}

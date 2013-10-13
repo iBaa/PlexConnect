@@ -27,10 +27,10 @@
           {{COPY(Photo:Media/Part/key::=COPY)}}
           <caption>test</caption>
           <assets>
-            <photoAsset width="0" height="0" src="{{IMAGEURL(Media/Part/key)}}"/>
+            <photoAsset width="0" height="0" src="{{IMAGEURL(Media/Part/key::384)}}"/>
           </assets>
           <stash>
-            <url>http://{{ADDR_PMS()}}{{ADDPATH(Media/Part/key)}}</url>
+            <url>{{IMAGEURL(Media/Part/key)}}</url>
             <directory>false</directory>
           </stash>
         </photo>
@@ -40,10 +40,10 @@
           {{COPY(Photo:Media/Part/key:COPY:=)}}
           <caption>test</caption>
           <assets>
-            <photoAsset width="0" height="0" src="{{IMAGEURL(key)}}"/>
+            <photoAsset width="0" height="0" src="{{IMAGEURL(key::384)}}"/>
           </assets>
           <stash>
-            <url>http://{{ADDR_PMS()}}{{ADDPATH(key)}}</url>
+            <url>{{IMAGEURL(key)}}</url>
             <directory>false</directory>
           </stash>
           </photo>

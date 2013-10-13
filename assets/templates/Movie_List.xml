@@ -31,7 +31,7 @@
                   <keyedPreview>
                     <title>{{VAL(title)}}</title>
                     <summary>{{VAL(summary)}}</summary>
-                    <image>{{IMAGEURL(thumb)}}</image>
+                    <image>{{IMAGEURL(thumb::384)}}</image>
 										<metadataKeys>
 											<label>{{TEXT(Actors)}}</label>
 											<label>{{TEXT(Director)}}</label>
@@ -61,7 +61,7 @@
                 </accessories>{{CUT(viewCount)}}
                 <preview>
                   <crossFadePreview>
-                    <image>{{BIGIMAGEURL(thumb)}}</image>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
                   </crossFadePreview>
                 </preview>
               </twoLineMenuItem>{{CUT(Video/title:CUT:=)}}{{CUT($listviewmetadata::Show=CUT|Hide=)}}

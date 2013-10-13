@@ -27,7 +27,7 @@
                   {{COPY(@OnDeck/Video)}}
                   <title>{{VAL(title)}}</title>
                   <subtitle>{{episodestring(parentIndex:0:index:0)}}</subtitle>
-                  <image>{{IMAGEURL(grandparentThumb)}}</image>
+                  <image>{{IMAGEURL(grandparentThumb::384)}}</image>
                   <defaultImage>resource://Poster.png</defaultImage>
                 </moviePoster>
               </items>
@@ -51,7 +51,7 @@
                   {{COPY(@RecentlyAired/Video)}}
                   <title>{{VAL(title)}}</title>
                   <subtitle>{{episodestring(parentIndex:0:index:0)}}</subtitle>
-                  <image>{{IMAGEURL(grandparentThumb)}}</image>
+                  <image>{{IMAGEURL(grandparentThumb::384)}}</image>
                   <defaultImage>resource://Poster.png</defaultImage>
                 </moviePoster>
               </items>
@@ -75,7 +75,7 @@
                   {{COPY(@RecentlyAdded/Directory)}}
                   <title>{{VAL(parentTitle)}}</title>
                   <subtitle>{{TEXT(Season)}} {{VAL(index)}}</subtitle>
-                  <image>{{IMAGEURL(parentThumb)}}</image>
+                  <image>{{IMAGEURL(parentThumb::384)}}</image>
                   <defaultImage>resource://Poster.png</defaultImage>
                 </moviePoster>
               </items>

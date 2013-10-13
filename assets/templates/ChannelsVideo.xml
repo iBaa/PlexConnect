@@ -21,13 +21,13 @@
                                        onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=PlayVideo_ChannelsV1')">
                 {{COPY(Video:#ChanVer::V1=COPY|V2=)}}
                 <label>{{VAL(title)}}</label>
-                <image>{{IMAGEURL(thumb)}}</image>
+                <image>{{IMAGEURL(thumb::384)}}</image>
                 <!--<defaultImage>resource://Poster.png</defaultImage>-->
                 <preview>
                   <keyedPreview>
                     <title>{{VAL(title)}}</title>
                     <summary>{{VAL(summary)}}</summary>
-                    <image>{{BIGIMAGEURL(thumb)}}</image>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
                   </keyedPreview>
                 </preview>
               </twoLineEnhancedMenuItem>
@@ -38,13 +38,13 @@
                                        onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelPrePlay')">
                 {{COPY(Video:#ChanVer::V1=|V2=COPY)}}
                 <label>{{VAL(title)}}</label>
-                <image>{{IMAGEURL(thumb)}}</image>
+                <image>{{IMAGEURL(thumb::384)}}</image>
                 <!--<defaultImage>resource://Poster.png</defaultImage>-->
                 <preview>
                   <keyedPreview>
                     <title>{{VAL(title)}}</title>
                     <summary>{{VAL(summary)}}</summary>
-                    <image>{{BIGIMAGEURL(thumb)}}</image>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
                   </keyedPreview>
                 </preview>
               </twoLineEnhancedMenuItem>
@@ -58,12 +58,12 @@
                 <!--
                 <rightLabel>another 100 files...</rightLabel>
                 -->
-                <image>{{IMAGEURL(thumb)}}</image>
+                <image>{{IMAGEURL(thumb::384)}}</image>
                 <!--<image>http://trailers.apple.com/thumbnails/DirectoryLink.jpg</image>-->
                 <!--<defaultImage>resource://Poster.png</defaultImage>-->
                 <preview>
                   <crossFadePreview>
-                    <image>{{BIGIMAGEURL(thumb)}}</image>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
                   </crossFadePreview>
                 </preview>
               </twoLineEnhancedMenuItem>

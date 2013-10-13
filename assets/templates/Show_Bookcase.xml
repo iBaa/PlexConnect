@@ -32,7 +32,7 @@
                               onHoldSelect="scrobbleMenu('{{TEXT(Show)}}', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
                     {{COPY(@seasons/Directory)}}
                     <title>{{VAL(title)}}</title>
-                    <image>{{IMAGEURL(thumb)}}</image>
+                    <image>{{IMAGEURL(thumb::384)}}</image>
                     <defaultImage>resource://Poster.png</defaultImage>
                     <badgeCount>{{unwatchedCountGrid(leafCount:0:viewedLeafCount:0)}}</badgeCount>{{CUT($showunwatched::False=CUT|True=)}}
                     </moviePoster><!--{{CUT(Directory/title:CUT:=)}}-->

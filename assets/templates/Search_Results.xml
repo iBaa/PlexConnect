@@ -23,7 +23,7 @@
                 {{COPY(Video:type::movie=COPY|episode=)}}
                 {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
                 <label>{{VAL(title)}}</label>
-                <image>{{IMAGEURL(thumb)}}</image>
+                <image>{{IMAGEURL(thumb::384)}}</image>
                 <defaultImage>resource://Poster.png</defaultImage>
               </twoLineEnhancedMenuItem>
             </items>
@@ -43,7 +43,7 @@
                 {{COPY(Directory)}}
                 {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
                 <label>{{VAL(title)}}</label>
-                <image>{{IMAGEURL(thumb)}}</image>
+                <image>{{IMAGEURL(thumb::384)}}</image>
                 <defaultImage>resource://Poster.png</defaultImage>
               </twoLineEnhancedMenuItem>
             </items>
@@ -64,7 +64,7 @@
                 {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
                 <label>{{VAL(title)}}</label>
                 <label2>{{VAL(grandparentTitle)}}</label2>
-                <image>{{IMAGEURL(thumb)}}</image>
+                <image>{{IMAGEURL(thumb::384)}}</image>
                 <defaultImage>resource://Poster.png</defaultImage>
               </twoLineEnhancedMenuItem>
             </items>

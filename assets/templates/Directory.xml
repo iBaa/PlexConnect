@@ -41,7 +41,7 @@
                 <label>{{VAL(artist)}}</label>
                 <preview>
                   <crossFadePreview>
-                    <image>{{BIGIMAGEURL(thumb)}}</image>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
                   </crossFadePreview>
                 </preview>
               </oneLineMenuItem>
@@ -56,7 +56,7 @@
                 <label>{{VAL(label)}}</label>
                 <preview>
                   <crossFadePreview>
-                    <image>{{BIGIMAGEURL(thumb)}}</image>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
                   </crossFadePreview>
                 </preview>
               </oneLineMenuItem>
@@ -72,7 +72,7 @@
                 <rightLabel>{{VAL(count)}}</rightLabel>
                 <preview>
                   <crossFadePreview>
-                    <image>{{BIGIMAGEURL(thumb)}}</image>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
                   </crossFadePreview>
                 </preview>
               </oneLineMenuItem>
@@ -87,7 +87,7 @@
                 <label>{{VAL(genre)}}</label>
                 <preview>
                   <crossFadePreview>
-                    <image>{{BIGIMAGEURL(thumb)}}</image>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
                   </crossFadePreview>
                 </preview>
               </oneLineMenuItem>

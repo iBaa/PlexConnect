@@ -360,8 +360,8 @@ atv.onAppEntry = function()
 <atv> \
   <body> \
     <dialog id="com.sample.error-dialog"> \
-      <title>PlexConnect</title> \
-      <description>ATV firmwares lower 5.1 are no longer supported. Please think about updating.</description> \
+      <title>{{TEXT(PlexConnect)}}</title> \
+      <description>{{TEXT(ATV firmware version 5.1 or higher required. Please think about updating.)}}</description> \
     </dialog> \
   </body> \
 </atv>';

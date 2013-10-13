@@ -808,34 +808,50 @@ class CCommandCollection(CCommandHelper):
         else:
             res = self.path[srcXML]+'/'+addpath
         return res
-
-    def ATTRIB_BIGIMAGEURL(self, src, srcXML, param):
-        key, leftover, dfltd = self.getKey(src, srcXML, param)
-        return self.imageUrl(self.path[srcXML], key, 768, 768)
     
     def ATTRIB_IMAGEURL(self, src, srcXML, param):
         key, leftover, dfltd = self.getKey(src, srcXML, param)
-        return self.imageUrl(self.path[srcXML], key, 384, 384)
-            
-    def imageUrl(self, path, key, width, height):
-        if key.startswith('/'):  # internal full path.
-            res = 'http://127.0.0.1:32400' + key
-        elif key.startswith('http://'):  # external address
-            res = key
-            hijack = g_param['HostToIntercept']
-            if hijack in res:
-                dprint(__name__, 1, "twisting...")
-                hijack_twisted = hijack[::-1]
-                res = res.replace(hijack, hijack_twisted)
-                dprint(__name__, 1, res)
-        else:
-            res = 'http://127.0.0.1:32400' + path + '/' + key
+        width, leftover = self.getParam(src, leftover)
+        height, leftover = self.getParam(src, leftover)
+        if height=='':
+            height = width
         
-        # This is bogus (note the extra path component) but ATV is stupid when it comes to caching images, it doesn't use querystrings.
-        # Fortunately PMS is lenient...
-        #
-        return 'http://' + g_param['Addr_PMS'] + '/photo/:/transcode/%s/?width=%d&height=%d&url=' % (quote_plus(res), width, height) + quote_plus(res)
+        if width=='':
+            # direct play
+            if key.startswith('/'):  # internal full path.
+                res = 'http://' + g_param['Addr_PMS'] + key
+            elif key.startswith('http://'):  # external address
+                res = key
+                hijack = g_param['HostToIntercept']
+                if hijack in res:
+                    dprint(__name__, 1, "twisting...")
+                    hijack_twisted = hijack[::-1]
+                    res = res.replace(hijack, hijack_twisted)
+                    dprint(__name__, 1, res)
+            else:  # internal path, add-on
+                res = 'http://' + g_param['Addr_PMS'] + self.path[srcXML] + '/' + key
+        
+        else:
+            # request transcoding
+            if key.startswith('/'):  # internal full path.
+                res = 'http://127.0.0.1:32400' + key
+            elif key.startswith('http://'):  # external address
+                res = key
+                hijack = g_param['HostToIntercept']
+                if hijack in res:
+                    dprint(__name__, 1, "twisting...")
+                    hijack_twisted = hijack[::-1]
+                    res = res.replace(hijack, hijack_twisted)
+                    dprint(__name__, 1, res)
+            else:  # internal path, add-on
+                res = 'http://127.0.0.1:32400' + self.path[srcXML] + '/' + key
             
+            # This is bogus (note the extra path component) but ATV is stupid when it comes to caching images, it doesn't use querystrings.
+            # Fortunately PMS is lenient...
+            res = 'http://' + g_param['Addr_PMS'] + '/photo/:/transcode/%s/?width=%s&height=%s&url=' % (quote_plus(res), width, height) + quote_plus(res)
+        
+        return res
+    
     def ATTRIB_URL(self, src, srcXML, param):
         key, leftover, dfltd = self.getKey(src, srcXML, param)
         if key.startswith('/'):  # internal full path.

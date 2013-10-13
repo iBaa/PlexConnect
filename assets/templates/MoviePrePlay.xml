@@ -10,7 +10,7 @@
       <subtitle>{{VAL(Video/studio)}}</subtitle>
       <rating>{{contentRating(Video/contentRating)}}</rating>
       <summary>{{VAL(Video/summary)}}</summary>
-      <image style="moviePoster">{{BIGIMAGEURL(Video/thumb)}}</image>
+      <image style="moviePoster">{{IMAGEURL(Video/thumb::768)}}</image>
       <defaultImage>resource://Poster.png</defaultImage>
 
       <table>
@@ -117,7 +117,7 @@
                   {{COPY(Video/Role)}}
                   <title>{{VAL(tag)}}</title>
                   <subtitle>as {{VAL(role)}}</subtitle>
-                  <image>{{IMAGEURL(thumb)}}</image>
+                  <image>{{IMAGEURL(thumb::384)}}</image>
                   <defaultImage>http://{{ADDR_PMS()}}/:/resources/actor-icon.png</defaultImage>
                 </moviePoster>
               </items>
@@ -179,7 +179,7 @@
                     {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
                     <label>{{VAL(tag)}}</label>
                     <label2>{{VAL(role)}}</label2>
-                    <image>{{IMAGEURL(thumb)}}</image>
+                    <image>{{IMAGEURL(thumb::384)}}</image>
                     <defaultImage>resource://Poster.png</defaultImage>
                     <preview>
                       <link>{{URL(:/library/sections/)}}{{VAL(/librarySectionID)}}/actor/{{VAL(id)}}/&amp;PlexConnect=MoviePreview</link>

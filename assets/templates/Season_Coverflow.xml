@@ -24,7 +24,7 @@
                                               onHoldSelect="scrobbleMenu('{{TEXT(Season)}}', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
                   {{COPY(Directory)}}
                   <title>{{VAL(title)}}</title>
-                  <image>{{IMAGEURL(thumb)}}</image>
+                  <image>{{IMAGEURL(thumb::384)}}</image>
                   <defaultImage>resource://Poster.png</defaultImage>
                 </goldenPoster>{{CUT(Directory/title:CUT:=)}}
             

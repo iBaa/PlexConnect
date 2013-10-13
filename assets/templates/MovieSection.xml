@@ -29,7 +29,7 @@
                   {{COPY(@OnDeck/Video)}}
                   <title>{{VAL(title)}}</title>
                   <subtitle>{{VAL(year)}}</subtitle>
-                  <image>{{IMAGEURL(thumb)}}</image>
+                  <image>{{IMAGEURL(thumb::384)}}</image>
                   <defaultImage>resource://Poster.png</defaultImage>
                 </moviePoster>
               </items>
@@ -53,7 +53,7 @@
                   {{COPY(@RecentlyAdded/Video)}}
                   <title>{{VAL(title)}}</title>
                   <subtitle>{{VAL(year)}}</subtitle>
-                  <image>{{IMAGEURL(thumb)}}</image>
+                  <image>{{IMAGEURL(thumb::384)}}</image>
                   <defaultImage>resource://Poster.png</defaultImage>
                 </moviePoster>
               </items>
@@ -77,7 +77,7 @@
                   {{COPY(@RecentlyReleased/Video)}}
                   <title>{{VAL(title)}}</title>
                   <subtitle>{{VAL(year)}}</subtitle>
-                  <image>{{IMAGEURL(thumb)}}</image>
+                  <image>{{IMAGEURL(thumb::384)}}</image>
                   <defaultImage>resource://Poster.png</defaultImage>
                 </moviePoster>
               </items>

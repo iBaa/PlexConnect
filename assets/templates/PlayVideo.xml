@@ -6,7 +6,7 @@
         <title>{{VAL(Video/title)}}</title>
         <description>{{VAL(Video/summary)}}</description>
         <bookmarkTime>{{EVAL(Video/viewOffset:0:int(x/1000))}}</bookmarkTime>
-        <image>{{IMAGEURL(Video/thumb)}}</image>
+        <image>{{IMAGEURL(Video/thumb::384)}}</image>
         
         <!-- stacked media -->
         <myMetadata>            
@@ -15,7 +15,7 @@
                 <title>{{VAL(@main/Video/title)}}</title>
                 <description>{{VAL(@main/Video/summary)}}</description>
                 <!--bookmarkTime>{{EVAL(@main/Video/viewOffset:0:int(x/1000))}}</bookmarkTime-->
-                <image>{{IMAGEURL(@main/Video/thumb)}}</image>
+                <image>{{IMAGEURL(@main/Video/thumb::384)}}</image>
             </httpFileVideoAsset>{{COPY(Video/Media/Part)}}
         </myMetadata>
         

@@ -30,7 +30,7 @@
               {{COPY(Video)}}
               <title>{{VAL(title)}}</title>
               <subtitle>{{VAL(year)}}</subtitle>
-              <image>{{IMAGEURL(thumb)}}</image>
+              <image>{{IMAGEURL(thumb::384)}}</image>
               <defaultImage>resource://16X9.png</defaultImage>
             </moviePoster>
           </items>
