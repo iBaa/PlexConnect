@@ -130,6 +130,25 @@ def PlexGDM():
 
 
 """
+Plex Media Server handling
+"""
+def getPMSFromIP(PMS_list, ip):
+    # find server in list
+    for PMS_uuid in PMS_list:
+        if ip==PMS_list[PMS_uuid]['ip']:
+            return PMS_uuid
+    
+    return ''  # IP not found
+
+def getAddress(PMS_list, PMS_uuid):
+    if PMS_uuid in PMS_list:
+        return PMS_list[PMS_uuid]['ip'] + ':' + PMS_list[PMS_uuid]['port']
+    
+    return ''  # requested PMS not available
+
+
+
+"""
 Plex Media Server communication
 
 parameters:

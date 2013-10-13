@@ -22,7 +22,6 @@ import traceback
 import inspect 
 import string, cgi, time
 import copy  # deepcopy()
-from os import sep
 
 try:
     import xml.etree.cElementTree as etree
@@ -30,9 +29,8 @@ except ImportError:
     import xml.etree.ElementTree as etree
 
 import time, uuid, hmac, hashlib, base64
-from urllib import urlencode
-from urlparse import urlparse
 from urllib import quote_plus
+import urlparse
 
 import Settings, ATVSettings
 import PlexAPI
@@ -77,13 +75,13 @@ def XML_Error(title, desc):
 
 
 
-def XML_PlayVideo_ChannelsV1(path):
+def XML_PlayVideo_ChannelsV1(PMSaddress, path):
     XML = '\
 <atv>\n\
   <body>\n\
     <videoPlayer id="com.sample.video-player">\n\
       <httpFileVideoAsset id="' + path + '">\n\
-        <mediaURL>http://' + g_param['Addr_PMS'] +  path + '</mediaURL>\n\
+        <mediaURL>http://' + PMSaddress + path + '</mediaURL>\n\
         <title>*title*</title>\n\
         <!--bookmarkTime>{{EVAL(Video/viewOffset:0:int(x/1000))}}</bookmarkTime-->\n\
       </httpFileVideoAsset>\n\
@@ -135,17 +133,22 @@ def discoverPMS():
 # - select XML template
 # - translate to aTV XML
 """
-def XML_PMS2aTV(address, path, options):
-
+def XML_PMS2aTV(PMSaddress, path, options):
+    # double check PMS IP address
+    # the hope is: aTV sends either PMS address coded into URL or UDID in options
+    if PMSaddress=='':
+        if 'PlexConnectUDID' in options:
+            PMS_uuid = g_ATVSettings.getSetting(options['PlexConnectUDID'], 'pms_uuid')
+            PMS_list = g_param['PMS_list']
+            PMSaddress = PlexAPI.getAddress(PMS_list, PMS_uuid)
+    
+    # check cmd to work on
     cmd = ''
     if 'PlexConnect' in options:
         cmd = options['PlexConnect']
     dprint(__name__, 1, "PlexConnect Cmd: "+cmd)
     
-    if not 'PlexConnectUDID' in options:
-        dprint(__name__, 1, "no PlexConnectUDID - pick 007")
-        options['PlexConnectUDID'] = '007'
-    
+    # check aTV language setting
     if not 'aTVLanguage' in options:
         dprint(__name__, 1, "no aTVLanguage - pick en")
         options['aTVLanguage'] = 'en'
@@ -169,7 +172,7 @@ def XML_PMS2aTV(address, path, options):
     
     elif cmd=='PlayVideo_ChannelsV1':
         dprint(__name__, 1, "playing Channels XML Version 1: {0}".format(path))
-        return XML_PlayVideo_ChannelsV1(path)  # direct link, no PMS XML available
+        return XML_PlayVideo_ChannelsV1(PMSaddress, path)  # direct link, no PMS XML available
     
     elif cmd=='PhotoBrowser':
         XMLtemplate = 'Photo_Browser.xml'
@@ -290,7 +293,9 @@ def XML_PMS2aTV(address, path, options):
     elif path.startswith('/search?'):
         XMLtemplate = 'Search_Results.xml'
     
+    """
     # check PMS availability
+    # todo: re-discover needs to be done differently... how to trigger?
     PMS_list = g_param['PMS_list']
     PMS_uuid = g_ATVSettings.getSetting(options['PlexConnectUDID'], 'pms_uuid')
     
@@ -301,16 +306,12 @@ def XML_PMS2aTV(address, path, options):
         PMS_list = g_param['PMS_list']
         g_ATVSettings.checkSetting(options['PlexConnectUDID'], 'pms_uuid')  # verify PMS_uuid
         PMS_uuid = g_ATVSettings.getSetting(options['PlexConnectUDID'], 'pms_uuid')
-    
-    # determine PMS IP address
-    if PMS_uuid in PMS_list:
-        g_param['Addr_PMS'] = PMS_list[PMS_uuid]['ip'] +':'+ PMS_list[PMS_uuid]['port']
-    else:
-        g_param['Addr_PMS'] = '127.0.0.1:32400'  # no PMS available. Addr stupid but valid.
+        PMSaddress = '?'  # todo:
+    """
     
     # request PMS XML
     if not path=='':
-        PMS = PlexAPI.getXMLFromPMS(g_param['Addr_PMS'], path)
+        PMS = PlexAPI.getXMLFromPMS(PMSaddress, path)
         if PMS==False:
             return XML_Error('PlexConnect', 'No Response from Plex Media Server')
         
@@ -386,7 +387,7 @@ def XML_PMS2aTV(address, path, options):
     
     # convert PMS XML to aTV XML using provided XMLtemplate
     global g_CommandCollection
-    g_CommandCollection = CCommandCollection(options, PMSroot, path)
+    g_CommandCollection = CCommandCollection(options, PMSroot, PMSaddress, path)
     XML_ExpandTree(aTVroot, PMSroot, 'main')
     XML_ExpandAllAttrib(aTVroot, PMSroot, 'main')
     del g_CommandCollection
@@ -553,9 +554,10 @@ def XML_ExpandLine(src, srcXML, line):
 #     cmds dealing with single node keys, text, tail only (VAL, EVAL, ADDR_PMS ,...)
 """
 class CCommandHelper():
-    def __init__(self, options, PMSroot, path):
+    def __init__(self, options, PMSroot, PMSaddress, path):
         self.options = options
         self.PMSroot = {'main': PMSroot}
+        self.PMSaddress = PMSaddress  # default PMS if nothing else specified
         self.path = {'main': path}
         self.variables = {}
     
@@ -586,13 +588,13 @@ class CCommandHelper():
         
         el, srcXML, attrib = self.getBase(src, srcXML, attrib)         
         
-        UDID = self.options['PlexConnectUDID']
         # walk the path if neccessary
         while '/' in attrib and el!=None:
             parts = attrib.split('/',1)
             if parts[0].startswith('#'):  # internal variable in path
                 el = el.find(self.variables[parts[0][1:]])
             elif parts[0].startswith('$'):  # setting
+                UDID = self.options['PlexConnectUDID']
                 el = el.find(g_ATVSettings.getSetting(UDID, parts[0][1:]))
             else:
                 el = el.find(parts[0])
@@ -603,6 +605,7 @@ class CCommandHelper():
             res = self.variables[attrib[1:]]
             dfltd = False
         elif attrib.startswith('$'):  # setting
+            UDID = self.options['PlexConnectUDID']
             res = g_ATVSettings.getSetting(UDID, attrib[1:])
             dfltd = False
         elif el!=None and attrib in el.attrib:
@@ -760,7 +763,7 @@ class CCommandCollection(CCommandHelper):
         else:  # internal path, add-on
             path = self.path[srcXML] + '/' + key
         
-        PMS = PlexAPI.getXMLFromPMS(g_param['Addr_PMS'], path)
+        PMS = PlexAPI.getXMLFromPMS(self.PMSaddress, path)
         self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML
         self.path[tag] = path  # store base path
         
@@ -819,7 +822,7 @@ class CCommandCollection(CCommandHelper):
         if width=='':
             # direct play
             if key.startswith('/'):  # internal full path.
-                res = 'http://' + g_param['Addr_PMS'] + key
+                res = 'http://' + self.PMSaddress + key
             elif key.startswith('http://'):  # external address
                 res = key
                 hijack = g_param['HostToIntercept']
@@ -829,7 +832,7 @@ class CCommandCollection(CCommandHelper):
                     res = res.replace(hijack, hijack_twisted)
                     dprint(__name__, 1, res)
             else:  # internal path, add-on
-                res = 'http://' + g_param['Addr_PMS'] + self.path[srcXML] + '/' + key
+                res = 'http://' + self.PMSaddress + self.path[srcXML] + '/' + key
         
         else:
             # request transcoding
@@ -848,26 +851,32 @@ class CCommandCollection(CCommandHelper):
             
             # This is bogus (note the extra path component) but ATV is stupid when it comes to caching images, it doesn't use querystrings.
             # Fortunately PMS is lenient...
-            res = 'http://' + g_param['Addr_PMS'] + '/photo/:/transcode/%s/?width=%s&height=%s&url=' % (quote_plus(res), width, height) + quote_plus(res)
+            res = 'http://' + self.PMSaddress + '/photo/:/transcode/%s/?width=%s&height=%s&url=' % (quote_plus(res), width, height) + quote_plus(res)
         
         return res
     
     def ATTRIB_URL(self, src, srcXML, param):
         key, leftover, dfltd = self.getKey(src, srcXML, param)
+        
+        res = 'http://' + g_param['HostOfPlexConnect']  # base address to PlexConnect
+        
+        if key.endswith('.js'):  # link to PlexConnect owned .js stuff
+            pass
+        elif key.startswith('http://'):  # external server
+            parts = urlparse.urlsplit(key)  # (scheme, networklocation, path, ...)
+            key = urlparse.urlunsplit(('', '', parts[2], parts[3], parts[4]))  # keep path only
+            PMS_uuid = PlexAPI.getPMSFromIP(g_param['PMS_list'], parts.hostname)
+            PMSaddress = PlexAPI.getAddress(g_param['PMS_list'], PMS_uuid)  # get PMS address (might be local as well!?!)
+            res = res + '/PMS(' + quote_plus(PMSaddress) + ')'
+        else:  # include current PMS address
+            res = res + '/PMS(' + quote_plus(self.PMSaddress) + ')'
+        
         if key.startswith('/'):  # internal full path.
-            res = 'http://' + g_param['HostOfPlexConnect'] + key
-        elif key.startswith('http://'):  # external address
-            res = key
-            hijack = g_param['HostToIntercept']
-            if hijack in res:
-                dprint(__name__, 1, "twisting...")
-                hijack_twisted = hijack[::-1]
-                res = res.replace(hijack, hijack_twisted)
-                dprint(__name__, 1, res)
+            res = res + key
         elif key == '':  # internal path
-            res = 'http://' + g_param['HostOfPlexConnect'] + self.path[srcXML]
+            res = res + self.path[srcXML]
         else:  # internal path, add-on
-            res = 'http://' + g_param['HostOfPlexConnect'] + self.path[srcXML] + '/' + key
+            res = res + self.path[srcXML] + '/' + key
         return res
     
     def ATTRIB_MEDIAURL(self, src, srcXML, param):
@@ -897,7 +906,7 @@ class CCommandCollection(CCommandHelper):
                 
                 if Media.get('indirect',None):  # indirect... todo: select suitable resolution, today we just take first Media
                     key, leftover, dfltd = self.getKey(Media, srcXML, 'Part/key')
-                    PMS = PlexAPI.getXMLFromPMS(g_param['Addr_PMS'], key)  # todo... check key for trailing '/' or even 'http'
+                    PMS = PlexAPI.getXMLFromPMS(self.PMSaddress, key)  # todo... check key for trailing '/' or even 'http'
                     res, leftover, dfltd = self.getKey(PMS.getroot(), srcXML, 'Video/Media/Part/key')
                 
             else:
@@ -909,7 +918,7 @@ class CCommandCollection(CCommandHelper):
             res = 'FILE_NOT_FOUND'  # not found?
         
         if res.startswith('/'):  # internal full path.
-            res = 'http://' + g_param['Addr_PMS'] + res
+            res = 'http://' + self.PMSaddress + res
         elif res.startswith('http://'):  # external address
             hijack = g_param['HostToIntercept']
             if hijack in res:
@@ -918,11 +927,11 @@ class CCommandCollection(CCommandHelper):
                 res = res.replace(hijack, hijack_twisted)
                 dprint(__name__, 1, res)
         else:  # internal path, add-on
-            res = 'http://' + g_param['Addr_PMS'] + self.path[srcXML] + res
+            res = 'http://' + self.PMSaddress + self.path[srcXML] + res
         return res
             
     def ATTRIB_ADDR_PMS(self, src, srcXML, param):
-        return g_param['Addr_PMS']
+        return self.PMSaddress
     
     def ATTRIB_episodestring(self, src, srcXML, param):
         parentIndex, leftover, dfltd = self.getKey(src, srcXML, param)  # getKey "defaults" if nothing found.
@@ -934,8 +943,11 @@ class CCommandCollection(CCommandHelper):
     def ATTRIB_sendToATV(self, src, srcXML, param):
         ratingKey, leftover, dfltd = self.getKey(src, srcXML, param)  # getKey "defaults" if nothing found.
         duration, leftover, dfltd = self.getKey(src, srcXML, leftover)
-        UDID = self.options['PlexConnectUDID']
-        out = "atv.sessionStorage['ratingKey']='" + ratingKey + "';atv.sessionStorage['duration']='" + duration + "';" + \
+        out = "atv.sessionStorage['ratingKey']='" + ratingKey + "';atv.sessionStorage['duration']='" + duration + "';"
+        # todo: during "search" UDID is unknown. When playing videos from "search" the "replaysettings" are not renewed.
+        if 'PlexConnectUDID' in self.options:
+            UDID = self.options['PlexConnectUDID']
+            out = out + \
               "atv.sessionStorage['showplayerclock']='" + g_ATVSettings.getSetting(UDID, 'showplayerclock') + "';" + \
               "atv.sessionStorage['showendtime']='" + g_ATVSettings.getSetting(UDID, 'showendtime') + "';" + \
               "atv.sessionStorage['overscanadjust']='" + g_ATVSettings.getSetting(UDID, 'overscanadjust') + "';" + \

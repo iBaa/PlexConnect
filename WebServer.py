@@ -52,6 +52,13 @@ class MyHandler(BaseHTTPRequestHandler):
             dprint(__name__, 2, "http request header:\n{0}", self.headers)
             dprint(__name__, 2, "http request path:\n{0}", self.path)
             
+            # check for PMS address
+            PMSaddress = ''
+            pms_end = self.path.find(')')
+            if self.path.startswith('/PMS(') and pms_end>-1:
+                PMSaddress = urllib.unquote_plus(self.path[5:pms_end])
+                self.path = self.path[pms_end+1:]
+            
             # break up path, separate PlexConnect options
             options = {}
             while True:
@@ -85,6 +92,7 @@ class MyHandler(BaseHTTPRequestHandler):
             # get aTV language setting
             options['aTVLanguage'] = Localize.pickLanguage(self.headers.get('Accept-Language', 'en'))
             
+            dprint(__name__, 2, "pms address:\n{0}", PMSaddress)
             dprint(__name__, 2, "cleaned path:\n{0}", self.path)
             dprint(__name__, 2, "PlexConnect options:\n{0}", options)
             dprint(__name__, 2, "additional arguments:\n{0}", args)
@@ -147,7 +155,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 # get everything else from XMLConverter - formerly limited to trailing "/" and &PlexConnect Cmds
                 if True:
                     dprint(__name__, 1, "serving .xml: "+self.path)
-                    XML = XMLConverter.XML_PMS2aTV(self.client_address, self.path + args, options)
+                    XML = XMLConverter.XML_PMS2aTV(PMSaddress, self.path + args, options)
                     self.send_response(200)
                     self.send_header('Content-type', 'text/xml')
                     self.end_headers()
