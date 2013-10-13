@@ -41,9 +41,9 @@ def dinit(src, param, newlog=False):
         
     if 'LogLevel' in param:
         global g_loglevel
-        g_loglevel = { "Normal": 0,"High": 2 }.get(param['LogLevel'], 0)
+        g_loglevel = { "Normal": 0, "High": 2, "Off": -1 }.get(param['LogLevel'], 0)
     
-    if not g_logfile=='' and newlog:
+    if not g_loglevel==-1 and not g_logfile=='' and newlog:
         f = open(g_logfile, 'w')
         f.close()
         
@@ -52,8 +52,10 @@ def dinit(src, param, newlog=False):
 
 
 def dprint(src, dlevel, *args):
-    if (src in dlevels) == False or dlevel <= dlevels[src] or \
-       dlevel <= g_loglevel:
+    logToTerminal = not (src in dlevels) or dlevel <= dlevels[src]
+    logToFile = not g_loglevel==-1 and not g_logfile=='' and dlevel <= g_loglevel
+    
+    if logToTerminal or logToFile:
         asc_args = list(args)
         
         for i,arg in enumerate(asc_args):
@@ -63,7 +65,7 @@ def dprint(src, dlevel, *args):
                 asc_args[i] = asc_args[i].encode('ascii', 'replace')  # back to ascii
         
         # print to file (if filename defined)
-        if not g_logfile=='':
+        if logToFile:
             f = open(g_logfile, 'a')
             f.write(time.strftime("%H:%M:%S "))
             if len(asc_args)==0:
@@ -75,7 +77,7 @@ def dprint(src, dlevel, *args):
             f.close()
         
         # print to terminal window
-        if (src in dlevels) == False or dlevel <= dlevels[src]:
+        if logToTerminal:
             print(time.strftime("%H:%M:%S")),
             if len(asc_args)==0:
                 print src+":"
