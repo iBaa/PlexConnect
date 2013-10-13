@@ -34,7 +34,7 @@ g_settings = { \
     'port_ssl'        :('443',), \
     'certfile'        :('./assets/certificates/trailers.pem',), \
     \
-    'log'             :('Normal', 'High', 'Off'), \
+    'loglevel'        :('Normal', 'High', 'Off'), \
     'logpath'         :('.',), \
     }
 
