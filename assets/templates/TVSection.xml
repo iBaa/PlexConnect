@@ -5,9 +5,10 @@
   </head>
 
   <body>
-    {{ADDXML(OnDeck::onDeck)}}
-    {{ADDXML(RecentlyAired::newest)}}
-    {{ADDXML(RecentlyAdded::recentlyAdded?stack=1)}}
+    {{ADDXML(OnDeck::onDeck?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=40)}}
+    {{ADDXML(RecentlyAired::newest?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=40)}}
+    {{ADDXML(RecentlyAdded::recentlyAdded?stack=1&amp;X-Plex-Container-Start=0&amp;X-Plex-Container-Size=40)}}
+    {{ADDXML(RecentlyViewedEpisodes::recentlyViewed?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=40)}}
 
     <scroller id="com.sample.movie-showcase-grid">
       <items>
@@ -76,6 +77,30 @@
                   <title>{{VAL(parentTitle)}}</title>
                   <subtitle>{{TEXT(Season)}} {{VAL(index)}}</subtitle>
                   <image>{{IMAGEURL(parentThumb::384)}}</image>
+                  <defaultImage>resource://Poster.png</defaultImage>
+                </moviePoster>
+              </items>
+            </shelfSection>
+          </sections>
+        </shelf>
+        
+        <collectionDivider alignment="left" accessibilityLabel="Recently Viewed Episodes">
+          {{CUT(@RecentlyViewedEpisodes/size:CUT:0=CUT|1=)}}
+          <title>{{TEXT(Recently Viewed Episodes)}}</title>
+        </collectionDivider>
+        <shelf id="shelf_1" columnCount="7">
+          {{CUT(@RecentlyViewedEpisodes/size:CUT:0=CUT|1=)}}
+          <sections>
+            <shelfSection>
+              <items>
+                <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}"
+                            onPlay="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                            onSelect="atv.sessionStorage['addrpms']='{{ADDR_PMS()}}';{{sendToATV(ratingKey:0:duration:0)}};atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
+                            onHoldSelect="atv.sessionStorage['scrobbleJump']='{{VAL(grandparentKey)}}';scrobbleMenu('{{TEXT(Recently Aired Episode)}}', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
+                  {{COPY(@RecentlyViewedEpisodes/Video)}}
+                  <title>{{VAL(title)}}</title>
+                  <subtitle>{{episodestring(parentIndex:0:index:0)}}</subtitle>
+                  <image>{{IMAGEURL(grandparentThumb::384)}}</image>
                   <defaultImage>resource://Poster.png</defaultImage>
                 </moviePoster>
               </items>
