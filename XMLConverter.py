@@ -831,34 +831,29 @@ class CCommandCollection(CCommandHelper):
         if height=='':
             height = width
         
+        UDID = self.options['PlexConnectUDID']
+        AuthToken = g_ATVSettings.getSetting(UDID, 'myplex_auth')
+        
         if width=='':
             # direct play
-            if key.startswith('/'):  # internal full path.
-                res = 'http://' + self.PMSaddress + key
-            elif key.startswith('http://'):  # external address
-                res = key
-                hijack = g_param['HostToIntercept']
-                if hijack in res:
-                    dprint(__name__, 1, "twisting...")
-                    hijack_twisted = hijack[::-1]
-                    res = res.replace(hijack, hijack_twisted)
-                    dprint(__name__, 1, res)
-            else:  # internal path, add-on
-                res = 'http://' + self.PMSaddress + self.path[srcXML] + '/' + key
-        
+            res = PlexAPI.getDirectImagePath(key, AuthToken)
         else:
             # request transcoding
-            if key.startswith('/'):  # internal full path.
-                res = 'http://127.0.0.1:32400' + key
-            elif key.startswith('http://'):  # external address - can we get a transcoding request for external images?
-                res = key
-            else:  # internal path, add-on
-                res = 'http://127.0.0.1:32400' + self.path[srcXML] + '/' + key
-            
-            # This is bogus (note the extra path component) but ATV is stupid when it comes to caching images, it doesn't use querystrings.
-            # Fortunately PMS is lenient...
-            res = 'http://' + self.PMSaddress + '/photo/:/transcode/%s/?width=%s&height=%s&url=' % (quote_plus(res), width, height) + quote_plus(res)
+            res = PlexAPI.getTranscodeImagePath(key, AuthToken, self.path[srcXML], width, height)
         
+        if res.startswith('/'):  # internal full path.
+            res = 'http://' + self.PMSaddress + res
+        elif res.startswith('http://'):  # external address
+            hijack = g_param['HostToIntercept']
+            if hijack in res:
+                dprint(__name__, 1, "twisting...")
+                hijack_twisted = hijack[::-1]
+                res = res.replace(hijack, hijack_twisted)
+                dprint(__name__, 1, res)
+        else:  # internal path, add-on
+            res = 'http://' + self.PMSaddress + self.path[srcXML] + '/' + res
+        
+        dprint(__name__, 1, 'ImageURL: {0}', res)
         return res
     
     def ATTRIB_URL(self, src, srcXML, param):

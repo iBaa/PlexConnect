@@ -38,7 +38,7 @@ try:
 except ImportError:
     import xml.etree.ElementTree as etree
 
-from urllib import urlencode
+from urllib import urlencode, quote_plus
 
 from Debug import *  # dprint(), prettyXML()
 
@@ -387,6 +387,61 @@ def getDirectVideoPath(path, AuthToken, Indirect, options):
         path = path + '?' + urlencode(xargs)
     else:
         path = path + '&' + urlencode(xargs)
+    
+    return path
+
+
+
+"""
+Transcode Image support
+
+parameters:
+    key
+    AuthToken
+    path - source path of current XML: path[srcXML]
+    width
+    height
+result:
+    final path to image file
+"""
+def getTranscodeImagePath(key, AuthToken, path, width, height):
+    if key.startswith('/'):  # internal full path.
+        path = 'http://127.0.0.1:32400' + key
+    elif key.startswith('http://'):  # external address - can we get a transcoding request for external images?
+        path = key
+    else:  # internal path, add-on
+        path = 'http://127.0.0.1:32400' + path + '/' + key
+    
+    # This is bogus (note the extra path component) but ATV is stupid when it comes to caching images, it doesn't use querystrings.
+    # Fortunately PMS is lenient...
+    path = '/photo/:/transcode/%s/?width=%s&height=%s&url=' % (quote_plus(path), width, height) + quote_plus(path)
+    
+    if not AuthToken=='':
+        xargs = dict()
+        xargs['X-Plex-Token'] = AuthToken
+        path = path + '&' + urlencode(xargs)
+    
+    return path
+
+
+
+"""
+Direct Image support
+
+parameters:
+    path
+    AuthToken
+result:
+    final path to image file
+"""
+def getDirectImagePath(path, AuthToken):
+    if not AuthToken=='':
+        xargs = dict()
+        xargs['X-Plex-Token'] = AuthToken
+        if path.find('?')==-1:
+            path = path + '?' + urlencode(xargs)
+        else:
+            path = path + '&' + urlencode(xargs)
     
     return path
 
