@@ -92,6 +92,9 @@ class MyHandler(BaseHTTPRequestHandler):
             # get aTV language setting
             options['aTVLanguage'] = Localize.pickLanguage(self.headers.get('Accept-Language', 'en'))
             
+            # add client address - to be used in case UDID is unknown
+            options['aTVAddress'] = self.client_address[0]
+            
             dprint(__name__, 2, "pms address:\n{0}", PMSaddress)
             dprint(__name__, 2, "cleaned path:\n{0}", self.path)
             dprint(__name__, 2, "PlexConnect options:\n{0}", options)

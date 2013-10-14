@@ -127,6 +127,31 @@ def discoverPMS():
 
 
 """
+global list of known aTVs - to look up UDID by IP if needed
+
+parameters:
+    udid - from options['PlexConnectUDID']
+    ip - from client_address btw options['aTVAddress']
+"""
+g_ATVList = {}
+
+def declareATV(udid, ip):
+    global g_ATVList
+    if udid in g_ATVList:
+        g_ATVList[udid]['ip'] = ip
+    else:
+        g_ATVList[udid] = {'ip': ip}
+
+def getATVFromIP(ip):
+    # find aTV by IP, return UDID
+    for udid in g_ATVList:
+        if ip==g_ATVList[udid].get('ip', None):
+            return udid
+    return None  # IP not found
+
+
+
+"""
 # XML converter functions
 # - translate aTV request and send to PMS
 # - receive reply from PMS
@@ -134,6 +159,14 @@ def discoverPMS():
 # - translate to aTV XML
 """
 def XML_PMS2aTV(PMSaddress, path, options):
+    # double check aTV UDID, redo from client IP if needed/possible
+    if not 'PlexConnectUDID' in options:
+        UDID = getATVFromIP(options['aTVAddress'])
+        if UDID:
+            options['PlexConnectUDID'] = UDID
+    else:
+        declareATV(options['PlexConnectUDID'], options['aTVAddress'])  # update with latest info
+    
     # double check PMS IP address
     # the hope is: aTV sends either PMS address coded into URL or UDID in options
     if PMSaddress=='':
