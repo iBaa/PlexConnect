@@ -938,8 +938,12 @@ class CCommandCollection(CCommandHelper):
                 # or HTTP live stream
                 # or native aTV media
                 res, leftover, dfltd = self.getKey(Media, srcXML, 'Part/key')
-                MediaIndirect = Media.get('indirect', False)
-                res = PlexAPI.getDirectVideoPath(res, AuthToken, MediaIndirect, self.options)
+                
+                if Media.get('indirect', False):  # indirect... todo: select suitable resolution, today we just take first Media
+                    PMS = PlexAPI.getXMLFromPMS(self.PMSaddress, res, self.options, AuthToken)  # todo... check key for trailing '/' or even 'http'
+                    res, leftover, dfltd = self.getKey(PMS.getroot(), srcXML, 'Video/Media/Part/key')
+                
+                res = PlexAPI.getDirectVideoPath(res, AuthToken)
             
             else:
                 # request transcoding

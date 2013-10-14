@@ -374,19 +374,18 @@ parameters:
 result:
     final path to media file
 """
-def getDirectVideoPath(path, AuthToken, Indirect, options):
-    if Indirect:  # indirect... todo: select suitable resolution, today we just take first Media
-        PMS = PlexAPI.getXMLFromPMS(self.PMSaddress, path, self.options, auth_token)  # todo... check key for trailing '/' or even 'http'
-        path, leftover, dfltd = self.getKey(PMS.getroot(), srcXML, 'Video/Media/Part/key')
-    
-    xargs = dict()
-    if not AuthToken=='':
-        xargs['X-Plex-Token'] = AuthToken
-    
-    if path.find('?')==-1:
-        path = path + '?' + urlencode(xargs)
+def getDirectVideoPath(key, AuthToken):
+    if key.startswith('http://'):  # external address - keep
+        path = key
     else:
-        path = path + '&' + urlencode(xargs)
+        if not AuthToken=='':
+            xargs = dict()
+            xargs['X-Plex-Token'] = AuthToken
+        
+        if key.find('?')==-1:
+            path = key + '?' + urlencode(xargs)
+        else:
+            path = key + '&' + urlencode(xargs)
     
     return path
 
