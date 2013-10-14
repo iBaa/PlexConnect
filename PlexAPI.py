@@ -159,15 +159,15 @@ parameters:
 result:
     returned XML or 'False' in case of error
 """
-def getXMLFromPMS(host, path, options=None, authtoken=None):
+def getXMLFromPMS(host, path, options={}, authtoken=''):
     URL = "http://" + host + path
     xargs = getXArgsDeviceInfo(options)
-    if authtoken:
+    if not authtoken=='':
         xargs['X-Plex-Token'] = authtoken
     
-    dprint(__name__, 0, "host: {0}", host)
-    dprint(__name__, 0, "path: {0}", path)
-    dprint(__name__, 0, "xargs: {0}", xargs)
+    dprint(__name__, 1, "host: {0}", host)
+    dprint(__name__, 1, "path: {0}", path)
+    dprint(__name__, 1, "xargs: {0}", xargs)
     
     request = urllib2.Request(URL, None, xargs)
     try:
@@ -193,14 +193,14 @@ def getXMLFromPMS(host, path, options=None, authtoken=None):
 
 
 
-def getXArgsDeviceInfo(options=None):
+def getXArgsDeviceInfo(options={}):
     xargs = dict()
     xargs['X-Plex-Device'] = 'AppleTV'
     xargs['X-Plex-Model'] = '3,1' # Base it on AppleTV model.
-    if not options is None:
-        if 'PlexConnectUDID' in options:
+    #if not options is None:
+    if 'PlexConnectUDID' in options:
             xargs['X-Plex-Client-Identifier'] = options['PlexConnectUDID']  # UDID for MyPlex device identification
-        if 'PlexConnectATVName' in options:
+    if 'PlexConnectATVName' in options:
             xargs['X-Plex-Device-Name'] = options['PlexConnectATVName'] # "friendly" name: aTV-Settings->General->Name.
     xargs['X-Plex-Platform'] = 'iOS'
     xargs['X-Plex-Client-Platform'] = 'iOS'
@@ -307,16 +307,17 @@ def MyPlexSignOut(authtoken):
 
 
 """
-Transcoder support
+Transcode Video support
 
 parameters:
     path
+    AuthToken
     options - dict() of PlexConnect-options as received from aTV
     ATVSettings
 result:
     final path to pull in PMS transcoder
 """
-def getTranscodePath(path, options, ATVSettings):
+def getTranscodeVideoPath(path, AuthToken, options, ATVSettings):
     UDID = options['PlexConnectUDID']
     
     transcodePath = '/video/:/transcode/universal/start.m3u8?'
@@ -355,8 +356,39 @@ def getTranscodePath(path, options, ATVSettings):
     
     xargs = getXArgsDeviceInfo(options)
     xargs['X-Plex-Client-Capabilities'] = "protocols=http-live-streaming,http-mp4-streaming,http-streaming-video,http-streaming-video-720p,http-mp4-video,http-mp4-video-720p;videoDecoders=h264{profile:high&resolution:1080&level:41};audioDecoders=mp3,aac{bitrate:160000}"
+    if not AuthToken=='':
+        xargs['X-Plex-Token'] = AuthToken
     
     return transcodePath + urlencode(args) + '&' + urlencode(xargs)
+
+
+
+"""
+Direct Video Play support
+
+parameters:
+    path
+    AuthToken
+    Indirect - media indirect specified, grab child XML to gain real path
+    options
+result:
+    final path to media file
+"""
+def getDirectVideoPath(path, AuthToken, Indirect, options):
+    if Indirect:  # indirect... todo: select suitable resolution, today we just take first Media
+        PMS = PlexAPI.getXMLFromPMS(self.PMSaddress, path, self.options, auth_token)  # todo... check key for trailing '/' or even 'http'
+        path, leftover, dfltd = self.getKey(PMS.getroot(), srcXML, 'Video/Media/Part/key')
+    
+    xargs = dict()
+    if not AuthToken=='':
+        xargs['X-Plex-Token'] = AuthToken
+    
+    if path.find('?')==-1:
+        path = path + '?' + urlencode(xargs)
+    else:
+        path = path + '&' + urlencode(xargs)
+    
+    return path
 
 
 

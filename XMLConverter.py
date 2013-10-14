@@ -311,7 +311,13 @@ def XML_PMS2aTV(PMSaddress, path, options):
     
     # request PMS XML
     if not path=='':
-        PMS = PlexAPI.getXMLFromPMS(PMSaddress, path)
+        if 'PlexConnectUDID' in options:
+            UDID = options['PlexConnectUDID']
+            auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
+        else:
+            auth_token = ''
+        
+        PMS = PlexAPI.getXMLFromPMS(PMSaddress, path, options, authtoken=auth_token)
         if PMS==False:
             return XML_Error('PlexConnect', 'No Response from Plex Media Server')
         
@@ -763,7 +769,13 @@ class CCommandCollection(CCommandHelper):
         else:  # internal path, add-on
             path = self.path[srcXML] + '/' + key
         
-        PMS = PlexAPI.getXMLFromPMS(self.PMSaddress, path)
+        if 'PlexConnectUDID' in self.options:
+            UDID = self.options['PlexConnectUDID']
+            auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
+        else:
+            auth_token = ''
+        
+        PMS = PlexAPI.getXMLFromPMS(self.PMSaddress, path, self.options, auth_token)
         self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML
         self.path[tag] = path  # store base path
         
@@ -838,14 +850,8 @@ class CCommandCollection(CCommandHelper):
             # request transcoding
             if key.startswith('/'):  # internal full path.
                 res = 'http://127.0.0.1:32400' + key
-            elif key.startswith('http://'):  # external address
+            elif key.startswith('http://'):  # external address - can we get a transcoding request for external images?
                 res = key
-                hijack = g_param['HostToIntercept']
-                if hijack in res:
-                    dprint(__name__, 1, "twisting...")
-                    hijack_twisted = hijack[::-1]
-                    res = res.replace(hijack, hijack_twisted)
-                    dprint(__name__, 1, res)
             else:  # internal path, add-on
                 res = 'http://127.0.0.1:32400' + self.path[srcXML] + '/' + key
             
@@ -888,6 +894,7 @@ class CCommandCollection(CCommandHelper):
         # check "Media" element and get key
         if Media!=None:
             UDID = self.options['PlexConnectUDID']
+            AuthToken = g_ATVSettings.getSetting(UDID, 'myplex_auth')
             
             if g_ATVSettings.getSetting(UDID, 'transcoderaction')=='DirectPlay' \
                or \
@@ -903,16 +910,14 @@ class CCommandCollection(CCommandHelper):
                 # or HTTP live stream
                 # or native aTV media
                 res, leftover, dfltd = self.getKey(Media, srcXML, 'Part/key')
-                
-                if Media.get('indirect',None):  # indirect... todo: select suitable resolution, today we just take first Media
-                    key, leftover, dfltd = self.getKey(Media, srcXML, 'Part/key')
-                    PMS = PlexAPI.getXMLFromPMS(self.PMSaddress, key)  # todo... check key for trailing '/' or even 'http'
-                    res, leftover, dfltd = self.getKey(PMS.getroot(), srcXML, 'Video/Media/Part/key')
-                
+                MediaIndirect = Media.get('indirect', False)
+                res = PlexAPI.getDirectVideoPath(res, AuthToken, MediaIndirect, self.options)
+            
             else:
                 # request transcoding
                 res = Video.get('key','')
-                res = PlexAPI.getTranscodePath(res, self.options, g_ATVSettings)
+                res = PlexAPI.getTranscodeVideoPath(res, AuthToken, self.options, g_ATVSettings)
+        
         else:
             dprint(__name__, 0, "MEDIAPATH - element not found: {0}", param)
             res = 'FILE_NOT_FOUND'  # not found?
@@ -928,6 +933,8 @@ class CCommandCollection(CCommandHelper):
                 dprint(__name__, 1, res)
         else:  # internal path, add-on
             res = 'http://' + self.PMSaddress + self.path[srcXML] + res
+        
+        dprint(__name__, 1, 'MediaURL: {0}', res)
         return res
             
     def ATTRIB_ADDR_PMS(self, src, srcXML, param):
