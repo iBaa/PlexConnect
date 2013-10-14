@@ -15,7 +15,7 @@ Thanks to reaperhulk for showing this solution!
 
 import sys
 import string, cgi, time
-from os import sep
+from os import sep, path
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 import ssl
 from multiprocessing import Pipe  # inter process communication
@@ -48,6 +48,7 @@ class MyHandler(BaseHTTPRequestHandler):
       pass
     
     def do_GET(self):
+        global g_param
         try:
             dprint(__name__, 2, "http request header:\n{0}", self.headers)
             dprint(__name__, 2, "http request path:\n{0}", self.path)
@@ -111,7 +112,13 @@ class MyHandler(BaseHTTPRequestHandler):
                 # serve "*.cer" - Serve up certificate file to atv
                 if self.path.endswith(".cer"):
                     dprint(__name__, 1, "serving *.cer: "+self.path)
-                    f = open(sys.path[0] + sep + "assets" + sep + "certificates" + self.path, "rb")
+                    if g_param['CSettings'].getSetting('certfile').startswith('.'):
+                        # relative to current path
+                        cfg_certfile = sys.path[0] + sep + g_param['CSettings'].getSetting('certfile')
+                    else:
+                        # absolute path
+                        cfg_certfile = g_param['CSettings'].getSetting('certfile')
+                    f = open(path.splitext(cfg_certfile)[0] + '.cer', "rb")
                     self.send_response(200)
                     self.send_header('Content-type', 'text/xml')
                     self.end_headers()
