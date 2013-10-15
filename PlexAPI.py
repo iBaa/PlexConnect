@@ -447,6 +447,28 @@ def getDirectImagePath(path, AuthToken):
 
 
 
+"""
+Direct Audio support
+
+parameters:
+    path
+    AuthToken
+result:
+    final path to audio file
+"""
+def getDirectAudioPath(path, AuthToken):
+    if not AuthToken=='':
+        xargs = dict()
+        xargs['X-Plex-Token'] = AuthToken
+        if path.find('?')==-1:
+            path = path + '?' + urlencode(xargs)
+        else:
+            path = path + '&' + urlencode(xargs)
+    
+    return path
+
+
+
 if __name__ == '__main__':
     testPlexGDM = 0
     testLocalPMS = 1

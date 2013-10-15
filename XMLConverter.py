@@ -889,6 +889,30 @@ class CCommandCollection(CCommandHelper):
         dprint(__name__, 1, 'ImageURL: {0}', res)
         return res
     
+    def ATTRIB_MUSICURL(self, src, srcXML, param):
+        key, leftover, dfltd = self.getKey(src, srcXML, param)
+        
+        UDID = self.options['PlexConnectUDID']
+        AuthToken = g_ATVSettings.getSetting(UDID, 'myplex_auth')
+        
+        # direct play
+        res = PlexAPI.getDirectAudioPath(key, AuthToken)
+        
+        if res.startswith('/'):  # internal full path.
+            res = 'http://' + self.PMSaddress + res
+        elif res.startswith('http://'):  # external address
+            hijack = g_param['HostToIntercept']
+            if hijack in res:
+                dprint(__name__, 1, "twisting...")
+                hijack_twisted = hijack[::-1]
+                res = res.replace(hijack, hijack_twisted)
+                dprint(__name__, 1, res)
+        else:  # internal path, add-on
+            res = 'http://' + self.PMSaddress + self.path[srcXML] + '/' + res
+        
+        dprint(__name__, 1, 'MusicURL: {0}', res)
+        return res
+    
     def ATTRIB_URL(self, src, srcXML, param):
         key, leftover, dfltd = self.getKey(src, srcXML, param)
         

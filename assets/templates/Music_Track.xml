@@ -46,9 +46,9 @@
               <dict>
                 <key>asset-url</key>
                 <!-- library -->
-                <string>http://{{ADDR_PMS()}}{{VAL(Media/Part/key)}}</string>{{CUT(@main/content::=CUT)}}
+                <string>{{MUSICURL(Media/Part/key)}}</string>{{CUT(@main/content::=CUT)}}
                 <!-- channel: iTunes (old style plugin) -->
-                <string>http://{{ADDR_PMS()}}{{ADDPATH(key)}}</string>{{CUT(@main/content:CUT:songs=|songs =CUT)}}
+                <string>{{MUSICURL(key)}}</string>{{CUT(@main/content:CUT:songs=|songs =CUT)}}
               </dict>
             </dict>
             <key>description</key>
