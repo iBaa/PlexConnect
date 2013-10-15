@@ -378,14 +378,15 @@ def getDirectVideoPath(key, AuthToken):
     if key.startswith('http://'):  # external address - keep
         path = key
     else:
-        if not AuthToken=='':
+        if AuthToken=='':
+            path = key
+        else:
             xargs = dict()
             xargs['X-Plex-Token'] = AuthToken
-        
-        if key.find('?')==-1:
-            path = key + '?' + urlencode(xargs)
-        else:
-            path = key + '&' + urlencode(xargs)
+            if key.find('?')==-1:
+                path = key + '?' + urlencode(xargs)
+            else:
+                path = key + '&' + urlencode(xargs)
     
     return path
 
