@@ -45,7 +45,7 @@ function unscrobble(addrPMS, ratingKey) {
  */
 function selectArtwork(addrPMS, ratingKey) {
 	// Load PMS metadata xml
-	var url = "http://" + addrPMS + "/library/metadata/" + ratingKey + "/posters";
+  var url = "http://" + addrPMS + "/library/metadata/" + ratingKey + "/posters";
 	var req = new XMLHttpRequest();
   req.onreadystatechange = function()
   {
@@ -63,12 +63,11 @@ function selectArtwork(addrPMS, ratingKey) {
 	}
   req.open('GET', url, false);
   req.send();
-
+  
 	// Build xml menu
 	var posters = doc.evaluateXPath("descendant::Photo");
 	var colCount = "5";
 	if (posters.length <= 5) colCount = posters.length.toString();
-	
 	var xml = '<?xml version="1.0" encoding="UTF-8"?><atv><head><script src="http://atv.plexconnect/js/scrobble.js"/></head> \
 						<body><scroller id="poster_selector"><header><simpleHeader><title>{{TEXT(Select Artwork)}}</title></simpleHeader></header> \
 						<items><collectionDivider alignment="left"><title></title></collectionDivider><shelf id="coverflow" columnCount="' + colCount +'"> \
@@ -82,13 +81,19 @@ function selectArtwork(addrPMS, ratingKey) {
 		var selected = poster.getAttribute('selected');
 		var title = '';
 		if (selected == '1') title = '{{TEXT(Current Artwork)}}';
-		xml = xml + '<goldenPoster id="poster" alwaysShowTitles="true" onSelect="loadNewArtwork(\'' + addrPMS + '\', \'' + ratingKey + '\', \'' + posterURL + '\');atv.unloadPage();">';
-		xml = xml + '<title>' + title + '</title><image>http://' + addrPMS + posterThumb + '</image>';
-		xml = xml + '<defaultImage>resource://Poster.png</defaultImage></goldenPoster>';
+
+    xml = xml + '<goldenPoster id="poster" alwaysShowTitles="true" onSelect="loadNewArtwork(\'' + addrPMS + '\', \'' + ratingKey + '\', \'' + posterURL.replace("&", "&amp;") + '\');atv.unloadPage();">';
+    if (posterURL.indexOf('library') !== -1)
+      xml = xml + '<title>' + title + '</title><image>http://' + addrPMS + posterThumb + '</image>';
+    else if (posterURL.indexOf('movieposterdb') !== -1)
+      xml = xml + '<title>' + title + '</title><image>' + posterURL.replace("&","&amp;") + '</image>';
+    else
+      xml = xml + '<title>' + title + '</title><image>http://' + addrPMS + posterThumb + '</image>';
+    
+    xml = xml + '<defaultImage>resource://Poster.png</defaultImage></goldenPoster>';
 	};
 	xml = xml + '</items></shelfSection></sections></shelf><collectionDivider alignment="left"><title></title> \
 							 </collectionDivider></items></scroller></body></atv>';
-	
 	var menuDoc = atv.parseXML(xml);
 	atv.loadXML(menuDoc);
 };
@@ -101,10 +106,14 @@ function loadNewArtwork(addrPMS, ratingKey, posterURL)
 	if (posterURL.indexOf('library') !== -1)
 	{
 		var urlParts = posterURL.split('=');
-		posterURL = urlParts[1];
+		var posterURL = urlParts[1];
+    var url = "http://" + addrPMS + "/library/metadata/" + ratingKey + "/poster?url=" + posterURL;
 	}
-	var url = "http://" + addrPMS + "/library/metadata/" + ratingKey + "/poster?url=" + posterURL;
-	var req = new XMLHttpRequest();
+  else
+  {
+    var url = "http://" + addrPMS + "/library/metadata/" + ratingKey + "/poster?url=" + encodeURIComponent(posterURL);
+  }
+  var req = new XMLHttpRequest();
 	req.open('PUT', url, false);
 	req.send();
 };
