@@ -205,6 +205,9 @@ def XML_PMS2aTV(PMSaddress, path, options):
     
     elif cmd=='PlayVideo_ChannelsV1':
         dprint(__name__, 1, "playing Channels XML Version 1: {0}".format(path))
+        UDID = options['PlexConnectUDID']
+        auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
+        path = PlexAPI.getDirectVideoPath(path, auth_token)
         return XML_PlayVideo_ChannelsV1(PMSaddress, path)  # direct link, no PMS XML available
     
     elif cmd=='PhotoBrowser':
