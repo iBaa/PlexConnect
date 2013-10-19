@@ -8,8 +8,18 @@
         <bookmarkTime>{{EVAL(Video/viewOffset:0:int(x/1000))}}</bookmarkTime>
         <image>{{IMAGEURL(Video/thumb::384)}}</image>
         
-        <!-- stacked media -->
-        <myMetadata>            
+        <myMetadata>
+            <!-- PMS, OSD settings, ... -->
+            <addrPMS>http://{{ADDR_PMS()}}</addrPMS>
+            <ratingKey>{{VAL(Video/ratingKey)}}</ratingKey>
+            <duration>{{VAL(Video/duration)}}</duration>
+            <showClock>{{VAL($showplayerclock)}}</showClock>
+            <timeFormat>{{VAL($timeformat)}}</timeFormat>
+            <clockPosition>{{VAL($clockposition)}}</clockPosition>
+            <overscanAdjust>{{VAL($overscanadjust)}}</overscanAdjust>
+            <showEndtime>{{VAL($showendtime)}}</showEndtime>
+            
+            <!-- stacked media -->
             <httpFileVideoAsset id="{{VAL(key)}}">
                 <mediaURL>http://{{ADDR_PMS()}}{{VAL(key)}}</mediaURL>
                 <title>{{VAL(@main/Video/title)}}</title>

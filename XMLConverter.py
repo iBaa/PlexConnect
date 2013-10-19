@@ -84,6 +84,17 @@ def XML_PlayVideo_ChannelsV1(PMSaddress, path):
         <mediaURL>http://' + PMSaddress + path + '</mediaURL>\n\
         <title>*title*</title>\n\
         <!--bookmarkTime>{{EVAL(Video/viewOffset:0:int(x/1000))}}</bookmarkTime-->\n\
+        <myMetadata>\n\
+          <!-- PMS, OSD settings, ... -->\n\
+          <addrPMS>http://' + PMSaddress + '</addrPMS>\n\
+          <ratingKey></ratingKey>\n\
+          <duration></duration>\n\
+          <showClock>False</showClock>\n\
+          <timeFormat></timeFormat>\n\
+          <clockPosition></clockPosition>\n\
+          <overscanAdjust></overscanAdjust>\n\
+          <showEndtime>False</showEndtime>\n\
+        </myMetadata>\n\
       </httpFileVideoAsset>\n\
     </videoPlayer>\n\
   </body>\n\
@@ -1005,21 +1016,6 @@ class CCommandCollection(CCommandHelper):
         title, leftover, dfltd = self.getKey(src, srcXML, leftover)
         out = self._("{0:0d}x{1:02d} {2}").format(int(parentIndex), int(index), title)
         return out
-    
-    def ATTRIB_sendToATV(self, src, srcXML, param):
-        ratingKey, leftover, dfltd = self.getKey(src, srcXML, param)  # getKey "defaults" if nothing found.
-        duration, leftover, dfltd = self.getKey(src, srcXML, leftover)
-        out = "atv.sessionStorage['ratingKey']='" + ratingKey + "';atv.sessionStorage['duration']='" + duration + "';"
-        # todo: during "search" UDID is unknown. When playing videos from "search" the "replaysettings" are not renewed.
-        if 'PlexConnectUDID' in self.options:
-            UDID = self.options['PlexConnectUDID']
-            out = out + \
-              "atv.sessionStorage['showplayerclock']='" + g_ATVSettings.getSetting(UDID, 'showplayerclock') + "';" + \
-              "atv.sessionStorage['showendtime']='" + g_ATVSettings.getSetting(UDID, 'showendtime') + "';" + \
-              "atv.sessionStorage['overscanadjust']='" + g_ATVSettings.getSetting(UDID, 'overscanadjust') + "';" + \
-              "atv.sessionStorage['clockposition']='" + g_ATVSettings.getSetting(UDID, 'clockposition') + "';" + \
-              "atv.sessionStorage['timeformat']='" + g_ATVSettings.getSetting(UDID, 'timeformat') + "';"
-        return out 
     
     def ATTRIB_getDurationString(self, src, srcXML, param):
         duration, leftover, dfltd = self.getKey(src, srcXML, param)
