@@ -347,11 +347,11 @@ function updateEndTime()
   var endTimeStr = "Ends at:  "
   if (timeFormat == '24 Hour') { endTimeStr = endTimeStr + timestr24; }
   else { endTimeStr = endTimeStr + timestr12; }
-  if (remainingTime == 0) { endTimeStr = ''; }
+  if (remainingTime == 0) { endTimeStr = ''; endTimeView.backgroundColor = { red: 0, blue: 0, green: 0, alpha: 0};}
+  else { endTimeView.backgroundColor = { red: 0, blue: 0, green: 0, alpha: 0.7};}
   
   endTimeView.attributedString = {string: endTimeStr,
       attributes: {pointSize: 16.0, color: {red: 1, blue: 1, green: 1}, alignment: "center"}};
-
 };
 
 
