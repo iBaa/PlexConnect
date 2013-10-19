@@ -133,6 +133,8 @@ atv.player.willStartPlaying = function()
   containerView.subviews = Views;
   atv.player.overlay = containerView;
   
+  remainingTime = 0; // Reset remaining time
+  
   log('willStartPlaying done');
 };
 
@@ -242,17 +244,17 @@ function pad(num, len) {return (Array(len).join("0") + num).slice(-len);};
 function initClockView()
 {
   clockView = new atv.TextView();
-  var width = screenFrame.width * 0.10;
-  if (timeFormat == '12 Hour')
+  var width = screenFrame.width * 0.15;
+  if (timeFormat == '24 Hour')
   {
-  width = screenFrame.width * 0.15;  // todo: fix default - here it's 24h, in other functions it's 12h
+  width = screenFrame.width * 0.10;
   }
   var height = screenFrame.height * 0.06;
   var overscanadjust = 0.006 * (parseInt(overscanAdjust));
-  
+  var xmul = 0.1; //Default for Left Position
   if (clockPosition == 'Center') var xmul = 0.5;
   else if (clockPosition == 'Right') var xmul = 0.9;
-  else if (clockPosition == 'Left') var xmul = 0.1;  // todo: default?
+
   
   // Setup the clock frame
   clockView.backgroundColor = { red: 0, blue: 0, green: 0, alpha: 0.7};
@@ -278,10 +280,9 @@ function initEndTimeView()
   }
   var height = screenFrame.height * 0.03;
   var overscanadjust = 0.006 * (parseInt(overscanAdjust));
-  
+  var xmul = 0.1; // Default for Left Position
   if (clockPosition == 'Center') var xmul = 0.5;
   else if (clockPosition == 'Right') var xmul = 0.9;
-  else if (clockPosition == 'Left') var xmul = 0.1;  // default?
     
   // Setup the end time frame
   endTimeView.backgroundColor = { red: 0, blue: 0, green: 0, alpha: 0.7};
@@ -343,16 +344,14 @@ function updateEndTime()
   var mins = pad(endMins.toString(), 2);
   var timestr24 = hours24 + ":" + mins;
   var timestr12 = hours12 + ":" + mins + " " + tail;
-  if (timeFormat == '24 Hour')
-  {
-    endTimeView.attributedString = {string: "Ends at:  " + timestr24,
+  var endTimeStr = "Ends at:  "
+  if (timeFormat == '24 Hour') { endTimeStr = endTimeStr + timestr24; }
+  else { endTimeStr = endTimeStr + timestr12; }
+  if (remainingTime == 0) { endTimeStr = ''; }
+  
+  endTimeView.attributedString = {string: endTimeStr,
       attributes: {pointSize: 16.0, color: {red: 1, blue: 1, green: 1}, alignment: "center"}};
-  }
-  else
-  {
-    endTimeView.attributedString = {string: "Ends at:  " + timestr12,
-      attributes: {pointSize: 16.0, color: {red: 1, blue: 1, green: 1}, alignment: "center"}};
-  }
+
 };
 
 
