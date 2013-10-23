@@ -1,0 +1,65 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+
+  <body>
+    <listWithPreview id="com.sample.menu-items-with-sections">
+    {{CUT(size:CUT:0=CUT|1=)}}
+      <header>
+        <simpleHeader>
+          <title>{{VAL(title1:Plex Library)}}</title>
+          <subtitle>{{VAL(title2)}}</subtitle>
+        </simpleHeader>
+      </header>
+      <menu>
+        <sections>
+          
+          <!-- local servers -->
+          <menuSection>
+            {{VAR(section:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
+            {{COPY(Server)}}
+            
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{VAL(name)}}</title>
+              </horizontalDivider>
+            </header>{{CUT(size:CUT:0=CUT|1=)}}
+            
+            <items>
+              <!-- /library/sections -->
+              <oneLineMenuItem id="{{VAL(key)}}"
+                                       onPlay="atv.loadURL('{{URL(key)}}')"
+                                       onSelect="atv.loadURL('{{URL(key)}}')">
+                {{COPY(Directory)}}
+                {{VAR(section:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                <label>{{VAL(title)}}</label>
+                <preview>
+                  <link>{{URL(key)}}/recentlyAdded?stack=1&amp;X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20&amp;PlexConnect=SectionPreview-{{VAL(type)}}</link>{{CUT(type::a=|photo=CUT|q=)}}
+                  <link>{{URL(key)}}/recentlyAdded?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20&amp;PlexConnect=SectionPreview-{{VAL(type)}}</link>{{CUT(type:CUT:a=CUT|photo=|q=CUT)}}
+                </preview>
+              </oneLineMenuItem>
+            </items>{{CUT(size:CUT:0=CUT|1=)}}
+          </menuSection>
+        
+        </sections>
+      </menu>
+    </listWithPreview>{{CUT(#section::FALSE=CUT|TRUE=)}}  <!--CUT if no section added-->
+    
+    <!--No Sections Available-->
+    <dialog id="com.sample.error-dialog">
+    {{CUT(size::0=CUT|1=)}}
+    {{CUT(#section::FALSE=|TRUE=CUT)}}
+      <title>PlexConnect</title>
+      <description>{{TEXT(Plex Media Server: No Sections Available)}}</description>
+    </dialog>
+    
+    <!--No Servers Available-->
+    <dialog id="com.sample.error-dialog">
+    {{CUT(size::0=|1=CUT)}}
+      <title>PlexConnect</title>
+      <description>{{TEXT(No Plex Media Servers in Proximity)}}</description>
+    </dialog>
+    
+  </body>
+</atv>

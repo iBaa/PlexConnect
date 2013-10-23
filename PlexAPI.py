@@ -213,6 +213,66 @@ def getXArgsDeviceInfo(options={}):
 
 
 """
+provide combined XML representation of local servers' /library/section
+
+parameters:
+    PMS_list
+    options
+    authtoken
+result:
+    XML
+"""
+def getSectionXML(PMS_list, options, authtoken):
+    root = etree.Element("MediaConverter")
+    root.set('friendlyName', 'localServers')
+    root.set('size', str(len(PMS_list)))
+    
+    for uuid in PMS_list:
+        Server = etree.SubElement(root, 'Server')  # create "Server" node
+        Server.set('name',    PMS_list[uuid].get('serverName', 'name'))
+        Server.set('address', PMS_list[uuid].get('ip'))
+        Server.set('port',    PMS_list[uuid].get('port'))
+        Server.set('machineIdentifier', uuid)
+        
+        PMSHost = PMS_list[uuid]['ip'] + ":" + PMS_list[uuid]['port']
+        PMS = getXMLFromPMS(PMSHost, '/library/sections', options, authtoken)
+        if PMS==False:
+            Server.set('size',    '0')
+        else:
+            Server.set('size',    PMS.getroot().get('size', 0))
+            for Dir in PMS.iter('Directory'):  # copy "Directory" content
+                Section = etree.SubElement(Server, 'Directory')
+                Section.set('title',  Dir.get('title', 'title'))
+                Section.set('key',    getURL('http://'+PMSHost, '/library/sections', Dir.get('key')))
+                Section.set('thumb',  getURL('http://'+PMSHost, '/library/sections', Dir.get('thumb')))
+                Section.set('type',   Dir.get('type'))
+                Section.set('uuid',   Dir.get('uuid'))
+    
+    XML = etree.ElementTree(root)
+    
+    dprint(__name__, 1, "====== Local Server/Sections XML ======")
+    dprint(__name__, 1, prettyXML(XML))
+    dprint(__name__, 1, "====== Local Server/Sections XML finished ======")
+    
+    return XML  # XML representation - created "just in time". Do we need to cache it?
+
+
+
+def getURL(PMSaddress, path, key):
+    if key.startswith('http://'):  # external server
+        URL = key
+    elif key.startswith('/'):  # internal full path.
+        URL = PMSaddress + key
+    elif key == '':  # internal path
+        URL = PMSaddress + path
+    else:  # internal path, add-on
+        URL = PMSaddress + path + '/' + key
+    
+    return URL
+
+
+
+"""
 MyPlex Sign In, Sign Out
 
 parameters:
@@ -471,7 +531,8 @@ def getDirectAudioPath(path, AuthToken):
 
 if __name__ == '__main__':
     testPlexGDM = 0
-    testLocalPMS = 1
+    testLocalPMS = 0
+    testSectionXML = 1
     testMyPlexXML = 0
     testMyPlexSignIn = 0
     testMyPlexSignOut = 0
@@ -492,6 +553,13 @@ if __name__ == '__main__':
     if testLocalPMS:
         dprint('', 0, "*** XML from local PMS")
         XML = getXMLFromPMS('127.0.0.1:32400', '/library/sections')
+    
+    
+    # test local Server/Sections
+    if testSectionXML:
+        dprint('', 0, "*** local Server/Sections")
+        PMS_list = PlexGDM()
+        XML = getSectionXML(PMS_list, {}, '')
     
     
     # test XML from MyPlex

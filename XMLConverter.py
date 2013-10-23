@@ -340,6 +340,16 @@ def XML_PMS2aTV(PMSaddress, path, options):
     elif path.startswith('/search?'):
         XMLtemplate = 'Search_Results.xml'
     
+    elif path=='/library/sections':
+        XMLtemplate = 'Library.xml'
+        path = ''
+        PMS_list = g_param['PMS_list']
+        UDID = options['PlexConnectUDID']
+        auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
+        
+        PMS = PlexAPI.getSectionXML(PMS_list, options, auth_token)
+        PMSroot = PMS.getroot()
+    
     """
     # check PMS availability
     # todo: re-discover needs to be done differently... how to trigger?
