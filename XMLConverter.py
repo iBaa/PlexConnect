@@ -964,14 +964,21 @@ class CCommandCollection(CCommandHelper):
     def ATTRIB_MEDIAURL(self, src, srcXML, param):
         Video, leftover = self.getElement(src, srcXML, param)
         
-        if Video!=None:
-            Media = Video.find('Media')
+        UDID = self.options['PlexConnectUDID']
+        AuthToken = g_ATVSettings.getSetting(UDID, 'myplex_auth')
+        
+        if not Video:
+            # not a complete video structure - take key directly and build direct-play path
+            key, leftover, dfltd = self.getKey(src, srcXML, param)
+            res = PlexAPI.getDirectVideoPath(key, AuthToken)
+            res = PlexAPI.getURL('http://'+self.PMSaddress, self.path[srcXML], res)
+            return res
+        
+        # complete video structure - request transcoding if needed
+        Media = Video.find('Media')
         
         # check "Media" element and get key
         if Media!=None:
-            UDID = self.options['PlexConnectUDID']
-            AuthToken = g_ATVSettings.getSetting(UDID, 'myplex_auth')
-            
             if g_ATVSettings.getSetting(UDID, 'transcoderaction')=='DirectPlay' \
                or \
                g_ATVSettings.getSetting(UDID, 'transcoderaction')=='Auto' and \

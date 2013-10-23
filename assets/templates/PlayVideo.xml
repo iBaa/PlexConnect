@@ -21,7 +21,7 @@
             
             <!-- stacked media -->
             <httpFileVideoAsset id="{{VAL(key)}}">
-                <mediaURL>http://{{ADDR_PMS()}}{{VAL(key)}}</mediaURL>
+                <mediaURL>{{MEDIAURL(key)}}</mediaURL>
                 <title>{{VAL(@main/Video/title)}}</title>
                 <description>{{VAL(@main/Video/summary)}}</description>
                 <!--bookmarkTime>{{EVAL(@main/Video/viewOffset:0:int(x/1000))}}</bookmarkTime-->
