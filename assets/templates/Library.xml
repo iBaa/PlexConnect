@@ -18,13 +18,13 @@
           <!-- local servers -->
           <menuSection>
             {{VAR(section:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
-            {{COPY(Server)}}
+            {{COPY(Server:size::0=|1=COPY)}}
             
             <header>
               <horizontalDivider alignment="left">
                 <title>{{VAL(name)}}</title>
               </horizontalDivider>
-            </header>{{CUT(size:CUT:0=CUT|1=)}}
+            </header>
             
             <items>
               <!-- /library/sections -->
@@ -39,7 +39,7 @@
                   <link>{{URL(key)}}/recentlyAdded?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20&amp;PlexConnect=SectionPreview-{{VAL(type)}}</link>{{CUT(type:CUT:a=CUT|photo=|q=CUT)}}
                 </preview>
               </oneLineMenuItem>
-            </items>{{CUT(size:CUT:0=CUT|1=)}}
+            </items>
           </menuSection>
         
         </sections>
