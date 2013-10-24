@@ -14,10 +14,6 @@
           <title>{{TEXT(Channels)}}</title>
           <url>{{URL(:/channels/all&amp;PlexConnect=Channels)}}</url>
         </navigationItem>
-        <navigationItem id="Search">
-          <url>{{URL(:/SearchForm.xml)}}</url>
-          <title>{{TEXT(Search)}}</title>
-        </navigationItem>
         <navigationItem id="Settings">
           <title>{{TEXT(Settings)}}</title>
           <url>{{URL(:/&amp;PlexConnect=Settings)}}</url>

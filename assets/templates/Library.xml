@@ -39,6 +39,15 @@
                   <link>{{URL(key)}}/recentlyAdded?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20&amp;PlexConnect=SectionPreview-{{VAL(type)}}</link>{{CUT(type:CUT:a=CUT|photo=|q=CUT)}}
                 </preview>
               </oneLineMenuItem>
+              
+              <!-- search -->
+              <oneLineMenuItem id="{{VAL(search)}}"
+                                       onPlay="atv.loadURL('{{URL(search)}}')"
+                                       onSelect="atv.loadURL('{{URL(search)}}')">
+                <label>{{TEXT(Search)}}</label>
+                <accessories><arrow/></accessories>
+              </oneLineMenuItem>
+              
             </items>
           </menuSection>
         

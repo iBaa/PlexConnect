@@ -771,8 +771,10 @@ class CCommandCollection(CCommandHelper):
             src = src.find(parts[0])
             tag = parts[1]
         
-        childToCopy = child
-        elem.remove(child)
+        # find index of child in elem - to keep consistent order
+        for ix, el in enumerate(list(elem)):
+            if el==child:
+                break
         
         # duplicate child and add to tree
         for elemSRC in src.findall(tag):
@@ -784,16 +786,20 @@ class CCommandCollection(CCommandHelper):
                     key = self.applyConversion(key, conv)
             
             if key:
-                el = copy.deepcopy(childToCopy)
+                el = copy.deepcopy(child)
                 XML_ExpandTree(el, elemSRC, srcXML)
                 XML_ExpandAllAttrib(el, elemSRC, srcXML)
                 
                 if el.tag=='__COPY__':
-                    for child in list(el):
-                        elem.append(child)
+                    for el_child in list(el):
+                        elem.insert(ix, el_child)
+                        ix += 1
                 else:
-                    elem.append(el)
-            
+                    elem.insert(ix, el)
+                    ix += 1
+        
+        # remove template child
+        elem.remove(child)
         return True  # tree modified, nodes updated: restart from 1st elem
     
     def TREE_CUT(self, elem, child, src, srcXML, param):

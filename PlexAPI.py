@@ -239,7 +239,9 @@ def getSectionXML(PMS_list, options, authtoken):
         if PMS==False:
             Server.set('size',    '0')
         else:
-            Server.set('size',    PMS.getroot().get('size', 0))
+            Server.set('size',    str(int(PMS.getroot().get('size', '0'))+1))
+            Server.set('search',  getURL('http://'+PMSHost, '', '/SearchForm.xml'))
+            
             for Dir in PMS.iter('Directory'):  # copy "Directory" content
                 Section = etree.SubElement(Server, 'Directory')
                 Section.set('title',  Dir.get('title', 'title'))
