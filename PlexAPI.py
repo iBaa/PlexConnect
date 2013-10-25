@@ -222,7 +222,7 @@ parameters:
 result:
     XML
 """
-def getSectionXML(PMS_list, options, authtoken):
+def getXMLFromMultiplePMS(PMS_list, path, options={}, authtoken=''):
     root = etree.Element("MediaConverter")
     root.set('friendlyName', 'localServers')
     root.set('size', str(len(PMS_list)))
@@ -235,20 +235,21 @@ def getSectionXML(PMS_list, options, authtoken):
         Server.set('machineIdentifier', uuid)
         
         PMSHost = PMS_list[uuid]['ip'] + ":" + PMS_list[uuid]['port']
-        PMS = getXMLFromPMS(PMSHost, '/library/sections', options, authtoken)
+        PMS = getXMLFromPMS(PMSHost, path, options, authtoken)
         if PMS==False:
             Server.set('size',    '0')
         else:
             Server.set('size',    str(int(PMS.getroot().get('size', '0'))+1))
-            Server.set('search',  getURL('http://'+PMSHost, '', '/SearchForm.xml'))
+            Server.set('baseURL', getURL('http://'+PMSHost, '', ''))
             
-            for Dir in PMS.iter('Directory'):  # copy "Directory" content
-                Section = etree.SubElement(Server, 'Directory')
-                Section.set('title',  Dir.get('title', 'title'))
-                Section.set('key',    getURL('http://'+PMSHost, '/library/sections', Dir.get('key')))
-                Section.set('thumb',  getURL('http://'+PMSHost, '/library/sections', Dir.get('thumb')))
-                Section.set('type',   Dir.get('type'))
-                Section.set('uuid',   Dir.get('uuid'))
+            for Dir in PMS.getiterator('Directory'):  # copy "Directory" content
+                Dir.set('key',    getURL('http://'+PMSHost, path, Dir.get('key')))
+                if hasattr(Dir, 'thumb'):
+                    Dir.set('thumb',  getURL('http://'+PMSHost, path, Dir.get('thumb')))
+                if hasattr(Dir, 'art'):
+                    Dir.set('art',    getURL('http://'+PMSHost, path, Dir.get('art')))
+                Server.append(Dir)
+                
     
     XML = etree.ElementTree(root)
     

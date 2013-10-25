@@ -12,7 +12,7 @@
         </navigationItem>
         <navigationItem id="Channels">
           <title>{{TEXT(Channels)}}</title>
-          <url>{{URL(:/channels/all&amp;PlexConnect=Channels)}}</url>
+          <url>{{URL(:/channels/all)}}</url>
         </navigationItem>
         <navigationItem id="Settings">
           <title>{{TEXT(Settings)}}</title>

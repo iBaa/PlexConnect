@@ -4,34 +4,39 @@
   </head>
 
   <body>
-    {{ADDXML(VideoChannels::/video)}}
-    {{ADDXML(AudioChannels::/music)}}
-    {{ADDXML(PhotoChannels::/photos)}}
-
+    {{ADDXML(VideoChannels:://local/video)}}
+    {{ADDXML(AudioChannels:://local/music)}}
+    {{ADDXML(PhotoChannels:://local/photos)}}
+    
+    {{VAR(channels:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
+    
     <!--Channels List-->
     <listWithPreview id="com.sample.menu-items-with-sections">
-    {{CUT(size:CUT:0=CUT|1=)}}
       <header>
         <simpleHeader>
-          <title>{{VAL(title1:Plex Channels)}}</title>
-          <subtitle>{{VAL(title2)}}</subtitle>
+          <title>{{TEXT(Plex Channels)}}</title>
         </simpleHeader>
       </header>
       <menu>
         <sections>
-          <!--Video Channels-->
+          
+          <!-- video channels: local servers -->
           <menuSection>
-            {{CUT(@VideoChannels/size:CUT:0=CUT|1=)}}
+          {{COPY(@VideoChannels/Server:size::0=|1=COPY)}}
+            
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Video)}}</title>
+                <title>{{TEXT(Video)}} - {{VAL(name)}}</title>
               </horizontalDivider>
             </header>
+            
             <items>
+              <!-- video channels per server -->
               <twoLineEnhancedMenuItem id="Video_{{VAL(key)}}"
                                        onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelsVideo')"
                                        onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelsVideo')">
-                {{COPY(@VideoChannels/Directory)}}
+              {{COPY(Directory)}}
+              {{VAR(channels:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <label>{{VAL(title)}}</label>
                 <image>{{IMAGEURL(thumb::384)}}</image>
                 <preview>
@@ -41,20 +46,26 @@
                 </preview>
               </twoLineEnhancedMenuItem>
             </items>
+            
           </menuSection>
-          <!--Audio Channels-->
+          
+          <!-- audio channels: local servers -->
           <menuSection>
-            {{CUT(@AudioChannels/size:CUT:0=CUT|1=)}}
+          {{COPY(@AudioChannels/Server:size::0=|1=COPY)}}
+            
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Audio)}}</title>
+                <title>{{TEXT(Audio)}} - {{VAL(name)}}</title>
               </horizontalDivider>
             </header>
+            
             <items>
+              <!-- audio channels per server -->
               <twoLineEnhancedMenuItem id="Audio_{{VAL(key)}}"
                                        onPlay="atv.loadURL('{{URL(key)}}')"
                                        onSelect="atv.loadURL('{{URL(key)}}')">
-                {{COPY(@AudioChannels/Directory)}}
+              {{COPY(Directory)}}
+              {{VAR(channels:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <label>{{VAL(title)}}</label>
                 <image>{{IMAGEURL(thumb::384)}}</image>
                 <preview>
@@ -65,19 +76,24 @@
               </twoLineEnhancedMenuItem>
             </items>
           </menuSection>
-          <!--Photo Channels-->
+          
+          <!-- photo channels: local servers -->
           <menuSection>
-            {{CUT(@PhotoChannels/size:CUT:0=CUT|1=)}}
+          {{COPY(@PhotoChannels/Server:size::0=|1=COPY)}}
+            
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Photo)}}</title>
+                <title>{{TEXT(Photo)}} - {{VAL(name)}}</title>
               </horizontalDivider>
             </header>
+            
             <items>
+              <!-- photo channels per server -->
               <twoLineEnhancedMenuItem id="Photo_{{VAL(key)}}"
                                        onPlay="atv.loadURL('{{URL(key)}}')"
                                        onSelect="atv.loadURL('{{URL(key)}}')">
-                {{COPY(@PhotoChannels/Directory)}}
+                {{COPY(Directory)}}
+                {{VAR(channels:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <label>{{VAL(title)}}</label>
                 <image>{{IMAGEURL(thumb::384)}}</image>
                 <preview>
@@ -88,15 +104,18 @@
               </twoLineEnhancedMenuItem>
             </items>
           </menuSection>
+          
         </sections>
       </menu>
     </listWithPreview>
-
+    {{CUT(#channels::FALSE=CUT|TRUE=)}}  <!--CUT if no channel added-->
+    
     <!--No Channels Available-->
     <dialog id="com.sample.error-dialog">
-    {{CUT(size::0=|1=CUT)}}
+    {{CUT(#channels::FALSE=|TRUE=CUT)}}
       <title>PlexConnect</title>
-      <description>{{TEXT(Plex Media Server: No Channels Available)}}</description>
+      <description>{{TEXT(No Plex Channels Available)}}</description>
     </dialog>
+    
   </body>
 </atv>

@@ -236,9 +236,6 @@ def XML_PMS2aTV(PMSaddress, path, options):
     elif cmd=='ChannelPrePlay':
         XMLtemplate = 'ChannelPrePlay.xml'
     
-    elif cmd=='Channels':
-        XMLtemplate = 'Channels.xml'
-    
     elif cmd=='ChannelsVideo':
         XMLtemplate = 'ChannelsVideo.xml'
 
@@ -343,12 +340,10 @@ def XML_PMS2aTV(PMSaddress, path, options):
     elif path=='/library/sections':
         XMLtemplate = 'Library.xml'
         path = ''
-        PMS_list = g_param['PMS_list']
-        UDID = options['PlexConnectUDID']
-        auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
-        
-        PMS = PlexAPI.getSectionXML(PMS_list, options, auth_token)
-        PMSroot = PMS.getroot()
+    
+    elif path=='/channels/all':
+        XMLtemplate = 'Channels.xml'
+        path = ''
     
     """
     # check PMS availability
@@ -817,8 +812,19 @@ class CCommandCollection(CCommandHelper):
         tag, leftover = self.getParam(src, param)
         key, leftover, dfltd = self.getKey(src, srcXML, leftover)
         
-        if key.startswith('/'):  # internal full path.
+        if 'PlexConnectUDID' in self.options:
+            UDID = self.options['PlexConnectUDID']
+            auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
+        else:
+            auth_token = ''
+        
+        if key.startswith('//local'):  # local servers signature
+            PMS_list = g_param['PMS_list']
+            path = key[len('//local'):]
+            PMS = PlexAPI.getXMLFromMultiplePMS(PMS_list, path, self.options, auth_token)
+        elif key.startswith('/'):  # internal full path.
             path = key
+            PMS = PlexAPI.getXMLFromPMS(self.PMSaddress, path, self.options, auth_token)
         #elif key.startswith('http://'):  # external address
         #    path = key
         #    hijack = g_param['HostToIntercept']
@@ -829,16 +835,11 @@ class CCommandCollection(CCommandHelper):
         #        dprint(__name__, 1, path)
         elif key == '':  # internal path
             path = self.path[srcXML]
+            PMS = PlexAPI.getXMLFromPMS(self.PMSaddress, path, self.options, auth_token)
         else:  # internal path, add-on
             path = self.path[srcXML] + '/' + key
+            PMS = PlexAPI.getXMLFromPMS(self.PMSaddress, path, self.options, auth_token)
         
-        if 'PlexConnectUDID' in self.options:
-            UDID = self.options['PlexConnectUDID']
-            auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
-        else:
-            auth_token = ''
-        
-        PMS = PlexAPI.getXMLFromPMS(self.PMSaddress, path, self.options, auth_token)
         self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML
         self.path[tag] = path  # store base path
         
