@@ -83,11 +83,12 @@ function loadMenuPage(event)
 /*
  * translate movie title into trailer URL for playback
  */
-function playTrailer(addrPMS,title)
+function playTrailer(addrPMS,title,year)
 {
     log("playTrailer: "+title);
-    var lookup = "https://gdata.youtube.com/feeds/api/videos?q="+encodeURIComponent(title)+"+trailer&start-index=1&max-results=1&v=2&alt=json&hd";
 
+    var api_key = "0dd32eece72fc9640fafaa5c87017fcf";
+    var lookup = "http://api.themoviedb.org/3/search/movie?api_key="+api_key+"&query="+encodeURIComponent(title)+"&year="+encodeURIComponent(year);
     var req = new XMLHttpRequest();
     req.onreadystatechange = function()
     {
@@ -96,25 +97,48 @@ function playTrailer(addrPMS,title)
             if(req.readyState == 4)
             {
                 var doc = JSON.parse(req.responseText);
-                var links = doc.feed.entry[0].link;
 
-                for (var i = 0; i < links.length; i++) {
-                    if (links[i].type == "text/html") {
-                        var pattern = /watch\?v=(\w+)&/i;
-                        var video = pattern.exec(links[i].href)[1];
-                        break;
-                    }
-                };
-
-                var url = "http://atv.plexconnect/PMS("+encodeURIComponent(addrPMS)+")/system/:/services/url/lookup?url=http%3A//www.youtube.com/watch%3Fv%3D"+video+"&PlexConnect=Play";
-
-                if (url.indexOf("atv.plexconnect")!=-1)
+                if (doc.total_results === 0)
                 {
-                    url = url + "&PlexConnectUDID=" + atv.device.udid;
-                    url = url + "&PlexConnectATVName=" + encodeURIComponent(atv.device.displayName);
+                    XML_Error('PlexConnect: Trailer Lookup', 'Movie Not Found');
+                    return;
+                } 
+
+                var lookup2 = "http://api.themoviedb.org/3/movie/"+doc.results[0].id+"/trailers?api_key="+api_key;
+                var req2 = new XMLHttpRequest();
+                req2.onreadystatechange = function()
+                {
+                    try
+                    {
+                        if(req2.readyState == 4)
+                        {
+                            var doc2 = JSON.parse(req2.responseText);
+
+                            if (doc2.youtube.length === 0)
+                            {
+                                XML_Error('PlexConnect: Trailer Lookup', 'YouTube Trailer Not Found');
+                                return;
+                            }
+
+                            var video = doc2.youtube[0].source;
+                            var url = "http://atv.plexconnect/PMS("+encodeURIComponent(addrPMS)+")/system/:/services/url/lookup?url=http%3A//www.youtube.com/watch%3Fv%3D"+encodeURIComponent(video)+"&PlexConnect=Play";
+
+                            if (url.indexOf("atv.plexconnect")!=-1)
+                            {
+                                url = url + "&PlexConnectUDID=" + atv.device.udid;
+                                url = url + "&PlexConnectATVName=" + encodeURIComponent(atv.device.displayName);
+                            }
+                            iOS_atv_loadURL(url);
+
+                        }
+                    }
+                    catch(e)
+                    {
+                        req2.abort();
+                    }
                 }
-                
-                iOS_atv_loadURL(url);
+                req2.open('GET', lookup2, true);
+                req2.send();
             }
         }
         catch(e)
@@ -124,6 +148,27 @@ function playTrailer(addrPMS,title)
     }
     req.open('GET', lookup, true);
     req.send();
+};
+
+
+
+/*
+ * displays error message
+ */
+function XML_Error(title,desc)
+{
+    var errorXML =
+'<?xml version="1.0" encoding="UTF-8"?> \
+<atv> \
+    <body> \
+        <dialog id="com.sample.error-dialog"> \
+            <title>' + title + '</title> \
+            <description>' + desc + '</description> \
+        </dialog> \
+    </body> \
+</atv>';
+    var doc = atv.parseXML(errorXML);
+    atv.loadXML(doc); 
 };
 
 
