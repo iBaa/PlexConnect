@@ -239,7 +239,7 @@ def getXMLFromMultiplePMS(PMS_list, path, options={}, authtoken=''):
         if PMS==False:
             Server.set('size',    '0')
         else:
-            Server.set('size',    str(int(PMS.getroot().get('size', '0'))+1))
+            Server.set('size',    PMS.getroot().get('size', '0'))
             Server.set('baseURL', getURL('http://'+PMSHost, '', ''))
             
             for Dir in PMS.getiterator('Directory'):  # copy "Directory" content
@@ -249,7 +249,6 @@ def getXMLFromMultiplePMS(PMS_list, path, options={}, authtoken=''):
                 if hasattr(Dir, 'art'):
                     Dir.set('art',    getURL('http://'+PMSHost, path, Dir.get('art')))
                 Server.append(Dir)
-                
     
     XML = etree.ElementTree(root)
     
