@@ -22,7 +22,6 @@
           
           <!-- video channels: local servers -->
           <menuSection>
-          {{CUT(@VideoChannels/size:CUT:0=CUT|1=)}}
           {{COPY(@VideoChannels/Server:size::0=|1=COPY)}}
             
             <header>
@@ -53,7 +52,6 @@
           
           <!-- audio channels: local servers -->
           <menuSection>
-          {{CUT(@AudioChannels/size:CUT:0=CUT|1=)}}
           {{COPY(@AudioChannels/Server:size::0=|1=COPY)}}
             
             <header>
@@ -83,7 +81,6 @@
           
           <!-- photo channels: local servers -->
           <menuSection>
-          {{CUT(@PhotoChannels/size:CUT:0=CUT|1=)}}
           {{COPY(@PhotoChannels/Server:size::0=|1=COPY)}}
             
             <header>
