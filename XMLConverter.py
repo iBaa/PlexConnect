@@ -951,22 +951,20 @@ class CCommandCollection(CCommandHelper):
         res = 'http://' + g_param['HostOfPlexConnect']  # base address to PlexConnect
         
         if key.endswith('.js'):  # link to PlexConnect owned .js stuff
-            pass
+            res = res + key
         elif key.startswith('http://'):  # external server
             parts = urlparse.urlsplit(key)  # (scheme, networklocation, path, ...)
             key = urlparse.urlunsplit(('', '', parts[2], parts[3], parts[4]))  # keep path only
             PMS_uuid = PlexAPI.getPMSFromIP(g_param['PMS_list'], parts.hostname)
             PMSaddress = PlexAPI.getAddress(g_param['PMS_list'], PMS_uuid)  # get PMS address (might be local as well!?!)
-            res = res + '/PMS(' + quote_plus(PMSaddress) + ')'
-        else:  # include current PMS address
-            res = res + '/PMS(' + quote_plus(self.PMSaddress) + ')'
-        
-        if key.startswith('/'):  # internal full path.
-            res = res + key
+            res = res + '/PMS(' + quote_plus(PMSaddress) + ')' + key
+        elif key.startswith('/'):  # internal full path.
+            res = res + '/PMS(' + quote_plus(self.PMSaddress) + ')' + key
         elif key == '':  # internal path
-            res = res + self.path[srcXML]
+            res = res + '/PMS(' + quote_plus(self.PMSaddress) + ')' + self.path[srcXML]
         else:  # internal path, add-on
-            res = res + self.path[srcXML] + '/' + key
+            res = res + '/PMS(' + quote_plus(self.PMSaddress) + ')' + self.path[srcXML] + '/' + key
+        
         return res
     
     def ATTRIB_MEDIAURL(self, src, srcXML, param):
