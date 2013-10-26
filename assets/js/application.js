@@ -4,6 +4,7 @@ var ratingKey;
 var duration;
 var showClock, timeFormat, clockPosition, overscanAdjust;
 var showEndtime;
+var authToken;
 
 // information for atv.player - computed internally to application.js
 var lastReportedTime = -1;
@@ -42,14 +43,16 @@ atv.player.playerTimeDidChange = function(time)
   if (lastReportedTime == -1 || Math.abs(thisReportTime-lastReportedTime) > 5000)
   {
     lastReportedTime = thisReportTime;
+    var token = '';
+    if (authToken!='')
+        token = '&X-Plex-Token=' + authToken;
     loadPage( addrPMS + '/:/timeline?ratingKey=' + ratingKey + 
                         '&duration=' + duration + 
-                        '&key=%2Flibrary%2Fmetadata%2F' + ratingKey + 
                         '&state=playing' +
                         '&time=' + thisReportTime.toString() + 
                         '&X-Plex-Client-Identifier=' + atv.device.udid + 
-                        '&X-Plex-Device-Name=' + encodeURIComponent(atv.device.displayName) );
-// question: &key=... is the path correct? what about myplex? do we need it? send it down from PMS/PlexConnect?
+                        '&X-Plex-Device-Name=' + encodeURIComponent(atv.device.displayName) +
+                        token );
   }
 };
 
@@ -64,13 +67,16 @@ atv.player.didStopPlaying = function()
   Views = [];  
   
   // Notify of a stop.
+  var token = '';
+  if (authToken!='')
+      token = '&X-Plex-Token=' + authToken;
   loadPage( addrPMS + '/:/timeline?ratingKey=' + ratingKey + 
                       '&duration=' + duration + 
-                      '&key=%2Flibrary%2Fmetadata%2F' + ratingKey + 
                       '&state=stopped' +
                       '&time=' + lastReportedTime.toString() + 
                       '&X-Plex-Client-Identifier=' + atv.device.udid + 
-                      '&X-Plex-Device-Name=' + encodeURIComponent(atv.device.displayName) );
+                      '&X-Plex-Device-Name=' + encodeURIComponent(atv.device.displayName) +
+                      token );
     
   // Kill the session.
   loadPage(addrPMS + '/video/:/transcode/universal/stop?session=' + atv.device.udid);
@@ -98,6 +104,7 @@ atv.player.willStartPlaying = function()
     clockPosition = metadata.getElementByTagName('clockPosition').textContent;
     overscanAdjust = metadata.getElementByTagName('overscanAdjust').textContent;
     showEndtime = metadata.getElementByTagName('showEndtime').textContent;
+    authToken = metadata.getElementByTagName('authToken').textContent;
   }
   
   // Use loadMoreAssets callback for playlists - if not transcoding!
@@ -213,14 +220,17 @@ atv.player.playerStateChanged = function(newState, timeIntervalSec) {
   if (state != null)
   {
   time = Math.round(timeIntervalSec*1000);
+  var token = '';
+  if (authToken!='')
+      token = '&X-Plex-Token=' + authToken;
   loadPage( addrPMS + '/:/timeline?ratingKey=' + ratingKey + 
                       '&duration=' + duration + 
-                      '&key=%2Flibrary%2Fmetadata%2F' + ratingKey + 
                       '&state=' + state + 
                       '&time=' + time.toString() + 
                       '&report=1' +
                       '&X-Plex-Client-Identifier=' + atv.device.udid + 
-                      '&X-Plex-Device-Name=' + encodeURIComponent(atv.device.displayName) );
+                      '&X-Plex-Device-Name=' + encodeURIComponent(atv.device.displayName) +
+                      token );
   }
 };
 

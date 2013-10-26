@@ -94,6 +94,7 @@ def XML_PlayVideo_ChannelsV1(PMSaddress, path):
           <clockPosition></clockPosition>\n\
           <overscanAdjust></overscanAdjust>\n\
           <showEndtime>False</showEndtime>\n\
+          <authToken></authToken>\n\
         </myMetadata>\n\
       </httpFileVideoAsset>\n\
     </videoPlayer>\n\

@@ -18,6 +18,7 @@
             <clockPosition>{{VAL($clockposition)}}</clockPosition>
             <overscanAdjust>{{VAL($overscanadjust)}}</overscanAdjust>
             <showEndtime>{{VAL($showendtime)}}</showEndtime>
+            <authToken>{{VAL($myplex_auth)}}</authToken>
             
             <!-- stacked media -->
             <httpFileVideoAsset id="{{VAL(key)}}">
