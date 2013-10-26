@@ -873,7 +873,14 @@ class CCommandCollection(CCommandHelper):
         if not dfltd:
             key = self.applyMath(key, math, frmt)
         return key
-    
+
+    def ATTRIB_SVAL(self, src, srcXML, param):
+        key, leftover, dfltd = self.getKey(src, srcXML, param)
+        conv, leftover = self.getConversion(src, leftover)
+        if not dfltd:
+            key = self.applyConversion(key, conv)
+        return quote_plus(key)
+
     def ATTRIB_SETTING(self, src, srcXML, param):
         opt, leftover = self.getParam(src, param)
         UDID = self.options['PlexConnectUDID']
