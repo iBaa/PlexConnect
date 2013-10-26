@@ -22,11 +22,13 @@
           
           <!-- video channels: local servers -->
           <menuSection>
+          {{CUT(@VideoChannels/size:CUT:0=CUT|1=)}}
           {{COPY(@VideoChannels/Server:size::0=|1=COPY)}}
             
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Video)}} - {{VAL(name)}}</title>
+                <title>{{TEXT(Video)}}</title>{{CUT(@VideoChannels/size::1=|2=CUT)}}
+                <title>{{TEXT(Video)}} - {{VAL(name)}}</title>{{CUT(@VideoChannels/size:CUT:1=CUT|2=)}}
               </horizontalDivider>
             </header>
             
@@ -51,11 +53,13 @@
           
           <!-- audio channels: local servers -->
           <menuSection>
+          {{CUT(@AudioChannels/size:CUT:0=CUT|1=)}}
           {{COPY(@AudioChannels/Server:size::0=|1=COPY)}}
             
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Audio)}} - {{VAL(name)}}</title>
+                <title>{{TEXT(Audio)}}</title>{{CUT(@VideoChannels/size::1=|2=CUT)}}
+                <title>{{TEXT(Audio)}} - {{VAL(name)}}</title>{{CUT(@VideoChannels/size:CUT:1=CUT|2=)}}
               </horizontalDivider>
             </header>
             
@@ -79,11 +83,13 @@
           
           <!-- photo channels: local servers -->
           <menuSection>
+          {{CUT(@PhotoChannels/size:CUT:0=CUT|1=)}}
           {{COPY(@PhotoChannels/Server:size::0=|1=COPY)}}
             
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Photo)}} - {{VAL(name)}}</title>
+                <title>{{TEXT(Photo)}}</title>{{CUT(@VideoChannels/size::1=|2=CUT)}}
+                <title>{{TEXT(Photo)}} - {{VAL(name)}}</title>{{CUT(@VideoChannels/size:CUT:1=CUT|2=)}}
               </horizontalDivider>
             </header>
             
