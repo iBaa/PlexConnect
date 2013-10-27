@@ -79,6 +79,12 @@ case $1 in
         bash $0 stop
         bash $0 start
         ;;
+    update)
+        cd "${INSTALL_DIR}"
+        git pull
+        bash $0 stop
+        bash $0 start
+        ;;
     status)
         if daemon_status; then
             echo ${DNAME} is running
