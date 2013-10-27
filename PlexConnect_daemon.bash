@@ -1,8 +1,16 @@
 #!/bin/bash
 
-#
-# sample start stop script
-#
+### BEGIN INIT INFO
+# Provides:          plexconnect
+# Required-Start:    $remote_fs $syslog $networking
+# Required-Stop:     
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: PlexConnect
+# Description:       PlexConnect
+# Author:            PlexConnect Team
+# Version:           0.2
+### END INIT INFO
 
 # Package
 DNAME="PlexConnect"
@@ -66,6 +74,10 @@ case $1 in
         else
             echo ${DNAME} is not running
         fi
+        ;;
+    restart)
+        bash $0 stop
+        bash $0 start
         ;;
     status)
         if daemon_status; then
