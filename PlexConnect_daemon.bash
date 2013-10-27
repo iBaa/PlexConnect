@@ -82,8 +82,7 @@ case $1 in
     update)
         cd "${INSTALL_DIR}"
         git pull
-        bash $0 stop
-        bash $0 start
+        bash $0 restart
         ;;
     status)
         if daemon_status; then
