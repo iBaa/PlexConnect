@@ -1,5 +1,6 @@
 // settings for atv.player - communicated in PlayVideo/myMetadata
 var addrPMS;
+var key;
 var ratingKey;
 var duration;
 var showClock, timeFormat, clockPosition, overscanAdjust;
@@ -47,6 +48,7 @@ atv.player.playerTimeDidChange = function(time)
     if (authToken!='')
         token = '&X-Plex-Token=' + authToken;
     loadPage( addrPMS + '/:/timeline?ratingKey=' + ratingKey + 
+                        '&key=' + key +
                         '&duration=' + duration + 
                         '&state=playing' +
                         '&time=' + thisReportTime.toString() + 
@@ -71,6 +73,7 @@ atv.player.didStopPlaying = function()
   if (authToken!='')
       token = '&X-Plex-Token=' + authToken;
   loadPage( addrPMS + '/:/timeline?ratingKey=' + ratingKey + 
+                      '&key=' + key +
                       '&duration=' + duration + 
                       '&state=stopped' +
                       '&time=' + lastReportedTime.toString() + 
@@ -97,6 +100,7 @@ atv.player.willStartPlaying = function()
   if (metadata != null)
   {
     addrPMS = metadata.getElementByTagName('addrPMS').textContent;
+    key = metadata.getElementByTagName('key').textContent;
     ratingKey = metadata.getElementByTagName('ratingKey').textContent;
     duration = metadata.getElementByTagName('duration').textContent;
     showClock = metadata.getElementByTagName('showClock').textContent;
@@ -224,6 +228,7 @@ atv.player.playerStateChanged = function(newState, timeIntervalSec) {
   if (authToken!='')
       token = '&X-Plex-Token=' + authToken;
   loadPage( addrPMS + '/:/timeline?ratingKey=' + ratingKey + 
+                      '&key=' + key +
                       '&duration=' + duration + 
                       '&state=' + state + 
                       '&time=' + time.toString() + 

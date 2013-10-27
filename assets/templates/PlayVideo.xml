@@ -11,6 +11,7 @@
         <myMetadata>
             <!-- PMS, OSD settings, ... -->
             <addrPMS>http://{{ADDR_PMS()}}</addrPMS>
+            <key>{{VAL(Video/key)}}</key>
             <ratingKey>{{VAL(Video/ratingKey)}}</ratingKey>
             <duration>{{VAL(Video/duration)}}</duration>
             <showClock>{{VAL($showplayerclock)}}</showClock>

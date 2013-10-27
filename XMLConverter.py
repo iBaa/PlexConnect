@@ -87,6 +87,7 @@ def XML_PlayVideo_ChannelsV1(PMSaddress, path):
         <myMetadata>\n\
           <!-- PMS, OSD settings, ... -->\n\
           <addrPMS>http://' + PMSaddress + '</addrPMS>\n\
+          <key></key>\n\
           <ratingKey></ratingKey>\n\
           <duration></duration>\n\
           <showClock>False</showClock>\n\
