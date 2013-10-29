@@ -44,11 +44,7 @@
               </horizontalDivider>
             </header>
             <items>
-              <oneLineMenuItem id="PMS_uuid" onSelect="toggleSettings('PMS_uuid', 'Settings')">
-                <label>{{TEXT(PMS)}}</label>
-                <rightLabel>{{PMSNAME()}}</rightLabel>
-              </oneLineMenuItem>
-              <oneLineMenuItem id="discover" onSelect="discover('discover','PMS_uuid')">
+              <oneLineMenuItem id="discover" onSelect="discover('discover')">
                 <label>{{TEXT(Discover)}}</label>
                 <rightLabel>Plex Media Servers: {{PMSCOUNT()}}</rightLabel>
               </oneLineMenuItem>

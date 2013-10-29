@@ -107,38 +107,6 @@ def XML_PlayVideo_ChannelsV1(PMSaddress, path):
 
 
 
-def discoverPMS():
-    global g_param
-    if g_param['CSettings'].getSetting('enable_plexgdm')=='False':
-        PMS_uuid = 'PMS_from_Settings'
-        PMS_list = { PMS_uuid:
-                {
-                    'uuid'      : PMS_uuid,
-                    'serverName': PMS_uuid,
-                    'ip'        : g_param['CSettings'].getSetting('ip_pms'),
-                    'port'      : g_param['CSettings'].getSetting('port_pms'),
-                }
-            }
-        opts = (PMS_uuid, )
-        dprint(__name__, 0, "PlexGDM off - PMS from settings: {0}:{1}", PMS_list[PMS_uuid]['ip'], PMS_list[PMS_uuid]['port'])
-    
-    else:
-        PMS_list = PlexAPI.PlexGDM()
-        opts = ()
-        for PMS_uuid in PMS_list.keys():
-            opts = opts + (PMS_uuid, )
-            dprint(__name__, 0, "PlexGDM - PMS: {0}:{1}", PMS_list[PMS_uuid]['ip'], PMS_list[PMS_uuid]['port'])
-        
-        if len(PMS_list)==0:
-            opts = ('no_PMS_found', )
-            dprint(__name__, 0, "PlexGDM - no PMS found")
-    
-    g_ATVSettings.setOptions('pms_uuid', opts)
-    g_param['PMS_list'] = PMS_list
-    return len(PMS_list)>0
-
-
-
 """
 global list of known aTVs - to look up UDID by IP if needed
 
@@ -184,9 +152,9 @@ def XML_PMS2aTV(PMSaddress, path, options):
     # the hope is: aTV sends either PMS address coded into URL or UDID in options
     if PMSaddress=='':
         if 'PlexConnectUDID' in options:
+            UDID = options['PlexConnectUDID']
             PMS_uuid = g_ATVSettings.getSetting(options['PlexConnectUDID'], 'pms_uuid')
-            PMS_list = g_param['PMS_list']
-            PMSaddress = PlexAPI.getAddress(PMS_list, PMS_uuid)
+            PMSaddress = PlexAPI.getPMSAddress(UDID, PMS_uuid)
     
     # check cmd to work on
     cmd = ''
@@ -198,6 +166,12 @@ def XML_PMS2aTV(PMSaddress, path, options):
     if not 'aTVLanguage' in options:
         dprint(__name__, 1, "no aTVLanguage - pick en")
         options['aTVLanguage'] = 'en'
+    
+    # discover! PlexGDM and MyPlex lookup - application just started on aTV UDID
+    if path=='/PlexConnect.xml':
+        UDID = options['PlexConnectUDID']
+        auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
+        PlexAPI.discoverPMS(UDID, g_param['CSettings'], auth_token)
     
     # XML Template selector
     # - PlexConnect command
@@ -331,7 +305,9 @@ def XML_PMS2aTV(PMSaddress, path, options):
         path = ''  # clear path - we don't need PMS-XML
     
     elif cmd.startswith('Discover'):
-        discoverPMS()
+        UDID = options['PlexConnectUDID']
+        auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
+        PlexAPI.discoverPMS(UDID, g_param['CSettings'], auth_token)
         
         XMLtemplate = 'Settings.xml'
         path = ''  # clear path - we don't need PMS-XML
@@ -347,22 +323,6 @@ def XML_PMS2aTV(PMSaddress, path, options):
         XMLtemplate = 'Channels.xml'
         path = ''
     
-    """
-    # check PMS availability
-    # todo: re-discover needs to be done differently... how to trigger?
-    PMS_list = g_param['PMS_list']
-    PMS_uuid = g_ATVSettings.getSetting(options['PlexConnectUDID'], 'pms_uuid')
-    
-    # we need PMS but don't see selected one: re-discover (PlexGDM)
-    if not path=='' and not PMS_uuid in PMS_list:
-        if not discoverPMS():
-            return XML_Error('PlexConnect', 'No Plex Media Server in Proximity')
-        PMS_list = g_param['PMS_list']
-        g_ATVSettings.checkSetting(options['PlexConnectUDID'], 'pms_uuid')  # verify PMS_uuid
-        PMS_uuid = g_ATVSettings.getSetting(options['PlexConnectUDID'], 'pms_uuid')
-        PMSaddress = '?'  # todo:
-    """
-    
     # request PMS XML
     if not path=='':
         if 'PlexConnectUDID' in options:
@@ -371,7 +331,7 @@ def XML_PMS2aTV(PMSaddress, path, options):
         else:
             auth_token = ''
         
-        PMS = PlexAPI.getXMLFromPMS(PMSaddress, path, options, authtoken=auth_token)
+        PMS = PlexAPI.getXMLFromPMS('http://'+PMSaddress, path, options, authtoken=auth_token)
         if PMS==False:
             return XML_Error('PlexConnect', 'No Response from Plex Media Server')
         
@@ -821,12 +781,11 @@ class CCommandCollection(CCommandHelper):
             auth_token = ''
         
         if key.startswith('//local'):  # local servers signature
-            PMS_list = g_param['PMS_list']
             path = key[len('//local'):]
-            PMS = PlexAPI.getXMLFromMultiplePMS(PMS_list, path, self.options, auth_token)
+            PMS = PlexAPI.getXMLFromMultiplePMS(UDID, path, self.options, auth_token)
         elif key.startswith('/'):  # internal full path.
             path = key
-            PMS = PlexAPI.getXMLFromPMS(self.PMSaddress, path, self.options, auth_token)
+            PMS = PlexAPI.getXMLFromPMS('http://'+self.PMSaddress, path, self.options, auth_token)
         #elif key.startswith('http://'):  # external address
         #    path = key
         #    hijack = g_param['HostToIntercept']
@@ -837,10 +796,10 @@ class CCommandCollection(CCommandHelper):
         #        dprint(__name__, 1, path)
         elif key == '':  # internal path
             path = self.path[srcXML]
-            PMS = PlexAPI.getXMLFromPMS(self.PMSaddress, path, self.options, auth_token)
+            PMS = PlexAPI.getXMLFromPMS('http://'+self.PMSaddress, path, self.options, auth_token)
         else:  # internal path, add-on
             path = self.path[srcXML] + '/' + key
-            PMS = PlexAPI.getXMLFromPMS(self.PMSaddress, path, self.options, auth_token)
+            PMS = PlexAPI.getXMLFromPMS('http://'+self.PMSaddress, path, self.options, auth_token)
         
         self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML
         self.path[tag] = path  # store base path
@@ -904,6 +863,13 @@ class CCommandCollection(CCommandHelper):
         if height=='':
             height = width
         
+        PMSaddress = self.PMSaddress
+        cmd_start = key.find('PMS(')
+        cmd_end = key.find(')', cmd_start)
+        if cmd_start>-1 and cmd_end>-1 and cmd_end>cmd_start:
+            PMSaddress = key[cmd_start+4:cmd_end]
+            key = key[cmd_end+1:]
+        
         UDID = self.options['PlexConnectUDID']
         AuthToken = g_ATVSettings.getSetting(UDID, 'myplex_auth')
         
@@ -915,16 +881,11 @@ class CCommandCollection(CCommandHelper):
             res = PlexAPI.getTranscodeImagePath(key, AuthToken, self.path[srcXML], width, height)
         
         if res.startswith('/'):  # internal full path.
-            res = 'http://' + self.PMSaddress + res
+            res = 'http://' + PMSaddress + res
         elif res.startswith('http://'):  # external address
-            hijack = g_param['HostToIntercept']
-            if hijack in res:
-                dprint(__name__, 1, "twisting...")
-                hijack_twisted = hijack[::-1]
-                res = res.replace(hijack, hijack_twisted)
-                dprint(__name__, 1, res)
+            pass
         else:  # internal path, add-on
-            res = 'http://' + self.PMSaddress + self.path[srcXML] + '/' + res
+            res = 'http://' + PMSaddress + self.path[srcXML] + '/' + res
         
         dprint(__name__, 1, 'ImageURL: {0}', res)
         return res
@@ -956,22 +917,32 @@ class CCommandCollection(CCommandHelper):
     def ATTRIB_URL(self, src, srcXML, param):
         key, leftover, dfltd = self.getKey(src, srcXML, param)
         
+        PMSaddress = self.PMSaddress
+        cmd_start = key.find('PMS(')
+        cmd_end = key.find(')', cmd_start)
+        if cmd_start>-1 and cmd_end>-1 and cmd_end>cmd_start:
+            PMSaddress = key[cmd_start+4:cmd_end]
+            key = key[cmd_end+1:]
+        
         res = 'http://' + g_param['HostOfPlexConnect']  # base address to PlexConnect
         
         if key.endswith('.js'):  # link to PlexConnect owned .js stuff
             res = res + key
         elif key.startswith('http://'):  # external server
+            res = key
+            """
             parts = urlparse.urlsplit(key)  # (scheme, networklocation, path, ...)
             key = urlparse.urlunsplit(('', '', parts[2], parts[3], parts[4]))  # keep path only
             PMS_uuid = PlexAPI.getPMSFromIP(g_param['PMS_list'], parts.hostname)
             PMSaddress = PlexAPI.getAddress(g_param['PMS_list'], PMS_uuid)  # get PMS address (might be local as well!?!)
             res = res + '/PMS(' + quote_plus(PMSaddress) + ')' + key
+            """
         elif key.startswith('/'):  # internal full path.
-            res = res + '/PMS(' + quote_plus(self.PMSaddress) + ')' + key
+            res = res + '/PMS(' + quote_plus(PMSaddress) + ')' + key
         elif key == '':  # internal path
-            res = res + '/PMS(' + quote_plus(self.PMSaddress) + ')' + self.path[srcXML]
+            res = res + '/PMS(' + quote_plus(PMSaddress) + ')' + self.path[srcXML]
         else:  # internal path, add-on
-            res = res + '/PMS(' + quote_plus(self.PMSaddress) + ')' + self.path[srcXML] + '/' + key
+            res = res + '/PMS(' + quote_plus(PMSaddress) + ')' + self.path[srcXML] + '/' + key
         
         return res
     
@@ -1009,7 +980,7 @@ class CCommandCollection(CCommandHelper):
                 res, leftover, dfltd = self.getKey(Media, srcXML, 'Part/key')
                 
                 if Media.get('indirect', False):  # indirect... todo: select suitable resolution, today we just take first Media
-                    PMS = PlexAPI.getXMLFromPMS(self.PMSaddress, res, self.options, AuthToken)  # todo... check key for trailing '/' or even 'http'
+                    PMS = PlexAPI.getXMLFromPMS('http://'+self.PMSaddress, res, self.options, AuthToken)  # todo... check key for trailing '/' or even 'http'
                     res, leftover, dfltd = self.getKey(PMS.getroot(), srcXML, 'Video/Media/Part/key')
                 
                 res = PlexAPI.getDirectVideoPath(res, AuthToken)
@@ -1087,21 +1058,17 @@ class CCommandCollection(CCommandHelper):
         return self._(param)
     
     def ATTRIB_PMSCOUNT(self, src, srcXML, param):
-        return str(len(g_param['PMS_list']))
+        UDID = self.options['PlexConnectUDID']
+        return str(PlexAPI.getPMSCount(UDID))
     
     def ATTRIB_PMSNAME(self, src, srcXML, param):
         UDID = self.options['PlexConnectUDID']
-        PMS_list = g_param['PMS_list']
-        PMS_uuid = g_ATVSettings.getSetting(UDID, 'pms_uuid')
-        
-        if len(PMS_list)==0:
+        PMS_uuid = PlexAPI.getPMSFromAddress(UDID, self.PMSaddress)
+        PMS_name = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'name')
+        if PMS_name=='':
             return "No Server in Proximity"
         else:
-            PMS_uuid = g_ATVSettings.getSetting(self.options['PlexConnectUDID'], 'pms_uuid')
-            if PMS_uuid in PMS_list:
-                return PMS_list[PMS_uuid]['serverName'].decode('utf-8', 'replace')  # return as utf-8
-            else:
-                return 'PMS_uuid not found'
+            return PMS_name
 
 
 
