@@ -73,6 +73,15 @@ def declarePMS(ATV_udid, uuid, name, ip, port, type, token):
                               'accessToken': token
                             }
 
+def updatePMSProperty(ATV_udid, uuid, tag, value):
+    # set property element of PMS by UUID
+    if not ATV_udid in g_PMS:
+        return ''  # no server known for this aTV
+    if not uuid in g_PMS[ATV_udid]:
+        return ''  # requested PMS not available
+    
+    g_PMS[ATV_udid][uuid][tag] = value
+
 def getPMSProperty(ATV_udid, uuid, tag):
     # get name of PMS by UUID
     if not ATV_udid in g_PMS:
@@ -201,11 +210,11 @@ discoverPMS
 parameters:
     ATV_udid
     CSettings - for manual PMS configuration. this one looks strange.
-    authtoken
+    MyPlexToken
 result:
     g_PMS database for ATV_udid
 """
-def discoverPMS(ATV_udid, CSettings, authtoken=''):
+def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
     global g_PMS
     g_PMS = {}
     
@@ -219,17 +228,17 @@ def discoverPMS(ATV_udid, CSettings, authtoken=''):
         # defined in setting.cfg
         ip = CSettings.getSetting('ip_pms')
         port = CSettings.getSetting('port_pms')
-        declarePMS(ATV_udid,  'PMS_from_Settings', 'PMS_from_Settings', ip, port, 'local', authtoken)
+        declarePMS(ATV_udid,  'PMS_from_Settings', 'PMS_from_Settings', ip, port, 'local', '')
     else:
         # PlexGDM
         PMS_list = PlexGDM()
         for uuid in PMS_list:
             PMS = PMS_list[uuid]
-            declarePMS(ATV_udid, PMS['uuid'], PMS['serverName'], PMS['ip'], PMS['port'], 'local', authtoken)
+            declarePMS(ATV_udid, PMS['uuid'], PMS['serverName'], PMS['ip'], PMS['port'], 'local', '')
     
     # MyPlex servers
-    if not authtoken=='':
-        XML = getXMLFromPMS('https://my.plexapp.com', '/pms/servers', None, authtoken)
+    if not MyPlexToken=='':
+        XML = getXMLFromPMS('https://my.plexapp.com', '/pms/servers', None, MyPlexToken)
         
         if XML==False:
             pass  # no data from MyPlex
@@ -239,10 +248,12 @@ def discoverPMS(ATV_udid, CSettings, authtoken=''):
                 name = Dir.get('name')
                 ip = Dir.get('address')
                 port = Dir.get('port')
-                token = Dir.get('accessToken', authtoken)
+                token = Dir.get('accessToken', '')
                 
                 if not uuid in g_PMS.get(ATV_udid, {}):
                     declarePMS(ATV_udid, uuid, name, ip, port, 'myplex', token)
+                else:
+                    updatePMSProperty(ATV_udid, uuid, 'accesstoken', token)
     
     # debug print all servers
     dprint(__name__, 0, "Servers (local+MyPlex): {0}", len(g_PMS[ATV_udid]))
@@ -322,11 +333,10 @@ parameters:
     ATV_udid
     path
     options
-    authtoken
 result:
     XML
 """
-def getXMLFromMultiplePMS(ATV_udid, path, options={}, authtoken=''):
+def getXMLFromMultiplePMS(ATV_udid, path, options={}):
     root = etree.Element("MediaConverter")
     root.set('friendlyName', 'localServers')
     
@@ -338,10 +348,12 @@ def getXMLFromMultiplePMS(ATV_udid, path, options={}, authtoken=''):
             Server.set('address', getPMSProperty(ATV_udid, uuid, 'ip'))
             Server.set('port',    getPMSProperty(ATV_udid, uuid, 'port'))
             baseURL = 'http://' + getPMSAddress(ATV_udid, uuid)
+            token = getPMSProperty(ATV_udid, uuid, 'accesstoken')
+            
             PMSaddr = 'PMS(' + getPMSAddress(ATV_udid, uuid) + ')'
             Server.set('searchKey', PMSaddr + getURL('', '', '/SearchForm.xml'))
             
-            XML = getXMLFromPMS(baseURL, path, options, authtoken)
+            XML = getXMLFromPMS(baseURL, path, options, token)
             if XML==False:
                 Server.set('size',    '0')
             else:

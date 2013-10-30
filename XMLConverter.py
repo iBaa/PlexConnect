@@ -155,6 +155,7 @@ def XML_PMS2aTV(PMSaddress, path, options):
             UDID = options['PlexConnectUDID']
             PMS_uuid = g_ATVSettings.getSetting(options['PlexConnectUDID'], 'pms_uuid')
             PMSaddress = PlexAPI.getPMSAddress(UDID, PMS_uuid)
+            # this doesn't work any more, does it? is it really still used/needed?
     
     # check cmd to work on
     cmd = ''
@@ -193,7 +194,8 @@ def XML_PMS2aTV(PMSaddress, path, options):
     elif cmd=='PlayVideo_ChannelsV1':
         dprint(__name__, 1, "playing Channels XML Version 1: {0}".format(path))
         UDID = options['PlexConnectUDID']
-        auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
+        PMS_uuid = PlexAPI.getPMSFromAddress(UDID, PMSaddress)
+        auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
         path = PlexAPI.getDirectVideoPath(path, auth_token)
         return XML_PlayVideo_ChannelsV1(PMSaddress, path)  # direct link, no PMS XML available
     
@@ -327,7 +329,8 @@ def XML_PMS2aTV(PMSaddress, path, options):
     if not path=='':
         if 'PlexConnectUDID' in options:
             UDID = options['PlexConnectUDID']
-            auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
+            PMS_uuid = PlexAPI.getPMSFromAddress(UDID, PMSaddress)
+            auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
         else:
             auth_token = ''
         
@@ -776,13 +779,14 @@ class CCommandCollection(CCommandHelper):
         
         if 'PlexConnectUDID' in self.options:
             UDID = self.options['PlexConnectUDID']
-            auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
+            PMS_uuid = PlexAPI.getPMSFromAddress(UDID, self.PMSaddress)
+            auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
         else:
             auth_token = ''
         
         if key.startswith('//local'):  # local servers signature
             path = key[len('//local'):]
-            PMS = PlexAPI.getXMLFromMultiplePMS(UDID, path, self.options, auth_token)
+            PMS = PlexAPI.getXMLFromMultiplePMS(UDID, path, self.options)
         elif key.startswith('/'):  # internal full path.
             path = key
             PMS = PlexAPI.getXMLFromPMS('http://'+self.PMSaddress, path, self.options, auth_token)
@@ -871,7 +875,8 @@ class CCommandCollection(CCommandHelper):
             key = key[cmd_end+1:]
         
         UDID = self.options['PlexConnectUDID']
-        AuthToken = g_ATVSettings.getSetting(UDID, 'myplex_auth')
+        PMS_uuid = PlexAPI.getPMSFromAddress(UDID, PMSaddress)
+        AuthToken = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
         
         if width=='':
             # direct play
@@ -894,7 +899,8 @@ class CCommandCollection(CCommandHelper):
         key, leftover, dfltd = self.getKey(src, srcXML, param)
         
         UDID = self.options['PlexConnectUDID']
-        AuthToken = g_ATVSettings.getSetting(UDID, 'myplex_auth')
+        PMS_uuid = PlexAPI.getPMSFromAddress(UDID, self.PMSaddress)
+        AuthToken = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
         
         # direct play
         res = PlexAPI.getDirectAudioPath(key, AuthToken)
@@ -950,7 +956,8 @@ class CCommandCollection(CCommandHelper):
         Video, leftover = self.getElement(src, srcXML, param)
         
         UDID = self.options['PlexConnectUDID']
-        AuthToken = g_ATVSettings.getSetting(UDID, 'myplex_auth')
+        PMS_uuid = PlexAPI.getPMSFromAddress(UDID, self.PMSaddress)
+        AuthToken = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
         
         if not Video:
             # not a complete video structure - take key directly and build direct-play path
