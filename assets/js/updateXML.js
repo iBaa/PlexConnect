@@ -95,11 +95,15 @@ function loadMenuPages(url, event)
 /*
  * Update page
  */
-function updatePage(path)
+function updatePage(url)
 {
-	// read new XML
-  var url = "http://atv.plexconnect" + path + "&PlexConnectUDID="+atv.device.udid;
-
+  // add UDID
+  if (url.indexOf("atv.plexconnect")!=-1)
+  {
+    url = url + "&PlexConnectUDID=" + atv.device.udid;
+  }
+  
+  // read new XML
 	if (navbarItemNumber == '1') // First navbar item is a special case
 	{
 		atv.loadAndSwapURL(url);
