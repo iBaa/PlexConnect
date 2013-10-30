@@ -338,8 +338,8 @@ def getXMLFromMultiplePMS(ATV_udid, path, options={}, authtoken=''):
             Server.set('address', getPMSProperty(ATV_udid, uuid, 'ip'))
             Server.set('port',    getPMSProperty(ATV_udid, uuid, 'port'))
             baseURL = 'http://' + getPMSAddress(ATV_udid, uuid)
-            Server.set('baseURL', baseURL)
             PMSaddr = 'PMS(' + getPMSAddress(ATV_udid, uuid) + ')'
+            Server.set('searchKey', PMSaddr + getURL('', '', '/SearchForm.xml'))
             
             XML = getXMLFromPMS(baseURL, path, options, authtoken)
             if XML==False:

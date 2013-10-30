@@ -42,9 +42,9 @@
               </oneLineMenuItem>
               
               <!-- search -->
-              <oneLineMenuItem id="{{VAL(baseURL)}}"
-                                       onPlay="atv.loadURL('{{URL(baseURL)}}/SearchForm.xml')"
-                                       onSelect="atv.loadURL('{{URL(baseURL)}}/SearchForm.xml')">
+              <oneLineMenuItem id="{{VAL(searchKey)}}"
+                                       onPlay="atv.loadURL('{{URL(searchKey)}}')"
+                                       onSelect="atv.loadURL('{{URL(searchKey)}}')">
                 <label>{{TEXT(Search)}}</label>
                 <accessories><arrow/></accessories>
               </oneLineMenuItem>
