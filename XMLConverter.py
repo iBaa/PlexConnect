@@ -325,6 +325,10 @@ def XML_PMS2aTV(PMSaddress, path, options):
         XMLtemplate = 'Channels.xml'
         path = ''
     
+    elif path=='/myplex':
+        XMLtemplate = 'MyPlex.xml'
+        path = ''
+    
     # request PMS XML
     if not path=='':
         if 'PlexConnectUDID' in options:
