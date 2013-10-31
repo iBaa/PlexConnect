@@ -181,7 +181,7 @@ myPlexSignInOut = function()
         
         doLogin = function()
         {
-            // logout and get new settings page
+            // login and get new settings page
             var url = "http://atv.plexconnect/" + 
                       "&PlexConnect=MyPlexLogin" +
                       "&PlexConnectCredentials=" + encodeURIComponent(_username+':'+_password) +
@@ -191,6 +191,9 @@ myPlexSignInOut = function()
             req.send();
             var doc = req.responseXML;
             var new_myPlexElem = doc.getElementById('MyPlexSignInOut')
+            
+            // discover
+            discover('discover');
             
             // update MyPlexSignInOut
             hidePict(_myPlexElem, 'spinner');
@@ -227,6 +230,9 @@ myPlexSignInOut = function()
         req.send();
         var doc = req.responseXML;
         var new_myPlexElem = doc.getElementById('MyPlexSignInOut')
+        
+        // discover
+        discover('discover');
         
         // update MyPlexSignInOut
         showPict(_myPlexElem, 'arrow');

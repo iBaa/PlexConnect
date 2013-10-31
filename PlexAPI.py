@@ -31,6 +31,7 @@ http://stackoverflow.com/questions/111945/is-there-any-way-to-do-http-put-in-pyt
 
 import sys
 import struct
+import time
 import urllib2, socket
 
 try:
@@ -70,7 +71,7 @@ def declarePMS(ATV_udid, uuid, name, ip, port, type, token):
     g_PMS[ATV_udid][uuid] = { 'name': name,
                               'ip': ip , 'port': port, 'address': address,
                               'type': type,
-                              'accessToken': token
+                              'accesstoken': token
                             }
 
 def updatePMSProperty(ATV_udid, uuid, tag, value):
@@ -216,7 +217,7 @@ result:
 """
 def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
     global g_PMS
-    g_PMS = {}
+    g_PMS[ATV_udid] = {}
     
     #debug
     #declarePMS(ATV_udid, '2ndServer', '2ndServer', '192.168.178.22', '32400', 'local', 'token')
@@ -249,6 +250,12 @@ def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
                 ip = Dir.get('address')
                 port = Dir.get('port')
                 token = Dir.get('accessToken', '')
+                
+                infoAge = time.time() - int(Dir.get('updatedAt'))
+                oneDayInSec = 60*60*24
+                if infoAge > 2*oneDayInSec:  # two days in seconds -> expiration in setting?
+                    dprint(__name__, 1, "Server {0} not updated for {1} days - skipping.", name, infoAge/oneDayInSec)
+                    continue
                 
                 if not uuid in g_PMS.get(ATV_udid, {}):
                     declarePMS(ATV_udid, uuid, name, ip, port, 'myplex', token)
@@ -336,13 +343,13 @@ parameters:
 result:
     XML
 """
-def getXMLFromMultiplePMS(ATV_udid, path, options={}):
+def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
     root = etree.Element("MediaConverter")
     root.set('friendlyName', 'localServers')
     
     for uuid in g_PMS.get(ATV_udid, {}):
         PMS = g_PMS[ATV_udid][uuid]
-        if PMS['type']=='local':
+        if PMS['type']==type:
             Server = etree.SubElement(root, 'Server')  # create "Server" node
             Server.set('name',    getPMSProperty(ATV_udid, uuid, 'name'))
             Server.set('address', getPMSProperty(ATV_udid, uuid, 'ip'))

@@ -784,9 +784,11 @@ class CCommandCollection(CCommandHelper):
         else:
             auth_token = ''
         
-        if key.startswith('//local'):  # local servers signature
-            path = key[len('//local'):]
-            PMS = PlexAPI.getXMLFromMultiplePMS(UDID, path, self.options)
+        if key.startswith('//'):  # local servers signature
+            pathstart = key.find('/',3)
+            type = key[2:pathstart]
+            path = key[pathstart:]
+            PMS = PlexAPI.getXMLFromMultiplePMS(UDID, path, type, self.options)
         elif key.startswith('/'):  # internal full path.
             path = key
             PMS = PlexAPI.getXMLFromPMS('http://'+self.PMSaddress, path, self.options, auth_token)
