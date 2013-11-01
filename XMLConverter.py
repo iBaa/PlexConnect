@@ -95,7 +95,7 @@ def XML_PlayVideo_ChannelsV1(PMSaddress, path):
           <clockPosition></clockPosition>\n\
           <overscanAdjust></overscanAdjust>\n\
           <showEndtime>False</showEndtime>\n\
-          <authToken></authToken>\n\
+          <accessToken></accessToken>\n\
         </myMetadata>\n\
       </httpFileVideoAsset>\n\
     </videoPlayer>\n\
@@ -623,6 +623,10 @@ class CCommandHelper():
             elif parts[0].startswith('$'):  # setting
                 UDID = self.options['PlexConnectUDID']
                 el = el.find(g_ATVSettings.getSetting(UDID, parts[0][1:]))
+            elif parts[0].startswith('%'):  # PMS property
+                UDID = self.options['PlexConnectUDID']
+                PMS_uuid = PlexAPI.getPMSFromAddress(UDID, self.PMSaddress)
+                el = el.find(PlexAPI.getPMSProperty(UDID, PMS_uuid, parts[0][1:]))
             else:
                 el = el.find(parts[0])
             attrib = parts[1]
@@ -634,6 +638,11 @@ class CCommandHelper():
         elif attrib.startswith('$'):  # setting
             UDID = self.options['PlexConnectUDID']
             res = g_ATVSettings.getSetting(UDID, attrib[1:])
+            dfltd = False
+        elif attrib.startswith('%'):  # PMS property
+            UDID = self.options['PlexConnectUDID']
+            PMS_uuid = PlexAPI.getPMSFromAddress(UDID, self.PMSaddress)
+            res = PlexAPI.getPMSProperty(UDID, PMS_uuid, attrib[1:])
             dfltd = False
         elif el!=None and attrib in el.attrib:
             res = el.get(attrib)
