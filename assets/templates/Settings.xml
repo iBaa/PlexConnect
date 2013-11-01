@@ -115,6 +115,10 @@
                 <label>{{TEXT(Transcoder Quality)}}</label>
                 <rightLabel>{{SETTING(transcodequality)}}</rightLabel>
               </oneLineMenuItem>
+              <oneLineMenuItem id="RemoteBitrate" onSelect="toggleSettings('RemoteBitrate', 'Settings')">
+                <label>{{TEXT(Remote Bitrate)}}</label>
+                <rightLabel>{{SETTING(remotebitrate)}}</rightLabel>
+              </oneLineMenuItem>
               <oneLineMenuItem id="SubtitleSize" onSelect="toggleSettings('SubtitleSize', 'Settings')">
                 <label>{{TEXT(Subtitle Size %)}}</label>
                 <rightLabel>{{SETTING(subtitlesize)}}</rightLabel>

@@ -501,32 +501,24 @@ parameters:
     path
     AuthToken
     options - dict() of PlexConnect-options as received from aTV
-    ATVSettings
+    action - transcoder action: Auto, Directplay, Transcode
+    quality - (resolution, quality, bitrate)
+    settings - (subtitlesize, audioboost)
 result:
     final path to pull in PMS transcoder
 """
-def getTranscodeVideoPath(path, AuthToken, options, ATVSettings):
+def getTranscodeVideoPath(path, AuthToken, options, action, quality, settings):
     UDID = options['PlexConnectUDID']
     
     transcodePath = '/video/:/transcode/universal/start.m3u8?'
     
-    quality = { '480p 2.0Mbps' :('720x480', '60', '2000'), \
-                '720p 3.0Mbps' :('1280x720', '75', '3000'), \
-                '720p 4.0Mbps' :('1280x720', '100', '4000'), \
-                '1080p 8.0Mbps' :('1920x1080', '60', '8000'), \
-                '1080p 10.0Mbps' :('1920x1080', '75', '10000'), \
-                '1080p 12.0Mbps' :('1920x1080', '90', '12000'), \
-                '1080p 20.0Mbps' :('1920x1080', '100', '20000'), \
-                '1080p 40.0Mbps' :('1920x1080', '100', '40000') }
-    setAction = ATVSettings.getSetting(UDID, 'transcoderaction')
-    setQuality = ATVSettings.getSetting(UDID, 'transcodequality')
-    vRes = quality[setQuality][0]
-    vQ = quality[setQuality][1]
-    mVB = quality[setQuality][2]
+    vRes = quality[0]
+    vQ = quality[1]
+    mVB = quality[2]
     dprint(__name__, 1, "Setting transcode quality Res:{0} Q:{1} {2}Mbps", vRes, vQ, mVB)
-    sS = ATVSettings.getSetting(UDID, 'subtitlesize')
+    sS = settings[0]
     dprint(__name__, 1, "Subtitle size: {0}", sS)
-    aB = ATVSettings.getSetting(UDID, 'audioboost')
+    aB = settings[1]
     dprint(__name__, 1, "Audio Boost: {0}", aB)
     
     args = dict()
@@ -535,7 +527,7 @@ def getTranscodeVideoPath(path, AuthToken, options, ATVSettings):
     args['videoResolution'] = vRes
     args['maxVideoBitrate'] = mVB
     args['videoQuality'] = vQ
-    args['directStream'] = '0' if setAction=='Transcode' else '1'
+    args['directStream'] = '0' if action=='Transcode' else '1'
     # 'directPlay' - handled by the client in MEDIARUL()
     args['subtitleSize'] = sS
     args['audioBoost'] = aB

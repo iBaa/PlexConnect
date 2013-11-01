@@ -986,19 +986,38 @@ class CCommandCollection(CCommandHelper):
         
         # check "Media" element and get key
         if Media!=None:
-            if g_ATVSettings.getSetting(UDID, 'transcoderaction')=='DirectPlay' \
+            # transcoder action
+            transcoderAction = g_ATVSettings.getSetting(UDID, 'transcoderaction')
+            
+            # quality limits: quality=(resolution, quality, bitrate)
+            qLookup = { '480p 2.0Mbps' :('720x480', '60', '2000'), \
+                        '720p 3.0Mbps' :('1280x720', '75', '3000'), \
+                        '720p 4.0Mbps' :('1280x720', '100', '4000'), \
+                        '1080p 8.0Mbps' :('1920x1080', '60', '8000'), \
+                        '1080p 10.0Mbps' :('1920x1080', '75', '10000'), \
+                        '1080p 12.0Mbps' :('1920x1080', '90', '12000'), \
+                        '1080p 20.0Mbps' :('1920x1080', '100', '20000'), \
+                        '1080p 40.0Mbps' :('1920x1080', '100', '40000') }
+            if PlexAPI.getPMSProperty(UDID, PMS_uuid, 'type')=='local':
+                qLimits = qLookup[g_ATVSettings.getSetting(UDID, 'transcodequality')]
+            else:
+                qLimits = qLookup[g_ATVSettings.getSetting(UDID, 'remotebitrate')]
+            
+            if transcoderAction=='DirectPlay' \
                or \
-               g_ATVSettings.getSetting(UDID, 'transcoderaction')=='Auto' and \
-               Media.get('protocol','-') in ("hls") \
+               transcoderAction=='Auto' and \
+               Media.get('protocol','-') in ("hls") and \
+               int(Media.get('bitrate','0')) < int(qLimits[2]) \
                or \
-               g_ATVSettings.getSetting(UDID, 'transcoderaction')=='Auto' and \
+               transcoderAction=='Auto' and \
                Media.get('container','-') in ("mov", "mp4") and \
                Media.get('videoCodec','-') in ("mpeg4", "h264", "drmi") and \
-               Media.get('audioCodec','-') in ("aac", "ac3", "drms"):
+               Media.get('audioCodec','-') in ("aac", "ac3", "drms") and \
+               int(Media.get('bitrate','0')) < int(qLimits[2]):
                 # direct play for...
                 #    force direct play
-                # or HTTP live stream
-                # or native aTV media
+                # or HTTP live stream (limited by quality setting)
+                # or native aTV media (limited by quality setting)
                 res, leftover, dfltd = self.getKey(Media, srcXML, 'Part/key')
                 
                 if Media.get('indirect', False):  # indirect... todo: select suitable resolution, today we just take first Media
@@ -1006,11 +1025,16 @@ class CCommandCollection(CCommandHelper):
                     res, leftover, dfltd = self.getKey(PMS.getroot(), srcXML, 'Video/Media/Part/key')
                 
                 res = PlexAPI.getDirectVideoPath(res, AuthToken)
-            
+                print "directplay"
             else:
                 # request transcoding
                 res = Video.get('key','')
-                res = PlexAPI.getTranscodeVideoPath(res, AuthToken, self.options, g_ATVSettings)
+                
+                # misc settings: subtitlesize, audioboost
+                settings = ( g_ATVSettings.getSetting(UDID, 'subtitlesize'), \
+                             g_ATVSettings.getSetting(UDID, 'audioboost') )
+                print "transcode"
+                res = PlexAPI.getTranscodeVideoPath(res, AuthToken, self.options, transcoderAction, qLimits, settings)
         
         else:
             dprint(__name__, 0, "MEDIAPATH - element not found: {0}", param)
