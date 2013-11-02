@@ -59,9 +59,9 @@ Plex Media Server handling
 parameters:
     ATV_udid
     uuid - PMS ID
-    name, ip, port, type, token
+    name, ip, port, type, token, scheme
 """
-def declarePMS(ATV_udid, uuid, name, ip, port, type, token):
+def declarePMS(ATV_udid, uuid, name, ip, port, type, token, scheme):
     # store PMS information in g_PMS database
     global g_PMS
     if not ATV_udid in g_PMS:
@@ -71,7 +71,8 @@ def declarePMS(ATV_udid, uuid, name, ip, port, type, token):
     g_PMS[ATV_udid][uuid] = { 'name': name,
                               'ip': ip , 'port': port, 'address': address,
                               'type': type,
-                              'accesstoken': token
+                              'accesstoken': token,
+                              'scheme': scheme
                             }
 
 def updatePMSProperty(ATV_udid, uuid, tag, value):
@@ -117,8 +118,6 @@ def getPMSCount(ATV_udid):
         return 0  # no server known for this aTV
     
     return len(g_PMS[ATV_udid])
-
-
 
 """
 PlexGDM
@@ -229,13 +228,13 @@ def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
         # defined in setting.cfg
         ip = CSettings.getSetting('ip_pms')
         port = CSettings.getSetting('port_pms')
-        declarePMS(ATV_udid,  'PMS_from_Settings', 'PMS_from_Settings', ip, port, 'local', '')
+        declarePMS(ATV_udid,  'PMS_from_Settings', 'PMS_from_Settings', ip, port, 'local', '', 'http')
     else:
         # PlexGDM
         PMS_list = PlexGDM()
         for uuid in PMS_list:
             PMS = PMS_list[uuid]
-            declarePMS(ATV_udid, PMS['uuid'], PMS['serverName'], PMS['ip'], PMS['port'], 'local', '')
+            declarePMS(ATV_udid, PMS['uuid'], PMS['serverName'], PMS['ip'], PMS['port'], 'local', '', 'http')
     
     # MyPlex servers
     if not MyPlexToken=='':
@@ -250,7 +249,8 @@ def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
                 ip = Dir.get('address')
                 port = Dir.get('port')
                 token = Dir.get('accessToken', '')
-                
+                scheme = Dir.get('scheme')
+
                 infoAge = time.time() - int(Dir.get('updatedAt'))
                 oneDayInSec = 60*60*24
                 if infoAge > 2*oneDayInSec:  # two days in seconds -> expiration in setting?
@@ -258,7 +258,7 @@ def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
                     continue
                 
                 if not uuid in g_PMS.get(ATV_udid, {}):
-                    declarePMS(ATV_udid, uuid, name, ip, port, 'myplex', token)
+                    declarePMS(ATV_udid, uuid, name, ip, port, 'myplex', token, scheme)
                 else:
                     updatePMSProperty(ATV_udid, uuid, 'accesstoken', token)
     
@@ -354,7 +354,8 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
             Server.set('name',    getPMSProperty(ATV_udid, uuid, 'name'))
             Server.set('address', getPMSProperty(ATV_udid, uuid, 'ip'))
             Server.set('port',    getPMSProperty(ATV_udid, uuid, 'port'))
-            baseURL = 'http://' + getPMSAddress(ATV_udid, uuid)
+            scheme = getPMSProperty(ATV_udid, uuid, 'scheme')
+            baseURL = scheme+'://' + getPMSAddress(ATV_udid, uuid)
             token = getPMSProperty(ATV_udid, uuid, 'accesstoken')
             
             PMSaddr = 'PMS(' + getPMSAddress(ATV_udid, uuid) + ')'
@@ -387,7 +388,7 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
 
 
 def getURL(PMSaddress, path, key):
-    if key.startswith('http://'):  # external server
+    if key.startswith('http://') or key.startswith('https://'):  # external server
         URL = key
     elif key.startswith('/'):  # internal full path.
         URL = PMSaddress + key
@@ -555,7 +556,7 @@ result:
     final path to media file
 """
 def getDirectVideoPath(key, AuthToken):
-    if key.startswith('http://'):  # external address - keep
+    if key.startswith('http://') or key.startswith('https://'):  # external address - keep
         path = key
     else:
         if AuthToken=='':
@@ -587,7 +588,7 @@ result:
 def getTranscodeImagePath(key, AuthToken, path, width, height):
     if key.startswith('/'):  # internal full path.
         path = 'http://127.0.0.1:32400' + key
-    elif key.startswith('http://'):  # external address - can we get a transcoding request for external images?
+    elif key.startswith('http://') or key.startswith('https://'):  # external address - can we get a transcoding request for external images?
         path = key
     else:  # internal path, add-on
         path = 'http://127.0.0.1:32400' + path + '/' + key

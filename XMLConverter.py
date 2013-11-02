@@ -75,18 +75,18 @@ def XML_Error(title, desc):
 
 
 
-def XML_PlayVideo_ChannelsV1(PMSaddress, path):
+def XML_PlayVideo_ChannelsV1(scheme, PMSaddress, path):
     XML = '\
 <atv>\n\
   <body>\n\
     <videoPlayer id="com.sample.video-player">\n\
       <httpFileVideoAsset id="' + path + '">\n\
-        <mediaURL>http://' + PMSaddress + path + '</mediaURL>\n\
+        <mediaURL>'+scheme+'://' + PMSaddress + path + '</mediaURL>\n\
         <title>*title*</title>\n\
         <!--bookmarkTime>{{EVAL(Video/viewOffset:0:int(x/1000))}}</bookmarkTime-->\n\
         <myMetadata>\n\
           <!-- PMS, OSD settings, ... -->\n\
-          <addrPMS>http://' + PMSaddress + '</addrPMS>\n\
+          <addrPMS>'+scheme+'://' + PMSaddress + '</addrPMS>\n\
           <key></key>\n\
           <ratingKey></ratingKey>\n\
           <duration></duration>\n\
@@ -197,7 +197,8 @@ def XML_PMS2aTV(PMSaddress, path, options):
         PMS_uuid = PlexAPI.getPMSFromAddress(UDID, PMSaddress)
         auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
         path = PlexAPI.getDirectVideoPath(path, auth_token)
-        return XML_PlayVideo_ChannelsV1(PMSaddress, path)  # direct link, no PMS XML available
+        scheme = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'scheme')
+        return XML_PlayVideo_ChannelsV1(scheme, PMSaddress, path)  # direct link, no PMS XML available
     
     elif cmd=='PhotoBrowser':
         XMLtemplate = 'Photo_Browser.xml'
@@ -335,10 +336,11 @@ def XML_PMS2aTV(PMSaddress, path, options):
             UDID = options['PlexConnectUDID']
             PMS_uuid = PlexAPI.getPMSFromAddress(UDID, PMSaddress)
             auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
+            scheme = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'scheme')
         else:
             auth_token = ''
-        
-        PMS = PlexAPI.getXMLFromPMS('http://'+PMSaddress, path, options, authtoken=auth_token)
+            scheme = 'http'
+        PMS = PlexAPI.getXMLFromPMS(scheme+'://'+PMSaddress, path, options, authtoken=auth_token)
         if PMS==False:
             return XML_Error('PlexConnect', 'No Response from Plex Media Server')
         
@@ -794,9 +796,10 @@ class CCommandCollection(CCommandHelper):
             UDID = self.options['PlexConnectUDID']
             PMS_uuid = PlexAPI.getPMSFromAddress(UDID, self.PMSaddress)
             auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
+            scheme = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'scheme')
         else:
             auth_token = ''
-        
+            scheme = 'http'
         if key.startswith('//'):  # local servers signature
             pathstart = key.find('/',3)
             type = key[2:pathstart]
@@ -804,7 +807,7 @@ class CCommandCollection(CCommandHelper):
             PMS = PlexAPI.getXMLFromMultiplePMS(UDID, path, type, self.options)
         elif key.startswith('/'):  # internal full path.
             path = key
-            PMS = PlexAPI.getXMLFromPMS('http://'+self.PMSaddress, path, self.options, auth_token)
+            PMS = PlexAPI.getXMLFromPMS(scheme+'://'+self.PMSaddress, path, self.options, auth_token)
         #elif key.startswith('http://'):  # external address
         #    path = key
         #    hijack = g_param['HostToIntercept']
@@ -815,10 +818,10 @@ class CCommandCollection(CCommandHelper):
         #        dprint(__name__, 1, path)
         elif key == '':  # internal path
             path = self.path[srcXML]
-            PMS = PlexAPI.getXMLFromPMS('http://'+self.PMSaddress, path, self.options, auth_token)
+            PMS = PlexAPI.getXMLFromPMS(scheme+'://'+self.PMSaddress, path, self.options, auth_token)
         else:  # internal path, add-on
             path = self.path[srcXML] + '/' + key
-            PMS = PlexAPI.getXMLFromPMS('http://'+self.PMSaddress, path, self.options, auth_token)
+            PMS = PlexAPI.getXMLFromPMS(scheme+'://'+self.PMSaddress, path, self.options, auth_token)
         
         self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML
         self.path[tag] = path  # store base path
@@ -892,7 +895,8 @@ class CCommandCollection(CCommandHelper):
         UDID = self.options['PlexConnectUDID']
         PMS_uuid = PlexAPI.getPMSFromAddress(UDID, PMSaddress)
         AuthToken = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
-        
+        scheme = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'scheme') 
+
         if width=='':
             # direct play
             res = PlexAPI.getDirectImagePath(key, AuthToken)
@@ -901,11 +905,11 @@ class CCommandCollection(CCommandHelper):
             res = PlexAPI.getTranscodeImagePath(key, AuthToken, self.path[srcXML], width, height)
         
         if res.startswith('/'):  # internal full path.
-            res = 'http://' + PMSaddress + res
-        elif res.startswith('http://'):  # external address
+            res = scheme + '://' + PMSaddress + res
+        elif res.startswith('http://') + res.startswith('https://'):  # external address
             pass
         else:  # internal path, add-on
-            res = 'http://' + PMSaddress + self.path[srcXML] + '/' + res
+            res = scheme + '://' + PMSaddress + self.path[srcXML] + '/' + res
         
         dprint(__name__, 1, 'ImageURL: {0}', res)
         return res
@@ -916,13 +920,14 @@ class CCommandCollection(CCommandHelper):
         UDID = self.options['PlexConnectUDID']
         PMS_uuid = PlexAPI.getPMSFromAddress(UDID, self.PMSaddress)
         AuthToken = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
+        scheme = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'scheme')
         
         # direct play
         res = PlexAPI.getDirectAudioPath(key, AuthToken)
         
         if res.startswith('/'):  # internal full path.
-            res = 'http://' + self.PMSaddress + res
-        elif res.startswith('http://'):  # external address
+            res = scheme + '://' + self.PMSaddress + res
+        elif res.startswith('http://') or res.startswith('https://'):  # external address
             hijack = g_param['HostToIntercept']
             if hijack in res:
                 dprint(__name__, 1, "twisting...")
@@ -930,7 +935,7 @@ class CCommandCollection(CCommandHelper):
                 res = res.replace(hijack, hijack_twisted)
                 dprint(__name__, 1, res)
         else:  # internal path, add-on
-            res = 'http://' + self.PMSaddress + self.path[srcXML] + '/' + res
+            res = scheme + '://' + self.PMSaddress + self.path[srcXML] + '/' + res
         
         dprint(__name__, 1, 'MusicURL: {0}', res)
         return res
@@ -988,7 +993,8 @@ class CCommandCollection(CCommandHelper):
         if Media!=None:
             # transcoder action
             transcoderAction = g_ATVSettings.getSetting(UDID, 'transcoderaction')
-            
+            scheme = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'scheme') 
+
             # quality limits: quality=(resolution, quality, bitrate)
             qLookup = { '480p 2.0Mbps' :('720x480', '60', '2000'), \
                         '720p 3.0Mbps' :('1280x720', '75', '3000'), \
@@ -1019,9 +1025,8 @@ class CCommandCollection(CCommandHelper):
                 # or HTTP live stream (limited by quality setting)
                 # or native aTV media (limited by quality setting)
                 res, leftover, dfltd = self.getKey(Media, srcXML, 'Part/key')
-                
                 if Media.get('indirect', False):  # indirect... todo: select suitable resolution, today we just take first Media
-                    PMS = PlexAPI.getXMLFromPMS('http://'+self.PMSaddress, res, self.options, AuthToken)  # todo... check key for trailing '/' or even 'http'
+                    PMS = PlexAPI.getXMLFromPMS(scheme+'://'+self.PMSaddress, res, self.options, AuthToken)  # todo... check key for trailing '/' or even 'http'
                     res, leftover, dfltd = self.getKey(PMS.getroot(), srcXML, 'Video/Media/Part/key')
                 
                 res = PlexAPI.getDirectVideoPath(res, AuthToken)
@@ -1039,10 +1044,10 @@ class CCommandCollection(CCommandHelper):
         else:
             dprint(__name__, 0, "MEDIAPATH - element not found: {0}", param)
             res = 'FILE_NOT_FOUND'  # not found?
-        
-        if res.startswith('/'):  # internal full path.
-            res = 'http://' + self.PMSaddress + res
-        elif res.startswith('http://'):  # external address
+
+	if res.startswith('/'):  # internal full path.
+            res = scheme+'://' + self.PMSaddress + res
+        elif res.startswith('http://') or res.startswith('https://'):  # external address
             hijack = g_param['HostToIntercept']
             if hijack in res:
                 dprint(__name__, 1, "twisting...")
@@ -1050,9 +1055,8 @@ class CCommandCollection(CCommandHelper):
                 res = res.replace(hijack, hijack_twisted)
                 dprint(__name__, 1, res)
         else:  # internal path, add-on
-            res = 'http://' + self.PMSaddress + self.path[srcXML] + res
+            res = scheme + '://' + self.PMSaddress + self.path[srcXML] + res
         
-        dprint(__name__, 1, 'MediaURL: {0}', res)
         return res
             
     def ATTRIB_ADDR_PMS(self, src, srcXML, param):
