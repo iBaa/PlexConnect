@@ -68,19 +68,25 @@ function toggleSettings(opt, template)
 /*
  * discover
  */
-function discover(opt) 
+function discover(opt, template) 
 {
   // get "opt" element of displayed XML
   var dispval = document.getElementById(opt).getElementByTagName("rightLabel");
   if (!dispval) return undefined;  // error - element not found
-    
-  // read new XML
+  
+  // discover - trigger PlexConnect, ignore response
   var url = "http://atv.plexconnect/&PlexConnect=Discover&PlexConnectUDID="+atv.device.udid
   var req = new XMLHttpRequest();
   req.open('GET', url, false);
   req.send();
+  
+  // read new XML
+  var url = "http://atv.plexconnect/&PlexConnect="+ template + "&PlexConnectUDID="+atv.device.udid
+  var req = new XMLHttpRequest();
+  req.open('GET', url, false);
+  req.send();
   doc=req.responseXML;
-    
+  
   // get "opt" element of fresh XML
   var newval = doc.getElementById(opt).getElementByTagName("rightLabel");
   if (!newval) return undefined;  // error - element not found
@@ -139,6 +145,14 @@ myPlexSignInOut = function()
         elem_remove.removeFromParent();
     }; 
     
+    // discover - trigger PlexConnect, ignore response
+    reqDiscover = function()
+    {
+        var url = "http://atv.plexconnect/&PlexConnect=Discover&PlexConnectUDID="+atv.device.udid
+        var req = new XMLHttpRequest();
+        req.open('GET', url, false);
+    req.send();
+    };
     
     SignIn = function()
     {
@@ -193,7 +207,7 @@ myPlexSignInOut = function()
             var new_myPlexElem = doc.getElementById('MyPlexSignInOut')
             
             // discover
-            discover('discover');
+            discover('discover', 'Settings');
             
             // update MyPlexSignInOut
             hidePict(_myPlexElem, 'spinner');
@@ -232,7 +246,7 @@ myPlexSignInOut = function()
         var new_myPlexElem = doc.getElementById('MyPlexSignInOut')
         
         // discover
-        discover('discover');
+        discover('discover', 'Settings');
         
         // update MyPlexSignInOut
         showPict(_myPlexElem, 'arrow');

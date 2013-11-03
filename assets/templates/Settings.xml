@@ -44,7 +44,7 @@
               </horizontalDivider>
             </header>
             <items>
-              <oneLineMenuItem id="discover" onSelect="discover('discover')">
+              <oneLineMenuItem id="discover" onSelect="discover('discover', 'Settings')">
                 <label>{{TEXT(Discover)}}</label>
                 <rightLabel>Plex Media Servers: {{PMSCOUNT()}}</rightLabel>
               </oneLineMenuItem>
