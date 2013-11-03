@@ -229,7 +229,17 @@ def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
         # defined in setting.cfg
         ip = CSettings.getSetting('ip_pms')
         port = CSettings.getSetting('port_pms')
-        declarePMS(ATV_udid,  'PMS_from_Settings', 'PMS_from_Settings', ip, port, 'local', '')
+        XML = getXMLFromPMS('http://'+ip+':'+port, '/servers', None, '')
+        
+        if XML==False:
+            pass  # no response from manual defined server (Settings.cfg)
+        else:
+            Server = XML.find('Server')
+            uuid = Server.get('machineIdentifier')
+            name = Server.get('name')
+            
+            declarePMS(ATV_udid, uuid, name, ip, port, 'local', '')
+    
     else:
         # PlexGDM
         PMS_list = PlexGDM()
