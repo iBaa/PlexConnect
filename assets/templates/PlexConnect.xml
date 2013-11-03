@@ -14,14 +14,14 @@
           <title>{{TEXT(Channels)}}</title>
           <url>{{URL(:/channels/all)}}</url>
         </navigationItem>
+        <navigationItem id="MyPlex">
+          <title>{{TEXT(MyPlex)}}</title>
+          <url>{{URL(:/myplex)}}</url>
+        </navigationItem>
         <navigationItem id="Settings">
           <title>{{TEXT(Settings)}}</title>
           <url>{{URL(:/&amp;PlexConnect=Settings)}}</url>
         </navigationItem>
-        <!--navigationItem id="MyPlex">
-          <title>MyPlex</title>
-          <url>http://atv.plexconnect/...</url>
-        </navigationItem-->
       </navigation>
     </viewWithNavigationBar>
   </body>

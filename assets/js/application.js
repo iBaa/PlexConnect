@@ -5,7 +5,7 @@ var ratingKey;
 var duration;
 var showClock, timeFormat, clockPosition, overscanAdjust;
 var showEndtime;
-var authToken;
+var accessToken;
 
 // information for atv.player - computed internally to application.js
 var lastReportedTime = -1;
@@ -45,8 +45,8 @@ atv.player.playerTimeDidChange = function(time)
   {
     lastReportedTime = thisReportTime;
     var token = '';
-    if (authToken!='')
-        token = '&X-Plex-Token=' + authToken;
+    if (accessToken!='')
+        token = '&X-Plex-Token=' + accessToken;
     loadPage( addrPMS + '/:/timeline?ratingKey=' + ratingKey + 
                         '&key=' + key +
                         '&duration=' + duration + 
@@ -70,8 +70,8 @@ atv.player.didStopPlaying = function()
   
   // Notify of a stop.
   var token = '';
-  if (authToken!='')
-      token = '&X-Plex-Token=' + authToken;
+  if (accessToken!='')
+      token = '&X-Plex-Token=' + accessToken;
   loadPage( addrPMS + '/:/timeline?ratingKey=' + ratingKey + 
                       '&key=' + key +
                       '&duration=' + duration + 
@@ -108,7 +108,7 @@ atv.player.willStartPlaying = function()
     clockPosition = metadata.getElementByTagName('clockPosition').textContent;
     overscanAdjust = metadata.getElementByTagName('overscanAdjust').textContent;
     showEndtime = metadata.getElementByTagName('showEndtime').textContent;
-    authToken = metadata.getElementByTagName('authToken').textContent;
+    accessToken = metadata.getElementByTagName('accessToken').textContent;
   }
   
   // Use loadMoreAssets callback for playlists - if not transcoding!
@@ -225,8 +225,8 @@ atv.player.playerStateChanged = function(newState, timeIntervalSec) {
   {
   time = Math.round(timeIntervalSec*1000);
   var token = '';
-  if (authToken!='')
-      token = '&X-Plex-Token=' + authToken;
+  if (accessToken!='')
+      token = '&X-Plex-Token=' + accessToken;
   loadPage( addrPMS + '/:/timeline?ratingKey=' + ratingKey + 
                       '&key=' + key +
                       '&duration=' + duration + 
@@ -388,6 +388,13 @@ atv.onAppEntry = function()
     firmVer = fv[0] + "." + fv[1];
     if (parseFloat(firmVer) >= 5.1)
     {
+        // discover - trigger PlexConnect, ignore response
+        var url = "http://atv.plexconnect/&PlexConnect=Discover&PlexConnectUDID="+atv.device.udid
+        var req = new XMLHttpRequest();
+        req.open('GET', url, false);
+        req.send();
+        
+        // load main page
         atv.loadURL("http://atv.plexconnect/PlexConnect.xml&PlexConnectUDID=" + atv.device.udid);
     }
     else

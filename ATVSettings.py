@@ -27,10 +27,13 @@ options = { \
     'tv_navbar_genres'          :('checked', 'unchecked'), \
     'tv_navbar_more'            :('checked', 'unchecked'), \
     'transcodequality'  :('1080p 40.0Mbps', \
-                        '480p 2.0Mbps', \
-                        '720p 3.0Mbps', '720p 4.0Mbps', \
-                        '1080p 8.0Mbps', '1080p 10.0Mbps', '1080p 12.0Mbps', '1080p 20.0Mbps'), \
+                          '480p 2.0Mbps', \
+                          '720p 3.0Mbps', '720p 4.0Mbps', \
+                          '1080p 8.0Mbps', '1080p 10.0Mbps', '1080p 12.0Mbps', '1080p 20.0Mbps'), \
     'transcoderaction'  :('Auto', 'DirectPlay', 'Transcode'), \
+    'remotebitrate'     :('720p 3.0Mbps', '720p 4.0Mbps', \
+                          '1080p 8.0Mbps', '1080p 10.0Mbps', '1080p 12.0Mbps', '1080p 20.0Mbps', '1080p 40.0Mbps', \
+                          '480p 2.0Mbps'), \
     'subtitlesize'      :('100', '125', '150', '50', '75'), \
     'audioboost'        :('100', '175', '225', '300'), \
     'showunwatched'     :('True', 'False'), \

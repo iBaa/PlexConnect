@@ -4,7 +4,7 @@
   </head>
 
   <body>
-    {{ADDXML(LocalSections:://local/library/sections)}}
+    {{ADDXML(MyPlexSections:://myplex/library/sections)}}
     
     {{VAR(sections:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
     
@@ -17,15 +17,15 @@
       <menu>
         <sections>
           
-          <!-- local servers -->
+          <!-- myplex servers -->
           <menuSection>
-          {{COPY(@LocalSections/Server:size::0=|1=COPY)}}
+          {{COPY(@MyPlexSections/Server:size::0=|1=COPY)}}
             
             <header>
               <horizontalDivider alignment="left">
                 <title>{{VAL(name)}}</title>
               </horizontalDivider>
-            </header>{{CUT(@LocalSections/size:CUT:0=CUT|1=CUT|2=)}}
+            </header>
             
             <items>
               <!-- /library/sections -->
@@ -42,12 +42,12 @@
               </oneLineMenuItem>
               
               <!-- search -->
-              <oneLineMenuItem id="{{VAL(searchKey)}}"
+              <!--oneLineMenuItem id="{{VAL(searchKey)}}"
                                        onPlay="atv.loadURL('{{URL(searchKey)}}')"
                                        onSelect="atv.loadURL('{{URL(searchKey)}}')">
                 <label>{{TEXT(Search)}}</label>
                 <accessories><arrow/></accessories>
-              </oneLineMenuItem>
+              </oneLineMenuItem-->
               
             </items>
           </menuSection>
@@ -60,7 +60,7 @@
     <dialog id="com.sample.error-dialog">
     {{CUT(#sections::FALSE=|TRUE=CUT)}}
       <title>PlexConnect</title>
-      <description>{{TEXT(No Plex Library Sections Available)}}</description>
+      <description>{{TEXT(No MyPlex Library Sections Available)}}</description>
     </dialog>
     
   </body>

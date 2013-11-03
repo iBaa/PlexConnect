@@ -46,8 +46,14 @@
 										</metadataValues>
                   </keyedPreview>
                 </preview>
-              </oneLineMenuItem>{{CUT(Video/title:CUT:=)}}{{CUT($listviewmetadata::Hide=CUT|Show=)}}
-
+              </oneLineMenuItem>{{CUT(Video/title:CUT:=)}}
+              
+              <oneLineMenuItem id="none">
+                <label>{{TEXT(No Unwatched Movies)}}</label>
+              </oneLineMenuItem>{{CUT(Video/title::=CUT)}}
+            </items>{{CUT($listviewmetadata::Hide=CUT|Show=)}}
+            
+            <items>
               <twoLineMenuItem id="{{VAL(key)}}"
                              onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                              onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')"
@@ -64,12 +70,12 @@
                     <image>{{IMAGEURL(thumb::768)}}</image>
                   </crossFadePreview>
                 </preview>
-              </twoLineMenuItem>{{CUT(Video/title:CUT:=)}}{{CUT($listviewmetadata::Show=CUT|Hide=)}}
+              </twoLineMenuItem>{{CUT(Video/title:CUT:=)}}
               
               <oneLineMenuItem id="none">
                 <label>{{TEXT(No Unwatched Movies)}}</label>
               </oneLineMenuItem>{{CUT(Video/title::=CUT)}}
-            </items>
+            </items>{{CUT($listviewmetadata::Show=CUT|Hide=)}}
           </menuSection>
         </sections>
       </menu>

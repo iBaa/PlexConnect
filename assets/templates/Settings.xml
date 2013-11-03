@@ -44,11 +44,7 @@
               </horizontalDivider>
             </header>
             <items>
-              <oneLineMenuItem id="PMS_uuid" onSelect="toggleSettings('PMS_uuid', 'Settings')">
-                <label>{{TEXT(PMS)}}</label>
-                <rightLabel>{{PMSNAME()}}</rightLabel>
-              </oneLineMenuItem>
-              <oneLineMenuItem id="discover" onSelect="discover('discover','PMS_uuid')">
+              <oneLineMenuItem id="discover" onSelect="discover('discover', 'Settings')">
                 <label>{{TEXT(Discover)}}</label>
                 <rightLabel>Plex Media Servers: {{PMSCOUNT()}}</rightLabel>
               </oneLineMenuItem>
@@ -118,6 +114,10 @@
               <oneLineMenuItem id="TranscodeQuality" onSelect="toggleSettings('TranscodeQuality', 'Settings')">
                 <label>{{TEXT(Transcoder Quality)}}</label>
                 <rightLabel>{{SETTING(transcodequality)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="RemoteBitrate" onSelect="toggleSettings('RemoteBitrate', 'Settings')">
+                <label>{{TEXT(Remote Bitrate)}}</label>
+                <rightLabel>{{SETTING(remotebitrate)}}</rightLabel>
               </oneLineMenuItem>
               <oneLineMenuItem id="SubtitleSize" onSelect="toggleSettings('SubtitleSize', 'Settings')">
                 <label>{{TEXT(Subtitle Size %)}}</label>

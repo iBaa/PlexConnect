@@ -68,35 +68,31 @@ function toggleSettings(opt, template)
 /*
  * discover
  */
-function discover(opt, opt_too) 
+function discover(opt, template) 
 {
   // get "opt" element of displayed XML
   var dispval = document.getElementById(opt).getElementByTagName("rightLabel");
   if (!dispval) return undefined;  // error - element not found
-    
-  // read new XML
+  
+  // discover - trigger PlexConnect, ignore response
   var url = "http://atv.plexconnect/&PlexConnect=Discover&PlexConnectUDID="+atv.device.udid
   var req = new XMLHttpRequest();
   req.open('GET', url, false);
   req.send();
+  
+  // read new XML
+  var url = "http://atv.plexconnect/&PlexConnect="+ template + "&PlexConnectUDID="+atv.device.udid
+  var req = new XMLHttpRequest();
+  req.open('GET', url, false);
+  req.send();
   doc=req.responseXML;
-    
+  
   // get "opt" element of fresh XML
   var newval = doc.getElementById(opt).getElementByTagName("rightLabel");
   if (!newval) return undefined;  // error - element not found
   log("discover done - "+newval.textContent);
     
   // push new value to display
-  dispval.textContent = newval.textContent;
-  
-  // get "opt_too" element of fresh XML
-  newval = doc.getElementById(opt_too).getElementByTagName("rightLabel");
-  if (!newval) return undefined;  // error - element not found
-  log("update PMS - "+newval.textContent);
-    
-  // push new value to display
-  dispval = document.getElementById(opt_too).getElementByTagName("rightLabel");
-  if (!dispval) return undefined;  // error - element not found
   dispval.textContent = newval.textContent;
 };
 
@@ -149,6 +145,14 @@ myPlexSignInOut = function()
         elem_remove.removeFromParent();
     }; 
     
+    // discover - trigger PlexConnect, ignore response
+    reqDiscover = function()
+    {
+        var url = "http://atv.plexconnect/&PlexConnect=Discover&PlexConnectUDID="+atv.device.udid
+        var req = new XMLHttpRequest();
+        req.open('GET', url, false);
+    req.send();
+    };
     
     SignIn = function()
     {
@@ -191,7 +195,7 @@ myPlexSignInOut = function()
         
         doLogin = function()
         {
-            // logout and get new settings page
+            // login and get new settings page
             var url = "http://atv.plexconnect/" + 
                       "&PlexConnect=MyPlexLogin" +
                       "&PlexConnectCredentials=" + encodeURIComponent(_username+':'+_password) +
@@ -201,6 +205,9 @@ myPlexSignInOut = function()
             req.send();
             var doc = req.responseXML;
             var new_myPlexElem = doc.getElementById('MyPlexSignInOut')
+            
+            // discover
+            discover('discover', 'Settings');
             
             // update MyPlexSignInOut
             hidePict(_myPlexElem, 'spinner');
@@ -237,6 +244,9 @@ myPlexSignInOut = function()
         req.send();
         var doc = req.responseXML;
         var new_myPlexElem = doc.getElementById('MyPlexSignInOut')
+        
+        // discover
+        discover('discover', 'Settings');
         
         // update MyPlexSignInOut
         showPict(_myPlexElem, 'arrow');
