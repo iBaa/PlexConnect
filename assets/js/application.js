@@ -388,6 +388,13 @@ atv.onAppEntry = function()
     firmVer = fv[0] + "." + fv[1];
     if (parseFloat(firmVer) >= 5.1)
     {
+        // discover - trigger PlexConnect, ignore response
+        var url = "http://atv.plexconnect/&PlexConnect=Discover&PlexConnectUDID="+atv.device.udid
+        var req = new XMLHttpRequest();
+        req.open('GET', url, false);
+        req.send();
+        
+        // load main page
         atv.loadURL("http://atv.plexconnect/PlexConnect.xml&PlexConnectUDID=" + atv.device.udid);
     }
     else

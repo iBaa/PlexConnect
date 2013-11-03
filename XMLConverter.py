@@ -168,12 +168,6 @@ def XML_PMS2aTV(PMSaddress, path, options):
         dprint(__name__, 1, "no aTVLanguage - pick en")
         options['aTVLanguage'] = 'en'
     
-    # discover! PlexGDM and MyPlex lookup - application just started on aTV UDID
-    if path=='/PlexConnect.xml':
-        UDID = options['PlexConnectUDID']
-        auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
-        PlexAPI.discoverPMS(UDID, g_param['CSettings'], auth_token)
-    
     # XML Template selector
     # - PlexConnect command
     # - path
@@ -312,9 +306,8 @@ def XML_PMS2aTV(PMSaddress, path, options):
         auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
         PlexAPI.discoverPMS(UDID, g_param['CSettings'], auth_token)
         
-        XMLtemplate = 'Settings.xml'
-        path = ''  # clear path - we don't need PMS-XML
-        
+        return XML_Error('PlexConnect', 'Discover!')  # not an error - but aTV won't care anyways.
+    
     elif path.startswith('/search?'):
         XMLtemplate = 'Search_Results.xml'
     
@@ -950,6 +943,9 @@ class CCommandCollection(CCommandHelper):
             PMSaddress = key[cmd_start+4:cmd_end]
             key = key[cmd_end+1:]
         
+        if not PMSaddress=='':
+            PMSaddress = '/PMS(' + quote_plus(PMSaddress) + ')'
+        
         res = 'http://' + g_param['HostOfPlexConnect']  # base address to PlexConnect
         
         if key.endswith('.js'):  # link to PlexConnect owned .js stuff
@@ -964,11 +960,11 @@ class CCommandCollection(CCommandHelper):
             res = res + '/PMS(' + quote_plus(PMSaddress) + ')' + key
             """
         elif key.startswith('/'):  # internal full path.
-            res = res + '/PMS(' + quote_plus(PMSaddress) + ')' + key
+            res = res + PMSaddress + key
         elif key == '':  # internal path
-            res = res + '/PMS(' + quote_plus(PMSaddress) + ')' + self.path[srcXML]
+            res = res + PMSaddress + self.path[srcXML]
         else:  # internal path, add-on
-            res = res + '/PMS(' + quote_plus(PMSaddress) + ')' + self.path[srcXML] + '/' + key
+            res = res + PMSaddress + self.path[srcXML] + '/' + key
         
         return res
     
