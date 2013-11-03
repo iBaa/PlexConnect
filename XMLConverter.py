@@ -938,6 +938,9 @@ class CCommandCollection(CCommandHelper):
             PMSaddress = key[cmd_start+4:cmd_end]
             key = key[cmd_end+1:]
         
+        if not PMSaddress=='':
+            PMSaddress = '/PMS(' + quote_plus(PMSaddress) + ')'
+        
         res = 'http://' + g_param['HostOfPlexConnect']  # base address to PlexConnect
         
         if key.endswith('.js'):  # link to PlexConnect owned .js stuff
@@ -952,11 +955,11 @@ class CCommandCollection(CCommandHelper):
             res = res + '/PMS(' + quote_plus(PMSaddress) + ')' + key
             """
         elif key.startswith('/'):  # internal full path.
-            res = res + '/PMS(' + quote_plus(PMSaddress) + ')' + key
+            res = res + PMSaddress + key
         elif key == '':  # internal path
-            res = res + '/PMS(' + quote_plus(PMSaddress) + ')' + self.path[srcXML]
+            res = res + PMSaddress + self.path[srcXML]
         else:  # internal path, add-on
-            res = res + '/PMS(' + quote_plus(PMSaddress) + ')' + self.path[srcXML] + '/' + key
+            res = res + PMSaddress + self.path[srcXML] + '/' + key
         
         return res
     
