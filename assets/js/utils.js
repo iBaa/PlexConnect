@@ -123,7 +123,7 @@ function playTrailer(addrPMS,title,year)
                             var video = doc2.youtube[0].source;
                             var url = "http://atv.plexconnect/system/services/url/lookup?url=http%3A//www.youtube.com/watch%3Fv%3D"+encodeURIComponent(video)+"&PlexConnect=Play";
 
-                            iOS_atv_loadURL(url);
+                            atv.loadURL(url);
 
                         }
                     }
