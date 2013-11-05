@@ -19,7 +19,7 @@
               <twoLineEnhancedMenuItem id="{{VAL(ratingKey)}}"
                                          onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                                          onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
-                                         onHoldSelect="scrobbleMenu('{{TEXT(Episode)}}', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
+                                         onHoldSelect="scrobbleMenu('http://{{ADDR_PMS()}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Episode)}}');">
                 {{COPY(Video:index::=|0 =COPY)}}
                 <label>{{VAL(title)}}</label>
                 <ordinal>{{VAL(index)}}</ordinal>

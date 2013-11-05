@@ -18,7 +18,7 @@
             <items>
               <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key)}}')"
                                                  onSelect="atv.loadURL('{{URL(key)}}')"
-                                                 onHoldSelect="scrobbleMenu('{{TEXT(Show)}}', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
+                                                 onHoldSelect="scrobbleMenu('http://{{ADDR_PMS()}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Show)}}');">
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>
 								<rightLabel>{{unwatchedCountList(leafCount:0:viewedLeafCount:0)}}</rightLabel>{{CUT($showunwatched::False=CUT|True=)}}
