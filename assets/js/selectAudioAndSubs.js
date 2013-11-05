@@ -31,7 +31,7 @@ if(atv.Element)
 /*
  * Build Audio/Subtitle menu
  */
-function selectAudioAndSubs(addrPMS, ratingKey) {
+function selectAudioAndSubs(PMS_baseURL, accessToken, ratingKey) {
   var xmlstr =
 '<?xml version="1.0" encoding="UTF-8"?> \
 <atv> \
@@ -63,7 +63,7 @@ function selectAudioAndSubs(addrPMS, ratingKey) {
     if (stream.getElementByTagName('streamType').textContent == '2')
     { 
       xmlstr = xmlstr + '\
-                <oneLineMenuItem id="audio' + i.toString() + '" onSelect="selectAudioStream(\'' + addrPMS + '\', \'' + ratingKey + '\', ' + stream.getElementByTagName('id').textContent + '); toggleAudioCheck(\'' + i.toString() + '\')"> \
+                <oneLineMenuItem id="audio' + i.toString() + '" onSelect="selectAudioStream(\'' + PMS_baseURL + '\', \'' + accessToken + '\', \'' + ratingKey + '\', ' + stream.getElementByTagName('id').textContent + '); toggleAudioCheck(\'' + i.toString() + '\')"> \
                 <label>' + stream.getElementByTagName('language').textContent + ' (' + stream.getElementByTagName('codec').textContent + ')</label>';
       if (stream.getElementByTagName('selected').textContent == '1')
       {
@@ -87,7 +87,7 @@ function selectAudioAndSubs(addrPMS, ratingKey) {
             </header> \
             <items>';
   xmlstr = xmlstr + ' \
-              <oneLineMenuItem id="sub99" onSelect="selectSubStream(\'' + addrPMS + '\', \'' + ratingKey + '\', 0); toggleSubCheck(\'99\')"> \
+              <oneLineMenuItem id="sub99" onSelect="selectSubStream(\'' + PMS_baseURL + '\', \'' + accessToken + '\', \'' + ratingKey + '\', 0); toggleSubCheck(\'99\')"> \
                 <label>{{TEXT(None)}}</label>';
 	
 	var noSubs = true;
@@ -113,7 +113,7 @@ function selectAudioAndSubs(addrPMS, ratingKey) {
     if (stream.getElementByTagName('streamType').textContent == '3')
     { 
       xmlstr = xmlstr + ' \
-              <oneLineMenuItem id="sub' + i.toString() + '" onSelect="selectSubStream(\'' + addrPMS + '\', \'' + ratingKey + '\', ' + stream.getElementByTagName('id').textContent + '); toggleSubCheck(\'' + i.toString() + '\')"> \
+              <oneLineMenuItem id="sub' + i.toString() + '" onSelect="selectSubStream(\'' + PMS_baseURL + '\', \'' + accessToken + '\', \'' + ratingKey + '\', ' + stream.getElementByTagName('id').textContent + '); toggleSubCheck(\'' + i.toString() + '\')"> \
                 <label>' + stream.getElementByTagName('language').textContent + ' (' + stream.getElementByTagName('format').textContent + ')</label>';
 			if (stream.getElementByTagName('selected').textContent == '1')
 			{
@@ -222,15 +222,21 @@ function toggleAudioCheck(id)
 /*
  * Tell PMS which sub/audio stream to use
  */
-function selectSubStream(addrPMS, ratingKey, stream) {
-  var url = "http://" + addrPMS + "/library/parts/" + ratingKey + "?subtitleStreamID=" + stream.toString()
+function selectSubStream(PMS_baseURL, accessToken, ratingKey, stream) {
+    var url = PMS_baseURL + "/library/parts/" + ratingKey + "?subtitleStreamID=" + stream.toString()
+    if (accessToken!='')
+        url = url + '&X-Plex-Token=' + accessToken;
+    
   var req = new XMLHttpRequest();
 	req.open('PUT', url, true);
 	req.send();
 };
 
-function selectAudioStream(addrPMS, ratingKey, stream) {
-  var url = "http://" + addrPMS + "/library/parts/" + ratingKey + "?audioStreamID=" + stream.toString()
+function selectAudioStream(PMS_baseURL, accessToken, ratingKey, stream) {
+    var url = PMS_baseURL + "/library/parts/" + ratingKey + "?audioStreamID=" + stream.toString()
+    if (accessToken!='')
+        url = url + '&X-Plex-Token=' + accessToken;
+    
   var req = new XMLHttpRequest();
 	req.open('PUT', url, true);
 	req.send();

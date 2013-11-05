@@ -80,8 +80,9 @@
                   <focusedImage>resource://PreviewFocused.png</focusedImage>
                   <!--<badge></badge>-->
                 </actionButton>
-                <actionButton id="selectAudioAndSubs" onSelect="selectAudioAndSubs('{{ADDR_PMS()}}', '{{VAL(Video/Media/Part/id)}}')"
-                                                      onPlay="selectAudioAndSubs('{{ADDR_PMS()}}', '{{VAL(Video/Media/Part/id)}}')">
+                <actionButton id="selectAudioAndSubs"
+                              onSelect="selectAudioAndSubs('http://{{ADDR_PMS()}}', '{{VAL(%accesstoken)}}', '{{VAL(Video/Media/Part/id)}}')"
+                              onPlay="selectAudioAndSubs('http://{{ADDR_PMS()}}', '{{VAL(%accesstoken)}}', '{{VAL(Video/Media/Part/id)}}')">
                   <title>{{TEXT(Audio/Subs)}}</title>
                   <image>resource://Queue.png</image>
                   <focusedImage>resource://QueueFocused.png</focusedImage>
