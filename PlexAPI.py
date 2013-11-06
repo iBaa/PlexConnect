@@ -122,13 +122,6 @@ def getPMSCount(ATV_udid):
     
     return len(g_PMS[ATV_udid])
 
-def isPMSOwned(ATV_udid, uuid):
-    # check if PMS is owned or shared
-    if not ATV_udid in g_PMS:
-        return 0  # no server known for this aTV
-    
-    return int(g_PMS[ATV_udid][uuid]['owned'])
-
 def getLocalPMSAddress(ATV_udid):
     for uuid in g_PMS[ATV_udid]:
         if g_PMS[ATV_udid][uuid].get('type', None) == "local":
