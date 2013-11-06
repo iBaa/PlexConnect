@@ -1,11 +1,12 @@
 // settings for atv.player - communicated in PlayVideo/myMetadata
-var addrPMS;
+var baseURL;
+var accessToken;
 var key;
 var ratingKey;
 var duration;
 var showClock, timeFormat, clockPosition, overscanAdjust;
 var showEndtime;
-var accessToken;
+
 
 // information for atv.player - computed internally to application.js
 var lastReportedTime = -1;
@@ -47,7 +48,7 @@ atv.player.playerTimeDidChange = function(time)
     var token = '';
     if (accessToken!='')
         token = '&X-Plex-Token=' + accessToken;
-    loadPage( addrPMS + '/:/timeline?ratingKey=' + ratingKey + 
+    loadPage( baseURL + '/:/timeline?ratingKey=' + ratingKey + 
                         '&key=' + key +
                         '&duration=' + duration + 
                         '&state=playing' +
@@ -72,7 +73,7 @@ atv.player.didStopPlaying = function()
   var token = '';
   if (accessToken!='')
       token = '&X-Plex-Token=' + accessToken;
-  loadPage( addrPMS + '/:/timeline?ratingKey=' + ratingKey + 
+  loadPage( baseURL + '/:/timeline?ratingKey=' + ratingKey + 
                       '&key=' + key +
                       '&duration=' + duration + 
                       '&state=stopped' +
@@ -82,7 +83,7 @@ atv.player.didStopPlaying = function()
                       token );
     
   // Kill the session.
-  loadPage(addrPMS + '/video/:/transcode/universal/stop?session=' + atv.device.udid);
+  loadPage(baseURL + '/video/:/transcode/universal/stop?session=' + atv.device.udid);
 };
 
 /*
@@ -96,19 +97,21 @@ atv.player.willStartPlaying = function()
   var url = atv.player.asset.getElementByTagName('mediaURL').textContent;
   var metadata = atv.player.asset.getElementByTagName('myMetadata');
   
-  // get addrPMS, OSD settings, ...
+  // get baseURL, OSD settings, ...
   if (metadata != null)
   {
-    addrPMS = metadata.getElementByTagName('addrPMS').textContent;
+    baseURL = metadata.getElementByTagName('baseURL').textContent;
+    accessToken = metadata.getElementByTagName('accessToken').textContent;
+    
     key = metadata.getElementByTagName('key').textContent;
     ratingKey = metadata.getElementByTagName('ratingKey').textContent;
     duration = metadata.getElementByTagName('duration').textContent;
+    
     showClock = metadata.getElementByTagName('showClock').textContent;
     timeFormat = metadata.getElementByTagName('timeFormat').textContent;
     clockPosition = metadata.getElementByTagName('clockPosition').textContent;
     overscanAdjust = metadata.getElementByTagName('overscanAdjust').textContent;
     showEndtime = metadata.getElementByTagName('showEndtime').textContent;
-    accessToken = metadata.getElementByTagName('accessToken').textContent;
   }
   
   // Use loadMoreAssets callback for playlists - if not transcoding!
@@ -204,7 +207,7 @@ atv.player.playerStateChanged = function(newState, timeIntervalSec) {
   if (newState == 'Paused')
   {
     state = 'paused';
-    pingTimer = atv.setInterval(function() {loadPage( addrPMS + '/video/:/transcode/universal/ping?session=' + 
+    pingTimer = atv.setInterval(function() {loadPage( baseURL + '/video/:/transcode/universal/ping?session=' + 
                                                                   atv.device.udid); }, 60000);
   }
 
@@ -227,7 +230,7 @@ atv.player.playerStateChanged = function(newState, timeIntervalSec) {
   var token = '';
   if (accessToken!='')
       token = '&X-Plex-Token=' + accessToken;
-  loadPage( addrPMS + '/:/timeline?ratingKey=' + ratingKey + 
+  loadPage( baseURL + '/:/timeline?ratingKey=' + ratingKey + 
                       '&key=' + key +
                       '&duration=' + duration + 
                       '&state=' + state + 

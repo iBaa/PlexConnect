@@ -10,16 +10,18 @@
         
         <myMetadata>
             <!-- PMS, OSD settings, ... -->
-            <addrPMS>http://{{ADDR_PMS()}}</addrPMS>
+            <baseURL>{{VAL(%baseURL)}}</baseURL>
+            <accessToken>{{VAL(%accesstoken)}}</accessToken>
+            
             <key>{{VAL(Video/key)}}</key>
             <ratingKey>{{VAL(Video/ratingKey)}}</ratingKey>
             <duration>{{VAL(Video/duration)}}</duration>
+            
             <showClock>{{VAL($showplayerclock)}}</showClock>
             <timeFormat>{{VAL($timeformat)}}</timeFormat>
             <clockPosition>{{VAL($clockposition)}}</clockPosition>
             <overscanAdjust>{{VAL($overscanadjust)}}</overscanAdjust>
             <showEndtime>{{VAL($showendtime)}}</showEndtime>
-            <accessToken>{{VAL(%accesstoken)}}</accessToken>
             
             <!-- stacked media -->
             <httpFileVideoAsset id="{{VAL(key)}}">
