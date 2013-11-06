@@ -18,7 +18,7 @@
             <moviePoster id="{{VAL(key)}}" 
                              onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                              onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')"
-                             onHoldSelect="scrobbleMenu('{{TEXT(Movie)}}', '{{VAL(ratingKey)}}', '{{ADDR_PMS()}}');">
+                             onHoldSelect="scrobbleMenu('http://{{ADDR_PMS()}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Movie)}}');">
               {{COPY(Video)}}
               <title>{{VAL(title)}}</title>
               <subtitle>{{VAL(year)}}</subtitle>
