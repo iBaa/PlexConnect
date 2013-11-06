@@ -75,18 +75,19 @@ def XML_Error(title, desc):
 
 
 
-def XML_PlayVideo_ChannelsV1(PMSaddress, path):
+def XML_PlayVideo_ChannelsV1(baseURL, path):
     XML = '\
 <atv>\n\
   <body>\n\
     <videoPlayer id="com.sample.video-player">\n\
       <httpFileVideoAsset id="' + path + '">\n\
-        <mediaURL>http://' + PMSaddress + path + '</mediaURL>\n\
+        <mediaURL>' + baseURL + path + '</mediaURL>\n\
         <title>*title*</title>\n\
         <!--bookmarkTime>{{EVAL(Video/viewOffset:0:int(x/1000))}}</bookmarkTime-->\n\
         <myMetadata>\n\
           <!-- PMS, OSD settings, ... -->\n\
-          <addrPMS>http://' + PMSaddress + '</addrPMS>\n\
+          <baseURL>' + baseURL + '</baseURL>\n\
+          <accessToken></accessToken>\n\
           <key></key>\n\
           <ratingKey></ratingKey>\n\
           <duration></duration>\n\
@@ -95,7 +96,6 @@ def XML_PlayVideo_ChannelsV1(PMSaddress, path):
           <clockPosition></clockPosition>\n\
           <overscanAdjust></overscanAdjust>\n\
           <showEndtime>False</showEndtime>\n\
-          <accessToken></accessToken>\n\
         </myMetadata>\n\
       </httpFileVideoAsset>\n\
     </videoPlayer>\n\
@@ -189,9 +189,10 @@ def XML_PMS2aTV(PMSaddress, path, options):
         dprint(__name__, 1, "playing Channels XML Version 1: {0}".format(path))
         UDID = options['PlexConnectUDID']
         PMS_uuid = PlexAPI.getPMSFromAddress(UDID, PMSaddress)
+        baseURL = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'baseURL')
         auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
         path = PlexAPI.getDirectVideoPath(path, auth_token)
-        return XML_PlayVideo_ChannelsV1(PMSaddress, path)  # direct link, no PMS XML available
+        return XML_PlayVideo_ChannelsV1(baseURL, path)  # direct link, no PMS XML available
     
     elif cmd=='PhotoBrowser':
         XMLtemplate = 'Photo_Browser.xml'
@@ -1021,7 +1022,6 @@ class CCommandCollection(CCommandHelper):
                     res, leftover, dfltd = self.getKey(PMS.getroot(), srcXML, 'Video/Media/Part/key')
                 
                 res = PlexAPI.getDirectVideoPath(res, AuthToken)
-                print "directplay"
             else:
                 # request transcoding
                 res = Video.get('key','')
@@ -1029,7 +1029,6 @@ class CCommandCollection(CCommandHelper):
                 # misc settings: subtitlesize, audioboost
                 settings = ( g_ATVSettings.getSetting(UDID, 'subtitlesize'), \
                              g_ATVSettings.getSetting(UDID, 'audioboost') )
-                print "transcode"
                 res = PlexAPI.getTranscodeVideoPath(res, AuthToken, self.options, transcoderAction, qLimits, settings)
         
         else:
