@@ -83,7 +83,7 @@ function loadMenuPage(event)
 /*
  * lookup movie title on tmdb and pass trailer URL to Plex
  */
-function playTrailer(addrPMS,accessToken,title,year)
+function playTrailer(addrPMS,title,year)
 {
     log("playTrailer: "+title);
     var errTitle = 'Trailer Search';
@@ -124,8 +124,6 @@ function playTrailer(addrPMS,accessToken,title,year)
                             var video = doc2.youtube[0].source;
                             var url = "http://atv.plexconnect/PMS("+encodeURIComponent(addrPMS)+")/system/services/url/lookup?url=http%3A//www.youtube.com/watch%3Fv%3D"+encodeURIComponent(video)+"&PlexConnect=Play";
 
-                            if (accessToken!='')
-                                url = url + '&X-Plex-Token=' + accessToken;
 
                             atv.loadURL(url);
 
