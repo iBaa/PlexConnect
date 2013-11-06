@@ -81,11 +81,12 @@ function loadMenuPage(event)
 
 
 /*
- * translate movie title into trailer URL for playback
+ * lookup movie title on tmdb and pass trailer URL to Plex
  */
 function playTrailer(addrPMS,accessToken,title,year)
 {
     log("playTrailer: "+title);
+    var errTitle = 'Trailer Search';
 
     var api_key = "0dd32eece72fc9640fafaa5c87017fcf";
     var lookup = "http://api.themoviedb.org/3/search/movie?api_key="+api_key+"&query="+encodeURIComponent(title)+"&year="+encodeURIComponent(year);
@@ -100,7 +101,7 @@ function playTrailer(addrPMS,accessToken,title,year)
 
                 if (doc.total_results === 0)
                 {
-                    XML_Error('PlexConnect: Trailer Lookup', 'Movie Not Found');
+                    XML_Error(errTitle, 'Movie Not Found');
                     return;
                 } 
 
@@ -116,7 +117,7 @@ function playTrailer(addrPMS,accessToken,title,year)
 
                             if (doc2.youtube.length === 0)
                             {
-                                XML_Error('PlexConnect: Trailer Lookup', 'YouTube Trailer Not Found');
+                                XML_Error(errTitle, 'YouTube Trailer Not Found');
                                 return;
                             }
 
