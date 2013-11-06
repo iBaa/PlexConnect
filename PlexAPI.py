@@ -61,7 +61,7 @@ parameters:
     uuid - PMS ID
     name, ip, port, type, token
 """
-def declarePMS(ATV_udid, uuid, name, ip, port, type, token):
+def declarePMS(ATV_udid, uuid, name, ip, port, type, token, owned):
     # store PMS information in g_PMS database
     global g_PMS
     if not ATV_udid in g_PMS:
@@ -71,7 +71,8 @@ def declarePMS(ATV_udid, uuid, name, ip, port, type, token):
     g_PMS[ATV_udid][uuid] = { 'name': name,
                               'ip': ip , 'port': port, 'address': address,
                               'type': type,
-                              'accesstoken': token
+                              'accesstoken': token,
+                              'owned': owned
                             }
 
 def updatePMSProperty(ATV_udid, uuid, tag, value):
@@ -118,7 +119,18 @@ def getPMSCount(ATV_udid):
     
     return len(g_PMS[ATV_udid])
 
+def isPMSOwned(ATV_udid, uuid):
+    # check if PMS is owned or shared
+    if not ATV_udid in g_PMS:
+        return 0  # no server known for this aTV
+    
+    return int(g_PMS[ATV_udid][uuid]['owned'])
 
+def getLocalPMSAddress(ATV_udid):
+    for uuid in g_PMS[ATV_udid]:
+        if g_PMS[ATV_udid][uuid].get('type', None) == "local":
+            return g_PMS[ATV_udid][uuid]['ip'] + ':' + g_PMS[ATV_udid][uuid]['port']
+    return ''
 
 """
 PlexGDM
@@ -220,8 +232,8 @@ def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
     g_PMS[ATV_udid] = {}
     
     #debug
-    #declarePMS(ATV_udid, '2ndServer', '2ndServer', '192.168.178.22', '32400', 'local', 'token')
-    #declarePMS(ATV_udid, 'remoteServer', 'remoteServer', '127.0.0.1', '1234', 'remote', 'token')
+    #declarePMS(ATV_udid, '2ndServer', '2ndServer', '192.168.178.22', '32400', 'local', 'token','1')
+    #declarePMS(ATV_udid, 'remoteServer', 'remoteServer', '127.0.0.1', '1234', 'remote', 'token','1')
     #debug
     
     # local PMS
@@ -238,14 +250,14 @@ def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
             uuid = Server.get('machineIdentifier')
             name = Server.get('name')
             
-            declarePMS(ATV_udid, uuid, name, ip, port, 'local', '')
+            declarePMS(ATV_udid, uuid, name, ip, port, 'local', '', '1')
     
     else:
         # PlexGDM
         PMS_list = PlexGDM()
         for uuid in PMS_list:
             PMS = PMS_list[uuid]
-            declarePMS(ATV_udid, PMS['uuid'], PMS['serverName'], PMS['ip'], PMS['port'], 'local', '')
+            declarePMS(ATV_udid, PMS['uuid'], PMS['serverName'], PMS['ip'], PMS['port'], 'local', '','1')
     
     # MyPlex servers
     if not MyPlexToken=='':
@@ -260,6 +272,7 @@ def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
                 ip = Dir.get('address')
                 port = Dir.get('port')
                 token = Dir.get('accessToken', '')
+                owned = Dir.get('owned')
                 
                 infoAge = time.time() - int(Dir.get('updatedAt'))
                 oneDayInSec = 60*60*24
@@ -268,7 +281,7 @@ def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
                     continue
                 
                 if not uuid in g_PMS.get(ATV_udid, {}):
-                    declarePMS(ATV_udid, uuid, name, ip, port, 'myplex', token)
+                    declarePMS(ATV_udid, uuid, name, ip, port, 'myplex', token, owned)
                 else:
                     updatePMSProperty(ATV_udid, uuid, 'accesstoken', token)
     

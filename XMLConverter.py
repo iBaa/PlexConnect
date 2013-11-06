@@ -1052,6 +1052,13 @@ class CCommandCollection(CCommandHelper):
         return res
             
     def ATTRIB_ADDR_PMS(self, src, srcXML, param):
+        if param == 'URL':
+            UDID = self.options['PlexConnectUDID']
+            uuid = PlexAPI.getPMSFromAddress(UDID, self.PMSaddress)
+            if not PlexAPI.isPMSOwned(UDID, uuid):
+                local = PlexAPI.getLocalPMSAddress(UDID)
+                if local != '':
+                    return local
         return self.PMSaddress
     
     def ATTRIB_episodestring(self, src, srcXML, param):
