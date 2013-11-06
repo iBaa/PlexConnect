@@ -1054,7 +1054,7 @@ class CCommandCollection(CCommandHelper):
         if param == 'URL':
             UDID = self.options['PlexConnectUDID']
             uuid = PlexAPI.getPMSFromAddress(UDID, self.PMSaddress)
-            if not getPMSProperty(UDID, uuid, 'owned'):
+            if not PlexAPI.getPMSProperty(UDID, uuid, 'owned'):
                 local = PlexAPI.getLocalPMSAddress(UDID)
                 if local != '':
                     return local
