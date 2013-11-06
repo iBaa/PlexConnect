@@ -83,7 +83,7 @@ function loadMenuPage(event)
 /*
  * translate movie title into trailer URL for playback
  */
-function playTrailer(addrPMS,title,year)
+function playTrailer(addrPMS,accessToken,title,year)
 {
     log("playTrailer: "+title);
 
@@ -121,7 +121,10 @@ function playTrailer(addrPMS,title,year)
                             }
 
                             var video = doc2.youtube[0].source;
-                            var url = "http://atv.plexconnect/system/services/url/lookup?url=http%3A//www.youtube.com/watch%3Fv%3D"+encodeURIComponent(video)+"&PlexConnect=Play";
+                            var url = "http://atv.plexconnect/PMS("+encodeURIComponent(addrPMS)+")/system/services/url/lookup?url=http%3A//www.youtube.com/watch%3Fv%3D"+encodeURIComponent(video)+"&PlexConnect=Play";
+
+                            if (accessToken!='')
+                                url = url + '&X-Plex-Token=' + accessToken;
 
                             atv.loadURL(url);
 
