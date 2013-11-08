@@ -122,12 +122,6 @@ def getPMSCount(ATV_udid):
     
     return len(g_PMS[ATV_udid])
 
-def getLocalPMSAddress(ATV_udid):
-    for uuid in g_PMS[ATV_udid]:
-        if g_PMS[ATV_udid][uuid].get('type', None) == "local":
-            return g_PMS[ATV_udid][uuid]['ip'] + ':' + g_PMS[ATV_udid][uuid]['port']
-    return ''
-
 """
 PlexGDM
 

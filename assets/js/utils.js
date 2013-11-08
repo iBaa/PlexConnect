@@ -83,69 +83,47 @@ function loadMenuPage(event)
 /*
  * lookup movie title on tmdb and pass trailer URL to Plex
  */
-function playTrailer(addrPMS,title,year)
+function playTrailer(title,year)
 {
     log("playTrailer: "+title);
     var errTitle = 'Trailer Search';
 
     var api_key = "0dd32eece72fc9640fafaa5c87017fcf";
     var lookup = "http://api.themoviedb.org/3/search/movie?api_key="+api_key+"&query="+encodeURIComponent(title)+"&year="+encodeURIComponent(year);
-    var req = new XMLHttpRequest();
-    req.onreadystatechange = function()
+    var doc = JSON.parse(ajax(lookup));
+    if (doc.total_results === 0)
     {
-        try
-        {
-            if(req.readyState == 4)
-            {
-                var doc = JSON.parse(req.responseText);
-
-                if (doc.total_results === 0)
-                {
-                    XML_Error(errTitle, 'Movie Not Found');
-                    return;
-                } 
-
-                var lookup2 = "http://api.themoviedb.org/3/movie/"+doc.results[0].id+"/trailers?api_key="+api_key;
-                var req2 = new XMLHttpRequest();
-                req2.onreadystatechange = function()
-                {
-                    try
-                    {
-                        if(req2.readyState == 4)
-                        {
-                            var doc2 = JSON.parse(req2.responseText);
-
-                            if (doc2.youtube.length === 0)
-                            {
-                                XML_Error(errTitle, 'YouTube Trailer Not Found');
-                                return;
-                            }
-
-                            var video = doc2.youtube[0].source;
-                            var url = "http://atv.plexconnect/PMS("+encodeURIComponent(addrPMS)+")/system/services/url/lookup?url=http%3A//www.youtube.com/watch%3Fv%3D"+encodeURIComponent(video)+"&PlexConnect=Play";
-
-
-                            atv.loadURL(url);
-
-                        }
-                    }
-                    catch(e)
-                    {
-                        req2.abort();
-                    }
-                }
-                req2.open('GET', lookup2, true);
-                req2.send();
-            }
-        }
-        catch(e)
-        {
-            req.abort();
-        }
+        XML_Error(errTitle, 'Movie Not Found');
+        return;
     }
-    req.open('GET', lookup, true);
-    req.send();
+    lookup = "http://api.themoviedb.org/3/movie/"+doc.results[0].id+"/trailers?api_key="+api_key;
+    doc = JSON.parse(ajax(lookup));
+    if (doc.youtube.length === 0)
+    {
+        XML_Error(errTitle, 'YouTube Trailer Not Found');
+        return;
+    }
+
+    var id = doc.youtube[0].source;
+    var url = "http://atv.plexconnect/&PlexConnect=PlayTrailer&PlexConnectTrailerID="+id
+    atv.loadURL(url);
 };
+
+
+
+/*
+ *  Small synchronous AJAX handler
+ */
+function ajax(url)
+{
+    var req = new XMLHttpRequest();
+    req.open('GET', url, false);
+    req.send();
+    if(req.status == 200)
+    {
+        return req.responseText;
+    }
+}
 
 
 

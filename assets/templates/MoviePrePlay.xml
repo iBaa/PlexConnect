@@ -73,8 +73,8 @@
                   <focusedImage>resource://PlayFocused.png</focusedImage>
                   <!--<badge></badge>-->
                 </actionButton>
-                <actionButton id="playTrailer" onSelect="playTrailer('{{ADDR_PMS(URL)}}','{{SVAL(Video/title)}}','{{VAL(Video/year)}}')"
-                                        onPlay="playTrailer('{{ADDR_PMS(URL)}}','{{SVAL(Video/title)}}','{{VAL(Video/year)}}')">
+                <actionButton id="playTrailer" onSelect="playTrailer('{{SVAL(Video/title)}}','{{VAL(Video/year)}}')"
+                                        onPlay="playTrailer('{{SVAL(Video/title)}}','{{VAL(Video/year)}}')">
                   <title>{{TEXT(Trailer)}}</title>
                   <image>resource://Preview.png</image>
                   <focusedImage>resource://PreviewFocused.png</focusedImage>

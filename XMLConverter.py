@@ -32,6 +32,8 @@ import time, uuid, hmac, hashlib, base64
 from urllib import quote_plus
 import urlparse
 
+import urllib2
+
 import Settings, ATVSettings
 import PlexAPI
 from Debug import *  # dprint(), prettyXML()
@@ -185,6 +187,17 @@ def XML_PMS2aTV(PMSaddress, path, options):
     elif cmd=='Play':
         XMLtemplate = 'PlayVideo.xml'
     
+    elif cmd=='PlayTrailer':
+        video = options['PlexConnectTrailerID']
+        info = urllib2.urlopen("http://youtube.com/get_video_info?video_id=" + video).read()
+        parsed = urlparse.parse_qs(info)
+        streams = parsed['url_encoded_fmt_stream_map'][0].split(',')
+        for i in range(len(streams)):
+            stream = urlparse.parse_qs(streams[i])
+            if (stream['itag'][0] == '18'):
+                url = stream['url'][0] + '&signature=' + stream['sig'][0]
+        return XML_PlayVideo_ChannelsV1('', url)
+
     elif cmd=='PlayVideo_ChannelsV1':
         dprint(__name__, 1, "playing Channels XML Version 1: {0}".format(path))
         UDID = options['PlexConnectUDID']
@@ -1051,13 +1064,6 @@ class CCommandCollection(CCommandHelper):
         return res
             
     def ATTRIB_ADDR_PMS(self, src, srcXML, param):
-        if param == 'URL':
-            UDID = self.options['PlexConnectUDID']
-            uuid = PlexAPI.getPMSFromAddress(UDID, self.PMSaddress)
-            if not PlexAPI.getPMSProperty(UDID, uuid, 'owned'):
-                local = PlexAPI.getLocalPMSAddress(UDID)
-                if local != '':
-                    return local
         return self.PMSaddress
     
     def ATTRIB_episodestring(self, src, srcXML, param):
