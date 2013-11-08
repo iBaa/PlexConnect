@@ -32,6 +32,8 @@ import time, uuid, hmac, hashlib, base64
 from urllib import quote_plus
 import urlparse
 
+import urllib2
+
 import Settings, ATVSettings
 import PlexAPI
 from Debug import *  # dprint(), prettyXML()
@@ -185,6 +187,24 @@ def XML_PMS2aTV(PMSaddress, path, options):
     elif cmd=='Play':
         XMLtemplate = 'PlayVideo.xml'
     
+    elif cmd=='PlayTrailer':
+        errTitle = 'Trailer Search'
+        video = options['PlexConnectTrailerID']
+        info = urllib2.urlopen("http://youtube.com/get_video_info?video_id=" + video).read()
+        parsed = urlparse.parse_qs(info)
+        key = 'url_encoded_fmt_stream_map'
+        if not key in parsed:
+            return XML_Error(errTitle,'Video info not found')
+        streams = parsed[key][0].split(',')
+        url = ''
+        for i in range(len(streams)):
+            stream = urlparse.parse_qs(streams[i])
+            if stream['itag'][0] == '18':
+                url = stream['url'][0] + '&signature=' + stream['sig'][0]
+        if url == '':
+            return XML_Error(errTitle,'iOS compatible trailer not found')
+        return XML_PlayVideo_ChannelsV1('', url.replace('&','&amp;'))
+
     elif cmd=='PlayVideo_ChannelsV1':
         dprint(__name__, 1, "playing Channels XML Version 1: {0}".format(path))
         UDID = options['PlexConnectUDID']
