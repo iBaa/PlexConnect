@@ -17,13 +17,13 @@
           
           <!-- local servers -->
           <menuSection>
-          {{COPY(Server:size::0=|1=COPY)}}
+          {{COPY(Server:@main/size::0=|1=COPY)}}
             
             <header>
               <horizontalDivider alignment="left">
                 <title>{{VAL(name)}}</title>
               </horizontalDivider>
-            </header>{{CUT(size:CUT:0=CUT|1=CUT|2=)}}
+            </header>{{CUT(@main/size:CUT:0=CUT|1=CUT|2=)}}
             
             <items>
               <!-- /library/sections -->
