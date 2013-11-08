@@ -119,10 +119,7 @@ function ajax(url)
     var req = new XMLHttpRequest();
     req.open('GET', url, false);
     req.send();
-    if(req.status == 200)
-    {
-        return req.responseText;
-    }
+    if(req.status == 200) return req.responseText;
 }
 
 
