@@ -188,14 +188,21 @@ def XML_PMS2aTV(PMSaddress, path, options):
         XMLtemplate = 'PlayVideo.xml'
     
     elif cmd=='PlayTrailer':
+        errTitle = 'Trailer Search'
         video = options['PlexConnectTrailerID']
         info = urllib2.urlopen("http://youtube.com/get_video_info?video_id=" + video).read()
         parsed = urlparse.parse_qs(info)
-        streams = parsed['url_encoded_fmt_stream_map'][0].split(',')
+        key = 'url_encoded_fmt_stream_map'
+        if not key in parsed:
+            return XML_Error(errTitle,'Video info not found')
+        streams = parsed[key][0].split(',')
+        url = ''
         for i in range(len(streams)):
             stream = urlparse.parse_qs(streams[i])
-            if (stream['itag'][0] == '18'):
+            if stream['itag'][0] == '18':
                 url = stream['url'][0] + '&signature=' + stream['sig'][0]
+        if url == '':
+            return XML_Error(errTitle,'iOS compatible trailer not found')
         return XML_PlayVideo_ChannelsV1('', url.replace('&','&amp;'))
 
     elif cmd=='PlayVideo_ChannelsV1':
