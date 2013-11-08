@@ -4,8 +4,6 @@
   </head>
 
   <body>
-    {{ADDXML(LocalSections:://local/library/sections)}}
-    
     {{VAR(sections:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
     
     <listWithPreview id="com.sample.menu-items-with-sections">
@@ -19,13 +17,13 @@
           
           <!-- local servers -->
           <menuSection>
-          {{COPY(@LocalSections/Server:size::0=|1=COPY)}}
+          {{COPY(Server:size::0=|1=COPY)}}
             
             <header>
               <horizontalDivider alignment="left">
                 <title>{{VAL(name)}}</title>
               </horizontalDivider>
-            </header>{{CUT(@LocalSections/size:CUT:0=CUT|1=CUT|2=)}}
+            </header>{{CUT(size:CUT:0=CUT|1=CUT|2=)}}
             
             <items>
               <!-- /library/sections -->

@@ -8,7 +8,7 @@
       <navigation>
         <navigationItem id="Library">
           <title>{{TEXT(Library)}}</title>
-          <url>{{URL(:/library/sections)}}</url>
+          <url>{{URL(:/PMS(//local)/library/sections)}}</url>
         </navigationItem>
         <navigationItem id="Channels">
           <title>{{TEXT(Channels)}}</title>
@@ -16,7 +16,7 @@
         </navigationItem>
         <navigationItem id="MyPlex">
           <title>{{TEXT(MyPlex)}}</title>
-          <url>{{URL(:/myplex)}}</url>
+          <url>{{URL(:/PMS(//myplex)/library/sections)}}</url>
         </navigationItem>
         <navigationItem id="Settings">
           <title>{{TEXT(Settings)}}</title>

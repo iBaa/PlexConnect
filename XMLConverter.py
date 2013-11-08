@@ -322,16 +322,11 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
     elif path.startswith('/search?'):
         XMLtemplate = 'Search_Results.xml'
     
-    elif path=='/library/sections':
+    elif path=='/library/sections':  # from PlexConnect.xml -> for //local, //myplex
         XMLtemplate = 'Library.xml'
-        path = ''
     
     elif path=='/channels/all':
         XMLtemplate = 'Channels.xml'
-        path = ''
-    
-    elif path=='/myplex':
-        XMLtemplate = 'MyPlex.xml'
         path = ''
     
     # request PMS XML
@@ -343,7 +338,13 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
         else:
             auth_token = ''
         
-        PMS = PlexAPI.getXMLFromPMS(PMS_baseURL, path, options, authtoken=auth_token)
+        if PMS_baseURL.startswith('//'):  # //local, //myplex
+            UDID = options['PlexConnectUDID']
+            type = PMS_baseURL[2:]
+            PMS = PlexAPI.getXMLFromMultiplePMS(UDID, path, type, options)
+        else:
+            PMS = PlexAPI.getXMLFromPMS(PMS_baseURL, path, options, authtoken=auth_token)
+        
         if PMS==False:
             return XML_Error('PlexConnect', 'No Response from Plex Media Server')
         
