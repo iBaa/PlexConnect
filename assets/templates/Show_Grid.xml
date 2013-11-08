@@ -18,7 +18,7 @@
             <moviePoster id="{{VAL(key)}}"
                          onPlay="atv.loadURL('{{URL(key)}}')"
                          onSelect="atv.loadURL('{{URL(key)}}')"
-                         onHoldSelect="scrobbleMenu('http://{{ADDR_PMS()}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Show)}}');">
+                         onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Show)}}');">
               {{COPY(Directory)}}
               <title>{{VAL(title)}}</title>
               <image>{{IMAGEURL(thumb::384)}}</image>

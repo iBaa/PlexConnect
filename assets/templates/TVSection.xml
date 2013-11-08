@@ -24,7 +24,7 @@
                 <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}"
                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
-                            onHoldSelect="scrobbleMenu('http://{{ADDR_PMS()}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(On Deck Episode)}}', '{{URL(grandparentKey)}}/children');">
+                            onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(On Deck Episode)}}', '{{URL(grandparentKey)}}/children');">
                   {{COPY(@OnDeck/Video)}}
                   <title>{{VAL(title)}}</title>
                   <subtitle>{{episodestring(parentIndex:0:index:0)}}</subtitle>
@@ -48,7 +48,7 @@
                 <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}"
                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
-                            onHoldSelect="scrobbleMenu('http://{{ADDR_PMS()}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Recently Aired Episode)}}', '{{URL(grandparentKey)}}/children');">
+                            onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Recently Aired Episode)}}', '{{URL(grandparentKey)}}/children');">
                   {{COPY(@RecentlyAired/Video)}}
                   <title>{{VAL(title)}}</title>
                   <subtitle>{{episodestring(parentIndex:0:index:0)}}</subtitle>
@@ -72,7 +72,7 @@
                 <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}"
                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Season')"
                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Season')"
-                            onHoldSelect="scrobbleMenu('http://{{ADDR_PMS()}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Recently Added)}}', '{{URL(parentKey)}}/children');">
+                            onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Recently Added)}}', '{{URL(parentKey)}}/children');">
                   {{COPY(@RecentlyAdded/Directory)}}
                   <title>{{VAL(parentTitle)}}</title>
                   <subtitle>{{TEXT(Season)}} {{VAL(index)}}</subtitle>
@@ -96,7 +96,7 @@
                 <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}"
                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
-                            onHoldSelect="scrobbleMenu('http://{{ADDR_PMS()}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Recently Viewed Episode)}}', '{{URL(grandparentKey)}}/children');">
+                            onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Recently Viewed Episode)}}', '{{URL(grandparentKey)}}/children');">
                   {{COPY(@RecentlyViewedEpisodes/Video)}}
                   <title>{{VAL(title)}}</title>
                   <subtitle>{{episodestring(parentIndex:0:index:0)}}</subtitle>

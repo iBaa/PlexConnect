@@ -43,7 +43,6 @@ options = { \
     'clockposition'     :('Center', 'Right', 'Left'), \
     'showendtime'       :('True', 'False'), \
     'timeformat'        :('24 Hour', '12 Hour'), \
-    'pms_uuid'          :('*', ), \
     'myplex_user'       :('', ), \
     'myplex_auth'       :('', ), \
     }
@@ -159,13 +158,6 @@ if __name__=="__main__":
     print "toggleSetting"
     ATVSettings.toggleSetting(UDID, option)
     print ATVSettings.getSetting(UDID, option)
-    ATVSettings.toggleSetting(UDID, option)
-    print ATVSettings.getSetting(UDID, option)
-    ATVSettings.toggleSetting(UDID, option)
-    print ATVSettings.getSetting(UDID, option)
-    
-    option = 'pms_uuid'
-    ATVSettings.setOptions(option, ('PMSonMac', 'PMSonNAS'))
     ATVSettings.toggleSetting(UDID, option)
     print ATVSettings.getSetting(UDID, option)
     ATVSettings.toggleSetting(UDID, option)

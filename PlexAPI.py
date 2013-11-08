@@ -381,8 +381,8 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
             baseURL = getPMSProperty(ATV_udid, uuid, 'baseURL')
             token = getPMSProperty(ATV_udid, uuid, 'accesstoken')
             
-            PMSaddr = 'PMS(' + getPMSAddress(ATV_udid, uuid) + ')'
-            Server.set('searchKey', PMSaddr + getURL('', '', '/SearchForm.xml'))
+            PMS_baseURL = 'PMS(' + baseURL + ')'
+            Server.set('searchKey', PMS_baseURL + getURL('', '', '/SearchForm.xml'))
             
             XML = getXMLFromPMS(baseURL, path, options, token)
             if XML==False:
@@ -391,11 +391,11 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
                 Server.set('size',    XML.getroot().get('size', '0'))
                 
                 for Dir in XML.getiterator('Directory'):  # copy "Directory" content, add PMS to links
-                    Dir.set('key',    PMSaddr + getURL('', path, Dir.get('key')))
+                    Dir.set('key',    PMS_baseURL + getURL('', path, Dir.get('key')))
                     if 'thumb' in Dir.attrib:
-                        Dir.set('thumb',  PMSaddr + getURL('', path, Dir.get('thumb')))
+                        Dir.set('thumb',  PMS_baseURL + getURL('', path, Dir.get('thumb')))
                     if 'art' in Dir.attrib:
-                        Dir.set('art',    PMSaddr + getURL('', path, Dir.get('art')))
+                        Dir.set('art',    PMS_baseURL + getURL('', path, Dir.get('art')))
                     Server.append(Dir)
     
     root.set('size', str(len(root.findall('Server'))))
@@ -410,15 +410,15 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
 
 
 
-def getURL(PMSaddress, path, key):
+def getURL(baseURL, path, key):
     if key.startswith('http://') or key.startswith('https://'):  # external server
         URL = key
     elif key.startswith('/'):  # internal full path.
-        URL = PMSaddress + key
+        URL = baseURL + key
     elif key == '':  # internal path
-        URL = PMSaddress + path
+        URL = baseURL + path
     else:  # internal path, add-on
-        URL = PMSaddress + path + '/' + key
+        URL = baseURL + path + '/' + key
     
     return URL
 

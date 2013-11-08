@@ -81,8 +81,8 @@
                   <!--<badge></badge>-->
                 </actionButton>
                 <actionButton id="selectAudioAndSubs"
-                              onSelect="selectAudioAndSubs('http://{{ADDR_PMS()}}', '{{VAL(%accesstoken)}}', '{{VAL(Video/Media/Part/id)}}')"
-                              onPlay="selectAudioAndSubs('http://{{ADDR_PMS()}}', '{{VAL(%accesstoken)}}', '{{VAL(Video/Media/Part/id)}}')">
+                              onSelect="selectAudioAndSubs('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(Video/Media/Part/id)}}')"
+                              onPlay="selectAudioAndSubs('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(Video/Media/Part/id)}}')">
                   <title>{{TEXT(Audio/Subs)}}</title>
                   <image>resource://Queue.png</image>
                   <focusedImage>resource://QueueFocused.png</focusedImage>
@@ -126,7 +126,7 @@
                   <title>{{VAL(tag)}}</title>
                   <subtitle>as {{VAL(role)}}</subtitle>
                   <image>{{IMAGEURL(thumb::384)}}</image>
-                  <defaultImage>http://{{ADDR_PMS()}}/:/resources/actor-icon.png</defaultImage>
+                  <defaultImage>{{VAL(%baseURL)}}/:/resources/actor-icon.png</defaultImage>
                 </moviePoster>
               </items>
             </shelfSection>

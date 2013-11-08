@@ -37,7 +37,7 @@
             <array>
               <dict>
                 <key>url</key>
-                <string>http://{{ADDR_PMS()}}{{VAL(#img)}}</string>
+                <string>{{VAL(%baseURL)}}{{VAL(#img)}}</string>
               </dict>
             </array>{{CUT(#img:CUT:=CUT| =)}}
             <key>store-offers</key>
