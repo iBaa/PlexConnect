@@ -196,7 +196,7 @@ def XML_PMS2aTV(PMSaddress, path, options):
             stream = urlparse.parse_qs(streams[i])
             if (stream['itag'][0] == '18'):
                 url = stream['url'][0] + '&signature=' + stream['sig'][0]
-        return XML_PlayVideo_ChannelsV1('', url)
+        return XML_PlayVideo_ChannelsV1('', url.replace('&','&amp;'))
 
     elif cmd=='PlayVideo_ChannelsV1':
         dprint(__name__, 1, "playing Channels XML Version 1: {0}".format(path))

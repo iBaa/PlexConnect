@@ -81,7 +81,7 @@ function loadMenuPage(event)
 
 
 /*
- * lookup movie title on tmdb and pass trailer URL to Plex
+ * lookup movie title on tmdb and pass trailer ID to PlexConnect
  */
 function playTrailer(title,year)
 {
