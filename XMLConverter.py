@@ -30,6 +30,7 @@ except ImportError:
 
 import time, uuid, hmac, hashlib, base64
 from urllib import quote_plus
+import urllib2
 import urlparse
 
 import Settings, ATVSettings
@@ -193,6 +194,26 @@ def XML_PMS2aTV(PMSaddress, path, options):
         auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
         path = PlexAPI.getDirectVideoPath(path, auth_token)
         return XML_PlayVideo_ChannelsV1(baseURL, path)  # direct link, no PMS XML available
+    
+    elif cmd=='PlayTrailer':
+        trailerID = options['PlexConnectTrailerID']
+        info = urllib2.urlopen("http://youtube.com/get_video_info?video_id=" + trailerID).read()
+        parsed = urlparse.parse_qs(info)
+        
+        key = 'url_encoded_fmt_stream_map'
+        if not key in parsed:
+            return XML_Error('PlexConnect', 'Youtube: No Trailer Info available')
+        streams = parsed[key][0].split(',')
+        
+        url = ''
+        for i in range(len(streams)):
+            stream = urlparse.parse_qs(streams[i])
+            if stream['itag'][0] == '18':
+                url = stream['url'][0] + '&signature=' + stream['sig'][0]
+        if url == '':
+            return XML_Error('PlexConnect','Youtube: ATV compatible Trailer not available')
+        
+        return XML_PlayVideo_ChannelsV1('', url.replace('&','&amp;'))
     
     elif cmd=='PhotoBrowser':
         XMLtemplate = 'Photo_Browser.xml'
