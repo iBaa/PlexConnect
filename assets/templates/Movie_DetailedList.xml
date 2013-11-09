@@ -5,7 +5,7 @@
   </head>
 
   <body>
-    <listWithPreview id="Movie_ListwithDetails">
+    <listWithPreview id="Movie_DetailedList">
     {{CUT(size:CUT:0=CUT|1=)}}
       <header>
         <simpleHeader>
