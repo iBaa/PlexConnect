@@ -10,9 +10,8 @@ from Debug import *  # dprint()
 
 
 options = { \
-    'movieview'         :('Grid', 'List'), \
+    'movieview'         :('Grid', 'List', 'List with Details'), \
     'actorview'         :('Movies', 'Portrait'), \
-    'listviewmetadata'  :('Show', 'Hide'), \
     'showview'          :('List', 'Grid', 'Bookcase'), \
     'seasonview'        :('List', 'Coverflow'), \
     'durationformat'    :('Hours/Minutes', 'Minutes'), \

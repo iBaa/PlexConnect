@@ -6,6 +6,7 @@
   
   <body>
     <scroller id="com.sample.movie-grid">
+    {{CUT(size:CUT:0=CUT|1=)}}
       <header>
         <simpleHeader>
           <title>{{VAL(title1)}}</title>
@@ -29,5 +30,13 @@
         </grid>
       </items>
     </scroller>
+    
+    <!--No Items Available-->
+    <dialog id="com.sample.error-dialog">
+    {{CUT(size::0=|1=CUT)}}
+      <title>PlexConnect</title>
+      <description>{{TEXT(Plex Media Server: No Items Available)}}</description>
+    </dialog>
+    
   </body>
 </atv>

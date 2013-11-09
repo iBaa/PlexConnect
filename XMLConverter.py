@@ -236,7 +236,7 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
         XMLtemplate = cmd + '.xml'
     
     elif cmd == 'AllMovies':
-        XMLtemplate = 'Movie_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'movieview')+'.xml'  
+        XMLtemplate = 'Movie_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'movieview').replace(' ','')+'.xml'  
     
     elif cmd == 'MovieSecondary':
         XMLtemplate = 'MovieSecondary.xml'
@@ -389,7 +389,7 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
           XMLtemplate = 'ByFolder.xml'
         else:
           # Movie listing
-          XMLtemplate = 'Movie_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'movieview')+'.xml'
+          XMLtemplate = 'Movie_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'movieview').replace(' ','')+'.xml'
           
     elif PMSroot.get('viewGroup','')=='track':
         XMLtemplate = 'Music_Track.xml'

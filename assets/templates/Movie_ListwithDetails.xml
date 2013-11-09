@@ -5,7 +5,7 @@
   </head>
 
   <body>
-    <listWithPreview id="Movie_List">
+    <listWithPreview id="Movie_ListwithDetails">
     {{CUT(size:CUT:0=CUT|1=)}}
       <header>
         <simpleHeader>
@@ -18,23 +18,36 @@
         <sections>
           <menuSection>
             <items>
-              <twoLineMenuItem id="{{VAL(key)}}"
+              <oneLineMenuItem id="{{VAL(key)}}"
                              onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                              onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')"
                              onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Movie)}}');">
-           {{COPY(Video)}}
+                {{COPY(Video)}}
                 <label>{{VAL(title)}}</label>
-                <label2>{{getDurationString(duration)}}</label2>
                 <accessories>
                   <unplayedDot/>{{CUT(viewOffset)}}
                   <partiallyPlayedDot/>
                 </accessories>{{CUT(viewCount)}}
                 <preview>
-                  <crossFadePreview>
-                    <image>{{IMAGEURL(thumb::768)}}</image>
-                  </crossFadePreview>
+                  <keyedPreview>
+                    <title>{{VAL(title)}}</title>
+                    <summary>{{VAL(summary)}}</summary>
+                    <image>{{IMAGEURL(thumb::384)}}</image>
+										<metadataKeys>
+											<label>{{TEXT(Actors)}}</label>
+											<label>{{TEXT(Director)}}</label>
+											<label>{{TEXT(Genre)}}</label>
+											<label>{{TEXT(Length)}}</label>
+										</metadataKeys>
+										<metadataValues>
+											<label>{{VAL(Role/tag)}}{{VAL(Role[2]/tag::=, )}}{{VAL(Role[2]/tag)}}{{VAL(Role[3]/tag::=, )}}{{VAL(Role[3]/tag)}}</label>
+											<label>{{VAL(Director/tag)}}</label>
+											<label>{{VAL(Genre/tag)}}{{VAL(Role[2]/tag::=, )}}{{VAL(Genre[2]/tag)}}</label>
+											<label>{{getDurationString(duration)}}</label>
+										</metadataValues>
+                  </keyedPreview>
                 </preview>
-              </twoLineMenuItem>
+              </oneLineMenuItem>
             </items>
           </menuSection>
         </sections>

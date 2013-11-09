@@ -42,12 +42,7 @@
                 <label>{{TEXT(Movie View)}}</label>
                 <rightLabel>{{SETTING(movieview)}}</rightLabel>
               </oneLineMenuItem> 
-              
-              <oneLineMenuItem id="ListViewMetadata" onSelect="toggleSettings('ListViewMetadata', 'Settings_Movies')">
-                <label>{{TEXT(List View Metadata)}}</label>
-                <rightLabel>{{SETTING(listviewmetadata)}}</rightLabel>
-              </oneLineMenuItem>
-              
+
               <oneLineMenuItem id="ActorView" onSelect="toggleSettings('ActorView', 'Settings_Movies')">
                 <label>{{TEXT(Actor View)}}</label>
                 <rightLabel>{{SETTING(actorview)}}</rightLabel>
