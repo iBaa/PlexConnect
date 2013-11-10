@@ -137,9 +137,16 @@ class MyHandler(BaseHTTPRequestHandler):
                     return 
                 
                 # serve .js files to aTV
-                if self.path.endswith(".js"):
-                    dprint(__name__, 1, "serving  " + sys.path[0] + sep + "assets" + self.path.replace('/',sep).replace('appletv\us\\', '').replace('appletv/us/', ''))
-                    f = open(sys.path[0] + sep + "assets" + self.path.replace('/',sep).replace('appletv\us\\', '').replace('appletv/us/', ''))
+                # application, main: ignore path, send /assets/js/application.js
+                # otherwise: path should be '/js', send /assets/js/*.js
+                dirname = path.dirname(self.path)
+                basename = path.basename(self.path)
+                if basename in ("application.js", "main.js") or \
+                   basename.endswith(".js") and dirname == '/js':
+                    if basename == "main.js":
+                        basename = "application.js"
+                    dprint(__name__, 1, "serving /js/{0}", basename)
+                    f = open(sys.path[0] + "/assets/js/" + basename)
                     self.send_response(200)
                     self.send_header('Content-type', 'text/javascript')
                     self.end_headers()
