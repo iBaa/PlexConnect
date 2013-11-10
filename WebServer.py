@@ -121,7 +121,14 @@ class MyHandler(BaseHTTPRequestHandler):
                     else:
                         # absolute path
                         cfg_certfile = g_param['CSettings'].getSetting('certfile')
-                    f = open(path.splitext(cfg_certfile)[0] + '.cer', "rb")
+                    
+                    cfg_certfile = path.splitext(cfg_certfile)[0] + '.cer'
+                    try:
+                        f = open(cfg_certfile, "rb")
+                    except:
+                        dprint(__name__, 0, "Failed to access certificate: {0}", cfg_certfile)
+                        return
+                    
                     self.send_response(200)
                     self.send_header('Content-type', 'text/xml')
                     self.end_headers()
