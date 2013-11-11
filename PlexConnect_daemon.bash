@@ -49,6 +49,27 @@ wait_for_status ()
     return 1
 }
 
+check_for_network ()
+{
+	local test
+
+	if [ -z "${NETWORKUP:=}" ]; then
+		test=$(ifconfig -a inet 2>/dev/null | sed -n -e '/127.0.0.1/d' -e '/0.0.0.0/d' -e '/inet/p' | wc -l)
+		if [ "${test}" -gt 0 ]; then
+			NETWORKUP="-YES-"
+		else
+			NETWORKUP="-NO-"
+		fi
+	fi
+}
+
+check_for_network
+	while [ "${NETWORKUP}" != "-YES-" ]
+	do
+		sleep 5
+		NETWORKUP=
+		check_for_network
+	done
 
 case $1 in
     start)
