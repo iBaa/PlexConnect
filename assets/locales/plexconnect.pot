@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-31 12:11:14+0000\n"
+"POT-Creation-Date: 2013-11-12 20:59:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,6 +10,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+msgid "ATV firmware version 5.1 or higher required. Please think about updating."
+msgstr ""
 
 msgid "Actor View"
 msgstr ""
@@ -20,7 +23,13 @@ msgstr ""
 msgid "All Movies"
 msgstr ""
 
+msgid "All Photos"
+msgstr ""
+
 msgid "All Shows"
+msgstr ""
+
+msgid "Aperture"
 msgstr ""
 
 msgid "Appearance"
@@ -65,6 +74,12 @@ msgstr ""
 msgid "By Year"
 msgstr ""
 
+msgid "Camera Make"
+msgstr ""
+
+msgid "Camera Model"
+msgstr ""
+
 msgid "Change Artwork"
 msgstr ""
 
@@ -95,16 +110,19 @@ msgstr ""
 msgid "Discover"
 msgstr ""
 
+msgid "Duration Format"
+msgstr ""
+
+msgid "Enter the MyPlex password for "
+msgstr ""
+
 msgid "Episode"
 msgstr ""
 
 msgid "Episodes"
 msgstr ""
 
-msgid "Force Direct Play"
-msgstr ""
-
-msgid "Force Transcode"
+msgid "Failed"
 msgstr ""
 
 msgid "Forum"
@@ -119,7 +137,13 @@ msgstr ""
 msgid "Homepage"
 msgstr ""
 
+msgid "ISO"
+msgstr ""
+
 msgid "Length"
+msgstr ""
+
+msgid "Lens"
 msgstr ""
 
 msgid "Library"
@@ -155,10 +179,28 @@ msgstr ""
 msgid "Movies"
 msgstr ""
 
-msgid "No Seasons"
+msgid "MyPlex"
 msgstr ""
 
-msgid "No Unwatched Movies"
+msgid "MyPlex Password"
+msgstr ""
+
+msgid "MyPlex Sign In"
+msgstr ""
+
+msgid "MyPlex Sign Out"
+msgstr ""
+
+msgid "MyPlex Username"
+msgstr ""
+
+msgid "No Plex Channels Available"
+msgstr ""
+
+msgid "No Plex Library Sections Available"
+msgstr ""
+
+msgid "No Seasons"
 msgstr ""
 
 msgid "No Unwatched Shows"
@@ -179,10 +221,10 @@ msgstr ""
 msgid "On Deck Episode"
 msgstr ""
 
-msgid "Overscan Adjust"
+msgid "On Deck Movie"
 msgstr ""
 
-msgid "PMS"
+msgid "Overscan Adjust"
 msgstr ""
 
 msgid "Photo"
@@ -191,13 +233,19 @@ msgstr ""
 msgid "Play"
 msgstr ""
 
+msgid "Plex Channels"
+msgstr ""
+
+msgid "Plex Library"
+msgstr ""
+
 msgid "Plex Media Server"
 msgstr ""
 
-msgid "Plex Media Server: No Channels Available"
+msgid "Plex Media Server: No Items Available"
 msgstr ""
 
-msgid "Plex Media Server: No Items Available"
+msgid "PlexConnect"
 msgstr ""
 
 msgid "Press menu to return."
@@ -209,6 +257,9 @@ msgstr ""
 msgid "Recently Added"
 msgstr ""
 
+msgid "Recently Added Movie"
+msgstr ""
+
 msgid "Recently Aired"
 msgstr ""
 
@@ -218,7 +269,16 @@ msgstr ""
 msgid "Recently Released"
 msgstr ""
 
+msgid "Recently Released Movie"
+msgstr ""
+
 msgid "Recently Viewed"
+msgstr ""
+
+msgid "Recently Viewed Episode"
+msgstr ""
+
+msgid "Recently Viewed Episodes"
 msgstr ""
 
 msgid "Recently Viewed Shows"
@@ -227,10 +287,10 @@ msgstr ""
 msgid "Refresh Library"
 msgstr ""
 
-msgid "Search"
+msgid "Remote Bitrate"
 msgstr ""
 
-msgid "Search Plex Library"
+msgid "Search"
 msgstr ""
 
 msgid "Season"
@@ -266,6 +326,9 @@ msgstr ""
 msgid "Shows"
 msgstr ""
 
+msgid "Shutter Speed"
+msgstr ""
+
 msgid "SlideShow"
 msgstr ""
 
@@ -273,6 +336,9 @@ msgid "Subtitle Size %"
 msgstr ""
 
 msgid "Subtitle Track"
+msgstr ""
+
+msgid "Synopsis hidden."
 msgstr ""
 
 msgid "TV Show Navigation Bar"
@@ -284,16 +350,31 @@ msgstr ""
 msgid "TV Show View"
 msgstr ""
 
+msgid "TheMovieDB: No Trailer Info available"
+msgstr ""
+
 msgid "Time Format"
 msgstr ""
 
+msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
+msgstr ""
+
+msgid "Trailer"
+msgstr ""
+
 msgid "Transcoder"
+msgstr ""
+
+msgid "Transcoder Action"
 msgstr ""
 
 msgid "Transcoder Quality"
 msgstr ""
 
 msgid "Unwatched"
+msgstr ""
+
+msgid "Unwatched Synopsis"
 msgstr ""
 
 msgid "Version"
@@ -314,12 +395,7 @@ msgstr ""
 msgid "Writers"
 msgstr ""
 
-msgid "Your aTV firmware version is too old to run this version of PlexConnect.\n"
-"Please use the v0.1-iOS-pre5.1 branch available from:-\n"
-"https://github.com/iBaa/PlexConnect"
-msgstr ""
-
-msgid "aTV firmware version 5.0.2 or lower."
+msgid "Year"
 msgstr ""
 
 msgid "{0:0d}x{1:02d} {2}"
