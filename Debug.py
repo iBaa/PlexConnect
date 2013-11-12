@@ -108,7 +108,8 @@ def indent(elem, level=0):
             elem.tail = i
 
 def prettyXML(XML):
-    indent(XML.getroot())
+    if g_loglevel>0:
+        indent(XML.getroot())
     return(etree.tostring(XML.getroot()))
 
 
