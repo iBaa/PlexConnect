@@ -267,19 +267,19 @@ def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
                 token = Dir.get('accessToken', '')
                 owned = Dir.get('owned', '0')
                 
-                # check MyPlex data age - skip if >2 days
-                infoAge = time.time() - int(Dir.get('updatedAt'))
-                oneDayInSec = 60*60*24
-                if infoAge > 2*oneDayInSec:  # two days in seconds -> expiration in setting?
-                    dprint(__name__, 1, "Server {0} not updated for {1} days - skipping.", name, infoAge/oneDayInSec)
-                    continue
-                
-                # poke PMS - skip if not accessible
-                PMS = getXMLFromPMS(scheme+'://'+ip+':'+port, '/', None, token)
-                if PMS==False:
-                    continue
-                
                 if not uuid in g_PMS.get(ATV_udid, {}):
+                    # check MyPlex data age - skip if >2 days
+                    infoAge = time.time() - int(Dir.get('updatedAt'))
+                    oneDayInSec = 60*60*24
+                    if infoAge > 2*oneDayInSec:  # two days in seconds -> expiration in setting?
+                        dprint(__name__, 1, "Server {0} not updated for {1} days - skipping.", name, infoAge/oneDayInSec)
+                        continue
+                    
+                    # poke PMS - skip if not accessible
+                    PMS = getXMLFromPMS(scheme+'://'+ip+':'+port, '/', None, token)
+                    if PMS==False:
+                        continue
+                    
                     declarePMS(ATV_udid, uuid, name, scheme, ip, port, 'myplex', owned, token)
                 else:
                     updatePMSProperty(ATV_udid, uuid, 'accesstoken', token)
@@ -322,6 +322,9 @@ def getXMLFromPMS(baseURL, path, options={}, authtoken=''):
             dprint(__name__, 0, "We failed to reach a server. Reason: {0}", e.reason)
         elif hasattr(e, 'code'):
             dprint(__name__, 0, "The server couldn't fulfill the request. Error code: {0}", e.code)
+        return False
+    except IOError:
+        dprint(__name__, 0, 'Error loading response XML from Plex Media Server')
         return False
     
     # parse into etree
