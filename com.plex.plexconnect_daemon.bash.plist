@@ -6,7 +6,7 @@
 	<string>com.plex.plexconnect_daemon.bash</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/Applications/PlexConnect/PlexConnect_daemon.bash</string>
+		<string>__REPLACE_THIS_PATH__/PlexConnect_daemon.bash</string>
 		<string>start</string>
 	</array>
 	<key>UserName</key>
@@ -14,6 +14,6 @@
 	<key>RunAtLoad</key>
 	<true/>
 	<key>WorkingDirectory</key>
-	<string>/Applications/PlexConnect</string>
+	<string>__REPLACE_THIS_PATH__</string>
 </dict>
 </plist>
