@@ -11,10 +11,6 @@ sed -e "s/__REPLACE_THIS_PATH__/${ourpath}/" ./com.plex.plexconnect_daemon.bash.
 chown root /Library/LaunchDaemons/com.plex.plexconnect_daemon.bash.plist
 chmod 644 /Library/LaunchDaemons/com.plex.plexconnect_daemon.bash.plist
 
-## move plist file to the right location for it to load automatically at boot time
-#mv -f ./com.plex.plexconnect_daemon.bash.plist.tmp /Library/LaunchDaemons
-#mv ./com.plex.plexconnect_daemon.bash.plist.bak ./com.plex.plexconnect_daemon.bash.plist
-
 ## launch the plist so that we can use it without a reboot
 launchctl load /Library/LaunchDaemons/com.plex.plexconnect_daemon.bash.plist
 
