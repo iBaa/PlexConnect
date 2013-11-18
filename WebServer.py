@@ -46,6 +46,16 @@ class MyHandler(BaseHTTPRequestHandler):
       
     def log_message(self, format, *args):
       pass
+
+    # GZip for XML an JS files
+    def gzipencode(self, content):
+      import StringIO
+      import gzip
+      out = StringIO.StringIO()
+      f = gzip.GzipFile(fileobj=out, mode='w', compresslevel=3)
+      f.write(content)
+      f.close()
+      return out.getvalue()
     
     def do_GET(self):
         global g_param
@@ -149,8 +159,9 @@ class MyHandler(BaseHTTPRequestHandler):
                     f = open(sys.path[0] + "/assets/js/" + basename)
                     self.send_response(200)
                     self.send_header('Content-type', 'text/javascript')
+                    self.send_header('Content-Encoding', 'gzip')
                     self.end_headers()
-                    self.wfile.write(Localize.replaceTEXT(f.read(), options['aTVLanguage']).encode('utf-8'))
+                    self.wfile.write(self.gzipencode(Localize.replaceTEXT(f.read(), options['aTVLanguage']).encode('utf-8')))
                     f.close()
                     return
                 
@@ -179,9 +190,10 @@ class MyHandler(BaseHTTPRequestHandler):
                 # get everything else from XMLConverter - formerly limited to trailing "/" and &PlexConnect Cmds
                 if True:
                     dprint(__name__, 1, "serving .xml: "+self.path)
-                    XML = XMLConverter.XML_PMS2aTV(PMSaddress, self.path + args, options)
+                    XML = self.gzipencode(XMLConverter.XML_PMS2aTV(PMSaddress, self.path + args, options))
                     self.send_response(200)
                     self.send_header('Content-type', 'text/xml')
+                    self.send_header('Content-Encoding', 'gzip')
                     self.end_headers()
                     self.wfile.write(XML)
                     return
