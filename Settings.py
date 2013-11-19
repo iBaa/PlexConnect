@@ -38,6 +38,8 @@ g_settings = { \
     \
     'loglevel'        :('Normal', 'High', 'Off'), \
     'logpath'         :('.',), \
+    \
+    'hosttointercept' :('trailers.apple.com',), \
     }
 
 
