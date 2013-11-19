@@ -141,9 +141,9 @@ class MyHandler(BaseHTTPRequestHandler):
                 # otherwise: path should be '/js', send /assets/js/*.js
                 dirname = path.dirname(self.path)
                 basename = path.basename(self.path)
-                if basename in ("application.js", "main.js") or \
+                if basename in ("application.js", "main.js", "javascript-packed.js") or \
                    basename.endswith(".js") and dirname == '/js':
-                    if basename == "main.js":
+                    if basename in ("main.js", "javascript-packed.js"):
                         basename = "application.js"
                     dprint(__name__, 1, "serving /js/{0}", basename)
                     f = open(sys.path[0] + "/assets/js/" + basename)

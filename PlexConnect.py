@@ -66,7 +66,7 @@ def startup():
     
     # more Settings
     param['IP_self'] = getIP_self()
-    param['HostToIntercept'] = 'trailers.apple.com'
+    param['HostToIntercept'] = cfg.getSetting('hosttointercept')
     param['HostOfPlexConnect'] = 'atv.plexconnect'
     
     running = True

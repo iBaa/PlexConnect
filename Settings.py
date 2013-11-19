@@ -13,6 +13,7 @@ Global Settings...
 PMS: plexgdm, ip_pms, port_pms
 DNS: ip_dnsmaster - IP of Router, ISP's DNS, ... [dflt: google public DNS]
 IP_self: enable_plexconnect_autodetect, ip_plexconnect - manual override for VPN usage
+Intercept: Trailers-trailers.apple.com, WSJ-secure.marketwatch.com, iMovie-www.icloud.com
 HTTP: port_webserver - override when using webserver + forwarding to PlexConnect
 HTTPS: port_ssl, certfile, enable_webserver_ssl - configure SSL portion or webserver
 """
@@ -28,6 +29,7 @@ g_settings = { \
     \
     'enable_plexconnect_autodetect':('True', 'False'), \
     'ip_plexconnect'  :('0.0.0.0',), \
+    'hosttointercept' :('trailers.apple.com',), \
     \
     'port_webserver'  :('80',), \
     'enable_webserver_ssl'         :('True', 'False'), \
