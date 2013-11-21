@@ -24,6 +24,17 @@ if( atv.Element ) {
   }
 }
 
+// string extension: format()
+// see http://stackoverflow.com/a/4673436
+if (!String.prototype.format) {
+  String.prototype.format = function() {
+    var args = arguments;
+    return this.replace(/{(\d+)}/g, function(match, number) { 
+      return typeof args[number] != 'undefined' ? args[number] : match;
+    });
+  };
+}
+
 /*
  * update Settings
  */
@@ -178,7 +189,7 @@ myPlexSignInOut = function()
         gotUsername = function(value)
         {
             _username = value;
-            showTextEntryPage('password', '{{TEXT(MyPlex Password)}}', '{{TEXT(Enter the MyPlex password for )}}'+_username, gotPassword, gotCancel, null);
+            showTextEntryPage('password', '{{TEXT(MyPlex Password)}}', '{{TEXT(Enter the MyPlex password for {0}.)}}'.format(_username), gotPassword, gotCancel, null);
         };
         
         gotPassword = function(value)
