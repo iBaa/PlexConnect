@@ -326,7 +326,7 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
         XMLtemplate = 'Library.xml'
     
     elif path=='/channels/all':
-        XMLtemplate = 'Channels.xml'
+        XMLtemplate = 'Channel_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'channelview')+'.xml'
         path = ''
     
     # request PMS XML

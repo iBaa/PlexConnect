@@ -89,6 +89,10 @@
                   <arrow/>
                 </accessories>
               </oneLineMenuItem>
+              <oneLineMenuItem id="ChannelView" onSelect="toggleSettings('ChannelView', 'Settings')">
+                <label>{{TEXT(Channel View)}}</label>
+                <rightLabel>{{SETTING(channelview)}}</rightLabel>
+              </oneLineMenuItem>
               <oneLineMenuItem id="VideoOSD" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsVideoOSD')">
                 <label>{{TEXT(Video Player OSD)}}</label>
                 <accessories>

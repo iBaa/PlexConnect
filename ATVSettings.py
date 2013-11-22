@@ -14,6 +14,7 @@ options = { \
     'actorview'         :('Movies', 'Portrait'), \
     'showview'          :('List', 'Grid', 'Bookcase'), \
     'seasonview'        :('List', 'Coverflow'), \
+    'channelview'       :('List', 'Grid', 'Bookcase'), \
     'durationformat'    :('Hours/Minutes', 'Minutes'), \
     'movies_navbar_unwatched'   :('checked', 'unchecked'), \
     'movies_navbar_collections' :('checked', 'unchecked'), \
