@@ -49,7 +49,10 @@ wait_for_status ()
     return 1
 }
 
-check_for_network ()
+# Determine if the network is up by looking for any non-loopback network interfaces.
+# Currently supports only OSX "Darwin" OS
+
+CheckForNetwork()
 {
 	local test
 
@@ -63,13 +66,22 @@ check_for_network ()
 	fi
 }
 
-check_for_network
+# Determine if the operating system is OSX "darwin". If so, then delay running the rest of
+# the script until the network is up. This avoids the binding of PlexConnect to the
+# loopback address which occurs if the bash script is called from a LaunchDaemon/plist
+# file at boot time. 
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+CheckForNetwork
 	while [ "${NETWORKUP}" != "-YES-" ]
 	do
 		sleep 5
 		NETWORKUP=
-		check_for_network
+		CheckForNetwork
 	done
+fi
+
+# Now do what you need to do.
 
 case $1 in
     start)
