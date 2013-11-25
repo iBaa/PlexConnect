@@ -67,7 +67,7 @@ def startup():
     # more Settings
     param['IP_self'] = getIP_self()
     param['HostToIntercept'] = cfg.getSetting('hosttointercept')
-    param['HostOfPlexConnect'] = 'atv.plexconnect'
+    param['HostOfPlexConnect'] = cfg.getSetting('hostofplexconnect')'
     
     running = True
     
