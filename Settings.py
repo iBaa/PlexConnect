@@ -29,9 +29,9 @@ g_settings = { \
     \
     'enable_plexconnect_autodetect':('True', 'False'), \
     'ip_plexconnect'  :('0.0.0.0',), \
-    'hosttointercept' :('trailers.apple.com',), \
     'hostofplexconnect' :('atv.plexconnect',), \
     'defaultjs' :('http://atv.plexconnect',), \
+    'hosttointercept' :('trailers.apple.com',), \
     \
     'port_webserver'  :('80',), \
     'enable_webserver_ssl'         :('True', 'False'), \
