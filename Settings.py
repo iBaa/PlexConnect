@@ -31,6 +31,7 @@ g_settings = { \
     'ip_plexconnect'  :('0.0.0.0',), \
     'hosttointercept' :('trailers.apple.com',), \
     'hostofplexconnect' :('atv.plexconnect',), \
+    'defaultjs' :('http://atv.plexconnect',), \
     \
     'port_webserver'  :('80',), \
     'enable_webserver_ssl'         :('True', 'False'), \
