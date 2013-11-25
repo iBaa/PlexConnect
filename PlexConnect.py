@@ -68,6 +68,8 @@ def startup():
     param['IP_self'] = getIP_self()
     param['HostToIntercept'] = cfg.getSetting('hosttointercept')
     param['HostOfPlexConnect'] = cfg.getSetting('hostofplexconnect')
+    param['DefaultJS'] = cfg.getSetting('defaultjs')
+    'defaultjs' :('http://atv.plexconnect',), \
     
     running = True
     
