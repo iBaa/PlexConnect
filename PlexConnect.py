@@ -69,7 +69,6 @@ def startup():
     param['HostToIntercept'] = cfg.getSetting('hosttointercept')
     param['HostOfPlexConnect'] = cfg.getSetting('hostofplexconnect')
     param['DefaultJS'] = cfg.getSetting('defaultjs')
-    'defaultjs' :('http://atv.plexconnect',), \
     
     running = True
     
