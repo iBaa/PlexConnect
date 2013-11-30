@@ -1,22 +1,25 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>javascript-url</key>
+    <string>http://my.server.com/application.js</string>
+    <key>auth-type</key>
+    <string>js</string>
+    <key>enabled</key>
+    <string>YES</string>
     <key>menu-title</key>
     <string>PlexConnect</string>
     <key>enabled</key>
     <string>YES</string>
     <key>merchant</key>
     <string>PlexConnect</string>
-    <key>root-url</key>
-    <string>http://my.server.com/main.xml</string>
     <key>menu-icon-url</key>
     <dict>
         <key>720</key>
-        <string>http://my.server.com/images/icon720.png</string>
+        <string>http://my.server.com/icon720.png</string>
         <key>1080</key>
-        <string>http://my.server.com/images/icon1080.png</string>
+        <string>http://my.server.com/icon1080.png</string>
     </dict>
 </dict>
 </plist>
