@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>com.plex.plexconnect_daemon.bash</string>
+	<string>com.plex.plexconnect.bash</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>__REPLACE_THIS_PATH__/PlexConnect_daemon.bash</string>
+		<string>__REPLACE_THIS_PATH__/support/OSX/PlexConnect.bash</string>
 		<string>start</string>
 	</array>
 	<key>UserName</key>
