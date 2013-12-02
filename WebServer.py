@@ -25,6 +25,7 @@ import signal
 import Settings, ATVSettings
 from Debug import *  # dprint()
 import XMLConverter  # XML_PMS2aTV, XML_PlayVideo
+import re
 import Localize
 
 
@@ -33,6 +34,22 @@ g_param = {}
 def setParams(param):
     global g_param
     g_param = param
+
+
+
+def JSConverter(file, options):
+    f = open(sys.path[0] + "/assets/js/" + file)
+    JS = f.read()
+    f.close()
+    
+    # PlexConnect {{URL()}}->baseURL
+    for path in set(re.findall(r'\{\{URL\((.+?)\)\}\}', JS)):
+        JS = JS.replace('{{URL(%s)}}' % path, g_param['baseURL']+path)
+    
+    # localization
+    JS = Localize.replaceTEXT(JS, options['aTVLanguage']).encode('utf-8')
+    
+    return JS
 
 
 
@@ -146,12 +163,11 @@ class MyHandler(BaseHTTPRequestHandler):
                     if basename in ("main.js", "javascript-packed.js"):
                         basename = "application.js"
                     dprint(__name__, 1, "serving /js/{0}", basename)
-                    f = open(sys.path[0] + "/assets/js/" + basename)
+                    JS = JSConverter(basename, options)
                     self.send_response(200)
                     self.send_header('Content-type', 'text/javascript')
                     self.end_headers()
-                    self.wfile.write(Localize.replaceTEXT(f.read(), options['aTVLanguage']).encode('utf-8'))
-                    f.close()
+                    self.wfile.write(JS)
                     return
                 
                 # serve "*.jpg" - thumbnails for old-style mainpage
@@ -311,8 +327,10 @@ if __name__=="__main__":
     cfg = Settings.CSettings()
     param = {}
     param['CSettings'] = cfg
+    
+    param['IP_self'] = '192.168.178.20'  # IP_self?
+    param['baseURL'] = 'http://'+ param['IP_self'] +':'+ cfg.getSetting('port_webserver')
     param['HostToIntercept'] = 'trailers.apple.com'
-    param['HostOfPlexConnect'] = 'atv.plexconnect'
     
     if len(sys.argv)==1:
         Run(cmdPipe[1], param)

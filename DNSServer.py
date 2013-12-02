@@ -339,7 +339,7 @@ def Run(cmdPipe, param):
     hijack = param['HostToIntercept']
     hijack_twisted = hijack[::-1]
     
-    intercept = [hijack, param['HostOfPlexConnect']]
+    intercept = [hijack]
     restrain = []
     if param['CSettings'].getSetting('prevent_atv_update')=='True':
         restrain = ['mesu.apple.com', 'appldnld.apple.com', 'appldnld.apple.com.edgesuite.net']
@@ -468,8 +468,8 @@ if __name__ == '__main__':
     param = {}
     param['CSettings'] = cfg
     
-    param['IP_self'] = '192.168.178.20'
+    param['IP_self'] = '192.168.178.20'  # IP_self?
+    param['baseURL'] = 'http://'+ param['IP_self'] +':'+ cfg.getSetting('port_webserver')
     param['HostToIntercept'] = 'trailers.apple.com'
-    param['HostOfPlexConnect'] = 'atv.plexconnect'
     
     Run(cmdPipe[1], param)

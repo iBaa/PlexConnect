@@ -6,8 +6,8 @@ function scrobbleMenu(PMS_baseURL, accessToken, ratingKey, title, parentURL) {
 '<?xml version="1.0" encoding="UTF-8"?> \
 <atv> \
   <head> \
-    <script src="http://atv.plexconnect/js/scrobble.js"/> \
-    <script src="http://atv.plexconnect/js/utils.js"/> \
+    <script src="{{URL(/js/scrobble.js)}}"/> \
+    <script src="{{URL(/js/utils.js)}}"/> \
   </head> \
   <body> \
     <optionList id="scrobble.optionDialog"> \
@@ -110,7 +110,7 @@ function selectArtwork(PMS_baseURL, accessToken, ratingKey)
 '<?xml version="1.0" encoding="UTF-8"?> \
 <atv> \
   <head> \
-    <script src="http://atv.plexconnect/js/scrobble.js"/> \
+    <script src="{{URL(/js/scrobble.js)}}"/> \
   </head> \
   <body> \
     <scroller id="poster_selector"> \

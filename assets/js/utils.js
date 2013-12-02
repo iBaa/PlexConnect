@@ -35,7 +35,7 @@ function log(msg, level)
 {
     level = level || 1;
     var req = new XMLHttpRequest();
-    var url = "http://atv.plexconnect/" + "&PlexConnectATVLogLevel=" + level.toString() + "&PlexConnectLog=" + encodeURIComponent(msg);
+    var url = "{{URL(/)}}" + "&PlexConnectATVLogLevel=" + level.toString() + "&PlexConnectLog=" + encodeURIComponent(msg);
     req.open('GET', url, true);
     req.send();
 };
@@ -52,7 +52,7 @@ function loadMenuPage(event)
     var item = document.getElementById(id);
     var url = item.getElementByTagName('url').textContent;
     
-    if (url.toLowerCase().indexOf("atv.plexconnect")!=-1)
+    if (url.indexOf("{{URL()}}")!=-1)
     {
         url = url + "&PlexConnectUDID=" + atv.device.udid;
     }
@@ -104,7 +104,7 @@ function playTrailer(title,year)
     }
 
     var id = doc.youtube[0].source;
-    var url = "http://atv.plexconnect/&PlexConnect=PlayTrailer&PlexConnectTrailerID="+id
+    var url = "{{URL(/)}}&PlexConnect=PlayTrailer&PlexConnectTrailerID="+id
     atv.loadURL(url);
 };
 
@@ -152,7 +152,7 @@ var iOS_atv_loadURL = atv.loadURL;
 atv.loadURL = function(url)
 {
     log("loadURL (override): "+url);
-    if (url.indexOf("atv.plexconnect")!=-1)
+    if (url.indexOf("{{URL()}}")!=-1)
     {
         url = url + "&PlexConnectUDID=" + atv.device.udid;
         url = url + "&PlexConnectATVName=" + encodeURIComponent(atv.device.displayName);
@@ -171,7 +171,7 @@ var iOS_atv_loadAndSwapURL = atv.loadAndSwapURL;
 atv.loadAndSwapURL = function(url)
 {
     log("loadAndSwapURL (override): "+url);
-    if (url.indexOf("atv.plexconnect")!=-1)
+    if (url.indexOf("{{URL()}}")!=-1)
     {
         url = url + "&PlexConnectUDID=" + atv.device.udid;
         url = url + "&PlexConnectATVName=" + encodeURIComponent(atv.device.displayName);

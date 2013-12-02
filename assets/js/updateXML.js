@@ -1,5 +1,5 @@
 function reloadPMS_XML(path) {
-  atv.loadAndSwapURL("http://atv.plexconnect" + path);
+  atv.loadAndSwapURL("{{URL()}}" + path);
 };
 
 
@@ -59,7 +59,7 @@ function loadItem(event)
   // Get navbar item URL
 	var item = document.getElementById(navbarID);
   var url = item.getElementByTagName('url').textContent;
-  if (url.indexOf("atv.plexconnect")!=-1)
+  if (url.indexOf("{{URL()}}")!=-1)
   {
     url = url + "&PlexConnectUDID=" + atv.device.udid;
     url = url + "&PlexConnectATVName=" + encodeURIComponent(atv.device.displayName);
@@ -98,7 +98,7 @@ function loadMenuPages(url, event)
 function updatePage(url)
 {
   // add UDID
-  if (url.indexOf("atv.plexconnect")!=-1)
+  if (url.indexOf("{{URL()}}")!=-1)
   {
     url = url + "&PlexConnectUDID=" + atv.device.udid;
   }

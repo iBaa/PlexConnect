@@ -20,7 +20,7 @@
               {{COPY(Directory)}}
               <title>{{VAL(title)}}</title>
               <subtitle>{{VAL(year)}}</subtitle>
-              <image>http://atv.plexconnect/thumbnails/Folder.png</image>
+              <image>{{URL(:/thumbnails/Folder.png)}}</image>
               <defaultImage>resource://16X9.png</defaultImage>
             </moviePoster>
             

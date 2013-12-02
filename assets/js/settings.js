@@ -41,7 +41,7 @@ if (!String.prototype.format) {
 function toggleSettings(opt, template) 
 {
   // read new XML
-  var url = "http://atv.plexconnect/&PlexConnect=SettingsToggle:"+ opt + "+" + template + "&PlexConnectUDID="+atv.device.udid
+  var url = "{{URL(/)}}&PlexConnect=SettingsToggle:"+ opt + "+" + template + "&PlexConnectUDID="+atv.device.udid
   var req = new XMLHttpRequest();
   req.open('GET', url, false);
   req.send();
@@ -86,13 +86,13 @@ function discover(opt, template)
   if (!dispval) return undefined;  // error - element not found
   
   // discover - trigger PlexConnect, ignore response
-  var url = "http://atv.plexconnect/&PlexConnect=Discover&PlexConnectUDID="+atv.device.udid
+  var url = "{{URL(/)}}&PlexConnect=Discover&PlexConnectUDID="+atv.device.udid
   var req = new XMLHttpRequest();
   req.open('GET', url, false);
   req.send();
   
   // read new XML
-  var url = "http://atv.plexconnect/&PlexConnect="+ template + "&PlexConnectUDID="+atv.device.udid
+  var url = "{{URL(/)}}&PlexConnect="+ template + "&PlexConnectUDID="+atv.device.udid
   var req = new XMLHttpRequest();
   req.open('GET', url, false);
   req.send();
@@ -112,7 +112,7 @@ function discover(opt, template)
  */
 function refreshLibrary(addrPMS) 
 {
-	atv.loadURL("http://atv.plexconnect/RefreshLibrary.xml");
+	atv.loadURL("{{URL(/RefreshLibrary.xml)}}");
 	var url = "http://" + addrPMS + "/library/sections/all/refresh";
 	var req = new XMLHttpRequest();
 	req.open('GET', url, true);
@@ -159,7 +159,7 @@ myPlexSignInOut = function()
     // discover - trigger PlexConnect, ignore response
     reqDiscover = function()
     {
-        var url = "http://atv.plexconnect/&PlexConnect=Discover&PlexConnectUDID="+atv.device.udid
+        var url = "{{URL(/)}}&PlexConnect=Discover&PlexConnectUDID="+atv.device.udid
         var req = new XMLHttpRequest();
         req.open('GET', url, false);
     req.send();
@@ -207,7 +207,7 @@ myPlexSignInOut = function()
         doLogin = function()
         {
             // login and get new settings page
-            var url = "http://atv.plexconnect/" + 
+            var url = "{{URL(/)}}" + 
                       "&PlexConnect=MyPlexLogin" +
                       "&PlexConnectCredentials=" + encodeURIComponent(_username+':'+_password) +
                       "&PlexConnectUDID=" + atv.device.udid
@@ -247,7 +247,7 @@ myPlexSignInOut = function()
     SignOut = function()
     {
         // logout and get new settings page
-        var url = "http://atv.plexconnect/" + 
+        var url = "{{URL(/)}}" + 
                   "&PlexConnect=MyPlexLogout" +
                   "&PlexConnectUDID=" + atv.device.udid
         var req = new XMLHttpRequest();

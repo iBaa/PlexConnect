@@ -36,7 +36,7 @@ function selectAudioAndSubs(PMS_baseURL, accessToken, ratingKey) {
 '<?xml version="1.0" encoding="UTF-8"?> \
 <atv> \
   <head> \
-    <script src="http://atv.plexconnect/js/selectAudioAndSubs.js"/> \
+    <script src="{{URL(/js/selectAudioAndSubs.js)}}"/> \
   </head> \
   <body> \
     <optionDialog id="optionDialog"> \
