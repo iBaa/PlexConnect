@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.plex.plexconnect.bash</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>__REPLACE_THIS_PATH__/support/OSX/PlexConnect.bash</string>
+		<string>start</string>
+	</array>
+	<key>UserName</key>
+	<string>root</string>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>WorkingDirectory</key>
+	<string>__REPLACE_THIS_PATH__</string>
+</dict>
+</plist>
