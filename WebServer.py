@@ -176,6 +176,28 @@ class MyHandler(BaseHTTPRequestHandler):
                     f.close()
                     return
                 
+                # serve "bag.plist" - Serve up bag.plist file to atv if included in /assets 
+                if self.path.endswith("bag.plist"):
+                    dprint(__name__, 1, "Serving bag.plist")
+                    self.send_response(200)
+                    self.send_header('Content-type', 'application/xml')
+                    self.end_headers()
+                    f = open(sys.path[0] + sep + "assets/bag.plist", "r")
+                    self.wfile.write(f.read())
+                    f.close()
+                    return
+
+                # serve "addsite.mc" - Serve up addsite.mc file to atv
+                if self.path.endswith("addsite.mc"):
+                    dprint(__name__, 1, "Serving config profile")
+                    self.send_response(200)
+                    self.send_header('Content-type', 'application/xml')
+                    self.end_headers()
+                    f = open(sys.path[0] + sep + "assets/addsite.mc", "r")
+                    self.wfile.write(f.read())
+                    f.close()
+                    return
+                
                 # get everything else from XMLConverter - formerly limited to trailing "/" and &PlexConnect Cmds
                 if True:
                     dprint(__name__, 1, "serving .xml: "+self.path)
