@@ -621,7 +621,7 @@ def getTranscodeImagePath(key, AuthToken, path, width, height):
     
     # This is bogus (note the extra path component) but ATV is stupid when it comes to caching images, it doesn't use querystrings.
     # Fortunately PMS is lenient...
-    path = '/photo/:/transcode/%s/?width=%s&height=%s&url=' % (quote_plus(path), width, height) + quote_plus(path)
+    path = '/photo/:/transcode/%s/?width=%s&height=%s&url=' % (quote_plus(path.encode('utf8')), width, height) + quote_plus(path.encode('utf8'))
     
     if not AuthToken=='':
         xargs = dict()
