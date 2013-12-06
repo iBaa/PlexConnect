@@ -351,10 +351,8 @@ def getXArgsDeviceInfo(options={}):
             xargs['X-Plex-Device-Name'] = options['PlexConnectATVName'] # "friendly" name: aTV-Settings->General->Name.
     xargs['X-Plex-Platform'] = 'iOS'
     xargs['X-Plex-Client-Platform'] = 'iOS'
-    if 'aTVVersion' in options: # Base it on AppleTV OS version.
-            xargs['X-Plex-Platform-Version'] = options['aTVVersion']
-    else :
-            xargs['X-Plex-Platform-Version'] = '5.3'
+    if 'aTVVersion' in options:
+            xargs['X-Plex-Platform-Version'] = options['aTVVersion'] # iOS version of aTV e.g. '6.0.2'
     xargs['X-Plex-Product'] = 'PlexConnect'
     xargs['X-Plex-Version'] = '0.2'
     

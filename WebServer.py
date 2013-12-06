@@ -114,8 +114,7 @@ class MyHandler(BaseHTTPRequestHandler):
             options['aTVAddress'] = self.client_address[0]
 
             # pass along platform version
-            userAgent = self.headers['User-Agent'];
-            options['aTVVersion'] = userAgent.split('/')[1].split(' ')[0]
+            options['aTVVersion'] = self.headers['X-Apple-TV-Version']
             
             dprint(__name__, 2, "pms address:\n{0}", PMSaddress)
             dprint(__name__, 2, "cleaned path:\n{0}", self.path)
