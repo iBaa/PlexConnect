@@ -33,6 +33,7 @@ from urllib import quote_plus
 import urllib2
 import urlparse
 
+from PlexConnect import _PLEXCONNECTVERSION_
 import Settings, ATVSettings
 import PlexAPI
 from Debug import *  # dprint(), prettyXML()
@@ -662,6 +663,9 @@ class CCommandHelper():
             UDID = self.options['PlexConnectUDID']
             PMS_uuid = PlexAPI.getPMSFromAddress(UDID, self.PMS_baseURL)
             res = PlexAPI.getPMSProperty(UDID, PMS_uuid, attrib[1:])
+            dfltd = False
+        elif attrib.startswith('^'):  # aTV property, http request options
+            res = self.options[attrib[1:]]
             dfltd = False
         elif el!=None and attrib in el.attrib:
             res = el.get(attrib)
