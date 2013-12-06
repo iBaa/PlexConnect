@@ -663,6 +663,9 @@ class CCommandHelper():
             PMS_uuid = PlexAPI.getPMSFromAddress(UDID, self.PMS_baseURL)
             res = PlexAPI.getPMSProperty(UDID, PMS_uuid, attrib[1:])
             dfltd = False
+        elif attrib.startswith('^'):  # aTV property
+            res = self.options[attrib[1:]]
+            dfltd = False
         elif el!=None and attrib in el.attrib:
             res = el.get(attrib)
             dfltd = False

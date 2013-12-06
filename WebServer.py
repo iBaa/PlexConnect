@@ -112,6 +112,10 @@ class MyHandler(BaseHTTPRequestHandler):
             
             # add client address - to be used in case UDID is unknown
             options['aTVAddress'] = self.client_address[0]
+
+            # pass along platform version
+            userAgent = self.headers['User-Agent'];
+            options['aTVVersion'] = userAgent.split('/')[1].split(' ')[0]
             
             dprint(__name__, 2, "pms address:\n{0}", PMSaddress)
             dprint(__name__, 2, "cleaned path:\n{0}", self.path)
