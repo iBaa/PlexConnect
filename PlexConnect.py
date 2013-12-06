@@ -20,11 +20,6 @@ from Debug import *  # dprint()
 
 
 
-# PlexConnect version - globally available
-_PLEXCONNECTVERSION_ = 0.2
-
-
-
 def getIP_self():
     cfg = param['CSettings']
     if cfg.getSetting('enable_plexconnect_autodetect')=='True':

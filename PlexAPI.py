@@ -41,7 +41,7 @@ except ImportError:
 
 from urllib import urlencode, quote_plus
 
-from PlexConnect import _PLEXCONNECTVERSION_
+from PlexConnectVersion import _PLEXCONNECTVERSION_
 from Debug import *  # dprint(), prettyXML()
 
 
