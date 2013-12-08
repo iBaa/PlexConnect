@@ -112,9 +112,10 @@ class MyHandler(BaseHTTPRequestHandler):
             
             # add client address - to be used in case UDID is unknown
             options['aTVAddress'] = self.client_address[0]
-
-            # pass along platform version
-            options['aTVVersion'] = self.headers['X-Apple-TV-Version']
+            
+            # get aTV hard-/software parameters
+            options['aTVFirmwareVersion'] = self.headers.get('X-Apple-TV-Version', '5.1')
+            options['aTVScreenResolution'] = self.headers.get('X-Apple-TV-Resolution', '720')
             
             dprint(__name__, 2, "pms address:\n{0}", PMSaddress)
             dprint(__name__, 2, "cleaned path:\n{0}", self.path)

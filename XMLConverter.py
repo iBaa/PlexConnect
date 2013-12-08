@@ -33,6 +33,7 @@ from urllib import quote_plus
 import urllib2
 import urlparse
 
+from PlexConnectVersion import _PLEXCONNECTVERSION_
 import Settings, ATVSettings
 import PlexAPI
 from Debug import *  # dprint(), prettyXML()
@@ -84,7 +85,7 @@ def XML_PlayVideo_ChannelsV1(baseURL, path):
       <httpFileVideoAsset id="' + path + '">\n\
         <mediaURL>' + baseURL + path + '</mediaURL>\n\
         <title>*title*</title>\n\
-        <!--bookmarkTime>{{EVAL(Video/viewOffset:0:int(x/1000))}}</bookmarkTime-->\n\
+        <!--bookmarkTime>{{EVAL(int({{VAL(Video/viewOffset:0)}}/1000))}}</bookmarkTime-->\n\
         <myMetadata>\n\
           <!-- PMS, OSD settings, ... -->\n\
           <baseURL>' + baseURL + '</baseURL>\n\
@@ -663,7 +664,7 @@ class CCommandHelper():
             PMS_uuid = PlexAPI.getPMSFromAddress(UDID, self.PMS_baseURL)
             res = PlexAPI.getPMSProperty(UDID, PMS_uuid, attrib[1:])
             dfltd = False
-        elif attrib.startswith('^'):  # aTV property
+        elif attrib.startswith('^'):  # aTV property, http request options
             res = self.options[attrib[1:]]
             dfltd = False
         elif el!=None and attrib in el.attrib:
@@ -1157,7 +1158,7 @@ if __name__=="__main__":
     print "load aTV XML template"
     _XML = '<aTV> \
                 <INFO num="{{VAL(number)}}" str="{{VAL(string)}}">Info</INFO> \
-                <FILE str="{{VAL(string)}}" strconv="{{VAL(string::World=big|Moon=small|Sun=huge)}}" num="{{VAL(number:5)}}" numfunc="{{EVAL(number:5:int(x/10):&amp;col;02d)}}"> \
+                <FILE str="{{VAL(string)}}" strconv="{{VAL(string::World=big|Moon=small|Sun=huge)}}" num="{{VAL(number:5)}}" numfunc="{{EVAL(int({{VAL(number:5)}}/10))}}"> \
                     File{{COPY(DATA)}} \
                 </FILE> \
                 <PATH path="{{ADDPATH(file:unknown)}}" /> \
@@ -1176,7 +1177,8 @@ if __name__=="__main__":
     print "unpack PlexConnect COPY/CUT commands"
     options = {}
     options['PlexConnectUDID'] = '007'
-    g_CommandCollection = CCommandCollection(options, PMSroot, '/library/sections/')
+    PMS_baseURL = 'http://PMSURL'
+    g_CommandCollection = CCommandCollection(options, PMSroot, PMS_baseURL, '/library/sections')
     XML_ExpandTree(aTVroot, PMSroot, 'main')
     XML_ExpandAllAttrib(aTVroot, PMSroot, 'main')
     del g_CommandCollection

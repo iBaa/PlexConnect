@@ -4,11 +4,8 @@
 <dict>
 	<key>Label</key>
 	<string>com.plex.plexconnect.bash</string>
-	<key>ProgramArguments</key>
-	<array>
-		<string>__REPLACE_THIS_PATH__/support/OSX/PlexConnect.bash</string>
-		<string>start</string>
-	</array>
+	<key>Program</key>
+	<string>__REPLACE_THIS_PATH__/support/OSX/PlexConnect.bash</string>
 	<key>UserName</key>
 	<string>root</string>
 	<key>RunAtLoad</key>
