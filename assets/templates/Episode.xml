@@ -29,12 +29,12 @@
                 <accessories>
                   <unplayedDot/>{{CUT(viewCount)}}{{CUT(viewOffset)}}
                   <partiallyPlayedDot/>{{CUT(viewOffset:CUT:=)}}
-                </accessories>{{CUT(^aTVVersion::=|6.0=CUT)}}
+                </accessories>{{CUT(^aTVFirmwareVersion::=|6.0=CUT)}}
                 <accessories>
                   <progressBar percentage="0"/>{{CUT(viewCount)}}{{CUT(viewOffset)}}
                   <progressBar percentage="{{EVAL({{VAL(viewOffset:0)}} * 100 / {{VAL(duration:1)}})}}"/>{{CUT(viewOffset:CUT:=)}}
                   <!-- progressBar percentage="100"/>{{CUT(viewCount:CUT:=)}}{{CUT(viewOffset)}}-->
-                </accessories>{{CUT(^aTVVersion:CUT:=CUT|6.0=)}}
+                </accessories>{{CUT(^aTVFirmwareVersion:CUT:=CUT|6.0=)}}
                 <preview>
                   <keyedPreview>
                     <title>{{VAL(title)}}</title>
