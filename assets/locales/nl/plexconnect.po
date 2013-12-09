@@ -2,19 +2,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-31 12:11:14+0000\n"
-"PO-Revision-Date: 2013-09-17 11:30+0100\n"
-"Last-Translator: Robert van der Zaan <Robertvanderzaan@gmail.com>\n"
-"Language-Team: Robert van der Zaan <robertvanderzaan@gmail.com>\n"
+"POT-Creation-Date: 2013-11-21 12:07:07+0000\n"
+"PO-Revision-Date: 2013-12-07 12:16+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
 ""
 
+msgid "ATV firmware version 5.1 or higher required. Please think about updating."
+msgstr "ATV firmwareversie 5.1 of hoger is vereist. Overweeg up te daten."
+
+
 msgid "Actor View"
-msgstr "Per Acteur"
+msgstr "Overzicht acteurs"
 
 
 msgid "Actors"
@@ -25,16 +28,24 @@ msgid "All Movies"
 msgstr "Alle films"
 
 
+msgid "All Photos"
+msgstr "Alle Foto's"
+
+
 msgid "All Shows"
-msgstr "Alle series"
+msgstr "Alle Series"
+
+
+msgid "Aperture"
+msgstr "Diafragma"
 
 
 msgid "Appearance"
-msgstr "Schermindeling"
+msgstr "Weergave"
 
 
 msgid "Audio"
-msgstr "Audio"
+msgstr "Audioversterking %"
 
 
 msgid "Audio Boost %"
@@ -42,11 +53,11 @@ msgstr "Audioversterking %"
 
 
 msgid "Audio Track"
-msgstr "Audio"
+msgstr "Audio Spoor"
 
 
 msgid "Audio/Subs"
-msgstr "Audio/Ondertiteling"
+msgstr "Audio/ondertiteling"
 
 
 msgid "Authors"
@@ -54,39 +65,47 @@ msgstr "Auteurs"
 
 
 msgid "By Collection"
-msgstr "Op verzameling"
+msgstr "Op Verzameling"
 
 
 msgid "By Content Rating"
-msgstr "Op \"Kijkwijzer\""
+msgstr "Op Kijkwijzer"
 
 
 msgid "By Country"
-msgstr "Op land"
+msgstr "Op Land"
 
 
 msgid "By First Letter"
-msgstr "Op eerste letter"
+msgstr "Op Eerste Letter"
 
 
 msgid "By Folder"
-msgstr "Op map"
+msgstr "Op Map"
 
 
 msgid "By Rating"
-msgstr "Op waardering"
+msgstr "Op Beoordeling"
 
 
 msgid "By Resolution"
-msgstr "Op resolutie"
+msgstr "Op Resolutie"
 
 
 msgid "By Year"
-msgstr "Op jaar"
+msgstr "Op Jaar"
+
+
+msgid "Camera Make"
+msgstr "Camera Merk"
+
+
+msgid "Camera Model"
+msgstr "Camera Type"
 
 
 msgid "Change Artwork"
-msgstr "Wijzig illustraties"
+msgstr "Wijzig artwork"
 
 
 msgid "Channels"
@@ -94,7 +113,7 @@ msgstr "Kanalen"
 
 
 msgid "Clock Position"
-msgstr "Positie klok"
+msgstr "Positie Klok"
 
 
 msgid "Collections"
@@ -102,11 +121,11 @@ msgstr "Verzamelingen"
 
 
 msgid "Current Artwork"
-msgstr "Huidige illustraties"
+msgstr "Huidig artwork"
 
 
 msgid "Decades"
-msgstr "Decennia"
+msgstr "Tijdperken"
 
 
 msgid "Details"
@@ -122,7 +141,15 @@ msgstr "Regisseurs"
 
 
 msgid "Discover"
-msgstr "Gevonden"
+msgstr "Ontdek"
+
+
+msgid "Duration Format"
+msgstr "Formaat duur"
+
+
+msgid "Enter the MyPlex password for {0}."
+msgstr "Typ het MyPlex wachtwoord voor {0}."
 
 
 msgid "Episode"
@@ -133,12 +160,8 @@ msgid "Episodes"
 msgstr "Afleveringen"
 
 
-msgid "Force Direct Play"
-msgstr "Forceer direct spelen"
-
-
-msgid "Force Transcode"
-msgstr "Forceer transcoderen"
+msgid "Failed"
+msgstr "Mislukt"
 
 
 msgid "Forum"
@@ -154,11 +177,19 @@ msgstr "Genres"
 
 
 msgid "Homepage"
-msgstr "Home page"
+msgstr "Thuispagina"
+
+
+msgid "ISO"
+msgstr "ISO"
 
 
 msgid "Length"
-msgstr "Duur"
+msgstr "Lengte"
+
+
+msgid "Lens"
+msgstr "Lens"
 
 
 msgid "Library"
@@ -166,7 +197,7 @@ msgstr "Bibliotheek"
 
 
 msgid "Library Refresh in Progress."
-msgstr "Bezig met bijwerken van bibliotheek"
+msgstr "Bibliotheek bijwerken"
 
 
 msgid "Mark as Unwatched"
@@ -174,7 +205,7 @@ msgstr "Markeer als ongekeken"
 
 
 msgid "Mark as Watched"
-msgstr "Markeer als gekeken"
+msgstr "Markeer als Bekeken"
 
 
 msgid "More"
@@ -190,7 +221,7 @@ msgstr "Film"
 
 
 msgid "Movie Navigation Bar"
-msgstr "Navigatiebalk films"
+msgstr "Navigatiebalk Film"
 
 
 msgid "Movie Options"
@@ -198,19 +229,43 @@ msgstr "Filmopties"
 
 
 msgid "Movie View"
-msgstr "Filmoverzicht"
+msgstr "Weergave Film"
 
 
 msgid "Movies"
 msgstr "Films"
 
 
+msgid "MyPlex"
+msgstr "MyPlex"
+
+
+msgid "MyPlex Password"
+msgstr "MyPlex Wachtwoord"
+
+
+msgid "MyPlex Sign In"
+msgstr "MyPlex Inloggen"
+
+
+msgid "MyPlex Sign Out"
+msgstr "MyPlex Uitloggen"
+
+
+msgid "MyPlex Username"
+msgstr "MyPlex Gebruikersnaam"
+
+
+msgid "No Plex Channels Available"
+msgstr "Geen Plex kanalen beschikbaar"
+
+
+msgid "No Plex Library Sections Available"
+msgstr "Geen Plex bibliotheeksecties beschikbaar"
+
+
 msgid "No Seasons"
-msgstr "Geen seizoenen"
-
-
-msgid "No Unwatched Movies"
-msgstr "Geen ongekeken films"
+msgstr "Geen Seizoenen"
 
 
 msgid "No Unwatched Shows"
@@ -218,7 +273,7 @@ msgstr "Geen ongekeken series"
 
 
 msgid "No Unwatched Shows."
-msgstr "Geen ongekeken series."
+msgstr "Geen ongekeken series"
 
 
 msgid "No episodes"
@@ -237,12 +292,12 @@ msgid "On Deck Episode"
 msgstr "Deels gekeken aflevering"
 
 
+msgid "On Deck Movie"
+msgstr "Deels gekeken film"
+
+
 msgid "Overscan Adjust"
-msgstr "Bijstelling overscan"
-
-
-msgid "PMS"
-msgstr "PMS"
+msgstr "Overscan aanpassen"
 
 
 msgid "Photo"
@@ -253,16 +308,24 @@ msgid "Play"
 msgstr "Afspelen"
 
 
+msgid "Plex Channels"
+msgstr "Plex Kanalen"
+
+
+msgid "Plex Library"
+msgstr "Plex Bibliotheek"
+
+
 msgid "Plex Media Server"
 msgstr "Plex Media Server"
 
 
-msgid "Plex Media Server: No Channels Available"
-msgstr "Plex Media Server: Geen kanalen beschikbaar"
-
-
 msgid "Plex Media Server: No Items Available"
 msgstr "Plex Media Server: Geen items beschikbaar"
+
+
+msgid "PlexConnect"
+msgstr "PlexConnect"
 
 
 msgid "Press menu to return."
@@ -270,11 +333,15 @@ msgstr "Druk op 'Menu' om terug te gaan"
 
 
 msgid "Producers"
-msgstr "Producenten"
+msgstr "Regisseurs"
 
 
 msgid "Recently Added"
 msgstr "Recent toegevoegd"
+
+
+msgid "Recently Added Movie"
+msgstr "Recent toegevoegde film"
 
 
 msgid "Recently Aired"
@@ -282,15 +349,27 @@ msgstr "Recent uitgezonden"
 
 
 msgid "Recently Aired Episode"
-msgstr "Recent uitgezonden aflevering"
+msgstr "Recent toegevoegde aflevering"
 
 
 msgid "Recently Released"
 msgstr "Recent uitgekomen"
 
 
+msgid "Recently Released Movie"
+msgstr "Recent uitgekomen film"
+
+
 msgid "Recently Viewed"
 msgstr "Recent gekeken"
+
+
+msgid "Recently Viewed Episode"
+msgstr "Recent gekeken aflevering"
+
+
+msgid "Recently Viewed Episodes"
+msgstr "Recent gekeken afleveringen"
 
 
 msgid "Recently Viewed Shows"
@@ -298,15 +377,15 @@ msgstr "Recent gekeken series"
 
 
 msgid "Refresh Library"
-msgstr "Bibiotheek bijwerken"
+msgstr "Bibliotheek bijwerken"
+
+
+msgid "Remote Bitrate"
+msgstr "Remote Bitrate"
 
 
 msgid "Search"
-msgstr "Zoek"
-
-
-msgid "Search Plex Library"
-msgstr "Zoek in Plex bibliotheek"
+msgstr "Zoeken"
 
 
 msgid "Season"
@@ -318,7 +397,7 @@ msgstr "Op seizoen"
 
 
 msgid "Select Artwork"
-msgstr "Selecteer illustraties"
+msgstr "Kies artwork"
 
 
 msgid "Select Tracks"
@@ -353,8 +432,12 @@ msgid "Shows"
 msgstr "Series"
 
 
+msgid "Shutter Speed"
+msgstr "Sluitersnelheid"
+
+
 msgid "SlideShow"
-msgstr "Dia-vertoning"
+msgstr "Dia-voorstelling"
 
 
 msgid "Subtitle Size %"
@@ -362,7 +445,11 @@ msgstr "Grootte ondertiteling in %"
 
 
 msgid "Subtitle Track"
-msgstr "Ondertiteling"
+msgstr "Ondertitel Spoor"
+
+
+msgid "Synopsis hidden."
+msgstr "Verberg overzicht"
 
 
 msgid "TV Show Navigation Bar"
@@ -374,15 +461,31 @@ msgstr "Serie-opties"
 
 
 msgid "TV Show View"
-msgstr "TV-serie overzicht"
+msgstr "Serie overzicht"
+
+
+msgid "TheMovieDB: No Trailer Info available"
+msgstr "TheMovieDB: Geen trailerinfo beschikbaar"
 
 
 msgid "Time Format"
-msgstr "Tijdformaat "
+msgstr "Tijdformaat"
+
+
+msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
+msgstr "Om aan te melden bij MyPlex typt u uw Email adres, gebruikersnaam of Plex forum gebruikersnaam"
+
+
+msgid "Trailer"
+msgstr "Trailer"
 
 
 msgid "Transcoder"
 msgstr "Transcoder"
+
+
+msgid "Transcoder Action"
+msgstr "Transcoder-actie"
 
 
 msgid "Transcoder Quality"
@@ -393,8 +496,12 @@ msgid "Unwatched"
 msgstr "Ongekeken"
 
 
+msgid "Unwatched Synopsis"
+msgstr "Ongekeken overzicht"
+
+
 msgid "Version"
-msgstr "Verie"
+msgstr "Versie"
 
 
 msgid "Video"
@@ -417,18 +524,8 @@ msgid "Writers"
 msgstr "Schrijvers"
 
 
-msgid ""
-"Your aTV firmware version is too old to run this version of PlexConnect.\n"
-"Please use the v0.1-iOS-pre5.1 branch available from:-\n"
-"https://github.com/iBaa/PlexConnect"
-msgstr ""
-"Uw aTV firmware version is te oud voor deze versie van PlexConnect.\n"
-"Gebruik de v0.1-iOS-pre5.1 branch op:-\n"
-"https://github.com/iBaa/PlexConnect"
-
-
-msgid "aTV firmware version 5.0.2 or lower."
-msgstr "aTV firmware versie 5.0.2 of lager."
+msgid "Year"
+msgstr "Jaar"
 
 
 msgid "{0:0d}x{1:02d} {2}"
@@ -440,9 +537,10 @@ msgstr "{0:d} Minuten"
 
 
 msgid "{0:d}hr {1:d}min"
-msgstr "{0:d}hr {1:d}min"
+msgstr "{0:d}Uur {1:d}min"
 
 
 msgid "{0} unwatched"
-msgstr "{0} ongekeken"
+msgstr "{0} unwatched"
+
 

@@ -2,16 +2,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-25 08:50+0800\n"
-"PO-Revision-Date: 2013-08-25 20:29+0800\n"
-"Last-Translator: Grey Lee <bcse@bcse.tw>\n"
-"Language-Team: Grey Lee <bcse@bcse.tw>\n"
+"POT-Creation-Date: 2013-11-21 12:07:07+0000\n"
+"PO-Revision-Date: 2013-12-07 12:16+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
 ""
+
+msgid "ATV firmware version 5.1 or higher required. Please think about updating."
+msgstr "E' necessaria la versione firmware 5.1 o superiore. Per favore esegui l'aggiornamento."
+
 
 msgid "Actor View"
 msgstr "Vista Attore"
@@ -25,8 +28,16 @@ msgid "All Movies"
 msgstr "Tutti i Film"
 
 
+msgid "All Photos"
+msgstr "Tutte le Foto"
+
+
 msgid "All Shows"
 msgstr "Tutte le Serie"
+
+
+msgid "Aperture"
+msgstr "Aperture"
 
 
 msgid "Appearance"
@@ -39,6 +50,10 @@ msgstr "Audio"
 
 msgid "Audio Boost %"
 msgstr "Incremento audio %"
+
+
+msgid "Audio Track"
+msgstr "Traccia Audio"
 
 
 msgid "Audio/Subs"
@@ -81,6 +96,18 @@ msgid "By Year"
 msgstr "Per anno"
 
 
+msgid "Camera Make"
+msgstr "Produttore Camera"
+
+
+msgid "Camera Model"
+msgstr "Modello Camera"
+
+
+msgid "Change Artwork"
+msgstr "Cambia Immagine"
+
+
 msgid "Channels"
 msgstr "Canali"
 
@@ -91,6 +118,10 @@ msgstr "Posizione orologio"
 
 msgid "Collections"
 msgstr "Raccolte"
+
+
+msgid "Current Artwork"
+msgstr "Immagine attuale"
 
 
 msgid "Decades"
@@ -113,16 +144,24 @@ msgid "Discover"
 msgstr "Scopri"
 
 
+msgid "Duration Format"
+msgstr "Formato Durata"
+
+
+msgid "Enter the MyPlex password for {0}."
+msgstr "Inserisci la password myPlex per {0}."
+
+
+msgid "Episode"
+msgstr "Episodio"
+
+
 msgid "Episodes"
 msgstr "Episodi"
 
 
-msgid "Force Direct Play"
-msgstr "Forza riproduzione diretta"
-
-
-msgid "Force Transcode"
-msgstr "Forza conversione"
+msgid "Failed"
+msgstr "Fallito"
 
 
 msgid "Forum"
@@ -141,8 +180,16 @@ msgid "Homepage"
 msgstr "Homepage"
 
 
+msgid "ISO"
+msgstr "ISO"
+
+
 msgid "Length"
 msgstr "Durata"
+
+
+msgid "Lens"
+msgstr "Obiettivo"
 
 
 msgid "Library"
@@ -153,12 +200,24 @@ msgid "Library Refresh in Progress."
 msgstr "Aggiornamento della Libreria in corso."
 
 
+msgid "Mark as Unwatched"
+msgstr "Segna come non visto"
+
+
+msgid "Mark as Watched"
+msgstr "Segna come già visto"
+
+
 msgid "More"
 msgstr "Altro"
 
 
 msgid "More..."
 msgstr "Altro..."
+
+
+msgid "Movie"
+msgstr "Film"
 
 
 msgid "Movie Navigation Bar"
@@ -177,12 +236,36 @@ msgid "Movies"
 msgstr "Film"
 
 
+msgid "MyPlex"
+msgstr "MyPlex"
+
+
+msgid "MyPlex Password"
+msgstr "Password MyPlex"
+
+
+msgid "MyPlex Sign In"
+msgstr "Accesso a MyPlex"
+
+
+msgid "MyPlex Sign Out"
+msgstr "Disconnessione da My Plex"
+
+
+msgid "MyPlex Username"
+msgstr "Nome Utente MyPlex"
+
+
+msgid "No Plex Channels Available"
+msgstr "Nessun Canale Plex Disponibile"
+
+
+msgid "No Plex Library Sections Available"
+msgstr "Nessuna Sezione della Libreria Plex Disponibile"
+
+
 msgid "No Seasons"
 msgstr "Nessuna stagione"
-
-
-msgid "No Unwatched Movies"
-msgstr "Nessun film non visto"
 
 
 msgid "No Unwatched Shows"
@@ -197,16 +280,24 @@ msgid "No episodes"
 msgstr "Nessun episodio"
 
 
+msgid "None"
+msgstr "Nessuno"
+
+
 msgid "On Deck"
 msgstr "In primo piano"
 
 
+msgid "On Deck Episode"
+msgstr "Episodio in primo piano"
+
+
+msgid "On Deck Movie"
+msgstr "Film in primo piano"
+
+
 msgid "Overscan Adjust"
 msgstr "Correzione overscan"
-
-
-msgid "PMS"
-msgstr "PMS"
 
 
 msgid "Photo"
@@ -217,16 +308,24 @@ msgid "Play"
 msgstr "Riproduci"
 
 
+msgid "Plex Channels"
+msgstr "Canali Plex"
+
+
+msgid "Plex Library"
+msgstr "Libreria Plex"
+
+
 msgid "Plex Media Server"
 msgstr "Plex Media Server"
 
 
-msgid "Plex Media Server: No Channels Available"
-msgstr "Plex Media Server: Nessun Canale disponibile"
-
-
 msgid "Plex Media Server: No Items Available"
 msgstr "Plex Media Server: Nessun elemento disponibile"
+
+
+msgid "PlexConnect"
+msgstr "PlexConnect"
 
 
 msgid "Press menu to return."
@@ -241,16 +340,36 @@ msgid "Recently Added"
 msgstr "Aggiunti di recente"
 
 
+msgid "Recently Added Movie"
+msgstr "Film aggiunto di recente"
+
+
 msgid "Recently Aired"
 msgstr "Trasmessi di recente"
+
+
+msgid "Recently Aired Episode"
+msgstr "Episodio trasmesso di recente"
 
 
 msgid "Recently Released"
 msgstr "Usciti di recente"
 
 
+msgid "Recently Released Movie"
+msgstr "Film uscito di recente"
+
+
 msgid "Recently Viewed"
 msgstr "Visti di recente"
+
+
+msgid "Recently Viewed Episode"
+msgstr "Episodio visto di recente"
+
+
+msgid "Recently Viewed Episodes"
+msgstr "Episodi visti di recente"
 
 
 msgid "Recently Viewed Shows"
@@ -261,12 +380,12 @@ msgid "Refresh Library"
 msgstr "Aggiorna Libreria"
 
 
+msgid "Remote Bitrate"
+msgstr "Bitrate remoto"
+
+
 msgid "Search"
 msgstr "Cerca"
-
-
-msgid "Search Plex Library"
-msgstr "Cerca nella Libreria Plex"
 
 
 msgid "Season"
@@ -277,8 +396,20 @@ msgid "Season View"
 msgstr "Vista Stagione"
 
 
+msgid "Select Artwork"
+msgstr "Seleziona Immagine"
+
+
+msgid "Select Tracks"
+msgstr "Seleziona Tracce"
+
+
 msgid "Settings"
 msgstr "Impostazioni"
+
+
+msgid "Show"
+msgstr "Mostra"
 
 
 msgid "Show Clock"
@@ -301,12 +432,24 @@ msgid "Shows"
 msgstr "Serie"
 
 
+msgid "Shutter Speed"
+msgstr "Tempo di esposizione"
+
+
 msgid "SlideShow"
 msgstr "Presentazione"
 
 
 msgid "Subtitle Size %"
 msgstr "Dimensione sottotitoli %"
+
+
+msgid "Subtitle Track"
+msgstr "Traccia sottotitoli"
+
+
+msgid "Synopsis hidden."
+msgstr "Trama nascosta."
 
 
 msgid "TV Show Navigation Bar"
@@ -321,12 +464,28 @@ msgid "TV Show View"
 msgstr "Vista  Serie TV"
 
 
+msgid "TheMovieDB: No Trailer Info available"
+msgstr "TheMovieDB: Nessuna informazione sul trailer disponibile"
+
+
 msgid "Time Format"
 msgstr "Formato orario"
 
 
+msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
+msgstr "Per accedere a MyPlex inserisci la tua email, lo username myPlex o quello del forum."
+
+
+msgid "Trailer"
+msgstr "Trailer"
+
+
 msgid "Transcoder"
 msgstr "Convertitore"
+
+
+msgid "Transcoder Action"
+msgstr "Azione del Convertitore"
 
 
 msgid "Transcoder Quality"
@@ -335,6 +494,10 @@ msgstr "Qualità di conversione"
 
 msgid "Unwatched"
 msgstr "Non visti"
+
+
+msgid "Unwatched Synopsis"
+msgstr "Trama per Non visti"
 
 
 msgid "Version"
@@ -349,6 +512,10 @@ msgid "Video Player OSD"
 msgstr "OSD riproduzione video"
 
 
+msgid "View Show"
+msgstr "Mostra Serie"
+
+
 msgid "Wiki/Docs"
 msgstr "Wiki/Docs"
 
@@ -357,16 +524,8 @@ msgid "Writers"
 msgstr "Sceneggiatori"
 
 
-msgid "Your aTV firmware version is too old to run this version of PlexConnect.\n"
-"Please use the v0.1-iOS-pre5.1 branch available from:-\n"
-"https://github.com/iBaa/PlexConnect"
-msgstr "Il firmware della vostra aTV è troppo datato per eseguire questa versione di PlexConnect.\n"
-"Per favore usate il branch v0.1-iOS-pre5.1 disponibile su:-\n"
-"https://github.com/iBaa/PlexConnect"
-
-
-msgid "aTV firmware version 5.0.2 or lower."
-msgstr "Versione del firmware aTV 5.0.2 o inferiore."
+msgid "Year"
+msgstr "Anno"
 
 
 msgid "{0:0d}x{1:02d} {2}"
@@ -383,4 +542,5 @@ msgstr "{0:d} ore {1:d} min"
 
 msgid "{0} unwatched"
 msgstr "{0} non visti"
+
 

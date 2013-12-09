@@ -2,16 +2,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-25 08:50+0800\n"
-"PO-Revision-Date: 2013-08-25 20:29+0800\n"
-"Last-Translator: Grey Lee <bcse@bcse.tw>\n"
-"Language-Team: Grey Lee <bcse@bcse.tw>\n"
+"POT-Creation-Date: 2013-11-21 12:07:07+0000\n"
+"PO-Revision-Date: 2013-12-07 12:16+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
 ""
+
+msgid "ATV firmware version 5.1 or higher required. Please think about updating."
+msgstr "קושחה 5.1 ומעלה נדרשת. בבקשה חשבו לעדכן."
+
 
 msgid "Actor View"
 msgstr "תצוגת שחקן"
@@ -25,8 +28,16 @@ msgid "All Movies"
 msgstr "כל הסרטים"
 
 
+msgid "All Photos"
+msgstr "כל התמונות"
+
+
 msgid "All Shows"
 msgstr "כל התוכניות"
+
+
+msgid "Aperture"
+msgstr "Aperture"
 
 
 msgid "Appearance"
@@ -39,6 +50,10 @@ msgstr "אודיו"
 
 msgid "Audio Boost %"
 msgstr "הגברת אודיו %"
+
+
+msgid "Audio Track"
+msgstr ""
 
 
 msgid "Audio/Subs"
@@ -81,6 +96,18 @@ msgid "By Year"
 msgstr "לפי שנה"
 
 
+msgid "Camera Make"
+msgstr ""
+
+
+msgid "Camera Model"
+msgstr ""
+
+
+msgid "Change Artwork"
+msgstr "שינוי פוסטר"
+
+
 msgid "Channels"
 msgstr "ערוצים"
 
@@ -91,6 +118,10 @@ msgstr "מיקום השעון"
 
 msgid "Collections"
 msgstr "אוספים"
+
+
+msgid "Current Artwork"
+msgstr "פוסטר נוכחי"
 
 
 msgid "Decades"
@@ -110,19 +141,27 @@ msgstr "במאים"
 
 
 msgid "Discover"
-msgstr "גלה/י"
+msgstr "שרתי Plex שהתגלו"
+
+
+msgid "Duration Format"
+msgstr ""
+
+
+msgid "Enter the MyPlex password for {0}."
+msgstr ""
+
+
+msgid "Episode"
+msgstr "פרק"
 
 
 msgid "Episodes"
 msgstr "פרקים"
 
 
-msgid "Force Direct Play"
-msgstr "אלץ/י ניגון ישיר"
-
-
-msgid "Force Transcode"
-msgstr "אלץ/י קידוד"
+msgid "Failed"
+msgstr "נכשל"
 
 
 msgid "Forum"
@@ -141,8 +180,16 @@ msgid "Homepage"
 msgstr "דף הבית"
 
 
+msgid "ISO"
+msgstr "ISO"
+
+
 msgid "Length"
 msgstr "אורך"
+
+
+msgid "Lens"
+msgstr ""
 
 
 msgid "Library"
@@ -153,12 +200,24 @@ msgid "Library Refresh in Progress."
 msgstr "ריענון הספריה מתבצע."
 
 
+msgid "Mark as Unwatched"
+msgstr "סמן כלא נצפה"
+
+
+msgid "Mark as Watched"
+msgstr "סמן כנצפה"
+
+
 msgid "More"
 msgstr "עוד"
 
 
 msgid "More..."
 msgstr "עוד..."
+
+
+msgid "Movie"
+msgstr "סרט"
 
 
 msgid "Movie Navigation Bar"
@@ -177,12 +236,36 @@ msgid "Movies"
 msgstr "סרטים"
 
 
+msgid "MyPlex"
+msgstr "MyPlex"
+
+
+msgid "MyPlex Password"
+msgstr "סיסמת MyPlex"
+
+
+msgid "MyPlex Sign In"
+msgstr "התחברות אל MyPlex"
+
+
+msgid "MyPlex Sign Out"
+msgstr "התנתקות מMyPlex"
+
+
+msgid "MyPlex Username"
+msgstr "שם המשתמש בMyPlex"
+
+
+msgid "No Plex Channels Available"
+msgstr "אין ערוצי Plex זמינים"
+
+
+msgid "No Plex Library Sections Available"
+msgstr "אין ספריות Plex זמינות"
+
+
 msgid "No Seasons"
 msgstr "אין עונות"
-
-
-msgid "No Unwatched Movies"
-msgstr "אין סרטים שלא נצפו"
 
 
 msgid "No Unwatched Shows"
@@ -197,16 +280,24 @@ msgid "No episodes"
 msgstr "אין פרקים"
 
 
+msgid "None"
+msgstr ""
+
+
 msgid "On Deck"
 msgstr "בצפייה"
 
 
+msgid "On Deck Episode"
+msgstr "פרק בצפייה"
+
+
+msgid "On Deck Movie"
+msgstr "סרט בצפייה"
+
+
 msgid "Overscan Adjust"
 msgstr "Overscan Adjust"
-
-
-msgid "PMS"
-msgstr "PMS"
 
 
 msgid "Photo"
@@ -217,16 +308,24 @@ msgid "Play"
 msgstr "נגן/י"
 
 
+msgid "Plex Channels"
+msgstr "ערוצי Plex"
+
+
+msgid "Plex Library"
+msgstr "ספריית Plex"
+
+
 msgid "Plex Media Server"
 msgstr "שרת המדיה של פלקס"
 
 
-msgid "Plex Media Server: No Channels Available"
-msgstr "שרת המדיה של פלקס: אין ערוצים זמינים"
-
-
 msgid "Plex Media Server: No Items Available"
 msgstr "שרת המדיה של פלקס: אין פריטים זמינים"
+
+
+msgid "PlexConnect"
+msgstr "PlexConnect"
 
 
 msgid "Press menu to return."
@@ -241,16 +340,36 @@ msgid "Recently Added"
 msgstr "נוסף לאחרונה"
 
 
+msgid "Recently Added Movie"
+msgstr "סרט שנוסף לאחרונה"
+
+
 msgid "Recently Aired"
 msgstr "שודר לאחרונה"
+
+
+msgid "Recently Aired Episode"
+msgstr "פרק ששודר לאחרונה"
 
 
 msgid "Recently Released"
 msgstr "שוחרר לאחרונה"
 
 
+msgid "Recently Released Movie"
+msgstr "סרט ששוחרר לאחרונה"
+
+
 msgid "Recently Viewed"
 msgstr "נצפה לאחרונה"
+
+
+msgid "Recently Viewed Episode"
+msgstr "פרק שנצפה לאחרונה"
+
+
+msgid "Recently Viewed Episodes"
+msgstr "פרקים שנצפו לאחרונה"
 
 
 msgid "Recently Viewed Shows"
@@ -261,12 +380,12 @@ msgid "Refresh Library"
 msgstr "רענן/י ספריה"
 
 
+msgid "Remote Bitrate"
+msgstr ""
+
+
 msgid "Search"
 msgstr "חיפוש"
-
-
-msgid "Search Plex Library"
-msgstr "חפש/י בספריית פלקס"
 
 
 msgid "Season"
@@ -277,8 +396,20 @@ msgid "Season View"
 msgstr "תצוגת עונה"
 
 
+msgid "Select Artwork"
+msgstr "בחירת פוסטר"
+
+
+msgid "Select Tracks"
+msgstr ""
+
+
 msgid "Settings"
 msgstr "הגדרות"
+
+
+msgid "Show"
+msgstr "הצג"
 
 
 msgid "Show Clock"
@@ -301,12 +432,24 @@ msgid "Shows"
 msgstr "תוכניות"
 
 
+msgid "Shutter Speed"
+msgstr ""
+
+
 msgid "SlideShow"
 msgstr "מצגת"
 
 
 msgid "Subtitle Size %"
 msgstr "גודל כתוביות %"
+
+
+msgid "Subtitle Track"
+msgstr ""
+
+
+msgid "Synopsis hidden."
+msgstr "תקציר מוסתר."
 
 
 msgid "TV Show Navigation Bar"
@@ -321,12 +464,28 @@ msgid "TV Show View"
 msgstr "תצוגת תוכנית טלוויזיה"
 
 
+msgid "TheMovieDB: No Trailer Info available"
+msgstr "TheMovieDB:אין מידע זמין על טריילר"
+
+
 msgid "Time Format"
 msgstr "פורמט זמן"
 
 
+msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
+msgstr "על מנת להתחבר לMyPlex, הזן את כתובת הEmail/שם משתמש/שם המשתמש בפורום Plex."
+
+
+msgid "Trailer"
+msgstr "פרומו"
+
+
 msgid "Transcoder"
 msgstr "מקודד"
+
+
+msgid "Transcoder Action"
+msgstr "פעולת המקודד"
 
 
 msgid "Transcoder Quality"
@@ -335,6 +494,10 @@ msgstr "איכות המקודד"
 
 msgid "Unwatched"
 msgstr "לא נצפה"
+
+
+msgid "Unwatched Synopsis"
+msgstr ""
 
 
 msgid "Version"
@@ -349,6 +512,10 @@ msgid "Video Player OSD"
 msgstr "OSD של נגן הוידאו"
 
 
+msgid "View Show"
+msgstr "צפייה בתכנית"
+
+
 msgid "Wiki/Docs"
 msgstr "ויקי/מסמכים/מדריכים"
 
@@ -357,16 +524,8 @@ msgid "Writers"
 msgstr "כותבים"
 
 
-msgid "Your aTV firmware version is too old to run this version of PlexConnect.\n"
-"Please use the v0.1-iOS-pre5.1 branch available from:-\n"
-"https://github.com/iBaa/PlexConnect"
-msgstr "הגירסה של הApple TV שלך ישנה מדי כדי להריץ את הגירסה הזו של PlexConnect.\n"
-"אנא השתמש/י בגירסה v0.1-iOS-pre5.1 של PlexConnect הזמינה ב-\n"
-"https://github.com/iBaa/PlexConnect"
-
-
-msgid "aTV firmware version 5.0.2 or lower."
-msgstr "Apple TV בגירסה 5.0.2 או נמוכה יותר."
+msgid "Year"
+msgstr "שנה"
 
 
 msgid "{0:0d}x{1:02d} {2}"
@@ -383,4 +542,5 @@ msgstr "{0:d}ש' {1:d}דק'"
 
 msgid "{0} unwatched"
 msgstr "{0} לא נצפה"
+
 

@@ -6,7 +6,7 @@ msgstr ""
 "PO-Revision-Date: 2013-12-07 12:16+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: pt\n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,15 +17,15 @@ msgstr ""
 
 
 msgid "Actor View"
-msgstr "Vista dos Atores"
+msgstr ""
 
 
 msgid "Actors"
-msgstr "Atores"
+msgstr ""
 
 
 msgid "All Movies"
-msgstr "Todos os Filmes"
+msgstr ""
 
 
 msgid "All Photos"
@@ -33,7 +33,7 @@ msgstr ""
 
 
 msgid "All Shows"
-msgstr "Todas as Séries"
+msgstr ""
 
 
 msgid "Aperture"
@@ -41,15 +41,15 @@ msgstr ""
 
 
 msgid "Appearance"
-msgstr "Aparência"
+msgstr ""
 
 
 msgid "Audio"
-msgstr "Som"
+msgstr ""
 
 
 msgid "Audio Boost %"
-msgstr "Aumento do Som %"
+msgstr ""
 
 
 msgid "Audio Track"
@@ -57,43 +57,43 @@ msgstr ""
 
 
 msgid "Audio/Subs"
-msgstr "Som/Legenda"
+msgstr ""
 
 
 msgid "Authors"
-msgstr "Autores"
+msgstr ""
 
 
 msgid "By Collection"
-msgstr "Por Coleção"
+msgstr ""
 
 
 msgid "By Content Rating"
-msgstr "Por Classificação de Conteúdo"
+msgstr ""
 
 
 msgid "By Country"
-msgstr "Por País"
+msgstr ""
 
 
 msgid "By First Letter"
-msgstr "Por Ordem Alfabética"
+msgstr ""
 
 
 msgid "By Folder"
-msgstr "Por Pasta"
+msgstr ""
 
 
 msgid "By Rating"
-msgstr "Por Classificação"
+msgstr ""
 
 
 msgid "By Resolution"
-msgstr "Por Resolução"
+msgstr ""
 
 
 msgid "By Year"
-msgstr "Por Ano"
+msgstr ""
 
 
 msgid "Camera Make"
@@ -109,15 +109,15 @@ msgstr ""
 
 
 msgid "Channels"
-msgstr "Canais"
+msgstr ""
 
 
 msgid "Clock Position"
-msgstr "Posição do Tempo"
+msgstr ""
 
 
 msgid "Collections"
-msgstr "Coleções"
+msgstr ""
 
 
 msgid "Current Artwork"
@@ -125,23 +125,23 @@ msgstr ""
 
 
 msgid "Decades"
-msgstr "Décadas"
+msgstr ""
 
 
 msgid "Details"
-msgstr "Detalhes"
+msgstr ""
 
 
 msgid "Director"
-msgstr "Diretor"
+msgstr ""
 
 
 msgid "Directors"
-msgstr "Diretores"
+msgstr ""
 
 
 msgid "Discover"
-msgstr "Descobrir"
+msgstr ""
 
 
 msgid "Duration Format"
@@ -157,7 +157,7 @@ msgstr ""
 
 
 msgid "Episodes"
-msgstr "Episódios"
+msgstr ""
 
 
 msgid "Failed"
@@ -165,19 +165,19 @@ msgstr ""
 
 
 msgid "Forum"
-msgstr "Fórum"
+msgstr ""
 
 
 msgid "Genre"
-msgstr "Gênero"
+msgstr ""
 
 
 msgid "Genres"
-msgstr "Gêneros"
+msgstr ""
 
 
 msgid "Homepage"
-msgstr "Página Principal"
+msgstr ""
 
 
 msgid "ISO"
@@ -185,7 +185,7 @@ msgstr ""
 
 
 msgid "Length"
-msgstr "Duração"
+msgstr ""
 
 
 msgid "Lens"
@@ -193,11 +193,11 @@ msgstr ""
 
 
 msgid "Library"
-msgstr "Biblioteca"
+msgstr ""
 
 
 msgid "Library Refresh in Progress."
-msgstr "Atualização da Biblioteca em Progresso."
+msgstr ""
 
 
 msgid "Mark as Unwatched"
@@ -209,11 +209,11 @@ msgstr ""
 
 
 msgid "More"
-msgstr "Mais"
+msgstr ""
 
 
 msgid "More..."
-msgstr "Mais..."
+msgstr ""
 
 
 msgid "Movie"
@@ -221,19 +221,19 @@ msgstr ""
 
 
 msgid "Movie Navigation Bar"
-msgstr "Barra de Navegação de Filmes"
+msgstr ""
 
 
 msgid "Movie Options"
-msgstr "Opção dos Filmes"
+msgstr ""
 
 
 msgid "Movie View"
-msgstr "Visualização dos Filmes"
+msgstr ""
 
 
 msgid "Movies"
-msgstr "Filmes"
+msgstr ""
 
 
 msgid "MyPlex"
@@ -265,19 +265,19 @@ msgstr ""
 
 
 msgid "No Seasons"
-msgstr "Sem Temporadas"
+msgstr ""
 
 
 msgid "No Unwatched Shows"
-msgstr "Séries não assistidas"
+msgstr ""
 
 
 msgid "No Unwatched Shows."
-msgstr "Séries não assistidas."
+msgstr ""
 
 
 msgid "No episodes"
-msgstr "Sem Episódios"
+msgstr ""
 
 
 msgid "None"
@@ -285,7 +285,7 @@ msgstr ""
 
 
 msgid "On Deck"
-msgstr "Em Progresso"
+msgstr ""
 
 
 msgid "On Deck Episode"
@@ -297,15 +297,15 @@ msgstr ""
 
 
 msgid "Overscan Adjust"
-msgstr "Ajuste"
+msgstr ""
 
 
 msgid "Photo"
-msgstr "Foto"
+msgstr ""
 
 
 msgid "Play"
-msgstr "Play"
+msgstr ""
 
 
 msgid "Plex Channels"
@@ -317,11 +317,11 @@ msgstr ""
 
 
 msgid "Plex Media Server"
-msgstr "Plex Media Server"
+msgstr ""
 
 
 msgid "Plex Media Server: No Items Available"
-msgstr "Plex Media Server: Sem Ítens Disponíveis"
+msgstr ""
 
 
 msgid "PlexConnect"
@@ -329,15 +329,15 @@ msgstr ""
 
 
 msgid "Press menu to return."
-msgstr "Pressione menu para voltar."
+msgstr ""
 
 
 msgid "Producers"
-msgstr "Produtores"
+msgstr ""
 
 
 msgid "Recently Added"
-msgstr "Adicionado Recentemente"
+msgstr ""
 
 
 msgid "Recently Added Movie"
@@ -345,7 +345,7 @@ msgstr ""
 
 
 msgid "Recently Aired"
-msgstr "No Ar"
+msgstr ""
 
 
 msgid "Recently Aired Episode"
@@ -353,7 +353,7 @@ msgstr ""
 
 
 msgid "Recently Released"
-msgstr "Lançado Recentemente"
+msgstr ""
 
 
 msgid "Recently Released Movie"
@@ -361,7 +361,7 @@ msgstr ""
 
 
 msgid "Recently Viewed"
-msgstr "Visto Recentemente"
+msgstr ""
 
 
 msgid "Recently Viewed Episode"
@@ -373,11 +373,11 @@ msgstr ""
 
 
 msgid "Recently Viewed Shows"
-msgstr "Séries Vistas Recentementes"
+msgstr ""
 
 
 msgid "Refresh Library"
-msgstr "Atualizar Biblioteca"
+msgstr ""
 
 
 msgid "Remote Bitrate"
@@ -385,15 +385,15 @@ msgstr ""
 
 
 msgid "Search"
-msgstr "Procurar"
+msgstr ""
 
 
 msgid "Season"
-msgstr "Temporada"
+msgstr ""
 
 
 msgid "Season View"
-msgstr "Temporada Vista"
+msgstr ""
 
 
 msgid "Select Artwork"
@@ -405,7 +405,7 @@ msgstr ""
 
 
 msgid "Settings"
-msgstr "Ajustes"
+msgstr ""
 
 
 msgid "Show"
@@ -413,23 +413,23 @@ msgstr ""
 
 
 msgid "Show Clock"
-msgstr "Mostrar Relógio"
+msgstr ""
 
 
 msgid "Show End Time"
-msgstr "Mostrar Hora de Finalização"
+msgstr ""
 
 
 msgid "Show Photos"
-msgstr "Mostrar Fotos"
+msgstr ""
 
 
 msgid "Show Unwatched Count"
-msgstr "Mostrar Contador de não vistos"
+msgstr ""
 
 
 msgid "Shows"
-msgstr "Séries"
+msgstr ""
 
 
 msgid "Shutter Speed"
@@ -437,11 +437,11 @@ msgstr ""
 
 
 msgid "SlideShow"
-msgstr "SlideShow"
+msgstr ""
 
 
 msgid "Subtitle Size %"
-msgstr "Tamanho da Legenda %"
+msgstr ""
 
 
 msgid "Subtitle Track"
@@ -453,15 +453,15 @@ msgstr ""
 
 
 msgid "TV Show Navigation Bar"
-msgstr "Barra de Navegação do Seriado"
+msgstr ""
 
 
 msgid "TV Show Options"
-msgstr "Opções do Seriado"
+msgstr ""
 
 
 msgid "TV Show View"
-msgstr "Visualização do Seriado"
+msgstr ""
 
 
 msgid "TheMovieDB: No Trailer Info available"
@@ -469,7 +469,7 @@ msgstr ""
 
 
 msgid "Time Format"
-msgstr "Formato do Relógio"
+msgstr ""
 
 
 msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
@@ -481,7 +481,7 @@ msgstr ""
 
 
 msgid "Transcoder"
-msgstr "Transcoder"
+msgstr ""
 
 
 msgid "Transcoder Action"
@@ -489,11 +489,11 @@ msgstr ""
 
 
 msgid "Transcoder Quality"
-msgstr "Qualidade do Transcode"
+msgstr ""
 
 
 msgid "Unwatched"
-msgstr "Não visto"
+msgstr ""
 
 
 msgid "Unwatched Synopsis"
@@ -501,15 +501,15 @@ msgstr ""
 
 
 msgid "Version"
-msgstr "Versão"
+msgstr ""
 
 
 msgid "Video"
-msgstr "Vídeo"
+msgstr ""
 
 
 msgid "Video Player OSD"
-msgstr "OSD do Reprodutor"
+msgstr ""
 
 
 msgid "View Show"
@@ -517,11 +517,11 @@ msgstr ""
 
 
 msgid "Wiki/Docs"
-msgstr "Wiki/Documentos"
+msgstr ""
 
 
 msgid "Writers"
-msgstr "Escritores"
+msgstr ""
 
 
 msgid "Year"
@@ -529,18 +529,18 @@ msgstr ""
 
 
 msgid "{0:0d}x{1:02d} {2}"
-msgstr "{0:0d}x{1:02d} {2}"
+msgstr ""
 
 
 msgid "{0:d} Minutes"
-msgstr "{0:d} Minutos"
+msgstr ""
 
 
 msgid "{0:d}hr {1:d}min"
-msgstr "{0:d}hr {1:d}min"
+msgstr ""
 
 
 msgid "{0} unwatched"
-msgstr "{0} não visto"
+msgstr ""
 
 

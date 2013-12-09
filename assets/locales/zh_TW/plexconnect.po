@@ -2,16 +2,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-25 08:50+0800\n"
-"PO-Revision-Date: 2013-08-25 20:29+0800\n"
-"Last-Translator: Grey Lee <bcse@bcse.tw>\n"
-"Language-Team: Grey Lee <bcse@bcse.tw>\n"
+"POT-Creation-Date: 2013-11-21 12:07:07+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
 ""
+
+msgid "ATV firmware version 5.1 or higher required. Please think about updating."
+msgstr "PlexConnect 支援 Apple TV 5.1 或以上版本，請升級您的系統。"
+
 
 msgid "Actor View"
 msgstr "演員檢視"
@@ -25,8 +28,16 @@ msgid "All Movies"
 msgstr "所有電影"
 
 
+msgid "All Photos"
+msgstr "所有照片"
+
+
 msgid "All Shows"
-msgstr "所有節目"
+msgstr "所有電視節目"
+
+
+msgid "Aperture"
+msgstr "光圈"
 
 
 msgid "Appearance"
@@ -39,6 +50,10 @@ msgstr "音效"
 
 msgid "Audio Boost %"
 msgstr "音量增益 %"
+
+
+msgid "Audio Track"
+msgstr "音軌"
 
 
 msgid "Audio/Subs"
@@ -81,6 +96,18 @@ msgid "By Year"
 msgstr "依年份"
 
 
+msgid "Camera Make"
+msgstr "相機製造商"
+
+
+msgid "Camera Model"
+msgstr "相機型號"
+
+
+msgid "Change Artwork"
+msgstr "變更插圖"
+
+
 msgid "Channels"
 msgstr "頻道"
 
@@ -91,6 +118,10 @@ msgstr "時鐘位置"
 
 msgid "Collections"
 msgstr "系列"
+
+
+msgid "Current Artwork"
+msgstr "目前插圖"
 
 
 msgid "Decades"
@@ -113,16 +144,24 @@ msgid "Discover"
 msgstr "搜尋伺服器"
 
 
+msgid "Duration Format"
+msgstr "時間格式"
+
+
+msgid "Enter the MyPlex password for {0}."
+msgstr "輸入 {0} 的 MyPlex 密碼。"
+
+
+msgid "Episode"
+msgstr "影集"
+
+
 msgid "Episodes"
 msgstr "集"
 
 
-msgid "Force Direct Play"
-msgstr "強制直接播放"
-
-
-msgid "Force Transcode"
-msgstr "強制轉碼"
+msgid "Failed"
+msgstr "失敗"
 
 
 msgid "Forum"
@@ -141,8 +180,16 @@ msgid "Homepage"
 msgstr "首頁"
 
 
+msgid "ISO"
+msgstr "ISO"
+
+
 msgid "Length"
 msgstr "長度"
+
+
+msgid "Lens"
+msgstr "鏡頭"
 
 
 msgid "Library"
@@ -153,12 +200,24 @@ msgid "Library Refresh in Progress."
 msgstr "資料庫更新中。"
 
 
+msgid "Mark as Unwatched"
+msgstr "標示為未觀看"
+
+
+msgid "Mark as Watched"
+msgstr "標示為已觀看"
+
+
 msgid "More"
 msgstr "更多"
 
 
 msgid "More..."
 msgstr "更多⋯"
+
+
+msgid "Movie"
+msgstr "電影"
 
 
 msgid "Movie Navigation Bar"
@@ -177,12 +236,36 @@ msgid "Movies"
 msgstr "電影"
 
 
+msgid "MyPlex"
+msgstr "MyPlex"
+
+
+msgid "MyPlex Password"
+msgstr "MyPlex 密碼"
+
+
+msgid "MyPlex Sign In"
+msgstr "登入 MyPlex"
+
+
+msgid "MyPlex Sign Out"
+msgstr "登出 MyPlex"
+
+
+msgid "MyPlex Username"
+msgstr "MyPlex 帳號"
+
+
+msgid "No Plex Channels Available"
+msgstr "沒有可用的 Plex 頻道"
+
+
+msgid "No Plex Library Sections Available"
+msgstr "沒有可用的 Plex 資料庫"
+
+
 msgid "No Seasons"
 msgstr "沒有季數"
-
-
-msgid "No Unwatched Movies"
-msgstr "您沒有未觀看的電影"
 
 
 msgid "No Unwatched Shows"
@@ -197,16 +280,24 @@ msgid "No episodes"
 msgstr "沒有集數"
 
 
+msgid "None"
+msgstr "無"
+
+
 msgid "On Deck"
 msgstr "首頁"
 
 
+msgid "On Deck Episode"
+msgstr "最近看過影集"
+
+
+msgid "On Deck Movie"
+msgstr "最近看過電影"
+
+
 msgid "Overscan Adjust"
 msgstr "Overscan 選項"
-
-
-msgid "PMS"
-msgstr "PMS"
 
 
 msgid "Photo"
@@ -217,16 +308,24 @@ msgid "Play"
 msgstr "播放"
 
 
+msgid "Plex Channels"
+msgstr "Plex 頻道"
+
+
+msgid "Plex Library"
+msgstr "Plex 資料庫"
+
+
 msgid "Plex Media Server"
 msgstr "Plex 媒體伺服器"
 
 
-msgid "Plex Media Server: No Channels Available"
-msgstr "Plex 媒體伺服器: 沒有可用的頻道"
-
-
 msgid "Plex Media Server: No Items Available"
 msgstr "Plex 媒體伺服器: 沒有可用的項目"
+
+
+msgid "PlexConnect"
+msgstr "PlexConnect"
 
 
 msgid "Press menu to return."
@@ -241,16 +340,36 @@ msgid "Recently Added"
 msgstr "最近加入"
 
 
+msgid "Recently Added Movie"
+msgstr "最近加入電影"
+
+
 msgid "Recently Aired"
 msgstr "最近播出"
+
+
+msgid "Recently Aired Episode"
+msgstr "最近播出影集"
 
 
 msgid "Recently Released"
 msgstr "最近發行"
 
 
+msgid "Recently Released Movie"
+msgstr "最近發行電影"
+
+
 msgid "Recently Viewed"
 msgstr "最近觀看"
+
+
+msgid "Recently Viewed Episode"
+msgstr "最近觀看影集"
+
+
+msgid "Recently Viewed Episodes"
+msgstr "最近觀看影集"
 
 
 msgid "Recently Viewed Shows"
@@ -261,12 +380,12 @@ msgid "Refresh Library"
 msgstr "更新資料庫"
 
 
+msgid "Remote Bitrate"
+msgstr "遠端流量"
+
+
 msgid "Search"
 msgstr "搜尋"
-
-
-msgid "Search Plex Library"
-msgstr "搜尋 Plex 資料庫"
 
 
 msgid "Season"
@@ -277,8 +396,20 @@ msgid "Season View"
 msgstr "季檢視"
 
 
+msgid "Select Artwork"
+msgstr "選擇插圖"
+
+
+msgid "Select Tracks"
+msgstr "選擇音軌"
+
+
 msgid "Settings"
 msgstr "設定"
+
+
+msgid "Show"
+msgstr "電視節目"
 
 
 msgid "Show Clock"
@@ -301,12 +432,24 @@ msgid "Shows"
 msgstr "節目"
 
 
+msgid "Shutter Speed"
+msgstr "快門速度"
+
+
 msgid "SlideShow"
 msgstr "幻燈片秀"
 
 
 msgid "Subtitle Size %"
 msgstr "字幕大小 %"
+
+
+msgid "Subtitle Track"
+msgstr "字幕"
+
+
+msgid "Synopsis hidden."
+msgstr "影片簡介已隱藏。"
 
 
 msgid "TV Show Navigation Bar"
@@ -321,12 +464,28 @@ msgid "TV Show View"
 msgstr "電視節目檢視"
 
 
+msgid "TheMovieDB: No Trailer Info available"
+msgstr "TheMovieDB 找不到此電影的預告片"
+
+
 msgid "Time Format"
 msgstr "時間格式"
 
 
+msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
+msgstr "輸入你的 E-mail 帳號、MyPlex 帳號或 Plex 論壇帳號以登入 MyPlex。"
+
+
+msgid "Trailer"
+msgstr "預告片"
+
+
 msgid "Transcoder"
 msgstr "轉碼器"
+
+
+msgid "Transcoder Action"
+msgstr "轉碼器行為"
 
 
 msgid "Transcoder Quality"
@@ -335,6 +494,10 @@ msgstr "轉碼品質"
 
 msgid "Unwatched"
 msgstr "未觀看"
+
+
+msgid "Unwatched Synopsis"
+msgstr "未觀看影片的簡介"
 
 
 msgid "Version"
@@ -349,6 +512,10 @@ msgid "Video Player OSD"
 msgstr "播放器外觀"
 
 
+msgid "View Show"
+msgstr "檢視電視節目"
+
+
 msgid "Wiki/Docs"
 msgstr "說明文件"
 
@@ -357,18 +524,8 @@ msgid "Writers"
 msgstr "編劇"
 
 
-msgid "Your aTV firmware version is too old to run this version of PlexConnect.\n"
-"Please use the v0.1-iOS-pre5.1 branch available from:-\n"
-"https://github.com/iBaa/PlexConnect"
-msgstr "您的 Apple TV 系統版本太舊，無法使用這個版本的 PlexConnect。\n"
-"\n"
-"請到以下網址取得 v0.1-iOS-pre5.1 分支版:\n"
-"\n"
-"https://github.com/iBaa/PlexConnect"
-
-
-msgid "aTV firmware version 5.0.2 or lower."
-msgstr "Apple TV 系統版本低於 5.0.2"
+msgid "Year"
+msgstr "年"
 
 
 msgid "{0:0d}x{1:02d} {2}"
@@ -385,4 +542,5 @@ msgstr "{0:d} 小時 {1:d} 分鐘"
 
 msgid "{0} unwatched"
 msgstr "{0} 集未觀看"
+
 

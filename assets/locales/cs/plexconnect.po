@@ -6,7 +6,7 @@ msgstr ""
 "PO-Revision-Date: 2013-12-07 12:16+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: pt\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,23 +17,23 @@ msgstr ""
 
 
 msgid "Actor View"
-msgstr "Vista dos Atores"
+msgstr "Herci - zobrazení"
 
 
 msgid "Actors"
-msgstr "Atores"
+msgstr "Herci"
 
 
 msgid "All Movies"
-msgstr "Todos os Filmes"
+msgstr "Všechny Filmy"
 
 
 msgid "All Photos"
-msgstr ""
+msgstr "Všechny fotografie"
 
 
 msgid "All Shows"
-msgstr "Todas as Séries"
+msgstr "Všechny Seriály"
 
 
 msgid "Aperture"
@@ -41,59 +41,59 @@ msgstr ""
 
 
 msgid "Appearance"
-msgstr "Aparência"
+msgstr "Vzhled"
 
 
 msgid "Audio"
-msgstr "Som"
+msgstr "Zvuk"
 
 
 msgid "Audio Boost %"
-msgstr "Aumento do Som %"
+msgstr "Zesílení zvuku %"
 
 
 msgid "Audio Track"
-msgstr ""
+msgstr "Zvuková stopa"
 
 
 msgid "Audio/Subs"
-msgstr "Som/Legenda"
+msgstr "Zvuk/Titulky"
 
 
 msgid "Authors"
-msgstr "Autores"
+msgstr "Autoři"
 
 
 msgid "By Collection"
-msgstr "Por Coleção"
+msgstr "Dle Kolekce"
 
 
 msgid "By Content Rating"
-msgstr "Por Classificação de Conteúdo"
+msgstr "Dle Hodnocení obsahu"
 
 
 msgid "By Country"
-msgstr "Por País"
+msgstr "Dle Země"
 
 
 msgid "By First Letter"
-msgstr "Por Ordem Alfabética"
+msgstr "Dle Prvního písmena"
 
 
 msgid "By Folder"
-msgstr "Por Pasta"
+msgstr "Dle Složky"
 
 
 msgid "By Rating"
-msgstr "Por Classificação"
+msgstr "Dle Hodnocení"
 
 
 msgid "By Resolution"
-msgstr "Por Resolução"
+msgstr ""
 
 
 msgid "By Year"
-msgstr "Por Ano"
+msgstr "Dle Roku"
 
 
 msgid "Camera Make"
@@ -105,47 +105,47 @@ msgstr ""
 
 
 msgid "Change Artwork"
-msgstr ""
+msgstr "Změnit náhled"
 
 
 msgid "Channels"
-msgstr "Canais"
+msgstr "Kanály"
 
 
 msgid "Clock Position"
-msgstr "Posição do Tempo"
+msgstr "Umístění hodin"
 
 
 msgid "Collections"
-msgstr "Coleções"
+msgstr "Kolekce"
 
 
 msgid "Current Artwork"
-msgstr ""
+msgstr "Aktuální náhled"
 
 
 msgid "Decades"
-msgstr "Décadas"
+msgstr ""
 
 
 msgid "Details"
-msgstr "Detalhes"
+msgstr ""
 
 
 msgid "Director"
-msgstr "Diretor"
+msgstr ""
 
 
 msgid "Directors"
-msgstr "Diretores"
+msgstr ""
 
 
 msgid "Discover"
-msgstr "Descobrir"
+msgstr ""
 
 
 msgid "Duration Format"
-msgstr ""
+msgstr "Délka (formát)"
 
 
 msgid "Enter the MyPlex password for {0}."
@@ -153,39 +153,39 @@ msgstr ""
 
 
 msgid "Episode"
-msgstr ""
+msgstr "Epizoda"
 
 
 msgid "Episodes"
-msgstr "Episódios"
+msgstr "Epizody"
 
 
 msgid "Failed"
-msgstr ""
+msgstr "Nezadařilo se"
 
 
 msgid "Forum"
-msgstr "Fórum"
-
-
-msgid "Genre"
-msgstr "Gênero"
-
-
-msgid "Genres"
-msgstr "Gêneros"
-
-
-msgid "Homepage"
-msgstr "Página Principal"
-
-
-msgid "ISO"
 msgstr ""
 
 
+msgid "Genre"
+msgstr ""
+
+
+msgid "Genres"
+msgstr ""
+
+
+msgid "Homepage"
+msgstr ""
+
+
+msgid "ISO"
+msgstr "ISO"
+
+
 msgid "Length"
-msgstr "Duração"
+msgstr ""
 
 
 msgid "Lens"
@@ -193,99 +193,99 @@ msgstr ""
 
 
 msgid "Library"
-msgstr "Biblioteca"
+msgstr ""
 
 
 msgid "Library Refresh in Progress."
-msgstr "Atualização da Biblioteca em Progresso."
+msgstr "Probíhá aktualizace knihovny"
 
 
 msgid "Mark as Unwatched"
-msgstr ""
+msgstr "Označit jako shlédnute"
 
 
 msgid "Mark as Watched"
-msgstr ""
+msgstr "Označit jako neshlédnute"
 
 
 msgid "More"
-msgstr "Mais"
+msgstr ""
 
 
 msgid "More..."
-msgstr "Mais..."
+msgstr ""
 
 
 msgid "Movie"
-msgstr ""
+msgstr "Film"
 
 
 msgid "Movie Navigation Bar"
-msgstr "Barra de Navegação de Filmes"
+msgstr ""
 
 
 msgid "Movie Options"
-msgstr "Opção dos Filmes"
+msgstr ""
 
 
 msgid "Movie View"
-msgstr "Visualização dos Filmes"
+msgstr ""
 
 
 msgid "Movies"
-msgstr "Filmes"
+msgstr ""
 
 
 msgid "MyPlex"
-msgstr ""
+msgstr "MyPlex"
 
 
 msgid "MyPlex Password"
-msgstr ""
+msgstr "MyPlex heslo"
 
 
 msgid "MyPlex Sign In"
-msgstr ""
+msgstr "MyPlex Přihlásit"
 
 
 msgid "MyPlex Sign Out"
-msgstr ""
+msgstr "MyPlex odhlásit"
 
 
 msgid "MyPlex Username"
-msgstr ""
+msgstr "MyPlex uživatelské jméno"
 
 
 msgid "No Plex Channels Available"
-msgstr ""
+msgstr "Plex kanály nejsou k dispozici"
 
 
 msgid "No Plex Library Sections Available"
-msgstr ""
+msgstr "Plex knihovna není k dispozici"
 
 
 msgid "No Seasons"
-msgstr "Sem Temporadas"
-
-
-msgid "No Unwatched Shows"
-msgstr "Séries não assistidas"
-
-
-msgid "No Unwatched Shows."
-msgstr "Séries não assistidas."
-
-
-msgid "No episodes"
-msgstr "Sem Episódios"
-
-
-msgid "None"
 msgstr ""
 
 
+msgid "No Unwatched Shows"
+msgstr ""
+
+
+msgid "No Unwatched Shows."
+msgstr ""
+
+
+msgid "No episodes"
+msgstr ""
+
+
+msgid "None"
+msgstr "Žádny"
+
+
 msgid "On Deck"
-msgstr "Em Progresso"
+msgstr ""
 
 
 msgid "On Deck Episode"
@@ -297,47 +297,47 @@ msgstr ""
 
 
 msgid "Overscan Adjust"
-msgstr "Ajuste"
+msgstr ""
 
 
 msgid "Photo"
-msgstr "Foto"
+msgstr ""
 
 
 msgid "Play"
-msgstr "Play"
+msgstr ""
 
 
 msgid "Plex Channels"
-msgstr ""
+msgstr "Plex kanály"
 
 
 msgid "Plex Library"
-msgstr ""
+msgstr "Plex knihovna"
 
 
 msgid "Plex Media Server"
-msgstr "Plex Media Server"
-
-
-msgid "Plex Media Server: No Items Available"
-msgstr "Plex Media Server: Sem Ítens Disponíveis"
-
-
-msgid "PlexConnect"
 msgstr ""
 
 
+msgid "Plex Media Server: No Items Available"
+msgstr ""
+
+
+msgid "PlexConnect"
+msgstr "PlexConnect"
+
+
 msgid "Press menu to return."
-msgstr "Pressione menu para voltar."
+msgstr ""
 
 
 msgid "Producers"
-msgstr "Produtores"
+msgstr ""
 
 
 msgid "Recently Added"
-msgstr "Adicionado Recentemente"
+msgstr ""
 
 
 msgid "Recently Added Movie"
@@ -345,7 +345,7 @@ msgstr ""
 
 
 msgid "Recently Aired"
-msgstr "No Ar"
+msgstr ""
 
 
 msgid "Recently Aired Episode"
@@ -353,7 +353,7 @@ msgstr ""
 
 
 msgid "Recently Released"
-msgstr "Lançado Recentemente"
+msgstr ""
 
 
 msgid "Recently Released Movie"
@@ -361,7 +361,7 @@ msgstr ""
 
 
 msgid "Recently Viewed"
-msgstr "Visto Recentemente"
+msgstr ""
 
 
 msgid "Recently Viewed Episode"
@@ -373,11 +373,11 @@ msgstr ""
 
 
 msgid "Recently Viewed Shows"
-msgstr "Séries Vistas Recentementes"
+msgstr ""
 
 
 msgid "Refresh Library"
-msgstr "Atualizar Biblioteca"
+msgstr ""
 
 
 msgid "Remote Bitrate"
@@ -385,15 +385,15 @@ msgstr ""
 
 
 msgid "Search"
-msgstr "Procurar"
+msgstr ""
 
 
 msgid "Season"
-msgstr "Temporada"
+msgstr ""
 
 
 msgid "Season View"
-msgstr "Temporada Vista"
+msgstr ""
 
 
 msgid "Select Artwork"
@@ -401,35 +401,35 @@ msgstr ""
 
 
 msgid "Select Tracks"
-msgstr ""
+msgstr "Výběr stopy"
 
 
 msgid "Settings"
-msgstr "Ajustes"
+msgstr "Nastaveni"
 
 
 msgid "Show"
-msgstr ""
+msgstr "Zobrazit"
 
 
 msgid "Show Clock"
-msgstr "Mostrar Relógio"
+msgstr "Zobrazit hodiny"
 
 
 msgid "Show End Time"
-msgstr "Mostrar Hora de Finalização"
+msgstr ""
 
 
 msgid "Show Photos"
-msgstr "Mostrar Fotos"
+msgstr ""
 
 
 msgid "Show Unwatched Count"
-msgstr "Mostrar Contador de não vistos"
+msgstr ""
 
 
 msgid "Shows"
-msgstr "Séries"
+msgstr ""
 
 
 msgid "Shutter Speed"
@@ -437,39 +437,39 @@ msgstr ""
 
 
 msgid "SlideShow"
-msgstr "SlideShow"
+msgstr ""
 
 
 msgid "Subtitle Size %"
-msgstr "Tamanho da Legenda %"
+msgstr ""
 
 
 msgid "Subtitle Track"
-msgstr ""
+msgstr "Stopa titulků"
 
 
 msgid "Synopsis hidden."
-msgstr ""
+msgstr "Přehled je skryty."
 
 
 msgid "TV Show Navigation Bar"
-msgstr "Barra de Navegação do Seriado"
-
-
-msgid "TV Show Options"
-msgstr "Opções do Seriado"
-
-
-msgid "TV Show View"
-msgstr "Visualização do Seriado"
-
-
-msgid "TheMovieDB: No Trailer Info available"
 msgstr ""
 
 
+msgid "TV Show Options"
+msgstr ""
+
+
+msgid "TV Show View"
+msgstr ""
+
+
+msgid "TheMovieDB: No Trailer Info available"
+msgstr "TheMovieDB: Ukázka není k dispozici"
+
+
 msgid "Time Format"
-msgstr "Formato do Relógio"
+msgstr ""
 
 
 msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
@@ -477,11 +477,11 @@ msgstr ""
 
 
 msgid "Trailer"
-msgstr ""
+msgstr "Upoutávka"
 
 
 msgid "Transcoder"
-msgstr "Transcoder"
+msgstr ""
 
 
 msgid "Transcoder Action"
@@ -489,11 +489,11 @@ msgstr ""
 
 
 msgid "Transcoder Quality"
-msgstr "Qualidade do Transcode"
+msgstr ""
 
 
 msgid "Unwatched"
-msgstr "Não visto"
+msgstr ""
 
 
 msgid "Unwatched Synopsis"
@@ -501,15 +501,15 @@ msgstr ""
 
 
 msgid "Version"
-msgstr "Versão"
+msgstr ""
 
 
 msgid "Video"
-msgstr "Vídeo"
+msgstr ""
 
 
 msgid "Video Player OSD"
-msgstr "OSD do Reprodutor"
+msgstr ""
 
 
 msgid "View Show"
@@ -517,30 +517,30 @@ msgstr ""
 
 
 msgid "Wiki/Docs"
-msgstr "Wiki/Documentos"
-
-
-msgid "Writers"
-msgstr "Escritores"
-
-
-msgid "Year"
 msgstr ""
 
 
+msgid "Writers"
+msgstr ""
+
+
+msgid "Year"
+msgstr "Rok"
+
+
 msgid "{0:0d}x{1:02d} {2}"
-msgstr "{0:0d}x{1:02d} {2}"
+msgstr ""
 
 
 msgid "{0:d} Minutes"
-msgstr "{0:d} Minutos"
+msgstr "Minut(y)"
 
 
 msgid "{0:d}hr {1:d}min"
-msgstr "{0:d}hr {1:d}min"
+msgstr ""
 
 
 msgid "{0} unwatched"
-msgstr "{0} não visto"
+msgstr "{0} nezhlédnutých"
 
 

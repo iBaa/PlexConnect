@@ -2,15 +2,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-25 08:50+0800\n"
-"PO-Revision-Date: 2013-08-25 20:29+0800\n"
-"Last-Translator: Grey Lee <bcse@bcse.tw>\n"
-"Language-Team: Grey Lee <bcse@bcse.tw>\n"
+"POT-Creation-Date: 2013-11-21 12:07:07+0000\n"
+"PO-Revision-Date: 2013-12-07 12:16+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+
+msgid "ATV firmware version 5.1 or higher required. Please think about updating."
+msgstr ""
 
 msgid "Actor View"
 msgstr ""
@@ -21,7 +23,13 @@ msgstr ""
 msgid "All Movies"
 msgstr ""
 
+msgid "All Photos"
+msgstr ""
+
 msgid "All Shows"
+msgstr ""
+
+msgid "Aperture"
 msgstr ""
 
 msgid "Appearance"
@@ -31,6 +39,9 @@ msgid "Audio"
 msgstr ""
 
 msgid "Audio Boost %"
+msgstr ""
+
+msgid "Audio Track"
 msgstr ""
 
 msgid "Audio/Subs"
@@ -63,6 +74,15 @@ msgstr ""
 msgid "By Year"
 msgstr ""
 
+msgid "Camera Make"
+msgstr ""
+
+msgid "Camera Model"
+msgstr ""
+
+msgid "Change Artwork"
+msgstr ""
+
 msgid "Channels"
 msgstr ""
 
@@ -70,6 +90,9 @@ msgid "Clock Position"
 msgstr ""
 
 msgid "Collections"
+msgstr ""
+
+msgid "Current Artwork"
 msgstr ""
 
 msgid "Decades"
@@ -87,13 +110,19 @@ msgstr ""
 msgid "Discover"
 msgstr ""
 
+msgid "Duration Format"
+msgstr ""
+
+msgid "Enter the MyPlex password for {0}."
+msgstr ""
+
+msgid "Episode"
+msgstr ""
+
 msgid "Episodes"
 msgstr ""
 
-msgid "Force Direct Play"
-msgstr ""
-
-msgid "Force Transcode"
+msgid "Failed"
 msgstr ""
 
 msgid "Forum"
@@ -108,7 +137,13 @@ msgstr ""
 msgid "Homepage"
 msgstr ""
 
+msgid "ISO"
+msgstr ""
+
 msgid "Length"
+msgstr ""
+
+msgid "Lens"
 msgstr ""
 
 msgid "Library"
@@ -117,10 +152,19 @@ msgstr ""
 msgid "Library Refresh in Progress."
 msgstr ""
 
+msgid "Mark as Unwatched"
+msgstr ""
+
+msgid "Mark as Watched"
+msgstr ""
+
 msgid "More"
 msgstr ""
 
 msgid "More..."
+msgstr ""
+
+msgid "Movie"
 msgstr ""
 
 msgid "Movie Navigation Bar"
@@ -135,10 +179,28 @@ msgstr ""
 msgid "Movies"
 msgstr ""
 
-msgid "No Seasons"
+msgid "MyPlex"
 msgstr ""
 
-msgid "No Unwatched Movies"
+msgid "MyPlex Password"
+msgstr ""
+
+msgid "MyPlex Sign In"
+msgstr ""
+
+msgid "MyPlex Sign Out"
+msgstr ""
+
+msgid "MyPlex Username"
+msgstr ""
+
+msgid "No Plex Channels Available"
+msgstr ""
+
+msgid "No Plex Library Sections Available"
+msgstr ""
+
+msgid "No Seasons"
 msgstr ""
 
 msgid "No Unwatched Shows"
@@ -150,13 +212,19 @@ msgstr ""
 msgid "No episodes"
 msgstr ""
 
+msgid "None"
+msgstr ""
+
 msgid "On Deck"
 msgstr ""
 
-msgid "Overscan Adjust"
+msgid "On Deck Episode"
 msgstr ""
 
-msgid "PMS"
+msgid "On Deck Movie"
+msgstr ""
+
+msgid "Overscan Adjust"
 msgstr ""
 
 msgid "Photo"
@@ -165,13 +233,19 @@ msgstr ""
 msgid "Play"
 msgstr ""
 
+msgid "Plex Channels"
+msgstr ""
+
+msgid "Plex Library"
+msgstr ""
+
 msgid "Plex Media Server"
 msgstr ""
 
-msgid "Plex Media Server: No Channels Available"
+msgid "Plex Media Server: No Items Available"
 msgstr ""
 
-msgid "Plex Media Server: No Items Available"
+msgid "PlexConnect"
 msgstr ""
 
 msgid "Press menu to return."
@@ -183,13 +257,28 @@ msgstr ""
 msgid "Recently Added"
 msgstr ""
 
+msgid "Recently Added Movie"
+msgstr ""
+
 msgid "Recently Aired"
+msgstr ""
+
+msgid "Recently Aired Episode"
 msgstr ""
 
 msgid "Recently Released"
 msgstr ""
 
+msgid "Recently Released Movie"
+msgstr ""
+
 msgid "Recently Viewed"
+msgstr ""
+
+msgid "Recently Viewed Episode"
+msgstr ""
+
+msgid "Recently Viewed Episodes"
 msgstr ""
 
 msgid "Recently Viewed Shows"
@@ -198,10 +287,10 @@ msgstr ""
 msgid "Refresh Library"
 msgstr ""
 
-msgid "Search"
+msgid "Remote Bitrate"
 msgstr ""
 
-msgid "Search Plex Library"
+msgid "Search"
 msgstr ""
 
 msgid "Season"
@@ -210,7 +299,16 @@ msgstr ""
 msgid "Season View"
 msgstr ""
 
+msgid "Select Artwork"
+msgstr ""
+
+msgid "Select Tracks"
+msgstr ""
+
 msgid "Settings"
+msgstr ""
+
+msgid "Show"
 msgstr ""
 
 msgid "Show Clock"
@@ -228,10 +326,19 @@ msgstr ""
 msgid "Shows"
 msgstr ""
 
+msgid "Shutter Speed"
+msgstr ""
+
 msgid "SlideShow"
 msgstr ""
 
 msgid "Subtitle Size %"
+msgstr ""
+
+msgid "Subtitle Track"
+msgstr ""
+
+msgid "Synopsis hidden."
 msgstr ""
 
 msgid "TV Show Navigation Bar"
@@ -243,16 +350,31 @@ msgstr ""
 msgid "TV Show View"
 msgstr ""
 
+msgid "TheMovieDB: No Trailer Info available"
+msgstr ""
+
 msgid "Time Format"
 msgstr ""
 
+msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
+msgstr ""
+
+msgid "Trailer"
+msgstr ""
+
 msgid "Transcoder"
+msgstr ""
+
+msgid "Transcoder Action"
 msgstr ""
 
 msgid "Transcoder Quality"
 msgstr ""
 
 msgid "Unwatched"
+msgstr ""
+
+msgid "Unwatched Synopsis"
 msgstr ""
 
 msgid "Version"
@@ -264,19 +386,16 @@ msgstr ""
 msgid "Video Player OSD"
 msgstr ""
 
+msgid "View Show"
+msgstr ""
+
 msgid "Wiki/Docs"
 msgstr ""
 
 msgid "Writers"
 msgstr ""
 
-msgid ""
-"Your aTV firmware version is too old to run this version of PlexConnect.\n"
-"Please use the v0.1-iOS-pre5.1 branch available from:-\n"
-"https://github.com/iBaa/PlexConnect"
-msgstr ""
-
-msgid "aTV firmware version 5.0.2 or lower."
+msgid "Year"
 msgstr ""
 
 msgid "{0:0d}x{1:02d} {2}"
@@ -290,3 +409,4 @@ msgstr ""
 
 msgid "{0} unwatched"
 msgstr ""
+
