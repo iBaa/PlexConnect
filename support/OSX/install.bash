@@ -9,13 +9,13 @@ cd ../..
 PlexConnectPath=${PWD}
 
 ## check SSL certificate
-file="${PlexConnectPath}/assets/certificates/trailers.cer"
+file="${PlexConnectPath}/assets/certificates/trailers.pem"
 if [ -f "$file" ]; then
-    echo 'SSL certificate found' 
+    echo 'SSL certificate '$file' found.' 
 
 else
     ## if not, print a reminder
-    echo 'SSL certificate not found'
+    echo 'SSL certificate '$file' not found.'
     echo '- is it stored in a different place?'
     echo '  -> make sure to edit Settings.cfg and restart PlexConnect'
     echo '- did you already create one?'
