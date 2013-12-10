@@ -37,8 +37,6 @@ do
     CheckForNetwork
 done
 
-pwd 
-ls
 
 # Start PlexConnect
 ./${APPNAME}

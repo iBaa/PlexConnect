@@ -28,7 +28,7 @@ echo 'Installing PlexConnect...'
 
 ## replace __REPLACE_THIS_PATH__ in default com.plex.plexconnect.daemon.bash.plist
 ## save directly to the /Library/LaunchDameons folder
-sed -e "s/__REPLACE_THIS_PATH__/${PlexConnectPath//\//\\/}/" "${InstallerPath}/com.plex.plexconnect.bash.plist" > /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
+sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__PLEXCONNECTPATH__/${PlexConnectPath//\//\\/}/" "${InstallerPath}/com.plex.plexconnect.bash.plist" > /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
 
 ## change ownership and permissions of the plist file to make it launchctl compatible
 chown root /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
@@ -40,8 +40,8 @@ echo 'Starting PlexConnect...'
 ## launch the plist so that we can use it without a reboot
 launchctl load /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
 
-## wait a second to allow PlexConnect to load
-sleep 1
+## wait a couple seconds to allow PlexConnect to load
+sleep 2
 
 ## display the running status of PlexConnect
 #./PlexConnect_daemon.bash status
