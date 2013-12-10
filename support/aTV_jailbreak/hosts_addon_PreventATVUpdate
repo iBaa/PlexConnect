@@ -1,0 +1,8 @@
+##
+# "hosts" addon
+#
+# Apple addresses to be tested for aTV firmware updates
+##
+127.0.0.1	mesu.apple.com
+127.0.0.1	appldnld.apple.com
+127.0.0.1	appldnld.apple.com.edgesuite.net

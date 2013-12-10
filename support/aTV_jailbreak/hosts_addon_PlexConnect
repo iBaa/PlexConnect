@@ -1,0 +1,6 @@
+##
+# "hosts" addon
+#
+# loop back trailers.apple.com to aTV itself.
+##
+127.0.0.1	trailers.apple.com
