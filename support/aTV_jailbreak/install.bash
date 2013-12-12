@@ -26,7 +26,7 @@ fi
 ## create autostart plist for next boot
 echo 'Installing PlexConnect...'
 
-## replace __REPLACE_THIS_PATH__ in default com.plex.plexconnect.daemon.bash.plist
+## replace __INSTALLERPATH__, __PLEXCONNECTPATH__ in default com.plex.plexconnect.daemon.bash.plist
 ## save directly to the /Library/LaunchDameons folder
 sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__PLEXCONNECTPATH__/${PlexConnectPath//\//\\/}/" "${InstallerPath}/com.plex.plexconnect.bash.plist" > /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
 

@@ -5,6 +5,9 @@ PlexConnect on aTV (jailbroken)
 Install Python on aTV
 - current version: python_2.7.3-3_iphoneos-arm.deb
   see https://forums.plexapp.com/index.php/topic/72129-new-hack-running-the-plexconnect-python-script-on-your-jailbroken-atv2/?hl=%2Bnew+%2Bhack
+  "apt-get update"
+  "apt-get -f install sqlite3"
+  "dpkg -i python_2.7.3-3_iphoneos-arm.deb"
 
 Push PlexConnect to aTV
 - SFTP into aTV and copy the complete PlexConnect directory. Eg. to /Application/PlexConnect.
@@ -32,10 +35,10 @@ Done!
 Debug PlexConnect
 
 check processes
-- "ps -ef" should find 3 Phyton/PlexConnect related processes
+- "ps -ef" should find 3 Python/PlexConnect related processes
 
 check launchctl
-- "launchctl list | grep .plexconnect." should give "<PID>  -  com.plex.plexconnect.bach.plist"
+- "launchctl list | grep .plexconnect." should give "<PID>  -  com.plex.plexconnect.bash.plist"
 
 check StdOut, StdErr
 - in com.plex.plexconnect.bash.plist swap comments for StandardOutPath, StandardErrorPath payload
