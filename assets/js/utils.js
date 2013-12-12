@@ -92,14 +92,14 @@ function playTrailer(title,year)
     var doc = JSON.parse(ajax(lookup));
     if (doc.total_results === 0)
     {
-        XML_Error('{{TEXT(PlexConnect)}}', '{{TEXT(TheMovieDB: No Trailer Info available)}}');
+        XML_Error("{{TEXT(PlexConnect)}}", "{{TEXT(TheMovieDB: No Trailer Info available)}}");
         return;
     }
     lookup = "http://api.themoviedb.org/3/movie/"+doc.results[0].id+"/trailers?api_key="+api_key;
     doc = JSON.parse(ajax(lookup));
     if (doc.youtube.length === 0)
     {
-        XML_Error('{{TEXT(PlexConnect)}}', '{{TEXT(TheMovieDB: No Trailer Info available)}}');
+        XML_Error("{{TEXT(PlexConnect)}}", "{{TEXT(TheMovieDB: No Trailer Info available)}}");
         return;
     }
 

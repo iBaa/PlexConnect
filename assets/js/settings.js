@@ -127,7 +127,7 @@ function refreshLibrary(addrPMS)
 
 myPlexSignInOut = function()
 {
-    var _failed = '{{TEXT(Failed)}}'
+    var _failed = "{{TEXT(Failed)}}"
     
     var _myPlexElem = document.getElementById('MyPlexSignInOut')
     if (!_myPlexElem) return;  // error - element not found
@@ -189,7 +189,7 @@ myPlexSignInOut = function()
         gotUsername = function(value)
         {
             _username = value;
-            showTextEntryPage('password', '{{TEXT(MyPlex Password)}}', '{{TEXT(Enter the MyPlex password for {0}.)}}'.format(_username), gotPassword, gotCancel, null);
+            showTextEntryPage('password', "{{TEXT(MyPlex Password)}}", "{{TEXT(Enter the MyPlex password for {0}.)}}".format(_username), gotPassword, gotCancel, null);
         };
         
         gotPassword = function(value)
@@ -240,7 +240,7 @@ myPlexSignInOut = function()
         setLabel(_myPlexElem, 'rightLabel', '');
         hidePict(_myPlexElem, 'arrow');
         showPict(_myPlexElem, 'spinner');
-        showTextEntryPage('emailAddress', '{{TEXT(MyPlex Username)}}', '{{TEXT(To sign in to MyPlex, enter your Email address, username or Plex forum username.)}}', gotUsername, gotCancel, null);
+        showTextEntryPage('emailAddress', "{{TEXT(MyPlex Username)}}", "{{TEXT(To sign in to MyPlex, enter your Email address, username or Plex forum username.)}}", gotUsername, gotCancel, null);
     };
     
     

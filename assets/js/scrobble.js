@@ -135,7 +135,7 @@ function selectArtwork(PMS_baseURL, accessToken, ratingKey)
 		var posterURL = poster.getAttribute('key');
 		var selected = poster.getAttribute('selected');
 		var title = '';
-		if (selected == '1') title = '{{TEXT(Current Artwork)}}';
+		if (selected == '1') title = "{{TEXT(Current Artwork)}}";
 
     xml = xml + ' \
                 <goldenPoster id="poster" alwaysShowTitles="true" onSelect="loadNewArtwork(\'' + PMS_baseURL + '\', \'' + accessToken + '\', \'' + ratingKey + '\', \'' + posterURL.replace("&", "&amp;") + '\');atv.unloadPage();">';
