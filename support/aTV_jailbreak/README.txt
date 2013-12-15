@@ -15,16 +15,37 @@ Push PlexConnect to aTV
   overwrite the later if already there
   this bring new defaults for PlexConnect@aTV, like disabling DNSServer
 
-/etc/hosts
-- add content of PlexConnect/support/aTV_jailbreak/hosts_addon_PlexConnect to /etc/hosts
-  this redirects the trailer app back to aTV itself, replacing the DNSServer
-- optional: add PlexConnect/support/aTV_jailbreak/hosts_addon_preventATVUpdate
-  this prevents aTV update
-
 Install PlexConnect as daemon
 - SSH into aTV
 - CD into the PlexConnect directory. Eg. "cd /Application/PlexConnect"
 - run "./support/aTV_jailbreak/install.bash"
+
+/etc/hosts
+- optional: add PlexConnect/support/aTV_jailbreak/hosts_addon_preventATVUpdate
+  this prevents aTV update
+
+
+OPTION A - run PlexConnect as always, re-using trailers.apple.com
+
+/etc/hosts
+- add content of PlexConnect/support/aTV_jailbreak/hosts_addon_PlexConnect to /etc/hosts
+  this redirects the trailer app back to aTV itself, replacing the DNSServer
+
+
+OPTION B - create own PlexConnect button
+
+Install PlexConnect button to aTV home screen
+- SSH into aTV
+- CD into the PlexConnect directory. Eg. "cd /Application/PlexConnect"
+- run "./support/aTV_jailbreak/install_button.bash"
+  this will set up 
+     /Library/Managed Preferences/mobile/com.apple.frontrow.plist
+     /User/Library/Application Support/Front Row/ExtraInternetCategories.plist
+     ./support/aTV_jailbreak/bag.plist
+  and thereby enabling the AddSite hack tailored to PlexConnect.
+
+Thanks to D. Schuetz! (https://intrepidusgroup.com/insight/2013/09/rpi-atv/)
+
 
 Reboot
 
