@@ -1,9 +1,9 @@
 
 *.pyc
 
-ATVSettings.cfg
+/ATVSettings.cfg
 
-Settings.cfg
+/Settings.cfg
 
 PlexConnect.log
 
