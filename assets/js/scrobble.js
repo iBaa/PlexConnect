@@ -3,39 +3,39 @@
  */
 function scrobbleMenu(PMS_baseURL, accessToken, ratingKey, title, parentURL) {
 	var xmlstr = 
-'<?xml version="1.0" encoding="UTF-8"?> \
+"<?xml version=\"1.0\" encoding=\"UTF-8\"?> \
 <atv> \
   <head> \
-    <script src="{{URL(/js/scrobble.js)}}"/> \
-    <script src="{{URL(/js/utils.js)}}"/> \
+    <script src=\"{{URL(/js/scrobble.js)}}\"/> \
+    <script src=\"{{URL(/js/utils.js)}}\"/> \
   </head> \
   <body> \
-    <optionList id="scrobble.optionDialog"> \
-      <title>' + title + '</title> \
-      <items>';
+    <optionList id=\"scrobble.optionDialog\"> \
+      <title>" + title + "</title> \
+      <items>";
 
 	if (typeof parentURL != 'undefined')
 	{
-		xmlstr += '\
-        <oneLineMenuItem id="item1" onSelect="atv.loadAndSwapURL(\'' + parentURL + '\', \'' + accessToken + '\');"> \
+		xmlstr += "\
+        <oneLineMenuItem id=\"item1\" onSelect=\"atv.loadAndSwapURL(\'" + parentURL + "\', \'" + accessToken + "\');\"> \
           <label>{{TEXT(View Show)}}</label> \
-        </oneLineMenuItem>';
+        </oneLineMenuItem>";
 	}
 	
-	xmlstr += '\
-        <oneLineMenuItem id="item2" onSelect="scrobble(\'' + PMS_baseURL + '\', \'' + accessToken + '\', \'' + ratingKey + '\');atv.unloadPage();"> \
+	xmlstr += "\
+        <oneLineMenuItem id=\"item2\" onSelect=\"scrobble(\'" + PMS_baseURL + "\', \'" + accessToken + "\', \'" + ratingKey + "\');atv.unloadPage();\"> \
           <label>{{TEXT(Mark as Watched)}}</label> \
         </oneLineMenuItem> \
-        <oneLineMenuItem id="item3" onSelect="unscrobble(\'' + PMS_baseURL + '\', \'' + accessToken + '\', \'' + ratingKey + '\');atv.unloadPage();"> \
+        <oneLineMenuItem id=\"item3\" onSelect=\"unscrobble(\'" + PMS_baseURL + "\', \'" + accessToken + "\', \'" + ratingKey + "\');atv.unloadPage();\"> \
           <label>{{TEXT(Mark as Unwatched)}}</label> \
         </oneLineMenuItem> \
-        <oneLineMenuItem id="item4" onSelect="selectArtwork(\'' + PMS_baseURL + '\', \'' + accessToken + '\', \'' + ratingKey + '\');"> \
+        <oneLineMenuItem id=\"item4\" onSelect=\"selectArtwork(\'" + PMS_baseURL + "\', \'" + accessToken + "\', \'" + ratingKey + "\');\"> \
           <label>{{TEXT(Change Artwork)}}</label> \
         </oneLineMenuItem> \
       </items> \
     </optionList> \
   </body> \
-</atv>';
+</atv>";
 // bug? selectArtwork does not atv.unloadPage()
 	var doc = atv.parseXML(xmlstr);
 	atv.loadXML(doc);
@@ -107,26 +107,26 @@ function selectArtwork(PMS_baseURL, accessToken, ratingKey)
 	var colCount = "5";
 	if (posters.length <= 5) colCount = posters.length.toString();
 	var xml = 
-'<?xml version="1.0" encoding="UTF-8"?> \
+"<?xml version=\"1.0\" encoding=\"UTF-8\"?> \
 <atv> \
   <head> \
-    <script src="{{URL(/js/scrobble.js)}}"/> \
+    <script src=\"{{URL(/js/scrobble.js)}}\"/> \
   </head> \
   <body> \
-    <scroller id="poster_selector"> \
+    <scroller id=\"poster_selector\"> \
       <header> \
         <simpleHeader> \
           <title>{{TEXT(Select Artwork)}}</title> \
         </simpleHeader> \
       </header> \
       <items> \
-        <collectionDivider alignment="left"> \
+        <collectionDivider alignment=\"left\"> \
           <title></title> \
         </collectionDivider> \
-        <shelf id="coverflow" columnCount="' + colCount +'"> \
+        <shelf id=\"coverflow\" columnCount=\"" + colCount +"\"> \
           <sections> \
             <shelfSection> \
-              <items>';
+              <items>";
 
 	for(var i = 0; i < posters.length; ++i)
 	{
@@ -137,37 +137,37 @@ function selectArtwork(PMS_baseURL, accessToken, ratingKey)
 		var title = '';
 		if (selected == '1') title = "{{TEXT(Current Artwork)}}";
 
-    xml = xml + ' \
-                <goldenPoster id="poster" alwaysShowTitles="true" onSelect="loadNewArtwork(\'' + PMS_baseURL + '\', \'' + accessToken + '\', \'' + ratingKey + '\', \'' + posterURL.replace("&", "&amp;") + '\');atv.unloadPage();">';
+    xml = xml + " \
+                <goldenPoster id=\"poster\" alwaysShowTitles=\"true\" onSelect=\"loadNewArtwork(\'" + PMS_baseURL + "\', \'" + accessToken + "\', \'" + ratingKey + "\', \'" + posterURL.replace("&", "&amp;") + "\');atv.unloadPage();\">";
     if (posterURL.indexOf('library') !== -1)
-      xml = xml + ' \
-                  <title>' + title + '</title> \
-                  <image>' + PMS_baseURL + posterThumb + '</image>';
+      xml = xml + " \
+                  <title>" + title + "</title> \
+                  <image>" + PMS_baseURL + posterThumb + "</image>";
     else if (posterURL.indexOf('movieposterdb') !== -1)
-      xml = xml + ' \
-                  <title>' + title + '</title> \
-                  <image>' + posterURL.replace("&","&amp;") + '</image>';
+      xml = xml + " \
+                  <title>" + title + "</title> \
+                  <image>" + posterURL.replace("&","&amp;") + "</image>";
     else
-      xml = xml + ' \
-                  <title>' + title + '</title> \
-                  <image>' + PMS_baseURL + posterThumb + '</image>';
+      xml = xml + " \
+                  <title>" + title + "</title> \
+                  <image>" + PMS_baseURL + posterThumb + "</image>";
     
-    xml = xml + ' \
+    xml = xml + " \
                   <defaultImage>resource://Poster.png</defaultImage> \
-                </goldenPoster>';
+                </goldenPoster>";
 	};
-	xml = xml + ' \
+	xml = xml + " \
               </items> \
             </shelfSection> \
           </sections> \
         </shelf> \
-        <collectionDivider alignment="left"> \
+        <collectionDivider alignment=\"left\"> \
           <title></title> \
         </collectionDivider> \
       </items> \
     </scroller> \
   </body> \
-</atv>';
+</atv>";
 	var menuDoc = atv.parseXML(xml);
 	atv.loadXML(menuDoc);
 };

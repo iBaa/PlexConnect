@@ -403,15 +403,15 @@ atv.onAppEntry = function()
     else
     {
         var xmlstr =
-'<?xml version="1.0" encoding="UTF-8"?> \
+"<?xml version=\"1.0\" encoding=\"UTF-8\"?> \
 <atv> \
   <body> \
-    <dialog id="com.sample.error-dialog"> \
+    <dialog id=\"com.sample.error-dialog\"> \
       <title>{{TEXT(PlexConnect)}}</title> \
       <description>{{TEXT(ATV firmware version 5.1 or higher required. Please think about updating.)}}</description> \
     </dialog> \
   </body> \
-</atv>';
+</atv>";
         
         var doc = atv.parseXML(xmlstr);
         atv.loadXML(doc);

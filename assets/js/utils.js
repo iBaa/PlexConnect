@@ -129,15 +129,15 @@ function ajax(url)
 function XML_Error(title,desc)
 {
     var errorXML =
-'<?xml version="1.0" encoding="UTF-8"?> \
+"<?xml version=\"1.0\" encoding=\"UTF-8\"?> \
 <atv> \
     <body> \
-        <dialog id="com.sample.error-dialog"> \
-            <title>' + title + '</title> \
-            <description>' + desc + '</description> \
+        <dialog id=\"com.sample.error-dialog\"> \
+            <title>" + title + "</title> \
+            <description>" + desc + "</description> \
         </dialog> \
     </body> \
-</atv>';
+</atv>";
     var doc = atv.parseXML(errorXML);
     atv.loadXML(doc); 
 };
