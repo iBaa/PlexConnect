@@ -3,11 +3,18 @@ PlexConnect on aTV (jailbroken)
 
 
 Install Python on aTV
-- current version: python_2.7.3-3_iphoneos-arm.deb
-  see https://forums.plexapp.com/index.php/topic/72129-new-hack-running-the-plexconnect-python-script-on-your-jailbroken-atv2/?hl=%2Bnew+%2Bhack
+(current version: python_2.7.3-3_iphoneos-arm.deb)
+- download "https://yangapp.googlecode.com/files/python_2.7.3-3_iphoneos-arm.deb"
+- SFTP "python_2.7.3-3_iphoneos-arm.deb" to your aTV
+- SSH into aTV and execute...
   "apt-get update"
-  "apt-get -f install sqlite3"
+  "apt-get upgrade"
+  just to make sure you have the latest packages
+  "apt-get install cydia"
+  "apt-get install python"
+  this will pull and install python 2.5.1 with all dependencies
   "dpkg -i python_2.7.3-3_iphoneos-arm.deb"
+  this will update python to 2.7.3
 
 Push PlexConnect to aTV
 - SFTP into aTV and copy the complete PlexConnect directory. Eg. to /Application/PlexConnect.
