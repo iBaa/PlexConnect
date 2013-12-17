@@ -15,9 +15,9 @@
         <key>menu-icon-url</key>
         <dict>
             <key>720</key>
-            <string>file://__INSTALLERPATH__/PlexConnectButton.png</string>
+            <string>file://__INSTALLERPATH__/plexconnect.png</string>
             <key>1080</key>
-            <string>file://__INSTALLERPATH__/PlexConnectButton.png</string>
+            <string>file://__INSTALLERPATH__/plexconnect.png</string>
         </dict>
     </dict>
 </plist>
