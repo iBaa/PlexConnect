@@ -33,7 +33,7 @@ from urllib import quote_plus
 import urllib2
 import urlparse
 
-from PlexConnectVersion import _PLEXCONNECTVERSION_
+from Version import __VERSION__  # for {{EVAL()}}, display in settings page
 import Settings, ATVSettings
 import PlexAPI
 from Debug import *  # dprint(), prettyXML()

@@ -14,6 +14,7 @@ import socket
 from multiprocessing import Process, Pipe
 import signal, errno
 
+from Version import __VERSION__
 import DNSServer, WebServer
 import Settings
 from Debug import *  # dprint()
@@ -63,6 +64,10 @@ def startup():
     param['LogFile'] = logpath + sep + 'PlexConnect.log'
     param['LogLevel'] = cfg.getSetting('loglevel')
     dinit('PlexConnect', param, True)  # init logging, new file, main process
+    
+    dprint('PlexConnect', 0, "Version: {0}", __VERSION__)
+    dprint('PlexConnect', 0, "Python: {0}", sys.version)
+    dprint('PlexConnect', 0, "Host OS: {0}", sys.platform)
     
     # more Settings
     param['IP_self'] = getIP_self()

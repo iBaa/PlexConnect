@@ -41,7 +41,7 @@ except ImportError:
 
 from urllib import urlencode, quote_plus
 
-from PlexConnectVersion import _PLEXCONNECTVERSION_
+from Version import __VERSION__
 from Debug import *  # dprint(), prettyXML()
 
 
@@ -355,7 +355,7 @@ def getXArgsDeviceInfo(options={}):
     if 'aTVFirmwareVersion' in options:
         xargs['X-Plex-Platform-Version'] = options['aTVFirmwareVersion']
     xargs['X-Plex-Product'] = 'PlexConnect'
-    xargs['X-Plex-Version'] = _PLEXCONNECTVERSION_
+    xargs['X-Plex-Version'] = __VERSION__
     
     return xargs
 

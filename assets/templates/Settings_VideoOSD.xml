@@ -24,7 +24,7 @@
             <label>{{TEXT(Forum)}}</label>
           </metadataKeys>
           <metadataValues>
-            <label>{{EVAL(_PLEXCONNECTVERSION_)}}</label>
+            <label>{{EVAL(__VERSION__)}}</label>
             <label>Baa, roidy</label>
             <label>f00b4r, meltman</label>
             <label>https://github.com/ibaa/plexconnect</label>

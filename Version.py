@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
 """
-PlexConnectVersion.py
+Version.py
 """
 
 
 
 # Version string - globally available
-_PLEXCONNECTVERSION_ = '0.2'
+__VERSION__ = '0.2'
