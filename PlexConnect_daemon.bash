@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# sample start stop script
+# Linux PlexConnect start stop script
 #
 
 # Package
@@ -9,7 +9,15 @@ DNAME="PlexConnect"
 PNAME="PlexConnect_daemon"
 
 # Others
-INSTALL_DIR="."
+# current path resolver from http://stackoverflow.com/a/246128
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do
+  DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+INSTALL_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+
 PYTHON="python"
 PROGRAM="${INSTALL_DIR}/${PNAME}.py"
 PID_FILE="/var/${PNAME}.pid"
@@ -108,6 +116,9 @@ case $1 in
             echo ${DNAME} is not running
             exit 1
         fi
+        ;;
+    restart)
+        $0 stop && sleep 2 && $0 start && sleep 2 && $0 status
         ;;
     *)
         exit 1
