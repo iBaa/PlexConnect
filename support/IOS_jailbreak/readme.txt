@@ -5,8 +5,8 @@ PlexConnect on any non atv ios devices (jailbroken)
 Install Python on any non atv ios devices
 (current version: python_2.7.3-3_iphoneos-arm.deb)
 - download "https://yangapp.googlecode.com/files/python_2.7.3-3_iphoneos-arm.deb"
-- SFTP "python_2.7.3-3_iphoneos-arm.deb" to your aTV
-- SSH into aTV and execute...
+- SFTP "python_2.7.3-3_iphoneos-arm.deb" to your ios device
+- SSH into ios device and execute...
   "apt-get update"
   "apt-get upgrade"
   just to make sure you have the latest packages
