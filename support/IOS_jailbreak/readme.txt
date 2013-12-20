@@ -38,7 +38,7 @@ An alternative method is by port forwarding your port_pms on your router and edi
 
 Also you must edit your settings.cfg to point back to your pms server e.g.
 
-[PlexConnect
+[PlexConnect]
 port_pms = 32400 (if this your pms port)
 port_webserver = 80
 ip_plexconnect = 0.0.0.0
