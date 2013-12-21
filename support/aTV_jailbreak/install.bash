@@ -26,6 +26,13 @@ fi
 ## create autostart plist for next boot
 echo 'Installing PlexConnect...'
 
+## make scripts executable for ios devices
+chmod +x /Applications/PlexConnect/PlexConnect.py
+chmod +x /Applications/PlexConnect/support/IOS_jailbreak/PlexConnect.bash
+chmod +x /Applications/PlexConnect/support/IOS_jailbreak/createcert.bash
+chmod +x /Applications/PlexConnect/support/IOS_jailbreak/restart.bash
+chmod +x /Applications/PlexConnect/support/IOS_jailbreak/uninstall.bash
+
 ## replace __INSTALLERPATH__, __PLEXCONNECTPATH__ in default com.plex.plexconnect.daemon.bash.plist
 ## save directly to the /Library/LaunchDameons folder
 sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__PLEXCONNECTPATH__/${PlexConnectPath//\//\\/}/" "${InstallerPath}/com.plex.plexconnect.bash.plist" > /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
