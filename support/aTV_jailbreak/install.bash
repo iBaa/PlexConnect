@@ -28,10 +28,10 @@ echo 'Installing PlexConnect...'
 
 ## make scripts executable for ios devices
 chmod +x /Applications/PlexConnect/PlexConnect.py
-chmod +x /Applications/PlexConnect/support/IOS_jailbreak/PlexConnect.bash
-chmod +x /Applications/PlexConnect/support/IOS_jailbreak/createcert.bash
-chmod +x /Applications/PlexConnect/support/IOS_jailbreak/restart.bash
-chmod +x /Applications/PlexConnect/support/IOS_jailbreak/uninstall.bash
+chmod +x /Applications/PlexConnect/support/aTV_jailbreak/PlexConnect.bash
+chmod +x /Applications/PlexConnect/support/aTV_jailbreak/createcert.bash
+chmod +x /Applications/PlexConnect/support/aTV_jailbreak/restart.bash
+chmod +x /Applications/PlexConnect/support/aTV_jailbreak/uninstall.bash
 
 ## replace __INSTALLERPATH__, __PLEXCONNECTPATH__ in default com.plex.plexconnect.daemon.bash.plist
 ## save directly to the /Library/LaunchDameons folder
