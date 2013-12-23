@@ -1,6 +1,7 @@
 PlexConnect on any non atv ios devices (jailbroken)
 
-
+Install cydelete using cydia from the bigboss repo (default repo installed by cydia):
+  http://apt.thebigboss.org/repofiles/cydia
 
 Install Python on any non atv ios devices
 (current version: python_2.7.3-3_iphoneos-arm.deb)
