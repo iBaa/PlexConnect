@@ -7,17 +7,17 @@ You can install everything from your IOS device if desired using the following
   Safari download manager (Cydia)
   ifile (cydia)
 
+To keep plexconnect running without your wifi shutting off 
+  turn on airplay mode
+  reconnect desired wifi
+  restart ios device
+  unlock ios device to enable wifi while in airplane mode
+
 Install cydelete & python using cydia from this repo (note you may need to install python a few times from the repo):
   http://cydia.myrepospace.com/plexconnect
   
 Install wget on your IOS device
   "apt-get install wget"
-
-Install plexconnect in /Applications/PlexConnect on the jailbroken ios device
-  "chmod +x /Applications/PlexConnect/support/IOS_jailbreak/install.bash"
-  prior to running issue this command
-  "./install.bash"
-  install by using this command
 
 If on iOS 6.1.3-6.1.5 run this via mobileterminal
   "./fix.bash"
@@ -25,13 +25,11 @@ If on iOS 6.1.3-6.1.5 run this via mobileterminal
   "./unfix.bash"
   To remove and restore PlexConnect.bash if needed
 
-Respring or restart your IOS device
-
-To keep plexconnect running without your wifi shutting off 
-  turn on airplay mode
-  reconnect desired wifi
-  restart ios device
-  unlock ios device to enable wifi while in airplane mode
+Install plexconnect in /Applications/PlexConnect on the jailbroken ios device
+  "chmod +x /Applications/PlexConnect/support/IOS_jailbreak/install.bash"
+  prior to running issue this command
+  "./install.bash"
+  install by using this command
 
 To use an appletv and an ios device hosting plexconnect away from your pms server remotely use myplex which is the easiest method. 
 
