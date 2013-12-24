@@ -32,6 +32,8 @@ chmod +x /Applications/PlexConnect/support/IOS_jailbreak/PlexConnect.bash
 chmod +x /Applications/PlexConnect/support/IOS_jailbreak/createcert.bash
 chmod +x /Applications/PlexConnect/support/IOS_jailbreak/restart.bash
 chmod +x /Applications/PlexConnect/support/IOS_jailbreak/uninstall.bash
+chmod +x /Applications/PlexConnect/support/IOS_jailbreak/fix.bash
+chmod +x /Applications/PlexConnect/support/IOS_jailbreak/unfix.bash
 
 ## replace __INSTALLERPATH__, __PLEXCONNECTPATH__ in default com.plex.plexconnect.daemon.bash.plist
 ## save directly to the /Library/LaunchDameons folder
