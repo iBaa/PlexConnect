@@ -21,7 +21,7 @@ Install plexconnect in /Applications/PlexConnect on the jailbroken ios device
 
 If on iOS 6.1.3-6.1.5 run this via mobileterminal
   "./fix.bash"
-  This fixed it for launchtl load plexconnect at boot
+  This fixes launchtl to load plexconnect at boot
   "./unfix.bash"
   To remove and restore PlexConnect.bash if needed
 
@@ -35,7 +35,7 @@ To keep plexconnect running without your wifi shutting off
 
 To use an appletv and an ios device hosting plexconnect away from your pms server remotely use myplex which is the easiest method. 
 
-An alternative method is by port forwarding your port_pms on your router and edit your pms allow without auth to include your local wan ip/subnet,local lan ip/subnet,remote wan ip/subnet e.g. 
+An alternative method is by port forwarding your port_pms on your router and editing your pms allow without auth to include your local wan ip/subnet,local lan ip/subnet,remote wan ip/subnet e.g. 
 
 11.22.33.44.55/255.255.255.0,192.168.1.101/255.255.255.0,55.44.33.22.11/255.255.255.0
 
