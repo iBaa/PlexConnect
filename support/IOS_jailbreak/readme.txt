@@ -19,6 +19,12 @@ Install plexconnect in /Applications/PlexConnect on the jailbroken ios device
   "./install.bash"
   install by using this command
 
+If on iOS 6.1.3-6.1.5 run this via mobileterminal
+  "./fix.bash"
+  This fixed it for launchtl load plexconnect at boot
+  "./unfix.bash"
+  To remove and restore PlexConnect.bash if needed
+
 Respring or restart your IOS device
 
 To keep plexconnect running without your wifi shutting off 
