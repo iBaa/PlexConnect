@@ -19,6 +19,8 @@ Install plexconnect in /Applications/PlexConnect on the jailbroken ios device
   "./install.bash"
   install by using this command
 
+Respring or restart your IOS device
+
 To keep plexconnect running without your wifi shutting off 
   turn on airplay mode
   reconnect desired wifi
