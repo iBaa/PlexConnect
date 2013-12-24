@@ -1,23 +1,17 @@
 PlexConnect on any non atv ios devices (jailbroken)
 
-Install cydelete using cydia from the bigboss repo (default repo installed by cydia):
-  http://apt.thebigboss.org/repofiles/cydia
 
-Install Python on any non atv ios devices
-(current version: python_2.7.3-3_iphoneos-arm.deb)
-- download "https://yangapp.googlecode.com/files/python_2.7.3-3_iphoneos-arm.deb"
-- SFTP "python_2.7.3-3_iphoneos-arm.deb" to your ios device
-- SSH into ios device and execute...
-  "apt-get update"
-  "apt-get upgrade"
-  just to make sure you have the latest packages
-  "apt-get install cydia"
-  "apt-get install python"
-  this will pull and install python 2.5.1 with all dependencies
-  "dpkg -i python_2.7.3-3_iphoneos-arm.deb"
-  this will update python to 2.7.3
-  "apt-get -f install"
-  this will fix any errors if encountered
+
+You can install everything from your IOS device if desired using the following
+  Webserver hosting your cert or a website e.g. www.zippyshare.com
+  Safari download manager (Cydia)
+  ifile (cydia)
+
+Install cydelete & python using cydia from this repo (note you may need to install python a few times from the repo):
+  http://cydia.myrepospace.com/plexconnect
+  
+Install wget on your IOS device
+  "apt-get install wget"
 
 Install plexconnect in /Applications/PlexConnect on the jailbroken ios device
   "chmod +x /Applications/PlexConnect/support/IOS_jailbreak/install.bash"
