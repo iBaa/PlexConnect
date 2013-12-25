@@ -254,7 +254,7 @@ def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
     
     # MyPlex servers
     if not MyPlexToken=='':
-        XML = getXMLFromPMS('https://my.plexapp.com', '/pms/servers', None, MyPlexToken)
+        XML = getXMLFromPMS('https://plex.tv', '/pms/servers', None, MyPlexToken)
         
         if XML==False:
             pass  # no data from MyPlex
@@ -442,7 +442,7 @@ result:
 """
 def MyPlexSignIn(username, password, options):
     # MyPlex web address
-    MyPlexHost = 'my.plexapp.com'
+    MyPlexHost = 'plex.tv'
     MyPlexSignInPath = '/users/sign_in.xml'
     MyPlexURL = 'https://' + MyPlexHost + MyPlexSignInPath
     
@@ -466,7 +466,7 @@ def MyPlexSignIn(username, password, options):
     ##passmanager = urllib2.HTTPPasswordMgrWithDefaultRealm()
     ##passmanager.add_password(None, address, username, password)  # None: default "realm"
     passmanager = urllib2.HTTPPasswordMgr()
-    passmanager.add_password(MyPlexHost, MyPlexURL, username, password)  # realm = 'my.plexapp.com'
+    passmanager.add_password(MyPlexHost, MyPlexURL, username, password)  # realm = 'plex.tv'
     authhandler = urllib2.HTTPBasicAuthHandler(passmanager)
     urlopener = urllib2.build_opener(authhandler)
     
@@ -505,7 +505,7 @@ def MyPlexSignIn(username, password, options):
 
 def MyPlexSignOut(authtoken):
     # MyPlex web address
-    MyPlexHost = 'my.plexapp.com'
+    MyPlexHost = 'plex.tv'
     MyPlexSignOutPath = '/users/sign_out.xml'
     MyPlexURL = 'http://' + MyPlexHost + MyPlexSignOutPath
     
@@ -718,8 +718,8 @@ if __name__ == '__main__':
     # test XML from MyPlex
     if testMyPlexXML:
         dprint('', 0, "*** XML from MyPlex")
-        XML = getXMLFromPMS('https://my.plexapp.com', '/pms/servers', None, token)
-        XML = getXMLFromPMS('https://my.plexapp.com', '/pms/system/library/sections', None, token)
+        XML = getXMLFromPMS('https://plex.tv', '/pms/servers', None, token)
+        XML = getXMLFromPMS('https://plex.tv', '/pms/system/library/sections', None, token)
     
     
     # test MyPlex Sign In
