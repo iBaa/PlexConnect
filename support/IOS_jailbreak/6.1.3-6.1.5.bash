@@ -4,11 +4,12 @@
 # OSX PlexConnect startup script
 #
 
-#!/bin/bash
-until wget -q -O - http://www.google.com | grep Lucky > /dev/null; do
-sleep 10
+#!/bin/bash thanks to @stonegray on kiwiirc
+until ping -t 100 -c 1 8.8.8.8 > /dev/null
+do
+  echo "No internet, waiting!"
 done
-exec $1&
+echo "Yay internet"
 
 cd /Applications/PlexConnect
 ./PlexConnect.py
