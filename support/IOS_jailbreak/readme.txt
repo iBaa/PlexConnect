@@ -27,7 +27,7 @@ Set AppleTV DNS to manual pointed at iOS device IP address
   
 If Mobile Substrate is fixed in the future you can run this command  
   "./unfix.bash"
-  this will restore PlexConnect.bash to defaults for network readiness
+  this will restore PlexConnect.bash to defaults for universal network readiness
 
 To use an appletv and an ios device hosting plexconnect away from your pms server remotely use myplex which is the easiest method. 
 
