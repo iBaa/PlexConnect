@@ -3,12 +3,12 @@ PlexConnect on any non atv ios devices (jailbroken)
 
 
 You can install everything from your IOS device if desired using the following
-  Webserver hosting your cert or a website e.g. www.zippyshare.com
+  Webserver or a website hosting your cert
   Safari download manager (Cydia)
   ifile (cydia)
 
 To keep plexconnect running without your wifi shutting off 
-  turn on airplay mode
+  turn on airplay mode (this will disable your wifi)
   reconnect desired wifi
   restart ios device
   unlock ios device to enable wifi while in airplane mode
@@ -21,6 +21,9 @@ Install plexconnect in /Applications/PlexConnect on the jailbroken ios device
   prior to running issue this command
   "./install.bash"
   install by using this command
+  
+Set AppleTV DNS to manual pointed at iOS device IP address
+  Done!
 
 To use an appletv and an ios device hosting plexconnect away from your pms server remotely use myplex which is the easiest method. 
 
