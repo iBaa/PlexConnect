@@ -13,13 +13,13 @@ To keep plexconnect running without your wifi shutting off
   restart ios device
   unlock ios device to enable wifi while in airplane mode
 
-Install cydelete & python using cydia from this repo (note you may need to install python a few times from the repo):
+Install python using cydia from this repo (note you may need to install python a few times from the repo):
   http://cydia.myrepospace.com/plexconnect
   
-Install wget on your IOS device
-  "apt-get install wget"
+Install ping on your IOS device
+  "apt-get install ping"
 
-If on iOS 6.1.3-6.1.5 run this via mobileterminal
+If on iOS 6.1.3-6.1.5 & iOS 7 run this via mobileterminal
   "./fix.bash"
   This fixes launchtl to load plexconnect at boot
   "./unfix.bash"
