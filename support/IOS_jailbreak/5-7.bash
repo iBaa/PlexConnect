@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# OSX PlexConnect startup script thanks to @stonegray on #kiwiirc
+# OSX PlexConnect startup script thanks to @stonegray on #jailbreakqa
 #
 
 until ping -c 1 8.8.8.8 > /dev/null
