@@ -4,9 +4,8 @@
 # OSX PlexConnect startup script thanks to @stonegray on kiwiirc
 #
 
-#!/bin/bash
 echo "Can I has internet?"
-ping -c 1 8.8.8.8 > /dev/null  #fixed
+until ping -c 1 8.8.8.8 > /dev/null  #fixed?
 do
   echo "No internet, waiting!"
 done
