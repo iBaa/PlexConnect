@@ -13,17 +13,8 @@ To keep plexconnect running without your wifi shutting off
   restart ios device
   unlock ios device to enable wifi while in airplane mode
 
-Install python using cydia from this repo (note you may need to install python a few times from the repo):
+Using cydia add and install all packages from this repo: 
   http://cydia.myrepospace.com/plexconnect
-  
-Install ping on your IOS device
-  "apt-get install ping"
-
-If on iOS 6.1.3-6.1.5 & iOS 7 run this via mobileterminal
-  "./fix.bash"
-  This fixes launchtl to load plexconnect at boot
-  "./unfix.bash"
-  To remove and restore PlexConnect.bash if needed
 
 Install plexconnect in /Applications/PlexConnect on the jailbroken ios device
   "chmod +x /Applications/PlexConnect/support/IOS_jailbreak/install.bash"
@@ -56,7 +47,3 @@ enable_webserver_ssl = True
 prevent_atv_update = True
 port_dnsserver = 53
 enable_plexconnect_autodetect = True
-
-
-
-
