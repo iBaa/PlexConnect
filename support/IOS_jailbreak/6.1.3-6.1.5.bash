@@ -5,7 +5,7 @@
 #
 
 #!/bin/bash
-ping -W 100 -t 100 -c 1 8.8.8.8 > /dev/null 
+until ping -W 100 -t 100 -c 1 8.8.8.8 > /dev/null 
 do
   echo "No internet, waiting!"
 done
