@@ -316,7 +316,7 @@ def getXMLFromPMS(baseURL, path, options={}, authtoken=''):
     
     request = urllib2.Request(baseURL+path , None, xargs)
     try:
-        response = urllib2.urlopen(request, timeout=10)
+        response = urllib2.urlopen(request, timeout=20)
     except urllib2.URLError as e:
         dprint(__name__, 0, 'No Response from Plex Media Server')
         if hasattr(e, 'reason'):
