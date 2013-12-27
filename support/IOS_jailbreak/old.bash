@@ -1,15 +1,16 @@
 #!/bin/bash
 
 #
-# OSX PlexConnect startup script
+# OSX PlexConnect startup script thanks to @stonegray on #jailbreakqa
 #
 
-# Run in a loop until successfully connected to the internet
-until wget -q -O - http://www.google.com | grep Lucky > /dev/null; do
-sleep 10
+until ping -c 1 8.8.8.8 > /dev/null
+do
+  echo "No internet, waiting!"
 done
-exec $1&
+echo "Yay internet"
 
-# Change directory & launch plexconnect
+#change directory & launch plexconnect
+
 cd /Applications/PlexConnect
-./PlexConnect.py 
+./PlexConnect.py
