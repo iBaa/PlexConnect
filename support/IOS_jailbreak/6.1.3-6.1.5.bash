@@ -5,7 +5,8 @@
 #
 
 #!/bin/bash
-until ping -W 100 -t 100 -c 1 8.8.8.8 > /dev/null 
+echo "Can I has internet?"
+ping -c 1 8.8.8.8 > /dev/null  #fixed
 do
   echo "No internet, waiting!"
 done
