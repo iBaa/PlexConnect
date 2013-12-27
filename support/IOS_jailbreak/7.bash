@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# OSX PlexConnect startup script thanks to @stonegray on kiwiirc
+# OSX PlexConnect startup script thanks to @stonegray on #kiwiirc
 #
 
 echo "Can I has internet?"
