@@ -1,5 +1,5 @@
 #!/bin/bash
 
-# Temp fix for ios 6.1.3+
+# Fix for iOS 5-7 
 
 cp 5-7.bash PlexConnect.bash
