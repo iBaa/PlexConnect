@@ -40,7 +40,7 @@ chmod +x /Applications/PlexConnect/support/IOS_jailbreak/unfix.bash
 sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__PLEXCONNECTPATH__/${PlexConnectPath//\//\\/}/" "${InstallerPath}/com.plex.plexconnect.bash.plist" > /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
 
 ## change ownership and permissions of the plist file to make it launchctl compatible
-chown root /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
+chown root:wheel /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
 chmod 644 /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
 
 ## start PlexConnect for this session
