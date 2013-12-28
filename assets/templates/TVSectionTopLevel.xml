@@ -17,6 +17,11 @@
 					<url>{{URL(key)}}&amp;PlexConnect=TVSection</url>
 				</navigationItem>
 
+        <navigationItem id="Recently Viewed Shows">
+          <title>{{TEXT(Recently Viewed Shows)}}</title>
+          <url>{{URL(key)}}/recentlyViewedShows</url>
+        </navigationItem>
+
         <navigationItem id="Unwatched">
 					<title>{{TEXT(Unwatched)}}</title>
 					<url>{{URL(key)}}/unwatched&amp;PlexConnect=AllShows</url>
