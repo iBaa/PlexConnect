@@ -65,6 +65,13 @@
             </header>
             <items>
 
+              <oneLineMenuItem id="TV_NavBar_Recent_Shows" onSelect="toggleSettings('TV_NavBar_Recent_Shows', 'Settings_TVShows')">
+                <label>{{TEXT(Recent_Shows)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($tv_navbar_recent_shows::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+
               <oneLineMenuItem id="TV_NavBar_Unwatched" onSelect="toggleSettings('TV_NavBar_Unwatched', 'Settings_TVShows')">
                 <label>{{TEXT(Unwatched)}}</label>
                 <accessories>

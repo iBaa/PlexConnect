@@ -20,7 +20,7 @@
         <navigationItem id="Recently Viewed Shows">
           <title>{{TEXT(Recently Viewed Shows)}}</title>
           <url>{{URL(key)}}/recentlyViewedShows</url>
-        </navigationItem>
+        </navigationItem>{{CUT($tv_navbar_recent_shows::unchecked=CUT|checked=)}}
 
         <navigationItem id="Unwatched">
 					<title>{{TEXT(Unwatched)}}</title>
