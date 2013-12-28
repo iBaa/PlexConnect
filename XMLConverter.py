@@ -830,12 +830,6 @@ class CCommandCollection(CCommandHelper):
             PMS = PlexAPI.getXMLFromPMS(self.PMS_baseURL, path, self.options, auth_token)
         #elif key.startswith('http://'):  # external address
         #    path = key
-        #    hijack = g_param['HostToIntercept']
-        #    if hijack in path:
-        #        dprint(__name__, 1, "twisting...")
-        #        hijack_twisted = hijack[::-1]
-        #        path = path.replace(hijack, hijack_twisted)
-        #        dprint(__name__, 1, path)
         elif key == '':  # internal path
             path = self.path[srcXML]
             PMS = PlexAPI.getXMLFromPMS(self.PMS_baseURL, path, self.options, auth_token)
@@ -940,13 +934,8 @@ class CCommandCollection(CCommandHelper):
         
         if res.startswith('/'):  # internal full path.
             res = self.PMS_baseURL + res
-        elif res.startswith('http://') or key.startswith('https://'):  # external address
-            hijack = g_param['HostToIntercept']
-            if hijack in res:
-                dprint(__name__, 1, "twisting...")
-                hijack_twisted = hijack[::-1]
-                res = res.replace(hijack, hijack_twisted)
-                dprint(__name__, 1, res)
+        elif res.startswith('http://') or res.startswith('https://'):  # external address
+            pass
         else:  # internal path, add-on
             res = self.PMS_baseURL + self.path[srcXML] + '/' + res
         
@@ -1061,13 +1050,8 @@ class CCommandCollection(CCommandHelper):
         
         if res.startswith('/'):  # internal full path.
             res = self.PMS_baseURL + res
-        elif res.startswith('http://') or key.startswith('https://'):  # external address
-            hijack = g_param['HostToIntercept']
-            if hijack in res:
-                dprint(__name__, 1, "twisting...")
-                hijack_twisted = hijack[::-1]
-                res = res.replace(hijack, hijack_twisted)
-                dprint(__name__, 1, res)
+        elif res.startswith('http://') or res.startswith('https://'):  # external address
+            pass
         else:  # internal path, add-on
             res = self.PMS_baseURL + self.path[srcXML] + res
         

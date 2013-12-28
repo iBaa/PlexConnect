@@ -336,10 +336,7 @@ def Run(cmdPipe, param):
         dprint(__name__, 0, "Failed to create socket on UDP port 49152: {0}", e)
         sys.exit(1)
     
-    hijack = param['HostToIntercept']
-    hijack_twisted = hijack[::-1]
-    
-    intercept = [hijack]
+    intercept = [param['HostToIntercept']]
     restrain = []
     if param['CSettings'].getSetting('prevent_atv_update')=='True':
         restrain = ['mesu.apple.com', 'appldnld.apple.com', 'appldnld.apple.com.edgesuite.net']
@@ -389,33 +386,6 @@ def Run(cmdPipe, param):
                     paket+='\x00\x01\x00\x01\x00\x00\x00\x3c\x00\x04'    # response type, ttl and resource data length -> 4 bytes
                     paket+=str.join('',map(lambda x: chr(int(x)), cfg_IP_self.split('.'))) # 4bytes of IP
                     dprint(__name__, 1, "-> DNS response: "+cfg_IP_self)
-                
-                elif domain==hijack_twisted:
-                    dprint(__name__, 1, "***forward request - untwisted")
-                    data = data.replace(HostToDNS(hijack_twisted), HostToDNS(hijack))
-                    
-                    #print "DNS REQUEST"
-                    #printDNSdata_raw(data)
-                    
-                    DNS_forward.sendto(data, (cfg_IP_DNSMaster, 53))
-                    paket, addr_master = DNS_forward.recvfrom(1024)
-                    # todo: double check: ID has to be the same!
-                    # todo: spawn thread to wait in parallel
-                    dprint(__name__, 1, "-> DNS response from higher level")
-                    
-                    # twist
-                    DNSstruct = parseDNSdata(paket)
-                    for i in range(DNSstruct['head']['qdcnt']):
-                        if DNSstruct['query'][i]['host'] == hijack:
-                            DNSstruct['query'][i]['host'] = hijack_twisted
-                    for i in range(DNSstruct['head']['ancnt'] + DNSstruct['head']['nscnt'] + DNSstruct['head']['arcnt']):
-                        if DNSstruct['resrc'][i]['host'] == hijack:
-                            DNSstruct['resrc'][i]['host'] = hijack_twisted
-                    paket = str(encodeDNSstruct(DNSstruct))
-                    
-                    #print "DNS RESPONSE"
-                    #printDNSstruct(DNSstruct)
-                    #printDNSdata_raw(paket)
                 
                 elif domain in restrain:
                     dprint(__name__, 1, "***restrain request")
