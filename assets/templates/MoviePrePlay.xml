@@ -65,6 +65,31 @@
         <shelf id="centerShelf" columnCount="4" center="true">
           <sections>
             <shelfSection>
+              {{VAR(AudioStreams:NoKey:0)}}
+              {{VAR(SubtitleStreams:NoKey:0)}}
+              <stash>{{CUT(^aTVFirmwareVersion:CUT:=CUT|5.2=)}}
+                <!-- audio streams info-->
+                <stream>
+                  {{COPY(Video/Media/Part/Stream:streamType::=|2=COPY|2 =)}}
+                  {{VAR(AudioStreams:NoKey:{{EVAL({{VAL(#AudioStreams)}}+1)}})}}
+                  <id>{{VAL(id)}}</id>
+                  <language>{{VAL(language:Unknown)}}</language>
+                  <codec>{{VAL(codec)}}</codec>
+                  <streamType>{{VAL(streamType)}}</streamType>
+                  <selected>{{VAL(selected:0)}}</selected>
+                </stream>
+                <!-- subtitle streams info-->
+                <stream>
+                  {{COPY(Video/Media/Part/Stream:streamType::=|3=COPY|3 =)}}
+                  {{VAR(SubtitleStreams:NoKey:{{EVAL({{VAL(#SubtitleStreams)}}+1)}})}}
+                  <id>{{VAL(id)}}</id>
+                  <language>{{VAL(language:Unknown)}}</language>
+                  <format>{{VAL(format)}}</format>
+                  <streamType>{{VAL(streamType)}}</streamType>
+                  <selected>{{VAL(selected:0)}}</selected>
+                </stream>
+              </stash>
+              
               <items>
                 <actionButton id="play" onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                                         onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')">
@@ -83,6 +108,8 @@
                 <actionButton id="selectAudioAndSubs"
                               onSelect="selectAudioAndSubs('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(Video/Media/Part/id)}}')"
                               onPlay="selectAudioAndSubs('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(Video/Media/Part/id)}}')">
+                {{VAR(SelectAudioAndSubs:NoKey:{{EVAL( {{VAL(#AudioStreams)}}>1 or {{VAL(#SubtitleStreams)}}>0 )}})}}
+                {{CUT(#SelectAudioAndSubs:CUT:False=CUT|True=)}}
                   <title>{{TEXT(Audio/Subs)}}</title>
                   <image>resource://Queue.png</image>
                   <focusedImage>resource://QueueFocused.png</focusedImage>
@@ -93,17 +120,6 @@
                   <focusedImage>resource://MoreFocused.png</focusedImage>
                 </actionButton>
               </items>
-              <stash>
-                <stream>
-                  {{COPY(Video/Media/Part/Stream)}}
-                  <id>{{VAL(id:0)}}</id>
-                  <language>{{VAL(language:Unknown)}}</language>
-                  <format>{{VAL(format:UNK)}}</format>
-                  <codec>{{VAL(codec)}}</codec>
-                  <streamType>{{VAL(streamType:0)}}</streamType>
-									<selected>{{VAL(selected:0)}}</selected>
-                </stream>
-              </stash>
             </shelfSection>
           </sections>
         </shelf>
