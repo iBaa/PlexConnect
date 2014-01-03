@@ -29,7 +29,8 @@
               <!-- /library/sections -->
               <oneLineMenuItem id="{{VAL(key)}}"
                                        onPlay="atv.loadURL('{{URL(key)}}')"
-                                       onSelect="atv.loadURL('{{URL(key)}}')">
+                                       onSelect="atv.loadURL('{{URL(key)}}')"
+                                       onHoldSelect="refreshSection('{{VAL(key)}}', '{{URL(refreshKey)}}')">
               {{COPY(Directory)}}
               {{VAR(sections:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <label>{{VAL(title)}}</label>

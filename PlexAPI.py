@@ -382,6 +382,7 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
             Server.set('name',    getPMSProperty(ATV_udid, uuid, 'name'))
             Server.set('address', getPMSProperty(ATV_udid, uuid, 'ip'))
             Server.set('port',    getPMSProperty(ATV_udid, uuid, 'port'))
+            Server.set('baseURL', getPMSProperty(ATV_udid, uuid, 'baseURL'))
             
             baseURL = getPMSProperty(ATV_udid, uuid, 'baseURL')
             token = getPMSProperty(ATV_udid, uuid, 'accesstoken')
@@ -396,7 +397,9 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
                 Server.set('size',    XML.getroot().get('size', '0'))
                 
                 for Dir in XML.getiterator('Directory'):  # copy "Directory" content, add PMS to links
-                    Dir.set('key',    PMS_baseURL + getURL('', path, Dir.get('key')))
+                    key = Dir.get('key')  # absolute path
+                    Dir.set('key',    PMS_baseURL + getURL('', path, key))
+                    Dir.set('refreshKey', getURL(baseURL, path, key) + '/refresh')
                     if 'thumb' in Dir.attrib:
                         Dir.set('thumb',  PMS_baseURL + getURL('', path, Dir.get('thumb')))
                     if 'art' in Dir.attrib:
