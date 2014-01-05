@@ -62,7 +62,7 @@ parameters:
     uuid - PMS ID
     name, scheme, ip, port, type, owned, token
 """
-def declarePMS(ATV_udid, uuid, name, scheme, ip, port, type, owned, token):
+def declarePMS(ATV_udid, uuid, name, scheme, ip, port):
     # store PMS information in g_PMS database
     global g_PMS
     if not ATV_udid in g_PMS:
@@ -74,9 +74,9 @@ def declarePMS(ATV_udid, uuid, name, scheme, ip, port, type, owned, token):
                               'scheme':scheme, 'ip': ip , 'port': port,
                               'address': address,
                               'baseURL': baseURL,
-                              'type': type,
-                              'owned': owned,
-                              'accesstoken': token
+                              'local': '1',
+                              'owned': '1',
+                              'accesstoken': ''
                             }
 
 def updatePMSProperty(ATV_udid, uuid, tag, value):
@@ -243,14 +243,14 @@ def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
             uuid = Server.get('machineIdentifier')
             name = Server.get('name')
             
-            declarePMS(ATV_udid, uuid, name, 'http', ip, port, 'local', '', '')
+            declarePMS(ATV_udid, uuid, name, 'http', ip, port)  # dflt: token='', local, owned
     
     else:
         # PlexGDM
         PMS_list = PlexGDM()
         for uuid in PMS_list:
             PMS = PMS_list[uuid]
-            declarePMS(ATV_udid, PMS['uuid'], PMS['serverName'], 'http', PMS['ip'], PMS['port'], 'local', '', '')
+            declarePMS(ATV_udid, PMS['uuid'], PMS['serverName'], 'http', PMS['ip'], PMS['port'])  # dflt: token='', local, owned
     
     # MyPlex servers
     if not MyPlexToken=='':
@@ -281,10 +281,11 @@ def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
                     if PMS==False:
                         continue
                     
-                    declarePMS(ATV_udid, uuid, name, scheme, ip, port, 'myplex', owned, token)
-                else:
-                    updatePMSProperty(ATV_udid, uuid, 'accesstoken', token)
-                    updatePMSProperty(ATV_udid, uuid, 'owned', owned)
+                    declarePMS(ATV_udid, uuid, name, scheme, ip, port)  # dflt: token='', local, owned - updated later
+                    updatePMSProperty(ATV_udid, uuid, 'local', '0')  # todo - check IP?
+                
+                updatePMSProperty(ATV_udid, uuid, 'accesstoken', token)
+                updatePMSProperty(ATV_udid, uuid, 'owned', owned)
     
     # debug print all servers
     dprint(__name__, 0, "Servers (local+MyPlex): {0}", len(g_PMS[ATV_udid]))
@@ -367,22 +368,29 @@ provide combined XML representation of local servers' XMLs, eg. /library/section
 parameters:
     ATV_udid
     path
+    type - owned <> shared (previously: local, myplex)
     options
 result:
     XML
 """
 def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
     root = etree.Element("MediaConverter")
-    root.set('friendlyName', 'localServers')
+    root.set('friendlyName', type+' Servers')
+    
+    if type=='owned':
+        owned='1'
+    elif type=='shared':
+        owned='0'
     
     for uuid in g_PMS.get(ATV_udid, {}):
-        PMS = g_PMS[ATV_udid][uuid]
-        if PMS['type']==type:
+        if getPMSProperty(ATV_udid, uuid, 'owned')==owned:
             Server = etree.SubElement(root, 'Server')  # create "Server" node
             Server.set('name',    getPMSProperty(ATV_udid, uuid, 'name'))
             Server.set('address', getPMSProperty(ATV_udid, uuid, 'ip'))
             Server.set('port',    getPMSProperty(ATV_udid, uuid, 'port'))
             Server.set('baseURL', getPMSProperty(ATV_udid, uuid, 'baseURL'))
+            Server.set('local',   getPMSProperty(ATV_udid, uuid, 'local'))
+            Server.set('owned',   getPMSProperty(ATV_udid, uuid, 'owned'))
             
             baseURL = getPMSProperty(ATV_udid, uuid, 'baseURL')
             token = getPMSProperty(ATV_udid, uuid, 'accesstoken')

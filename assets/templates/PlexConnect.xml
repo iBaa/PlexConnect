@@ -8,15 +8,15 @@
       <navigation>
         <navigationItem id="Library">
           <title>{{TEXT(Library)}}</title>
-          <url>{{URL(:/PMS(//local)/library/sections)}}</url>
+          <url>{{URL(:/PMS(//owned)/library/sections)}}</url>
         </navigationItem>
         <navigationItem id="Channels">
           <title>{{TEXT(Channels)}}</title>
-          <url>{{URL(:/channels/all)}}</url>
+          <url>{{URL(:/PMS(//owned)/channels/all)}}</url>
         </navigationItem>
-        <navigationItem id="MyPlex">
-          <title>{{TEXT(MyPlex)}}</title>
-          <url>{{URL(:/PMS(//myplex)/library/sections)}}</url>
+        <navigationItem id="SharedLibraries">
+          <title>{{TEXT(Shared Libraries)}}</title>
+          <url>{{URL(:/PMS(//shared)/library/sections)}}</url>
         </navigationItem>
         <navigationItem id="Settings">
           <title>{{TEXT(Settings)}}</title>

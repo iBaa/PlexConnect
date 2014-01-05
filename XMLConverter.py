@@ -820,21 +820,24 @@ class CCommandCollection(CCommandHelper):
         else:
             auth_token = ''
         
+        PMS_baseURL = self.PMS_baseURL
+        
         if key.startswith('//'):  # local servers signature
             pathstart = key.find('/',3)
-            type = key[2:pathstart]
+            PMS_baseURL= key[:pathstart]
             path = key[pathstart:]
-            PMS = PlexAPI.getXMLFromMultiplePMS(UDID, path, type, self.options)
         elif key.startswith('/'):  # internal full path.
             path = key
-            PMS = PlexAPI.getXMLFromPMS(self.PMS_baseURL, path, self.options, auth_token)
         #elif key.startswith('http://'):  # external address
         #    path = key
         elif key == '':  # internal path
             path = self.path[srcXML]
-            PMS = PlexAPI.getXMLFromPMS(self.PMS_baseURL, path, self.options, auth_token)
         else:  # internal path, add-on
             path = self.path[srcXML] + '/' + key
+        
+        if PMS_baseURL.startswith('//'):
+            PMS = PlexAPI.getXMLFromMultiplePMS(UDID, path, PMS_baseURL[2:], self.options)
+        else:
             PMS = PlexAPI.getXMLFromPMS(self.PMS_baseURL, path, self.options, auth_token)
         
         self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML
@@ -1008,7 +1011,7 @@ class CCommandCollection(CCommandHelper):
                         '1080p 12.0Mbps' :('1920x1080', '90', '12000'), \
                         '1080p 20.0Mbps' :('1920x1080', '100', '20000'), \
                         '1080p 40.0Mbps' :('1920x1080', '100', '40000') }
-            if PlexAPI.getPMSProperty(UDID, PMS_uuid, 'type')=='local':
+            if PlexAPI.getPMSProperty(UDID, PMS_uuid, 'local')=='1':
                 qLimits = qLookup[g_ATVSettings.getSetting(UDID, 'transcodequality')]
             else:
                 qLimits = qLookup[g_ATVSettings.getSetting(UDID, 'remotebitrate')]

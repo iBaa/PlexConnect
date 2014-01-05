@@ -4,9 +4,9 @@
   </head>
 
   <body>
-    {{ADDXML(VideoChannels:://local/video)}}
-    {{ADDXML(AudioChannels:://local/music)}}
-    {{ADDXML(PhotoChannels:://local/photos)}}
+    {{ADDXML(VideoChannels::/video)}}
+    {{ADDXML(AudioChannels::/music)}}
+    {{ADDXML(PhotoChannels::/photos)}}
     
     {{VAR(channels:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
     
@@ -24,7 +24,7 @@
         {{COPY(@VideoChannels/Server:size::0=|1=COPY)}}
           <collectionDivider alignment="left" accessibilityLabel="Show_Bookcase_Divider">
             <title>{{TEXT(Video)}}</title>{{CUT(@VideoChannels/size::1=|2=CUT)}}
-            <title>{{TEXT(Video)}} - {{VAL(name)}}</title>{{CUT(@VideoChannels/size:CUT:1=CUT|2=)}}
+            <title>{{TEXT(Video)}} - {{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>{{CUT(@VideoChannels/size:CUT:1=CUT|2=)}}
           </collectionDivider>
           
           <shelf id="Channels_Bookscase_Video_{{VAL(name)}}" columnCount="5">
@@ -56,7 +56,7 @@
         {{COPY(@AudioChannels/Server:size::0=|1=COPY)}}
           <collectionDivider alignment="left" accessibilityLabel="Show_Bookcase_Divider">
             <title>{{TEXT(Audio)}}</title>{{CUT(@AudioChannels/size::1=|2=CUT)}}
-            <title>{{TEXT(Audio)}} - {{VAL(name)}}</title>{{CUT(@AudioChannels/size:CUT:1=CUT|2=)}}
+            <title>{{TEXT(Audio)}} - {{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>{{CUT(@AudioChannels/size:CUT:1=CUT|2=)}}
           </collectionDivider>
           
           <shelf id="Channels_Bookcase_Audio_{{VAL(name)}}" columnCount="5">
@@ -88,7 +88,7 @@
         {{COPY(@PhotoChannels/Server:size::0=|1=COPY)}}
           <collectionDivider alignment="left" accessibilityLabel="Show_Bookcase_Divider">
             <title>{{TEXT(Photo)}}</title>{{CUT(@PhotoChannels/size::1=|2=CUT)}}
-            <title>{{TEXT(Photo)}} - {{VAL(name)}}</title>{{CUT(@PhotoChannels/size:CUT:1=CUT|2=)}}
+            <title>{{TEXT(Photo)}} - {{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>{{CUT(@PhotoChannels/size:CUT:1=CUT|2=)}}
           </collectionDivider>
           
           <shelf id="Channels_Bookcase_Photo_{{VAL(name)}}" columnCount="5">

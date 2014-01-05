@@ -10,7 +10,15 @@
     {{ADDXML(RecentlyAdded::recentlyAdded?stack=1&amp;X-Plex-Container-Start=0&amp;X-Plex-Container-Size=40)}}
     {{ADDXML(RecentlyViewedEpisodes::recentlyViewed?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=40)}}
 
+    {{VAR(items:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
+
     <scroller id="com.sample.movie-showcase-grid">
+      <header>
+        <simpleHeader>
+          <title>{{VAL(title1)}}</title>
+        </simpleHeader>
+      </header>
+      
       <items>
         <collectionDivider alignment="left" accessibilityLabel="On Deck">
           {{CUT(@OnDeck/size:CUT:0=CUT|1=)}}
@@ -26,6 +34,7 @@
                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
                             onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(On Deck Episode)}}', '{{URL(grandparentKey)}}/children');">
                   {{COPY(@OnDeck/Video)}}
+                  {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                   <title>{{VAL(title)}}</title>
                   <subtitle>{{episodestring(parentIndex:0:index:0)}}</subtitle>
                   <image>{{IMAGEURL(grandparentThumb::384)}}</image>
@@ -50,6 +59,7 @@
                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
                             onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Recently Aired Episode)}}', '{{URL(grandparentKey)}}/children');">
                   {{COPY(@RecentlyAired/Video)}}
+                  {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                   <title>{{VAL(title)}}</title>
                   <subtitle>{{episodestring(parentIndex:0:index:0)}}</subtitle>
                   <image>{{IMAGEURL(grandparentThumb::384)}}</image>
@@ -74,6 +84,7 @@
                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Season')"
                             onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Recently Added)}}', '{{URL(parentKey)}}/children');">
                   {{COPY(@RecentlyAdded/Directory)}}
+                  {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                   <title>{{VAL(parentTitle)}}</title>
                   <subtitle>{{TEXT(Season)}} {{VAL(index)}}</subtitle>
                   <image>{{IMAGEURL(parentThumb::384)}}</image>
@@ -98,6 +109,7 @@
                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
                             onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Recently Viewed Episode)}}', '{{URL(grandparentKey)}}/children');">
                   {{COPY(@RecentlyViewedEpisodes/Video)}}
+                  {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                   <title>{{VAL(title)}}</title>
                   <subtitle>{{episodestring(parentIndex:0:index:0)}}</subtitle>
                   <image>{{IMAGEURL(grandparentThumb::384)}}</image>
@@ -110,6 +122,14 @@
 
       </items>
     </scroller>
+    {{CUT(#items::FALSE=CUT|TRUE=)}}  <!--CUT if no item added-->
+    
+    <!--No Channels Available-->
+    <dialog id="com.sample.error-dialog">
+    {{CUT(#items::FALSE=|TRUE=CUT)}}
+      <title>PlexConnect</title>
+      <description>{{TEXT(Plex Media Server: No Items Available)}}</description>
+    </dialog>
+    
   </body>
 </atv>
-
