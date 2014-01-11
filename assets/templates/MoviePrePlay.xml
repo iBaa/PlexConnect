@@ -1,6 +1,31 @@
 <atv>
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
+<<<<<<< HEAD
+    <script src="{{URL(:/js/scrobble.js)}}" />
+    <script src="{{URL(:/js/settings.js)}}" />
+    <script src="{{URL(:/js/selectAudioAndSubs.js)}}" />
+
+  </head>
+
+  <body>
+    <itemDetailWithImageHeader id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}&amp;PlexConnect=MoviePrePlay')">
+	  <styles>
+  <color name="titleColor">#ff0000</color>
+  <color name="metadataColor">#0099ff</color>
+</styles>
+	   <header>
+	     <imageHeader>
+	       <image insets="720, 0, 0, 0" required="true">{{IMAGEURL(Video/art:::)}}</image>
+	     </imageHeader>
+	   </header>
+      <rating>{{VAL(Video/studio)}}</rating>
+      <summary>{{VAL(Video/summary)}}</summary>
+      <image style="moviePoster">{{IMAGEURL(Video/thumb::768)}}</image>
+      <defaultImage>resource://Poster.png</defaultImage>
+      
+      
+=======
     <script src="{{URL(:/js/selectAudioAndSubs.js)}}" />
   </head>
 
@@ -12,6 +37,7 @@
       <summary>{{VAL(Video/summary)}}</summary>
       <image style="moviePoster">{{IMAGEURL(Video/thumb::768)}}</image>
       <defaultImage>resource://Poster.png</defaultImage>
+>>>>>>> de4879350da6e69ad1990f30c4af50dbc95d8561
 
       <table>
         <columnDefinitions>
@@ -36,28 +62,54 @@
             <label>{{VAL(Video/Producer/tag)}}</label>
           </row>
           <row>
+<<<<<<< HEAD
+            <label>{{VAL(Video/Media/videoResolution:Unknown:1080=HD 1080p|720=HD 720p|576=SD|480=SD|sd=SD)}}   {{VAL(Video/Media/audioCodec:Unknown:ac3=AC3|aac=AAC|mp3=MP3|dca=DTS|drms=DRMS)}} {{VAL(Video/Media/audioChannels:Unknown:2=Stereo|6=5.1|8=7.1)}} </label>
+=======
             <label>{{getDurationString(Video/duration)}}</label>
+>>>>>>> de4879350da6e69ad1990f30c4af50dbc95d8561
             <label>{{VAL(Video/Role[2]/tag)}}</label>
             <label>{{VAL(Video/Director[2]/tag)}}</label>
             <label>{{VAL(Video/Producer[2]/tag)}}</label>
           </row>
           <row>
+<<<<<<< HEAD
+            <label>{{getDurationString(Video/duration)}}</label>
+			<label>{{VAL(Video/Role[3]/tag)}}</label>
+=======
             <label>{{VAL(Video/Media/videoResolution:Unknown:1080=1080p|720=720p|576=SD|480=SD|sd=SD)}}   {{VAL(Video/Media/audioCodec:Unknown:ac3=AC3|aac=AAC|mp3=MP3|dca=DTS|drms=DRMS)}} {{VAL(Video/Media/audioChannels:Unknown:2=Stereo|6=5.1|8=7.1)}} </label>
             <label>{{VAL(Video/Role[3]/tag)}}</label>
+>>>>>>> de4879350da6e69ad1990f30c4af50dbc95d8561
             <label>{{VAL(Video/Director[3]/tag)}}</label>
             <label>{{VAL(Video/Producer[3]/tag)}}</label>
           </row>
           <row>
+<<<<<<< HEAD
+            <progressBar percentage="0"/>{{CUT(viewCount)}}{{CUT(viewOffset)}}
+        	<progressBar percentage="{{EVAL({{VAL(viewOffset:0)}} * 100 / {{VAL(duration:1)}})}}"/>{{CUT(viewOffset:CUT:=)}}
+            <!-- progressBar percentage="100"/>{{CUT(viewCount:CUT:=)}}{{CUT(viewOffset)}}-->
+            {{CUT(^aTVVersion:CUT:=CUT|6.0=)}}
+            <label>{{VAL(Video/Role[4]/tag)}}</label>
+            <label>{{VAL(Video/Director[4]/tag)}}</label>
+            <label>{{VAL(Video/Producer[4]/tag)}}</label>
+          </row>
+          <row>          
+=======
+>>>>>>> de4879350da6e69ad1990f30c4af50dbc95d8561
             <starRating hasUserSetRating="true">
               <percentage>{{EVAL({{VAL(Video/userRating:0)}} * 10)}}</percentage>
             </starRating>{{CUT(Video/userRating:CUT:0=)}}
             <starRating>
               <percentage>{{EVAL({{VAL(Video/rating:0)}} * 10)}}</percentage>
             </starRating>{{CUT(Video/userRating::0=CUT)}}
+<<<<<<< HEAD
+			</row>
+
+=======
             <label>{{VAL(Video/Role[4]/tag)}}</label>
             <label>{{VAL(Video/Director[4]/tag)}}</label>
             <label>{{VAL(Video/Producer[4]/tag)}}</label>
           </row>
+>>>>>>> de4879350da6e69ad1990f30c4af50dbc95d8561
         </rows>
       </table>
 
@@ -65,6 +117,8 @@
         <shelf id="centerShelf" columnCount="4" center="true">
           <sections>
             <shelfSection>
+<<<<<<< HEAD
+=======
               {{VAR(AudioStreams:NoKey:0)}}
               {{VAR(SubtitleStreams:NoKey:0)}}
               <stash>{{CUT(^aTVFirmwareVersion:CUT:=CUT|5.2=)}}
@@ -90,13 +144,18 @@
                 </stream>
               </stash>
               
+>>>>>>> de4879350da6e69ad1990f30c4af50dbc95d8561
               <items>
                 <actionButton id="play" onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                                         onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')">
                   <title>{{TEXT(Play)}}</title>
                   <image>resource://Play.png</image>
                   <focusedImage>resource://PlayFocused.png</focusedImage>
+<<<<<<< HEAD
+                  <badge>SD</badge>
+=======
                   <!--<badge></badge>-->
+>>>>>>> de4879350da6e69ad1990f30c4af50dbc95d8561
                 </actionButton>
                 <actionButton id="playTrailer" onSelect="playTrailer('{{SVAL(Video/title)}}','{{VAL(Video/year)}}')"
                                         onPlay="playTrailer('{{SVAL(Video/title)}}','{{VAL(Video/year)}}')">
@@ -108,23 +167,73 @@
                 <actionButton id="selectAudioAndSubs"
                               onSelect="selectAudioAndSubs('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(Video/Media/Part/id)}}')"
                               onPlay="selectAudioAndSubs('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(Video/Media/Part/id)}}')">
+<<<<<<< HEAD
+=======
                 {{VAR(SelectAudioAndSubs:NoKey:{{EVAL( {{VAL(#AudioStreams)}}>1 or {{VAL(#SubtitleStreams)}}>0 )}})}}
                 {{CUT(#SelectAudioAndSubs:CUT:False=CUT|True=)}}
+>>>>>>> de4879350da6e69ad1990f30c4af50dbc95d8561
                   <title>{{TEXT(Audio/Subs)}}</title>
                   <image>resource://Queue.png</image>
                   <focusedImage>resource://QueueFocused.png</focusedImage>
                 </actionButton>
+<<<<<<< HEAD
+                
+                  <!--#own edit -->
+                
+                <actionButton id="TranscoderAction" onSelect="toggleSettings('TranscoderAction', 'Settings')">
+                  <title>{{SETTING(transcoderaction)}}</title>
+                  <image>resource://Preview.png</image>
+                  <focusedImage>resource://PreviewFocused.png</focusedImage> 
+                </actionButton>
+              
+                <actionButton id="scrobbleMenu"
+                              onSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{VAL(Video/title)}}');"
+                              onPlay="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{VAL(Video/title)}}');">
+                  <title>{{TEXT(Set Status)}}</title>
+                  <image>resource://WishList.png</image>
+                  <focusedImage>resource://WishListFocused.png</focusedImage>
+                  <!--<badge></badge>-->
+                </actionButton>
+                
+ 
+                
+=======
+>>>>>>> de4879350da6e69ad1990f30c4af50dbc95d8561
                 <actionButton id="more" accessibilityLabel="More info" onSelect="atv.showMoreInfo();" onPlay="atv.showMoreInfo();">
                   <title>{{TEXT(More)}}</title>
                   <image>resource://More.png</image>
                   <focusedImage>resource://MoreFocused.png</focusedImage>
                 </actionButton>
               </items>
+<<<<<<< HEAD
+              <stash>
+                <stream>
+                  {{COPY(Video/Media/Part/Stream)}}
+                  <id>{{VAL(id:0)}}</id>
+                  <language>{{VAL(language:Unknown)}}</language>
+                  <format>{{VAL(format:UNK)}}</format>
+                  <codec>{{VAL(codec)}}</codec>
+                  <streamType>{{VAL(streamType:0)}}</streamType>
+									<selected>{{VAL(selected:0)}}</selected>
+                </stream>
+              </stash>
+=======
+>>>>>>> de4879350da6e69ad1990f30c4af50dbc95d8561
             </shelfSection>
           </sections>
         </shelf>
       </centerShelf>
 
+<<<<<<< HEAD
+           <divider>
+        <smallCollectionDivider alignment="left">
+          <title>Others with {{VAL(Video/Role/tag)}}</title>
+        </smallCollectionDivider>
+      </divider>{{CUT(Video/Role/tag:CUT:=)}}
+
+      {{ADDXML(parent::/library/sections/{{VAL(/librarySectionID)}}/actor/{{VAL(Video/Role/id)}}?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=15)}}
+      
+=======
       <!--
       <divider>
         <smallCollectionDivider alignment="left">
@@ -132,25 +241,42 @@
         </smallCollectionDivider>
       </divider>{{CUT(Video/Role/id:CUT:=)}}
 
+>>>>>>> de4879350da6e69ad1990f30c4af50dbc95d8561
       <bottomShelf>
         <shelf id="bottomShelf" columnCount="7">
           <sections>
             <shelfSection>
               <items>
+<<<<<<< HEAD
+              <moviePoster related="true" alwaysShowTitles="true" id="{{VAL(key)}}"
+                           onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                           onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')">
+                  {{COPY(@parent/Video)}}
+                  <title>{{VAL(title)}}</title>
+                  <subtitle>{{VAL(year)}}</subtitle>
+                  <image>{{IMAGEURL(thumb::384)}}</image>
+                  <defaultImage>resource://MoviePoster.png</defaultImage>
+=======
                 <moviePoster related="true" alwaysShowTitles="true" id="shelf_item_1" onSelect="atv.loadURL('http://trailers.apple.com/library/sections/{{VAL(/librarySectionID)}}/actor/{{VAL(id)}}/')">
                   {{COPY(Video/Role)}}
                   <title>{{VAL(tag)}}</title>
                   <subtitle>as {{VAL(role)}}</subtitle>
                   <image>{{IMAGEURL(thumb::384)}}</image>
                   <defaultImage>{{VAL(%baseURL)}}/:/resources/actor-icon.png</defaultImage>
+>>>>>>> de4879350da6e69ad1990f30c4af50dbc95d8561
                 </moviePoster>
               </items>
             </shelfSection>
           </sections>
         </shelf>
+<<<<<<< HEAD
+      </bottomShelf>{{CUT(Video/Role/tag:CUT:=)}}
+      
+=======
       </bottomShelf>{{CUT(Video/Role/id:CUT:=)}}
       -->
 
+>>>>>>> de4879350da6e69ad1990f30c4af50dbc95d8561
       <moreInfo>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
         <listScrollerSplit id="com.sample.list-scroller-split">
           <menu>
@@ -217,6 +343,10 @@
         </listScrollerSplit>
       </moreInfo>{{CUT(#cut)}}
 
+<<<<<<< HEAD
+		</itemDetailWithImageHeader>
+=======
 		</itemDetail>
+>>>>>>> de4879350da6e69ad1990f30c4af50dbc95d8561
 	</body>
 </atv>
