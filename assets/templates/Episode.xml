@@ -1,3 +1,77 @@
+<<<<<<< HEAD
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/scrobble.js)}}" />
+  </head>
+
+  {{VAR(studio:grandparentStudio)}}
+  {{VAR(contentRating:grandparentContentRating)}}
+  {{VAR(title1:title1)}}
+  {{VAR(title2:title2)}}
+  
+  <body>
+    <itemCollectionWithImageHeader id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
+
+      <header>
+        <imageHeader>
+          <image insets="50, 0, 0, 0" required="true">{{IMAGEURL(banner)}}</image>
+        </imageHeader>
+      </header>
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+              <twoLineEnhancedMenuItem id="{{VAL(ratingKey)}}"
+                                         onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                                         onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
+                                         onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Episode)}}');">
+                {{COPY(Video:index::=|0 =COPY)}}
+                <label>{{VAL(title)}}</label>
+                <ordinal>{{VAL(index)}}</ordinal>
+                <maxOrdinalDigits>2</maxOrdinalDigits>
+                <image>{{IMAGEURL(thumb::384)}}</image>
+                <!--<defaultImage>resource://16X9.png</defaultImage>      This causes the thumbnail to be too small, not sure why.-->
+                <accessories>
+                  <progressBar percentage="0"/>{{CUT(viewCount)}}{{CUT(viewOffset)}}
+                  <progressBar percentage="{{EVAL({{VAL(viewOffset:0)}} * 100 / {{VAL(duration:1)}})}}"/>{{CUT(viewOffset:CUT:=)}}
+                  <!-- progressBar percentage="100"/>{{CUT(viewCount:CUT:=)}}{{CUT(viewOffset)}}-->
+                </accessories>{{CUT(^aTVVersion:CUT:=CUT|6.0=)}}
+
+                <preview>
+                  <longDescriptionPreview>
+                    <title>{{VAL(title)}}</title>
+                    <summary><![CDATA[{{VAL(summary)}}]]></summary>
+                    <rating>{{VAL(#contentRating)}}</rating>
+                    <image>{{IMAGEURL(thumb::384)}}</image>
+                    <metadata>
+                      <label>{{VAL(#title1)}}, {{VAL(#title2)}}, {{TEXT(Episode)}} {{VAL(index)}}</label>
+                      <label>Studio: {{VAL(#studio)}}</label>
+                      <label>Runtime: {{getDurationString(duration)}}</label>
+                      <label>Aired: {{VAL(originallyAvailableAt)}}</label>
+                      <label>Quality: {{VAL(Media/videoResolution:Unknown:1080=1080p|720=720p|576=576 SD|480=480 SD|sd=SD)}}   {{VAL(Media/audioCodec:Unknown:ac3=AC3|aac=AAC|mp3=MP3|dca=DTS|drms=DRMS)}} {{VAL(Media/audioChannels:Unknown:2=Stereo 2.0|6=5.1|8=7.1)}} </label>
+                      <starRating hasUserSetRating="true">
+                        <percentage>{{EVAL({{VAL(userRating:0)}} * 10)}}</percentage>
+                      </starRating>{{CUT(userRating:CUT:0=)}}
+                      <starRating>
+                        <percentage>{{EVAL({{VAL(rating:0)}} * 10)}}</percentage>
+                      </starRating>{{CUT(userRating::0=CUT)}}                     
+                    </metadata>
+                  </longDescriptionPreview>
+                </preview>
+              </twoLineEnhancedMenuItem>{{CUT(Video/title:CUT:=)}}
+
+              <oneLineMenuItem id="none">
+                <label>{{TEXT(No episodes)}}</label>
+              </oneLineMenuItem>{{CUT(Video/title::=CUT)}}
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </itemCollectionWithImageHeader>
+  </body>
+</atv>
+=======
 <atv>
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
@@ -51,3 +125,4 @@
     </listWithPreview>
   </body>
 </atv>
+>>>>>>> de4879350da6e69ad1990f30c4af50dbc95d8561
