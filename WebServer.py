@@ -142,6 +142,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     else:
                         # absolute path
                         cfg_certfile = g_param['CSettings'].getSetting('certfile')
+                    cfg_certfile = path.normpath(cfg_certfile)
                     
                     cfg_certfile = path.splitext(cfg_certfile)[0] + '.cer'
                     try:
@@ -281,6 +282,7 @@ def Run_SSL(cmdPipe, param):
     else:
         # absolute path
         cfg_certfile = param['CSettings'].getSetting('certfile')
+    cfg_certfile = path.normpath(cfg_certfile)
     
     try:
         certfile = open(cfg_certfile, 'r')
