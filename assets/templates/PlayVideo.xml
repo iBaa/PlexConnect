@@ -23,6 +23,16 @@
             <overscanAdjust>{{VAL($overscanadjust)}}</overscanAdjust>
             <showEndtime>{{VAL($showendtime)}}</showEndtime>
             
+            <!-- subtitle -->
+            <__COPY__><!--needed as {{COPY}} doesn't work completely clean. Todo: ExpandTree needs to "finish" current element...-->
+            {{COPY(Video/Media/Part/Stream:streamType::=|3=COPY|3 =)}}
+              <subtitleURL> <!-- id="{{VAL(id)}}" key="{{VAL(key)}}" codec="{{VAL(codec)}}"--><!--.srt only -->
+              {{CUT(selected:CUT:0=CUT|1=)}}
+                {{MEDIAURL(key)}}
+              </subtitleURL>
+            </__COPY__>
+            <subtitleSize>{{SETTING(subtitlesize)}}</subtitleSize>
+            
             <!-- stacked media -->
             <httpFileVideoAsset id="{{VAL(key)}}">
                 <mediaURL>{{MEDIAURL(key)}}</mediaURL>

@@ -98,6 +98,8 @@ def XML_PlayVideo_ChannelsV1(baseURL, path):
           <clockPosition></clockPosition>\n\
           <overscanAdjust></overscanAdjust>\n\
           <showEndtime>False</showEndtime>\n\
+          <subtitleURL></subtitleURL>\n\
+          <subtitleSize></subtitleSize>\n\
         </myMetadata>\n\
       </httpFileVideoAsset>\n\
     </videoPlayer>\n\

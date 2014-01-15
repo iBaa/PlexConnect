@@ -570,6 +570,7 @@ def getTranscodeVideoPath(path, AuthToken, options, action, quality, settings):
     args['directStream'] = '0' if action=='Transcode' else '1'
     # 'directPlay' - handled by the client in MEDIARUL()
     args['subtitleSize'] = sS
+    args['skipSubtitles'] = '1'  # shut off PMS subtitles. Todo: skip only for aTV native/SRT (or other supported)
     args['audioBoost'] = aB
     args['fastSeek'] = '1'
     args['path'] = path
