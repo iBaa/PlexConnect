@@ -2,6 +2,7 @@ How to automatically update PlexConnect.
 
 Step 1
 
+-- kill plexconnect if it running or unload you plist if used to autostart
 In your PlexConnect directory make two new folders /update/OSX <-----case sensitive
 Copy the install.bash and update.bash from here to the new OSX folder you just created
 
