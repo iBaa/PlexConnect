@@ -10,7 +10,6 @@ Step 2 enter these commands into terminal:
 
 sudo su 
 ## Naviagate to the /update/OSX folder
-chmod +x install.bash
 ./install.bash
 
 step 3
