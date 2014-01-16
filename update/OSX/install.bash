@@ -8,9 +8,9 @@ User=${USER}
 
 ## find PlexConnect main path
 cd ../..
-PlexConnectPath=${PWD}
 
-
+## copy update.bash to /usr.bin
+cp update.bash /usr/bin
 
 ## replace __INSTALLERPATH__ in default update.bash
 ## save directly to the /usr/bin folder
