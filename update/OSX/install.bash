@@ -4,8 +4,6 @@
 cd "$( cd "$( dirname "$0" )" && pwd )"
 InstallerPath=${PWD}
 
-User=${USER}
-
 ## find PlexConnect main path
 cd ../..
 
