@@ -4,6 +4,9 @@
 ## define update.bash as executable
 chmod +x update.bash
 
+## copy update.bash to /usr/bin
+cp update.bash /usr/bin
+
 ## check for git and install if needed
 git
 
