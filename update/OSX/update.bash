@@ -9,7 +9,7 @@ cd __INSTALLERPATH__
 cd ../..
 
 ## change permissions of .git so update.bash can be ran without su
-chown -R $USER .git
+chown -R __USERNAME__ .git
 
 ## get update
 git pull
