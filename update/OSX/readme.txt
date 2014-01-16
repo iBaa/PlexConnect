@@ -1,15 +1,18 @@
 How to automatically update PlexConnect.
 
+Step 1
 
+In your PlexConnect directory make two new folders /update/OSX
+Copy the install.bash and update.bash to the new OSX folder you just created
 
-Step 1 enter these commands into terminal:
+Step 2 enter these commands into terminal:
 
 sudo su 
 ## Naviagate to the /update/OSX folder
 chmod +x install.bash
 ./install.bash
 
-step 2
+step 3
 
 -- To update on osx simply type update.bash from terminal
 
