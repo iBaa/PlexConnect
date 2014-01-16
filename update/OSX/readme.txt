@@ -21,4 +21,5 @@ or
 
 Optional:
 
-If you want to have this app automaticallu update during every boot of your system just add the updater app to your login items.
+If you want to have this app automatically update during every boot of your system just add the updater app to your login
+items.
