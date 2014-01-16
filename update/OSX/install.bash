@@ -4,9 +4,6 @@
 ## define update.bash as executable
 chmod +x update.bash
 
-## copy update bash so it can be ran without permissions
-cp update.bash /usr/bin
-
 ## check for git and install if needed
 git
 
