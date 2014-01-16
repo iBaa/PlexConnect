@@ -19,10 +19,3 @@ step 3
 or
 
 -- download this automator generated app http://stashbox.org/1365560/updater.zip
-
-
-
-Optional:
-
-If you want to have this app automatically update during every boot of your system just add the updater app to your login
-items.
