@@ -1,8 +1,9 @@
 How to update PlexConnect. Follow these command first then move to step 2
 
-Step 1 (enter these commands into terminal after navigating to the update/OSX folder)
+Step 1 enter these commands into terminal:
 
-sudo su
+sudo su 
+## Naviagate to the /update/OSX folder
 chmod +x install.bash
 ./install.bash
 
