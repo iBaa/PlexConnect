@@ -15,7 +15,7 @@ chmod +x install.bash
 
 step 3
 
--- To update on osx simply type update.bash from terminal
+-- To update on osx simply type update.bash from terminal (no need to login)
 
 or
 
