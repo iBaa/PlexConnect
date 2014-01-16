@@ -471,17 +471,26 @@ function updateSubtitle(time)
         subtitle = ['','','',''];
     }
     
+    // analyse format: <...> - i_talics (light), b_old (heavy), u_nderline (?), font color (Todo)
+    // limitation (attributedString()): only one format per line/textView.
+    var weight = [];
+    for (var i=0;i<subtitleMaxLines;i++)
+    {
+        weight[i] = 'normal';
+        if ((subtitleItem[subtitlePos]['format_i'])[i]) weight[i] = 'light';
+        if ((subtitleItem[subtitlePos]['format_b'])[i]) weight[i] = 'heavy';
+    }
+    
     // update subtitleView[]
     for (var i=0;i<subtitleMaxLines;i++)
     {
         subtitleView[i].attributedString = {
             string: subtitle[i],
             attributes: { pointSize: 40.0 * subtitleSize/100,
-                          color: {red: 1, blue: 1, green: 1, alpha: 0.5},
+                          color: {red: 1, blue: 1, green: 1, alpha: 1.0},
+                          weight: weight[i],
                           alignment: "center"
                         }
-        // todo: Deal with formatting: <...> - i_talics, b_old, u_nderline, font color. How?
-        // aTV's attributed string supports: light, normal, heavy.
         };
     }
 }
@@ -517,11 +526,30 @@ function parseSRT(srtfile)
         for(var j=0;j<lines;j++)  // fill subtitle to bottom lines
             text[j+subtitleMaxLines-lines] = srtLine[2+j];
         
-        // todo: Deal with formatting: <...> - i_talics, b_old, u_nderline, font color. How in atv.textView.attributedString?
+        var format_i = [], format_i_next = false;
+        var format_b = [], format_b_next = false;
+        // analyse format: <...> - i_talics (ok), b_old (ok), u_nderline (?), font color (?)
+        // Todo: carry over to next line...
+        //       - current implementation too simple - what happens with mulitple <...>?
+        // Todo: is there a way to add the format_x as a "property" to text[j]?
         for(var j=0;j<subtitleMaxLines;j++)
+        {
+            format_i[j] = format_i_next || (text[j].indexOf("<i>")!=-1);
+            format_i_next = format_i[j] && !(text[j].indexOf("</i>")!=-1);
+            format_b[j] = format_b_next || text[j].indexOf("<b>")!=-1;
+            format_b_next = format_b[j] && !(text[j].indexOf("</b>")!=-1);
+            
             text[j] = text[j].replace(/<.*?>/g, "");  // remove the formatting identifiers
+        }
         
-        subtitleItem.push({'ix':srtLine[0], 'timeShow':timeShow, 'timeHide':timeHide, 'lines':lines, 'text':text});
+        subtitleItem.push({
+            'ix':srtLine[0],
+            'timeShow':timeShow, 'timeHide':timeHide,
+            'lines':lines,
+            'text':text,
+            'format_i':format_i,
+            'format_b':format_b
+        });
     }
     log('parseSRT done');
 }
