@@ -10,7 +10,8 @@ chmod +x update.bash
 cp update.bash /usr/bin
 
 ## cd to PlexConnect directory
-cd "$( cd "$( dirname "$0" )" && pwd )"/../..
+cd ..
+cd ..
 
 ## change permissions of .git so update.bash can be ran without su
 chown -R $USER .git
