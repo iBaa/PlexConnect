@@ -5,7 +5,7 @@ Step 1
 chmod +x install.bash
 ./install.bash
 
-##step 2
+step 2
 
 -- To update on osx simply type update.bash from terminal
 
