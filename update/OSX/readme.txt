@@ -1,4 +1,6 @@
-How to update PlexConnect. Follow these command first then move to step 2
+How to automatically update PlexConnect.
+
+
 
 Step 1 enter these commands into terminal:
 
@@ -14,3 +16,9 @@ step 2
 or
 
 -- download this automator generated app http://stashbox.org/1365560/updater.zip
+
+
+
+Optional:
+
+If you want to have this app automaticallu update during every boot of your system just add the updater app to your login items.
