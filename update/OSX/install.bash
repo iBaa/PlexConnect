@@ -4,13 +4,19 @@
 cd "$( cd "$( dirname "$0" )" && pwd )"
 InstallerPath=${PWD}
 
+User=${USER}
+
 ## find PlexConnect main path
 cd ../..
 PlexConnectPath=${PWD}
 
-## replace __INSTALLERPATH__, __PLEXCONNECTPATH__ in default update.bash
+## replace __INSTALLERPATH__ in default update.bash
 ## save directly to the /usr/bin folder
 sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/update.bash" > /usr/bin/update.bash
+
+## replace __USERNAME__ in default update.bash
+## save directly to the /usr/bin folder
+sed -e "s/__USERNAME__/${User//\//\\/}/" "${User}/update.bash" > /usr/bin/update.bash
 
 ## define update.bash as executable
 chmod +x /usr/bin/update.bash
