@@ -11,9 +11,9 @@ cp update.bash /usr/bin
 ## save directly to the /usr/bin folder
 sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/update.bash" > /usr/bin/update.bash
 
-## replace __USERNAME__ in default update.bash
+## replace __USERNAME__ in default update.bash with default SUDO_USER
 ## save directly to the /usr/bin folder
-sed -e "s/__USERNAME__/${USER}/" "${InstallerPath}/update.bash" > /usr/bin/update.bash
+sed -e "s/__USERNAME__/${SUDO_USER}/" "${InstallerPath}/update.bash" > /usr/bin/update.bash
 
 ## define update.bash as executable
 chmod +x /usr/bin/update.bash
