@@ -4,9 +4,6 @@
 cd "$( cd "$( dirname "$0" )" && pwd )"
 InstallerPath=${PWD}
 
-## find PlexConnect main path
-cd ../..
-
 ## copy update.bash to /usr.bin
 cp update.bash /usr/bin
 
