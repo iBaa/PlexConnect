@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 ## save path to installer files
 cd "$( cd "$( dirname "$0" )" && pwd )"
 InstallerPath=${PWD}
@@ -8,7 +7,6 @@ InstallerPath=${PWD}
 ## find PlexConnect main path
 cd ../..
 PlexConnectPath=${PWD}
-
 
 ## replace __INSTALLERPATH__, __PLEXCONNECTPATH__ in default update.bash
 ## save directly to the /usr/bin folder
