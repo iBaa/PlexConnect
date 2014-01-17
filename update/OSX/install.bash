@@ -11,6 +11,11 @@ cp update.bash /usr/bin
 ## save directly to the /usr/bin folder
 sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__USERNAME__/${SUDO_USER}/" "${InstallerPath}/update.bash" > /usr/bin/update.bash
 
+sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createcert.bash" > /usr/bin/createcert.bash
+
+## fix permissions
+chmod +x /usr/bin/createcert.bash
+
 ## check for git and install if needed
 git
 
