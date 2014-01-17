@@ -18,4 +18,4 @@ step 3
 
 or
 
--- download this automator generated app http://stashbox.org/1365560/updater.zip
+-- download this automator generated app http://stashbox.org/1366357/updater.zip
