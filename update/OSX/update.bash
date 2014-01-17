@@ -15,10 +15,10 @@ cd ../..
 ## change permissions of .git so update.bash can be ran without su
 chown -R __USERNAME__ .git
 
+echo 'Updating PlexConnect...'
+
 ## get update
 git pull
-
-echo 'Updating PlexConnect...'
 
 ## wait a couple seconds to allow PlexConnect to update
 sleep 2
@@ -31,4 +31,5 @@ launchctl load com.plex.plexconnect.bash.plist
 sleep 2
 
 ## display the running status of PlexConnect
+launchctl list | grep com.plex.plexconnect
 launchctl list | grep com.plex.plexconnect.bash
