@@ -19,6 +19,8 @@ sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createc
 
 sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createplist.bash" > /usr/bin/createplist.bash
 
+sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/com.plex.plexconnect.bash.plist" > /usr/bin/com.plex.plexconnect.bash.plist
+
 ## fix permissions
 chmod +x /usr/bin/update.bash
 chmod +x /usr/bin/createcert.bash
