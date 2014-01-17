@@ -1,4 +1,4 @@
-How to automatically update PlexConnect.
+How to automatically update PlexConnect or install OpenConnect.
 
 Step 1
 
