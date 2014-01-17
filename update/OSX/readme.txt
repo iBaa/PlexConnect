@@ -14,8 +14,11 @@ sudo su
 
 step 3
 
--- To update on osx simply type update.bash from terminal (no need to login)
+-- To update on osx simply type this into terminal:
 
-or
+sudo su
+update.bash
 
--- download this automator generated app http://stashbox.org/1366360/updater.zip
+## OR
+
+-- download this automator generated app http://stashbox.org/1366854/updater.zip
