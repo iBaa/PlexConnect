@@ -4,8 +4,9 @@
 cd "$( cd "$( dirname "$0" )" && pwd )"
 InstallerPath=${PWD}
 
-## copy update.bash to /usr.bin
+## copy update.bash createcert.bash to /usr.bin
 cp update.bash /usr/bin
+cp createcert.bash /usr/bin
 
 ## replace __INSTALLERPATH__, __USERNAME__in default update.bash
 ## save directly to the /usr/bin folder
