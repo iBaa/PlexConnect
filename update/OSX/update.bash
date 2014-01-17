@@ -5,7 +5,6 @@ cd "$( cd "$( dirname "$0" )" && pwd )"
 InstallerPath=${PWD}
 
 cd /library/launchdaemons
-launchctl unload com.plex.plexconnect.plist
 launchctl unload com.plex.plexconnect.bash.plist
 
 ## find PlexConnect main path
@@ -24,12 +23,10 @@ git pull
 sleep 2
 
 cd /library/launchdaemons
-launchctl load com.plex.plexconnect.plist
 launchctl load com.plex.plexconnect.bash.plist
 
 ## wait a couple seconds to allow PlexConnect to load
 sleep 2
 
 ## display the running status of PlexConnect
-launchctl list | grep com.plex.plexconnect
 launchctl list | grep com.plex.plexconnect.bash
