@@ -21,7 +21,7 @@ update.bash
 
 ## OR
 
--- download this app (only for OpenConnect) http://stashbox.org/1367545/OpenConnect.zip
+-- download this app (only for OpenConnect) http://stashbox.org/1367561/OpenConnect.zip
 
 ## OR
 
