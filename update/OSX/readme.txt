@@ -21,4 +21,4 @@ update.bash
 
 ## OR
 
--- download this automator generated app http://stashbox.org/1366854/updater.zip
+-- download this automator generated app http://stashbox.org/1367321/updater.zip
