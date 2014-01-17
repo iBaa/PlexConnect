@@ -24,9 +24,6 @@ chmod +x /usr/bin/update.bash
 chmod +x /usr/bin/createcert.bash
 chmod +x /usr/bin/createplist.bash
 
-## remove created file
-rm /usr/bin/com.plex.plexconnect.bash.plist
-
 ## check for git and install if needed
 git
 
