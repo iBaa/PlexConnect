@@ -4,6 +4,7 @@
 cd "$( cd "$( dirname "$0" )" && pwd )"
 InstallerPath=${PWD}
 
+## unload plexconnect from launchctl to avoid database errors
 cd /library/launchdaemons
 launchctl unload com.plex.plexconnect.bash.plist
 
@@ -14,6 +15,7 @@ cd ../..
 ## change permissions of .git so update.bash can be ran without su
 chown -R __USERNAME__ .git
 
+## update status
 echo 'Updating PlexConnect...'
 
 ## get update
@@ -22,6 +24,7 @@ git pull
 ## wait a couple seconds to allow PlexConnect to update
 sleep 2
 
+## load plexconnect into launchctl after completed update
 cd /library/launchdaemons
 launchctl load com.plex.plexconnect.bash.plist
 
