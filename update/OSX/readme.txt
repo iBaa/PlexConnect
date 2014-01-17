@@ -21,8 +21,12 @@ update.bash
 
 ## OR
 
--- download this automator app only for updates http://stashbox.org/1367321/updater.zip
+-- download this app (only for OpenConnect) http://stashbox.org/1367545/OpenConnect.zip
 
 ## OR
 
--- download this automator app only for OpenConnect http://stashbox.org/1367545/OpenConnect.zip
+-- download this app (only for updates) http://stashbox.org/1367321/updater.zip
+
+
+
+
