@@ -26,7 +26,7 @@ sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createc
 ## save directly to the /usr/bin folder
 sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createplist.bash" > /usr/bin/createplist.bash
 
-## replace __DEFAULTPATH__ in default createplist.bash
+## replace __DEFAULTPATH__ in default createplist2.bash
 ## save directly to the /usr/bin folder
 sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createplist2.bash" > /usr/bin/createplist2.bash
 
