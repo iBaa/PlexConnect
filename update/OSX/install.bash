@@ -8,6 +8,9 @@ InstallerPath=${PWD}
 cd ../..
 PlexConnectPath=${PWD}
 
+## go back to InstallerPath
+cd update/OSX
+
 ## copy files to /usr.bin for system wide access
 cp update.bash /usr/bin
 cp update2.bash /usr/bin
