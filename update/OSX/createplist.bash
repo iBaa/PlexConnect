@@ -1,20 +1,7 @@
 #!/bin/bash
 
-## save path to installer files
-cd "$( cd "$( dirname "$0" )" && pwd )"
-InstallerPath=${PWD}
-
-## find PlexConnect main path
-cd __DEFAULTPATH__
-cd ../..
-PlexConnectPath=${PWD}
-
 ## create autostart plist for next boot
 echo 'Installing PlexConnect...'
-
-## replace __INSTALLERPATH__, __PLEXCONNECTPATH__ in default com.plex.plexconnect.daemon.bash.plist
-## save directly to the /Library/LaunchDameons folder
-sed -e "s/__PLEXCONNECTPATH__/${PlexConnectPath//\//\\/}/" "${InstallerPath}/com.plex.plexconnect.bash.plist" > /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
 
 ## change ownership and permissions of the plist file to make it launchctl compatible
 chown root /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
