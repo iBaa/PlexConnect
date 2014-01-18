@@ -1,5 +1,24 @@
 #!/bin/bash
 
+## find update/OSX path
+cd __DEFAULTPATH__
+cd "$( cd "$( dirname "$0" )" && pwd )"
+InstallerPath=${PWD}
+
+## find PlexConnect main path
+cd ../..
+PlexConnectPath=${PWD}
+
+## go back to InstallerPath
+cd update/OSX
+
+## Copy com.plex.plexconnect.plist
+cp com.plex.plexconnect.plist /Library/LaunchDaemons
+
+## replace __PLEXCONNECTPATH__ in default com.plex.plexconnect.plist
+## save directly to the /Library/LaunchDameons folder
+sed -e "s/__PLEXCONNECTPATH__/${PlexConnectPath//\//\\/}/" "${InstallerPath}/com.plex.plexconnect.plist" > /Library/LaunchDaemons/com.plex.plexconnect.plist
+
 ## create autostart plist for next boot
 echo 'Installing PlexConnect...'
 
