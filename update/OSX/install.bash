@@ -18,9 +18,9 @@ cp com.plex.plexconnect.bash.plist /usr/bin
 ## save directly to the /usr/bin folder
 sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__USERNAME__/${SUDO_USER}/" "${InstallerPath}/update.bash" > /usr/bin/update.bash
 
+## replace __INSTALLERPATH__ in default createcert.bash
+## save directly to the /usr/bin folder
 sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createcert.bash" > /usr/bin/createcert.bash
-
-sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createplist.bash" > /usr/bin/createplist.bash
 
 ## replace __INSTALLERPATH__, __PLEXCONNECTPATH__ in default com.plex.plexconnect.daemon.bash.plist
 ## save directly to the /Library/LaunchDameons folder
