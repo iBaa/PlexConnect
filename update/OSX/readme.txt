@@ -22,7 +22,3 @@ step 3
 ## OR
 
 -- download this app (only for updates) http://stashbox.org/1367321/updater.zip
-
-
-
-
