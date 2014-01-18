@@ -12,36 +12,38 @@ PlexConnectPath=${PWD}
 cd update/OSX
 
 ## copy files to /usr.bin for system wide access
-cp update.bash /usr/bin
-cp update2.bash /usr/bin
 cp createcert.bash /usr/bin
 cp createplist.bash /usr/bin
 cp createplist2.bash /usr/bin
-cp com.plex.plexconnect.bash.plist /usr/bin
-cp com.plex.plexconnect.plist /usr/bin
-
-## replace __INSTALLERPATH__, __USERNAME__in default update.bash
-## save directly to the /usr/bin folder
-sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__USERNAME__/${SUDO_USER}/" "${InstallerPath}/update.bash" > /usr/bin/update.bash
+cp update.bash /usr/bin
+cp update2.bash /usr/bin
 
 ## replace __INSTALLERPATH__ in default createcert.bash
 ## save directly to the /usr/bin folder
 sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createcert.bash" > /usr/bin/createcert.bash
 
-## replace __INSTALLERPATH__, __PLEXCONNECTPATH__ in default com.plex.plexconnect.daemon.bash.plist
-## save directly to the /Library/LaunchDameons folder
-sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__PLEXCONNECTPATH__/${PlexConnectPath//\//\\/}/" "${InstallerPath}/com.plex.plexconnect.bash.plist" > /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
+## replace __DEFAULTPATH__ in default createplist.bash
+## save directly to the /usr/bin folder
+sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createplist.bash" > /usr/bin/createplist.bash
 
-## replace __INSTALLERPATH__, __PLEXCONNECTPATH__ in default com.plex.plexconnect.daemon.bash.plist
-## save directly to the /Library/LaunchDameons folder
-sed -e "s/__PLEXCONNECTPATH__/${PlexConnectPath//\//\\/}/" "${InstallerPath}/com.plex.plexconnect.plist" > /Library/LaunchDaemons/com.plex.plexconnect.plist
+## replace __DEFAULTPATH__ in default createplist.bash
+## save directly to the /usr/bin folder
+sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createplist2.bash" > /usr/bin/createplist2.bash
+
+## replace __INSTALLERPATH__, __USERNAME__in default update.bash
+## save directly to the /usr/bin folder
+sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__USERNAME__/${SUDO_USER}/" "${InstallerPath}/update.bash" > /usr/bin/update.bash
+
+## replace __INSTALLERPATH__, __USERNAME__in default update.bash
+## save directly to the /usr/bin folder
+sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__USERNAME__/${SUDO_USER}/" "${InstallerPath}/update2.bash" > /usr/bin/update2.bash
 
 ## fix permissions
-chmod +x /usr/bin/update.bash
-chmod +x /usr/bin/update2.bash
 chmod +x /usr/bin/createcert.bash
 chmod +x /usr/bin/createplist.bash
 chmod +x /usr/bin/createplist2.bash
+chmod +x /usr/bin/update.bash
+chmod +x /usr/bin/update2.bash
 
 ## check for git and install if needed
 git
