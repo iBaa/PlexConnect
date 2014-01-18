@@ -3,6 +3,10 @@
 ## create autostart plist for next boot
 echo 'Installing PlexConnect...'
 
+## unload and remove the non bash.plist if present
+launchctl unload /Library/LaunchDaemons/com.plex.plexconnect.plist
+rm /Library/LaunchDaemons/com.plex.plexconnect.plist
+
 ## change ownership and permissions of the plist file to make it launchctl compatible
 chown root /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
 chmod 644 /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
