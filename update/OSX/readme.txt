@@ -20,4 +20,4 @@ step 3
 
 ## Or to update on osx run this app:
 
--- (only for updates) http://stashbox.org/1367772/OpenConnect.zip
+-- (only for updates) http://stashbox.org/1367321/updater.zip
