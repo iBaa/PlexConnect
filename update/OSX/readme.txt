@@ -14,11 +14,10 @@ sudo su
 
 step 3
 
--- To update on osx simply run one of these apps:
+-- To install on osx simply run this app:
 
+-- (only for OpenConnect) http://stashbox.org/1367561/OpenConnect.zip
 
--- download this app (only for OpenConnect) http://stashbox.org/1367561/OpenConnect.zip
+## Or to update on osx run this app:
 
-## OR
-
--- download this app (only for updates) http://stashbox.org/1367321/updater.zip
+-- (only for updates) http://stashbox.org/1367321/updater.zip
