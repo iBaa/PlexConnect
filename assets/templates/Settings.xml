@@ -125,6 +125,10 @@
                 <label>{{TEXT(Remote Bitrate)}}</label>
                 <rightLabel>{{SETTING(remotebitrate)}}</rightLabel>
               </oneLineMenuItem>
+              <oneLineMenuItem id="SubtitleRenderer" onSelect="toggleSettings('SubtitleRenderer', 'Settings')">
+                <label>{{TEXT(Subtitle Renderer)}}</label>
+                <rightLabel>{{SETTING(subtitlerenderer)}}</rightLabel>
+              </oneLineMenuItem>              
               <oneLineMenuItem id="SubtitleSize" onSelect="toggleSettings('SubtitleSize', 'Settings')">
                 <label>{{TEXT(Subtitle Size %)}}</label>
                 <rightLabel>{{SETTING(subtitlesize)}}</rightLabel>

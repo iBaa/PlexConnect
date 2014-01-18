@@ -63,7 +63,7 @@ atv.player.playerTimeDidChange = function(time)
                         token );
   }
   
-  if (subtitleURL)
+  if (subtitleItem)
       updateSubtitle(thisReportTime);
 };
 
@@ -149,7 +149,14 @@ atv.player.willStartPlaying = function()
   }
   
   // load subtitle - SRT only
-  if (subtitleURL)
+  subtitleItem = [];
+  subtitlePos = 0;
+  // when... not transcoding or
+  //         transcoding and PMS skips subtitle (dontBurnIn)
+  if (subtitleURL &&
+       ( url.indexOf('transcode/universal') == -1 ||
+         url.indexOf('transcode/universal') > -1 && url.indexOf('skipSubtitles=\'1\'') > -1 )
+     )
   {
     log("subtitleURL: "+subtitleURL);
     
@@ -186,7 +193,7 @@ atv.player.willStartPlaying = function()
   
   // create subtitle view
   log('create subtitleView');
-  if (subtitleURL)
+  if (subtitleItem)
   {
       subtitleView = initSubtitleView();
       for (var i=0;i<subtitleMaxLines;i++)

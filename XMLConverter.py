@@ -1004,6 +1004,17 @@ class CCommandCollection(CCommandHelper):
             # transcoder action
             transcoderAction = g_ATVSettings.getSetting(UDID, 'transcoderaction')
             
+            # video format
+            #    HTTP live stream
+            # or native aTV media
+            videoATVNative = \
+                Media.get('protocol','-') in ("hls") \
+                or \
+                Media.get('container','-') in ("mov", "mp4") and \
+                Media.get('videoCodec','-') in ("mpeg4", "h264", "drmi") and \
+                Media.get('audioCodec','-') in ("aac", "ac3", "drms")
+            dprint(__name__, 2, "video: ATVNative - {0}", videoATVNative)
+            
             # quality limits: quality=(resolution, quality, bitrate)
             qLookup = { '480p 2.0Mbps' :('720x480', '60', '2000'), \
                         '720p 3.0Mbps' :('1280x720', '75', '3000'), \
@@ -1018,21 +1029,51 @@ class CCommandCollection(CCommandHelper):
             else:
                 qLimits = qLookup[g_ATVSettings.getSetting(UDID, 'remotebitrate')]
             
+            # subtitle renderer, subtitle selection
+            subtitleRenderer = g_ATVSettings.getSetting(UDID, 'subtitlerenderer')
+            
+            subtitleId = ''
+            subtitleKey = ''
+            subtitleFormat = ''
+            for Stream in Media.find('Part').findall('Stream'):  # Todo: check 'Part' existance, deal with multi part video
+                if Stream.get('streamType','') == '3' and\
+                   Stream.get('selected','0') == '1':
+                    subtitleId = Stream.get('id','')
+                    subtitleKey = Stream.get('key','')
+                    subtitleFormat = Stream.get('format','')
+                    break
+            
+            subtitleIOSNative = \
+                subtitleKey=='' and subtitleFormat=="tx3g"  # embedded
+            subtitlePlexConnect = \
+                subtitleKey!='' and subtitleFormat=="srt"  # external
+            
+            # subtitle suitable for direct play?
+            #    no subtitle
+            # or 'Auto'    with subtitle by iOS or PlexConnect
+            # or 'iOS,PMS' with subtitle by iOS
+            subtitleDirectPlay = \
+                subtitleId=='' \
+                or \
+                subtitleRenderer=='Auto' and \
+                ( (videoATVNative and subtitleIOSNative) or subtitlePlexConnect ) \
+                or \
+                subtitleRenderer=='iOS, PMS' and \
+                (videoATVNative and subtitleIOSNative)
+            dprint(__name__, 2, "subtitle: IOSNative - {0}, PlexConnect - {1}, DirectPlay - {2}", subtitleIOSNative, subtitlePlexConnect, subtitleDirectPlay)
+            
+            # determine video URL
             if transcoderAction=='DirectPlay' \
                or \
                transcoderAction=='Auto' and \
-               Media.get('protocol','-') in ("hls") and \
-               int(Media.get('bitrate','0')) < int(qLimits[2]) \
-               or \
-               transcoderAction=='Auto' and \
-               Media.get('container','-') in ("mov", "mp4") and \
-               Media.get('videoCodec','-') in ("mpeg4", "h264", "drmi") and \
-               Media.get('audioCodec','-') in ("aac", "ac3", "drms") and \
-               int(Media.get('bitrate','0')) < int(qLimits[2]):
+               videoATVNative and \
+               int(Media.get('bitrate','0')) < int(qLimits[2]) and \
+               subtitleDirectPlay:
                 # direct play for...
                 #    force direct play
-                # or HTTP live stream (limited by quality setting)
-                # or native aTV media (limited by quality setting)
+                # or videoATVNative (HTTP live stream m4v/h264/aac...)
+                #    limited by quality setting
+                #    with aTV supported subtitle (iOS embedded tx3g, PlexConnext external srt)
                 res, leftover, dfltd = self.getKey(Media, srcXML, 'Part/key')
                 
                 if Media.get('indirect', False):  # indirect... todo: select suitable resolution, today we just take first Media
@@ -1045,9 +1086,11 @@ class CCommandCollection(CCommandHelper):
                 res = Video.get('key','')
                 
                 # misc settings: subtitlesize, audioboost
-                settings = ( g_ATVSettings.getSetting(UDID, 'subtitlesize'), \
-                             g_ATVSettings.getSetting(UDID, 'audioboost') )
-                res = PlexAPI.getTranscodeVideoPath(res, AuthToken, self.options, transcoderAction, qLimits, settings)
+                subtitle = { 'selected': '1' if subtitleId else '0', \
+                             'dontBurnIn': '1' if subtitleDirectPlay else '0', \
+                             'size': g_ATVSettings.getSetting(UDID, 'subtitlesize') }
+                audio = { 'boost': g_ATVSettings.getSetting(UDID, 'audioboost') }
+                res = PlexAPI.getTranscodeVideoPath(res, AuthToken, self.options, transcoderAction, qLimits, subtitle, audio)
         
         else:
             dprint(__name__, 0, "MEDIAPATH - element not found: {0}", param)

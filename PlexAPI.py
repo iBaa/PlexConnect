@@ -543,11 +543,12 @@ parameters:
     options - dict() of PlexConnect-options as received from aTV
     action - transcoder action: Auto, Directplay, Transcode
     quality - (resolution, quality, bitrate)
-    settings - (subtitlesize, audioboost)
+    subtitle - {'selected', 'dontBurnIn', 'size'}
+    audio - {'boost'}
 result:
     final path to pull in PMS transcoder
 """
-def getTranscodeVideoPath(path, AuthToken, options, action, quality, settings):
+def getTranscodeVideoPath(path, AuthToken, options, action, quality, subtitle, audio):
     UDID = options['PlexConnectUDID']
     
     transcodePath = '/video/:/transcode/universal/start.m3u8?'
@@ -556,10 +557,8 @@ def getTranscodeVideoPath(path, AuthToken, options, action, quality, settings):
     vQ = quality[1]
     mVB = quality[2]
     dprint(__name__, 1, "Setting transcode quality Res:{0} Q:{1} {2}Mbps", vRes, vQ, mVB)
-    sS = settings[0]
-    dprint(__name__, 1, "Subtitle size: {0}", sS)
-    aB = settings[1]
-    dprint(__name__, 1, "Audio Boost: {0}", aB)
+    dprint(__name__, 1, "Subtitle: selected {0}, dontBurnIn {1}, size {2}", subtitle['selected'], subtitle['dontBurnIn'], subtitle['size'])
+    dprint(__name__, 1, "Audio: boost {0}", audio['boost'])
     
     args = dict()
     args['session'] = UDID
@@ -569,9 +568,9 @@ def getTranscodeVideoPath(path, AuthToken, options, action, quality, settings):
     args['videoQuality'] = vQ
     args['directStream'] = '0' if action=='Transcode' else '1'
     # 'directPlay' - handled by the client in MEDIARUL()
-    args['subtitleSize'] = sS
-    args['skipSubtitles'] = '1'  # shut off PMS subtitles. Todo: skip only for aTV native/SRT (or other supported)
-    args['audioBoost'] = aB
+    args['subtitleSize'] = subtitle['size']
+    args['skipSubtitles'] = subtitle['dontBurnIn']  #'1'  # shut off PMS subtitles. Todo: skip only for aTV native/SRT (or other supported)
+    args['audioBoost'] = audio['boost']
     args['fastSeek'] = '1'
     args['path'] = path
     
