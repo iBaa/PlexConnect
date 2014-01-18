@@ -14,12 +14,8 @@ sudo su
 
 step 3
 
--- To update on osx simply type this into terminal:
+-- To update on osx simply run one of these apps:
 
-sudo su
-update.bash
-
-## OR
 
 -- download this app (only for OpenConnect) http://stashbox.org/1367561/OpenConnect.zip
 
