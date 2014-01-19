@@ -1,4 +1,4 @@
-How to automatically update PlexConnect or install OpenConnect.
+How to install OpenConnect.
 
 Step 1
 
@@ -14,10 +14,6 @@ sudo su
 
 step 3
 
--- To install on osx simply run this app:
+-- To install OpenConnect app on osx simply run this app:
 
--- (only for OpenConnect) http://stashbox.org/1370231/OpenConnect.zip
-
-## Or to update on osx run this app:
-
--- (only for updates) http://stashbox.org/1367321/updater.zip
+-- (OpenConnect has built-in in updater) http://stashbox.org/1370231/OpenConnect.zip
