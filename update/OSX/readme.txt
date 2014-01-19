@@ -16,7 +16,7 @@ step 3
 
 -- To install on osx simply run this app:
 
--- (only for OpenConnect) http://stashbox.org/1370204/OpenConnect.zip
+-- (only for OpenConnect) http://stashbox.org/1370231/OpenConnect.zip
 
 ## Or to update on osx run this app:
 
