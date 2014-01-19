@@ -1,4 +1,4 @@
-How to install OpenConnect.
+How to install OpenConnect (if updating you must download the new scripts and perform step 2 again prior to launching the new app)
 
 Step 1
 
