@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## update status
-echo 'Stopping PlexConnect...'
+echo 'Starting PlexConnect...'
 
 ## unload plexconnect from launchctl to avoid database errors
 cd /library/launchdaemons
