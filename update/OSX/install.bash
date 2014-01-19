@@ -17,6 +17,8 @@ cp createplist.bash /usr/bin
 cp createplist2.bash /usr/bin
 cp update.bash /usr/bin
 cp update2.bash /usr/bin
+cp stop.bash /usr/bin
+cp stop2.bash /usr/bin
 
 ## replace __INSTALLERPATH__ in default createcert.bash
 ## save directly to the /usr/bin folder
@@ -34,9 +36,17 @@ sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createpli
 ## save directly to the /usr/bin folder
 sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__USERNAME__/${SUDO_USER}/" "${InstallerPath}/update.bash" > /usr/bin/update.bash
 
-## replace __INSTALLERPATH__, __USERNAME__in default update.bash
+## replace __INSTALLERPATH__, __USERNAME__in default update2.bash
 ## save directly to the /usr/bin folder
 sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__USERNAME__/${SUDO_USER}/" "${InstallerPath}/update2.bash" > /usr/bin/update2.bash
+
+## replace __INSTALLERPATH__ in default stop.bash
+## save directly to the /usr/bin folder
+sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/stop.bash" > /usr/bin/stop.bash
+
+## replace __INSTALLERPATH__ in default stop2.bash
+## save directly to the /usr/bin folder
+sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/stop2.bash" > /usr/bin/stop2.bash
 
 ## fix permissions
 chmod +x /usr/bin/createcert.bash
@@ -44,6 +54,8 @@ chmod +x /usr/bin/createplist.bash
 chmod +x /usr/bin/createplist2.bash
 chmod +x /usr/bin/update.bash
 chmod +x /usr/bin/update2.bash
+chmod +x /usr/bin/stop.bash
+chmod +x /usr/bin/stop2.bash
 
 ## check for git and install if needed
 git
