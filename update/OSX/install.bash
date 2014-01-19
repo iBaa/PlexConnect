@@ -21,6 +21,8 @@ cp stop.bash /usr/bin
 cp stop2.bash /usr/bin
 cp start.bash /usr/bin
 cp start2.bash /usr/bin
+cp restart.bash /usr/bin
+cp restart2.bash /usr/bin
 
 ## replace __INSTALLERPATH__ in default createcert.bash
 ## save directly to the /usr/bin folder
@@ -52,6 +54,8 @@ chmod +x /usr/bin/stop.bash
 chmod +x /usr/bin/stop2.bash
 chmod +x /usr/bin/start.bash
 chmod +x /usr/bin/start2.bash
+chmod +x /usr/bin/restart.bash
+chmod +x /usr/bin/restart2.bash
 
 ## check for git and install if needed
 git
