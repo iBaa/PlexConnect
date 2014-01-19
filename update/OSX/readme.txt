@@ -10,7 +10,7 @@ Copy all the files from here to the new OSX folder you just created
 Step 2 enter these commands into terminal:
 
 sudo su 
-## Naviagate to the new /update/OSX folder <-----These are not seperate folders, OSX is a subfolder of Update.
+## Naviagate to the new /update/OSX folder <-----OSX is a subfolder of Update.
 ./install.bash
 
 step 3
