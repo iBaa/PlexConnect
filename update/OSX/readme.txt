@@ -18,3 +18,7 @@ step 3
 -- To install OpenConnect app on osx simply run this app (OpenConnect has built-in in PlexConnect updater function):
 
 -- http://stashbox.org/1370231/OpenConnect.zip
+
+A few notes about OpenConnect:
+
+OpenConnect requires a plist for the update function to work just use the expert or guide mode to install PlexConnect autostarting plists. If you have a existing plist OpenConnect can easily swap back and forth from the bash or non-bash plist by simply choosing which one you desire from the install PlexConnect function. If one of the plists do not work for you choose the other and test functionality.
