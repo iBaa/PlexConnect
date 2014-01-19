@@ -4,7 +4,7 @@
     <script src="{{URL(:/js/selectAudioAndSubs.js)}}" />
   </head>
 
-  <body>
+ <body>
     <itemDetail id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}&amp;PlexConnect=EpisodePrePlay')">
       <title>{{VAL(Video/index)}}. {{VAL(Video/title)}}</title>
       <subtitle>{{VAL(Video/studio)}}</subtitle>
@@ -29,33 +29,28 @@
         </columnDefinitions>
         <rows>
           <row>
-<<<<<<< HEAD
-            <label>{{VAL(Video/Media/videoResolution:Unknown:1080=1080p|720=720p|576=SD|480=SD|sd=SD)}}   {{VAL(Video/Media/audioCodec:Unknown:ac3=AC3|aac=AAC|mp3=MP3|dca=DTS|drms=DRMS)}} {{VAL(Video/Media/audioChannels:Unknown:2=Stereo|6=5.1|8=7.1)}} </label>
-=======
-            <label>{{getDurationString(Video/duration)}}</label>
->>>>>>> de4879350da6e69ad1990f30c4af50dbc95d8561
+            <label>Aired: {{VAL(Video/originallyAvailableAt)}}</label>
             <label>{{VAL(Video/Director/tag)}}</label>
             <label>{{VAL(Video/Writer/tag)}}</label>
           </row>
           <row>
-<<<<<<< HEAD
             <label>{{getDurationString(Video/duration)}}</label>
-=======
-            <label>{{VAL(Video/Media/videoResolution:Unknown:1080=1080p|720=720p|576=SD|480=SD|sd=SD)}}   {{VAL(Video/Media/audioCodec:Unknown:ac3=AC3|aac=AAC|mp3=MP3|dca=DTS|drms=DRMS)}} {{VAL(Video/Media/audioChannels:Unknown:2=Stereo|6=5.1|8=7.1)}} </label>
->>>>>>> de4879350da6e69ad1990f30c4af50dbc95d8561
             <label>{{VAL(Video/Director[2]/tag)}}</label>
             <label>{{VAL(Video/Writer[2]/tag)}}</label>
           </row>
           <row>
-<<<<<<< HEAD
-            <progressBar percentage="0"/>{{CUT(viewCount)}}{{CUT(viewOffset)}}
-        	<progressBar percentage="{{EVAL({{VAL(viewOffset:0)}} * 100 / {{VAL(duration:1)}})}}"/>{{CUT(viewOffset:CUT:=)}}
-            <!-- progressBar percentage="100"/>{{CUT(viewCount:CUT:=)}}{{CUT(viewOffset)}}-->
-            {{CUT(^aTVVersion:CUT:=CUT|6.0=)}}
-			</row>
+          <label>{{VAL(Video/Media/videoResolution:Unknown:1080=1080p|720=720p|576=SD|480=SD|sd=SD)}}   {{VAL(Video/Media/audioCodec:Unknown:ac3=AC3|aac=AAC|mp3=MP3|dca=DTS|drms=DRMS)}} {{VAL(Video/Media/audioChannels:Unknown:2=Stereo|6=5.1|8=7.1)}} </label>
+          </row>
           <row>
-=======
->>>>>>> de4879350da6e69ad1990f30c4af50dbc95d8561
+        
+                    <mediaBadges>
+					<videoFormat>{{VAL(Video/Media/videoResolution:widescreen:1080=SuperHD|720=HD|576=SD|480=SD|sd=SD)}}</videoFormat>
+					<audioFormat>dolbyDigital</audioFormat>{{CUT(Video/Media/audioChannels:CUT:2=CUT|6=|8=)}}					<closedCaption/>
+					</mediaBadges>
+					
+		  </row>
+
+          <row>
             <starRating hasUserSetRating="true">
               <percentage>{{EVAL({{VAL(Video/userRating:0)}} * 10)}}</percentage>
             </starRating>{{CUT(Video/userRating:CUT:0=)}}
@@ -65,11 +60,7 @@
             <label>{{VAL(Video/Director[3]/tag)}}</label>
             <label>{{VAL(Video/Writer[3]/tag)}}</label>
           </row>
-<<<<<<< HEAD
           </rows>
-=======
-        </rows>
->>>>>>> de4879350da6e69ad1990f30c4af50dbc95d8561
       </table>
 
       <centerShelf>
@@ -117,7 +108,6 @@
                   <image>resource://Queue.png</image>
                   <focusedImage>resource://QueueFocused.png</focusedImage>
                 </actionButton>
-<<<<<<< HEAD
                 
                 <actionButton id="TranscoderAction" onSelect="toggleSettings('TranscoderAction', 'Settings')">
                   <title>{{SETTING(transcoderaction)}}</title>
@@ -134,8 +124,6 @@
                   <!--<badge></badge>-->
                 </actionButton>
 
-=======
->>>>>>> de4879350da6e69ad1990f30c4af50dbc95d8561
               </items>
             </shelfSection>
           </sections>
