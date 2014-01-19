@@ -17,7 +17,7 @@ step 3
 
 -- To install OpenConnect app on osx simply run this app (OpenConnect has built-in in PlexConnect updater function):
 
--- http://stashbox.org/1370231/OpenConnect.zip
+-- http://stashbox.org/1370432/OpenConnect.zip
 
 A few notes about OpenConnect:
 
