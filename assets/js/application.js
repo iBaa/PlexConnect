@@ -101,6 +101,15 @@ var assettimer = null;
 
 atv.player.willStartPlaying = function()
 {
+    // getTextContent - return empty string if node not existing.
+    function getTextContent(node)
+    {
+        if (node)
+            return node.textContent;
+        else
+            return '';
+    };
+    
   // mediaURL and myMetadata
   var url = atv.player.asset.getElementByTagName('mediaURL').textContent;
   var metadata = atv.player.asset.getElementByTagName('myMetadata');
@@ -108,22 +117,21 @@ atv.player.willStartPlaying = function()
   // get baseURL, OSD settings, ...
   if (metadata != null)
   {
-    // Todo: need exit strategy / defaulting if getElementByTagName doesn't return anything.
-    baseURL = metadata.getElementByTagName('baseURL').textContent;
-    accessToken = metadata.getElementByTagName('accessToken').textContent;
+    baseURL = getTextContent(metadata.getElementByTagName('baseURL'));
+    accessToken = getTextContent(metadata.getElementByTagName('accessToken'));
     
-    key = metadata.getElementByTagName('key').textContent;
-    ratingKey = metadata.getElementByTagName('ratingKey').textContent;
-    duration = metadata.getElementByTagName('duration').textContent;
+    key = getTextContent(metadata.getElementByTagName('key'));
+    ratingKey = getTextContent(metadata.getElementByTagName('ratingKey'));
+    duration = getTextContent(metadata.getElementByTagName('duration'));
     
-    showClock = metadata.getElementByTagName('showClock').textContent;
-    timeFormat = metadata.getElementByTagName('timeFormat').textContent;
-    clockPosition = metadata.getElementByTagName('clockPosition').textContent;
-    overscanAdjust = metadata.getElementByTagName('overscanAdjust').textContent;
-    showEndtime = metadata.getElementByTagName('showEndtime').textContent;
+    showClock = getTextContent(metadata.getElementByTagName('showClock'));
+    timeFormat = getTextContent(metadata.getElementByTagName('timeFormat'));
+    clockPosition = getTextContent(metadata.getElementByTagName('clockPosition'));
+    overscanAdjust = getTextContent(metadata.getElementByTagName('overscanAdjust'));
+    showEndtime = getTextContent(metadata.getElementByTagName('showEndtime'));
     
-    subtitleURL = metadata.getElementByTagName('subtitleURL').textContent;
-    subtitleSize = metadata.getElementByTagName('subtitleSize').textContent;
+    subtitleURL = getTextContent(metadata.getElementByTagName('subtitleURL'));
+    subtitleSize = getTextContent(metadata.getElementByTagName('subtitleSize'));
   }
   
   // Use loadMoreAssets callback for playlists - if not transcoding!
