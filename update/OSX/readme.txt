@@ -24,3 +24,15 @@ step 3
 A few notes about OpenConnect:
 
 OpenConnect requires a plist for the update function to work just use the expert or guide mode to install PlexConnect autostarting plists. If you have a existing plist OpenConnect can easily swap back and forth from the bash or non-bash plist by simply choosing which one you desire from the install PlexConnect function. If one of the plists do not work for you choose the other and test functionality. The best way to test is by installing a plist then restarting your OSX system and logging in. Finally see if your appletv is displaying PlexConnect if it is your plist has been properly installed. This app is designed to automatically keep PlexConnect up to date for you so if there is anything you want to backup please do so prior to using this app. There is two options bash or non-bash, use which ever one works for you and starts at boot. The bash plist is the standard plist to autostart PlexConnect on OSX. The non-bash is for compatibility and may work for older OSX versions.
+
+How to test Webconnect (repeate steps 1 & 2 above for the latest release)
+
+1. Apache2 server on a unused port (plexconnect runs on 53, 80, 443) edit /etc/apache2/httpd.conf hosts section to change port. http://clickontyler.com/blog/2012/02/web-sharing-mountain-lion/
+
+2. Navigate to your PlexConnect/update/OSX folder then issue this command:
+
+./webconnect
+
+3. Enter a similar link into your browser:
+
+http://YOUR_IP_ADDRESS:YOUR_APACHE2_PORT/cgin-bin/bash.cgi
