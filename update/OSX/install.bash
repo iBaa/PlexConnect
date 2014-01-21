@@ -58,6 +58,7 @@ chmod +x /usr/bin/start2.bash
 chmod +x /usr/bin/restart.bash
 chmod +x /usr/bin/restart2.bash
 chmod +x /usr/bin/webconnect.bash
+
 ## check for git and install if needed
 git
 
