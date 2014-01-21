@@ -35,4 +35,4 @@ How to test WebConnect (repeate steps 1 & 2 above for the latest release)
 
 3. Enter a similar link into your browser:
 
-http://YOUR_IP_ADDRESS:YOUR_APACHE2_PORT/cgin-bin/bash.cgi
+http://YOUR_LOCAL_IP_ADDRESS:YOUR_APACHE2_PORT/cgin-bin/bash.cgi
