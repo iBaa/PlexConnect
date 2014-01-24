@@ -14,9 +14,6 @@ var lastReportedTime = -1;
 var remainingTime = 0;
 
 
-// constants
-var subtitleMaxLines = 4;
-
 
 /*
  * Send http request
@@ -63,7 +60,7 @@ atv.player.playerTimeDidChange = function(time)
                         token );
   }
   
-  if (subtitleItem)
+  if (subtitle)
       updateSubtitle(thisReportTime);
 };
 
@@ -156,8 +153,8 @@ atv.player.willStartPlaying = function()
     }
   }
   
-  // load subtitle - SRT only
-  subtitleItem = [];
+  // load subtitle - subtitle aTV XML
+  subtitle = []
   subtitlePos = 0;
   // when... not transcoding or
   //         transcoding and PMS skips subtitle (dontBurnIn)
@@ -174,10 +171,10 @@ atv.player.willStartPlaying = function()
     {
         if (req.readyState==4)  // 4: request is complete
         {
-            parseSRT(req.responseText);
+            subtitle = JSON.parse(req.responseText);
         }
     };
-    req.open('GET', subtitleURL, false);  // true
+    req.open('GET', subtitleURL+"&PlexConnectUDID=" + atv.device.udid, true);  // true: asynchronous
     req.send();
   }
   
@@ -201,7 +198,10 @@ atv.player.willStartPlaying = function()
   
   // create subtitle view
   log('create subtitleView');
-  if (subtitleItem)
+  if (subtitleURL &&
+       ( url.indexOf('transcode/universal') == -1 ||
+         url.indexOf('transcode/universal') > -1 && url.indexOf('skipSubtitles=\'1\'') > -1 )
+     )
   {
       subtitleView = initSubtitleView();
       for (var i=0;i<subtitleMaxLines;i++)
@@ -218,7 +218,6 @@ atv.player.willStartPlaying = function()
   
   log('willStartPlaying done');
 };
-
 
 
 // atv.Element extensions
@@ -443,8 +442,11 @@ function updateEndTime()
  *
  */
 var subtitleView = [];
-var subtitleItem = [];
+var subtitle = [];
 var subtitlePos = 0;
+// constants
+var subtitleMaxLines = 4;
+
 
 function initSubtitleView()
 {
@@ -468,105 +470,53 @@ function initSubtitleView()
 
 function updateSubtitle(time)
 {
-    // find currently active subtitleItem - forward
-    // Todo: deal with rewind
-    while(subtitlePos < subtitleItem.length && subtitleItem[subtitlePos]['timeHide']<time)
+    // rewind, if needed
+    while(subtitlePos>0 && time<subtitle.Timestamp[subtitlePos].time)
+    {
+        subtitlePos--;
+    }
+    // forward
+    while(subtitlePos<subtitle.Timestamp.length-2 && time>subtitle.Timestamp[subtitlePos+1].time)
     {
         subtitlePos++;
     }
+    // current subtitle to show: subtitle.Timestamp[subtitlePos]
     
-    // grab current subtitle
-    var subtitle;
-    if(subtitleItem[subtitlePos]['timeShow']<=time && time<=subtitleItem[subtitlePos]['timeHide'])
-    {
-        subtitle = subtitleItem[subtitlePos]['text'];
-    }
+    // get number of lines (max subtitleMaxLines)
+    var lines
+    if (subtitle.Timestamp[subtitlePos].Line)
+        lines = Math.min(subtitle.Timestamp[subtitlePos].Line.length, subtitleMaxLines);
     else
-    {
-        subtitle = ['','','',''];
-    }
-    
-    // analyse format: <...> - i_talics (light), b_old (heavy), u_nderline (?), font color (Todo)
-    // limitation (attributedString()): only one format per line/textView.
-    var weight = [];
-    for (var i=0;i<subtitleMaxLines;i++)
-    {
-        weight[i] = 'normal';
-        if ((subtitleItem[subtitlePos]['format_i'])[i]) weight[i] = 'light';
-        if ((subtitleItem[subtitlePos]['format_b'])[i]) weight[i] = 'heavy';
-    }
+        lines = 0;
     
     // update subtitleView[]
-    for (var i=0;i<subtitleMaxLines;i++)
+    var i_view=0;
+    for (var i=0;i<subtitleMaxLines-lines;i++)  // fill empty lines on top
     {
-        subtitleView[i].attributedString = {
-            string: subtitle[i],
+        subtitleView[i_view].attributedString = {
+            string: "",
             attributes: { pointSize: 40.0 * subtitleSize/100,
-                          color: {red: 1, blue: 1, green: 1, alpha: 1.0},
-                          weight: weight[i],
-                          alignment: "center"
+                          color: {red: 1, blue: 1, green: 1, alpha: 1.0}
                         }
         };
+        i_view++;
     }
-}
-
-
-function parseSRT(srtfile)
-{
-    subtitleItem = [];
-    subtitlePos = 0;
-    
-    srtPart = srtfile.trim().split(/\r\n\r\n|\n\r\n\r|\n\n|\r\r/);  // trim whitespaces, split at double-newline
-    for (var i=0;i<srtPart.length;i++)
+    for (var i=0;i<lines;i++)  // fill used lines
     {
-        var srtLine = srtPart[i].split(/\r\n|\n\r|\n|\r/);  // split at newline
-        
-        var timePart = srtLine[1].split(/:|,|-->/);  // <StartTime> --> <EndTime> split at : , or -->
-        var timeShow = parseInt(timePart[0])*1000*60*60 +
-                       parseInt(timePart[1])*1000*60 +
-                       parseInt(timePart[2])*1000 +
-                       parseInt(timePart[3]);
-        var timeHide = parseInt(timePart[4])*1000*60*60 +
-                       parseInt(timePart[5])*1000*60 +
-                       parseInt(timePart[6])*1000 +
-                       parseInt(timePart[7]);
-        
-        var lines = srtLine.length-2;
-        if (lines>subtitleMaxLines)
-            lines = subtitleMaxLines;
-        
-        var text = [];
-        for(var j=0;j<subtitleMaxLines-lines;j++)  // fill empty lines on top
-            text[j] = '';
-        for(var j=0;j<lines;j++)  // fill subtitle to bottom lines
-            text[j+subtitleMaxLines-lines] = srtLine[2+j];
-        
-        var format_i = [], format_i_next = false;
-        var format_b = [], format_b_next = false;
-        // analyse format: <...> - i_talics (ok), b_old (ok), u_nderline (?), font color (?)
-        // Todo: carry over to next line...
-        //       - current implementation too simple - what happens with mulitple <...>?
-        // Todo: is there a way to add the format_x as a "property" to text[j]?
-        for(var j=0;j<subtitleMaxLines;j++)
-        {
-            format_i[j] = format_i_next || (text[j].indexOf("<i>")!=-1);
-            format_i_next = format_i[j] && !(text[j].indexOf("</i>")!=-1);
-            format_b[j] = format_b_next || text[j].indexOf("<b>")!=-1;
-            format_b_next = format_b[j] && !(text[j].indexOf("</b>")!=-1);
-            
-            text[j] = text[j].replace(/<.*?>/g, "");  // remove the formatting identifiers
-        }
-        
-        subtitleItem.push({
-            'ix':srtLine[0],
-            'timeShow':timeShow, 'timeHide':timeHide,
-            'lines':lines,
-            'text':text,
-            'format_i':format_i,
-            'format_b':format_b
-        });
+        subtitleView[i_view].attributedString = {
+            string: subtitle.Timestamp[subtitlePos].Line[i].text,
+            attributes: { pointSize: 40.0 * subtitleSize/100,
+                          color: {red: 1, blue: 1, green: 1, alpha: 1.0},
+                          weight: subtitle.Timestamp[subtitlePos].Line[i].weight || 'normal',
+                          alignment: "center",
+                          breakMode: "clip"
+                        }
+        };
+        i_view++;
     }
-    log('parseSRT done');
+    
+    if (time<10000)
+        log("updateSubtitle done, subtitlePos="+subtitlePos);
 }
 
 

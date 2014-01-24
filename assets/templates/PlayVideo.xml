@@ -28,7 +28,7 @@
             {{COPY(Video/Media/Part/Stream:streamType::=|3=COPY|3 =)}}
               <subtitleURL> <!-- id="{{VAL(id)}}" key="{{VAL(key)}}" codec="{{VAL(codec)}}"--><!--.srt only -->
               {{CUT(selected:CUT:0=CUT|1=)}}
-                {{MEDIAURL(key)}}
+                {{URL(key)}}&amp;PlexConnect=Subtitle&amp;PlexConnectSubtitleFormat={{VAL(format)}}
               </subtitleURL>
             </__COPY__>
             <subtitleSize>{{SETTING(subtitlesize)}}</subtitleSize>

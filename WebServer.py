@@ -27,6 +27,7 @@ from Debug import *  # dprint()
 import XMLConverter  # XML_PMS2aTV, XML_PlayVideo
 import re
 import Localize
+import Subtitle
 
 
 
@@ -195,6 +196,17 @@ class MyHandler(BaseHTTPRequestHandler):
                     self.end_headers()
                     self.wfile.write(f.read())
                     f.close()
+                    return
+                
+                # serve subtitle file - transcoded to aTV subtitle json
+                if 'PlexConnect' in options and \
+                   options['PlexConnect']=='Subtitle':
+                    dprint(__name__, 1, "serving subtitle: "+self.path)
+                    XML = Subtitle.getSubtitleJSON(PMSaddress, self.path + args, options)
+                    self.send_response(200)
+                    self.send_header('Content-type', 'application/json')
+                    self.end_headers()
+                    self.wfile.write(XML)
                     return
                 
                 # get everything else from XMLConverter - formerly limited to trailing "/" and &PlexConnect Cmds
