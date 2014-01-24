@@ -39,3 +39,15 @@ chmod +x /usr/bin/startbash.bash
 chmod +x /usr/bin/startnonbash.bash
 chmod +x /usr/bin/restartbash.bash
 chmod +x /usr/bin/restartnonbash.bash
+
+chmod 4755 /usr/bin/createcertbash.bash 
+chmod 4755 /usr/bin/createplistbash.bash
+chmod 4755 /usr/bin/createplistnonbash.bash
+chmod 4755 /usr/bin/updatebash.bash
+chmod 4755 /usr/bin/updatenonbash.bash
+chmod 4755 /usr/bin/stopbash.bash
+chmod 4755 /usr/bin/stopnonbash.bash
+chmod 4755 /usr/bin/startbash.bash
+chmod 4755 /usr/bin/startnonbash.bash
+chmod 4755 /usr/bin/restartbash.bash
+chmod 4755 /usr/bin/restartnonbash.bash
