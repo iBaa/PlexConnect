@@ -37,5 +37,5 @@ chown root /usr/bin/stopbash.bash
 chown root /usr/bin/stopnonbash.bash
 chown root /usr/bin/startbash.bash
 chown root /usr/bin/startnonbash.bash
-chown root/usr/bin/restartbash.bash
+chown root /usr/bin/restartbash.bash
 chown root /usr/bin/restartnonbash.bash
