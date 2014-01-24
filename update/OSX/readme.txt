@@ -25,14 +25,21 @@ A few notes about OpenConnect:
 
 OpenConnect requires a plist for the update function to work just use the expert or guide mode to install PlexConnect autostarting plists. If you have a existing plist OpenConnect can easily swap back and forth from the bash or non-bash plist by simply choosing which one you desire from the install PlexConnect function. If one of the plists do not work for you choose the other and test functionality. The best way to test is by installing a plist then restarting your OSX system and logging in. Finally see if your appletv is displaying PlexConnect if it is your plist has been properly installed. This app is designed to automatically keep PlexConnect up to date for you so if there is anything you want to backup please do so prior to using this app. There is two options bash or non-bash, use which ever one works for you and starts at boot. The bash plist is the standard plist to autostart PlexConnect on OSX. The non-bash is for compatibility and may work for older OSX versions.
 
-How to test WebConnect (repeate steps 1 & 2 above for the latest release)
+How to install WebConnect (repeate steps 1 & 2 above for the latest release to update)
 
 1. Apache2 server on a unused port (plexconnect runs on 53, 80, 443) edit /etc/apache2/httpd.conf hosts section to change port. http://clickontyler.com/blog/2012/02/web-sharing-mountain-lion/
 
-2. Navigate to your PlexConnect/update/OSX folder then issue this command:
+2. Edit your sudoers file and add this section:
 
+_www    ALL= NOPASSWD: /usr/bin/createcert.bash,/usr/bin/creteplist.bash,/usr/bin/createplist2.bash,/usr/bin/update.bash,/usr/bin/update2.bash,/usr/bin/start.bash,/usr/bin/start2.bash,/usr/bin/stop.bash,/usr/bin/stop2.bash,/usr/bin/restart.bash,/usr/bin/restart2.bash
+
+3. Navigate to your new PlexConnect/update/OSX folder then issue these command:
+
+sudo su
 ./webconnect
 
-3. Enter a similar link into your browser:
+4. Enter a similar link into your browser:
 
 http://YOUR_LOCAL_IP_ADDRESS:YOUR_APACHE2_PORT/cgin-bin/bash.cgi
+
+5. *Optional* Open up your apache port pointed to your PlexConnect host to mangage PlexConnect anywhere on any device/web-browser.
