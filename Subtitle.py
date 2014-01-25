@@ -34,12 +34,14 @@ def getSubtitleJSON(PMS_baseURL, path, options):
         if UDID:
             options['PlexConnectUDID'] = UDID
     """
+    path = path + '?' if not '?' in path else '&'
+    path = path + 'encoding=utf-8'
+    
+    xargs = {}
     if 'PlexConnectUDID' in options:
         UDID = options['PlexConnectUDID']
         PMS_uuid = PlexAPI.getPMSFromAddress(UDID, PMS_baseURL)
-        xargs = {'X-Plex-Token': PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')}
-    else:
-        xargs = {}
+        xargs['X-Plex-Token'] = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
     
     dprint(__name__, 1, "subtitle URL: {0}{1}", PMS_baseURL, path)
     dprint(__name__, 1, "xargs: {0}", xargs)
