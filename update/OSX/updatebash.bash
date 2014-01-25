@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo /usr/bin/upadte.bash
+sudo /usr/bin/update.bash
