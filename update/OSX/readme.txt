@@ -37,7 +37,7 @@ _www    ALL= NOPASSWD: /usr/bin/createcert.bash,/usr/bin/createplist.bash,/usr/b
 3. Navigate to your new PlexConnect/update/OSX folder then issue these command:
 
 sudo su
-./webconnect
+./webconnect.bash
 
 4. Enter a similar link into your browser:
 
