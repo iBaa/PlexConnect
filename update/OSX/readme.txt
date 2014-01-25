@@ -31,7 +31,7 @@ How to install WebConnect (repeate steps 1 & 2 above for the latest release to u
 
 2. Edit your sudoers file and add this section:
 
-_www    ALL= NOPASSWD: /usr/bin/createcert.bash,/usr/bin/creteplist.bash,/usr/bin/createplist2.bash,/usr/bin/update.bash,/usr/bin/update2.bash,/usr/bin/start.bash,/usr/bin/start2.bash,/usr/bin/stop.bash,/usr/bin/stop2.bash,/usr/bin/restart.bash,/usr/bin/restart2.bash
+_www    ALL= NOPASSWD: /usr/bin/createcert.bash,/usr/bin/createplist.bash,/usr/bin/createplist2.bash,/usr/bin/update.bash,/usr/bin/update2.bash,/usr/bin/start.bash,/usr/bin/start2.bash,/usr/bin/stop.bash,/usr/bin/stop2.bash,/usr/bin/restart.bash,/usr/bin/restart2.bash
 
 3. Navigate to your new PlexConnect/update/OSX folder then issue these command:
 
