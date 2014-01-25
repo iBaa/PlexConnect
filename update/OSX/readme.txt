@@ -13,6 +13,7 @@ sudo su
 ## Naviagate to your PlexConnect base directory
 mkdir -p /update/OSX
 ## Naviagate to the new /update/OSX folder <-----OSX is a subfolder of Update.
+chmod +x install.bash
 ./install.bash
 
 step 3
