@@ -4,6 +4,7 @@
 echo 'Restarting PlexConnect...'
 
 ## unload plist
+cd /Library/LaunchDaemons
 launchctl unload /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
 
 ## load plist
