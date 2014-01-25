@@ -7,6 +7,8 @@
 # Package
 APPNAME="PlexConnect.py"
 
+## prevent OSX plist boot errors to allow plist to function properly
+sleep 1
 
 # Determine if the network is up by looking for any non-loopback network interfaces.
 # Currently supports only OSX "Darwin" OS
