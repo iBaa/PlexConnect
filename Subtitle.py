@@ -94,13 +94,13 @@ result:
 def parseSRT(SRT):
     subtitle = { 'Timestamp': [] }
     
-    srtPart = re.split('\r\n\r\n|\n\r\n\r|\n\n|\r\r', SRT.strip());  # trim whitespaces, split at double-newline
+    srtPart = re.split(r'(\r\n|\n\r|\n|\r)\1+(?=[0-9]+)', SRT.strip())[::2];  # trim whitespaces, split at multi-newline, check for following number
     timeHide_last = 0
     
     for Item in srtPart:
-        ItemPart = re.split('\r\n|\n\r|\n|\r', Item);  # split at newline
+        ItemPart = re.split(r'\r\n|\n\r|\n|\r', Item.strip());  # trim whitespaces, split at newline
         
-        timePart = re.split(':|,|-->', ItemPart[1]);  # <StartTime> --> <EndTime> split at : , or -->
+        timePart = re.split(r':|,|-->', ItemPart[1]);  # <StartTime> --> <EndTime> split at : , or -->
         timeShow = int(timePart[0])*1000*60*60 +\
                    int(timePart[1])*1000*60 +\
                    int(timePart[2])*1000 +\
@@ -123,7 +123,7 @@ def parseSRT(SRT):
         frmt_i = False
         frmt_b = False
         for i, line in enumerate(ItemPart[2:]):  # evaluate each text line
-            for frmt in re.finditer('<([^/]*?)>', line):  # format switch on in current line
+            for frmt in re.finditer(r'<([^/]*?)>', line):  # format switch on in current line
                 if frmt.group(1)=='i': frmt_i = True
                 if frmt.group(1)=='b': frmt_b = True
             
@@ -131,7 +131,7 @@ def parseSRT(SRT):
             if frmt_i: weight = 'light'
             if frmt_b: weight = 'heavy'
             
-            for frmt in re.finditer('</(.*?)>', line):  # format switch off
+            for frmt in re.finditer(r'</(.*?)>', line):  # format switch off
                 if frmt.group(1)=='i': frmt_i = False
                 if frmt.group(1)=='b': frmt_b = False
             
