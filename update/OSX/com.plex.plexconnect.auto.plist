@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.plex.plexconnect.auto</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/update.bash</string>
+    </array>
+    <key>StartInterval</key>
+    <integer>43200</integer>
+</dict>
+</plist>
