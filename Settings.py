@@ -3,6 +3,7 @@
 import sys
 from os import sep
 import ConfigParser
+import re
 
 from Debug import *  # dprint()
 
@@ -10,6 +11,8 @@ from Debug import *  # dprint()
 
 """
 Global Settings...
+syntax: 'setting': ('default', 'regex to validate')
+
 PMS: plexgdm, ip_pms, port_pms
 DNS: ip_dnsmaster - IP of Router, ISP's DNS, ... [dflt: google public DNS]
 IP_self: enable_plexconnect_autodetect, ip_plexconnect - manual override for VPN usage
@@ -17,27 +20,27 @@ Intercept: Trailers-trailers.apple.com, WSJ-secure.marketwatch.com, iMovie-www.i
 HTTP: port_webserver - override when using webserver + forwarding to PlexConnect
 HTTPS: port_ssl, certfile, enable_webserver_ssl - configure SSL portion or webserver
 """
-g_settings = { \
-    'enable_plexgdm'  :('True', 'False'), \
-    'ip_pms'          :('192.168.178.10',), \
-    'port_pms'        :('32400',), \
+g_settings = {
+    'enable_plexgdm'  :('True', '((True)|(False))'),
+    'ip_pms'          :('192.168.178.10', '([0-9]{1,3}\.){3}[0-9]{1,3}'),
+    'port_pms'        :('32400', '[0-9]{1,5}'),
     \
-    'enable_dnsserver':('True', 'False'), \
-    'port_dnsserver'  :('53',), \
-    'ip_dnsmaster'    :('8.8.8.8',), \
-    'prevent_atv_update'           :('True', 'False'), \
+    'enable_dnsserver':('True', '((True)|(False))'),
+    'port_dnsserver'  :('53', '[0-9]{1,5}'),
+    'ip_dnsmaster'    :('8.8.8.8', '([0-9]{1,3}\.){3}[0-9]{1,3}'),
+    'prevent_atv_update'           :('True', '((True)|(False))'),
     \
-    'enable_plexconnect_autodetect':('True', 'False'), \
-    'ip_plexconnect'  :('0.0.0.0',), \
-    'hosttointercept' :('trailers.apple.com',), \
+    'enable_plexconnect_autodetect':('True', '((True)|(False))'),
+    'ip_plexconnect'  :('0.0.0.0', '([0-9]{1,3}\.){3}[0-9]{1,3}'),
+    'hosttointercept' :('trailers.apple.com', '([a-zA-Z0-9_]+\.)+[a-zA-Z0-9_]+'),
     \
-    'port_webserver'  :('80',), \
-    'enable_webserver_ssl'         :('True', 'False'), \
-    'port_ssl'        :('443',), \
-    'certfile'        :('./assets/certificates/trailers.pem',), \
+    'port_webserver'  :('80', '[0-9]{1,5}'),
+    'enable_webserver_ssl'         :('True', '((True)|(False))'),
+    'port_ssl'        :('443', '[0-9]{1,5}'),
+    'certfile'        :('./assets/certificates/trailers.pem', '.+.pem'),
     \
-    'loglevel'        :('Normal', 'High', 'Off'), \
-    'logpath'         :('.',), \
+    'loglevel'        :('Normal', '((Off)|(Normal)|(High))'),
+    'logpath'         :('.', '.+'),
     }
 
 
@@ -82,11 +85,19 @@ class CSettings():
             dprint(__name__, 0, "add section {0}", self.section)
         
         for opt in g_settings:
+            # check settings - add if new
             if not self.cfg.has_option(self.section, opt):
                 modify = True
                 self.cfg.set(self.section, opt, g_settings[opt][0])
                 dprint(__name__, 0, "add option {0}={1}", opt, g_settings[opt][0])
-                
+            
+            # check settings - default if unknown
+            setting = self.cfg.get(self.section, opt)
+            if not re.search('\A'+g_settings[opt][1]+'\Z', setting):
+                modify = True
+                self.cfg.set(self.section, opt, g_settings[opt][0])
+                dprint(__name__, 0, "bad setting {0}={1} - set default {2}", opt, setting, g_settings[opt][0])
+        
         # save if changed
         if modify:
             self.saveSettings()
@@ -109,5 +120,4 @@ if __name__=="__main__":
     option = 'enable_dnsserver'
     print Settings.getSetting(option)
     
-    Settings.saveSettings()
     del Settings
