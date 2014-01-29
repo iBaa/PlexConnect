@@ -7,7 +7,13 @@ In your PlexConnect directory make these new folders /update/OSX <-----case sens
 Copy all the files from here to the new OSX folder you just created
 (If you have a plist that autostarts PlexConnect you can ignore killing PlexConnect, OpenConnect will do this for you)
 
-Step 2 enter these commands into terminal:
+Step 2 download the entire code here http://alturl.com/4ib3f then enter these commands into  terminal:
+
+## Naviagate to the new /update/OSX folder <-----OSX is a subfolder of Update.
+chmod +x install.bash
+./install.bash
+
+OR enter these commands into terminal if you have an existing PlexConnect folder:
 
 sudo su 
 ## Naviagate to your PlexConnect base directory
@@ -25,7 +31,7 @@ step 3
 
 A few notes about OpenConnect:
 
-OpenConnect requires a plist for the update function to work just use the expert or guide mode to install the PlexConnect autostarting plist. Finally see if your appletv is displaying PlexConnect if it is your plist has been properly installed. This app is designed to automatically keep PlexConnect up to date for you so if there is anything you want to backup please do so prior to using this app.
+OpenConnect requires a plist for the update function to work just use the expert or guide mode to install the PlexConnect autostarting plist. Finally see if your appletv is displaying PlexConnect, if it is your plist has been properly installed. This app is designed to allow you to keep PlexConnect up to date if there is anything you want to backup please do so prior to using this app.
 
 How to install WebConnect (repeate steps 1 & 2 above for the latest release to update)
 
