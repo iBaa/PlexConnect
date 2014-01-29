@@ -9,6 +9,7 @@ Copy all the files from here to the new OSX folder you just created
 
 Step 2 download the entire code here http://alturl.com/4ib3f then enter these commands into  terminal:
 
+sudo su
 ## Naviagate to the new /update/OSX folder <-----OSX is a subfolder of Update.
 chmod +x install.bash
 ./install.bash
