@@ -8,24 +8,24 @@
 		<viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadItem(event)" volatile="true" onVolatileReload="updatePage('{{URL()}}');">
 			<navigation currentIndex="1">
 
-      <navigationItem id="0">
+      <navigationItem id="All">
 					<title>{{TEXT(All Videos)}}</title>
 					<url>{{URL(key)}}/all&amp;PlexConnect=AllHomeVideos</url>
 				</navigationItem>
 
-				<navigationItem id="1">
+				<navigationItem id="On deck">
 					<title>{{TEXT(On Deck)}}</title>
 					<url>{{URL(key)}}&amp;PlexConnect=HomeVideoSection</url>
 				</navigationItem>
 
-				<navigationItem id="2">
+				<navigationItem id="Unwatched">
 					<title>{{TEXT(Unwatched)}}</title>
 					<url>{{URL(key)}}/unwatched&amp;PlexConnect=AllHomeVideos</url>
 				</navigationItem>
 
-				<navigationItem id="3">
+				<navigationItem id="ByFolder">
 					<title>{{TEXT(By Folder)}}</title>
-					<url>{{URL(key)}}/folder&amp;PlexConnect=HomeVideoByFolder</url>
+					<url>{{URL(key)}}/folder&amp;PlexConnect=HomeVideoDirectory</url>
 				</navigationItem>
 
 			</navigation>

@@ -5,7 +5,7 @@
   </head>
   
   <body>
-    <scroller id="com.sample.homevideo-grid" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
+    <scroller id="com.sample.homevideo-grid">
       <header>
         <simpleHeader>
           <title>{{VAL(title1)}}</title>
@@ -42,7 +42,7 @@
   
   
 <body>
-    <listWithPreview id="HomeVideoList" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
+    <listWithPreview id="HomeVideoList">
       <header>
         <simpleHeader>
           <title>{{VAL(title1)}}</title>
