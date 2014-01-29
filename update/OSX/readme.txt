@@ -7,7 +7,7 @@ In your PlexConnect directory make these new folders /update/OSX <-----case sens
 Copy all the files from here to the new OSX folder you just created
 (If you have a plist that autostarts PlexConnect you can ignore killing PlexConnect, OpenConnect will do this for you)
 
-Step 2 download the entire code here http://alturl.com/4ib3f then enter these commands into  terminal:
+Step 2 download the entire code here (download zip) http://alturl.com/4ib3f then enter these commands into  terminal:
 
 sudo su
 ## Naviagate to the new /update/OSX folder <-----OSX is a subfolder of Update.
@@ -19,7 +19,7 @@ OR enter these commands into terminal if you have an existing PlexConnect folder
 sudo su 
 ## Naviagate to your PlexConnect base directory
 mkdir -p /update/OSX
-## Copy the contents from the zip's folder /update/OSX to the new update/OSX folder from here: http://alturl.com/4ib3f
+## Copy the contents from the zip's folder /update/OSX to the new update/OSX folder from here (download zip): http://alturl.com/4ib3f
 ## Naviagate to the new /update/OSX folder <-----OSX is a subfolder of Update.
 chmod +x install.bash
 ./install.bash
