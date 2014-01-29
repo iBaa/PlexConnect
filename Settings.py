@@ -20,36 +20,42 @@ Intercept: Trailers-trailers.apple.com, WSJ-secure.marketwatch.com, iMovie-www.i
 HTTP: port_webserver - override when using webserver + forwarding to PlexConnect
 HTTPS: port_ssl, certfile, enable_webserver_ssl - configure SSL portion or webserver
 """
-g_settings = {
-    'enable_plexgdm'  :('True', '((True)|(False))'),
-    'ip_pms'          :('192.168.178.10', '([0-9]{1,3}\.){3}[0-9]{1,3}'),
-    'port_pms'        :('32400', '[0-9]{1,5}'),
+g_settings = [
+    ('enable_plexgdm'  , ('True', '((True)|(False))')),
+    ('ip_pms'          , ('192.168.178.10', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
+    ('port_pms'        , ('32400', '[0-9]{1,5}')),
     \
-    'enable_dnsserver':('True', '((True)|(False))'),
-    'port_dnsserver'  :('53', '[0-9]{1,5}'),
-    'ip_dnsmaster'    :('8.8.8.8', '([0-9]{1,3}\.){3}[0-9]{1,3}'),
-    'prevent_atv_update'           :('True', '((True)|(False))'),
+    ('enable_dnsserver', ('True', '((True)|(False))')),
+    ('port_dnsserver'  , ('53', '[0-9]{1,5}')),
+    ('ip_dnsmaster'    , ('8.8.8.8', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
+    ('prevent_atv_update'           , ('True', '((True)|(False))')),
     \
-    'enable_plexconnect_autodetect':('True', '((True)|(False))'),
-    'ip_plexconnect'  :('0.0.0.0', '([0-9]{1,3}\.){3}[0-9]{1,3}'),
-    'hosttointercept' :('trailers.apple.com', '([a-zA-Z0-9_]+\.)+[a-zA-Z0-9_]+'),
+    ('enable_plexconnect_autodetect', ('True', '((True)|(False))')),
+    ('ip_plexconnect'  , ('0.0.0.0', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
+    ('hosttointercept' , ('trailers.apple.com', '([a-zA-Z0-9_]+\.)+[a-zA-Z0-9_]+')),
     \
-    'port_webserver'  :('80', '[0-9]{1,5}'),
-    'enable_webserver_ssl'         :('True', '((True)|(False))'),
-    'port_ssl'        :('443', '[0-9]{1,5}'),
-    'certfile'        :('./assets/certificates/trailers.pem', '.+.pem'),
+    ('port_webserver'  , ('80', '[0-9]{1,5}')),
+    ('enable_webserver_ssl'         , ('True', '((True)|(False))')),
+    ('port_ssl'        , ('443', '[0-9]{1,5}')),
+    ('certfile'        , ('./assets/certificates/trailers.pem', '.+.pem')),
     \
-    'loglevel'        :('Normal', '((Off)|(Normal)|(High))'),
-    'logpath'         :('.', '.+'),
-    }
+    ('loglevel'        , ('Normal', '((Off)|(Normal)|(High))')),
+    ('logpath'         , ('.', '.+')),
+    ]
 
 
 
 class CSettings():
     def __init__(self):
         dprint(__name__, 1, "init class CSettings")
-        self.cfg = None
+        self.cfg = ConfigParser.SafeConfigParser(allow_no_value=True)
         self.section = 'PlexConnect'
+        
+        # set option for fixed ordering
+        self.cfg.add_section(self.section)
+        for (opt, (dflt, vldt)) in g_settings:
+            self.cfg.set(self.section, opt, '\0')
+        
         self.loadSettings()
         self.checkSection()
     
@@ -58,13 +64,6 @@ class CSettings():
     # load/save config
     def loadSettings(self):
         dprint(__name__, 1, "load settings")
-        # options -> default
-        dflt = {}
-        for opt in g_settings:
-            dflt[opt] = g_settings[opt][0]
-        
-        # load settings
-        self.cfg = ConfigParser.SafeConfigParser()
         self.cfg.read(self.getSettingsFile())
     
     def saveSettings(self):
@@ -84,19 +83,19 @@ class CSettings():
             self.cfg.add_section(self.section)
             dprint(__name__, 0, "add section {0}", self.section)
         
-        for opt in g_settings:
-            # check settings - add if new
-            if not self.cfg.has_option(self.section, opt):
-                modify = True
-                self.cfg.set(self.section, opt, g_settings[opt][0])
-                dprint(__name__, 0, "add option {0}={1}", opt, g_settings[opt][0])
-            
-            # check settings - default if unknown
+        for (opt, (dflt, vldt)) in g_settings:
             setting = self.cfg.get(self.section, opt)
-            if not re.search('\A'+g_settings[opt][1]+'\Z', setting):
+            if setting=='\0':
+                # check settings - add if new
                 modify = True
-                self.cfg.set(self.section, opt, g_settings[opt][0])
-                dprint(__name__, 0, "bad setting {0}={1} - set default {2}", opt, setting, g_settings[opt][0])
+                self.cfg.set(self.section, opt, dflt)
+                dprint(__name__, 0, "add setting {0}={1}", opt, dflt)
+            
+            elif not re.search('\A'+vldt+'\Z', setting):
+                # check settings - default if unknown
+                modify = True
+                self.cfg.set(self.section, opt, dflt)
+                dprint(__name__, 0, "bad setting {0}={1} - set default {2}", opt, setting, dflt)
         
         # save if changed
         if modify:
