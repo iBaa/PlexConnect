@@ -20,12 +20,6 @@ cp start.bash /usr/bin
 cp restart.bash /usr/bin
 cp webconnect.bash /usr/bin
 
-## Schedule PlexConnect to update every 12 hours
-cp com.plex.plexconnect.auto.plist /Library/LaunchDaemons
-chown root /Library/LaunchDaemons/com.plex.plexconnect.auto.plist
-chmod 644 /Library/LaunchDaemons/com.plex.plexconnect.auto.plist
-launchctl load /Library/LaunchDaemons/com.plex.plexconnect.auto.plist
-
 ## replace __INSTALLERPATH__ in default createcert.bash
 ## save directly to the /usr/bin folder
 sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createcert.bash" > /usr/bin/createcert.bash
