@@ -14,6 +14,7 @@ options = { \
     'homevideoview'     :('Grid', 'List'), \
     'actorview'         :('Movies', 'Portrait'), \
     'showview'          :('List', 'Grid', 'Bookcase'), \
+    'flattenseason'     :('False', 'True'), \
     'seasonview'        :('List', 'Coverflow'), \
     'channelview'       :('List', 'Grid', 'Bookcase'), \
     'durationformat'    :('Hours/Minutes', 'Minutes'), \

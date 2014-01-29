@@ -54,6 +54,10 @@
                 <label>{{TEXT(Unwatched Synopsis)}}</label>
                 <rightLabel>{{SETTING(showsynopsis)}}</rightLabel>
               </oneLineMenuItem>
+              <oneLineMenuItem id="FlattenSeason" onSelect="toggleSettings('FlattenSeason', 'Settings_TVShows')">
+                <label>{{TEXT(Flatten Season)}}</label>
+                <rightLabel>{{SETTING(flattenseason)}}</rightLabel>
+              </oneLineMenuItem>
             </items>
           </menuSection>
 

@@ -248,3 +248,52 @@ atv.loadAndSwapURL = function(url)
     
     iOS_atv_loadAndSwapURL(url);
 };
+
+/*
+ * Flatten TV Seasons
+ * If show has only one season then flatten it!
+ */
+
+flattenSeason = function(url, flatten)
+{
+  if (flatten=='False') 
+  {
+    atv.loadURL(url);
+  }
+  else
+  {
+    var urlparts = url.split('(')
+    var newurl = urlparts[1].replace(')','');
+
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function()
+    {
+      try
+      {
+        if(req.readyState == 4)
+        {
+          doc = req.responseXML;
+          root = doc.rootElement;
+          var size = root.getAttribute('size');
+          if (size=='1')
+          {
+            var newpath = root.getElementByTagName('Directory').getAttribute('key');
+            urlparts = url.split('/library');
+            newurl = urlparts[0] + newpath;
+            atv.loadURL(newurl);
+          }
+          else
+          {
+            atv.loadURL(url);
+          } 
+        }
+      }
+      catch(e)
+      {
+        req.abort();
+      }
+    }
+    req.open('GET', unescape(newurl), true);
+    req.send();
+  }
+}

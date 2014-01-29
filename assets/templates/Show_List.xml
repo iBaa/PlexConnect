@@ -16,8 +16,8 @@
         <sections>
           <menuSection>
             <items>
-              <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key)}}')"
-                                                 onSelect="atv.loadURL('{{URL(key)}}')"
+              <oneLineMenuItem id="{{VAL(key)}}" onPlay="flattenSeason('{{URL(key)}}', '{{SETTING(flattenseason)}}')"
+                                                 onSelect="flattenSeason('{{URL(key)}}', '{{SETTING(flattenseason)}}')"
                                                  onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Show)}}');">
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>
