@@ -1,0 +1,34 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/updateXML.js)}}" />
+  </head>
+
+	<body>
+		<viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadItem(event)" volatile="true" onVolatileReload="updatePage('{{URL()}}');">
+			<navigation currentIndex="1">
+
+      <navigationItem id="0">
+					<title>{{TEXT(All Videos)}}</title>
+					<url>{{URL(key)}}/all&amp;PlexConnect=AllHomeVideos</url>
+				</navigationItem>
+
+				<navigationItem id="1">
+					<title>{{TEXT(On Deck)}}</title>
+					<url>{{URL(key)}}&amp;PlexConnect=HomeVideoSection</url>
+				</navigationItem>
+
+				<navigationItem id="2">
+					<title>{{TEXT(Unwatched)}}</title>
+					<url>{{URL(key)}}/unwatched&amp;PlexConnect=AllHomeVideos</url>
+				</navigationItem>
+
+				<navigationItem id="3">
+					<title>{{TEXT(By Folder)}}</title>
+					<url>{{URL(key)}}/folder&amp;PlexConnect=HomeVideoByFolder</url>
+				</navigationItem>
+
+			</navigation>
+		</viewWithNavigationBar>
+	</body>
+</atv>

@@ -214,9 +214,12 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
     elif cmd=='MoviePreview':
         XMLtemplate = 'MoviePreview.xml'
     
+    elif cmd=='HomeVideoPrePlay':
+        XMLtemplate = 'HomeVideoPrePlay.xml'
+        
     elif cmd=='MoviePrePlay':
         XMLtemplate = 'MoviePrePlay.xml'
-    
+
     elif cmd=='EpisodePrePlay':
         XMLtemplate = 'EpisodePrePlay.xml'
         
@@ -226,12 +229,18 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
     elif cmd=='ChannelsVideo':
         XMLtemplate = 'ChannelsVideo.xml'
 
+    elif cmd=='HomeVideoByFolder':
+        XMLtemplate = 'HomeVideoByFolder.xml'
+        
     elif cmd=='ByFolder':
         XMLtemplate = 'ByFolder.xml'
     
     elif cmd == 'MovieSection':
         XMLtemplate = 'MovieSection.xml'
     
+    elif cmd == 'HomeVideoSection':
+        XMLtemplate = 'HomeVideoSection.xml'
+        
     elif cmd == 'TVSection':
         XMLtemplate = 'TVSection.xml'
     
@@ -241,6 +250,9 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
     elif cmd == 'AllMovies':
         XMLtemplate = 'Movie_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'movieview').replace(' ','')+'.xml'  
     
+    elif cmd == 'AllHomeVideos':
+        XMLtemplate = 'HomeVideo_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'homevideoview').replace(' ','')+'.xml'  
+        
     elif cmd == 'MovieSecondary':
         XMLtemplate = 'MovieSecondary.xml'
     
@@ -361,7 +373,10 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
     
     elif not XMLtemplate=='':
         pass  # template already selected
-    
+
+    elif PMSroot.get('viewGroup','')=="secondary" and (PMSroot.get('art','').find('video') != -1 or PMSroot.get('thumb','').find('video') != -1):
+        XMLtemplate = 'HomeVideoSectionTopLevel.xml'
+
     elif PMSroot.get('viewGroup','')=="secondary" and (PMSroot.get('art','').find('movie') != -1 or PMSroot.get('thumb','').find('movie') != -1):
         XMLtemplate = 'MovieSectionTopLevel.xml'
     

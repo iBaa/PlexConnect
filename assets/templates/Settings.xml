@@ -89,6 +89,10 @@
                   <arrow/>
                 </accessories>
               </oneLineMenuItem>
+              <oneLineMenuItem id="HomeVideoView" onSelect="toggleSettings('HomeVideoView', 'Settings')">
+                <label>{{TEXT(Home Video View)}}</label>
+                <rightLabel>{{SETTING(homevideoview)}}</rightLabel>
+              </oneLineMenuItem>
               <oneLineMenuItem id="ChannelView" onSelect="toggleSettings('ChannelView', 'Settings')">
                 <label>{{TEXT(Channel View)}}</label>
                 <rightLabel>{{SETTING(channelview)}}</rightLabel>

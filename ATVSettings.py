@@ -11,6 +11,7 @@ from Debug import *  # dprint()
 
 options = { \
     'movieview'         :('Grid', 'List', 'Detailed List'), \
+    'homevideoview'     :('Grid', 'List'), \
     'actorview'         :('Movies', 'Portrait'), \
     'showview'          :('List', 'Grid', 'Bookcase'), \
     'seasonview'        :('List', 'Coverflow'), \
