@@ -42,7 +42,7 @@ How to install WebConnect (repeate steps 1 & 2 above for the latest release to u
 
 _www    ALL= NOPASSWD: /usr/bin/createcert.bash,/usr/bin/createplist.bash,/usr/bin/update.bash,/usr/bin/start.bash,/usr/bin/stop.bash,/usr/bin/restart.bash
 
-3. Navigate to your new PlexConnect/update/OSX folder then issue these command:
+3. Navigate to your new PlexConnect/update/OSX folder then issue these commands:
 
 sudo su
 ./webconnect.bash
@@ -53,10 +53,10 @@ http://YOUR_LOCAL_IP_ADDRESS:YOUR_APACHE2_PORT/cgin-bin/bash.cgi
 
 5. *Optional* Open up your apache port pointed to your PlexConnect host to mangage PlexConnect anywhere on any device/web-browser.
 
-How to uninstall: enter these commands in terminal:
+How to uninstall OpenConnect, WebConnect and PlexConnect's autoloading plist enter these commands in terminal:
 
 sudo su
-## Navigate to /update/OSX
+## Navigate to the /update/OSX folder
 ./uninstall.bash
 
 You can remove the /update/OSX folder manually using finder and the OpenConnect app wheever you may have placed it to complete the removal pocess.
