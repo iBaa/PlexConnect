@@ -59,4 +59,4 @@ sudo su
 ## Navigate to the /update/OSX folder
 ./uninstall.bash
 
-You can remove the /update/OSX folder manually using finder and the OpenConnect app wheever you may have placed it to complete the removal pocess.
+You can remove the /update/OSX folder manually using finder and the OpenConnect app wherever you may have placed it. You will need to edit your sudoers file as well to complete the removal pocess.
