@@ -52,3 +52,11 @@ sudo su
 http://YOUR_LOCAL_IP_ADDRESS:YOUR_APACHE2_PORT/cgin-bin/bash.cgi
 
 5. *Optional* Open up your apache port pointed to your PlexConnect host to mangage PlexConnect anywhere on any device/web-browser.
+
+How to uninstall: enter these commands in terminal:
+
+sudo su
+## Navigate to /update/OSX
+./uninstall.bash
+
+You can remove the /update/OSX folder manually using finder and the OpenConnect app wheever you may have placed it to complete the removal pocess.
