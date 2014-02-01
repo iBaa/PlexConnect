@@ -2,9 +2,10 @@
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
     <script src="{{URL(:/js/selectAudioAndSubs.js)}}" />
+    <script src="{{URL(:/js/settings.js)}}" />
   </head>
 
- <body>
+  <body>
     <itemDetail id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}&amp;PlexConnect=EpisodePrePlay')">
       <title>{{VAL(Video/index)}}. {{VAL(Video/title)}}</title>
       <subtitle>{{VAL(Video/studio)}}</subtitle>
@@ -29,27 +30,15 @@
         </columnDefinitions>
         <rows>
           <row>
-            <label>Aired: {{VAL(Video/originallyAvailableAt)}}</label>
+            <label>{{getDurationString(Video/duration)}}</label>
             <label>{{VAL(Video/Director/tag)}}</label>
             <label>{{VAL(Video/Writer/tag)}}</label>
           </row>
           <row>
-            <label>{{getDurationString(Video/duration)}}</label>
+            <label>{{VAL(Video/Media/videoResolution:Unknown:1080=1080p|720=720p|576=SD|480=SD|sd=SD)}}   {{VAL(Video/Media/audioCodec:Unknown:ac3=AC3|aac=AAC|mp3=MP3|dca=DTS|drms=DRMS)}} {{VAL(Video/Media/audioChannels:Unknown:2=Stereo|6=5.1|8=7.1)}} </label>
             <label>{{VAL(Video/Director[2]/tag)}}</label>
             <label>{{VAL(Video/Writer[2]/tag)}}</label>
           </row>
-          <row>
-          <label>{{VAL(Video/Media/videoResolution:Unknown:1080=1080p|720=720p|576=SD|480=SD|sd=SD)}}   {{VAL(Video/Media/audioCodec:Unknown:ac3=AC3|aac=AAC|mp3=MP3|dca=DTS|drms=DRMS)}} {{VAL(Video/Media/audioChannels:Unknown:2=Stereo|6=5.1|8=7.1)}} </label>
-          </row>
-          <row>
-        
-                    <mediaBadges>
-					<videoFormat>{{VAL(Video/Media/videoResolution:widescreen:1080=SuperHD|720=HD|576=SD|480=SD|sd=SD)}}</videoFormat>
-					<audioFormat>dolbyDigital</audioFormat>{{CUT(Video/Media/audioChannels:CUT:2=CUT|6=|8=)}}					<closedCaption/>
-					</mediaBadges>
-					
-		  </row>
-
           <row>
             <starRating hasUserSetRating="true">
               <percentage>{{EVAL({{VAL(Video/userRating:0)}} * 10)}}</percentage>
@@ -60,7 +49,7 @@
             <label>{{VAL(Video/Director[3]/tag)}}</label>
             <label>{{VAL(Video/Writer[3]/tag)}}</label>
           </row>
-          </rows>
+        </rows>
       </table>
 
       <centerShelf>
@@ -108,17 +97,8 @@
                   <image>resource://Queue.png</image>
                   <focusedImage>resource://QueueFocused.png</focusedImage>
                 </actionButton>
-                
-                <actionButton id="TranscoderAction" onSelect="toggleSettings('TranscoderAction', 'Settings')">
-                  <title>{{SETTING(transcoderaction)}}</title>
-                  <image>resource://Preview.png</image>
-                  <focusedImage>resource://PreviewFocused.png</focusedImage> 
-                </actionButton>
-              
-                <actionButton id="scrobbleMenu"
-                              onSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{VAL(Video/title)}}');"
-                              onPlay="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{VAL(Video/title)}}');">
-                  <title>{{TEXT(Set Status)}}</title>
+                <actionButton id="Settings" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=Settings')">
+                  <title>{{TEXT(Settings)}}</title>
                   <image>resource://WishList.png</image>
                   <focusedImage>resource://WishListFocused.png</focusedImage>
                   <!--<badge></badge>-->
@@ -144,7 +124,7 @@
             <shelfSection>
               <items>
                 <sixteenByNinePoster related="true" alwaysShowTitles="true" id="shelf_item_1" 
-                                     onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')">
+                                     onSelect="atv.loadAndSwapURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')">
                   {{COPY(@parentEpisodes/Video)}}
                   <title>{{VAL(index)}}. {{VAL(title)}}</title>
                   <image>{{IMAGEURL(thumb::384)}}</image>
