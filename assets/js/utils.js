@@ -254,8 +254,13 @@ atv.loadAndSwapURL = function(url)
  * If show has only one season then flatten it!
  */
 
-flattenSeason = function(url, flatten)
+flattenSeason = function(url, accessToken, flatten)
 {
+  if (accessToken!='')
+  {
+    accessToken = '?X-Plex-Token=' + accessToken;
+  }
+
   if (flatten=='False') 
   {
     atv.loadURL(url);
@@ -287,7 +292,7 @@ flattenSeason = function(url, flatten)
             var newpaths = root.getElementsByTagName('Directory');
             var newpath = newpaths[1].getAttribute('key');
             urlparts = url.split('/library');
-            newurl = urlparts[0] + newpath;
+            newurl = urlparts[0] + newpath + accessToken;
             atv.loadURL(newurl);
           }
           else
@@ -301,7 +306,7 @@ flattenSeason = function(url, flatten)
         req.abort();
       }
     }
-    req.open('GET', unescape(newurl), true);
+    req.open('GET', unescape(newurl) + accessToken, true);
     req.send();
   }
 }

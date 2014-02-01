@@ -16,8 +16,8 @@
         <grid columnCount="7" id="grid_0">
           <items>
             <moviePoster id="{{VAL(key)}}"
-                         onPlay="flattenSeason('{{URL(key)}}', '{{SETTING(flattenseason)}}')"
-                         onSelect="flattenSeason('{{URL(key)}}', '{{SETTING(flattenseason)}}')"
+                         onPlay="flattenSeason('{{URL(key)}}', '{{VAL(%accesstoken)}}', '{{SETTING(flattenseason)}}')"
+                         onSelect="flattenSeason('{{URL(key)}}', '{{VAL(%accesstoken)}}', '{{SETTING(flattenseason)}}')"
                          onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Show)}}');">
               {{COPY(Directory)}}
               <title>{{VAL(title)}}</title>
