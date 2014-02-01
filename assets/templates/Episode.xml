@@ -33,28 +33,25 @@
                 <image>{{IMAGEURL(thumb::384)}}</image>
                 <!--<defaultImage>resource://16X9.png</defaultImage>      This causes the thumbnail to be too small, not sure why.-->
                 <accessories>
-                  <progressBar percentage="0"/>{{CUT(viewCount)}}{{CUT(viewOffset)}}
+                <unplayedDot/>{{CUT(viewOffset)}}
                   <progressBar percentage="{{EVAL({{VAL(viewOffset:0)}} * 100 / {{VAL(duration:1)}})}}"/>{{CUT(viewOffset:CUT:=)}}
                 <!---<progressBar percentage="100"/>{{CUT(viewCount:CUT:=)}}{{CUT(viewOffset)}}-->
-                </accessories>
+                </accessories>{{CUT(viewCount)}}
 
                 <preview>
                   <longDescriptionPreview>
                     <title>{{VAL(title)}}</title>
-                    <summary><![CDATA[{{VAL(summary)}}]]></summary>
+                    <summary><![CDATA[{{VAL(summary)}}]]></summary>{{CUT($showsynopsis::Hide=CUT|Show=)}}
+                    <summary><![CDATA[{{VAL(summary)}}]]></summary>{{CUT(viewCount:CUT:=)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
+                    <summary>{{TEXT(Synopsis hidden.)}}</summary>{{CUT(viewCount)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
                     <rating>{{VAL(#contentRating)}}</rating>
                     <image>{{IMAGEURL(#artwork::384)}}</image>
                     <metadata>
-                    <mainLabel>{{VAL(#title1)}}</mainLabel>
-                      <label>{{VAL(#title2)}}, {{TEXT(Episode)}} {{VAL(index)}}</label>
+                      <label>{{VAL(#title2)}}</label>
+                      <label>Aired: {{VAL(originallyAvailableAt)}}</label>
                       <label>Studio: {{VAL(#studio)}}</label>
                       <label>Runtime: {{getDurationString(duration)}}</label>
-                      <label>Aired: {{VAL(originallyAvailableAt)}}</label>
                       <label>Quality: {{VAL(Media/videoResolution:Unknown:1080=1080p|720=720p|576=576 SD|480=480 SD|sd=SD)}}   {{VAL(Media/audioCodec:Unknown:ac3=AC3|aac=AAC|mp3=MP3|dca=DTS|drms=DRMS)}} {{VAL(Media/audioChannels:Unknown:2=Stereo 2.0|6=5.1|8=7.1)}} </label>
-                    <mediaBadges>
-					<videoFormat>{{VAL(Media/videoResolution:widescreen:1080=SuperHD|720=HD|576=SD|480=SD|sd=SD)}}</videoFormat>
-					<audioFormat>dolbyDigital</audioFormat>{{CUT(Video/Media/audioChannels:CUT:2=CUT|6=|8=)}}					<closedCaption/>
-					</mediaBadges>
                       <starRating hasUserSetRating="true">
                         <percentage>{{EVAL({{VAL(userRating:0)}} * 10)}}</percentage>
                       </starRating>{{CUT(userRating:CUT:0=)}}
@@ -73,6 +70,54 @@
           </menuSection>
         </sections>
       </menu>
-    </itemCollectionWithImageHeader>
-  </body>
+    </itemCollectionWithImageHeader>{{CUT(^aTVFirmwareVersion:CUT:=CUT|6.0=)}}
+    
+    <!--Below iOS6 -->
+    
+    <listWithPreview id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
+      <header>
+        <simpleHeader>
+          <title>{{VAL(title1)}}</title>
+          <subtitle>{{VAL(title2)}}</subtitle>
+        </simpleHeader>
+      </header>
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+              <twoLineEnhancedMenuItem id="{{VAL(ratingKey)}}"
+                                         onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                                         onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
+                                         onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Episode)}}');">
+                {{COPY(Video:index::=|0 =COPY)}}
+                <label>{{VAL(title)}}</label>
+                <ordinal>{{VAL(index)}}</ordinal>
+                <maxOrdinalDigits>2</maxOrdinalDigits>
+                <image>{{IMAGEURL(thumb::384)}}</image>
+                <!--<defaultImage>resource://16X9.png</defaultImage>      This causes the thumbnail to be too small, not sure why.-->
+                <accessories>
+                  <unplayedDot/>{{CUT(viewOffset)}}
+                  <partiallyPlayedDot/>
+                </accessories>{{CUT(viewCount)}}
+                <preview>
+                  <keyedPreview>
+                    <title>{{VAL(title)}}</title>
+                    <summary>{{VAL(summary)}}</summary>{{CUT($showsynopsis::Hide=CUT|Show=)}}
+                    <summary>{{VAL(summary)}}</summary>{{CUT(viewCount:CUT:=)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
+                    <summary>{{TEXT(Synopsis hidden.)}}</summary>{{CUT(viewCount)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
+                    <image>{{IMAGEURL(thumb::384)}}</image>
+                  </keyedPreview>
+                </preview>
+              </twoLineEnhancedMenuItem>{{CUT(Video/title:CUT:=)}}
+
+              <oneLineMenuItem id="none">
+                <label>{{TEXT(No episodes)}}</label>
+              </oneLineMenuItem>{{CUT(Video/title::=CUT)}}
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </listWithPreview>{{CUT(^aTVFirmwareVersion::=|6.0=CUT)}}
+
+    </body>
 </atv>
