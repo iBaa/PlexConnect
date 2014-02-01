@@ -258,7 +258,14 @@ flattenSeason = function(url, accessToken, flatten)
 {
   if (accessToken!='')
   {
-    accessToken = '?X-Plex-Token=' + accessToken;
+    if (url.indexOf('?') != -1)
+    {
+      accessToken = '&X-Plex-Token=' + accessToken;
+    }
+    else
+    {
+      accessToken = '?X-Plex-Token=' + accessToken;
+    }
   }
 
   if (flatten=='False') 
@@ -292,7 +299,7 @@ flattenSeason = function(url, accessToken, flatten)
             var newpaths = root.getElementsByTagName('Directory');
             var newpath = newpaths[1].getAttribute('key');
             urlparts = url.split('/library');
-            newurl = urlparts[0] + newpath + accessToken;
+            newurl = urlparts[0] + newpath;
             atv.loadURL(newurl);
           }
           else
