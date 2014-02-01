@@ -282,6 +282,14 @@ flattenSeason = function(url, flatten)
             newurl = urlparts[0] + newpath;
             atv.loadURL(newurl);
           }
+          else if (size=='2')
+          {
+            var newpaths = root.getElementsByTagName('Directory');
+            var newpath = newpaths[1].getAttribute('key');
+            urlparts = url.split('/library');
+            newurl = urlparts[0] + newpath;
+            atv.loadURL(newurl);
+          }
           else
           {
             atv.loadURL(url);
