@@ -48,7 +48,7 @@ g_settings = [
 class CSettings():
     def __init__(self):
         dprint(__name__, 1, "init class CSettings")
-        self.cfg = ConfigParser.SafeConfigParser(allow_no_value=True)
+        self.cfg = ConfigParser.SafeConfigParser()
         self.section = 'PlexConnect'
         
         # set option for fixed ordering
