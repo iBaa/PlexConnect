@@ -160,7 +160,7 @@ atv.player.willStartPlaying = function()
   //         transcoding and PMS skips subtitle (dontBurnIn)
   if (subtitleURL &&
        ( url.indexOf('transcode/universal') == -1 ||
-         url.indexOf('transcode/universal') > -1 && url.indexOf('skipSubtitles=\'1\'') > -1 )
+         url.indexOf('transcode/universal') > -1 && url.indexOf('skipSubtitles=1') > -1 )
      )
   {
     log("subtitleURL: "+subtitleURL);
@@ -200,7 +200,7 @@ atv.player.willStartPlaying = function()
   log('create subtitleView');
   if (subtitleURL &&
        ( url.indexOf('transcode/universal') == -1 ||
-         url.indexOf('transcode/universal') > -1 && url.indexOf('skipSubtitles=\'1\'') > -1 )
+         url.indexOf('transcode/universal') > -1 && url.indexOf('skipSubtitles=1') > -1 )
      )
   {
       subtitleView = initSubtitleView();
