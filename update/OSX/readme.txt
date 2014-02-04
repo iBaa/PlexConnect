@@ -49,7 +49,7 @@ sudo su
 
 4. Enter a similar link into your browser:
 
-http://YOUR_LOCAL_IP_ADDRESS:YOUR_APACHE2_PORT/cgin-bin/bash.cgi
+http://YOUR_LOCAL_IP_ADDRESS:YOUR_APACHE2_PORT/cgi-bin/bash.cgi
 
 5. *Optional* Open up your apache port pointed to your PlexConnect host to mangage PlexConnect anywhere on any device/web-browser.
 
