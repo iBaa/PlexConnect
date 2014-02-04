@@ -11,7 +11,7 @@ from Debug import *  # dprint()
 
 options = { \
     'movieview'         :('Grid', 'List', 'Detailed List'), \
-    'homevideoview'     :('Grid', 'List'), \
+    'homevideoview'     :('Grid', 'List', 'Detailed List'), \
     'actorview'         :('Movies', 'Portrait'), \
     'showview'          :('List', 'Grid', 'Bookcase'), \
     'flattenseason'     :('False', 'True'), \
@@ -25,6 +25,13 @@ options = { \
     'movies_navbar_directors'   :('checked', 'unchecked'), \
     'movies_navbar_actors'      :('checked', 'unchecked'), \
     'movies_navbar_more'        :('checked', 'unchecked'), \
+    'homevideos_navbar_unwatched'   :('checked', 'unchecked'), \
+    'homevideos_navbar_collections' :('checked', 'unchecked'), \
+    'homevideos_navbar_genres'      :('checked', 'unchecked'), \
+    'homevideos_navbar_decades'     :('checked', 'unchecked'), \
+    'homevideos_navbar_directors'   :('checked', 'unchecked'), \
+    'homevideos_navbar_actors'      :('checked', 'unchecked'), \
+    'homevideos_navbar_more'        :('checked', 'unchecked'), \
     'tv_navbar_unwatched'       :('checked', 'unchecked'), \
     'tv_navbar_genres'          :('checked', 'unchecked'), \
     'tv_navbar_more'            :('checked', 'unchecked'), \
