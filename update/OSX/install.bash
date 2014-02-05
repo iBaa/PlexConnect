@@ -40,7 +40,7 @@ chmod +x /usr/bin/stop.bash
 chmod +x /usr/bin/start.bash
 chmod +x /usr/bin/restart.bash
 chmod +x /usr/bin/webconnect.bash
-chmod +x /usr/bin/uninstall.bash
+chmod +x uninstall.bash
 
 ## check for git and install if needed
 git
