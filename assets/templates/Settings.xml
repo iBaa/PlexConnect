@@ -89,9 +89,11 @@
                   <arrow/>
                 </accessories>
               </oneLineMenuItem>
-              <oneLineMenuItem id="HomeVideoView" onSelect="toggleSettings('HomeVideoView', 'Settings')">
-                <label>{{TEXT(Home Video View)}}</label>
-                <rightLabel>{{SETTING(homevideoview)}}</rightLabel>
+              <oneLineMenuItem id="HomevideoView" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsHomeVideos')">
+                <label>{{TEXT(Home Video Options)}}</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
               </oneLineMenuItem>
               <oneLineMenuItem id="ChannelView" onSelect="toggleSettings('ChannelView', 'Settings')">
                 <label>{{TEXT(Channel View)}}</label>

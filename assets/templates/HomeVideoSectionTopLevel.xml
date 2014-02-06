@@ -21,13 +21,23 @@
 				<navigationItem id="Unwatched">
 					<title>{{TEXT(Unwatched)}}</title>
 					<url>{{URL(key)}}/unwatched&amp;PlexConnect=AllHomeVideos</url>
-				</navigationItem>
+				</navigationItem>{{CUT($homevideos_navbar_unwatched::unchecked=CUT|checked=)}}
 
 				<navigationItem id="ByFolder">
 					<title>{{TEXT(By Folder)}}</title>
 					<url>{{URL(key)}}/folder&amp;PlexConnect=HomeVideoDirectory</url>
-				</navigationItem>
+				</navigationItem>{{CUT($homevideos_navbar_byfolder::unchecked=CUT|checked=)}}
 
+				<navigationItem id="Genres">
+					<title>{{TEXT(Genres)}}</title>
+					<url>{{URL(key)}}/genre&amp;PlexConnect=DirectoryWithPreview</url>
+				</navigationItem>{{CUT($homevideos_navbar_genres::unchecked=CUT|checked=)}}
+
+				<navigationItem id="Collections">
+					<title>{{TEXT(Collections)}}</title>
+					<url>{{URL(key)}}/collection&amp;PlexConnect=DirectoryWithPreview</url>
+				</navigationItem>{{CUT($homevideos_navbar_collections::unchecked=CUT|checked=)}}
+        
 			</navigation>
 		</viewWithNavigationBar>
 	</body>
