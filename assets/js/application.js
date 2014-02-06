@@ -134,7 +134,7 @@ atv.player.willStartPlaying = function()
     
     subtitleURL = getTextContent(metadata.getElementByTagName('subtitleURL'));
     subtitleSize = getTextContent(metadata.getElementByTagName('subtitleSize'));
-    log('loadMoreAssets/getMetadata done');
+    log('willStartPlaying/getMetadata done');
   }
   
   // Use loadMoreAssets callback for playlists - if not transcoding!
