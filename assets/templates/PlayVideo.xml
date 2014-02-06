@@ -32,7 +32,9 @@
               </subtitleURL>
             </__COPY__>
             <subtitleSize>{{SETTING(subtitlesize)}}</subtitleSize>
-            
+        </myMetadata>
+        
+        <myStackedMedia>
             <!-- stacked media -->
             <httpFileVideoAsset id="{{VAL(key)}}">
                 <mediaURL>{{MEDIAURL(key)}}</mediaURL>
@@ -40,8 +42,15 @@
                 <description>{{VAL(@main/Video/summary)}}</description>
                 <!--bookmarkTime>{{EVAL({{VAL(@main/Video/viewOffset:0)}} / 1000)}}</bookmarkTime-->
                 <image>{{IMAGEURL(@main/Video/thumb::384)}}</image>
+                <!--title, description, image will get forwarded from main VideoAsset in willStartPlaying()-->
+                
+                <myMetaData>
+                    <duration>{{VAL(duration)}}</duration>
+                    <startTime>0<!--(determined by willStartPlaying())--></startTime>
+                </myMetaData>
+                
             </httpFileVideoAsset>{{COPY(Video/Media/Part)}}
-        </myMetadata>
+        </myStackedMedia>
         
       </httpFileVideoAsset>
     </videoPlayer>

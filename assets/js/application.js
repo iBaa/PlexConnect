@@ -43,7 +43,12 @@ function log(msg, level)
 atv.player.playerTimeDidChange = function(time)
 {
   remainingTime = Math.round((parseInt(duration) / 1000) - time);
-  thisReportTime = Math.round(time*1000);
+  var thisReportTime = Math.round(time*1000)
+  
+  // correct thisReportTime with startTime if stacked media part
+  if (atv.player.asset.getElementByTagName('startTime'))
+    thisReportTime += parseInt(atv.player.asset.getElementByTagName('startTime').textContent)
+  
   if (lastReportedTime == -1 || Math.abs(thisReportTime-lastReportedTime) > 5000)
   {
     lastReportedTime = thisReportTime;
@@ -129,12 +134,24 @@ atv.player.willStartPlaying = function()
     
     subtitleURL = getTextContent(metadata.getElementByTagName('subtitleURL'));
     subtitleSize = getTextContent(metadata.getElementByTagName('subtitleSize'));
+    log('loadMoreAssets/getMetadata done');
   }
   
   // Use loadMoreAssets callback for playlists - if not transcoding!
-  if (metadata != null && url.indexOf('transcode/universal') == -1)
+  var stackedMedia = atv.player.asset.getElementByTagName('myStackedMedia');
+  if (stackedMedia != null && url.indexOf('transcode/universal') == -1)
   {
-    log('load assets')
+      // determine startTime of stacked parts
+      var startTime = 0;
+      var videoAssets = stackedMedia.getElementsByTagName('httpFileVideoAsset');
+      for (var i=0;i<videoAssets.length;i++)
+      {
+          if (videoAssets[i].getElementByTagName('startTime'))
+              videoAssets[i].getElementByTagName('startTime').textContent = startTime.toString();
+          startTime += parseInt(getTextContent(videoAssets[i].getElementByTagName('duration')));
+      }
+      //todo: work <bookmarkTime> and fix "resume" for stacked media
+    
     atv.player.loadMoreAssets = function(callback) 
     {
       assettimer = atv.setInterval(
@@ -151,9 +168,10 @@ atv.player.willStartPlaying = function()
           callback.success(videoAssets);
         } , 1000);
     }
+    log('willStartPlaying/loadMoreAssets done');
   }
   
-  // load subtitle - subtitle aTV XML
+  // load subtitle - aTV subtitle JSON
   subtitle = []
   subtitlePos = 0;
   // when... not transcoding or
@@ -176,6 +194,7 @@ atv.player.willStartPlaying = function()
     };
     req.open('GET', subtitleURL+"&PlexConnectUDID=" + atv.device.udid, true);  // true: asynchronous
     req.send();
+    log('willStartPlaying/parseSubtitleJSON done');
   }
   
   var Views = [];
@@ -195,9 +214,9 @@ atv.player.willStartPlaying = function()
         Views.push(endTimeView);
     }
   }
+  log('willStartPlaying/createClockView done');
   
   // create subtitle view
-  log('create subtitleView');
   if (subtitleURL &&
        ( url.indexOf('transcode/universal') == -1 ||
          url.indexOf('transcode/universal') > -1 && url.indexOf('skipSubtitles=1') > -1 )
@@ -206,8 +225,8 @@ atv.player.willStartPlaying = function()
       subtitleView = initSubtitleView();
       for (var i=0;i<subtitleMaxLines;i++)
           Views.push(subtitleView[i]);
+      log('willStartPlaying/createSubtitleView done');
   }
-  log('create subtitleView done');
   
   // Paint the views on Screen.
   containerView.subviews = Views;
@@ -292,7 +311,12 @@ atv.player.playerStateChanged = function(newState, timeIntervalSec) {
 
   if (state != null)
   {
-  time = Math.round(timeIntervalSec*1000);
+  var thisReportTime = Math.round(timeIntervalSec*1000);
+  
+  // correct thisReportTime with startTime if stacked media part
+  if (atv.player.asset.getElementByTagName('startTime'))
+    thisReportTime += parseInt(atv.player.asset.getElementByTagName('startTime').textContent)
+  
   var token = '';
   if (accessToken!='')
       token = '&X-Plex-Token=' + accessToken;
@@ -300,7 +324,7 @@ atv.player.playerStateChanged = function(newState, timeIntervalSec) {
                       '&key=' + key +
                       '&duration=' + duration + 
                       '&state=' + state + 
-                      '&time=' + time.toString() + 
+                      '&time=' + thisReportTime.toString() + 
                       '&report=1' +
                       '&X-Plex-Client-Identifier=' + atv.device.udid + 
                       '&X-Plex-Device-Name=' + encodeURIComponent(atv.device.displayName) +
