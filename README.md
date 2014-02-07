@@ -71,6 +71,8 @@ Basic settings collection. Creates ```Settings.cfg``` at first run - which may b
 Handles the aTV settings like ViewModes or Transcoder options. Stores aTV settings in ```ATVSettings.cfg```.
 * __Localize.py__ -
 Holds a couple of utility functions for text translation purposes. Uses dictionaries from ```assets/locales/```.
+* __Subtitle.py__ -
+Subtitle parser functions for PlexConnect's own renderer, converts subs to JSON for easy transfer to aTV.
 
 
 ## License and Disclaimer
