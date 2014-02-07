@@ -224,7 +224,10 @@ atv.player.willStartPlaying = function()
   {
       subtitleView = initSubtitleView();
       for (var i=0;i<subtitleMaxLines;i++)
-          Views.push(subtitleView[i]);
+      {
+          Views.push(subtitleView['shadowRB'][i]);
+          Views.push(subtitleView['subtitle'][i]);
+      }
       log('willStartPlaying/createSubtitleView done');
   }
   
@@ -465,7 +468,7 @@ function updateEndTime()
  * Subtitle handling/rendering
  *
  */
-var subtitleView = [];
+var subtitleView = {'shadowRB': [], 'subtitle': []};
 var subtitle = [];
 var subtitlePos = 0;
 // constants
@@ -477,15 +480,26 @@ function initSubtitleView()
   var width = screenFrame.width;
   var height = screenFrame.height * 1/14 * subtitleSize/100;  // line height: 1/14 seems to fit to 40pt font
   
+  var xOffset = screenFrame.width * 1/640;  // offset for black letter shadow/border/background
+  var yOffset = screenFrame.height * 1/360;
+  
   // Setup the subtitle frames
   for (var i=0;i<subtitleMaxLines;i++)
   {
-    subtitleView[i] = new atv.TextView();
-    subtitleView[i].backgroundColor = { red: 0, blue: 0, green: 0, alpha: 0.0};
-    subtitleView[i].frame = { "x": screenFrame.x,
-                              "y": screenFrame.y + (height * (subtitleMaxLines-i-0.5)),
-                              "width": width, "height": height
-                            };
+    // shadow right bottom
+    subtitleView['shadowRB'][i] = new atv.TextView();
+    subtitleView['shadowRB'][i].backgroundColor = { red: 0, blue: 0, green: 0, alpha: 0.0};
+    subtitleView['shadowRB'][i].frame = { "x": screenFrame.x + xOffset,
+                                          "y": screenFrame.y - yOffset + (height * (subtitleMaxLines-i-0.5)),
+                                          "width": width, "height": height
+                                        };
+    // subtitle
+    subtitleView['subtitle'][i] = new atv.TextView();
+    subtitleView['subtitle'][i].backgroundColor = { red: 0, blue: 0, green: 0, alpha: 0.0};
+    subtitleView['subtitle'][i].frame = { "x": screenFrame.x,
+                                          "y": screenFrame.y + (height * (subtitleMaxLines-i-0.5)),
+                                          "width": width, "height": height
+                                        };
   }
   
   return subtitleView;
@@ -517,7 +531,13 @@ function updateSubtitle(time)
     var i_view=0;
     for (var i=0;i<subtitleMaxLines-lines;i++)  // fill empty lines on top
     {
-        subtitleView[i_view].attributedString = {
+        subtitleView['shadowRB'][i_view].attributedString = {
+            string: "",
+            attributes: { pointSize: 40.0 * subtitleSize/100,
+                          color: {red: 0, blue: 0, green: 0, alpha: 1.0}
+                        }
+        };
+        subtitleView['subtitle'][i_view].attributedString = {
             string: "",
             attributes: { pointSize: 40.0 * subtitleSize/100,
                           color: {red: 1, blue: 1, green: 1, alpha: 1.0}
@@ -527,7 +547,16 @@ function updateSubtitle(time)
     }
     for (var i=0;i<lines;i++)  // fill used lines
     {
-        subtitleView[i_view].attributedString = {
+        subtitleView['shadowRB'][i_view].attributedString = {
+            string: subtitle.Timestamp[subtitlePos].Line[i].text,
+            attributes: { pointSize: 40.0 * subtitleSize/100,
+                          color: {red: 0, blue: 0, green: 0, alpha: 1.0},
+                          weight: subtitle.Timestamp[subtitlePos].Line[i].weight || 'normal',
+                          alignment: "center",
+                          breakMode: "clip"
+                        }
+        };
+        subtitleView['subtitle'][i_view].attributedString = {
             string: subtitle.Timestamp[subtitlePos].Line[i].text,
             attributes: { pointSize: 40.0 * subtitleSize/100,
                           color: {red: 1, blue: 1, green: 1, alpha: 1.0},
