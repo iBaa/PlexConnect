@@ -108,20 +108,6 @@ function discover(opt, template)
 };
 
 /*
- * Refresh library
- */
-function refreshLibrary(addrPMS) 
-{
-	atv.loadURL("{{URL(/RefreshLibrary.xml)}}");
-	var url = "http://" + addrPMS + "/library/sections/all/refresh";
-	var req = new XMLHttpRequest();
-	req.open('GET', url, true);
-	req.send();
-};
-
-
-
-/*
  * MyPlex sign in/out
  */
 

@@ -61,12 +61,6 @@
                 <rightLabel>{{SETTING(myplex_user)}}</rightLabel>
                 <accessories></accessories>
               </oneLineMenuItem>
-              
-              <!-- where does ADDR_PMS/PMS_baseURL come from? Which server to choose? Affects settings.js/refreshLibrary().
-              <oneLineMenuItem id="refreshLibrary" onSelect="refreshLibrary('{{ADDR_PMS()}}')">
-                <label>{{TEXT(Refresh Library)}}</label>
-              </oneLineMenuItem>
-              -->
             </items>
           </menuSection>
           
