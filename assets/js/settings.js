@@ -222,21 +222,20 @@ myPlexSignInOut = function()
             
             // update MyPlexSignInOut
             hidePict(_myPlexElem, 'spinner');
+            setLabel(_myPlexElem, 'label', getLabel(new_myPlexElem, 'label'));
             var username = getLabel(new_myPlexElem, 'rightLabel')
             if (username)
             {
                 setLabel(_myPlexElem, 'rightLabel', username);
+                atv.loadAndSwapURL("{{URL(/PlexConnect.xml)}}&PlexConnectUDID=" + atv.device.udid);
             }
             else
             {
                 showPict(_myPlexElem, 'arrow')
                 setLabel(_myPlexElem, 'rightLabel', _failed);
             }
-            setLabel(_myPlexElem, 'label', getLabel(new_myPlexElem, 'label'));
             
             log("MyPlex Login - done");
-            
-            atv.loadAndSwapURL("{{URL(/PlexConnect.xml)}}&PlexConnectUDID=" + atv.device.udid);
         };
         
         setLabel(_myPlexElem, 'rightLabel', '');
