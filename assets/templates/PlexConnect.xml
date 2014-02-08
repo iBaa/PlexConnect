@@ -17,7 +17,7 @@
         <navigationItem id="SharedLibraries">
           <title>{{TEXT(Shared Libraries)}}</title>
           <url>{{URL(:/PMS(//shared)/library/sections)}}</url>
-        </navigationItem>
+        </navigationItem>{{CUT($myplex_auth:CUT:=CUT| =)}}
         <navigationItem id="Settings">
           <title>{{TEXT(Settings)}}</title>
           <url>{{URL(:/&amp;PlexConnect=Settings)}}</url>
