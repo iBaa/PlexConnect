@@ -207,7 +207,22 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
             return XML_Error('PlexConnect','Youtube: ATV compatible Trailer not available')
         
         return XML_PlayVideo_ChannelsV1('', url.replace('&','&amp;'))
-    
+
+    elif cmd=='ScrobbleMenu':
+        XMLtemplate = 'ScrobbleMenu.xml'
+
+    elif cmd=='ScrobbleMenuVideo':
+        XMLtemplate = 'ScrobbleMenuVideo.xml'
+        
+    elif cmd=='ChangeShowArtwork':
+        XMLtemplate = 'ChangeShowArtwork.xml'
+
+    elif cmd=='ChangeSingleArtwork':
+        XMLtemplate = 'ChangeSingleArtwork.xml'
+
+    elif cmd=='ChangeSingleArtworkVideo':
+        XMLtemplate = 'ChangeSingleArtworkVideo.xml'
+        
     elif cmd=='PhotoBrowser':
         XMLtemplate = 'Photo_Browser.xml'
         

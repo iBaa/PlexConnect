@@ -1,7 +1,6 @@
 <atv>
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
-    <script src="{{URL(:/js/scrobble.js)}}" />
   </head>
 
   <body>
@@ -32,12 +31,12 @@
                 <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}"
                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
-                            onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(On Deck Episode)}}', '{{URL(grandparentKey)}}/children');">
+                            onHoldSelect="">
                   {{COPY(@OnDeck/Video)}}
                   {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                   <title>{{VAL(title)}}</title>
                   <subtitle>{{episodestring(parentIndex:0:index:0)}}</subtitle>
-                  <image>{{IMAGEURL(grandparentThumb::384)}}</image>
+                  <image>{{IMAGEURL(grandparentThumb::768)}}</image>
                   <defaultImage>resource://Poster.png</defaultImage>
                 </moviePoster>
               </items>
@@ -57,12 +56,12 @@
                 <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}"
                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
-                            onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Recently Aired Episode)}}', '{{URL(grandparentKey)}}/children');">
+                            onHoldSelect="">
                   {{COPY(@RecentlyAired/Video)}}
                   {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                   <title>{{VAL(title)}}</title>
                   <subtitle>{{episodestring(parentIndex:0:index:0)}}</subtitle>
-                  <image>{{IMAGEURL(grandparentThumb::384)}}</image>
+                  <image>{{IMAGEURL(grandparentThumb::768)}}</image>
                   <defaultImage>resource://Poster.png</defaultImage>
                 </moviePoster>
               </items>
@@ -82,12 +81,12 @@
                 <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}"
                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Season')"
                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Season')"
-                            onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Recently Added)}}', '{{URL(parentKey)}}/children');">
+                            onHoldSelect="">
                   {{COPY(@RecentlyAdded/Directory)}}
                   {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                   <title>{{VAL(parentTitle)}}</title>
                   <subtitle>{{TEXT(Season)}} {{VAL(index)}}</subtitle>
-                  <image>{{IMAGEURL(parentThumb::384)}}</image>
+                  <image>{{IMAGEURL(parentThumb::768)}}</image>
                   <defaultImage>resource://Poster.png</defaultImage>
                 </moviePoster>
               </items>
@@ -107,7 +106,7 @@
                 <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}"
                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
-                            onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Recently Viewed Episode)}}', '{{URL(grandparentKey)}}/children');">
+                            onHoldSelect="">
                   {{COPY(@RecentlyViewedEpisodes/Video)}}
                   {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                   <title>{{VAL(title)}}</title>

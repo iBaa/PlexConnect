@@ -317,3 +317,90 @@ flattenSeason = function(url, accessToken, flatten)
     req.send();
   }
 }
+
+
+/*
+ * scrobble or unscrobble a ratingKey
+ */
+function scrobble(PMS_baseURL, accessToken, ratingKey)
+{
+  var url = PMS_baseURL + "/:/scrobble?key=" + ratingKey + "&identifier=com.plexapp.plugins.library";
+  if (accessToken!='') url = url + '&X-Plex-Token=' + accessToken;
+    
+	var req = new XMLHttpRequest();
+	req.open('GET', url, false);
+	req.send();
+}
+
+function unscrobble(PMS_baseURL, accessToken, ratingKey)
+{
+  var url = PMS_baseURL + "/:/unscrobble?key=" + ratingKey + "&identifier=com.plexapp.plugins.library";
+  if (accessToken!='') url = url + '&X-Plex-Token=' + accessToken;
+    
+	var req = new XMLHttpRequest();
+	req.open('GET', url, false);
+	req.send();
+}
+
+
+/*
+ * Update Plex library with multiple artwork for Shows and Seasons
+ */
+function changeShowArtwork(PMS_baseURL, accessToken, ratingKey, posterURL, shelf)
+{
+  var root = document.rootElement;
+  var shelf = document.getElementById(shelf);
+  var items = shelf.getElementsByTagName('moviePoster');
+  
+  for (var i=0; i<items.length; i++)
+  {
+    if (items[i].getAttribute('id') == posterURL) 
+    {
+      items[i].getElementByTagName('title').textContent = "Selected";
+    }
+    else
+    { 
+      items[i].getElementByTagName('title').textContent = "";
+    }
+  }
+  
+	if (posterURL.indexOf('library') !== -1)
+	{
+		var urlParts = posterURL.split('=');
+		posterURL = urlParts[1];
+	}
+   else
+  {
+    posterURL = encodeURIComponent(posterURL);
+  }
+    
+  var url = PMS_baseURL + "/library/metadata/" + ratingKey + "/poster?url=" + posterURL;
+  if (accessToken!='') url = url + '&X-Plex-Token=' + accessToken;
+    
+  var req = new XMLHttpRequest();
+	req.open('PUT', url, true);
+	req.send();
+};
+
+/*
+ * Update Plex library with single artwork
+ */
+function changeSingleArtwork(PMS_baseURL, accessToken, ratingKey, posterURL)
+{
+	if (posterURL.indexOf('library') !== -1)
+	{
+		var urlParts = posterURL.split('=');
+		posterURL = urlParts[1];
+	}
+    else
+    {
+        posterURL = encodeURIComponent(posterURL);
+    }
+    
+    var url = PMS_baseURL + "/library/metadata/" + ratingKey + "/poster?url=" + posterURL;
+    if (accessToken!='') url = url + '&X-Plex-Token=' + accessToken;
+    
+  var req = new XMLHttpRequest();
+	req.open('PUT', url, true);
+	req.send();
+};

@@ -1,7 +1,6 @@
 <atv>
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
-    <script src="{{URL(:/js/scrobble.js)}}" />
   </head>
 
   <body>
@@ -17,12 +16,12 @@
             <items>
               <twoLineEnhancedMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key)}}')"
                                                          onSelect="atv.loadURL('{{URL(key)}}')"
-                                                         onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Season)}}');">
+                                                         onHoldSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ScrobbleMenu')">
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>
                 <label2>{{VAL(leafCount)}} {{TEXT(Episodes)}}</label2>
                 <rightLabel>{{unwatchedCountList(leafCount:0:viewedLeafCount:0)}}</rightLabel>{{CUT($showunwatched::False=CUT|True=)}}
-                <image>{{IMAGEURL(thumb::384)}}</image>
+                <image>{{IMAGEURL(thumb::768)}}</image>
                 <defaultImage>resource://Poster.png</defaultImage>
                 <preview>
                   <crossFadePreview>
