@@ -27,11 +27,11 @@
                 <label>{{TEXT(View Show)}}</label>
               </oneLineMenuItem>-->
           
-              <oneLineMenuItem id="item2" onSelect="scrobble('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(key)}}');atv.unloadPage();">
+              <oneLineMenuItem id="item2" onSelect="markItem('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(key)}}', 'scrobble');atv.unloadPage();">
                 <label>{{TEXT(Mark as Watched)}}</label>
               </oneLineMenuItem>
         
-              <oneLineMenuItem id="item3" onSelect="unscrobble('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(key)}}');atv.unloadPage();">
+              <oneLineMenuItem id="item3" onSelect="markItem('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(key)}}', 'unscrobble');atv.unloadPage();">
                 <label>{{TEXT(Mark as Unwatched)}}</label>
               </oneLineMenuItem>
         

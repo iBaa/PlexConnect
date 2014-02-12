@@ -24,7 +24,7 @@
             <shelfSection>
               <items>
                 <moviePoster related="true" id="{{VAL(key)}}" alwaysShowTitles="true"
-                             onSelect="changeShowArtwork('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(#key)}}', '{{VAL(key)}}', 'Main_Show_Art')">
+                             onSelect="changeArtwork('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(#key)}}', '{{VAL(key)}}', 'Main_Show_Art')">
                   {{COPY(@showPosters/Photo)}}
                   <title>{{VAL(selected::0=|1=Selected)}}</title>
                   <image>{{IMAGEURL(thumb)}}</image>
@@ -50,7 +50,7 @@
                   {{VAR(size:@seasonPoster/size)}}
                   {{VAR(title:title)}}
                   <moviePoster related="true" id="{{VAL(key)}}" alwaysShowTitles="true"
-                               onSelect="changeShowArtwork('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(#ratingKey)}}', '{{VAL(key)}}', '{{VAL(#title)}}')">
+                               onSelect="changeArtwork('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(#ratingKey)}}', '{{VAL(key)}}', '{{VAL(#title)}}')">
                     {{COPY(@seasonPoster/Photo)}}
                     <title>{{VAL(selected::0=|1=Selected)}}</title>
                     <image>{{IMAGEURL(thumb)}}</image>

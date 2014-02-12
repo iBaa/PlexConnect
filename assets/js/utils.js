@@ -320,51 +320,48 @@ flattenSeason = function(url, accessToken, flatten)
 
 
 /*
- * scrobble or unscrobble a ratingKey
+ * Mark a item watched or unwatched
+ * Pass action as scrobble or unscrobble 
  */
-function scrobble(PMS_baseURL, accessToken, ratingKey)
+function markItem(PMS_baseURL, accessToken, ratingKey, action)
 {
-  var url = PMS_baseURL + "/:/scrobble?key=" + ratingKey + "&identifier=com.plexapp.plugins.library";
+  var url = PMS_baseURL + "/:/" + action + "?key=" + ratingKey + "&identifier=com.plexapp.plugins.library";
   if (accessToken!='') url = url + '&X-Plex-Token=' + accessToken;
     
 	var req = new XMLHttpRequest();
 	req.open('GET', url, false);
 	req.send();
 }
-
-function unscrobble(PMS_baseURL, accessToken, ratingKey)
-{
-  var url = PMS_baseURL + "/:/unscrobble?key=" + ratingKey + "&identifier=com.plexapp.plugins.library";
-  if (accessToken!='') url = url + '&X-Plex-Token=' + accessToken;
-    
-	var req = new XMLHttpRequest();
-	req.open('GET', url, false);
-	req.send();
-}
-
 
 /*
- * Update Plex library with multiple artwork for Shows and Seasons
+ * Update Plex library with new artwork
  */
-function changeShowArtwork(PMS_baseURL, accessToken, ratingKey, posterURL, shelf)
+function changeArtwork(PMS_baseURL, accessToken, ratingKey, posterURL, shelf)
 {
-  var root = document.rootElement;
-  var shelf = document.getElementById(shelf);
-  var items = shelf.getElementsByTagName('moviePoster');
-  
-  for (var i=0; i<items.length; i++)
+  if (shelf != '')
   {
-    if (items[i].getAttribute('id') == posterURL) 
+    // Selector logic for Show/Season level artwork
+    var root = document.rootElement;
+    var shelf = document.getElementById(shelf);
+    if (shelf == null) return;
+    var items = shelf.getElementsByTagName('moviePoster');
+    if (items == null) return;
+  
+    for (var i=0; i<items.length; i++)
     {
+      if (items[i].getAttribute('id') == posterURL) 
+      {
       items[i].getElementByTagName('title').textContent = "Selected";
-    }
-    else
-    { 
-      items[i].getElementByTagName('title').textContent = "";
+      }
+      else
+      { 
+        items[i].getElementByTagName('title').textContent = "";
+      }
     }
   }
   
-	if (posterURL.indexOf('library') !== -1)
+  // Test if art is from library or external location
+  if (posterURL.indexOf('library') !== -1)
 	{
 		var urlParts = posterURL.split('=');
 		posterURL = urlParts[1];
@@ -376,29 +373,6 @@ function changeShowArtwork(PMS_baseURL, accessToken, ratingKey, posterURL, shelf
     
   var url = PMS_baseURL + "/library/metadata/" + ratingKey + "/poster?url=" + posterURL;
   if (accessToken!='') url = url + '&X-Plex-Token=' + accessToken;
-    
-  var req = new XMLHttpRequest();
-	req.open('PUT', url, true);
-	req.send();
-};
-
-/*
- * Update Plex library with single artwork
- */
-function changeSingleArtwork(PMS_baseURL, accessToken, ratingKey, posterURL)
-{
-	if (posterURL.indexOf('library') !== -1)
-	{
-		var urlParts = posterURL.split('=');
-		posterURL = urlParts[1];
-	}
-    else
-    {
-        posterURL = encodeURIComponent(posterURL);
-    }
-    
-    var url = PMS_baseURL + "/library/metadata/" + ratingKey + "/poster?url=" + posterURL;
-    if (accessToken!='') url = url + '&X-Plex-Token=' + accessToken;
     
   var req = new XMLHttpRequest();
 	req.open('PUT', url, true);
