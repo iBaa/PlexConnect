@@ -36,11 +36,10 @@
         </shelf>
         
         <__COPY__>
-        {{COPY(Directory)}}
+          {{COPY(Directory:title:COPY:=COPY|All Episodes=|S=COPY)}}
           <collectionDivider alignment="left" accessibilityLabel="Show_Bookcase_Divider">
             <title>{{VAL(title)}}</title>
-          </collectionDivider>{{CUT(title::All episodes=CUT|S=)}}
-
+          </collectionDivider>
           <shelf id="{{VAL(title)}}" columnCount="7">
             <sections>
               <shelfSection>
@@ -59,7 +58,7 @@
                 </items>
               </shelfSection>
             </sections>
-          </shelf>{{CUT(title::All episodes=CUT|S=)}}{{CUT(#size::0=CUT|1=)}}
+          </shelf>{{CUT(#size::0=CUT|1=)}}
         </__COPY__>
       </items>
     </scroller>
