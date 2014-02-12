@@ -30,7 +30,7 @@
           <grid id="Channels_Grid_Video_{{VAL(name)}}" columnCount="5">
             <items>
               <!-- video channels per server -->
-              <moviePoster id="Video_{{VAL(key)}}"
+              <moviePoster id="Video_{{VAL(key)}}" alwaysShowTitles="{{VAL($showalltitles::False=false|True=true)}}"
                            onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelsVideo')"
                            onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelsVideo')">
               {{COPY(Directory)}}
@@ -55,7 +55,7 @@
           <grid id="Channels_Grid_Audio_{{VAL(name)}}" columnCount="5">
             <items>
               <!-- video channels per server -->
-              <moviePoster id="Audio_{{VAL(key)}}"
+              <moviePoster id="Audio_{{VAL(key)}}" alwaysShowTitles="{{VAL($showalltitles::False=false|True=true)}}"
                            onPlay="atv.loadURL('{{URL(key)}}')"
                            onSelect="atv.loadURL('{{URL(key)}}')">
               {{COPY(Directory)}}
@@ -80,7 +80,7 @@
           <grid id="Channels_Grid_Photo_{{VAL(name)}}" columnCount="5">
             <items>
               <!-- video channels per server -->
-              <moviePoster id="Photo_{{VAL(key)}}"
+              <moviePoster id="Photo_{{VAL(key)}}" alwaysShowTitles="{{VAL($showalltitles::False=false|True=true)}}"
                            onPlay="atv.loadURL('{{URL(key)}}')"
                            onSelect="atv.loadURL('{{URL(key)}}')">
               {{COPY(Directory)}}

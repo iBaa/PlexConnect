@@ -18,6 +18,7 @@ options = { \
     'seasonview'        :('List', 'Coverflow'), \
     'channelview'       :('List', 'Grid', 'Bookcase'), \
     'durationformat'    :('Hours/Minutes', 'Minutes'), \
+    'showalltitles'     :('False', 'True'), \
     'movies_navbar_unwatched'   :('checked', 'unchecked'), \
     'movies_navbar_collections' :('checked', 'unchecked'), \
     'movies_navbar_genres'      :('checked', 'unchecked'), \

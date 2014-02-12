@@ -24,7 +24,7 @@
               <defaultImage>resource://Poster.png</defaultImage>
             </moviePoster>
             
-            <sixteenByNinePoster id="{{VAL(key)}}" 
+            <sixteenByNinePoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($showalltitles::False=false|True=true)}}"
                              onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                              onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=HomeVideoPrePlay')">
               {{COPY(Video)}}

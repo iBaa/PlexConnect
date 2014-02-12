@@ -103,6 +103,10 @@
                 <label>{{TEXT(Duration Format)}}</label>
                 <rightLabel>{{SETTING(durationformat)}}</rightLabel>
               </oneLineMenuItem>
+              <oneLineMenuItem id="ShowAllTitles" onSelect="toggleSettings('ShowAllTitles', 'Settings')">
+                <label>{{TEXT(Show All Grid View Titles)}}</label>
+                <rightLabel>{{SETTING(showalltitles)}}</rightLabel>
+              </oneLineMenuItem>
             </items>
           </menuSection>
           
