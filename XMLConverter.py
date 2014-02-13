@@ -923,7 +923,7 @@ class CCommandCollection(CCommandHelper):
         conv, leftover = self.getConversion(src, leftover)
         if not dfltd:
             key = self.applyConversion(key, conv)
-        return quote_plus(key)
+        return quote_plus(unicode(key).encode("utf-8"))
 
     def ATTRIB_SETTING(self, src, srcXML, param):
         opt, leftover = self.getParam(src, param)
