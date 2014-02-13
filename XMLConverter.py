@@ -213,6 +213,9 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
 
     elif cmd=='ScrobbleMenuVideo':
         XMLtemplate = 'ScrobbleMenuVideo.xml'
+
+    elif cmd=='ScrobbleMenuTVOnDeck':
+        XMLtemplate = 'ScrobbleMenuTVOnDeck.xml'
         
     elif cmd=='ChangeShowArtwork':
         XMLtemplate = 'ChangeShowArtwork.xml'

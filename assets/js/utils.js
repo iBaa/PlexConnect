@@ -254,7 +254,7 @@ atv.loadAndSwapURL = function(url)
  * If show has only one season then flatten it!
  */
 
-flattenSeason = function(url, accessToken, flatten)
+flattenSeason = function(url, accessToken, flatten, onDeck)
 {
   if (accessToken!='')
   {
@@ -270,7 +270,10 @@ flattenSeason = function(url, accessToken, flatten)
 
   if (flatten=='False') 
   {
-    atv.loadURL(url);
+    if (onDeck == 'False')
+      atv.loadURL(url);
+    else
+      atv.loadAndSwapURL(url);
   }
   else
   {
@@ -292,7 +295,10 @@ flattenSeason = function(url, accessToken, flatten)
             var newpath = root.getElementByTagName('Directory').getAttribute('key');
             urlparts = url.split('/library');
             newurl = urlparts[0] + newpath;
-            atv.loadURL(newurl);
+            if (onDeck == 'False')
+              atv.loadURL(newurl);
+            else
+              atv.loadAndSwapURL(newurl);
           }
           else if (size=='2')
           {
@@ -300,11 +306,17 @@ flattenSeason = function(url, accessToken, flatten)
             var newpath = newpaths[1].getAttribute('key');
             urlparts = url.split('/library');
             newurl = urlparts[0] + newpath;
-            atv.loadURL(newurl);
+            if (onDeck == 'False')
+              atv.loadURL(newurl);
+            else
+              atv.loadAndSwapURL(newurl);
           }
           else
           {
-            atv.loadURL(url);
+            if (onDeck == 'False')
+              atv.loadURL(url);
+            else
+              atv.loadAndSwapURL(url);
           } 
         }
       }
