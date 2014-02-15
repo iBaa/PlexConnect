@@ -28,7 +28,7 @@
           <sections>
             <shelfSection>
               <items>
-                <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showalltitles::False=false|True=true)}}"
+                <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="true"
                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
                             onHoldSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuTVOnDeck')">
@@ -53,7 +53,7 @@
           <sections>
             <shelfSection>
               <items>
-                <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showalltitles::False=false|True=true)}}"
+                <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="true"
                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
                             onHoldSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuTVOnDeck')">
@@ -78,7 +78,7 @@
           <sections>
             <shelfSection>
               <items>
-                <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showalltitles::False=false|True=true)}}"
+                <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="true"
                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Season')"
                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Season')"
                             onHoldSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuTVOnDeck')">
@@ -103,7 +103,7 @@
           <sections>
             <shelfSection>
               <items>
-                <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showalltitles::False=false|True=true)}}"
+                <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="true"
                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
                             onHoldSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuTVOnDeck')">

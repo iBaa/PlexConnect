@@ -18,9 +18,10 @@
           <sections>
             <shelfSection>
               <items>
-                <goldenPoster id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key)}}')"
-                                              onSelect="atv.loadURL('{{URL(key)}}')"
-                                              onHoldSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ScrobbleMenu')">
+                <goldenPoster id="{{VAL(key)}}" alwaysShowTitles="true"
+                              onPlay="atv.loadURL('{{URL(key)}}')"
+                              onSelect="atv.loadURL('{{URL(key)}}')"
+                              onHoldSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ScrobbleMenu')">
                   {{COPY(Directory)}}
                   <title>{{VAL(title)}}</title>
                   <image>{{IMAGEURL(thumb::384)}}</image>

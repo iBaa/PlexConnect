@@ -24,7 +24,7 @@
               <defaultImage>resource://16X9.png</defaultImage>
             </moviePoster>
             
-            <moviePoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($showalltitles::False=false|True=true)}}"
+            <moviePoster id="{{VAL(key)}}" alwaysShowTitles="true"
                              onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                              onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')">
               {{COPY(Video)}}
