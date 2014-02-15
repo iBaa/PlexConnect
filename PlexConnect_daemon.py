@@ -81,9 +81,9 @@ if __name__ == '__main__':
 
     daemonize(args)
 
-    success = startup()
+    running = startup()
 
-    if success:
-        run()
+    while running:
+        running = run()
 
-        shutdown()
+    shutdown()
