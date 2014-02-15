@@ -247,15 +247,21 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
     elif cmd=='ChannelsVideo':
         XMLtemplate = 'ChannelsVideo.xml'
 
+    elif cmd=='ByFolder':
+        XMLtemplate = 'ByFolder.xml'
+
     elif cmd=='HomeVideoByFolder':
         XMLtemplate = 'HomeVideoByFolder.xml'
 
     elif cmd == 'HomeVideoDirectory':
         XMLtemplate = 'HomeVideoDirectory.xml'
-        
-    elif cmd=='ByFolder':
-        XMLtemplate = 'ByFolder.xml'
-    
+
+    elif cmd=='MovieByFolder':
+        XMLtemplate = 'MovieByFolder.xml'
+
+    elif cmd == 'MovieDirectory':
+        XMLtemplate = 'MovieDirectory.xml'
+
     elif cmd == 'MovieSection':
         XMLtemplate = 'MovieSection.xml'
     
@@ -433,14 +439,14 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
         else:
           # Home Video listing
           XMLtemplate = 'HomeVideo_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'homevideoview').replace(' ','')+'.xml'
-          
-    elif PMSroot.get('viewGroup','')=='movie':
+    
+    elif PMSroot.get('viewGroup','')=='movie' and PMSroot.get('thumb','').find('movie') != -1:
         if PMSroot.get('title2')=='By Folder':
           # By Folder View
-          XMLtemplate = 'ByFolder.xml'
+          XMLtemplate = 'MovieByFolder.xml'
         else:
           # Movie listing
-          XMLtemplate = 'Movie_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'movieview').replace(' ','')+'.xml'
+          XMLtemplate = 'Movie_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'homevideoview').replace(' ','')+'.xml'
           
     elif PMSroot.get('viewGroup','')=='track':
         XMLtemplate = 'Music_Track.xml'

@@ -20,6 +20,7 @@ options = { \
     'durationformat'    :('Hours/Minutes', 'Minutes'), \
     'showalltitles'     :('False', 'True'), \
     'movies_navbar_unwatched'   :('checked', 'unchecked'), \
+    'movies_navbar_byfolder'    :('checked', 'unchecked'), \
     'movies_navbar_collections' :('checked', 'unchecked'), \
     'movies_navbar_genres'      :('checked', 'unchecked'), \
     'movies_navbar_decades'     :('checked', 'unchecked'), \
@@ -27,9 +28,9 @@ options = { \
     'movies_navbar_actors'      :('checked', 'unchecked'), \
     'movies_navbar_more'        :('checked', 'unchecked'), \
     'homevideos_navbar_unwatched'   :('checked', 'unchecked'), \
+    'homevideos_navbar_byfolder'    :('checked', 'unchecked'), \
     'homevideos_navbar_collections' :('checked', 'unchecked'), \
     'homevideos_navbar_genres'      :('checked', 'unchecked'), \
-    'homevideos_navbar_byfolder'    :('checked', 'unchecked'), \
     'tv_navbar_unwatched'       :('checked', 'unchecked'), \
     'tv_navbar_genres'          :('checked', 'unchecked'), \
     'tv_navbar_more'            :('checked', 'unchecked'), \
