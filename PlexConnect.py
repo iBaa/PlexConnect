@@ -72,7 +72,7 @@ def startup():
     # more Settings
     param['IP_self'] = getIP_self()
     param['HostToIntercept'] = cfg.getSetting('hosttointercept')
-    param['baseURL'] = 'http://'+ param['HostToIntercept'] + ':' + cfg.getSetting('port_webserver')
+    param['baseURL'] = 'http://'+ param['HostToIntercept']
     
     running = True
     
