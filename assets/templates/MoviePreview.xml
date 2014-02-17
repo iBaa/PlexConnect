@@ -21,7 +21,7 @@
                            onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')">
                 {{COPY(Video)}}
                 <title>{{VAL(title)}}</title>
-                <subtitle>{{VAL(year)}}</subtitle>
+                <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
                 <image>{{IMAGEURL(thumb::384)}}</image>
                 <defaultImage>resource://16X9.png</defaultImage>
               </moviePoster>

@@ -36,7 +36,7 @@
                   {{COPY(@OnDeck/Video)}}
                   {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                   <title>{{VAL(title)}}</title>
-                  <subtitle>{{VAL(year)}}</subtitle>
+                  <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
                   <image>{{IMAGEURL(thumb::384)}}</image>
                   <defaultImage>resource://Poster.png</defaultImage>
                 </sixteenByNinePoster>
@@ -61,7 +61,7 @@
                   {{COPY(@RecentlyAdded/Video)}}
                   {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                   <title>{{VAL(title)}}</title>
-                  <subtitle>{{VAL(year)}}</subtitle>
+                  <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
                   <image>{{IMAGEURL(thumb::384)}}</image>
                   <defaultImage>resource://Poster.png</defaultImage>
                 </sixteenByNinePoster>
@@ -86,7 +86,7 @@
                   {{COPY(@RecentlyReleased/Video)}}
                   {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                   <title>{{VAL(title)}}</title>
-                  <subtitle>{{VAL(year)}}</subtitle>
+                  <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
                   <image>{{IMAGEURL(thumb::384)}}</image>
                   <defaultImage>resource://Poster.png</defaultImage>
                 </sixteenByNinePoster>
