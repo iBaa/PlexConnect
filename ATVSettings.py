@@ -18,6 +18,10 @@ options = { \
     'seasonview'        :('List', 'Coverflow'), \
     'channelview'       :('List', 'Grid', 'Bookcase'), \
     'durationformat'    :('Hours/Minutes', 'Minutes'), \
+    'showtitles_movies'         :('Highlighted Only', 'Show All'), \
+    'showtitles_tvshows'        :('Highlighted Only', 'Show All'), \
+    'showtitles_homevideos'     :('Highlighted Only', 'Show All'), \
+    'showtitles_channels'       :('Highlighted Only', 'Show All'), \
     'movies_navbar_unwatched'   :('checked', 'unchecked'), \
     'movies_navbar_byfolder'    :('checked', 'unchecked'), \
     'movies_navbar_collections' :('checked', 'unchecked'), \

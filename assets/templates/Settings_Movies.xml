@@ -47,6 +47,11 @@
                 <label>{{TEXT(Actor View)}}</label>
                 <rightLabel>{{SETTING(actorview)}}</rightLabel>
               </oneLineMenuItem>
+              
+              <oneLineMenuItem id="ShowTitles_Movies" onSelect="toggleSettings('ShowTitles_Movies', 'Settings_Movies')">
+                <label>{{TEXT(Poster Titles)}}</label>
+                <rightLabel>{{SETTING(showtitles_movies)}}</rightLabel>
+              </oneLineMenuItem>
             </items>
           </menuSection>
 

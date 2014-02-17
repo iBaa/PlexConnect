@@ -25,7 +25,7 @@
               <shelfSection>
                 <items>
                 {{ADDXML(seasons:key)}}
-                  <moviePoster id="Show_Bookcase_{{VAL(key)}}" alwaysShowTitles="true"
+                  <moviePoster id="Show_Bookcase_{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
                               onPlay="atv.loadURL('{{URL(key)}}')"
                               onSelect="atv.loadURL('{{URL(key)}}')"
                               onHoldSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ScrobbleMenu')">

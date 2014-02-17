@@ -58,6 +58,10 @@
                 <label>{{TEXT(Flatten Season)}}</label>
                 <rightLabel>{{SETTING(flattenseason)}}</rightLabel>
               </oneLineMenuItem>
+              <oneLineMenuItem id="ShowTitles_TVShows" onSelect="toggleSettings('ShowTitles_TVShows', 'Settings_TVShows')">
+                <label>{{TEXT(Poster Titles)}}</label>
+                <rightLabel>{{SETTING(showtitles_tvshows)}}</rightLabel>
+              </oneLineMenuItem>
             </items>
           </menuSection>
 

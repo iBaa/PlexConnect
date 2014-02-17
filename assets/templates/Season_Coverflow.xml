@@ -18,7 +18,7 @@
           <sections>
             <shelfSection>
               <items>
-                <goldenPoster id="{{VAL(key)}}" alwaysShowTitles="true"
+                <goldenPoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
                               onPlay="atv.loadURL('{{URL(key)}}')"
                               onSelect="atv.loadURL('{{URL(key)}}')"
                               onHoldSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ScrobbleMenu')">
