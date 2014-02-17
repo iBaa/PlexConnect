@@ -135,6 +135,8 @@ def run(timeout=60):
             pass  # mask "IOError: [Errno 4] Interrupted function call"
         else:
             raise
+    
+    return running
 
 def shutdown():
     for slave in procs:
