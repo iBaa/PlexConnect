@@ -24,7 +24,7 @@
               <defaultImage>resource://Poster.png</defaultImage>
             </moviePoster>
             
-            <sixteenByNinePoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($showalltitles::False=false|True=true)}}"
+            <moviePoster id="{{VAL(key)}}" alwaysShowTitles="true"
                              onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                              onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')">
               {{COPY(Video)}}
@@ -32,7 +32,7 @@
               <subtitle>{{VAL(year)}}</subtitle>
               <image>{{IMAGEURL(thumb::384)}}</image>
               <defaultImage>resource://Poster.png</defaultImage>
-            </sixteenByNinePoster>
+            </moviePoster>
           </items>
         </grid>
       </items>
