@@ -9,13 +9,13 @@ Copy all the files from here to the new OSX folder you just created
 
 Step 2 clone the repo then download the entire code here (download zip) http://alturl.com/4ib3f then enter these commands into terminal:
 
-Clone the repo per the readme.md so you can get updates (put this in a non system folder like documents or something to avoid database errors or from OpenConnect or webconnect from functioning)
+Clone the repo per the readme.md so you can get updates (put this in a non system folder like documents or something to avoid database errors from OpenConnect or webconnect from functioning)
 
 # Installation
 git clone https://github.com/iBaa/PlexConnect.git
 
 sudo su
-## Naviagate to the new /update/OSX folder <-----OSX is a subfolder of Update.
+##  copy the update/OSX folder to the cloned repo then Naviagate to the new /update/OSX folder <-----OSX is a subfolder of Update.
 chmod +x install.bash
 ./install.bash
 
