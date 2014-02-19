@@ -400,7 +400,7 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
         
         PMSroot = PMS.getroot()
         
-        dprint(__name__, 1, "viewGroup: "+PMSroot.get('ViewGroup','None'))
+        dprint(__name__, 1, "viewGroup: "+PMSroot.get('viewGroup','None'))
     
     # XMLtemplate defined by PMS XML content
     if path=='':
