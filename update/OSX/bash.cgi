@@ -77,7 +77,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "PlexConnect commands"
     echo "<br>"    
     echo "<input type=radio name=cmd value=createplistbash> Install PlexConnect <br>"
-    echo "<input type=radio name=cmd value=updatebash> Update PlexConnec <br>"
+    echo "<input type=radio name=cmd value=updatebash> Update PlexConnect <br>"
     echo "<input type=radio name=cmd value=startbash> Start PlexConnect <br>"
     echo "<input type=radio name=cmd value=stopbash> Stop PlexConnect <br>"
     echo "<input type=radio name=cmd value=restartbash> Restart PlexConnect <br>"
