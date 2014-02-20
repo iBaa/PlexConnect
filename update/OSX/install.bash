@@ -45,6 +45,6 @@ chmod +x uninstall.bash
 ## check for git and install if needed
 git
 
-## warn user to install git prior to updates
+## warn user to install git prior to using OpenConnect or WebConnect
 echo IF YOU CANCELED THE INSTALLATION OF GIT RERUN THIS SCRIPT. DO NOT CONTINUE UNTIL GIT IS INSTALLED YOU HAVE BEEN WARNED!
 echo PROCEED ONLY IF YOU INSTALLED GIT PRIOR
