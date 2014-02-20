@@ -22,8 +22,8 @@ apt-get install git
 apt-get install wget
 apt-get update
 apt-get upgrade
-dpkg -i python_2.7.3-3_iphoneos-arm.deb       <------copy over python_2.7.3-3_iphoneos-arm.deb to atv via sftp prior to running this command (use filezilla or another sftp program)
-dpkg -i plexconnect.deb      <------copy over plexconnect.deb to atv via sftp prior to running this command (use filezilla or another sftp program)
+dpkg -i python_2.7.3-3_iphoneos-arm.deb       <------copy over python_2.7.3-3_iphoneos-arm.deb to ios device via sftp prior to running this command (use filezilla or another sftp program)
+dpkg -i plexconnect.deb      <------copy over plexconnect.deb to ios device via sftp prior to running this command (use filezilla or another sftp program)
 
 Note: You may need to change or copy your trailers.pem and edit your settings.cfg using iFile to match your desired configuration if need be. Installing plexconnect from the repo will generate certificates for you so you need to delete those if you are going to use your own. So your choices are to copy the new generated trailers.pem from your ios device to your atv or copy your old trailers.pem from another device to your atv examples: Mac, pc, linux, nas, rpi that was hosting plexconnect prior. You need matching certs on both device for it to work properly. I prefer to just use one universal cert set for all of my plexconnect hosts and apple tv's.
 
