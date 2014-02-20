@@ -12,6 +12,10 @@ To keep plexconnect running without your wifi shutting off
   restart iOS device
   unlock iOS device to enable wifi while in airplane mode
 
+grab these .deb files here:
+
+https://www.dropbox.com/sh/cghw1w6khwqq8rg/8ejDwZ7Rpe
+
 ssh into your ios device and enter the following commands and install all these packages wget, python):
 
 apt-get install git
