@@ -42,7 +42,7 @@ chmod +x /usr/bin/restart.bash
 chmod +x /usr/bin/webconnect.bash
 chmod +x uninstall.bash
 
-## check for git and install if needed
+## check for git and prompt user to install if needed
 git
 
 ## warn user to install git prior to using OpenConnect or WebConnect
