@@ -24,7 +24,7 @@ sudo su
 mkdir -p /update/OSX
 ## Copy the contents from the zip's folder /update/OSX to the new update/OSX folder from here 
 ## (download zip): http://alturl.com/4ib3f
-Navigate to the new /update/OSX folder <-----OSX is a subfolder of Update.
+## Navigate to the new /update/OSX folder <-----OSX is a subfolder of Update.
 chmod +x install.bash
 ./install.bash
 ```
