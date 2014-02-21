@@ -6,18 +6,18 @@ How to install  (if updating OpenConnect you must perform steps 1 & 2 again to g
 
 2. clone the repo then download the entire code here (download zip) http://alturl.com/4ib3f then enter these commands into terminal (put this in a non system folder like documents or something to avoid database errors that may prevent OpenConnect or webconnect from functioning)
 
-## Proper installation:
+Proper installation:
 ```sh
 sudo su
 cd /Applications
 git clone https://github.com/iBaa/PlexConnect.git
 ```
-# Copy the update/OSX folder to the cloned repo then Naviagate to the new /update/OSX folder <-----OSX is a subfolder of Update:
+Copy the update/OSX folder to the cloned repo then Naviagate to the new /update/OSX folder <-----OSX is a subfolder of Update:
 ```sh
 chmod +x install.bash
 ./install.bash
 ```
-# Or enter these commands into terminal if you have an existing cloned PlexConnect folder:
+Or enter these commands into terminal if you have an existing cloned PlexConnect folder:
 ```sh
 sudo su 
 ## Naviagate to your PlexConnect base directory
@@ -35,7 +35,9 @@ A few notes about OpenConnect:
 
 OpenConnect requires a plist for the update function to work just use the expert or guide mode to install the PlexConnect autostarting plist. Finally see if your appletv is displaying PlexConnect, if it is your plist has been properly installed. This app is designed to allow you to keep PlexConnect up to date if there is anything you want to backup please do so prior to using this app.
 
-# How to install WebConnect (repeate steps 1 & 2 above for the latest release to update)
+# WebConnect
+
+How to install (Install OpenConnect prior to WebConnect using the above instructions)
 
 1. Apache2 server on a unused port (plexconnect runs on 53, 80, 443) edit /etc/apache2/httpd.conf hosts section to change the listen port:
 
