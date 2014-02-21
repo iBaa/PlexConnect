@@ -27,7 +27,7 @@ Naviagate to the new /update/OSX folder <-----OSX is a subfolder of Update.
 chmod +x install.bash
 ./install.bash
 ```
-3.. To install OpenConnect app on osx simply run this app (OpenConnect has built-in in PlexConnect updater function):
+3. To install OpenConnect app on osx simply run this app (OpenConnect has built-in in PlexConnect updater function):
 
 https://www.dropbox.com/sh/t45w85ktydh0dvu/6-8W2POoM4
 
