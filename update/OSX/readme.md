@@ -6,13 +6,14 @@ Step 1. Kill plexconnect if its running or unload your plist if used to autostar
 
 Step 2. Clone the repo then download the entire code here (download zip) http://alturl.com/4ib3f then enter these commands into terminal (put this in a non system folder like documents or something to avoid database errors that may prevent OpenConnect or webconnect from functioning)
 
-Proper PlexConnect installation:
+Proper PlexConnect example installation:
 ```sh
 sudo su
+## Enter password
 cd /Applications
 git clone https://github.com/iBaa/PlexConnect.git
 ```
-Copy the update/OSX folder to the cloned repo base PlexConnect directory then using terminal naviagate to the new /update/OSX folder <-----OSX is a subfolder of Update:
+Copy the update/OSX folder to the cloned repo PlexConnect base directory then using terminal naviagate to the new /update/OSX folder <-----OSX is a subfolder of Update:
 ```sh
 chmod +x install.bash
 ./install.bash
