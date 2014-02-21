@@ -20,10 +20,11 @@ chmod +x install.bash
 Or enter these commands into terminal if you have an existing cloned PlexConnect folder:
 ```sh
 sudo su 
-## Naviagate to your PlexConnect base directory
+## Navigate to your PlexConnect base directory
 mkdir -p /update/OSX
-## Copy the contents from the zip's folder /update/OSX to the new update/OSX folder from here (download zip): http://alturl.com/4ib3f
-Naviagate to the new /update/OSX folder <-----OSX is a subfolder of Update.
+## Copy the contents from the zip's folder /update/OSX to the new update/OSX folder from here 
+## (download zip): http://alturl.com/4ib3f
+Navigate to the new /update/OSX folder <-----OSX is a subfolder of Update.
 chmod +x install.bash
 ./install.bash
 ```
