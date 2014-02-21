@@ -1,4 +1,6 @@
-# How to install OpenConnect (if updating OpenConnect you must perform steps 1 & 2 again to get the updated scripts prior to launching the new app that you can download in step 3)
+# OpenConnect
+
+How to install  (if updating OpenConnect you must perform steps 1 & 2 again to get the updated scripts prior to launching the new app that you can download in step 3)
 
 # 1. kill plexconnect if its running or unload your plist if used to autostart PlexConnect.
 
