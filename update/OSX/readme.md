@@ -11,7 +11,7 @@ Copy all the files from here to the new OSX folder you just created
 
 Clone the repo per the readme.md so you can get updates (put this in a non system folder like documents or something to avoid database errors from OpenConnect or webconnect from functioning)
 
-# Installation
+## Installation
 sudo su
 cd /Applications
 git clone https://github.com/iBaa/PlexConnect.git
