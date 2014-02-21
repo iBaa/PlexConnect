@@ -4,18 +4,18 @@
 
 # Step 2 clone the repo then download the entire code here (download zip) http://alturl.com/4ib3f then enter these commands into terminal (put this in a non system folder like documents or something to avoid database errors that may prevent OpenConnect or webconnect from functioning)
 
-## Installation:
+## Proper installation:
 ```sh
 sudo su
 cd /Applications
 git clone https://github.com/iBaa/PlexConnect.git
 ```
-# copy the update/OSX folder to the cloned repo then Naviagate to the new /update/OSX folder <-----OSX is a subfolder of Update:
+# Copy the update/OSX folder to the cloned repo then Naviagate to the new /update/OSX folder <-----OSX is a subfolder of Update:
 ```sh
 chmod +x install.bash
 ./install.bash
 ```
-# OR enter these commands into terminal if you have an existing cloned PlexConnect folder:
+# Or enter these commands into terminal if you have an existing cloned PlexConnect folder:
 ```sh
 sudo su 
 ## Naviagate to your PlexConnect base directory
@@ -26,9 +26,9 @@ chmod +x install.bash
 ./install.bash
 ```
 # step 3 To install OpenConnect app on osx simply run this app (OpenConnect has built-in in PlexConnect updater function):
-```sh
+
 https://www.dropbox.com/sh/t45w85ktydh0dvu/6-8W2POoM4
-```
+
 # A few notes about OpenConnect:
 
 OpenConnect requires a plist for the update function to work just use the expert or guide mode to install the PlexConnect autostarting plist. Finally see if your appletv is displaying PlexConnect, if it is your plist has been properly installed. This app is designed to allow you to keep PlexConnect up to date if there is anything you want to backup please do so prior to using this app.
@@ -36,9 +36,9 @@ OpenConnect requires a plist for the update function to work just use the expert
 # How to install WebConnect (repeate steps 1 & 2 above for the latest release to update)
 
 # 1. Apache2 server on a unused port (plexconnect runs on 53, 80, 443) edit /etc/apache2/httpd.conf hosts section to change the listen port:
-```sh
- http://clickontyler.com/blog/2012/02/web-sharing-mountain-lion/
-```
+
+http://clickontyler.com/blog/2012/02/web-sharing-mountain-lion/
+
 # 2. Edit your sudoers file and add this section:
 ```sh
 _www    ALL= NOPASSWD: /usr/bin/createcert.bash,/usr/bin/createplist.bash,/usr/bin/update.bash,/usr/bin/start.bash,/usr/bin/stop.bash,/usr/bin/restart.bash
