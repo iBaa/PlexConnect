@@ -12,7 +12,7 @@ sudo su
 cd /Applications
 git clone https://github.com/iBaa/PlexConnect.git
 ```
-Copy the update/OSX folder to the cloned repo then Naviagate to the new /update/OSX folder <-----OSX is a subfolder of Update:
+Copy the update/OSX folder to the cloned repo base PlexConnect directory then using terminal naviagate to the new /update/OSX folder <-----OSX is a subfolder of Update:
 ```sh
 chmod +x install.bash
 ./install.bash
