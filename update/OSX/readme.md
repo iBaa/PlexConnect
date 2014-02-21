@@ -13,7 +13,7 @@ sudo su
 cd /Applications
 git clone https://github.com/iBaa/PlexConnect.git
 ```
-#copy the update/OSX folder to the cloned repo then Naviagate to the new /update/OSX folder <-----OSX is a subfolder of Update.
+# copy the update/OSX folder to the cloned repo then Naviagate to the new /update/OSX folder <-----OSX is a subfolder of Update:
 ```sh
 chmod +x install.bash
 ./install.bash
@@ -38,7 +38,7 @@ OpenConnect requires a plist for the update function to work just use the expert
 
 # How to install WebConnect (repeate steps 1 & 2 above for the latest release to update)
 
-# 1. Apache2 server on a unused port (plexconnect runs on 53, 80, 443) edit /etc/apache2/httpd.conf hosts section to change port.
+# 1. Apache2 server on a unused port (plexconnect runs on 53, 80, 443) edit /etc/apache2/httpd.conf hosts section to change the listen port:
 ```sh
  http://clickontyler.com/blog/2012/02/web-sharing-mountain-lion/
 ```
