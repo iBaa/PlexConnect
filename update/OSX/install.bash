@@ -22,7 +22,7 @@ cp start.bash /usr/bin
 cp restart.bash /usr/bin
 cp webconnect.bash /usr/bin
 
-## replace __INSTALLERPATH__ in default createwsj.bash
+## replace __INSTALLERPATH__ in default createimovie.bash
 ## save directly to the /usr/bin folder
 sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createimovie.bash" > /usr/bin/createimovie.bash
 
