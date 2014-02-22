@@ -14,16 +14,12 @@ cd update/OSX
 ## Copy com.plex.plexconnect.auto.plist
 cp com.plex.plexconnect.auto.plist /Library/LaunchDaemons
 
-## replace __INSTALLERPATH__, __PLEXCONNECTPATH__ in default com.plex.plexconnect.daemon.auto.plist
-## save directly to the /Library/LaunchDameons folder
-sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__PLEXCONNECTPATH__/${PlexConnectPath//\//\\/}/" "${InstallerPath}/com.plex.plexconnect.auto.plist" > /Library/LaunchDaemons/com.plex.plexconnect.auto.plist
-
 ## create autostart plist for next boot
 echo 'Installing PlexConnect...'
 
 ## change ownership and permissions of the plist file to make it launchctl compatible
-chown root /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
-chmod 644 /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
+chown root /Library/LaunchDaemons/com.plex.plexconnect.auto.plist
+chmod 644 /Library/LaunchDaemons/com.plex.plexconnect.auto.plist
 
 ## start PlexConnect for this session
 echo 'Enabled auto updates for PlexConnect...'
