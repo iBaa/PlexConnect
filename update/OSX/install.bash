@@ -16,6 +16,7 @@ cp createcert.bash /usr/bin
 cp createimovie.bash /usr/bin
 cp createwsj.bash /usr/bin
 cp createplist.bash /usr/bin
+cp createauto.bash /usr/bin
 cp update.bash /usr/bin
 cp stop.bash /usr/bin
 cp start.bash /usr/bin
@@ -38,6 +39,10 @@ sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createc
 ## save directly to the /usr/bin folder
 sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createplist.bash" > /usr/bin/createplist.bash
 
+## replace __DEFAULTPATH__ in default createauto.bash
+## save directly to the /usr/bin folder
+sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createauto.bash" > /usr/bin/createauto.bash
+
 ## replace __INSTALLERPATH__, __USERNAME__in default update.bash
 ## save directly to the /usr/bin folder
 sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__USERNAME__/${SUDO_USER}/" "${InstallerPath}/update.bash" > /usr/bin/update.bash
@@ -47,6 +52,7 @@ chmod +x /usr/bin/createcert.bash
 chmod +x /usr/bin/createimovie.bash
 chmod +x /usr/bin/createwsj.bash
 chmod +x /usr/bin/createplist.bash
+chmod +x /usr/bin/createauto.bash
 chmod +x /usr/bin/update.bash
 chmod +x /usr/bin/stop.bash
 chmod +x /usr/bin/start.bash
