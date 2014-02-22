@@ -39,9 +39,6 @@ sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createc
 ## save directly to the /usr/bin folder
 sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createplist.bash" > /usr/bin/createplist.bash
 
-## replace __DEFAULTPATH__ in default createauto.bash
-## save directly to the /usr/bin folder
-sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createauto.bash" > /usr/bin/createauto.bash
 
 ## replace __INSTALLERPATH__, __USERNAME__in default update.bash
 ## save directly to the /usr/bin folder
