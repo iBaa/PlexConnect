@@ -7,13 +7,13 @@
     <key>OnDemand</key>
     <true/>
     <key>Program</key>
-	<string>__INSTALLERPATH__/Update.bash</string>
+	<string>/usr/bin/Update.bash</string>
 	<key>UserName</key>
 	<string>root</string>
 	<key>RunAtLoad</key>
 	<true/>
 	<key>WorkingDirectory</key>
-	<string>__PLEXCONNECTPATH__</string>
+	<string>/usr/bin</string>
     <key>StartInterval</key>
     <integer>21600</integer>
 </dict>
