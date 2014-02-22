@@ -13,12 +13,22 @@ cd update/OSX
 
 ## copy files to /usr.bin for system wide access
 cp createcert.bash /usr/bin
+cp createimovie.bash /usr/bin
+cp createwsj.bash /usr/bin
 cp createplist.bash /usr/bin
 cp update.bash /usr/bin
 cp stop.bash /usr/bin
 cp start.bash /usr/bin
 cp restart.bash /usr/bin
 cp webconnect.bash /usr/bin
+
+## replace __INSTALLERPATH__ in default createwsj.bash
+## save directly to the /usr/bin folder
+sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createimovie.bash" > /usr/bin/createimovie.bash
+
+## replace __INSTALLERPATH__ in default createwsj.bash
+## save directly to the /usr/bin folder
+sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createwsj.bash" > /usr/bin/createwsj.bash
 
 ## replace __INSTALLERPATH__ in default createcert.bash
 ## save directly to the /usr/bin folder
@@ -34,6 +44,8 @@ sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__USERNAME__/${SUDO_USER
 
 ## fix permissions
 chmod +x /usr/bin/createcert.bash
+chmod +x /usr/bin/createimovie.bash
+chmod +x /usr/bin/createwsj.bash
 chmod +x /usr/bin/createplist.bash
 chmod +x /usr/bin/update.bash
 chmod +x /usr/bin/stop.bash
