@@ -4,32 +4,7 @@ How to install  (if updating OpenConnect you must perform steps 1 & 2 again to g
 
 Step 1. Kill plexconnect if its running or unload your plist if used to autostart PlexConnect.
 
-Step 2. Clone the repo then download the entire code here (download zip) http://alturl.com/4ib3f then enter these commands into terminal (put this in a non system folder like documents or something to avoid database errors that may prevent OpenConnect or webconnect from functioning)
-
-Proper PlexConnect example installation:
-```sh
-sudo su
-## Enter password
-cd /Applications
-git clone https://github.com/iBaa/PlexConnect.git
-```
-Copy the update/OSX folder to the cloned repo PlexConnect base directory then using terminal naviagate to the new /update/OSX folder <-----OSX is a subfolder of Update:
-```sh
-chmod +x install.bash
-./install.bash
-```
-Or enter these commands into terminal if you have an existing cloned PlexConnect folder:
-```sh
-sudo su 
-## Navigate to your PlexConnect base directory
-mkdir -p /update/OSX
-## Copy the contents from the zip's folder /update/OSX to the new update/OSX folder from here 
-## (download zip): http://alturl.com/4ib3f
-## Navigate to the new /update/OSX folder <-----OSX is a subfolder of Update.
-chmod +x install.bash
-./install.bash
-```
-Step 3. To install OpenConnect app on osx simply run this app (OpenConnect has built-in in PlexConnect updater function):
+Step 2. To install OpenConnect app on osx simply run this app in guide mode (OpenConnect has built-in in PlexConnect updater function):
 
 https://www.dropbox.com/sh/t45w85ktydh0dvu/6-8W2POoM4
 
