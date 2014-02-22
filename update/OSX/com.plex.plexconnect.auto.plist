@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.plex.plexconect.auto.plist</string>
+    <key>OnDemand</key>
+    <true/>
+    <key>Program</key>
+	<string>__INSTALLERPATH__/Update.bash</string>
+	<key>UserName</key>
+	<string>root</string>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>WorkingDirectory</key>
+	<string>__PLEXCONNECTPATH__</string>
+    <key>StartInterval</key>
+    <integer>21600</integer>
+</dict>
+</plist>
