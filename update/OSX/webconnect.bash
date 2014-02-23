@@ -1,5 +1,16 @@
 #!/bin/bash
 
+## find update/OSX path
+cd __DEFAULTPATH__
+InstallerPath=${PWD}
+
+## find PlexConnect main path
+cd ../..
+PlexConnectPath=${PWD}
+
+## go back to InstallerPath
+cd update/OSX
+
 ## install webconnect
 cp bash.cgi /Library/WebServer/CGI-Executables/
 chmod +x /Library/WebServer/CGI-Executables/bash.cgi
