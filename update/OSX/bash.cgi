@@ -82,6 +82,12 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           echo "</pre>"
           ;;
 
+          lockbash)
+          echo "Output of lockbash :<pre>"
+          /usr/bin/lockbash.bash
+          echo "</pre>"
+          ;;
+
 	esac
     fi
      
@@ -119,6 +125,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "OSX system commands"
     echo "<br>" 
     echo "<input type=radio name=cmd value=rebootbash> Reboot OSX <br>"
+    echo "<input type=radio name=cmd value=lockbash> Lock Screen <br>"
     echo "<br>"
     echo "<input type=submit>"
     echo "</form>"
