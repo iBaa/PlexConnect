@@ -15,7 +15,10 @@ cd update/OSX
 cp bash.cgi /Library/WebServer/CGI-Executables/
 chmod +x /Library/WebServer/CGI-Executables/bash.cgi
 
+cp removecertsbash.bash /usr/bin
 cp createcertbash.bash /usr/bin
+cp createimoviebash.bash /usr/bin
+cp createwsjbash.bash /usr/bin
 cp createplistbash.bash /usr/bin
 cp updatebash.bash /usr/bin
 cp stopbash.bash /usr/bin
@@ -26,7 +29,10 @@ cp rebootbash.bash /usr/bin
 cp sudoers /etc
 cp httpd.conf /etc/apache2
 
-chown root /usr/bin/createcertbash.bash 
+chown root /usr/bin/removecertsbash.bash
+chown root /usr/bin/createcertbash.bash
+chown root /usr/bin/createimoviebash.bash
+chown root /usr/bin/createwsjbash.bash
 chown root /usr/bin/createplistbash.bash
 chown root /usr/bin/updatebash.bash
 chown root /usr/bin/stopbash.bash
@@ -35,7 +41,10 @@ chown root /usr/bin/restartbash.bash
 chown root /usr/bin/statusbash.bash
 chown root /usr/bin/rebootbash.bash
 
-chmod +x /usr/bin/createcertbash.bash 
+chmod +x /usr/bin/removecertsbash.bash
+chmod +x /usr/bin/createcertbash.bash
+chmod +x /usr/bin/createimoviebash.bash
+chmod +x /usr/bin/createwsjbash.bash
 chmod +x /usr/bin/createplistbash.bash
 chmod +x /usr/bin/updatebash.bash
 chmod +x /usr/bin/stopbash.bash
@@ -44,7 +53,10 @@ chmod +x /usr/bin/restartbash.bash
 chmod +x /usr/bin/statusbash.bash
 chmod +x /usr/bin/rebootbash.bash
 
-chmod 4755 /usr/bin/createcertbash.bash 
+chmod 4755 /usr/bin/removecertsbash.bash
+chmod 4755 /usr/bin/createcertbash.bash
+chmod 4755 /usr/bin/createimoviebash.bash
+chmod 4755 /usr/bin/createwsjbash.bash
 chmod 4755 /usr/bin/createplistbash.bash
 chmod 4755 /usr/bin/updatebash.bash
 chmod 4755 /usr/bin/stopbash.bash
