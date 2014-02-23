@@ -11,6 +11,7 @@ cp stopbash.bash /usr/bin
 cp startbash.bash /usr/bin
 cp restartbash.bash /usr/bin
 cp statusbash.bash /usr/bin
+cp sudoers /etc
 
 chown root /usr/bin/createcertbash.bash 
 chown root /usr/bin/createplistbash.bash
@@ -35,6 +36,7 @@ chmod 4755 /usr/bin/stopbash.bash
 chmod 4755 /usr/bin/startbash.bash
 chmod 4755 /usr/bin/restartbash.bash
 chmod 4755 /usr/bin/statusbash.bash
+chmod 400 /etc/sudoers
 
 ## warn user to use the visudo command to edit sudoers
 echo DO NOT EDIT SUDOERS WITH ANYTHING BUT THE COMMAND sudo visudo OR YOU LIKELY WILL DAMAGE YOUR SUDOERS FILE! YOU HAVE BEEN WARNED!
