@@ -12,7 +12,7 @@ A few notes about OpenConnect:
 
 OpenConnect requires a plist for the update function to work just use the expert or guide mode to install the PlexConnect autostarting plist. Finally see if your appletv is displaying PlexConnect, if it is your plist has been properly installed. This app is designed to allow you to keep PlexConnect up to date if there is anything you want to backup please do so prior to using this app.
 
-# WebConnect *New - install from OpenConnect*
+# WebConnect *New* - now install from OpenConnect
 
 
 *Old method* How to install (Install OpenConnect prior to WebConnect using the above instructions)
@@ -23,7 +23,7 @@ http://clickontyler.com/blog/2012/02/web-sharing-mountain-lion/
 
 Step 2. Edit your sudoers file and add this section:
 ```sh
-_www    ALL= NOPASSWD: /usr/bin/createcert.bash,/usr/bin/createplist.bash,/usr/bin/update.bash,/usr/bin/start.bash,/usr/bin/stop.bash,/usr/bin/restart.bash,/usr/bin/status.bash
+_www    ALL= NOPASSWD: /usr/bin/createcert.bash,/usr/bin/createplist.bash,/usr/bin/update.bash,/usr/bin/start.bash,/usr/bin/stop.bash,/usr/bin/restart.bash,/usr/bin/status.bash,/usr/bin/reboot.bash
 ```
 Step 3. Navigate to your new PlexConnect/update/OSX folder then issue these commands:
 ```sh
