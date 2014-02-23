@@ -117,6 +117,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<input type=radio name=cmd value=statusbash> PlexConnect Status <br>"
     echo "</p>"
     echo "OSX system commands"
+    echo "<br>" 
     echo "<input type=radio name=cmd value=rebootbash> Reboot OSX <br>"
     echo "<br>"
     echo "<input type=submit>"
