@@ -18,4 +18,9 @@ else
 openssl req -new -nodes -newkey rsa:2048 -out ./assets/certificates/trailers.pem -keyout ./assets/certificates/trailers.key -x509 -days 3650 -subj "/C=US/CN=www.icloud.com"
 openssl x509 -in ./assets/certificates/trailers.pem -outform der -out ./assets/certificates/trailers.cer && cat ./assets/certificates/trailers.key >> ./assets/certificates/trailers.pem
 
+cp /Applications/plexconnect/update/OSX/icloud/settings.cfg /applications/plexconnect
+
+restart.bash
+
+
 fi
