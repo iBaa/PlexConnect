@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo /usr/bin/createwsj.bash
+sudo /usr/bin/removecerts.bash
