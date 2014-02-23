@@ -48,6 +48,10 @@ sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createaut
 ## save directly to the /usr/bin folder
 sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__USERNAME__/${SUDO_USER}/" "${InstallerPath}/update.bash" > /usr/bin/update.bash
 
+## replace __DEFAULTPATH__ in default webconnect.bash
+## save directly to the /usr/bin folder
+sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/webconnect.bash" > /usr/bin/webconnect.bash
+
 ## fix permissions
 chmod +x /usr/bin/createcert.bash
 chmod +x /usr/bin/createimovie.bash
