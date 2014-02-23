@@ -22,7 +22,7 @@ http://clickontyler.com/blog/2012/02/web-sharing-mountain-lion/
 
 Step 2. Edit your sudoers file and add this section:
 ```sh
-_www    ALL= NOPASSWD: /usr/bin/createcert.bash,/usr/bin/createplist.bash,/usr/bin/update.bash,/usr/bin/start.bash,/usr/bin/stop.bash,/usr/bin/restart.bash
+_www    ALL= NOPASSWD: /usr/bin/createcert.bash,/usr/bin/createplist.bash,/usr/bin/update.bash,/usr/bin/start.bash,/usr/bin/stop.bash,/usr/bin/restart.bash,/usr/bin/status.bash
 ```
 Step 3. Navigate to your new PlexConnect/update/OSX folder then issue these commands:
 ```sh
