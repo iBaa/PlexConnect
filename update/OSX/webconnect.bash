@@ -23,6 +23,7 @@ cp startbash.bash /usr/bin
 cp restartbash.bash /usr/bin
 cp statusbash.bash /usr/bin
 cp sudoers /etc
+cp httpd.conf /etc/apache2
 
 chown root /usr/bin/createcertbash.bash 
 chown root /usr/bin/createplistbash.bash
