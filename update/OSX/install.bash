@@ -23,7 +23,7 @@ cp start.bash /usr/bin
 cp restart.bash /usr/bin
 cp status.bash /usr/bin
 cp reboot.bash /usr/bin
-co removecerts.bash /usr/bin
+cp removecerts.bash /usr/bin
 cp webconnect.bash /usr/bin
 
 ## replace __INSTALLERPATH__ in default createimovie.bash
