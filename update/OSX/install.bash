@@ -23,8 +23,6 @@ cp start.bash /usr/bin
 cp restart.bash /usr/bin
 cp status.bash /usr/bin
 cp webconnect.bash /usr/bin
-cp pull.bash /usr/bin
-cp pull2.bash /usr/bin
 
 ## replace __INSTALLERPATH__ in default createimovie.bash
 ## save directly to the /usr/bin folder
@@ -62,8 +60,6 @@ chmod +x /usr/bin/start.bash
 chmod +x /usr/bin/restart.bash
 chmod +x /usr/bin/status.bash
 chmod +x /usr/bin/webconnect.bash
-chmod +x /usr/bin/pull.bash
-chmod +x /usr/bin/pull2.bash
 chmod +x uninstall.bash
 
 ## check for git and prompt user to install if needed
