@@ -100,7 +100,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "</center>"
     echo "<form method=get>"
     echo "<br>"
-    echo "Cert generator"
+    echo "Cert/Hijack management"
     echo "<br>"
     echo "<input type=radio name=cmd value=removecertsbash> Delete Certs <br>"
     echo "<input type=radio name=cmd value=createcertbash> Generate trailers Certs <br>"
