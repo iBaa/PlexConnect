@@ -16,9 +16,27 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     if [ $CMD ]
     then
       case "$CMD" in
+        removecertsbash)
+          echo "Output of removecertsbash :<pre>"
+          /usr/bin/removecertsbash.bash
+          echo "</pre>"
+          ;;
+
         createcertbash)
           echo "Output of createcertbash :<pre>"
           /usr/bin/createcertbash.bash
+          echo "</pre>"
+          ;;
+
+          createimoviebash)
+          echo "Output of createimoviebash :<pre>"
+          /usr/bin/createimoviebash.bash
+          echo "</pre>"
+          ;;
+
+          createwsjbash)
+          echo "Output of createwsjbash :<pre>"
+          /usr/bin/createwsjbash.bash
           echo "</pre>"
           ;;
 
@@ -82,9 +100,12 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "</center>"
     echo "<form method=get>"
     echo "<br>"
-    echo "Create Certs"
+    echo "Cert generator"
     echo "<br>"
-    echo "<input type=radio name=cmd value=createcertbash> Install Certs <br>"
+    echo "<input type=radio name=cmd value=removecertsbash> Delete Certs <br>"
+    echo "<input type=radio name=cmd value=createcertbash> Generate trailers Certs <br>"
+    echo "<input type=radio name=cmd value=createimoviebash> Generate trailers Certs <br>"
+    echo "<input type=radio name=cmd value=createwsjbash> Generate trailers Certs <br>"
     echo "</p>"
     echo "PlexConnect commands"
     echo "<br>"    
