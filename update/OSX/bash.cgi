@@ -53,8 +53,14 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           ;;
           
           statusbash)
-          echo "Output of statustbash :<pre>"
-          /usr/bin/statustbash.bash
+          echo "Output of statusbash :<pre>"
+          /usr/bin/statusbash.bash
+          echo "</pre>"
+          ;;
+
+          rebootbash)
+          echo "Output of rebootbash :<pre>"
+          /usr/bin/rebootbash.bash
           echo "</pre>"
           ;;
 
@@ -88,6 +94,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<input type=radio name=cmd value=stopbash> Stop PlexConnect <br>"
     echo "<input type=radio name=cmd value=restartbash> Restart PlexConnect <br>"
     echo "<input type=radio name=cmd value=statusbash> PlexConnect Status <br>"
+    echo "<input type=radio name=cmd value=rebootbash> Reboot OSX <br>"
     echo "<br>"
     echo "<input type=submit>"
     echo "</form>"
