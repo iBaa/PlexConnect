@@ -22,5 +22,4 @@ cp /Applications/plexconnect/update/OSX/icloud/settings.cfg /applications/plexco
 
 restart.bash
 
-
 fi
