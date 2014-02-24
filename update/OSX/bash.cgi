@@ -134,6 +134,7 @@ echo "<input type="image" src="http://www.icon2s.com/wp-content/uploads/2013/01/
     echo "<input type="image" src="http://www.morningliberty.com/wp-content/uploads/2014/02/reset-150x150.png" name=cmd value=rebootbash>"
     echo "<input type="image" src="http://png-1.findicons.com/files/icons/977/rrze/150/lock.png" name=cmd value=lockbash>"
     echo "<input type="image" src="http://www.baptisttwentyone.com/wp-content/uploads/2011/01/world-globe-icon-150x150.jpg" name=cmd value=updatewcbash>"
+    echo "<input type="image" src="http://www.baptisttwentyone.com/wp-content/uploads/2011/01/world-globe-icon-150x150.jpg" name=cmd value=updatewcbash>"
     echo "<br>"
     echo "</form>"
     echo "</body>"
