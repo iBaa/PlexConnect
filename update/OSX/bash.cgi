@@ -129,7 +129,7 @@ echo "<input type="image" src="http://www.icon2s.com/wp-content/uploads/2013/01/
     echo "<input type="image" src="http://www.mybadpad.com/wp-content/uploads/2009/01/stop-sign-150x150.gif" name=cmd value=stopbash>"
     echo "<input type="image" src="http://www.velaction.com/lean-information/wp-content/uploads/2009/09/site-info-icon-150x150.jpg" name=cmd value=statusbash>"
     echo "</p>"
-    echo "OSX system commands (Reset, Lock screen)"
+    echo "OSX system commands (Reset, Lock screen, Update WebConnect)"
     echo "<br>" 
     echo "<input type="image" src="http://www.morningliberty.com/wp-content/uploads/2014/02/reset-150x150.png" name=cmd value=rebootbash>"
     echo "<input type="image" src="http://png-1.findicons.com/files/icons/977/rrze/150/lock.png" name=cmd value=lockbash>"
