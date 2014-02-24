@@ -78,7 +78,7 @@ chmod +x /usr/bin/webconnect.bash
 chmod +x uninstall.bash
 chmod +x /usr/bin/updatewc.bash
 chmod +x /usr/bin/pull.bash
-chmod +x usr/bin/pull2.bash
+chmod +x /usr/bin/pull2.bash
 ## check for git and prompt user to install if needed
 git
 
