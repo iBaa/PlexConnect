@@ -1,4 +1,3 @@
 #!/bin/bash
 
-cd ~/.Trash
-rm -rf *
+rm -rf ~/.Trash/*
