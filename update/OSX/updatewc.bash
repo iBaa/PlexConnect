@@ -3,6 +3,6 @@
 pull2.bash
 sleep 8
 cd /
-cd /applictions/plexconnect/update/osx
+cd /applications/plexconnect/update/osx
 ./install.bash
 webconnect.bash
