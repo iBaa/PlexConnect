@@ -4,6 +4,7 @@
     # our html header
     echo "<html>"
     echo "<head><title>OpenConnect</title></head>"
+    echo "<body background="http://www.ecardmedia.eu/data/media/907/White_Wallpaper_25.jpg">"
     echo "<body>"
 
  # read in our parameters
