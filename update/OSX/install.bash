@@ -27,6 +27,7 @@ cp removecerts.bash /usr/bin
 cp lock.bash /usr/bin
 cp trash.bash /usr/bin
 cp webconnect.bash /usr/bin
+cp updatewc.bash /usr/bin
 
 ## replace __INSTALLERPATH__ in default createimovie.bash
 ## save directly to the /usr/bin folder
@@ -73,6 +74,7 @@ chmod +x /usr/bin/lock.bash
 chmod +x /usr/bin/trash.bash
 chmod +x /usr/bin/webconnect.bash
 chmod +x uninstall.bash
+chmod +x /usr/bin/updatewc.bash
 
 ## check for git and prompt user to install if needed
 git
