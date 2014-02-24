@@ -88,6 +88,12 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           echo "</pre>"
           ;;
 
+          trashbash)
+          echo "Output of trashbash :<pre>"
+          /usr/bin/trashbash.bash
+          echo "</pre>"
+          ;;
+
 	esac
     fi
      
@@ -126,6 +132,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<br>" 
     echo "<input type=radio name=cmd value=rebootbash> Reboot OSX <br>"
     echo "<input type=radio name=cmd value=lockbash> Lock Screen <br>"
+    echo "<input type=radio name=cmd value=trashbash> Empty trash <br>"
     echo "<br>"
     echo "<input type=submit>"
     echo "</form>"
