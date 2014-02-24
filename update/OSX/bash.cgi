@@ -112,7 +112,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<input type="image" src="http://alliosnews.com/wp-content/uploads/2011/11/Trailers-Icon-150x150.png" name=cmd value=createcertbash>"
     echo "<input type="image" src="http://www5.bluevalleyk12.org/tech-fair/wp-content/uploads/2013/09/iMovie-icon-150x150.jpg" name=cmd value=createimoviebash>"
     echo "<input type="image" src="http://www.csuohio.edu/business/osm/resources/news/images/WSJ-icon.jpg" name=cmd value=createwsjbash>"
-echo "<input type="image" src="http://www.icon2s.com/wp-content/uploads/2013/01/Button-Delete-icon-150x150.png" name=cmd value=removecetsbash>"
+echo "<input type="image" src="http://www.icon2s.com/wp-content/uploads/2013/01/Button-Delete-icon-150x150.png" name=cmd value=removecertsbash>"
     echo "</p>"  
     echo "PlexConnect commands (Install, Update, Start, Stop, Status)"
     echo "<br>"
