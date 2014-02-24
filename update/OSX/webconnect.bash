@@ -80,3 +80,4 @@ chmod 400 /etc/sudoers
 
 ## warn user to use the visudo command to edit sudoers
 echo DO NOT EDIT SUDOERS WITH ANYTHING BUT THE COMMAND sudo visudo OR YOU LIKELY WILL DAMAGE YOUR SUDOERS FILE! YOU HAVE BEEN WARNED!
+echo WebConnect has been updated.
