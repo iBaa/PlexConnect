@@ -1074,8 +1074,8 @@ class CCommandCollection(CCommandHelper):
             
             for Stream in Media.find('Part').findall('Stream'):
                 if Stream.get('streamType','') == '1' and\
-                   Stream.get('codec','-') in ("mpeg4", "h264", "drmi"):
-                    if Stream.get('profile') == 'high 10' or \
+                   Stream.get('codec','-') in ("mpeg4", "h264"):
+                    if Stream.get('profile', '-') == 'high 10' or \
                         int(Stream.get('refFrames','0')) > 8:
                             videoATVNative = False
                     break
