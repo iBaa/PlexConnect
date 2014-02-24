@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export PATH=$PATH:/usr/local/git/bin/
+
 ## update status
 echo 'Stopping PlexConnect...'
 
