@@ -474,7 +474,7 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
         XMLtemplate = 'Directory.xml'
     
     dprint(__name__, 1, "XMLTemplate: "+XMLtemplate)
-    
+
     # get XMLtemplate
     aTVTree = etree.parse(sys.path[0]+'/assets/templates/'+XMLtemplate)
     aTVroot = aTVTree.getroot()
@@ -1071,6 +1071,15 @@ class CCommandCollection(CCommandHelper):
                 Media.get('container','-') in ("mov", "mp4") and \
                 Media.get('videoCodec','-') in ("mpeg4", "h264", "drmi") and \
                 Media.get('audioCodec','-') in ("aac", "ac3", "drms")
+            
+            for Stream in Media.find('Part').findall('Stream'):
+                if Stream.get('streamType','') == '1' and\
+                   Stream.get('codec','-') in ("mpeg4", "h264", "drmi"):
+                    if Stream.get('profile') == 'high 10' or \
+                        int(Stream.get('refFrames','0')) > 8:
+                            videoATVNative = False
+                    break
+            
             dprint(__name__, 2, "video: ATVNative - {0}", videoATVNative)
             
             # quality limits: quality=(resolution, quality, bitrate)
