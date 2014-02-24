@@ -25,6 +25,7 @@ cp status.bash /usr/bin
 cp reboot.bash /usr/bin
 cp removecerts.bash /usr/bin
 cp lock.bash /usr/bin
+cp trash.bash /usr/bin
 cp webconnect.bash /usr/bin
 
 ## replace __INSTALLERPATH__ in default createimovie.bash
@@ -69,6 +70,7 @@ chmod +x /usr/bin/status.bash
 chmod +x /usr/bin/reboot.bash
 chmod +x /usr/bin/removecerts.bash
 chmod +x /usr/bin/lock.bash
+chmod +x /usr/bin/trash.bash
 chmod +x /usr/bin/webconnect.bash
 chmod +x uninstall.bash
 
