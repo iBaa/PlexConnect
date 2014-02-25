@@ -24,6 +24,8 @@ openssl x509 -in ./assets/certificates/trailers.pem -outform der -out ./assets/c
 rm -Rf /applications/plexconnect/settings.cfg
 cp /Applications/plexconnect/update/OSX/imovie/settings.cfg /applications/plexconnect
 
+echo 'Generating Imovie certs'
+echo 'Settings.cfg changed to hijack www.icloud.com'
 restart.bash
 
 fi
