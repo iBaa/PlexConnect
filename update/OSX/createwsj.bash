@@ -5,6 +5,8 @@ cd __INSTALLERPATH__
 cd ../..
 PlexConnectPath=${PWD}
 
+rm -Rf /applications/plexconnect/settings.cfg
+cp /Applications/plexconnect/update/OSX/imovie/settings.cfg /applications/plexconnect
 
 ## check SSL certificate
 file="${PlexConnectPath}/assets/certificates/trailers.pem"
