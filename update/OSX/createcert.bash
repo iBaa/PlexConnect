@@ -24,6 +24,8 @@ openssl x509 -in ./assets/certificates/trailers.pem -outform der -out ./assets/c
 rm -Rf /applications/plexconnect/settings.cfg
 cp /Applications/plexconnect/update/OSX/trailers/settings.cfg /applications/plexconnect
 
+echo 'Generating Trailers certs'
+echo 'Settings.cfg changed to hijack trailers.apple.com'
 restart.bash
 
 fi
