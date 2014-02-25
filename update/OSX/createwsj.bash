@@ -23,6 +23,8 @@ openssl x509 -in ./assets/certificates/trailers.pem -outform der -out ./assets/c
 rm -Rf /applications/plexconnect/settings.cfg
 cp /Applications/plexconnect/update/OSX/wsj/settings.cfg /applications/plexconnect
 
+echo 'Generating WSJ certs'
+echo 'Settings.cfg changed to hijack secure.marketwatch.com'
 restart.bash
 
 fi
