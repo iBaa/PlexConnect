@@ -3,8 +3,8 @@
 
     # our html header
     echo "<html>"
-    echo "<head><title>OpenConnect</title></head>"
-    echo "<body background="http://www.ecardmedia.eu/data/media/907/White_Wallpaper_25.jpg">"
+    echo "<head><title>WebConnect</title></head>"
+    echo "<font color=white><body bgcolor="black">"
     echo "<body>"
 
  # read in our parameters
@@ -101,39 +101,21 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     # print out the form
      
     # page header
-    echo "<p>"
-    echo "<center>"
-    echo "<h2>OpenConnect</h2>"
-    echo "</center>"
-    echo "<p>"
-    echo "<p>"
-    
-    echo "<center>"
-    echo "<h2>Please choose your option below</h2>"
-    echo "</center>"
     echo "<form method=get>"
     echo "<br>"
     echo "</p>" 
-    echo "Cert/Hijack management (Trailers, I-Movie, Wsj, Remove certs)"
     echo "<br>"
-    echo "<input type="image" src="http://alliosnews.com/wp-content/uploads/2011/11/Trailers-Icon-150x150.png" name=cmd value=createcertbash>"
-    echo "<input type="image" src="http://www5.bluevalleyk12.org/tech-fair/wp-content/uploads/2013/09/iMovie-icon-150x150.jpg" name=cmd value=createimoviebash>"
-    echo "<input type="image" src="http://www.csuohio.edu/business/osm/resources/news/images/WSJ-icon.jpg" name=cmd value=createwsjbash>"
-echo "<input type="image" src="http://www.icon2s.com/wp-content/uploads/2013/01/Button-Delete-icon-150x150.png" name=cmd value=removecertsbash>"
+    echo "<input type="image" src="http://alliosnews.com/wp-content/uploads/2011/11/Trailers-Icon-150x150.png" name=cmd value=createcertbash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" img src="http://www5.bluevalleyk12.org/tech-fair/wp-content/uploads/2013/09/iMovie-icon-150x150.jpg" name=cmd value=createimoviebash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" src="http://www.csuohio.edu/business/osm/resources/news/images/WSJ-icon.jpg" name=cmd value=createwsjbash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" src="http://www.icon2s.com/wp-content/uploads/2013/01/Button-Delete-icon-150x150.png" name=cmd value=removecertsbash>"
+    echo "<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hijack Trailers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hijack I-Moive&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hijack WSJ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Delete Certs<p>"
     echo "</p>"  
-    echo "PlexConnect commands (Install, Update, Start, Stop, Status)"
-    echo "<br>"
-    echo "<input type="image" src="http://static.thetechjournal.net/wp-content/uploads/2011/04/Installous4Icon-iJailbreak-150x150.png" name=cmd value=createplistbash>"
-    echo "<input type="image" src="http://www.yourdailymac.net/wp-content/uploads/2011/11/164830-itunes_connect_mobile_icon-150x150.jpg" name=cmd value=updatebash>"
-    echo "<input type="image" src="http://seobacklinks4yoursite.com/wp-content/uploads/2013/10/YouTube-icon-150x150.png" name=cmd value=startbash>"
-    echo "<input type="image" src="http://www.mybadpad.com/wp-content/uploads/2009/01/stop-sign-150x150.gif" name=cmd value=stopbash>"
-    echo "<input type="image" src="http://www.velaction.com/lean-information/wp-content/uploads/2009/09/site-info-icon-150x150.jpg" name=cmd value=statusbash>"
+    echo "<input type="image" src="http://static.thetechjournal.net/wp-content/uploads/2011/04/Installous4Icon-iJailbreak-150x150.png" name=cmd value=createplistbash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" img src="http://www.yourdailymac.net/wp-content/uploads/2011/11/164830-itunes_connect_mobile_icon-150x150.jpg" name=cmd value=updatebash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" src="http://seobacklinks4yoursite.com/wp-content/uploads/2013/10/YouTube-icon-150x150.png" name=cmd value=startbash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" src="http://www.mybadpad.com/wp-content/uploads/2009/01/stop-sign-150x150.gif" name=cmd value=stopbash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" src="http://www.velaction.com/lean-information/wp-content/uploads/2009/09/site-info-icon-150x150.jpg" name=cmd value=statusbash>"
+    echo "<p>&nbsp;&nbsp;Install PlexConnect&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Update PlexConnect&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Start PlexConnect&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stop PlexConnect&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status PlexConnect<p>"     
     echo "</p>"
-    echo "OSX system commands (Reset, Lock screen, Update WebConnect)"
     echo "<br>" 
     echo "<input type="image" src="http://www.morningliberty.com/wp-content/uploads/2014/02/reset-150x150.png" name=cmd value=rebootbash>"
     echo "<input type="image" src="http://png-1.findicons.com/files/icons/977/rrze/150/lock.png" name=cmd value=lockbash>"
     echo "<input type="image" src="http://www.baptisttwentyone.com/wp-content/uploads/2011/01/world-globe-icon-150x150.jpg" name=cmd value=updatewcbash>"
+
     echo "<br>"
     echo "</form>"
     echo "</body>"
