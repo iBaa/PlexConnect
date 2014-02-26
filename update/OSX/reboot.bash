@@ -1,4 +1,4 @@
 #!/bin/bash
 
 reboot
-'Reset command sent'
+echo 'Reset command sent'
