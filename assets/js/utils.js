@@ -390,3 +390,58 @@ function changeArtwork(PMS_baseURL, accessToken, ratingKey, posterURL, shelf)
 	req.open('PUT', url, true);
 	req.send();
 };
+
+/*
+ * ScrobbleMenu
+ */
+ function scrobbleMenu(url)
+{
+  fv = atv.device.softwareVersion.split(".");
+  firmVer = fv[0] + "." + fv[1];
+  log(firmVer);
+  if (parseFloat(firmVer) < 6.0)
+  {
+    // firmware <6.0
+    // load standard scrobble menu
+    atv.loadURL(url);
+  }
+  else
+  {
+    // firmware >=6.0
+    // load scrobble menu xml
+    // parse the xml and build a popup context menu 
+    var url = url + "&PlexConnectUDID="+atv.device.udid
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function()
+    {
+      try
+      {
+        if(req.readyState == 4)
+        {
+          xml = req.responseText;
+          xmlDoc = atv.parseXML(xml);
+          atv.contextMenu.load(xmlDoc);
+        } 
+      }
+      catch(e)
+      {
+        req.abort();
+      }
+    }
+    
+    req.open('GET',unescape(url), false);
+    req.send();
+  }
+}
+
+/*
+ * xml updater Major Hack :)
+ */
+function updateContextXML()
+{
+  xmlstr = '<atv><body><optionList id="fakeUpdater" autoSelectSingleItem="true"> \
+            <items><oneLineMenuItem id="0" onSelect="atv.unloadPage()"><label></label> \
+            </oneLineMenuItem></items></optionList></body></atv>';
+  xmlDoc = atv.parseXML(xmlstr);
+  atv.loadXML(xmlDoc);
+}

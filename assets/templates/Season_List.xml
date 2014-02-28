@@ -16,7 +16,7 @@
             <items>
               <twoLineEnhancedMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key)}}')"
                                                          onSelect="atv.loadURL('{{URL(key)}}')"
-                                                         onHoldSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ScrobbleMenu')">
+                                                         onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenu')">
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>
                 <label2>{{VAL(leafCount)}} {{TEXT(Episodes)}}</label2>
