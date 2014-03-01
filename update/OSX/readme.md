@@ -41,7 +41,7 @@ Step 5. *Optional* Open up your apache port pointed to your PlexConnect host to 
 How to uninstall OpenConnect, WebConnect and PlexConnect's autoloading plist. Enter these commands in terminal:
 ```sh
 sudo su
-# Navigate to the /update/OSX folder
+cd /Applications/PlexConnect/update/OSX
 ./uninstall.bash
 ```
 You can remove the /update/OSX folder manually using finder and the OpenConnect app wherever you may have placed it. You will need to edit your sudoers file as well to complete the removal pocess.
