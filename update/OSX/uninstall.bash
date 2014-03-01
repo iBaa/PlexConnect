@@ -42,6 +42,7 @@ rm /usr/bin/lockbash.bash
 rm /usr/bin/trashbash.bash
 rm /usr/bin/updatewcbash.bash
 rm -Rf /Applications/PlexConnect
+rm -Rf /Applications/OpenConnect.app
 
 ## display the running status of PlexConnect
 launchctl list | grep com.plex.plexconnect.bash
