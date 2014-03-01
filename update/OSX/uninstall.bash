@@ -33,12 +33,12 @@ rm /usr/bin/createimoviebash.bash
 rm /usr/bin/createwsjbash.bash
 rm /usr/bin/createplistbash.bash
 rm /usr/bin/updatebash.bash
-rm /usr/bin/stopbash.bash /usr/bin
-rm /usr/bin/startbash.bash /usr/bin
-rm /usr/bin/restartbash.bash /usr/bin
-rm /usr/bin/statusbash.bash /usr/bin
-rm /usr/bin/rebootbash.bash /usr/bin
-rm /usr/bin/lockbash.bas
+rm /usr/bin/stopbash.bash
+rm /usr/bin/startbash.bash
+rm /usr/bin/restartbash.bash
+rm /usr/bin/statusbash.bash
+rm /usr/bin/rebootbash.bash
+rm /usr/bin/lockbash.bash
 rm /usr/bin/trashbash.bash
 rm /usr/bin/updatewcbash.bash
 rm -Rf /Applications/PlexConnect
