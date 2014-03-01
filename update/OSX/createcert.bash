@@ -13,6 +13,7 @@ file="${PlexConnectPath}/assets/certificates/trailers.pem"
 if [ -f "$file" ]; then
     echo 'SSL certificate '$file' found. Skipping' 
     echo 'Settings.cfg changed to hijack trailers.apple.com'
+    echo 'Upload profile to ATV using this url http://trailers.apple.com/trailers.cer'
 
 else
 
@@ -26,6 +27,7 @@ cp /Applications/plexconnect/update/OSX/trailers/settings.cfg /applications/plex
 
 echo 'Generating Trailers certs'
 echo 'Settings.cfg changed to hijack trailers.apple.com'
+echo 'Upload profile to ATV using this url http://trailers.apple.com/trailers.cer'
 restart.bash
 
 fi
