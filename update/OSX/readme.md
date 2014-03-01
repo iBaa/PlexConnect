@@ -46,4 +46,4 @@ sudo su
 cd /Applications/PlexConnect/update/OSX
 ./uninstall.bash
 ```
-You can remove the /update/OSX folder manually using finder and the OpenConnect app wherever you may have placed it. You will need to edit your sudoers file as well to complete the removal pocess.
+You will need to edit your sudoers file as well using visudo via terminal to complete the removal pocess if desired but it is not required and will not harm your system if your sudores file is unaltered.
