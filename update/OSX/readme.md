@@ -36,7 +36,9 @@ http://YOUR_LOCAL_IP_ADDRESS:YOUR_APACHE2_PORT/cgi-bin/bash.cgi
 ```
 Step 5. *Optional* Open up your apache port pointed to your PlexConnect host to mangage PlexConnect anywhere on any device/web-browser.
 
-# Uninstall 
+# Uninstall
+
+*Warning backup any files needed located in /Applications/PlexConnect prior to use this will remove your PlexConnect folder as well in /Applications*
 
 How to uninstall OpenConnect, WebConnect and PlexConnect's autoloading plist. Enter these commands in terminal:
 ```sh
