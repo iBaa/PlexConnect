@@ -189,6 +189,8 @@ function selectAudioAndSubs(PMS_baseURL, accessToken, ratingKey)
 function toggleSubCheck(id) 
 {	
 	id = 'sub' + id
+  fv = atv.device.softwareVersion.split(".");
+  firmVer = fv[0] + "." + fv[1];
   if (parseFloat(firmVer) < fVer)
   {
     var root = document.rootElement;
@@ -233,6 +235,8 @@ function toggleSubCheck(id)
 function toggleAudioCheck(id) 
 {	
 	id = 'audio' + id
+  fv = atv.device.softwareVersion.split(".");
+  firmVer = fv[0] + "." + fv[1];
   if (parseFloat(firmVer) < fVer)
   {
     var root = document.rootElement;
@@ -274,6 +278,8 @@ function toggleAudioCheck(id)
 // Add Check Mark
 function addCheckMark(menuItem)
 {
+  fv = atv.device.softwareVersion.split(".");
+  firmVer = fv[0] + "." + fv[1];
   if (parseFloat(firmVer) < fVer)
   {
     var accessories = document.makeElementNamed("accessories");
