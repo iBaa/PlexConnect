@@ -81,7 +81,3 @@ chmod +x /usr/bin/pull.bash
 chmod +x /usr/bin/pull2.bash
 ## check for git and prompt user to install if needed
 git
-
-## warn user to install git prior to using OpenConnect or WebConnect
-echo IF YOU CANCELED THE INSTALLATION OF GIT RERUN THIS SCRIPT. DO NOT CONTINUE UNTIL GIT IS INSTALLED YOU HAVE BEEN WARNED!
-echo PROCEED ONLY IF YOU INSTALLED GIT PRIOR
