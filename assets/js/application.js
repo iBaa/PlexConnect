@@ -514,7 +514,7 @@ function updateSubtitle(time)
         subtitlePos--;
     }
     // forward
-    while(subtitlePos<subtitle.Timestamp.length-2 && time>subtitle.Timestamp[subtitlePos+1].time)
+    while(subtitlePos<subtitle.Timestamp.length-1 && time>subtitle.Timestamp[subtitlePos+1].time)
     {
         subtitlePos++;
     }
