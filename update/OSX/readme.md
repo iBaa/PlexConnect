@@ -10,7 +10,7 @@ https://www.dropbox.com/sh/t45w85ktydh0dvu/6-8W2POoM4
 
 A few notes about OpenConnect:
 
-OpenConnect requires a plist for the update function to work just use the expert or guide mode to install the PlexConnect autostarting plist. Finally see if your appletv is displaying PlexConnect, if it is your plist has been properly installed. This app is designed to allow you to keep PlexConnect up to date if there is anything you want to backup please do so prior to using this app. The app installs PlexConnect in /Applications/PlexConnect so if there is something there please back it up and delete that folder in order for OpenConnect to work.
+OpenConnect requires a plist for the update function to work just use the guide mode to install the PlexConnect autostarting plist. Finally see if your appletv is displaying PlexConnect, if it is your plist has been properly installed. This app is designed to allow you to keep PlexConnect up to date if there is anything you want to backup please do so prior to using this app. The app installs PlexConnect in /Applications/PlexConnect so if there is something there please back it up and delete that folder in order for OpenConnect to work.
 
 # WebConnect 
 # *New* - now you can install WebConnect from the OpenConnect App (You can update WebConnect from its Webpage)
