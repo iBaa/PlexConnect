@@ -13,6 +13,7 @@ file="${PlexConnectPath}/assets/certificates/trailers.pem"
 if [ -f "$file" ]; then
     echo 'SSL certificate '$file' found. Skipping' 
     echo 'Settings.cfg changed to hijack secure.marketwatch.com'
+    echo 'Upload profile to ATV using this url http://secure.marketwatch.com/trailers.cer'
 else
 
 ## Trailers - hostname is trailers.apple.com
@@ -25,6 +26,7 @@ cp /Applications/plexconnect/update/OSX/wsj/settings.cfg /applications/plexconne
 
 echo 'Generating WSJ certs'
 echo 'Settings.cfg changed to hijack secure.marketwatch.com'
+echo 'Upload profile to ATV using this url http://secure.marketwatch.com/trailers.cer'
 restart.bash
 
 fi
