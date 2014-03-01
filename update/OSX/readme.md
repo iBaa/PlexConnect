@@ -4,7 +4,7 @@ How to install OpenConnect
 
 Step 1. Kill plexconnect if its running or unload your plist if used to autostart PlexConnect via launchctl.
 
-Step 2. To install OpenConnect on osx simply download, follow the instrustions then run this app in guide mode (OpenConnect has a built-in in OpenConnect/PlexConnect updater option):
+Step 2. To install OpenConnect on osx simply download the OpenConnect.zip, extract it, follow the guided instructions, then run this app in guide mode to install PlexConnect on your Mac and Apple TV (OpenConnect has a built-in in OpenConnect/PlexConnect updater option):
 
 https://www.dropbox.com/sh/t45w85ktydh0dvu/6-8W2POoM4
 
@@ -13,7 +13,7 @@ A few notes about OpenConnect:
 OpenConnect requires a plist for the update function to work just use the expert or guide mode to install the PlexConnect autostarting plist. Finally see if your appletv is displaying PlexConnect, if it is your plist has been properly installed. This app is designed to allow you to keep PlexConnect up to date if there is anything you want to backup please do so prior to using this app. The app installs PlexConnect in /Applications/PlexConnect so if there is something there please back it up and delete that folder in order for OpenConnect to work.
 
 # WebConnect 
-# *New* - now you can install WebConnect from the OpenConnect App
+# *New* - now you can install WebConnect from the OpenConnect App (You can update WebConnect from its Webpage)
 
 *Old method* How to install (Install OpenConnect prior to WebConnect using the above instructions)
 
