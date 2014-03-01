@@ -42,3 +42,9 @@ rm /usr/bin/lockbash.bash
 rm /usr/bin/trashbash.bash
 rm /usr/bin/updatewcbash.bash
 rm -Rf /Applications/PlexConnect
+
+## display the running status of PlexConnect
+launchctl list | grep com.plex.plexconnect.bash
+
+## Explain uninstall has been completed
+echo 'OpenConnect and Webconnect have been uninstalled'
