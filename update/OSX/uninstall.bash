@@ -47,4 +47,4 @@ rm -Rf /Applications/PlexConnect
 launchctl list | grep com.plex.plexconnect.bash
 
 ## Explain uninstall has been completed
-echo 'OpenConnect and Webconnect have been uninstalled'
+echo 'OpenConnect and WebConnect have been uninstalled if there is numerous rm commands during this script you did not install WebConnect'
