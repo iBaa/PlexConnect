@@ -88,6 +88,7 @@
                   <focusedImage>resource://PlayFocused.png</focusedImage>
                 </actionButton>
                 <actionButton id="selectAudioAndSubs"
+                              onHoldSelect="selectAudioAndSubs('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(Video/Media/Part/id)}}')"
                               onSelect="selectAudioAndSubs('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(Video/Media/Part/id)}}')"
                               onPlay="selectAudioAndSubs('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(Video/Media/Part/id)}}')">
                 {{VAR(SelectAudioAndSubs:NoKey:{{EVAL( {{VAL(#AudioStreams)}}>1 or {{VAL(#SubtitleStreams)}}>0 )}})}}

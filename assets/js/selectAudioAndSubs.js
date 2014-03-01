@@ -28,33 +28,61 @@ if(atv.Element)
 	};
 };
 
+var fVer = 60.0; // force old menu till apple fixes the bugs
+
 /*
  * Build Audio/Subtitle menu
  */
-function selectAudioAndSubs(PMS_baseURL, accessToken, ratingKey) {
-  var xmlstr =
-"<?xml version=\"1.0\" encoding=\"UTF-8\"?> \
-<atv> \
-  <head> \
-    <script src=\"{{URL(/js/selectAudioAndSubs.js)}}\"/> \
-  </head> \
-  <body> \
-    <optionDialog id=\"optionDialog\"> \
-      <header> \
-        <simpleHeader> \
-          <title>{{TEXT(Select Tracks)}}</title> \
-        </simpleHeader> \
-      </header> \
-      <menu> \
+var contextDoc;
+function selectAudioAndSubs(PMS_baseURL, accessToken, ratingKey) 
+{
+  fv = atv.device.softwareVersion.split(".");
+  firmVer = fv[0] + "." + fv[1];
+  if (parseFloat(firmVer) < fVer)
+  {
+    var xmlstr =
+    "<?xml version=\"1.0\" encoding=\"UTF-8\"?> \
+    <atv> \
+      <head> \
+        <script src=\"{{URL(/js/selectAudioAndSubs.js)}}\"/> \
+      </head> \
+      <body> \
+      <optionDialog id=\"optionDialog\"> \
+        <header> \
+          <simpleHeader> \
+            <title>{{TEXT(Select Tracks)}}</title> \
+          </simpleHeader> \
+        </header> \
+        <menu> \
+          <sections> \
+            <menuSection> \
+              <header> \
+                <horizontalDivider alignment=\"center\"> \
+                  <title>{{TEXT(Audio Track)}}</title> \
+                </horizontalDivider> \
+              </header> \
+              <items>";
+      var audioStr = "";
+      var subsStr = "";
+      var subsDivider = "{{TEXT(Subtitle Track)}}";
+      var subsAlign = "center";
+  }
+  else
+  {
+    var xmlstr =
+    "<?xml version=\"1.0\" encoding=\"UTF-8\"?> \
+    <atv> \
+      <body> \
+      <popUpMenu id=\"popUpMenu\"> \
         <sections> \
           <menuSection> \
-            <header> \
-              <horizontalDivider alignment=\"center\"> \
-                <title>{{TEXT(Audio Track)}}</title> \
-              </horizontalDivider> \
-            </header> \
             <items>";
-
+    var audioStr = "{{TEXT(Audio)}} - ";
+    var subsStr = "{{TEXT(Subs)}} - ";
+    var subsDivider = "";
+    var subsAlign = "right";
+  }
+  
 	var streams = document.evaluateXPath('//stream');
   
   for(var i = 0; i < streams.length; ++i)
@@ -64,7 +92,7 @@ function selectAudioAndSubs(PMS_baseURL, accessToken, ratingKey) {
     { 
       xmlstr = xmlstr + "\
                 <oneLineMenuItem id=\"audio" + i.toString() + "\" onSelect=\"selectAudioStream(\'" + PMS_baseURL + "\', \'" + accessToken + "\', \'" + ratingKey + "\', " + stream.getElementByTagName('id').textContent + "); toggleAudioCheck(\'" + i.toString() + "\')\"> \
-                <label>" + stream.getElementByTagName('language').textContent + " (" + stream.getElementByTagName('codec').textContent + ")</label>";
+                <label>" + audioStr + stream.getElementByTagName('language').textContent + " (" + stream.getElementByTagName('codec').textContent + ")</label>";
       if (stream.getElementByTagName('selected').textContent == '1')
       {
         xmlstr = xmlstr + " \
@@ -81,14 +109,14 @@ function selectAudioAndSubs(PMS_baseURL, accessToken, ratingKey) {
           </menuSection> \
           <menuSection> \
             <header> \
-              <horizontalDivider alignment=\"center\"> \
-                <title>{{TEXT(Subtitle Track)}}</title> \
+              <horizontalDivider alignment=\"" + subsAlign + "\"> \
+                <title>" + subsDivider + "</title> \
               </horizontalDivider> \
             </header> \
             <items>";
   xmlstr = xmlstr + " \
               <oneLineMenuItem id=\"sub99\" onSelect=\"selectSubStream(\'" + PMS_baseURL + "\', \'" + accessToken + "\', \'" + ratingKey + "\', 0); toggleSubCheck(\'99\')\"> \
-                <label>{{TEXT(None)}}</label>";
+                <label>" + subsStr + "{{TEXT(None)}}</label>";
 	
 	var noSubs = true;
 	var noSubsSelected = true;
@@ -114,7 +142,7 @@ function selectAudioAndSubs(PMS_baseURL, accessToken, ratingKey) {
     { 
       xmlstr = xmlstr + " \
               <oneLineMenuItem id=\"sub" + i.toString() + "\" onSelect=\"selectSubStream(\'" + PMS_baseURL + "\', \'" + accessToken + "\', \'" + ratingKey + "\', " + stream.getElementByTagName('id').textContent + "); toggleSubCheck(\'" + i.toString() + "\')\"> \
-                <label>" + stream.getElementByTagName('language').textContent + " (" + stream.getElementByTagName('format').textContent + ")</label>";
+                <label>" + subsStr + stream.getElementByTagName('language').textContent + " (" + stream.getElementByTagName('format').textContent + ")</label>";
 			if (stream.getElementByTagName('selected').textContent == '1')
 			{
 				xmlstr = xmlstr + " \
@@ -127,16 +155,32 @@ function selectAudioAndSubs(PMS_baseURL, accessToken, ratingKey) {
     }
   }
 	
-	xmlstr = xmlstr + " \
-            </items> \
-          </menuSection> \
-        </sections> \
-      </menu> \
-    </optionDialog> \
-  </body> \
-</atv>";
-  var doc = atv.parseXML(xmlstr);
-  atv.loadXML(doc);	
+  if (parseFloat(firmVer) < fVer)
+  {
+    xmlstr = xmlstr + " \
+                </items> \
+              </menuSection> \
+            </sections> \
+          </menu> \
+        </optionDialog> \
+      </body> \
+    </atv>";  
+    var doc = atv.parseXML(xmlstr);
+    atv.loadXML(doc);
+  }
+  else
+  {
+    xmlstr = xmlstr + " \
+                </items> \
+              </menuSection> \
+            </sections> \
+          </popUpMenu> \
+        </body> \
+      </atv>";
+    contextDoc = atv.parseXML(xmlstr);
+    atv.contextMenu.load(contextDoc);
+  }
+	
 };	
 
 /*
@@ -145,7 +189,14 @@ function selectAudioAndSubs(PMS_baseURL, accessToken, ratingKey) {
 function toggleSubCheck(id) 
 {	
 	id = 'sub' + id
-	var root = document.rootElement;
+  if (parseFloat(firmVer) < fVer)
+  {
+    var root = document.rootElement;
+  }
+  else
+  {
+    var root = contextDoc.rootElement;
+  }
 	var menuItems = root.getElementsByTagName('oneLineMenuItem');
 	if (menuItems)
 	{
@@ -170,10 +221,7 @@ function toggleSubCheck(id)
 			var menuID = menuItem.getAttribute('id')
 			if ((menuID.indexOf('sub') !== -1)&&(menuID == id))
 			{
-				var accessories = document.makeElementNamed("accessories");
-        var checkmark = document.makeElementNamed("checkMark");
-        accessories.appendChild(checkmark);
-        menuItem.appendChild(accessories);
+        addCheckMark(menuItem);
 			}
 		}
 	}
@@ -185,7 +233,14 @@ function toggleSubCheck(id)
 function toggleAudioCheck(id) 
 {	
 	id = 'audio' + id
-	var root = document.rootElement;
+  if (parseFloat(firmVer) < fVer)
+  {
+    var root = document.rootElement;
+  }
+  else
+  {
+    var root = contextDoc.rootElement;
+  }
 	var menuItems = root.getElementsByTagName('oneLineMenuItem');
 	if (menuItems)
 	{
@@ -210,13 +265,29 @@ function toggleAudioCheck(id)
 			var menuID = menuItem.getAttribute('id')
 			if ((menuID.indexOf('audio') !== -1)&&(menuID == id))
 			{
-				var accessories = document.makeElementNamed("accessories");
-        var checkmark = document.makeElementNamed("checkMark");
-        accessories.appendChild(checkmark);
-        menuItem.appendChild(accessories);
+        addCheckMark(menuItem);
 			}
 		}
 	}
+};
+
+// Add Check Mark
+function addCheckMark(menuItem)
+{
+  if (parseFloat(firmVer) < fVer)
+  {
+    var accessories = document.makeElementNamed("accessories");
+    var checkmark = document.makeElementNamed("checkMark");
+    accessories.appendChild(checkmark);
+    menuItem.appendChild(accessories);
+  }
+  else
+  {
+    var accessories = contextDoc.makeElementNamed("accessories");
+    var checkmark = contextDoc.makeElementNamed("checkMark");
+    accessories.appendChild(checkmark);
+    menuItem.appendChild(accessories);
+  }
 };
  
 /*
