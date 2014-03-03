@@ -126,16 +126,17 @@ def startup():
     
     return running
 
-def run():
-    while running:
-        # do something important
-        try:
-            time.sleep(60)
-        except IOError as e:
-            if e.errno == errno.EINTR and not running:
-                pass  # mask "IOError: [Errno 4] Interrupted function call"
-            else:
-                raise
+def run(timeout=60):
+    # do something important
+    try:
+        time.sleep(timeout)
+    except IOError as e:
+        if e.errno == errno.EINTR and not running:
+            pass  # mask "IOError: [Errno 4] Interrupted function call"
+        else:
+            raise
+    
+    return running
 
 def shutdown():
     for slave in procs:
@@ -167,9 +168,9 @@ if __name__=="__main__":
     dprint('PlexConnect', 0, "Press CTRL-C to shut down.")
     dprint('PlexConnect', 0, "***")
     
-    success = startup()
+    running = startup()
     
-    if success:
-        run()
-        
-        shutdown()
+    while running:
+        running = run()
+    
+    shutdown()

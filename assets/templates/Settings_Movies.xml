@@ -47,6 +47,11 @@
                 <label>{{TEXT(Actor View)}}</label>
                 <rightLabel>{{SETTING(actorview)}}</rightLabel>
               </oneLineMenuItem>
+              
+              <oneLineMenuItem id="ShowTitles_Movies" onSelect="toggleSettings('ShowTitles_Movies', 'Settings_Movies')">
+                <label>{{TEXT(Poster Titles)}}</label>
+                <rightLabel>{{SETTING(showtitles_movies)}}</rightLabel>
+              </oneLineMenuItem>
             </items>
           </menuSection>
 
@@ -64,7 +69,14 @@
                   <checkMark/>
                 </accessories>{{CUT($movies_navbar_unwatched::unchecked=CUT|checked=)}}
               </oneLineMenuItem>
-
+              
+              <oneLineMenuItem id="Movies_NavBar_ByFolder" onSelect="toggleSettings('Movies_NavBar_ByFolder', 'Settings_Movies')">
+                <label>{{TEXT(By Folder)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($movies_navbar_byfolder::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+              
               <oneLineMenuItem id="Movies_NavBar_Collections" onSelect="toggleSettings('Movies_NavBar_Collections', 'Settings_Movies')">
                 <label>{{TEXT(Collections)}}</label>
                 <accessories>

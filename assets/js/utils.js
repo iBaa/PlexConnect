@@ -109,46 +109,6 @@ function refreshSection(id, refreshKey)
     req.send();
 }
 
-
-
-/*
- * navigation bar - dynamic loading of manu pages
- */
-function loadMenuPage(event)
-{
-    var id = event.navigationItemId;
-    log("loadItem: "+id);
-    var item = document.getElementById(id);
-    var url = item.getElementByTagName('url').textContent;
-    
-    if (url.indexOf("{{URL()}}")!=-1)
-    {
-        url = url + "&PlexConnectUDID=" + atv.device.udid;
-    }
-    
-    var req = new XMLHttpRequest();
-    req.onreadystatechange = function()
-    {
-        try
-        {
-            if(req.readyState == 4)
-            {
-                doc = req.responseXML
-                if(event) event.success(doc);
-                else atv.loadXML(doc);
-            }
-        }
-        catch(e)
-        {
-            req.abort();
-        }
-    }
-    req.open('GET', url, true);
-    req.send();
-};
-
-
-
 /*
  * lookup movie title on tmdb and pass trailer ID to PlexConnect
  */
@@ -248,3 +208,200 @@ atv.loadAndSwapURL = function(url)
     
     iOS_atv_loadAndSwapURL(url);
 };
+
+/*
+ * Flatten TV Seasons
+ * If show has only one season then flatten it!
+ */
+
+flattenSeason = function(url, accessToken, flatten, onDeck)
+{
+  if (accessToken!='')
+  {
+    if (url.indexOf('?') != -1)
+    {
+      accessToken = '&X-Plex-Token=' + accessToken;
+    }
+    else
+    {
+      accessToken = '?X-Plex-Token=' + accessToken;
+    }
+  }
+
+  if (flatten=='False') 
+  {
+    if (onDeck == 'False')
+      atv.loadURL(url);
+    else
+      atv.loadAndSwapURL(url);
+  }
+  else
+  {
+    var urlparts = url.split('(')
+    var newurl = urlparts[1].replace(')','');
+
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function()
+    {
+      try
+      {
+        if(req.readyState == 4)
+        {
+          doc = req.responseXML;
+          root = doc.rootElement;
+          var size = root.getAttribute('size');
+          if (size=='1')
+          {
+            var newpath = root.getElementByTagName('Directory').getAttribute('key');
+            urlparts = url.split('/library');
+            newurl = urlparts[0] + newpath;
+            if (onDeck == 'False')
+              atv.loadURL(newurl);
+            else
+              atv.loadAndSwapURL(newurl);
+          }
+          else if (size=='2')
+          {
+            var newpaths = root.getElementsByTagName('Directory');
+            var newpath = newpaths[1].getAttribute('key');
+            urlparts = url.split('/library');
+            newurl = urlparts[0] + newpath;
+            if (onDeck == 'False')
+              atv.loadURL(newurl);
+            else
+              atv.loadAndSwapURL(newurl);
+          }
+          else
+          {
+            if (onDeck == 'False')
+              atv.loadURL(url);
+            else
+              atv.loadAndSwapURL(url);
+          } 
+        }
+      }
+      catch(e)
+      {
+        req.abort();
+      }
+    }
+    req.open('GET', unescape(newurl) + accessToken, true);
+    req.send();
+  }
+}
+
+
+/*
+ * Mark a item watched or unwatched
+ * Pass action as scrobble or unscrobble 
+ */
+function markItem(PMS_baseURL, accessToken, ratingKey, action)
+{
+  var url = PMS_baseURL + "/:/" + action + "?key=" + ratingKey + "&identifier=com.plexapp.plugins.library";
+  if (accessToken!='') url = url + '&X-Plex-Token=' + accessToken;
+    
+	var req = new XMLHttpRequest();
+	req.open('GET', url, false);
+	req.send();
+}
+
+/*
+ * Update Plex library with new artwork
+ */
+function changeArtwork(PMS_baseURL, accessToken, ratingKey, posterURL, shelf)
+{
+  if (shelf != '')
+  {
+    // Selector logic for Show/Season level artwork
+    var root = document.rootElement;
+    var shelf = document.getElementById(shelf);
+    if (shelf == null) return;
+    var items = shelf.getElementsByTagName('moviePoster');
+    if (items == null) return;
+  
+    for (var i=0; i<items.length; i++)
+    {
+      if (items[i].getAttribute('id') == posterURL) 
+      {
+      items[i].getElementByTagName('title').textContent = "Selected";
+      }
+      else
+      { 
+        items[i].getElementByTagName('title').textContent = "";
+      }
+    }
+  }
+  
+  // Test if art is from library or external location
+  if (posterURL.indexOf('library') !== -1)
+	{
+		var urlParts = posterURL.split('=');
+		posterURL = urlParts[1];
+	}
+   else
+  {
+    posterURL = encodeURIComponent(posterURL);
+  }
+    
+  var url = PMS_baseURL + "/library/metadata/" + ratingKey + "/poster?url=" + posterURL;
+  if (accessToken!='') url = url + '&X-Plex-Token=' + accessToken;
+    
+  var req = new XMLHttpRequest();
+	req.open('PUT', url, true);
+	req.send();
+};
+
+/*
+ * ScrobbleMenu
+ */
+ function scrobbleMenu(url)
+{
+  fv = atv.device.softwareVersion.split(".");
+  firmVer = fv[0] + "." + fv[1];
+  log(firmVer);
+  if (parseFloat(firmVer) < 6.0)
+  {
+    // firmware <6.0
+    // load standard scrobble menu
+    atv.loadURL(url);
+  }
+  else
+  {
+    // firmware >=6.0
+    // load scrobble menu xml
+    // parse the xml and build a popup context menu 
+    var url = url + "&PlexConnectUDID="+atv.device.udid
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function()
+    {
+      try
+      {
+        if(req.readyState == 4)
+        {
+          xml = req.responseText;
+          xmlDoc = atv.parseXML(xml);
+          atv.contextMenu.load(xmlDoc);
+        } 
+      }
+      catch(e)
+      {
+        req.abort();
+      }
+    }
+    
+    req.open('GET',unescape(url), false);
+    req.send();
+  }
+}
+
+/*
+ * xml updater Major Hack :)
+ */
+function updateContextXML()
+{
+  xmlstr = '<atv><body><optionList id="fakeUpdater" autoSelectSingleItem="true"> \
+            <items><oneLineMenuItem id="0" onSelect="atv.unloadPage()"><label></label> \
+            </oneLineMenuItem></items></optionList></body></atv>';
+  xmlDoc = atv.parseXML(xmlstr);
+  atv.loadXML(xmlDoc);
+}

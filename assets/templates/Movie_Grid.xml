@@ -1,28 +1,26 @@
 <atv>
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
-    <script src="{{URL(:/js/scrobble.js)}}" />
   </head>
   
   <body>
     <scroller id="com.sample.movie-grid">
     {{CUT(size:CUT:0=CUT|1=)}}
-      <header>
-        <simpleHeader>
-          <title>{{VAL(title1)}}</title>
-          <subtitle>{{VAL(title2)}}</subtitle>
-        </simpleHeader>
+    <header>
+        <imageHeader>
+          <image insets="30, 0, 0, 0" required="true">{{URL(:/thumbnails/movies{{VAL(^aTVScreenResolution)}}.jpg)}}</image>
+        </imageHeader>
       </header>
       <items>
         <grid columnCount="7" id="grid_0">
           <items>
-            <moviePoster id="{{VAL(key)}}" 
+            <moviePoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_movies::Highlighted Only=false|Show All=true)}}"
                              onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                              onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')"
-                             onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Movie)}}');">
+                             onHoldSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
               {{COPY(Video)}}
               <title>{{VAL(title)}}</title>
-              <subtitle>{{VAL(year)}}</subtitle>
+              <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
               <image>{{IMAGEURL(thumb::384)}}</image>
               <defaultImage>resource://Poster.png</defaultImage>
             </moviePoster>

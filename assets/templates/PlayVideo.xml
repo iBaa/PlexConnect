@@ -23,6 +23,18 @@
             <overscanAdjust>{{VAL($overscanadjust)}}</overscanAdjust>
             <showEndtime>{{VAL($showendtime)}}</showEndtime>
             
+            <!-- subtitle -->
+            <__COPY__><!--needed as {{COPY}} doesn't work completely clean. Todo: ExpandTree needs to "finish" current element...-->
+            {{COPY(Video/Media/Part/Stream:streamType::=|3=COPY|3 =)}}
+              <subtitleURL> <!-- id="{{VAL(id)}}" key="{{VAL(key)}}" codec="{{VAL(codec)}}"--><!--.srt only -->
+              {{CUT(selected:CUT:0=CUT|1=)}}
+                {{URL(key)}}&amp;PlexConnect=Subtitle&amp;PlexConnectSubtitleFormat={{VAL(format)}}
+              </subtitleURL>
+            </__COPY__>
+            <subtitleSize>{{SETTING(subtitlesize)}}</subtitleSize>
+        </myMetadata>
+        
+        <myStackedMedia>
             <!-- stacked media -->
             <httpFileVideoAsset id="{{VAL(key)}}">
                 <mediaURL>{{MEDIAURL(key)}}</mediaURL>
@@ -30,8 +42,15 @@
                 <description>{{VAL(@main/Video/summary)}}</description>
                 <!--bookmarkTime>{{EVAL({{VAL(@main/Video/viewOffset:0)}} / 1000)}}</bookmarkTime-->
                 <image>{{IMAGEURL(@main/Video/thumb::384)}}</image>
+                <!--title, description, image will get forwarded from main VideoAsset in willStartPlaying()-->
+                
+                <myMetaData>
+                    <duration>{{VAL(duration)}}</duration>
+                    <startTime>0<!--(determined by willStartPlaying())--></startTime>
+                </myMetaData>
+                
             </httpFileVideoAsset>{{COPY(Video/Media/Part)}}
-        </myMetadata>
+        </myStackedMedia>
         
       </httpFileVideoAsset>
     </videoPlayer>

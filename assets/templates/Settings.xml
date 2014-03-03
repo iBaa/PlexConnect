@@ -61,12 +61,6 @@
                 <rightLabel>{{SETTING(myplex_user)}}</rightLabel>
                 <accessories></accessories>
               </oneLineMenuItem>
-              
-              <!-- where does ADDR_PMS/PMS_baseURL come from? Which server to choose? Affects settings.js/refreshLibrary().
-              <oneLineMenuItem id="refreshLibrary" onSelect="refreshLibrary('{{ADDR_PMS()}}')">
-                <label>{{TEXT(Refresh Library)}}</label>
-              </oneLineMenuItem>
-              -->
             </items>
           </menuSection>
           
@@ -77,7 +71,13 @@
               </horizontalDivider>
             </header>
             <items>
-              <oneLineMenuItem id="MovieView" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsMovies')">
+              <oneLineMenuItem id="LibraryView" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsLibrary')">
+                <label>{{TEXT(Library Options)}}</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
+              </oneLineMenuItem>
+                <oneLineMenuItem id="MovieView" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsMovies')">
                 <label>{{TEXT(Movie Options)}}</label>
                 <accessories>
                   <arrow/>
@@ -89,9 +89,17 @@
                   <arrow/>
                 </accessories>
               </oneLineMenuItem>
-              <oneLineMenuItem id="ChannelView" onSelect="toggleSettings('ChannelView', 'Settings')">
-                <label>{{TEXT(Channel View)}}</label>
-                <rightLabel>{{SETTING(channelview)}}</rightLabel>
+              <oneLineMenuItem id="HomevideoView" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsHomeVideos')">
+                <label>{{TEXT(Home Video Options)}}</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="Channels" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsChannels')">
+                <label>{{TEXT(Channel Options)}}</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
               </oneLineMenuItem>
               <oneLineMenuItem id="VideoOSD" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsVideoOSD')">
                 <label>{{TEXT(Video Player OSD)}}</label>
@@ -125,6 +133,10 @@
                 <label>{{TEXT(Remote Bitrate)}}</label>
                 <rightLabel>{{SETTING(remotebitrate)}}</rightLabel>
               </oneLineMenuItem>
+              <oneLineMenuItem id="SubtitleRenderer" onSelect="toggleSettings('SubtitleRenderer', 'Settings')">
+                <label>{{TEXT(Subtitle Renderer)}}</label>
+                <rightLabel>{{SETTING(subtitlerenderer)}}</rightLabel>
+              </oneLineMenuItem>              
               <oneLineMenuItem id="SubtitleSize" onSelect="toggleSettings('SubtitleSize', 'Settings')">
                 <label>{{TEXT(Subtitle Size %)}}</label>
                 <rightLabel>{{SETTING(subtitlesize)}}</rightLabel>

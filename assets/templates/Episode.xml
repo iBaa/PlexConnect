@@ -15,22 +15,35 @@
 
       <header>
         <imageHeader>
-          <image insets="50, 0, 0, 0" required="true">{{IMAGEURL(banner)}}</image>
+          <image insets="850, 0, 0, 0" required="true">http://192.168.1.3:5050/Gradient/gradient.php?image={{IMAGEURL(art:::)}}</image>
         </imageHeader>
       </header>
       <menu>
         <sections>
           <menuSection>
             <items>
-              <twoLineEnhancedMenuItem id="{{VAL(ratingKey)}}"
+                <oneLineMenuItem id="none">
+                <label>{{VAL(#title2)}}</label>
+                <preview>
+                  <keyedPreview>
+                    <title>{{VAL(title)}}</title>
+                    <summary>{{VAL(summary)}}</summary>{{CUT($showsynopsis::Hide=CUT|Show=)}}
+                    <summary>{{VAL(summary)}}</summary>{{CUT(viewCount:CUT:=)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
+                    <summary>{{TEXT(Synopsis hidden.)}}</summary>{{CUT(viewCount)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
+                    <image>{{IMAGEURL(thumb::384)}}</image>
+                  </keyedPreview>
+                </preview>
+              </oneLineMenuItem>
+            
+
+              <oneLineMenuItem id="{{VAL(ratingKey)}}"
                                          onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                                          onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
-                                         onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Episode)}}');">
+                                         onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
                 {{COPY(Video:index::=|0 =COPY)}}
                 <label>{{VAL(title)}}</label>
                 <ordinal>{{VAL(index)}}</ordinal>
                 <maxOrdinalDigits>2</maxOrdinalDigits>
-                <image>{{IMAGEURL(thumb::384)}}</image>
                 <!--<defaultImage>resource://16X9.png</defaultImage>      This causes the thumbnail to be too small, not sure why.-->
                 <accessories>
                 <unplayedDot/>{{CUT(viewOffset)}}
@@ -45,9 +58,9 @@
                     <summary><![CDATA[{{VAL(summary)}}]]></summary>{{CUT(viewCount:CUT:=)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
                     <summary>{{TEXT(Synopsis hidden.)}}</summary>{{CUT(viewCount)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
                     <rating>{{VAL(#contentRating)}}</rating>
-                    <image>{{IMAGEURL(#artwork::384)}}</image>
+                    <image>{{IMAGEURL(thumb::384)}}</image>
                     <metadata>
-                      <label>{{VAL(#title2)}}</label>
+                      <label>{{VAL(#title1)}}</label>
                       <label>Aired: {{VAL(originallyAvailableAt)}}</label>
                       <label>Studio: {{VAL(#studio)}}</label>
                       <label>Runtime: {{getDurationString(duration)}}</label>
@@ -61,7 +74,7 @@
                     </metadata>
                   </longDescriptionPreview>
                 </preview>
-              </twoLineEnhancedMenuItem>{{CUT(Video/title:CUT:=)}}
+              </oneLineMenuItem>{{CUT(Video/title:CUT:=)}}
 
               <oneLineMenuItem id="none">
                 <label>{{TEXT(No episodes)}}</label>

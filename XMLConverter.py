@@ -98,6 +98,8 @@ def XML_PlayVideo_ChannelsV1(baseURL, path):
           <clockPosition></clockPosition>\n\
           <overscanAdjust></overscanAdjust>\n\
           <showEndtime>False</showEndtime>\n\
+          <subtitleURL></subtitleURL>\n\
+          <subtitleSize></subtitleSize>\n\
         </myMetadata>\n\
       </httpFileVideoAsset>\n\
     </videoPlayer>\n\
@@ -205,16 +207,37 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
             return XML_Error('PlexConnect','Youtube: ATV compatible Trailer not available')
         
         return XML_PlayVideo_ChannelsV1('', url.replace('&','&amp;'))
-    
+
+    elif cmd=='ScrobbleMenu':
+        XMLtemplate = 'ScrobbleMenu.xml'
+
+    elif cmd=='ScrobbleMenuVideo':
+        XMLtemplate = 'ScrobbleMenuVideo.xml'
+
+    elif cmd=='ScrobbleMenuTVOnDeck':
+        XMLtemplate = 'ScrobbleMenuTVOnDeck.xml'
+        
+    elif cmd=='ChangeShowArtwork':
+        XMLtemplate = 'ChangeShowArtwork.xml'
+
+    elif cmd=='ChangeSingleArtwork':
+        XMLtemplate = 'ChangeSingleArtwork.xml'
+
+    elif cmd=='ChangeSingleArtworkVideo':
+        XMLtemplate = 'ChangeSingleArtworkVideo.xml'
+        
     elif cmd=='PhotoBrowser':
         XMLtemplate = 'Photo_Browser.xml'
         
     elif cmd=='MoviePreview':
         XMLtemplate = 'MoviePreview.xml'
     
+    elif cmd=='HomeVideoPrePlay':
+        XMLtemplate = 'HomeVideoPrePlay.xml'
+        
     elif cmd=='MoviePrePlay':
         XMLtemplate = 'MoviePrePlay.xml'
-    
+
     elif cmd=='EpisodePrePlay':
         XMLtemplate = 'EpisodePrePlay.xml'
         
@@ -226,10 +249,25 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
 
     elif cmd=='ByFolder':
         XMLtemplate = 'ByFolder.xml'
-    
+
+    elif cmd=='HomeVideoByFolder':
+        XMLtemplate = 'HomeVideoByFolder.xml'
+
+    elif cmd == 'HomeVideoDirectory':
+        XMLtemplate = 'HomeVideoDirectory.xml'
+
+    elif cmd=='MovieByFolder':
+        XMLtemplate = 'MovieByFolder.xml'
+
+    elif cmd == 'MovieDirectory':
+        XMLtemplate = 'MovieDirectory.xml'
+
     elif cmd == 'MovieSection':
         XMLtemplate = 'MovieSection.xml'
     
+    elif cmd == 'HomeVideoSection':
+        XMLtemplate = 'HomeVideoSection.xml'
+        
     elif cmd == 'TVSection':
         XMLtemplate = 'TVSection.xml'
     
@@ -239,6 +277,9 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
     elif cmd == 'AllMovies':
         XMLtemplate = 'Movie_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'movieview').replace(' ','')+'.xml'  
     
+    elif cmd == 'AllHomeVideos':
+        XMLtemplate = 'HomeVideo_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'homevideoview').replace(' ','')+'.xml'  
+        
     elif cmd == 'MovieSecondary':
         XMLtemplate = 'MovieSecondary.xml'
     
@@ -268,12 +309,24 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
         XMLtemplate = 'Settings_VideoOSD.xml'
         path = ''  # clear path - we don't need PMS-XML
     
+    elif cmd=='SettingsLibrary':
+        XMLtemplate = 'Settings_Library.xml'
+        path = ''  # clear path - we don't need PMS-XML
+        
     elif cmd=='SettingsMovies':
         XMLtemplate = 'Settings_Movies.xml'
         path = ''  # clear path - we don't need PMS-XML
         
     elif cmd=='SettingsTVShows':
         XMLtemplate = 'Settings_TVShows.xml'
+        path = ''  # clear path - we don't need PMS-XML
+ 
+    elif cmd=='SettingsHomeVideos':
+        XMLtemplate = 'Settings_HomeVideos.xml'
+        path = ''  # clear path - we don't need PMS-XML
+
+    elif cmd=='SettingsChannels':
+        XMLtemplate = 'Settings_Channels.xml'
         path = ''  # clear path - we don't need PMS-XML
         
     elif cmd.startswith('SettingsToggle:'):
@@ -324,7 +377,7 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
         XMLtemplate = 'Search_Results.xml'
     
     elif path=='/library/sections':  # from PlexConnect.xml -> for //local, //myplex
-        XMLtemplate = 'Library.xml'
+        XMLtemplate = 'Library_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'libraryview')+'.xml'
     
     elif path=='/channels/all':
         XMLtemplate = 'Channel_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'channelview')+'.xml'
@@ -351,7 +404,7 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
         
         PMSroot = PMS.getroot()
         
-        dprint(__name__, 1, "viewGroup: "+PMSroot.get('ViewGroup','None'))
+        dprint(__name__, 1, "viewGroup: "+PMSroot.get('viewGroup','None'))
     
     # XMLtemplate defined by PMS XML content
     if path=='':
@@ -359,7 +412,10 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
     
     elif not XMLtemplate=='':
         pass  # template already selected
-    
+
+    elif PMSroot.get('viewGroup','')=="secondary" and (PMSroot.get('art','').find('video') != -1 or PMSroot.get('thumb','').find('video') != -1):
+        XMLtemplate = 'HomeVideoSectionTopLevel.xml'
+
     elif PMSroot.get('viewGroup','')=="secondary" and (PMSroot.get('art','').find('movie') != -1 or PMSroot.get('thumb','').find('movie') != -1):
         XMLtemplate = 'MovieSectionTopLevel.xml'
     
@@ -383,14 +439,22 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
     elif PMSroot.get('viewGroup','')=='season':
         # TV Season view
         XMLtemplate = 'Season_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'seasonview')+'.xml'
-        
-    elif PMSroot.get('viewGroup','')=='movie':
+
+    elif PMSroot.get('viewGroup','')=='movie' and PMSroot.get('thumb','').find('video') != -1:
         if PMSroot.get('title2')=='By Folder':
           # By Folder View
-          XMLtemplate = 'ByFolder.xml'
+          XMLtemplate = 'HomeVideoByFolder.xml'
+        else:
+          # Home Video listing
+          XMLtemplate = 'HomeVideo_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'homevideoview').replace(' ','')+'.xml'
+    
+    elif PMSroot.get('viewGroup','')=='movie' and PMSroot.get('thumb','').find('movie') != -1:
+        if PMSroot.get('title2')=='By Folder':
+          # By Folder View
+          XMLtemplate = 'MovieByFolder.xml'
         else:
           # Movie listing
-          XMLtemplate = 'Movie_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'movieview').replace(' ','')+'.xml'
+          XMLtemplate = 'Movie_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'homevideoview').replace(' ','')+'.xml'
           
     elif PMSroot.get('viewGroup','')=='track':
         XMLtemplate = 'Music_Track.xml'
@@ -414,7 +478,7 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
         XMLtemplate = 'Directory.xml'
     
     dprint(__name__, 1, "XMLTemplate: "+XMLtemplate)
-    
+
     # get XMLtemplate
     aTVTree = etree.parse(sys.path[0]+'/assets/templates/'+XMLtemplate)
     aTVroot = aTVTree.getroot()
@@ -873,7 +937,7 @@ class CCommandCollection(CCommandHelper):
         conv, leftover = self.getConversion(src, leftover)
         if not dfltd:
             key = self.applyConversion(key, conv)
-        return quote_plus(key)
+        return quote_plus(unicode(key).encode("utf-8"))
 
     def ATTRIB_SETTING(self, src, srcXML, param):
         opt, leftover = self.getParam(src, param)
@@ -1002,6 +1066,26 @@ class CCommandCollection(CCommandHelper):
             # transcoder action
             transcoderAction = g_ATVSettings.getSetting(UDID, 'transcoderaction')
             
+            # video format
+            #    HTTP live stream
+            # or native aTV media
+            videoATVNative = \
+                Media.get('protocol','-') in ("hls") \
+                or \
+                Media.get('container','-') in ("mov", "mp4") and \
+                Media.get('videoCodec','-') in ("mpeg4", "h264", "drmi") and \
+                Media.get('audioCodec','-') in ("aac", "ac3", "drms")
+            
+            for Stream in Media.find('Part').findall('Stream'):
+                if Stream.get('streamType','') == '1' and\
+                   Stream.get('codec','-') in ("mpeg4", "h264"):
+                    if Stream.get('profile', '-') == 'high 10' or \
+                        int(Stream.get('refFrames','0')) > 8:
+                            videoATVNative = False
+                    break
+            
+            dprint(__name__, 2, "video: ATVNative - {0}", videoATVNative)
+            
             # quality limits: quality=(resolution, quality, bitrate)
             qLookup = { '480p 2.0Mbps' :('720x480', '60', '2000'), \
                         '720p 3.0Mbps' :('1280x720', '75', '3000'), \
@@ -1016,21 +1100,51 @@ class CCommandCollection(CCommandHelper):
             else:
                 qLimits = qLookup[g_ATVSettings.getSetting(UDID, 'remotebitrate')]
             
+            # subtitle renderer, subtitle selection
+            subtitleRenderer = g_ATVSettings.getSetting(UDID, 'subtitlerenderer')
+            
+            subtitleId = ''
+            subtitleKey = ''
+            subtitleFormat = ''
+            for Stream in Media.find('Part').findall('Stream'):  # Todo: check 'Part' existance, deal with multi part video
+                if Stream.get('streamType','') == '3' and\
+                   Stream.get('selected','0') == '1':
+                    subtitleId = Stream.get('id','')
+                    subtitleKey = Stream.get('key','')
+                    subtitleFormat = Stream.get('format','')
+                    break
+            
+            subtitleIOSNative = \
+                subtitleKey=='' and subtitleFormat=="tx3g"  # embedded
+            subtitlePlexConnect = \
+                subtitleKey!='' and subtitleFormat=="srt"  # external
+            
+            # subtitle suitable for direct play?
+            #    no subtitle
+            # or 'Auto'    with subtitle by iOS or PlexConnect
+            # or 'iOS,PMS' with subtitle by iOS
+            subtitleDirectPlay = \
+                subtitleId=='' \
+                or \
+                subtitleRenderer=='Auto' and \
+                ( (videoATVNative and subtitleIOSNative) or subtitlePlexConnect ) \
+                or \
+                subtitleRenderer=='iOS, PMS' and \
+                (videoATVNative and subtitleIOSNative)
+            dprint(__name__, 2, "subtitle: IOSNative - {0}, PlexConnect - {1}, DirectPlay - {2}", subtitleIOSNative, subtitlePlexConnect, subtitleDirectPlay)
+            
+            # determine video URL
             if transcoderAction=='DirectPlay' \
                or \
                transcoderAction=='Auto' and \
-               Media.get('protocol','-') in ("hls") and \
-               int(Media.get('bitrate','0')) < int(qLimits[2]) \
-               or \
-               transcoderAction=='Auto' and \
-               Media.get('container','-') in ("mov", "mp4") and \
-               Media.get('videoCodec','-') in ("mpeg4", "h264", "drmi") and \
-               Media.get('audioCodec','-') in ("aac", "ac3", "drms") and \
-               int(Media.get('bitrate','0')) < int(qLimits[2]):
+               videoATVNative and \
+               int(Media.get('bitrate','0')) < int(qLimits[2]) and \
+               subtitleDirectPlay:
                 # direct play for...
                 #    force direct play
-                # or HTTP live stream (limited by quality setting)
-                # or native aTV media (limited by quality setting)
+                # or videoATVNative (HTTP live stream m4v/h264/aac...)
+                #    limited by quality setting
+                #    with aTV supported subtitle (iOS embedded tx3g, PlexConnext external srt)
                 res, leftover, dfltd = self.getKey(Media, srcXML, 'Part/key')
                 
                 if Media.get('indirect', False):  # indirect... todo: select suitable resolution, today we just take first Media
@@ -1043,9 +1157,11 @@ class CCommandCollection(CCommandHelper):
                 res = Video.get('key','')
                 
                 # misc settings: subtitlesize, audioboost
-                settings = ( g_ATVSettings.getSetting(UDID, 'subtitlesize'), \
-                             g_ATVSettings.getSetting(UDID, 'audioboost') )
-                res = PlexAPI.getTranscodeVideoPath(res, AuthToken, self.options, transcoderAction, qLimits, settings)
+                subtitle = { 'selected': '1' if subtitleId else '0', \
+                             'dontBurnIn': '1' if subtitleDirectPlay else '0', \
+                             'size': g_ATVSettings.getSetting(UDID, 'subtitlesize') }
+                audio = { 'boost': g_ATVSettings.getSetting(UDID, 'audioboost') }
+                res = PlexAPI.getTranscodeVideoPath(res, AuthToken, self.options, transcoderAction, qLimits, subtitle, audio)
         
         else:
             dprint(__name__, 0, "MEDIAPATH - element not found: {0}", param)

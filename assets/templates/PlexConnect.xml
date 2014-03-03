@@ -2,10 +2,11 @@
 <atv>
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/updateXML.js)}}" />
   </head>
   <body>
-    <viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadMenuPage(event)">
-      <navigation>
+    <viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadMenuPage(event)" volatile="true" onVolatileReload="updatePage('{{URL()}}/PlexConnect.xml&amp;PlexConnectUDID=' + atv.device.udid);">
+      <navigation currentIndex="0">
         <navigationItem id="Library">
           <title>{{TEXT(Library)}}</title>
           <url>{{URL(:/PMS(//owned)/library/sections)}}</url>
@@ -13,11 +14,11 @@
         <navigationItem id="Channels">
           <title>{{TEXT(Channels)}}</title>
           <url>{{URL(:/PMS(//owned)/channels/all)}}</url>
-        </navigationItem>
+        </navigationItem>{{CUT($library_channels:CUT:checked=CUT|unchecked=)}}
         <navigationItem id="SharedLibraries">
           <title>{{TEXT(Shared Libraries)}}</title>
           <url>{{URL(:/PMS(//shared)/library/sections)}}</url>
-        </navigationItem>
+        </navigationItem>{{CUT($myplex_auth:CUT:=CUT| =)}}
         <navigationItem id="Settings">
           <title>{{TEXT(Settings)}}</title>
           <url>{{URL(:/&amp;PlexConnect=Settings)}}</url>

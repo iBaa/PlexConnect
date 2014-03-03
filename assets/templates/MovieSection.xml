@@ -1,7 +1,6 @@
 <atv>
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
-    <script src="{{URL(:/js/scrobble.js)}}" />
     <script src="{{URL(:/js/updateXML.js)}}" />
     <script src="{{URL(:/js/settings.js)}}" />
   </head>
@@ -30,14 +29,14 @@
           <sections>
             <shelfSection>
               <items>
-                <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}"
+                <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_movies::Highlighted Only=false|Show All=true)}}"
                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')"
-                            onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(On Deck Movie)}}');">
+                            onHoldSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
                   {{COPY(@OnDeck/Video)}}
                   {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                   <title>{{VAL(title)}}</title>
-                  <subtitle>{{VAL(year)}}</subtitle>
+                  <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
                   <image>{{IMAGEURL(thumb::384)}}</image>
                   <defaultImage>resource://Poster.png</defaultImage>
                 </moviePoster>
@@ -55,14 +54,14 @@
           <sections>
             <shelfSection>
               <items>
-                <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}"
+                <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_movies::Highlighted Only=false|Show All=true)}}"
                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')"
-                            onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Recently Added Movie)}}');">
+                            onHoldSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
                   {{COPY(@RecentlyAdded/Video)}}
                   {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                   <title>{{VAL(title)}}</title>
-                  <subtitle>{{VAL(year)}}</subtitle>
+                  <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
                   <image>{{IMAGEURL(thumb::384)}}</image>
                   <defaultImage>resource://Poster.png</defaultImage>
                 </moviePoster>
@@ -80,14 +79,14 @@
           <sections>
             <shelfSection>
               <items>
-                <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}"
+                <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_movies::Highlighted Only=false|Show All=true)}}"
                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')"
-                            onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Recently Released Movie)}}');">
+                            onHoldSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
                   {{COPY(@RecentlyReleased/Video)}}
                   {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                   <title>{{VAL(title)}}</title>
-                  <subtitle>{{VAL(year)}}</subtitle>
+                  <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
                   <image>{{IMAGEURL(thumb::384)}}</image>
                   <defaultImage>resource://Poster.png</defaultImage>
                 </moviePoster>

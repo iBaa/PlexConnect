@@ -7,61 +7,72 @@
   </head>
 
   <body>
-    <itemDetail id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}&amp;PlexConnect=MoviePrePlay')">
-      <title>{{VAL(Video/title)}} ({{VAL(Video/year)}})</title>
-      <subtitle>{{VAL(Video/studio)}}</subtitle>
+    <itemDetailWithImageHeader id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}&amp;PlexConnect=MoviePrePlay')">
+	  <styles>
+  <color name="titleColor">#ce7f1a</color>
+  <color name="metadataColor">#ffffff</color>
+</styles>
+	   <header>
+	     <imageHeader>
+	       <image insets="{{VAL(^aTVScreenResolution:1:720=820|1080=685)}}, 0, 0, 0" required="true">http://192.168.1.3:5050/Gradient/gradient.php?image={{IMAGEURL(Video/art:::)}}&amp;hd={{VAL(^aTVScreenResolution)}}&amp;title={{EVAL("{{VAL(Video/title)}}".replace(" ","+"))}}</image>
+	     </imageHeader>
+	   </header>
       <rating>{{contentRating(Video/contentRating)}}</rating>
       <summary>{{VAL(Video/summary)}}</summary>
       <image style="moviePoster">{{IMAGEURL(Video/thumb::768)}}</image>
       <defaultImage>resource://Poster.png</defaultImage>
       
+      
       <table>
         <columnDefinitions>
-          <columnDefinition width="25" alignment="left">
+          <columnDefinition width="30" alignment="left">
             <title>{{TEXT(Details)}}</title>
+          </columnDefinition>
+          <columnDefinition width="25" alignment="left">
+            <title>{{TEXT(Transcoder)}}</title>
           </columnDefinition>
           <columnDefinition width="25" alignment="left">
             <title>{{TEXT(Actors)}}</title>
           </columnDefinition>
           <columnDefinition width="25" alignment="left">
-            <title>{{TEXT(Directors)}}</title>
-          </columnDefinition>
-          <columnDefinition width="25" alignment="left">
             <title>{{TEXT(Producers)}}</title>
           </columnDefinition>
         </columnDefinitions>
-        <rows>
+       <rows>
           <row>
             <label>{{VAL(Video/Genre/tag)}}</label>
+            <label>{{SETTING(transcoderaction)}}</label>
             <label>{{VAL(Video/Role/tag)}}</label>
-            <label>{{VAL(Video/Director/tag)}}</label>
             <label>{{VAL(Video/Producer/tag)}}</label>
           </row>
           <row>
-            <label>{{getDurationString(Video/duration)}}</label>
+            <label>{{VAL(Video/Media/videoResolution:Unknown:1080=HD 1080p|720=HD 720p|576=SD|480=SD|sd=SD)}}   {{VAL(Video/Media/audioCodec:Unknown:ac3=AC3|aac=AAC|mp3=MP3|dca=DTS|drms=DRMS)}} {{VAL(Video/Media/audioChannels:Unknown:2=Stereo|6=5.1|8=7.1)}} </label>
+            <label>{{SETTING(transcodequality)}}</label>
             <label>{{VAL(Video/Role[2]/tag)}}</label>
-            <label>{{VAL(Video/Director[2]/tag)}}</label>
             <label>{{VAL(Video/Producer[2]/tag)}}</label>
           </row>
           <row>
-            <label>{{VAL(Video/Media/videoResolution:Unknown:1080=1080p|720=720p|576=SD|480=SD|sd=SD)}}   {{VAL(Video/Media/audioCodec:Unknown:ac3=AC3|aac=AAC|mp3=MP3|dca=DTS|drms=DRMS)}} {{VAL(Video/Media/audioChannels:Unknown:2=Stereo|6=5.1|8=7.1)}} </label>
+			<label>{{getDurationString(Video/duration)}}</label>
+			<label>{{SETTING(subtitlerenderer)}}</label>
             <label>{{VAL(Video/Role[3]/tag)}}</label>
-            <label>{{VAL(Video/Director[3]/tag)}}</label>
             <label>{{VAL(Video/Producer[3]/tag)}}</label>
           </row>
           <row>
+          	<label>{{VAL(Video/studio)}}</label>	
+            <label>{{SETTING(remotebitrate)}}</label>
+            <label>{{VAL(Video/Role[4]/tag)}}</label>
+            <label>{{VAL(Video/Producer[4]/tag)}}</label>
+          </row>
+          <row>          
             <starRating hasUserSetRating="true">
               <percentage>{{EVAL({{VAL(Video/userRating:0)}} * 10)}}</percentage>
             </starRating>{{CUT(Video/userRating:CUT:0=)}}
             <starRating>
               <percentage>{{EVAL({{VAL(Video/rating:0)}} * 10)}}</percentage>
             </starRating>{{CUT(Video/userRating::0=CUT)}}
-            <label>{{VAL(Video/Role[4]/tag)}}</label>
-            <label>{{VAL(Video/Director[4]/tag)}}</label>
-            <label>{{VAL(Video/Producer[4]/tag)}}</label>
-          </row>
-        </rows>
-      </table>
+			</row>
+		</rows>
+   </table>
 
 
       <centerShelf>
@@ -126,7 +137,7 @@
 
            <divider>
         <smallCollectionDivider alignment="left">
-          <title>Others with {{VAL(Video/Role/tag)}}</title>
+          <title>Others Starring {{VAL(Video/Role/tag)}}</title>
         </smallCollectionDivider>
       </divider>{{CUT(Video/Role/tag:CUT:=)}}
 
@@ -216,6 +227,6 @@
           </menu>
         </listScrollerSplit>
       </moreInfo>{{CUT(#cut)}}
-  </itemDetail>
+  </itemDetailWithImageHeader>
   </body>
 </atv>
