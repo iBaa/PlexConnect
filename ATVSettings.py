@@ -11,21 +11,42 @@ from Debug import *  # dprint()
 
 options = { \
     'movieview'         :('Grid', 'List', 'Detailed List'), \
+    'homevideoview'     :('Grid', 'List', 'Detailed List'), \
     'actorview'         :('Movies', 'Portrait'), \
     'showview'          :('List', 'Grid', 'Bookcase'), \
+    'flattenseason'     :('False', 'True'), \
     'seasonview'        :('List', 'Coverflow'), \
     'channelview'       :('List', 'Grid', 'Bookcase'), \
     'durationformat'    :('Hours/Minutes', 'Minutes'), \
+    'showtitles_library'         :('Highlighted Only', 'Show All'), \
+    'showtitles_movies'         :('Highlighted Only', 'Show All'), \
+    'showtitles_tvshows'        :('Highlighted Only', 'Show All'), \
+    'showtitles_homevideos'     :('Highlighted Only', 'Show All'), \
+    'showtitles_channels'       :('Highlighted Only', 'Show All'), \
     'movies_navbar_unwatched'   :('checked', 'unchecked'), \
+    'movies_navbar_byfolder'    :('checked', 'unchecked'), \
     'movies_navbar_collections' :('checked', 'unchecked'), \
     'movies_navbar_genres'      :('checked', 'unchecked'), \
     'movies_navbar_decades'     :('checked', 'unchecked'), \
     'movies_navbar_directors'   :('checked', 'unchecked'), \
     'movies_navbar_actors'      :('checked', 'unchecked'), \
     'movies_navbar_more'        :('checked', 'unchecked'), \
+    'homevideos_navbar_unwatched'   :('checked', 'unchecked'), \
+    'homevideos_navbar_byfolder'    :('checked', 'unchecked'), \
+    'homevideos_navbar_collections' :('checked', 'unchecked'), \
+    'homevideos_navbar_genres'      :('checked', 'unchecked'), \
     'tv_navbar_unwatched'       :('checked', 'unchecked'), \
     'tv_navbar_genres'          :('checked', 'unchecked'), \
     'tv_navbar_more'            :('checked', 'unchecked'), \
+    'libraryview'            :('Grid', 'List'), \
+    'imageheader'            :('Show', 'Hide'), \
+    'sectionicons'            :('Apple', 'Plex', 'Fanart', 'Custom'), \
+    'sectionsposition'            :('Top', 'Bottom'), \
+    'library_search'            :('Show', 'Hide'), \
+    'library_ondeck'            :('checked', 'unchecked'), \
+    'library_recentlyadded'            :('checked', 'unchecked'), \
+    'library_channels'            :('checked', 'unchecked'), \
+    'top_flow'            :('checked', 'unchecked'), \
     'transcodequality'  :('1080p 40.0Mbps', \
                           '480p 2.0Mbps', \
                           '720p 3.0Mbps', '720p 4.0Mbps', \
@@ -34,6 +55,7 @@ options = { \
     'remotebitrate'     :('720p 3.0Mbps', '720p 4.0Mbps', \
                           '1080p 8.0Mbps', '1080p 10.0Mbps', '1080p 12.0Mbps', '1080p 20.0Mbps', '1080p 40.0Mbps', \
                           '480p 2.0Mbps'), \
+    'subtitlerenderer'  :('Auto', 'iOS, PMS', 'PMS'), \
     'subtitlesize'      :('100', '125', '150', '50', '75'), \
     'audioboost'        :('100', '175', '225', '300'), \
     'showunwatched'     :('True', 'False'), \
