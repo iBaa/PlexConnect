@@ -45,7 +45,7 @@
                 <oneLineMenuItem id="ImageHeader" onSelect="toggleSettings('ImageHeader', 'Settings_Library')">
                 <label>{{TEXT(Header)}}</label>
                 <rightLabel>{{SETTING(imageheader)}}</rightLabel>
-              </oneLineMenuItem>
+              </oneLineMenuItem>{{CUT(^aTVFirmwareVersion:CUT:=CUT|6.0=)}}
               <oneLineMenuItem id="SectionIcons" onSelect="toggleSettings('SectionIcons', 'Settings_Library')">
                 <label>{{TEXT(Section Icons)}}</label>
                 <rightLabel>{{SETTING(sectionicons)}}</rightLabel>
