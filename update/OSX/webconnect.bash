@@ -15,6 +15,7 @@ cd update/OSX
 cp bash.cgi /Library/WebServer/CGI-Executables/
 cp list.cgi /Library/WebServer/CGI-Executables/
 chmod +x /Library/WebServer/CGI-Executables/bash.cgi
+chmod +x /Library/WebServer/CGI-Executables/list.cgi
 
 cp removecertsbash.bash /usr/bin
 cp createcertbash.bash /usr/bin
