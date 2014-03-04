@@ -68,7 +68,7 @@
           <menuSection>
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Library)}}</title>
+                <title>{{TEXT(Library Layout)}}</title>
               </horizontalDivider>
             </header>
             <items>
