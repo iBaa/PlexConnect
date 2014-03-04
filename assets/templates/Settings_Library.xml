@@ -87,11 +87,18 @@
                 </accessories>{{CUT($library_recentlyadded::unchecked=CUT|checked=)}}
               </oneLineMenuItem>   
               
-                           <oneLineMenuItem id="Top_Flow" onSelect="toggleSettings('Top_Flow', 'Settings_Library')">
+              <oneLineMenuItem id="Top_Flow" onSelect="toggleSettings('Top_Flow', 'Settings_Library')">
                 <label>{{TEXT(Top Flow)}}</label>
                 <accessories>
                   <checkMark/>
                 </accessories>{{CUT($top_flow::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+              
+            <oneLineMenuItem id="Xtra_Library" onSelect="toggleSettings('Xtra_Library', 'Settings_Library')">
+                <label>{{TEXT(Library)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($xtra_library::unchecked=CUT|checked=)}}
               </oneLineMenuItem>
               
             <oneLineMenuItem id="Library_Channels" onSelect="toggleSettings('Library_Channels', 'Settings_Library')">

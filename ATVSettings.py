@@ -41,11 +41,11 @@ options = { \
     'libraryview'            :('Grid', 'List'), \
     'imageheader'            :('Show', 'Hide'), \
     'sectionicons'            :('Apple', 'Plex', 'Fanart', 'Custom'), \
-    'sectionsposition'            :('Top', 'Bottom'), \
+    'sectionsposition'            :('Top', 'Middle'), \
     'library_search'            :('Show', 'Hide'), \
     'library_ondeck'            :('checked', 'unchecked'), \
     'library_recentlyadded'            :('checked', 'unchecked'), \
-    'library_channels'            :('checked', 'unchecked'), \
+    'xtra_library'            :('checked', 'unchecked'), \
     'top_flow'            :('checked', 'unchecked'), \
     'transcodequality'  :('1080p 40.0Mbps', \
                           '480p 2.0Mbps', \

@@ -7,7 +7,7 @@
 
   <body>
       {{ADDXML(OnDeck::/library/onDeck)}}      
-      {{ADDXML(RecentlyAdded::/library/recentlyAdded)}}
+      {{ADDXML(RecentlyAdded::/library/recentlyAdded?stack=0)}}
       {{ADDXML(VideoChannels::/channels/all)}}
       {{VAR(items:NoKey:FALSE)}}
       {{VAR(sections:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
@@ -49,7 +49,7 @@
         {{COPY(Server:@main/size::0=|1=COPY)}}
         <collectionDivider alignment="left" accessibilityLabel="Library">
             <title>{{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
-        </collectionDivider>{{CUT($sectionsposition::Top=|Bottom=CUT)}} {{CUT($top_flow:CUT:checked=CUT|unchecked=)}}
+        </collectionDivider>{{CUT($sectionsposition::Top=|Middle=CUT)}} {{CUT($top_flow:CUT:checked=CUT|unchecked=)}}
 
         <shelf id="shelf_0" columnCount="5">
             <sections>                             
@@ -65,7 +65,7 @@
                                                onHoldSelect="refreshSection('{{VAL(key)}}', '{{URL(refreshKey)}}')">
                             {{COPY(Directory)}}
                             {{VAR(sections:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
-                            <title>{{VAL(title)}}</title>
+                            <title></title>
                             <image>{{IMAGEURL(thumb::768)}}</image>{{CUT($sectionicons::Apple=CUT|Plex=|Fanart=CUT|Custom=CUT)}}
                             <image>{{IMAGEURL(art::768)}}</image>{{CUT($sectionicons::Apple=CUT|Plex=CUT|Fanart=|Custom=CUT)}}
                             <image>{{URL(:/thumbnails/{{VAL(type)}}.png)}}</image>{{CUT($sectionicons::Apple=|Plex=CUT|Fanart=CUT|Custom=CUT)}}
@@ -73,17 +73,18 @@
                             <defaultImage>resource://16X9.png</defaultImage>
                         </moviePoster>
                         
-                        <!-- search -->
+                        <!-- search 
                         <moviePoster id="{{VAL(searchKey)}}" featured="true" alwaysShowTitles="{{VAL($sectionicons::Apple=true|Plex=false|Fanart=true)}}"
                                                onPlay="atv.loadURL('{{URL(searchKey)}}')"
                                                onSelect="atv.loadURL('{{URL(searchKey)}}')">
                         <title>{{TEXT(Search)}}</title>
                         <image>{{URL(:/thumbnails/search.png)}}</image>
-                      </moviePoster>{{CUT($library_search::Show=|Hide=CUT)}} 
+                      </moviePoster>{{CUT($library_search::Show=|Hide=CUT)}} -->
+                      
                     </items>
                 </shelfSection>
           </sections>
-        </shelf>{{CUT($sectionsposition::Top=|Bottom=CUT)}} {{CUT($top_flow:CUT:checked=CUT|unchecked=)}}
+        </shelf>{{CUT($sectionsposition::Top=|Bottom=CUT)}} {{CUT($xtra_library:CUT:checked=|unchecked=CUT)}}
         </__COPY__>
           
         <collectionDivider alignment="left" accessibilityLabel="On Deck">
@@ -110,7 +111,50 @@
               </items>
             </shelfSection>
           </sections>
-        </shelf>{{CUT($library_ondeck::checked=|unchecked=CUT)}}  
+        </shelf>{{CUT($library_ondeck::checked=|unchecked=CUT)}}
+        
+               <__COPY__>  
+        {{COPY(Server:@main/size::0=|1=COPY)}}
+        <collectionDivider alignment="left" accessibilityLabel="Library">
+            <title>{{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+        </collectionDivider>{{CUT($sectionsposition::Top=CUT|Middle=)}}
+
+        <shelf id="shelf_0" columnCount="5">
+            <sections>                             
+            <!-- local servers -->
+                <shelfSection>
+                   
+                    <items>
+                        <!-- /library/sections -->
+                        <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" featured="true" 
+                                               alwaysShowTitles="{{VAL($sectionicons::Apple=true|Plex=false|Fanart=true)}}"
+                                               onPlay="atv.loadURL('{{URL(key)}}')"
+                                               onSelect="atv.loadURL('{{URL(key)}}')"
+                                               onHoldSelect="refreshSection('{{VAL(key)}}', '{{URL(refreshKey)}}')">
+                            {{COPY(Directory)}}
+                            {{VAR(sections:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                            <title></title>
+                            <image>{{IMAGEURL(thumb::768)}}</image>{{CUT($sectionicons::Apple=CUT|Plex=|Fanart=CUT|Custom=CUT)}}
+                            <image>{{IMAGEURL(art::768)}}</image>{{CUT($sectionicons::Apple=CUT|Plex=CUT|Fanart=|Custom=CUT)}}
+                            <image>{{URL(:/thumbnails/{{VAL(type)}}.png)}}</image>{{CUT($sectionicons::Apple=|Plex=CUT|Fanart=CUT|Custom=CUT)}}
+                            <image>{{URL(:/thumbnails/{{VAL(Location/id)}}.png)}}</image>{{CUT($sectionicons::Apple=CUT|Plex=CUT|Fanart=CUT|Custom=)}}
+                            <defaultImage>resource://16X9.png</defaultImage>
+                        </moviePoster>
+                        
+                        <!-- search 
+                        <moviePoster id="{{VAL(searchKey)}}" featured="true" alwaysShowTitles="{{VAL($sectionicons::Apple=true|Plex=false|Fanart=true)}}"
+                                               onPlay="atv.loadURL('{{URL(searchKey)}}')"
+                                               onSelect="atv.loadURL('{{URL(searchKey)}}')">
+                        <title>{{TEXT(Search)}}</title>
+                        <image>{{URL(:/thumbnails/search.png)}}</image>
+                      </moviePoster>{{CUT($library_search::Show=|Hide=CUT)}} -->
+                    
+                    </items>
+                </shelfSection>
+          </sections>
+        </shelf>{{CUT($sectionsposition::Top=CUT|Middle=)}} {{CUT($xtra_library:CUT:checked=|unchecked=CUT)}}
+        </__COPY__>
+
           
         <collectionDivider alignment="left" accessibilityLabel="Recently Added">
           {{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}
@@ -138,47 +182,7 @@
           </sections>
         </shelf>{{CUT($library_recentlyadded::checked=|unchecked=CUT)}}              
           
-        <__COPY__>  
-        {{COPY(Server:@main/size::0=|1=COPY)}}
-        <collectionDivider alignment="left" accessibilityLabel="Library">
-            <title>{{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
-        </collectionDivider>{{CUT($sectionsposition::Top=CUT|Bottom=)}}
-
-        <shelf id="shelf_0" columnCount="5">
-            <sections>                             
-            <!-- local servers -->
-                <shelfSection>
-                   
-                    <items>
-                        <!-- /library/sections -->
-                        <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" featured="true" 
-                                               alwaysShowTitles="{{VAL($sectionicons::Apple=true|Plex=false|Fanart=true)}}"
-                                               onPlay="atv.loadURL('{{URL(key)}}')"
-                                               onSelect="atv.loadURL('{{URL(key)}}')"
-                                               onHoldSelect="refreshSection('{{VAL(key)}}', '{{URL(refreshKey)}}')">
-                            {{COPY(Directory)}}
-                            {{VAR(sections:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
-                            <title>{{VAL(title)}}</title>
-                            <image>{{IMAGEURL(thumb::768)}}</image>{{CUT($sectionicons::Apple=CUT|Plex=|Fanart=CUT|Custom=CUT)}}
-                            <image>{{IMAGEURL(art::768)}}</image>{{CUT($sectionicons::Apple=CUT|Plex=CUT|Fanart=|Custom=CUT)}}
-                            <image>{{URL(:/thumbnails/{{VAL(type)}}.png)}}</image>{{CUT($sectionicons::Apple=|Plex=CUT|Fanart=CUT|Custom=CUT)}}
-                            <image>{{URL(:/thumbnails/{{VAL(Location/id)}}.png)}}</image>{{CUT($sectionicons::Apple=CUT|Plex=CUT|Fanart=CUT|Custom=)}}
-                            <defaultImage>resource://16X9.png</defaultImage>
-                        </moviePoster>
-                        
-                        <!-- search -->
-                        <moviePoster id="{{VAL(searchKey)}}" featured="true" alwaysShowTitles="{{VAL($sectionicons::Apple=true|Plex=false|Fanart=true)}}"
-                                               onPlay="atv.loadURL('{{URL(searchKey)}}')"
-                                               onSelect="atv.loadURL('{{URL(searchKey)}}')">
-                        <title>{{TEXT(Search)}}</title>
-                        <image>{{URL(:/thumbnails/search.png)}}</image>
-                      </moviePoster>{{CUT($library_search::Show=|Hide=CUT)}} 
-                    </items>
-                </shelfSection>
-          </sections>
-        </shelf>{{CUT($sectionsposition::Top=CUT|Bottom=)}} 
-        </__COPY__>
-          
+           
           <collectionDivider alignment="left" accessibilityLabel="Channels">
             <title>{{TEXT(Channels)}}</title>
         </collectionDivider>{{CUT($library_channels:CUT:checked=|unchecked=CUT)}}{{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}} 
