@@ -13,6 +13,7 @@ cd update/OSX
 
 ## install webconnect
 cp bash.cgi /Library/WebServer/CGI-Executables/
+cp list.cgi /Library/WebServer/CGI-Exexutables/
 chmod +x /Library/WebServer/CGI-Executables/bash.cgi
 
 cp removecertsbash.bash /usr/bin
