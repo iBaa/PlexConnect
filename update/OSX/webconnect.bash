@@ -18,6 +18,7 @@ a
 :32400/web
 .
 1,2j
+wq
 EOF
 
 ## install webconnect
