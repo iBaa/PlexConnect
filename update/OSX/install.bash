@@ -30,6 +30,7 @@ cp webconnect.bash /usr/bin
 cp updatewc.bash /usr/bin
 cp pull.bash /usr/bin
 cp pull2.bash /usr/bin
+cp pmsscan.bash /usr/bin
 
 ## replace __INSTALLERPATH__ in default createimovie.bash
 ## save directly to the /usr/bin folder
@@ -79,3 +80,4 @@ chmod +x uninstall.bash
 chmod +x /usr/bin/updatewc.bash
 chmod +x /usr/bin/pull.bash
 chmod +x /usr/bin/pull2.bash
+chmod +x /usr/bin/pmsscan.bash
