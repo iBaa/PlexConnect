@@ -33,7 +33,6 @@ cp lockbash.bash /usr/bin
 cp trashbash.bash /usr/bin
 cp updatewcbash.bash /usr/bin
 cp pmsscanbash.bash /usr/bin
-cp plexwebbash.bash /usr/bin
 cp sudoers /etc
 cp httpd.conf /etc/apache2
 
@@ -52,7 +51,6 @@ chown root /usr/bin/lockbash.bash
 chown root /usr/bin/trashbash.bash
 chown root /usr/bin/updatewcbash.bash
 chown root /usr/bin/pmsscanbash.bash
-chown root /usr/bin/plexwebbash.bash
 
 chmod +x /usr/bin/removecertsbash.bash
 chmod +x /usr/bin/createcertbash.bash
@@ -69,7 +67,6 @@ chmod +x /usr/bin/lockbash.bash
 chmod +x /usr/bin/trashbash.bash
 chmod +x /usr/bin/updatewcbash.bash
 chmod +x /usr/bin/pmsscanbash.bash
-chmod +x /usr/bin/plexwebbash.bash
 
 chmod 4755 /usr/bin/removecertsbash.bash
 chmod 4755 /usr/bin/createcertbash.bash
@@ -86,7 +83,6 @@ chmod 4755 /usr/bin/lockbash.bash
 chmod 4755 /usr/bin/trashbash.bash
 chmod 4755 /usr/bin/updatewcbash.bash
 chmod 4755 /usr/bin/pmsscanbash.bash
-chmod 4755 /usr/bin/plexwebbash.bash
 chmod 400 /etc/sudoers
 
 echo WebConnect has been updated.
