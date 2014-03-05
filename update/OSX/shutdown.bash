@@ -1,4 +1,4 @@
 #!/bin/bash
 
 ## Shutdown OSX
-sudo shutdown -r now
+shutdown -r now
