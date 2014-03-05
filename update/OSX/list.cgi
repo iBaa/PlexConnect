@@ -76,6 +76,18 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           echo "</pre>"
           ;;
 
+          updatewcbash)
+          echo "Output of updatewcbash :<pre>"
+          /usr/bin/updatewcbash.bash
+          echo "</pre>"
+          ;;
+          
+          pmsscanbash)
+          echo "Output of pmsscanbash :<pre>"
+          /usr/bin/pmsscanbash.bash
+          echo "</pre>"
+          ;;
+
           rebootbash)
           echo "Output of rebootbash :<pre>"
           /usr/bin/rebootbash.bash
@@ -121,7 +133,11 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<input type=radio name=cmd value=stopbash> Stop PlexConnect <br>"
     echo "<input type=radio name=cmd value=restartbash> Restart PlexConnect <br>"
     echo "<input type=radio name=cmd value=statusbash> PlexConnect Status <br>"
+    echo "<input type=radio name=cmd value=updatewcbash> Update WebConnect <br>"
     echo "</p>"
+    echo "Plex Media Server commands"
+    echo "<br>"
+    echo "<input type=radio name=cmd value=pmsscanbash> Update Library <br>"
     echo "OSX system commands"
     echo "<br>" 
     echo "<input type=radio name=cmd value=rebootbash> Reboot OSX <br>"
