@@ -138,6 +138,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "Plex Media Server commands"
     echo "<br>"
     echo "<input type=radio name=cmd value=pmsscanbash> Update Library <br>"
+    echo "</p>"
     echo "OSX system commands"
     echo "<br>" 
     echo "<input type=radio name=cmd value=rebootbash> Reboot OSX <br>"
