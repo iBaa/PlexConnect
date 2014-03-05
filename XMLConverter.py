@@ -202,7 +202,7 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
         for i in range(len(streams)):
             stream = urlparse.parse_qs(streams[i])
             if stream['itag'][0] == '18':
-                url = stream['url'][0] + '&signature=' + stream['sig'][0]
+                url = stream['url'][0]
         if url == '':
             return XML_Error('PlexConnect','Youtube: ATV compatible Trailer not available')
         
