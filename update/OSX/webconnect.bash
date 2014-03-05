@@ -12,6 +12,7 @@ PlexConnectPath=${PWD}
 cd update/OSX
 
 ## install webconnect
+plexweb.bash
 cp bash.cgi /Library/WebServer/CGI-Executables/
 cp list.cgi /Library/WebServer/CGI-Executables/
 chmod +x /Library/WebServer/CGI-Executables/bash.cgi
