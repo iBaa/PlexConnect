@@ -28,6 +28,7 @@ rm /usr/bin/updatewc.bash
 rm /usr/bin/pull.bash
 rm /usr/bin/pull2.bash
 rm /usr/bin/pmsscan.bash
+rm /usr/bin/plexweb.bash
 rm /usr/bin/removecertsbash.bash
 rm /usr/bin/createcertbash.bash
 rm /usr/bin/createimoviebash.bash
