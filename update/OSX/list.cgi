@@ -99,6 +99,18 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           /usr/bin/lockbash.bash
           echo "</pre>"
           ;;
+          
+          shutdownbash)
+          echo "Output of shutdownbash :<pre>"
+          /usr/bin/shutdownbash.bash
+          echo "</pre>"
+          ;;
+          
+          sleepbash)
+          echo "Output of sleepbash :<pre>"
+          /usr/bin/sleepbash.bash
+          echo "</pre>"
+          ;;
 
 	esac
     fi
@@ -143,6 +155,8 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<br>" 
     echo "<input type=radio name=cmd value=rebootbash> Reboot OSX <br>"
     echo "<input type=radio name=cmd value=lockbash> Lock Screen <br>"
+    echo "<input type=radio name=cmd value=sleepbash> Sleep OSX <br>"
+    echo "<input type=radio name=cmd value=shutdownbash> Shutdown OSX <br>"
     echo "<br>"
     echo "<input type=submit>"
 echo "<br>"
