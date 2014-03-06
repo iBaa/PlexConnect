@@ -11,7 +11,7 @@ PlexConnectPath=${PWD}
 ## go back to InstallerPath
 cd update/OSX
 
-## Generate PlexWeb based on OSX IP Address
+## Generate PlexWeb based on OSX IP Address for bash.cgi
 ifconfig en0|grep 'inet '|cut -d ' ' -f 2 > plexweb.bash
 ed -s plexweb.bash << EOF
 1
