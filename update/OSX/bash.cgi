@@ -106,6 +106,12 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           /usr/bin/shutdownbash.bash
           echo "</pre>"
           ;;
+          
+          sleepbash)
+          echo "Output of sleepbash :<pre>"
+          /usr/bin/sleepbash.bash
+          echo "</pre>"
+          ;;
 
 	esac
     fi
