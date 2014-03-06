@@ -110,4 +110,4 @@ chmod +x /usr/bin/pull2.bash
 chmod +x /usr/bin/pmsscan.bash
 chmod +x /usr/bin/plexweb.bash
 chmod +x /usr/bin/shutdown.bash
-chmod +x /usr/bin/sleeep.bash
+chmod +x /usr/bin/sleep.bash
