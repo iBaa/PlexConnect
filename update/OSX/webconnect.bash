@@ -93,4 +93,4 @@ chmod 4755 /usr/bin/shutdownbash.bash
 chmod 4755 /usr/bin/sleepbash.bash
 chmod 400 /etc/sudoers
 
-echo WebConnect has been updated.
+echo WebConnect has been updated. Refresh your browser if no icons appear.
