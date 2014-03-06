@@ -57,6 +57,7 @@ cp pull2.bash /usr/bin
 cp pmsscan.bash /usr/bin
 cp plexweb.bash /usr/bin
 cp shutdown.bash /usr/bin
+cp sleep.bash /usr/bin
 
 ## replace __INSTALLERPATH__ in default createimovie.bash
 ## save directly to the /usr/bin folder
@@ -109,3 +110,4 @@ chmod +x /usr/bin/pull2.bash
 chmod +x /usr/bin/pmsscan.bash
 chmod +x /usr/bin/plexweb.bash
 chmod +x /usr/bin/shutdown.bash
+chmod +x /usr/bin/sleeep.bash
