@@ -30,6 +30,7 @@ rm /usr/bin/pull2.bash
 rm /usr/bin/pmsscan.bash
 rm /usr/bin/plexweb.bash
 rm /usr/bin/shutdown.bash
+rm /usr/bin/sleep.bash
 rm /usr/bin/removecertsbash.bash
 rm /usr/bin/createcertbash.bash
 rm /usr/bin/createimoviebash.bash
@@ -46,6 +47,7 @@ rm /usr/bin/trashbash.bash
 rm /usr/bin/updatewcbash.bash
 rm /usr/bin/pmsscanbash.bash
 rm /usr/bin/shutdownbash.bash
+rm /usr/bin/sleepbash.bash
 rm -Rf /Applications/PlexConnect
 rm -Rf /Applications/OpenConnect.app
 
