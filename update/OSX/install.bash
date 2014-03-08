@@ -11,7 +11,7 @@ PlexConnectPath=${PWD}
 ## go back to InstallerPath
 cd update/OSX
 
-## Generate PlexWeb based on OSX IP Address for bash.cgi
+## Generate PlexWeb.bash based on OSX IP Address for bash.cgi
 ifconfig en0|grep 'inet '|cut -d ' ' -f 2 > plexweb.bash
 ed -s plexweb.bash << EOF
 1
@@ -29,6 +29,30 @@ sed -i '' 's/__PLEXWEB__/http:\/\/
 wq
 EOF
 ed -s plexweb.bash << EOF
+i
+#!/bin/bash
+.
+wq
+EOF
+
+## Generate PlexWebWan.bash based on Wan IP Address for bash.cgi
+curl biranchi.com/ip.php > plexwebwan.bash
+ed -s plexwebwan.bash << EOF
+1
+a
+:32400\/web/g' bash.cgi
+.
+1,2j
+wq
+EOF
+ed -s plexwebwan.bash << EOF
+i
+sed -i '' 's/__PLEXWEBWAN__/http:\/\/
+.
+1,2j
+wq
+EOF
+ed -s plexwebwan.bash << EOF
 i
 #!/bin/bash
 .
@@ -58,6 +82,7 @@ cp pmsscan.bash /usr/bin
 cp plexweb.bash /usr/bin
 cp shutdown.bash /usr/bin
 cp sleep.bash /usr/bin
+cp plexwebwan.bash /usr/bin
 
 ## replace __INSTALLERPATH__ in default createimovie.bash
 ## save directly to the /usr/bin folder
@@ -111,3 +136,4 @@ chmod +x /usr/bin/pmsscan.bash
 chmod +x /usr/bin/plexweb.bash
 chmod +x /usr/bin/shutdown.bash
 chmod +x /usr/bin/sleep.bash
+chmod +x /usr/bin/plexwebwan.bash
