@@ -123,7 +123,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<br>"
     echo "</p>" 
     echo "<br>"
-    echo "<input type="image" src="https://forums.plex.tv/uploads/monthly_02_2014/post-137692-0-57392100-1393300878.png" name=cmd title=Hijack Trailers value=createcertbash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" img src="https://forums.plex.tv/uploads/monthly_02_2014/post-137692-0-86675500-1393300317.png" name=cmd value=createimoviebash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" src="https://forums.plex.tv/uploads/monthly_02_2014/post-137692-0-49702700-1393301045.png" name=cmd value=createwsjbash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" src="https://forums.plex.tv/uploads/monthly_02_2014/post-137692-0-72591000-1393300768.png" name=cmd value=removecertsbash>"
+    echo "<input type="image" src="https://forums.plex.tv/uploads/monthly_02_2014/post-137692-0-57392100-1393300878.png" name=cmd value=createcertbash><div>Hijack Trailers</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" img src="https://forums.plex.tv/uploads/monthly_02_2014/post-137692-0-86675500-1393300317.png" name=cmd value=createimoviebash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" src="https://forums.plex.tv/uploads/monthly_02_2014/post-137692-0-49702700-1393301045.png" name=cmd value=createwsjbash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" src="https://forums.plex.tv/uploads/monthly_02_2014/post-137692-0-72591000-1393300768.png" name=cmd value=removecertsbash>"
     echo "<br>"
     echo "<br>"
     echo "<br>"
