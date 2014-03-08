@@ -59,7 +59,7 @@ chown root /usr/bin/trashbash.bash
 chown root /usr/bin/updatewcbash.bash
 chown root /usr/bin/pmsscanbash.bash
 chown root /usr/bin/shutdownbash.bash
-chown root /usr/bin/sleeepbash.bash
+chown root /usr/bin/sleepbash.bash
 
 chmod +x /usr/bin/removecertsbash.bash
 chmod +x /usr/bin/createcertbash.bash
