@@ -36,7 +36,7 @@ wq
 EOF
 
 ## Generate PlexWebWan.bash based on Wan IP Address for bash.cgi
-ifconfig en0 | grep "inet addr" | awk -F: '{print $2}' | awk '{print $1}' > plexwebwan.bash
+curl ifconfig.me > plexwebwan.bash
 ed -s plexwebwan.bash << EOF
 1
 a
