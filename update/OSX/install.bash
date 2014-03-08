@@ -11,7 +11,7 @@ PlexConnectPath=${PWD}
 ## go back to InstallerPath
 cd update/OSX
 
-## Generate PlexWeb.bash based on OSX IP Address for bash.cgi
+## Generate plexweb.bash based on OSX IP Address for bash.cgi
 ifconfig en0|grep 'inet '|cut -d ' ' -f 2 > plexweb.bash
 ed -s plexweb.bash << EOF
 1
@@ -29,6 +29,30 @@ sed -i '' 's/__PLEXWEB__/http:\/\/
 wq
 EOF
 ed -s plexweb.bash << EOF
+i
+#!/bin/bash
+.
+wq
+EOF
+
+## Generate plexwebios.bash based on OSX IP Address for ios.cgi
+ifconfig en0|grep 'inet '|cut -d ' ' -f 2 > plexwebios.bash
+ed -s plexwebios.bash << EOF
+1
+a
+:32400\/web/g' ios.cgi
+.
+1,2j
+wq
+EOF
+ed -s plexwebios.bash << EOF
+i
+sed -i '' 's/__PLEXWEB__/http:\/\/
+.
+1,2j
+wq
+EOF
+ed -s plexwebios.bash << EOF
 i
 #!/bin/bash
 .
@@ -59,6 +83,30 @@ i
 wq
 EOF
 
+## Generate plexwebioswan.bash based on Wan IP Address for ios.cgi
+curl ifconfig.me > plexwebioswan.bash
+ed -s plexwebioswan.bash << EOF
+1
+a
+:32400\/web/g' ios.cgi
+.
+1,2j
+wq
+EOF
+ed -s plexwebioswan.bash << EOF
+i
+sed -i '' 's/__PLEXWEBWAN__/http:\/\/
+.
+1,2j
+wq
+EOF
+ed -s plexwebioswan.bash << EOF
+i
+#!/bin/bash
+.
+wq
+EOF
+
 ## copy files to /usr.bin for system wide access
 cp createcert.bash /usr/bin
 cp createimovie.bash /usr/bin
@@ -79,10 +127,12 @@ cp updatewc.bash /usr/bin
 cp pull.bash /usr/bin
 cp pull2.bash /usr/bin
 cp pmsscan.bash /usr/bin
-cp plexweb.bash /usr/bin
 cp shutdown.bash /usr/bin
 cp sleep.bash /usr/bin
+cp plexweb.bash /usr/bin
 cp plexwebwan.bash /usr/bin
+cp plexwebios.bash /usr/bin
+cp plexwebioswan.bash /usr/bin
 
 ## replace __INSTALLERPATH__ in default createimovie.bash
 ## save directly to the /usr/bin folder
@@ -133,7 +183,9 @@ chmod +x /usr/bin/updatewc.bash
 chmod +x /usr/bin/pull.bash
 chmod +x /usr/bin/pull2.bash
 chmod +x /usr/bin/pmsscan.bash
-chmod +x /usr/bin/plexweb.bash
 chmod +x /usr/bin/shutdown.bash
 chmod +x /usr/bin/sleep.bash
+chmod +x /usr/bin/plexweb.bash
 chmod +x /usr/bin/plexwebwan.bash
+chmod +x /usr/bin/plexwebios.bash
+chmod +x /usr/bin/plexwebioswan.bash
