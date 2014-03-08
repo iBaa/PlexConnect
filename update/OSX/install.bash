@@ -36,7 +36,7 @@ wq
 EOF
 
 ## Generate PlexWebWan.bash based on Wan IP Address for bash.cgi
-curl http://ipecho.net/plain; echo > plexwebwan.bash
+curl biranchi.com/ip.php echo > plexwebwan.bash
 ed -s plexwebwan.bash << EOF
 1
 a
