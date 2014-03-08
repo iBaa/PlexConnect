@@ -43,24 +43,6 @@ cp sleepbash.bash /usr/bin
 cp sudoers /etc
 cp httpd.conf /etc/apache2
 
-chown root /usr/bin/removecertsbash.bash
-chown root /usr/bin/createcertbash.bash
-chown root /usr/bin/createimoviebash.bash
-chown root /usr/bin/createwsjbash.bash
-chown root /usr/bin/createplistbash.bash
-chown root /usr/bin/updatebash.bash
-chown root /usr/bin/stopbash.bash
-chown root /usr/bin/startbash.bash
-chown root /usr/bin/restartbash.bash
-chown root /usr/bin/statusbash.bash
-chown root /usr/bin/rebootbash.bash
-chown root /usr/bin/lockbash.bash
-chown root /usr/bin/trashbash.bash
-chown root /usr/bin/updatewcbash.bash
-chown root /usr/bin/pmsscanbash.bash
-chown root /usr/bin/shutdownbash.bash
-chown root /usr/bin/sleepbash.bash
-
 chmod +x /usr/bin/removecertsbash.bash
 chmod +x /usr/bin/createcertbash.bash
 chmod +x /usr/bin/createimoviebash.bash
