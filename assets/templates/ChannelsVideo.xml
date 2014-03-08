@@ -53,7 +53,26 @@
               <twoLineEnhancedMenuItem id="{{VAL(key)}}" 
                                        onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelsVideo')" 
                                        onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelsVideo')">
-                {{COPY(Directory)}}
+                {{COPY(Directory:search:COPY:=COPY|1=)}}
+                <label>{{VAL(title)}}</label>
+                <!--
+                <rightLabel>another 100 files...</rightLabel>
+                -->
+                <image>{{IMAGEURL(thumb::384)}}</image>
+                <!--<image>http://trailers.apple.com/thumbnails/DirectoryLink.jpg</image>-->
+                <!--<defaultImage>resource://Poster.png</defaultImage>-->
+                <preview>
+                  <crossFadePreview>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
+                  </crossFadePreview>
+                </preview>
+              </twoLineEnhancedMenuItem>
+              
+              <!-- channel search item -->
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}" 
+                                       onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelsSearch&amp;PlexConnectChannelsSearch={{URL(key)}}')" 
+                                       onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelsSearch&amp;PlexConnectChannelsSearch={{URL(key)}}')">
+                {{COPY(Directory:search::1=COPY)}}
                 <label>{{VAL(title)}}</label>
                 <!--
                 <rightLabel>another 100 files...</rightLabel>
