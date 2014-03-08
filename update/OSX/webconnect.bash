@@ -17,7 +17,7 @@ plexwebwan.bash
 plexwebios.bash
 plexwebioswan.bash
 cp bash.cgi /Library/WebServer/CGI-Executables/
-cp ios.bash /Library/WebServer/CGI-Executables/
+cp ios.cgi /Library/WebServer/CGI-Executables/
 cp list.cgi /Library/WebServer/CGI-Executables/
 chmod +x /Library/WebServer/CGI-Executables/bash.cgi
 chmod +x /Library/WebServer/CGI-Executables/ios.cgi
