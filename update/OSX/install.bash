@@ -40,7 +40,7 @@ ifconfig en0|grep 'inet '|cut -d ' ' -f 2 > plexwebios.bash
 ed -s plexwebios.bash << EOF
 1
 a
-:32400\/web\/index.html/g' ios.cgi
+:32400\/web\/index.html#!\/dashboard/g' ios.cgi
 .
 1,2j
 wq
