@@ -9,6 +9,8 @@ sleep 3
 ## Remove Openconnect and WebConnect scripts
 rm /Library/Launchdaemons/com.plex.plexconnect.bash.plist
 rm /Library/WebServer/CGI-Executables/bash.cgi
+rm /Library/WebServer/CGI-Executables/ios.cgi
+rm /Library/WebServer/CGI-Executables/list.cgi
 rm /usr/bin/createcert.bash
 rm /usr/bin/createimovie.bash 
 rm /usr/bin/createwsj.bash
@@ -30,6 +32,8 @@ rm /usr/bin/pull2.bash
 rm /usr/bin/pmsscan.bash
 rm /usr/bin/plexweb.bash
 rm /usr/bin/plexwebwan.bash
+rm /usr/bin/plexwebios.bash
+rm /usr/bin/plexwebioswan.bash
 rm /usr/bin/shutdown.bash
 rm /usr/bin/sleep.bash
 rm /usr/bin/removecertsbash.bash
