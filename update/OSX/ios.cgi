@@ -131,7 +131,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<br>"
     echo "<br>"
     echo "<br>"
-    echo "<input type="image" src="http://f.cl.ly/items/363I1j260v1r2h1F192y/AppIcon.png" name=cmd value=pmsscanbash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="__PLEXWEB__"><img src="http://i.imgur.com/Qbw5v.png" alt="P"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" src="http://a1.phobos.apple.com/us/r1000/000/Features/atv/AutumnResources/images/AddSite@720.png" name=cmd value=updatewcbash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" src="https://forums.plex.tv/uploads/monthly_02_2014/post-137692-0-87751600-1393308909.png" name=cmd value=statusbash>"
+    echo "<input type="image" src="http://f.cl.ly/items/363I1j260v1r2h1F192y/AppIcon.png" name=cmd value=pmsscanbash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="__PLEXWEB__"><img src="http://i.imgur.com/Qbw5v.png" alt="P"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" src="https://forums.plex.tv/uploads/monthly_03_2014/post-137692-0-51836900-1394049969.png" name=cmd value=updatewcbash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" src="https://forums.plex.tv/uploads/monthly_02_2014/post-137692-0-87751600-1393308909.png" name=cmd value=statusbash>"
     echo "<br>"
     echo "<br>"
     echo "<br>"
