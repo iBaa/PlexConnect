@@ -16,7 +16,7 @@ ifconfig en0|grep 'inet '|cut -d ' ' -f 2 > plexweb.bash
 ed -s plexweb.bash << EOF
 1
 a
-:32400\/web/g’ bash.cgi
+:32400\/web\/index.html/g’ bash.cgi
 .
 1,2j
 wq
@@ -40,7 +40,7 @@ ifconfig en0|grep 'inet '|cut -d ' ' -f 2 > plexwebios.bash
 ed -s plexwebios.bash << EOF
 1
 a
-:32400\/web/g' ios.cgi
+:32400\/web\/index.html/g' ios.cgi
 .
 1,2j
 wq
@@ -64,7 +64,7 @@ curl ifconfig.me > plexwebwan.bash
 ed -s plexwebwan.bash << EOF
 1
 a
-:32400\/web/g' bash.cgi
+:32400\/web\/index.html/g' bash.cgi
 .
 1,2j
 wq
@@ -88,7 +88,7 @@ curl ifconfig.me > plexwebioswan.bash
 ed -s plexwebioswan.bash << EOF
 1
 a
-:32400\/web/g' ios.cgi
+:32400\/web\/index.html/g' ios.cgi
 .
 1,2j
 wq
