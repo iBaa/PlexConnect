@@ -16,14 +16,14 @@ ifconfig en0|grep 'inet '|cut -d ' ' -f 2 > plexweb.bash
 ed -s plexweb.bash << EOF
 1
 a
-:32400/web/index.html#!/dashboard/g' bash.cgi
+:32400\/web/\index.html/g' bash.cgi
 .
 1,2j
 wq
 EOF
 ed -s plexweb.bash << EOF
 i
-sed -i '' 's/__PLEXWEB__/http://
+sed -i '' 's/__PLEXWEB__/http:\/\/
 .
 1,2j
 wq
