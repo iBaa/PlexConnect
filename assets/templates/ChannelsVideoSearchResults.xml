@@ -17,13 +17,6 @@
                 <label>{{VAL(title)}}</label>
                 <image>{{IMAGEURL(thumb::384)}}</image>
                 <!--<defaultImage>resource://Poster.png</defaultImage>-->
-                <preview>
-                  <keyedPreview>
-                    <title>{{VAL(title)}}</title>
-                    <summary>{{VAL(summary)}}</summary>
-                    <image>{{IMAGEURL(thumb::768)}}</image>
-                  </keyedPreview>
-                </preview>
               </twoLineEnhancedMenuItem>
               
               <!-- channel media V2-->
@@ -34,13 +27,16 @@
                 <label>{{VAL(title)}}</label>
                 <image>{{IMAGEURL(thumb::384)}}</image>
                 <!--<defaultImage>resource://Poster.png</defaultImage>-->
-                <preview>
-                  <keyedPreview>
-                    <title>{{VAL(title)}}</title>
-                    <summary>{{VAL(summary)}}</summary>
-                    <image>{{IMAGEURL(thumb::768)}}</image>
-                  </keyedPreview>
-                </preview>
+              </twoLineEnhancedMenuItem>
+              
+              <!-- channel directories -->
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}" 
+                                       onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelsVideo')" 
+                                       onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelsVideo')">
+                {{COPY(Directory:search:COPY:=COPY|1=)}}
+                <label>{{VAL(title)}}</label>
+                <image>{{IMAGEURL(thumb::384)}}</image>
+                <defaultImage>resource://Poster.png</defaultImage>
               </twoLineEnhancedMenuItem>
             </items>
           </menuSection>

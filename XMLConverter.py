@@ -382,9 +382,12 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
     elif path.startswith('/search?'):
         XMLtemplate = 'Search_Results.xml'
     
-    elif path.find('serviceSearch') != -1 or (path.find('video') != -1 and path.find('Search') != -1):
+    elif path.find('serviceSearch') != -1 or (path.find('video') != -1 and path.lower().find('search') != -1):
         XMLtemplate = 'ChannelsVideoSearchResults.xml'
     
+    elif path.find('SearchResults') != -1:
+        XMLtemplate = 'ChannelsVideoSearchResults.xml'
+        
     elif path=='/library/sections':  # from PlexConnect.xml -> for //local, //myplex
         XMLtemplate = 'Library.xml'
     
