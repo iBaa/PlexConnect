@@ -159,8 +159,8 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
         cmd = options['PlexConnect']
     
     if 'PlexConnectChannelsSearch' in options:
-        channelsearchURL = options['PlexConnectChannelsSearch']
-        
+        channelsearchURL = options['PlexConnectChannelsSearch'].replace('+amp+', '&')
+     
     dprint(__name__, 1, "PlexConnect Cmd: " + cmd)
     dprint(__name__, 1, "PlexConnectChannelsSearch: " + channelsearchURL)
     
