@@ -145,7 +145,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<br>"
     echo "<br>"
     echo "<br>"
-    echo "<a href="__PLEXWEBWAN__"><img src="http://i.imgur.com/Qbw5v.png" title=PlexWebWan></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://itunes.apple.com/us/app/fing-network-scanner/id430921107?mt=8"><img src="https://forums.plex.tv/uploads/monthly_03_2014/post-137692-0-76791000-1394381991.png" title=Wake_On_Lan></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" src="https://forums.plex.tv/uploads/monthly_03_2014/post-137692-0-54442400-1394454979.png" name=cmd title=Start_Itunes value=itunesbash>"
+    echo "<a href="__PLEXWEBWAN__"><img src="http://i.imgur.com/Qbw5v.png" title=PlexWebWan></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://itunes.apple.com/us/app/fing-network-scanner/id430921107?mt=8"><img src="https://forums.plex.tv/uploads/monthly_03_2014/post-137692-0-76791000-1394381991.png" title=Wake_On_Lan></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" src="https://forums.plex.tv/uploads/monthly_03_2014/post-137692-0-54442400-1394454979.png" name=cmd title=Start_iTunes value=itunesbash>"
     echo "<br>"
     echo "<br>"
     echo "<br>"
