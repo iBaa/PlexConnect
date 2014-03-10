@@ -134,6 +134,7 @@ cp plexwebwan.bash /usr/bin
 cp plexwebios.bash /usr/bin
 cp plexwebioswan.bash /usr/bin
 cp quit /usr/bin
+cp hide /usr/bin
 
 ## replace __INSTALLERPATH__ in default createimovie.bash
 ## save directly to the /usr/bin folder
@@ -180,6 +181,7 @@ chmod +x /usr/bin/lock.bash
 chmod +x /usr/bin/trash.bash
 chmod +x /usr/bin/webconnect.bash
 chmod +x /usr/bin/quit
+chmod +x /usr/bin/hide
 chmod +x uninstall.bash
 chmod +x /usr/bin/updatewc.bash
 chmod +x /usr/bin/pull.bash
