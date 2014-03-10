@@ -37,7 +37,7 @@ git pull
 - install certificate to ```assets/certificate/```
 - install certificate on aTV
 
-See the [Wiki - Install guides][] for additional documentation.
+See the [Wiki - Install Guide][] for additional documentation.
 
 
 ## Usage
@@ -86,6 +86,6 @@ The software is provided as is. It might work as expected - or not. Just don't b
 [Plex Forum thread]: http://forums.plexapp.com/index.php/topic/57831-plex-atv-think-different
 [ZIP]: https://github.com/iBaa/PlexConnect/archive/master.zip
 [Wiki]: https://github.com/iBaa/PlexConnect/wiki
-[Wiki - Install guides]: https://github.com/iBaa/PlexConnect/wiki/Install-guides
+[Wiki - Install Guide]: https://github.com/iBaa/PlexConnect/wiki/Install-Guide
 [Wiki - Advanced Settings]: https://github.com/iBaa/PlexConnect/wiki/Settings-for-advanced-use-and-troubleshooting
 [Donation]: http://forums.plexapp.com/index.php/topic/80675-donations-donations/
