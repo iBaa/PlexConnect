@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo | osascript <<EOF
+tell application "$*"
+  quit
+end tell
+EOF
