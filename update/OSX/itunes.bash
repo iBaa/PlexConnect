@@ -4,7 +4,7 @@
 open -a iTunes
 
 # Wait for itunes to open
-Sleep 2
+Sleep 4
 
 #Hide iTunes
 hide iTunes
