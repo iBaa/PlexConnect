@@ -112,6 +112,12 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           /usr/bin/sleepbash.bash
           echo "</pre>"
           ;;
+          
+          itunesbash)
+          echo "Output of itunesbash :<pre>"
+          /usr/bin/itunesbash.bash
+          echo "</pre>"
+          ;;
 
 	esac
     fi
