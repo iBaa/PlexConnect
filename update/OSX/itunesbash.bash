@@ -1,5 +1,5 @@
 #!/bin/bash
 
-echo 'Starting Itunes...'
+echo 'Starting iTunes...'
 
 sudo /usr/bin/itunes.bash
