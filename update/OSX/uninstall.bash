@@ -36,6 +36,10 @@ rm /usr/bin/plexwebios.bash
 rm /usr/bin/plexwebioswan.bash
 rm /usr/bin/shutdown.bash
 rm /usr/bin/sleep.bash
+rm /usr/bin/hide
+rm /usr/bin/quit
+rm /usr/bin/itunes.bash
+rm /usr/bin/quititunes.bash
 rm /usr/bin/removecertsbash.bash
 rm /usr/bin/createcertbash.bash
 rm /usr/bin/createimoviebash.bash
@@ -53,6 +57,8 @@ rm /usr/bin/updatewcbash.bash
 rm /usr/bin/pmsscanbash.bash
 rm /usr/bin/shutdownbash.bash
 rm /usr/bin/sleepbash.bash
+rm /usr/bin/itunesbash.bash
+rm /usr/bin/quititunesbash.bash
 rm -Rf /Applications/PlexConnect
 rm -Rf /Applications/OpenConnect.app
 
