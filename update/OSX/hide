@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 # hide an application in the Finder
 osascript <<END
   tell application "Finder"
