@@ -1,4 +1,5 @@
 #!/bin/bash
 
-# quit itunes
+echo 'iTunes quit command sent...'
+
 quit iTunes
