@@ -37,3 +37,6 @@ sleep 2
 
 ## display the running status of PlexConnect
 launchctl list | grep com.plex.plexconnect.bash
+
+##display log
+tail -f /applications/plexconnect/plexconnect.log
