@@ -23,7 +23,7 @@ echo 'Updating PlexConnect...'
 git pull
 
 ## wait a couple seconds to allow PlexConnect to update
-sleep 2
+sleep 3
 
 ## update status
 echo 'Starting PlexConnect...'
