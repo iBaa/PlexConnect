@@ -5,3 +5,7 @@ echo 'You must navigate to the previous page for your icons or list to reappear'
 
 ## Display PlexConnect log
 tail -f /applications/plexconnect/plexconnect.log
+
+sleep 5
+
+fi
