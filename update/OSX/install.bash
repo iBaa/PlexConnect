@@ -179,6 +179,7 @@ cp pull2.bash /usr/bin
 cp pmsscan.bash /usr/bin
 cp shutdown.bash /usr/bin
 cp sleep.bash /usr/bin
+cp log.bash /usr/bin
 cp plexweb.bash /usr/bin
 cp plexwebwan.bash /usr/bin
 cp plexweblist.bash /usr/bin
@@ -243,6 +244,7 @@ chmod +x /usr/bin/pull2.bash
 chmod +x /usr/bin/pmsscan.bash
 chmod +x /usr/bin/shutdown.bash
 chmod +x /usr/bin/sleep.bash
+chmod +x /usr/bin/log.bash
 chmod +x /usr/bin/plexweb.bash
 chmod +x /usr/bin/plexwebwan.bash
 chmod +x /usr/bin/plexweblist.bash
