@@ -34,6 +34,8 @@ rm /usr/bin/plexweb.bash
 rm /usr/bin/plexwebwan.bash
 rm /usr/bin/plexwebios.bash
 rm /usr/bin/plexwebioswan.bash
+rm /usr/bin/plexweblist.bash
+rm /usr/bin/plexweblistwan.bash
 rm /usr/bin/shutdown.bash
 rm /usr/bin/sleep.bash
 rm /usr/bin/hide
