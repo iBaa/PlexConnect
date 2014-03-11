@@ -124,6 +124,12 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           echo "</pre>"
           ;;
 
+          logbash)
+          echo "Output of logbash :<pre>"
+          /usr/bin/logbash.bash
+          echo "</pre>"
+          ;;
+
 	esac
     fi
      
@@ -157,6 +163,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<input type=radio name=cmd value=stopbash> Stop PlexConnect <br>"
     echo "<input type=radio name=cmd value=restartbash> Restart PlexConnect <br>"
     echo "<input type=radio name=cmd value=statusbash> PlexConnect Status <br>"
+    echo "<input type=radio name=cmd value=logbash> PlexConnect Log <br>"
     echo "<input type=radio name=cmd value=updatewcbash> Update WebConnect <br>"
     echo "</p>"
     echo "Plex Media Server commands"
