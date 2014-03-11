@@ -16,6 +16,8 @@ plexweb.bash
 plexwebwan.bash
 plexwebios.bash
 plexwebioswan.bash
+plexweblist.bash
+plexweblistwan.bash
 cp bash.cgi /Library/WebServer/CGI-Executables/
 cp ios.cgi /Library/WebServer/CGI-Executables/
 cp list.cgi /Library/WebServer/CGI-Executables/
