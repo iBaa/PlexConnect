@@ -38,6 +38,7 @@ rm /usr/bin/plexweblist.bash
 rm /usr/bin/plexweblistwan.bash
 rm /usr/bin/shutdown.bash
 rm /usr/bin/sleep.bash
+rm /usr/bin/log.bash
 rm /usr/bin/hide
 rm /usr/bin/quit
 rm /usr/bin/itunes.bash
@@ -61,6 +62,7 @@ rm /usr/bin/shutdownbash.bash
 rm /usr/bin/sleepbash.bash
 rm /usr/bin/itunesbash.bash
 rm /usr/bin/quititunesbash.bash
+rm /usr/bin/logbash.bash
 rm -Rf /Applications/PlexConnect
 rm -Rf /Applications/OpenConnect.app
 
