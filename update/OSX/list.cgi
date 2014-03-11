@@ -156,6 +156,9 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "Plex Media Server commands"
     echo "<br>"
     echo "<input type=radio name=cmd value=pmsscanbash> Update Library <br>"
+    echo "<a href="__PLEXWEB__">PlexWeb</a>"
+    echo "<a href="__PLEXWEBWAN__">PlexWebWan</a>"
+
     echo "</p>"
     echo "OSX system commands"
     echo "<br>" 
