@@ -181,6 +181,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<input type=radio name=cmd value=shutdownbash> Shutdown OSX <br>"
     echo "<input type=radio name=cmd value=itunesbash> Start iTunes <br>"
     echo "<input type=radio name=cmd value=quititunesbash> Quit iTunes <br>"
+    echo "<a href="https://itunes.apple.com/us/app/fing-network-scanner/id430921107?mt=8">WOL IOS APP</a>"
     echo "<br>"
     echo "<input type=submit>"
 echo "<br>"
