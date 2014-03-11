@@ -59,6 +59,30 @@ i
 wq
 EOF
 
+## Generate plexweblist.bash based on OSX IP Address for list.cgi
+ifconfig en0|grep 'inet '|cut -d ' ' -f 2 > plexweblist.bash
+ed -s plexweblist.bash << EOF
+1
+a
+:32400\/web\/index.html#!\/dashboard/g' list.cgi
+.
+1,2j
+wq
+EOF
+ed -s plexweblist.bash << EOF
+i
+sed -i '' 's/__PLEXWEB__/http:\/\/
+.
+1,2j
+wq
+EOF
+ed -s plexweblist.bash << EOF
+i
+#!/bin/bash
+.
+wq
+EOF
+
 ## Generate PlexWebWan.bash based on Wan IP Address for bash.cgi
 curl ifconfig.me > plexwebwan.bash
 ed -s plexwebwan.bash << EOF
@@ -107,6 +131,30 @@ i
 wq
 EOF
 
+## Generate plexweblistwan.bash based on Wan IP Address for list.cgi
+curl ifconfig.me > plexweblistwan.bash
+ed -s plexweblistwan.bash << EOF
+1
+a
+:32400\/web\/index.html#!\/dashboard/g' list.cgi
+.
+1,2j
+wq
+EOF
+ed -s plexweblistwan.bash << EOF
+i
+sed -i '' 's/__PLEXWEBWAN__/http:\/\/
+.
+1,2j
+wq
+EOF
+ed -s plexweblistwan.bash << EOF
+i
+#!/bin/bash
+.
+wq
+EOF
+
 ## copy files to /usr.bin for system wide access
 cp createcert.bash /usr/bin
 cp createimovie.bash /usr/bin
@@ -133,8 +181,10 @@ cp shutdown.bash /usr/bin
 cp sleep.bash /usr/bin
 cp plexweb.bash /usr/bin
 cp plexwebwan.bash /usr/bin
+cp plexweblist.bash /usr/bin
 cp plexwebios.bash /usr/bin
 cp plexwebioswan.bash /usr/bin
+cp plexweblistwan.bash /usr/bin
 cp quit /usr/bin
 cp hide /usr/bin
 
@@ -195,5 +245,7 @@ chmod +x /usr/bin/shutdown.bash
 chmod +x /usr/bin/sleep.bash
 chmod +x /usr/bin/plexweb.bash
 chmod +x /usr/bin/plexwebwan.bash
+chmod +x /usr/bin/plexweblist.bash
 chmod +x /usr/bin/plexwebios.bash
 chmod +x /usr/bin/plexwebioswan.bash
+chmod +x /usr/bin/plexweblistwan.bash
