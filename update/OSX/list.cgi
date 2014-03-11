@@ -112,6 +112,12 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           echo "</pre>"
           ;;
 
+          itunesbash)
+          echo "Output of itunesbash :<pre>"
+          /usr/bin/itunesbash.bash
+          echo "</pre>"
+          ;;
+
 	esac
     fi
      
@@ -157,6 +163,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<input type=radio name=cmd value=lockbash> Lock Screen <br>"
     echo "<input type=radio name=cmd value=sleepbash> Sleep OSX <br>"
     echo "<input type=radio name=cmd value=shutdownbash> Shutdown OSX <br>"
+    echo "<input type=radio name=cmd value=itunesbash> Start iTunes <br>"
     echo "<br>"
     echo "<input type=submit>"
 echo "<br>"
