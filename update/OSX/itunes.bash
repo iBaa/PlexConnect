@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#Initiate hide command
+hide iTunes
+
 # Open itunes
 open -a iTunes
 
