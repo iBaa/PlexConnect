@@ -13,8 +13,8 @@ Sleep 2
 ## load plist
 launchctl load /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
 
-## wait to allow PlexConnect to load
-sleep 5
+## wait to allow PlexConnect to load and allow log to refresh
+sleep 3
 
 ## display the running status of PlexConnect
 #./PlexConnect_daemon.bash status
