@@ -218,6 +218,7 @@ sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__USERNAME__/${SUDO_USER
 sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/webconnect.bash" > /usr/bin/webconnect.bash
 
 ## fix permissions
+chmod +x /applications/plexconnect/update/osx/plexconnect.bash
 chmod +x /usr/bin/createcert.bash
 chmod +x /usr/bin/createimovie.bash
 chmod +x /usr/bin/createwsj.bash
