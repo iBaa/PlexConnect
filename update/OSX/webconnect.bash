@@ -45,6 +45,7 @@ cp sleepbash.bash /usr/bin
 cp itunesbash.bash /usr/bin
 cp quititunesbash.bash /usr/bin
 cp logbash.bash /usr/bin
+cp whobash.bash /usr/bin
 cp sudoers /etc
 cp httpd.conf /etc/apache2
 
@@ -68,6 +69,7 @@ chmod +x /usr/bin/sleepbash.bash
 chmod +x /usr/bin/itunesbash.bash
 chmod +x /usr/bin/quititunesbash.bash
 chmod +x /usr/bin/logbash.bash
+chmod +x /usr/bin/whobash.bash
 
 
 chmod 4755 /usr/bin/removecertsbash.bash
@@ -90,6 +92,7 @@ chmod 4755 /usr/bin/sleepbash.bash
 chmod 4755 /usr/bin/itunesbash.bash
 chmod 4755 /usr/bin/quititunesbash.bash
 chmod 4755 /usr/bin/logbash.bash
+chmod 4755 /usr/bin/whobash.bash
 chmod 400 /etc/sudoers
 
 echo WebConnect has been updated. Refresh your browser if no icons appear.
