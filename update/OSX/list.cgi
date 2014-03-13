@@ -129,6 +129,12 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           /usr/bin/logbash.bash
           echo "</pre>"
           ;;
+          
+          whobash)
+          echo "Output of whobash :<pre>"
+          /usr/bin/whobash.bash
+          echo "</pre>"
+          ;;
 
 	esac
     fi
@@ -183,6 +189,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<input type=radio name=cmd value=shutdownbash> Shutdown OSX <br>"
     echo "<input type=radio name=cmd value=itunesbash> Start iTunes <br>"
     echo "<input type=radio name=cmd value=quititunesbash> Quit iTunes <br>"
+    echo "<input type=radio name=cmd value=whobash> Who Am I <br>"
     echo "<br>"
     echo "<a href="https://itunes.apple.com/us/app/fing-network-scanner/id430921107?mt=8">WOL IOS APP</a>"
     echo "<br>"
