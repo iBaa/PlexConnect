@@ -42,6 +42,7 @@ rm /usr/bin/log.bash
 rm /usr/bin/who.bash
 rm /usr/bin/hide
 rm /usr/bin/quit
+rm /usr/bin/show
 rm /usr/bin/itunes.bash
 rm /usr/bin/quititunes.bash
 rm /usr/bin/removecertsbash.bash
