@@ -5,12 +5,12 @@
 	<key>Label</key>
 	<string>com.mac.lock</string>
 	<key>Program</key>
-	<string>/applications/plexconnect/update/osx/lock.bash</string>
+	<string>/usr/bin/lock.bash</string>
 	<key>UserName</key>
 	<string>root</string>
 	<key>RunAtLoad</key>
 	<true/>
 	<key>WorkingDirectory</key>
-	<string>/applications/plexconnect/update/osx</string>
+	<string>/usr/bin</string>
 </dict>
 </plist>
