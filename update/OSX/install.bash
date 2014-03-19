@@ -169,7 +169,6 @@ cp status.bash /usr/bin
 cp reboot.bash /usr/bin
 cp removecerts.bash /usr/bin
 cp lock.bash /usr/bin
-cp installlock.bash /usr/bin
 cp trash.bash /usr/bin
 cp itunes.bash /usr/bin
 cp quititunes.bash /usr/bin
@@ -235,7 +234,6 @@ chmod +x /usr/bin/status.bash
 chmod +x /usr/bin/reboot.bash
 chmod +x /usr/bin/removecerts.bash
 chmod +x /usr/bin/lock.bash
-chmod +x /usr/bin/installlock.bash
 chmod +x /usr/bin/trash.bash
 chmod +x /usr/bin/itunes.bash
 chmod +x /usr/bin/quititunes.bash
