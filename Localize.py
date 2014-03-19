@@ -14,7 +14,7 @@ g_Translations = {}
 
 def getTranslation(language):
     global g_Translations
-    if language not in g_Translations: 
+    if language not in g_Translations:
         filename = os.path.join(sys.path[0], 'assets', 'locales', language, 'plexconnect.mo')
         try:
             fp = open(filename, 'rb')
@@ -28,9 +28,14 @@ def getTranslation(language):
 
 def pickLanguage(languages):
     language = 'en'
+    language_aliases = {
+        'zh_TW': 'zh_Hant',
+        'zh_CN': 'zh_Hans'
+    }
     
-    languages = re.findall('(\w{2}(?:[-_]\w{2})?)(?:;q=(\d+(?:\.\d+)?))?', languages)
+    languages = re.findall('(\w{2}(?:[-_]\w{2,})?)(?:;q=(\d+(?:\.\d+)?))?', languages)
     languages = [(lang.replace('-', '_'), float(quot) if quot else 1.) for (lang, quot) in languages]
+    languages = [(language_aliases.get(lang, lang), quot) for (lang, quot) in languages]
     languages = sorted(languages, key=itemgetter(1), reverse=True)
     for lang, quot in languages:
         if os.path.exists(os.path.join(sys.path[0], 'assets', 'locales', lang, 'plexconnect.mo')):
