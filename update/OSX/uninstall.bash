@@ -40,6 +40,8 @@ rm /usr/bin/shutdown.bash
 rm /usr/bin/sleep.bash
 rm /usr/bin/log.bash
 rm /usr/bin/who.bash
+rm /usr/bin/wake.bash
+rm /usr/bin/tv.bash
 rm /usr/bin/hide
 rm /usr/bin/quit
 rm /usr/bin/show
@@ -66,6 +68,8 @@ rm /usr/bin/itunesbash.bash
 rm /usr/bin/quititunesbash.bash
 rm /usr/bin/logbash.bash
 rm /usr/bin/whobash.bash
+rm /usr/bin/wakebash.bash
+rm /usr/bin/tvbash.bash
 rm -Rf /Applications/PlexConnect
 rm -Rf /Applications/OpenConnect.app
 
