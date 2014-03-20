@@ -22,6 +22,8 @@ else
 openssl req -new -nodes -newkey rsa:2048 -out ./assets/certificates/trailers.pem -keyout ./assets/certificates/trailers.key -x509 -days 3650 -subj "/C=US/CN=trailers.apple.com"
 openssl x509 -in ./assets/certificates/trailers.pem -outform der -out ./assets/certificates/trailers.cer && cat ./assets/certificates/trailers.key >> ./assets/certificates/trailers.pem
 
+fi
+
 sed -i '' 's/secure.marketwatch.com/trailers.apple.com/g' settings.cfg
 sed -i '' 's/www.icloud.com/trailers.apple.com/g' settings.cfg
 
@@ -29,5 +31,3 @@ echo 'Generating Trailers certs'
 echo 'Settings.cfg changed to hijack trailers.apple.com'
 echo 'Upload profile to ATV using this url http://trailers.apple.com/trailers.cer'
 restart.bash
-
-fi
