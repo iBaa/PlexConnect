@@ -148,6 +148,12 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           echo "</pre>"
           ;;
 
+          tvbash)
+          echo "Output of tvbash :<pre>"
+          /usr/bin/tvbash.bash
+          echo "</pre>"
+          ;;
+
 	esac
     fi
      
@@ -199,6 +205,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<input type=radio name=cmd value=lockbash> Lock Screen <br>"
     echo "<input type=radio name=cmd value=sleepbash> Sleep OSX <br>"
     echo "<input type=radio name=cmd value=shutdownbash> Shutdown OSX <br>"
+    echo "<input type=radio name=cmd value=tvbash> Start TeamViewer <br>"
     echo "<input type=radio name=cmd value=itunesbash> Start iTunes <br>"
     echo "<input type=radio name=cmd value=quititunesbash> Quit iTunes <br>"
     echo "<input type=radio name=cmd value=whobash> Who Am I root <br>"
