@@ -182,6 +182,7 @@ cp sleep.bash /usr/bin
 cp log.bash /usr/bin
 cp who.bash /usr/bin
 cp wake.bash /usr/bin
+cp tv.bash /usr/bin
 cp plexweb.bash /usr/bin
 cp plexwebwan.bash /usr/bin
 cp plexweblist.bash /usr/bin
@@ -252,6 +253,7 @@ chmod +x /usr/bin/sleep.bash
 chmod +x /usr/bin/log.bash
 chmod +x /usr/bin/who.bash
 chmod +x /usr/bin/wake.bash
+chmod +x /usr/bin/tv.bash
 chmod +x /usr/bin/plexweb.bash
 chmod +x /usr/bin/plexwebwan.bash
 chmod +x /usr/bin/plexweblist.bash
