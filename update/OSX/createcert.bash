@@ -27,7 +27,7 @@ sed -i '' 's/secure.marketwatch.com/trailers.apple.com/g' settings.cfg
 
 echo 'Generating Trailers certs'
 echo 'Settings.cfg changed to hijack trailers.apple.com'
-echo 'Upload profile to ATV using this url http://www.icloud.com/trailers.cer'
+echo 'Upload profile to ATV using this url http://trailers.apple.com/trailers.cer'
 restart.bash
 
 fi
