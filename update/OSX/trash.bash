@@ -1,3 +1,5 @@
 #!/bin/bash
 
-sudo rm -rf ~/.Trash/*
+cd ~/.Trash/
+
+rm -rf *
