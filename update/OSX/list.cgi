@@ -154,6 +154,12 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           echo "</pre>"
           ;;
 
+          trashbash)
+          echo "Output of trashbash :<pre>"
+          /usr/bin/trashbash.bash
+          echo "</pre>"
+          ;;
+
 	esac
     fi
      
