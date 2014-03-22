@@ -29,3 +29,5 @@ echo 'Generating Imovie certs'
 echo 'Settings.cfg changed to hijack www.icloud.com'
 echo 'Upload profile to ATV using this url http://www.icloud.com/trailers.cer'
 restart.bash
+
+fi
