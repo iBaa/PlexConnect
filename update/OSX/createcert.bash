@@ -29,3 +29,5 @@ echo 'Generating Trailers certs'
 echo 'Settings.cfg changed to hijack trailers.apple.com'
 echo 'Upload profile to ATV using this url http://trailers.apple.com/trailers.cer'
 restart.bash
+
+fi
