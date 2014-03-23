@@ -2,6 +2,17 @@
 
 export PATH=$PATH:/usr/local/git/bin/
 
+#!/bin/bash
+cd /applications/plexconnect
+ 
+# fetch changes, git stores them in FETCH_HEAD
+git fetch
+ 
+# check for remote changes in origin repository
+newUpdatesAvailable=`git diff HEAD FETCH_HEAD`
+if [ "$newUpdatesAvailable" != "" ]
+then
+
 ## update status
 echo 'Stopping PlexConnect...'
 
@@ -42,3 +53,7 @@ launchctl list | grep com.plex.plexconnect.bash
 FILE="/applications/plexconnect/plexconnect.log"
 echo "*** File - $FILE contents ***"
 cat $FILE
+
+else
+        echo "no updates available"
+fi
