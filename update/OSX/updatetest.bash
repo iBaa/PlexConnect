@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /applications/plexconnext
+cd /applications/plexconnect
 git fetch origin
 reslog=$(git log HEAD..origin/master --oneline)
 if [[ "${reslog}" != "" ]] ; then
