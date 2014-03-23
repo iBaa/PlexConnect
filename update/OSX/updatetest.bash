@@ -1,7 +1,6 @@
 #!/bin/bash
 cd /applications/plexconnect
-if git checkout master &&
-    git fetch origin master &&
+if git fetch origin master &&
     [ `git rev-list HEAD...origin/master --count` != 0 ] &&
 then
 git pull
