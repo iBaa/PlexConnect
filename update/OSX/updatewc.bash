@@ -8,7 +8,5 @@ cp -R /applications/onlytemp/plexconnect/update/osx/* /applications/plexconnect/
 rm -R /applications/onlytemp
 cd /
 cd /applications/plexconnect/update/osx
-cp installwc.bash /usr/bin
-chmod +x /usr/bin/installwc.bash
 installwc.bash
 webconnect.bash
