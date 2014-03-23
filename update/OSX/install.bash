@@ -162,7 +162,6 @@ cp createimovie.bash /usr/bin
 cp createwsj.bash /usr/bin
 cp createplist.bash /usr/bin
 cp createauto.bash /usr/bin
-cp update.bash /usr/bin
 cp stop.bash /usr/bin
 cp start.bash /usr/bin
 cp restart.bash /usr/bin
