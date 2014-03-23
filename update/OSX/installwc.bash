@@ -162,7 +162,6 @@ cp createimovie.bash /usr/bin
 cp createwsj.bash /usr/bin
 cp createplist.bash /usr/bin
 cp createauto.bash /usr/bin
-cp update.bash /usr/bin
 cp stop.bash /usr/bin
 cp start.bash /usr/bin
 cp restart.bash /usr/bin
@@ -225,7 +224,6 @@ chmod +x /usr/bin/createimovie.bash
 chmod +x /usr/bin/createwsj.bash
 chmod +x /usr/bin/createplist.bash
 chmod +x /usr/bin/createauto.bash
-chmod +x /usr/bin/update.bash
 chmod +x /usr/bin/stop.bash
 chmod +x /usr/bin/start.bash
 chmod +x /usr/bin/restart.bash
