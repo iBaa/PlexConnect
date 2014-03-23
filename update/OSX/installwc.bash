@@ -228,6 +228,7 @@ chmod +x /usr/bin/createimovie.bash
 chmod +x /usr/bin/createwsj.bash
 chmod +x /usr/bin/createplist.bash
 chmod +x /usr/bin/createauto.bash
+chmod +x /usr/bin/update.bash
 chmod +x /usr/bin/stop.bash
 chmod +x /usr/bin/start.bash
 chmod +x /usr/bin/restart.bash
