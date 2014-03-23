@@ -1,15 +1,6 @@
 #!/bin/bash
 
-## find update/OSX path
-cd __DEFAULTPATH__
-InstallerPath=${PWD}
-
-## find PlexConnect main path
-cd ../..
-PlexConnectPath=${PWD}
-
-## go back to InstallerPath
-cd update/OSX
+cd /applications/plexconnect/update/osx
 
 ## install webconnect
 plexweb.bash
