@@ -1,7 +1,10 @@
 #!/bin/bash
-
 cd /applications/plexconnect
-if ! git --git-dir="/dir/.git" diff --quiet
+if git checkout master &&
+    git fetch origin master &&
+    [ `git rev-list HEAD...origin/master --count` != 0 ] &&
 then
-    git pull
+git pull
+else
+    echo 'Not updated.'
 fi
