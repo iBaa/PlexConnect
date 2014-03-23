@@ -12,6 +12,8 @@ PlexConnectPath=${PWD}
 cd update/OSX
 DefaultPath=${PWD}
 
+cd /applications/plexconnect/update/osx
+
 ## Generate plexweb.bash based on OSX IP Address for bash.cgi
 ifconfig en0|grep 'inet '|cut -d ' ' -f 2 > plexweb.bash
 ed -s plexweb.bash << EOF
