@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd /applications/plexconnect
-git fetch origin
-reslog=$(git log HEAD..origin/master --oneline)
-if [[ "${reslog}" != "" ]] ; then
-git pull
+if ! git --git-dir="/dir/.git" diff --quiet
+then
+    git pull
+fi
