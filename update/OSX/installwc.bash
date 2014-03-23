@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## save path to installer files
-cd "$( cd "$( dirname "$0" )" && pwd )"
+cd /applications/plexconnect/update/osx
 InstallerPath=${PWD}
 
 ## find PlexConnect main path
@@ -11,8 +11,6 @@ PlexConnectPath=${PWD}
 ## go back to InstallerPath
 cd update/OSX
 DefaultPath=${PWD}
-
-cd /applications/plexconnect/update/osx
 
 ## Generate plexweb.bash based on OSX IP Address for bash.cgi
 ifconfig en0|grep 'inet '|cut -d ' ' -f 2 > plexweb.bash
