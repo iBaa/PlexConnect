@@ -17,7 +17,7 @@ if [ -f "$file" ]; then
     echo 'Upload profile to ATV using this url http://www.icloud.com/trailers.cer'
 else
 
-## Trailers - hostname is trailers.apple.com
+## Trailers - hostname is www.icloud.com
 ## certificate good for 10 years
 openssl req -new -nodes -newkey rsa:2048 -out ./assets/certificates/trailers.pem -keyout ./assets/certificates/trailers.key -x509 -days 3650 -subj "/C=US/CN=www.icloud.com"
 openssl x509 -in ./assets/certificates/trailers.pem -outform der -out ./assets/certificates/trailers.cer && cat ./assets/certificates/trailers.key >> ./assets/certificates/trailers.pem
