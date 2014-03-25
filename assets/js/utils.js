@@ -253,81 +253,44 @@ atv.loadAndSwapURL = function(url)
  * Flatten TV Seasons
  * If show has only one season then flatten it!
  */
-
-flattenSeason = function(url, accessToken, flatten, onDeck)
+flattenSeason = function(url, flatten, swap)
 {
-  if (accessToken!='')
+  // read season XML
+  var req = new XMLHttpRequest();
+  req.open('GET', url, false);
+  req.send();
+  var doc=req.responseXML;
+  
+  if (flatten=='True')
   {
-    if (url.indexOf('?') != -1)
+    var root = doc.rootElement;
+    var elements = root.getElementsByTagName('oneLineMenuItem');
+    if (!elements || elements=='')
+        elements = root.getElementsByTagName('twoLineEnhancedMenuItem');  // Season_List
+    if (!elements || elements=='')
+        elements = root.getElementsByTagName('goldenPoster');  // Season_Coverflow
+    
+    if (elements && elements.length>0 && elements.length<=2)
     {
-      accessToken = '&X-Plex-Token=' + accessToken;
-    }
-    else
-    {
-      accessToken = '?X-Plex-Token=' + accessToken;
+        // skip season, go directly to episodes
+        var onSelect = elements[elements.length-1].getAttribute('onSelect');  // or onPlay?
+        url = onSelect.split(/\('|'\)/)[1];  // atv.loadURL('URL')
+        //log('Episodes URL: '+url);
+        
+        //read episode XML
+        req.open('GET', url, false);
+        req.send();
+        var episodes = req.responseXML;
+        if (episodes)
+            doc = episodes;
     }
   }
-
-  if (flatten=='False') 
-  {
-    if (onDeck == 'False')
-      atv.loadURL(url);
-    else
-      atv.loadAndSwapURL(url);
-  }
+  
+  // apply season or episode XML  
+  if (swap == 'False')
+    atv.loadXML(doc);
   else
-  {
-    var urlparts = url.split('(')
-    var newurl = urlparts[1].replace(')','');
-
-    var req = new XMLHttpRequest();
-    req.onreadystatechange = function()
-    {
-      try
-      {
-        if(req.readyState == 4)
-        {
-          doc = req.responseXML;
-          root = doc.rootElement;
-          var size = root.getAttribute('size');
-          if (size=='1')
-          {
-            var newpath = root.getElementByTagName('Directory').getAttribute('key');
-            urlparts = url.split('/library');
-            newurl = urlparts[0] + newpath;
-            if (onDeck == 'False')
-              atv.loadURL(newurl);
-            else
-              atv.loadAndSwapURL(newurl);
-          }
-          else if (size=='2')
-          {
-            var newpaths = root.getElementsByTagName('Directory');
-            var newpath = newpaths[1].getAttribute('key');
-            urlparts = url.split('/library');
-            newurl = urlparts[0] + newpath;
-            if (onDeck == 'False')
-              atv.loadURL(newurl);
-            else
-              atv.loadAndSwapURL(newurl);
-          }
-          else
-          {
-            if (onDeck == 'False')
-              atv.loadURL(url);
-            else
-              atv.loadAndSwapURL(url);
-          } 
-        }
-      }
-      catch(e)
-      {
-        req.abort();
-      }
-    }
-    req.open('GET', unescape(newurl) + accessToken, true);
-    req.send();
-  }
+    atv.loadAndSwapXML(doc);
 }
 
 

@@ -143,14 +143,23 @@ def getATVFromIP(ip):
 # - select XML template
 # - translate to aTV XML
 """
-def XML_PMS2aTV(PMS_baseURL, path, options):
+def XML_PMS2aTV(PMS_address, path, options):
     # double check aTV UDID, redo from client IP if needed/possible
     if not 'PlexConnectUDID' in options:
         UDID = getATVFromIP(options['aTVAddress'])
         if UDID:
             options['PlexConnectUDID'] = UDID
+        else:
+            # aTV unidentified, UDID not known    
+            return XML_Error('PlexConnect','Unexpected error - unidentified ATV')
     else:
         declareATV(options['PlexConnectUDID'], options['aTVAddress'])  # update with latest info
+    
+    UDID = options['PlexConnectUDID']
+    
+    # determine PMS_uuid, PMSBaseURL from IP (PMS_mark)
+    PMS_uuid = PlexAPI.getPMSFromAddress(UDID, PMS_address)
+    PMS_baseURL = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'baseURL')
     
     # check cmd to work on
     cmd = ''
@@ -192,8 +201,6 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
     
     elif cmd=='PlayVideo_ChannelsV1':
         dprint(__name__, 1, "playing Channels XML Version 1: {0}".format(path))
-        UDID = options['PlexConnectUDID']
-        PMS_uuid = PlexAPI.getPMSFromAddress(UDID, PMS_baseURL)
         auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
         path = PlexAPI.getDirectVideoPath(path, auth_token)
         return XML_PlayVideo_ChannelsV1(PMS_baseURL, path)  # direct link, no PMS XML available
@@ -352,7 +359,6 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
         parts = options['PlexConnectCredentials'].split(':',1)        
         (username, auth_token) = PlexAPI.MyPlexSignIn(parts[0], parts[1], options)
         
-        UDID = options['PlexConnectUDID']
         g_ATVSettings.setSetting(UDID, 'myplex_user', username)
         g_ATVSettings.setSetting(UDID, 'myplex_auth', auth_token)
         
@@ -362,7 +368,6 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
     elif cmd=='MyPlexLogout':
         dprint(__name__, 2, "MyPlex->Logging Out...")
         
-        UDID = options['PlexConnectUDID']
         auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
         PlexAPI.MyPlexSignOut(auth_token)
         
@@ -373,7 +378,6 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
         path = ''  # clear path - we don't need PMS-XML
     
     elif cmd.startswith('Discover'):
-        UDID = options['PlexConnectUDID']
         auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
         PlexAPI.discoverPMS(UDID, g_param['CSettings'], auth_token)
         
@@ -397,18 +401,11 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
     
     # request PMS XML
     if not path=='':
-        if 'PlexConnectUDID' in options:
-            UDID = options['PlexConnectUDID']
-            PMS_uuid = PlexAPI.getPMSFromAddress(UDID, PMS_baseURL)
-            auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
-        else:
-            auth_token = ''
-        
-        if PMS_baseURL.startswith('//'):  # //local, //myplex
-            UDID = options['PlexConnectUDID']
-            type = PMS_baseURL[2:]
+        if PMS_address[0].isalpha():  # owned, shared
+            type = PMS_address
             PMS = PlexAPI.getXMLFromMultiplePMS(UDID, path, type, options)
-        else:
+        else:  # IP
+            auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
             PMS = PlexAPI.getXMLFromPMS(PMS_baseURL, path, options, authtoken=auth_token)
         
         if PMS==False:
@@ -497,7 +494,7 @@ def XML_PMS2aTV(PMS_baseURL, path, options):
     
     # convert PMS XML to aTV XML using provided XMLtemplate
     global g_CommandCollection
-    g_CommandCollection = CCommandCollection(options, PMSroot, PMS_baseURL, path)
+    g_CommandCollection = CCommandCollection(options, PMSroot, PMS_address, path)
     XML_ExpandTree(aTVroot, PMSroot, 'main')
     XML_ExpandAllAttrib(aTVroot, PMSroot, 'main')
     del g_CommandCollection
@@ -682,13 +679,15 @@ def XML_ExpandLine(src, srcXML, line):
 #     cmds dealing with single node keys, text, tail only (VAL, EVAL, ADDR_PMS ,...)
 """
 class CCommandHelper():
-    def __init__(self, options, PMSroot, PMS_baseURL, path):
+    def __init__(self, options, PMSroot, PMS_address, path):
         self.options = options
         self.PMSroot = {'main': PMSroot}
-        self.PMS_baseURL = PMS_baseURL  # default PMS if nothing else specified
+        self.PMS_address = PMS_address  # default PMS if nothing else specified
         self.path = {'main': path}
         
-        self.ATV_udid = self.options['PlexConnectUDID']
+        self.ATV_udid = options['PlexConnectUDID']
+        self.PMS_uuid = PlexAPI.getPMSFromAddress(self.ATV_udid, PMS_address)
+        self.PMS_baseURL = PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'baseURL')
         self.variables = {}
     
     # internal helper functions
@@ -724,12 +723,9 @@ class CCommandHelper():
             if parts[0].startswith('#'):  # internal variable in path
                 el = el.find(self.variables[parts[0][1:]])
             elif parts[0].startswith('$'):  # setting
-                UDID = self.options['PlexConnectUDID']
-                el = el.find(g_ATVSettings.getSetting(UDID, parts[0][1:]))
+                el = el.find(g_ATVSettings.getSetting(self.ATV_udid, parts[0][1:]))
             elif parts[0].startswith('%'):  # PMS property
-                UDID = self.options['PlexConnectUDID']
-                PMS_uuid = PlexAPI.getPMSFromAddress(UDID, self.PMS_baseURL)
-                el = el.find(PlexAPI.getPMSProperty(UDID, PMS_uuid, parts[0][1:]))
+                el = el.find(PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, parts[0][1:]))
             else:
                 el = el.find(parts[0])
             attrib = parts[1]
@@ -739,13 +735,10 @@ class CCommandHelper():
             res = self.variables[attrib[1:]]
             dfltd = False
         elif attrib.startswith('$'):  # setting
-            UDID = self.options['PlexConnectUDID']
-            res = g_ATVSettings.getSetting(UDID, attrib[1:])
+            res = g_ATVSettings.getSetting(self.ATV_udid, attrib[1:])
             dfltd = False
         elif attrib.startswith('%'):  # PMS property
-            UDID = self.options['PlexConnectUDID']
-            PMS_uuid = PlexAPI.getPMSFromAddress(UDID, self.PMS_baseURL)
-            res = PlexAPI.getPMSProperty(UDID, PMS_uuid, attrib[1:])
+            res = PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, attrib[1:])
             dfltd = False
         elif attrib.startswith('^'):  # aTV property, http request options
             res = self.options[attrib[1:]]
@@ -896,18 +889,11 @@ class CCommandCollection(CCommandHelper):
         tag, leftover = self.getParam(src, param)
         key, leftover, dfltd = self.getKey(src, srcXML, leftover)
         
-        if 'PlexConnectUDID' in self.options:
-            UDID = self.options['PlexConnectUDID']
-            PMS_uuid = PlexAPI.getPMSFromAddress(UDID, self.PMS_baseURL)
-            auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
-        else:
-            auth_token = ''
-        
-        PMS_baseURL = self.PMS_baseURL
+        PMS_address = self.PMS_address
         
         if key.startswith('//'):  # local servers signature
             pathstart = key.find('/',3)
-            PMS_baseURL= key[:pathstart]
+            PMS_address= key[:pathstart]
             path = key[pathstart:]
         elif key.startswith('/'):  # internal full path.
             path = key
@@ -918,9 +904,11 @@ class CCommandCollection(CCommandHelper):
         else:  # internal path, add-on
             path = self.path[srcXML] + '/' + key
         
-        if PMS_baseURL.startswith('//'):
-            PMS = PlexAPI.getXMLFromMultiplePMS(UDID, path, PMS_baseURL[2:], self.options)
-        else:
+        if PMS_address[0].isalpha():  # owned, shared
+            type = self.PMS_address
+            PMS = PlexAPI.getXMLFromMultiplePMS(self.ATV_udid, path, type, self.options)
+        else:  # IP
+            auth_token = PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'accesstoken')
             PMS = PlexAPI.getXMLFromPMS(self.PMS_baseURL, path, self.options, auth_token)
         
         self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML
@@ -960,8 +948,7 @@ class CCommandCollection(CCommandHelper):
 
     def ATTRIB_SETTING(self, src, srcXML, param):
         opt, leftover = self.getParam(src, param)
-        UDID = self.options['PlexConnectUDID']
-        return g_ATVSettings.getSetting(UDID, opt)
+        return g_ATVSettings.getSetting(self.ATV_udid, opt)
     
     def ATTRIB_ADDPATH(self, src, srcXML, param):
         addpath, leftover, dfltd = self.getKey(src, srcXML, param)
@@ -984,12 +971,12 @@ class CCommandCollection(CCommandHelper):
         cmd_start = key.find('PMS(')
         cmd_end = key.find(')', cmd_start)
         if cmd_start>-1 and cmd_end>-1 and cmd_end>cmd_start:
-            PMS_baseURL = key[cmd_start+4:cmd_end]
+            PMS_address = key[cmd_start+4:cmd_end]
+            PMS_uuid = PlexAPI.getPMSFromAddress(self.ATV_udid, PMS_address)
+            PMS_baseURL = PlexAPI.getPMSProperty(self.ATV_udid, PMS_uuid, 'baseURL')
             key = key[cmd_end+1:]
         
-        UDID = self.options['PlexConnectUDID']
-        PMS_uuid = PlexAPI.getPMSFromAddress(UDID, PMS_baseURL)
-        AuthToken = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
+        AuthToken = PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'accesstoken')
         
         if width=='':
             # direct play
@@ -1011,9 +998,7 @@ class CCommandCollection(CCommandHelper):
     def ATTRIB_MUSICURL(self, src, srcXML, param):
         key, leftover, dfltd = self.getKey(src, srcXML, param)
         
-        UDID = self.options['PlexConnectUDID']
-        PMS_uuid = PlexAPI.getPMSFromAddress(UDID, self.PMS_baseURL)
-        AuthToken = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
+        AuthToken = PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'accesstoken')
         
         # direct play
         res = PlexAPI.getDirectAudioPath(key, AuthToken)
@@ -1031,15 +1016,15 @@ class CCommandCollection(CCommandHelper):
     def ATTRIB_URL(self, src, srcXML, param):
         key, leftover, dfltd = self.getKey(src, srcXML, param)
         
-        PMS_baseURL = self.PMS_baseURL
+        # compare PMS_mark in PlexAPI/getXMLFromMultiplePMS()
+        PMS_mark = '/PMS(' + PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'ip') + ')'
+        
+        # overwrite with URL embedded PMS address
         cmd_start = key.find('PMS(')
         cmd_end = key.find(')', cmd_start)
         if cmd_start>-1 and cmd_end>-1 and cmd_end>cmd_start:
-            PMS_baseURL = key[cmd_start+4:cmd_end]
+            PMS_mark = '/'+key[cmd_start:cmd_end+1]
             key = key[cmd_end+1:]
-        
-        if not PMS_baseURL=='':
-            PMS_baseURL = '/PMS(' + quote_plus(PMS_baseURL) + ')'
         
         res = g_param['baseURL']  # base address to PlexConnect
         
@@ -1055,20 +1040,18 @@ class CCommandCollection(CCommandHelper):
             res = res + '/PMS(' + quote_plus(PMSaddress) + ')' + key
             """
         elif key.startswith('/'):  # internal full path.
-            res = res + PMS_baseURL + key
+            res = res + PMS_mark + key
         elif key == '':  # internal path
-            res = res + PMS_baseURL + self.path[srcXML]
+            res = res + PMS_mark + self.path[srcXML]
         else:  # internal path, add-on
-            res = res + PMS_baseURL + self.path[srcXML] + '/' + key
+            res = res + PMS_mark + self.path[srcXML] + '/' + key
         
         return res
     
     def ATTRIB_MEDIAURL(self, src, srcXML, param):
         Video, leftover = self.getElement(src, srcXML, param)
         
-        UDID = self.options['PlexConnectUDID']
-        PMS_uuid = PlexAPI.getPMSFromAddress(UDID, self.PMS_baseURL)
-        AuthToken = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
+        AuthToken = PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'accesstoken')
         
         if not Video:
             # not a complete video structure - take key directly and build direct-play path
@@ -1083,7 +1066,7 @@ class CCommandCollection(CCommandHelper):
         # check "Media" element and get key
         if Media!=None:
             # transcoder action
-            transcoderAction = g_ATVSettings.getSetting(UDID, 'transcoderaction')
+            transcoderAction = g_ATVSettings.getSetting(self.ATV_udid, 'transcoderaction')
             
             # video format
             #    HTTP live stream
@@ -1114,13 +1097,13 @@ class CCommandCollection(CCommandHelper):
                         '1080p 12.0Mbps' :('1920x1080', '90', '12000'), \
                         '1080p 20.0Mbps' :('1920x1080', '100', '20000'), \
                         '1080p 40.0Mbps' :('1920x1080', '100', '40000') }
-            if PlexAPI.getPMSProperty(UDID, PMS_uuid, 'local')=='1':
-                qLimits = qLookup[g_ATVSettings.getSetting(UDID, 'transcodequality')]
+            if PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'local')=='1':
+                qLimits = qLookup[g_ATVSettings.getSetting(self.ATV_udid, 'transcodequality')]
             else:
-                qLimits = qLookup[g_ATVSettings.getSetting(UDID, 'remotebitrate')]
+                qLimits = qLookup[g_ATVSettings.getSetting(self.ATV_udid, 'remotebitrate')]
             
             # subtitle renderer, subtitle selection
-            subtitleRenderer = g_ATVSettings.getSetting(UDID, 'subtitlerenderer')
+            subtitleRenderer = g_ATVSettings.getSetting(self.ATV_udid, 'subtitlerenderer')
             
             subtitleId = ''
             subtitleKey = ''
@@ -1178,8 +1161,8 @@ class CCommandCollection(CCommandHelper):
                 # misc settings: subtitlesize, audioboost
                 subtitle = { 'selected': '1' if subtitleId else '0', \
                              'dontBurnIn': '1' if subtitleDirectPlay else '0', \
-                             'size': g_ATVSettings.getSetting(UDID, 'subtitlesize') }
-                audio = { 'boost': g_ATVSettings.getSetting(UDID, 'audioboost') }
+                             'size': g_ATVSettings.getSetting(self.ATV_udid, 'subtitlesize') }
+                audio = { 'boost': g_ATVSettings.getSetting(self.ATV_udid, 'audioboost') }
                 res = PlexAPI.getTranscodeVideoPath(res, AuthToken, self.options, transcoderAction, qLimits, subtitle, audio)
         
         else:
@@ -1206,8 +1189,7 @@ class CCommandCollection(CCommandHelper):
     def ATTRIB_getDurationString(self, src, srcXML, param):
         duration, leftover, dfltd = self.getKey(src, srcXML, param)
         min = int(duration)/1000/60
-        UDID = self.options['PlexConnectUDID']
-        if g_ATVSettings.getSetting(UDID, 'durationformat') == 'Minutes':
+        if g_ATVSettings.getSetting(self.ATV_udid, 'durationformat') == 'Minutes':
             return self._("{0:d} Minutes").format(min)
         else:
             if len(duration) > 0:
@@ -1242,13 +1224,10 @@ class CCommandCollection(CCommandHelper):
         return self._(param)
     
     def ATTRIB_PMSCOUNT(self, src, srcXML, param):
-        UDID = self.options['PlexConnectUDID']
-        return str(PlexAPI.getPMSCount(UDID))
+        return str(PlexAPI.getPMSCount(self.ATV_udid))
     
     def ATTRIB_PMSNAME(self, src, srcXML, param):
-        UDID = self.options['PlexConnectUDID']
-        PMS_uuid = PlexAPI.getPMSFromAddress(UDID, self.PMS_baseURL)
-        PMS_name = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'name')
+        PMS_name = PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'name')
         if PMS_name=='':
             return "No Server in Proximity"
         else:
@@ -1299,8 +1278,8 @@ if __name__=="__main__":
     print "unpack PlexConnect COPY/CUT commands"
     options = {}
     options['PlexConnectUDID'] = '007'
-    PMS_baseURL = 'http://PMSURL'
-    g_CommandCollection = CCommandCollection(options, PMSroot, PMS_baseURL, '/library/sections')
+    PMS_address = 'PMS_IP'
+    g_CommandCollection = CCommandCollection(options, PMSroot, PMS_address, '/library/sections')
     XML_ExpandTree(aTVroot, PMSroot, 'main')
     XML_ExpandAllAttrib(aTVroot, PMSroot, 'main')
     del g_CommandCollection

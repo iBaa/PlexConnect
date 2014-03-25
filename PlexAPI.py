@@ -433,9 +433,9 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
             
             baseURL = getPMSProperty(ATV_udid, uuid, 'baseURL')
             token = getPMSProperty(ATV_udid, uuid, 'accesstoken')
-            PMS_baseURL = 'PMS(' + baseURL + ')'
+            PMS_mark = 'PMS(' + getPMSProperty(ATV_udid, uuid, 'ip') + ')'
             
-            Server.set('searchKey', PMS_baseURL + getURL('', '', '/SearchForm.xml'))
+            Server.set('searchKey', PMS_mark + getURL('', '', '/SearchForm.xml'))
             
             # request XMLs, one thread for each
             PMS = { 'baseURL':baseURL, 'path':path, 'options':options, 'token':token, \
@@ -456,7 +456,7 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
             
             baseURL = getPMSProperty(ATV_udid, uuid, 'baseURL')
             token = getPMSProperty(ATV_udid, uuid, 'accesstoken')
-            PMS_baseURL = 'PMS(' + baseURL + ')'
+            PMS_mark = 'PMS(' + getPMSProperty(ATV_udid, uuid, 'ip') + ')'
             
             if XML==False:
                 Server.set('size',    '0')
@@ -465,12 +465,12 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
                 
                 for Dir in XML.getiterator('Directory'):  # copy "Directory" content, add PMS to links
                     key = Dir.get('key')  # absolute path
-                    Dir.set('key',    PMS_baseURL + getURL('', path, key))
+                    Dir.set('key',    PMS_mark + getURL('', path, key))
                     Dir.set('refreshKey', getURL(baseURL, path, key) + '/refresh')
                     if 'thumb' in Dir.attrib:
-                        Dir.set('thumb',  PMS_baseURL + getURL('', path, Dir.get('thumb')))
+                        Dir.set('thumb',  PMS_mark + getURL('', path, Dir.get('thumb')))
                     if 'art' in Dir.attrib:
-                        Dir.set('art',    PMS_baseURL + getURL('', path, Dir.get('art')))
+                        Dir.set('art',    PMS_mark + getURL('', path, Dir.get('art')))
                     Server.append(Dir)
     
     root.set('size', str(len(root.findall('Server'))))

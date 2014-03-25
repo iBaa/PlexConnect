@@ -15,8 +15,8 @@
         <sections>
           <menuSection>
             <items>
-              <oneLineMenuItem id="{{VAL(key)}}" onPlay="flattenSeason('{{URL(key)}}', '{{VAL(%accesstoken)}}', '{{SETTING(flattenseason)}}', 'False')"
-                                                 onSelect="flattenSeason('{{URL(key)}}', '{{VAL(%accesstoken)}}', '{{SETTING(flattenseason)}}', 'False')"
+              <oneLineMenuItem id="{{VAL(key)}}" onPlay="flattenSeason('{{URL(key)}}', '{{SETTING(flattenseason)}}', 'False')"
+                                                 onSelect="flattenSeason('{{URL(key)}}', '{{SETTING(flattenseason)}}', 'False')"
                                                  onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenu')">
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>

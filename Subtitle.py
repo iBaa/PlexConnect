@@ -20,13 +20,13 @@ import PlexAPI
 Plex Media Server: get subtitle, return as aTV subtitle JSON
 
 parameters:
-    PMS_baseURL
+    PMS_address
     path
     options - dict() of PlexConnect-options as received from aTV, None for no std. X-Plex-Args
 result:
     aTV subtitle JSON or 'False' in case of error
 """
-def getSubtitleJSON(PMS_baseURL, path, options):
+def getSubtitleJSON(PMS_address, path, options):
     """
     # double check aTV UDID, redo from client IP if needed/possible
     if not 'PlexConnectUDID' in options:
@@ -37,11 +37,17 @@ def getSubtitleJSON(PMS_baseURL, path, options):
     path = path + '?' if not '?' in path else '&'
     path = path + 'encoding=utf-8'
     
+    if not 'PlexConnectUDID' in options:
+        # aTV unidentified, UDID not known
+        return False
+    
+    UDID = options['PlexConnectUDID']
+    
+    # determine PMS_uuid, PMSBaseURL from IP (PMS_mark)
     xargs = {}
-    if 'PlexConnectUDID' in options:
-        UDID = options['PlexConnectUDID']
-        PMS_uuid = PlexAPI.getPMSFromAddress(UDID, PMS_baseURL)
-        xargs['X-Plex-Token'] = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
+    PMS_uuid = PlexAPI.getPMSFromAddress(UDID, PMS_address)
+    PMS_baseURL = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'baseURL')
+    xargs['X-Plex-Token'] = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
     
     dprint(__name__, 1, "subtitle URL: {0}{1}", PMS_baseURL, path)
     dprint(__name__, 1, "xargs: {0}", xargs)

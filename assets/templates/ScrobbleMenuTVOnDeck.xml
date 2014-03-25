@@ -23,7 +23,7 @@
             </header>
             
             <items>
-              <oneLineMenuItem id="item2" onSelect="flattenSeason('{{URL(:{{VAL(Video/grandparentKey)}}/children)}}', '{{VAL(%accesstoken)}}', '{{SETTING(flattenseason)}}', 'True')">
+              <oneLineMenuItem id="item2" onSelect="flattenSeason('{{URL(:{{VAL(Video/grandparentKey)}}/children)}}', '{{SETTING(flattenseason)}}', 'True')">
                 <label>{{TEXT(View Show)}}</label>
               </oneLineMenuItem>
               
@@ -51,7 +51,7 @@
       <sections>
         <menuSection>
           <items>
-            <oneLineMenuItem id="item2" onSelect="flattenSeason('{{URL(:{{VAL(Video/grandparentKey)}}/children)}}', '{{VAL(%accesstoken)}}', '{{SETTING(flattenseason)}}', 'False')">
+            <oneLineMenuItem id="item2" onSelect="flattenSeason('{{URL(:{{VAL(Video/grandparentKey)}}/children)}}', '{{SETTING(flattenseason)}}', 'False')">
               <label>{{TEXT(View Show)}}</label>
             </oneLineMenuItem>
            
