@@ -42,6 +42,7 @@ rm /usr/bin/log.bash
 rm /usr/bin/who.bash
 rm /usr/bin/wake.bash
 rm /usr/bin/tv.bash
+rm /usr/bin/timemachine.bash
 rm /usr/bin/hide
 rm /usr/bin/quit
 rm /usr/bin/show
@@ -70,6 +71,7 @@ rm /usr/bin/logbash.bash
 rm /usr/bin/whobash.bash
 rm /usr/bin/wakebash.bash
 rm /usr/bin/tvbash.bash
+rm /usr/bin/timemachinebash.bash
 rm -Rf /Applications/PlexConnect
 rm -Rf /Applications/OpenConnect.app
 
