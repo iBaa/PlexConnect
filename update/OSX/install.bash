@@ -156,6 +156,9 @@ i
 wq
 EOF
 
+cp Gradient /library/webserver/documents
+chmod 775 /library/webserver/documents/gradient/ *.*
+
 ## copy files to /usr/bin for system wide access
 cp createcert.bash /usr/bin
 cp createimovie.bash /usr/bin
