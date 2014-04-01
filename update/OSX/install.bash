@@ -156,6 +156,78 @@ i
 wq
 EOF
 
+## Generate episode.bash based on OSX IP Address for Episode.xml
+ifconfig en0|grep 'inet '|cut -d ' ' -f 2 > episode.bash
+ed -s episode.bash << EOF
+1
+a
+/g' Episode.xml
+.
+1,2j
+wq
+EOF
+ed -s episode.bash << EOF
+i
+sed -i '' 's/__LOCALIP__/
+.
+1,2j
+wq
+EOF
+ed -s episode.bash << EOF
+i
+#!/bin/bash
+.
+wq
+EOF
+
+## Generate episodepreplay.bash based on OSX IP Address for EpisodePrePlay.xml
+ifconfig en0|grep 'inet '|cut -d ' ' -f 2 > episodepreplay.bash
+ed -s episodepreplay.bash << EOF
+1
+a
+/g' EpisodePrePlay.xml
+.
+1,2j
+wq
+EOF
+ed -s episodepreplay.bash << EOF
+i
+sed -i '' 's/__LOCALIP__/
+.
+1,2j
+wq
+EOF
+ed -s episodepreplay.bash << EOF
+i
+#!/bin/bash
+.
+wq
+EOF
+
+## Generate moviepreplay.bash based on OSX IP Address for MoviePrePlay.xml
+ifconfig en0|grep 'inet '|cut -d ' ' -f 2 > moviepreplay.bash
+ed -s moviepreplay.bash << EOF
+1
+a
+/g' MoviePrePlay.xml
+.
+1,2j
+wq
+EOF
+ed -s moviepreplay.bash << EOF
+i
+sed -i '' 's/__LOCALIP__/
+.
+1,2j
+wq
+EOF
+ed -s moviepreplay.bash << EOF
+i
+#!/bin/bash
+.
+wq
+EOF
+
 cp -R Gradient /library/webserver/documents
 chmod 777 /library/webserver/documents/gradient/ *.*
 
@@ -193,6 +265,9 @@ cp plexweblist.bash /usr/bin
 cp plexwebios.bash /usr/bin
 cp plexwebioswan.bash /usr/bin
 cp plexweblistwan.bash /usr/bin
+cp episode.bash /usr/bin
+cp episodepreplay.bash /usr/bin
+cp moviepreplay.bash /usr/bin
 cp quit /usr/bin
 cp hide /usr/bin
 cp show /usr/bin
@@ -265,3 +340,6 @@ chmod +x /usr/bin/plexweblist.bash
 chmod +x /usr/bin/plexwebios.bash
 chmod +x /usr/bin/plexwebioswan.bash
 chmod +x /usr/bin/plexweblistwan.bash
+chmod +x /usr/bin/episode.bash
+chmod +x /usr/bin/episodepreplay.bash
+chmod +x /usr/bin/moviepreplay.bash
