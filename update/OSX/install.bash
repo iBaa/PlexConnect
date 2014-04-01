@@ -343,3 +343,13 @@ chmod +x /usr/bin/plexweblistwan.bash
 chmod +x /usr/bin/episode.bash
 chmod +x /usr/bin/episodepreplay.bash
 chmod +x /usr/bin/moviepreplay.bash
+
+cd /applications/plexconnect/update/osx
+
+## load local ip in themes xml files if needed
+episode.bash
+episodepreplay.bash
+moviepreplay.bash
+cp Episode.xml /Applications/PlexConnect/assets/templates
+cp EpisodePrePlay.xml /Applications/PlexConnect/assets/templates
+cp MoviePrePlay.xml /Applications/PlexConnect/assets/templates
