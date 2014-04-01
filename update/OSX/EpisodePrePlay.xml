@@ -14,7 +14,7 @@
  
        <header>
          <imageHeader>
-	       <image insets="{{VAL(^aTVScreenResolution:1:720=820|1080=690)}}, 0, 0, 0" required="true">http://_LOCALIP_:1234/Gradient/gradient.php?image={{IMAGEURL(Video/art:::)}}&amp;hd={{VAL(^aTVScreenResolution)}}&amp;title={{EVAL("{{VAL(Video/title)}}".replace(" ","+"))}}</image>
+	       <image insets="{{VAL(^aTVScreenResolution:1:720=820|1080=690)}}, 0, 0, 0" required="true">http://__LOCALIP__:1234/Gradient/gradient.php?image={{IMAGEURL(Video/art:::)}}&amp;hd={{VAL(^aTVScreenResolution)}}&amp;title={{EVAL("{{VAL(Video/title)}}".replace(" ","+"))}}</image>
          </imageHeader>
        </header>
       
