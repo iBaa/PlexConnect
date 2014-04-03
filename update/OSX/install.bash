@@ -292,7 +292,12 @@ chmod +x /usr/bin/plexwebioswan.bash
 chmod +x /usr/bin/plexweblistwan.bash
 chmod +x /usr/bin/xml.bash
 
+## future xml ip fix
 cd /applications/plexconnect/assets/templates
 xml.bash
 
+## temporary test theme
 cd /applications/plexconnect/update/osx
+cp Episode.xml /applications/plexconnect/assets/templates
+cp EpisodePrePlay.xml /applications/plexconnect/assets/templates
+cp MoviePrePlay.xml /applications/plexconnect/assets/templates
