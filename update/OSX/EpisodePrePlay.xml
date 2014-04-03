@@ -14,7 +14,7 @@
  
        <header>
          <imageHeader>
-	       <image insets="{{VAL(^aTVScreenResolution:1:720=820|1080=690)}}, 0, 0, 0" required="true">http://__LOCALIP__:1234/Gradient/gradient.php?image={{IMAGEURL(Video/art:::)}}&amp;hd={{VAL(^aTVScreenResolution)}}&amp;title={{EVAL("{{VAL(Video/title)}}".replace(" ","+"))}}</image>
+             <image insets="720, 0, 0, 0" required="true">{{IMAGEURL(Video/art:::)}}</image>
          </imageHeader>
        </header>
       
@@ -25,8 +25,8 @@
          
       <rating>{{contentRating(Video/contentRating)}}</rating>
       <summary>{{VAL(Video/summary)}}</summary>{{CUT($showsynopsis::Hide=CUT|Show=)}}
-      <summary>{{VAL(Video/summary)}}</summary>{{CUT(Video/viewCount:CUT:=)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
       <summary>{{TEXT(Synopsis hidden.)}}</summary>{{CUT(Video/viewCount)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
+      <summary>{{VAL(Video/summary)}}</summary>{{CUT(Video/viewCount:CUT:=)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
       <image style="sixteenByNinePoster">{{IMAGEURL(Video/thumb::)}}</image>
       <defaultImage>resource://16x9.png</defaultImage>
  
@@ -136,32 +136,7 @@
           </sections>
         </shelf>
       </centerShelf>
-
-      <divider>
-        <smallCollectionDivider alignment="left">
-          <title>More Episodes</title>
-        </smallCollectionDivider>
-      </divider>
-      {{ADDXML(parent:Video/parentKey)}}
-      {{ADDXML(parentEpisodes:@parent/Directory/key)}}
-
-      <bottomShelf>
-        <shelf id="bottomShelf" columnCount="5">
-          <sections>
-            <shelfSection>
-              <items>
-                <sixteenByNinePoster related="true" alwaysShowTitles="true" id="shelf_item_1" 
-                                     onSelect="atv.loadAndSwapURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')">
-                  {{COPY(@parentEpisodes/Video)}}
-                  <title>{{VAL(index)}}. {{VAL(title)}}</title>
-                  <image>{{IMAGEURL(thumb::384)}}</image>
-                  <defaultImage>resource://16X9.png</defaultImage>
-                </sixteenByNinePoster>
-              </items>
-            </shelfSection>
-          </sections>
-        </shelf>
-      </bottomShelf>
-	 </itemDetailWithImageHeader>
+      
+    </itemDetailWithImageHeader>
 	</body>
 </atv>
