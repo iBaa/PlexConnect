@@ -19,7 +19,9 @@
        </header>
       <rating>{{contentRating(Video/contentRating)}}</rating>
       <summary>{{VAL(Video/summary)}}</summary>
-      
+<image style="moviePoster">{{IMAGEURL(Video/thumb::768)}}</image>
+      <defaultImage>resource://Poster.png</defaultImage>
+
       
       <table>
         <columnDefinitions>
