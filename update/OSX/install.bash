@@ -12,6 +12,9 @@ PlexConnectPath=${PWD}
 cd update/OSX
 DefaultPath=${PWD}
 
+#current user
+whoami=${USER}
+
 ## Generate plexweb.bash based on OSX IP Address for bash.cgi
 ifconfig en0|grep 'inet '|cut -d ' ' -f 2 > plexweb.bash
 ed -s plexweb.bash << EOF
@@ -244,7 +247,7 @@ sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createaut
 
 ## replace __INSTALLERPATH__, __USERNAME__in default update.bash
 ## save directly to the /usr/bin folder
-sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__USERNAME__/${SUDO_USER}/" "${DefaultPath}/update.bash" > /usr/bin/update.bash
+sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__USERNAME__/$whoami/" "${DefaultPath}/update.bash" > /usr/bin/update.bash
 
 ## replace __DEFAULTPATH__ in default webconnect.bash
 ## save directly to the /usr/bin folder
