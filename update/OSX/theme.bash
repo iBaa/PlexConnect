@@ -39,6 +39,5 @@ cd /applications/plexconnect/update/osx
 cp Episode.xml /applications/plexconnect/assets/templates
 cp EpisodePrePlay.xml /applications/plexconnect/assets/templates
 cp MoviePrePlay.xml /applications/plexconnect/assets/templates
-cd /applications/plexconnect/update/osx/thumbnails
-cp -R /applications/plexconnect/assets/thumbnails
+cp -R /applications/plexconnect/update/osx/thumbnails/* /applications/plexconnect/assets/thumbnails
 
