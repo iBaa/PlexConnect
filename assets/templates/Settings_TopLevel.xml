@@ -37,12 +37,35 @@
       <menu>
         <sections>
           <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{TEXT(Library)}}</title>
+              </horizontalDivider>
+            </header>
             <items>
-              <oneLineMenuItem id="ChannelView" onSelect="toggleSettings('ChannelView', 'Settings_Channels')">
+              <oneLineMenuItem id="LibraryView" onSelect="toggleSettings('LibraryView', 'Settings_TopLevel')">
+                <label>{{TEXT(Library View)}}</label>
+                <rightLabel>{{SETTING(libraryview)}}</rightLabel>
+              </oneLineMenuItem>
+              <!--oneLineMenuItem id="ShowTitles_Library" onSelect="toggleSettings('ShowTitles_Library', 'Settings_TopLevel')">
+                <label>{{TEXT(Poster Titles)}}</label>
+                <rightLabel>{{SETTING(showtitles_library)}}</rightLabel>
+              </oneLineMenuItem-->
+            </items>
+          </menuSection>
+          
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{TEXT(Channels)}}</title>
+              </horizontalDivider>
+            </header>
+            <items>
+              <oneLineMenuItem id="ChannelView" onSelect="toggleSettings('ChannelView', 'Settings_TopLevel')">
                 <label>{{TEXT(Channel View)}}</label>
                 <rightLabel>{{SETTING(channelview)}}</rightLabel>
               </oneLineMenuItem>
-              <oneLineMenuItem id="ShowTitles_Channels" onSelect="toggleSettings('ShowTitles_Channels', 'Settings_Channels')">
+              <oneLineMenuItem id="ShowTitles_Channels" onSelect="toggleSettings('ShowTitles_Channels', 'Settings_TopLevel')">
                 <label>{{TEXT(Poster Titles)}}</label>
                 <rightLabel>{{SETTING(showtitles_channels)}}</rightLabel>
               </oneLineMenuItem>

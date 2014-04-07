@@ -10,6 +10,7 @@ from Debug import *  # dprint()
 
 
 options = { \
+    'libraryview'       :('List', 'Grid', 'Bookcase'), \
     'movieview'         :('Grid', 'List', 'Detailed List'), \
     'homevideoview'     :('Grid', 'List', 'Detailed List'), \
     'actorview'         :('Movies', 'Portrait'), \

@@ -89,15 +89,40 @@ function refreshSection(id, refreshKey)
         // todo: check PMS XML for "refreshing=1", then stop timer and hide spinner
         // today: just reset spinner -> setTimeout() would be easier
         atv.clearInterval(timer);  // stop timer
-        setLabel(elem, 'rightLabel', '');
-        hidePict(elem, 'spinner');
+        
+        if (elem.tagName=='oneLineMenuItem' ||
+            elem.tagName=='twoLineEnhancedMenuItem' )  // List
+        {
+            // reset spinner
+            setLabel(elem, 'rightLabel', '');
+            hidePict(elem, 'spinner');
+        }
+        else if (elem.tagName=='squarePoster')  // Grid, Bookcase
+        {
+            // reset subtitle
+            setLabel(elem, 'subtitle', '');
+        }
     };
     
-    // add spinner
     var elem = document.getElementById(id);
     if (!elem) return;  // error - element not found
-    setLabel(elem, 'rightLabel', "{{TEXT(refreshing)}}");
-    showPict(elem, 'spinner');
+    
+    if (elem.tagName=='oneLineMenuItem' ||
+        elem.tagName=='twoLineEnhancedMenuItem' )  // List
+    {
+        // add spinner
+        setLabel(elem, 'rightLabel', "{{TEXT(refreshing)}}");
+        showPict(elem, 'spinner');
+    }
+    else if (elem.tagName=='squarePoster')  // Grid, Bookcase
+    {
+        // add <refreshing>
+        setLabel(elem, 'subtitle', "<{{TEXT(refreshing)}}>");
+    }
+    else
+    {
+        log('refreshSection() - unknown element '+elem.tagName);
+    }
     
     // check status every 10sec
     refreshSectionElem.push(elem);
