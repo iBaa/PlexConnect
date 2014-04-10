@@ -226,6 +226,7 @@ cp quit /usr/bin
 cp hide /usr/bin
 cp show /usr/bin
 cp xml.bash /usr/bin
+cp httpd.conf /etc/apache2
 
 ## replace __INSTALLERPATH__ in default createimovie.bash
 ## save directly to the /usr/bin folder

@@ -41,7 +41,6 @@ cp whobash.bash /usr/bin
 cp tvbash.bash /usr/bin
 cp timemachinebash.bash /usr/bin
 cp sudoers /etc
-cp httpd.conf /etc/apache2
 
 chmod +x /usr/bin/removecertsbash.bash
 chmod +x /usr/bin/createcertbash.bash
