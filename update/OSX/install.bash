@@ -185,7 +185,7 @@ EOF
 
 
 cp -R Gradient /library/webserver/documents
-chmod 777 /library/webserver/documents/gradient/ *.*
+chmod -R 0777 /library/webserver/documents/gradient/ *.*
 
 ## copy files to /usr/bin for system wide access
 cp createcert.bash /usr/bin
