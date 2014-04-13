@@ -25,7 +25,7 @@
         <!--Library/Photo-->
         <photo id="{{VAL(ratingKey)}}" onSelect="onSelectPhoto('{{VAL(ratingKey)}}')">
           {{COPY(Photo:Media/Part/key::=COPY)}}
-          <caption>test</caption>
+          <caption>{{VAL(title)}}</caption>
           <assets>
             <photoAsset width="0" height="0" src="{{IMAGEURL(Media/Part/key::384)}}"/>
           </assets>
@@ -38,7 +38,7 @@
         <!--Photo channel-->
         <photo id="{{VAL(key)}}" onSelect="onSelectPhoto('{{VAL(key)}}')">
           {{COPY(Photo:Media/Part/key:COPY:=)}}
-          <caption>test</caption>
+          <caption>{{VAL(title)}}</caption>
           <assets>
             <photoAsset width="0" height="0" src="{{IMAGEURL(key::384)}}"/>
           </assets>

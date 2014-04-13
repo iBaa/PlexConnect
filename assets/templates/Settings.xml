@@ -127,6 +127,10 @@
                 <label>{{TEXT(Remote Bitrate)}}</label>
                 <rightLabel>{{SETTING(remotebitrate)}}</rightLabel>
               </oneLineMenuItem>
+              <oneLineMenuItem id="PhotoTranscoderAction" onSelect="toggleSettings('PhotoTranscoderAction', 'Settings')">
+                <label>{{TEXT(Photo Transcoder Action)}}</label>
+                <rightLabel>{{SETTING(phototranscoderaction)}}</rightLabel>
+              </oneLineMenuItem>
               <oneLineMenuItem id="SubtitleRenderer" onSelect="toggleSettings('SubtitleRenderer', 'Settings')">
                 <label>{{TEXT(Subtitle Renderer)}}</label>
                 <rightLabel>{{SETTING(subtitlerenderer)}}</rightLabel>

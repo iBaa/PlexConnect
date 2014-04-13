@@ -480,8 +480,12 @@ def XML_PMS2aTV(PMS_address, path, options):
             XMLtemplate = 'Episode.xml'
     
     elif PMSroot.get('viewGroup','')=='photo':
-        # Photo listing
-        XMLtemplate = 'Photo.xml'
+        if PMSroot.find('Directory')==None:
+            # Photos only - directly show
+            XMLtemplate = 'Photo_Browser.xml'
+        else:
+            # Photo listing / directory
+            XMLtemplate = 'Photo_Directories.xml'
     
     else:
         XMLtemplate = 'Directory.xml'
@@ -760,7 +764,7 @@ class CCommandHelper():
         el, srcXML, tag = self.getBase(src, srcXML, tag)
         
         # walk the path if neccessary
-        while True:
+        while len(tag)>0:
             parts = tag.split('/',1)
             el = el.find(parts[0])
             if not '/' in tag or el==None:
@@ -979,10 +983,24 @@ class CCommandCollection(CCommandHelper):
         
         AuthToken = PlexAPI.getPMSProperty(self.ATV_udid, PMS_uuid, 'accesstoken')
         
-        if width=='':
+        # transcoder action
+        transcoderAction = g_ATVSettings.getSetting(self.ATV_udid, 'phototranscoderaction')
+        
+        # aTV native filetypes
+        parts = key.rsplit('.',1)
+        photoATVNative = parts[-1].lower() in ['jpg','jpeg','tif','tiff','gif','png']
+        dprint(__name__, 2, "photo: ATVNative - {0}", photoATVNative)
+        
+        if width=='' and \
+           transcoderAction=='Auto' and \
+           photoATVNative:
             # direct play
             res = PlexAPI.getDirectImagePath(key, AuthToken)
         else:
+            if width=='':
+                width = 1920  # max for HDTV. Relate to aTV version? Increase for KenBurns effect?
+            if height=='':
+                height = 1080  # as above
             # request transcoding
             res = PlexAPI.getTranscodeImagePath(key, AuthToken, self.path[srcXML], width, height)
         
