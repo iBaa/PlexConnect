@@ -1015,20 +1015,48 @@ class CCommandCollection(CCommandHelper):
         return res
     
     def ATTRIB_MUSICURL(self, src, srcXML, param):
-        key, leftover, dfltd = self.getKey(src, srcXML, param)
+        Track, leftover = self.getElement(src, srcXML, param)
         
         AuthToken = PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'accesstoken')
         
-        # direct play
-        res = PlexAPI.getDirectAudioPath(key, AuthToken)
+        if not Track:
+            # not a complete audio/track structure - take key directly and build direct-play path
+            key, leftover, dfltd = self.getKey(src, srcXML, param)
+            res = PlexAPI.getDirectAudioPath(key, AuthToken)
+            res = PlexAPI.getURL(self.PMS_baseURL, self.path[srcXML], res)
+            dprint(__name__, 1, 'MusicURL - direct: {0}', res)
+            return res
         
-        if res.startswith('/'):  # internal full path.
-            res = self.PMS_baseURL + res
-        elif res.startswith('http://') or res.startswith('https://'):  # external address
-            pass
-        else:  # internal path, add-on
-            res = self.PMS_baseURL + self.path[srcXML] + '/' + res
+        # complete track structure - request transcoding if needed
+        Media = Track.find('Media')
         
+        # check "Media" element and get key
+        if Media!=None:
+            # transcoder action setting?
+            # transcoder bitrate setting [kbps] -  eg. 128, 256, 384, 512?
+            maxAudioBitrate = '384'
+            
+            audioATVNative = \
+                Media.get('audioCodec','-') in ("mp3", "aac", "ac3", "drms", "alac", "aiff", "wav")
+            # check Media.get('container') as well - mp3, m4a, ...?
+            
+            dprint(__name__, 2, "audio: ATVNative - {0}", audioATVNative)
+            
+            if audioATVNative and\
+               int(Media.get('bitrate','0')) < int(maxAudioBitrate):
+                # direct play
+                res, leftover, dfltd = self.getKey(Media, srcXML, 'Part/key')
+                res = PlexAPI.getDirectAudioPath(res, AuthToken)
+            else:
+                # request transcoding
+                res, leftover, dfltd = self.getKey(Track, srcXML, 'key')
+                res = PlexAPI.getTranscodeAudioPath(res, AuthToken, self.options, maxAudioBitrate)
+        
+        else:
+            dprint(__name__, 0, "MEDIAPATH - element not found: {0}", param)
+            res = 'FILE_NOT_FOUND'  # not found?
+        
+        res = PlexAPI.getURL(self.PMS_baseURL, self.path[srcXML], res)
         dprint(__name__, 1, 'MusicURL: {0}', res)
         return res
     

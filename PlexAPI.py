@@ -731,6 +731,36 @@ def getDirectImagePath(path, AuthToken):
 
 
 """
+Transcode Audio support
+
+parameters:
+    path
+    AuthToken
+    options - dict() of PlexConnect-options as received from aTV
+    maxAudioBitrate - [kbps]
+result:
+    final path to pull in PMS transcoder
+"""
+def getTranscodeAudioPath(path, AuthToken, options, maxAudioBitrate):
+    UDID = options['PlexConnectUDID']
+    
+    transcodePath = '/music/:/transcode/universal/start.mp3?'
+    
+    args = dict()
+    args['path'] = path
+    args['session'] = UDID
+    args['protocol'] = 'http'
+    args['maxAudioBitrate'] = maxAudioBitrate
+    
+    xargs = getXArgsDeviceInfo(options)
+    if not AuthToken=='':
+        xargs['X-Plex-Token'] = AuthToken
+    
+    return transcodePath + urlencode(args) + '&' + urlencode(xargs)
+
+
+
+"""
 Direct Audio support
 
 parameters:
