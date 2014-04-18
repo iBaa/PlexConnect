@@ -479,7 +479,9 @@ def XML_PMS2aTV(PMS_address, path, options):
             # TV Episode view
             XMLtemplate = 'Episode.xml'
     
-    elif PMSroot.get('viewGroup','')=='photo':
+    elif PMSroot.get('viewGroup','')=='photo' or \
+       path.startswith('/photos') or \
+       PMSroot.find('Photo')!=None:
         if PMSroot.find('Directory')==None:
             # Photos only - directly show
             XMLtemplate = 'Photo_Browser.xml'
