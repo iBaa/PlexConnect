@@ -1097,7 +1097,7 @@ class CCommandCollection(CCommandHelper):
         
         return res
     
-    def ATTRIB_MEDIAURL(self, src, srcXML, param):
+    def ATTRIB_VIDEOURL(self, src, srcXML, param):
         Video, leftover = self.getElement(src, srcXML, param)
         
         AuthToken = PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'accesstoken')
@@ -1225,7 +1225,7 @@ class CCommandCollection(CCommandHelper):
         else:  # internal path, add-on
             res = self.PMS_baseURL + self.path[srcXML] + res
         
-        dprint(__name__, 1, 'MediaURL: {0}', res)
+        dprint(__name__, 1, 'VideoURL: {0}', res)
         return res
     
     def ATTRIB_episodestring(self, src, srcXML, param):

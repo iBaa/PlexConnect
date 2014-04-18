@@ -2,7 +2,7 @@
   <body>
     <videoPlayer id="com.sample.video-player">
       <httpFileVideoAsset id="{{VAL(Video/key)}}">
-        <mediaURL>{{MEDIAURL(Video)}}</mediaURL>
+        <mediaURL>{{VIDEOURL(Video)}}</mediaURL>
         <title>{{VAL(Video/title)}}</title>
         <description>{{VAL(Video/summary)}}</description>
         <bookmarkTime>{{EVAL({{VAL(Video/viewOffset:0)}} / 1000)}}</bookmarkTime>
@@ -37,7 +37,7 @@
         <myStackedMedia>
             <!-- stacked media -->
             <httpFileVideoAsset id="{{VAL(key)}}">
-                <mediaURL>{{MEDIAURL(key)}}</mediaURL>
+                <mediaURL>{{VIDEOURL(key)}}</mediaURL>
                 <title>{{VAL(@main/Video/title)}}</title>
                 <description>{{VAL(@main/Video/summary)}}</description>
                 <!--bookmarkTime>{{EVAL({{VAL(@main/Video/viewOffset:0)}} / 1000)}}</bookmarkTime-->
