@@ -42,6 +42,7 @@ rm /usr/bin/log.bash
 rm /usr/bin/who.bash
 rm /usr/bin/wake.bash
 rm /usr/bin/tv.bash
+rm /usr/bin/wol.bash
 rm /usr/bin/timemachine.bash
 rm /usr/bin/hide
 rm /usr/bin/quit

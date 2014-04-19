@@ -214,6 +214,7 @@ cp log.bash /usr/bin
 cp who.bash /usr/bin
 cp wake.bash /usr/bin
 cp tv.bash /usr/bin
+cp install wol.bash /usr/bin
 cp timemachine.bash /usr/bin
 cp websharing.bash /usr/bin
 cp plexweb.bash /usr/bin
@@ -289,6 +290,7 @@ chmod +x /usr/bin/log.bash
 chmod +x /usr/bin/who.bash
 chmod +x /usr/bin/wake.bash
 chmod +x /usr/bin/tv.bash
+chmod +x /usr/bin/wol.bash
 chmod +x /usr/bin/timemachine.bash
 chmod +x /usr/bin/websharing.bash
 chmod +x /usr/bin/plexweb.bash

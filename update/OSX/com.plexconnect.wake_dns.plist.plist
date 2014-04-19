@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>KeepAlive</key>
+	<true/>
+	<key>Label</key>
+	<string>com.plexconnect.wake_dns</string>
+	<key>ProgramArguments</key>
+ 	<array>
+ 		<string>dns-sd</string>
+		<string>-R</string>
+		<string>PlexConnect_DNS</string>
+		<string>_domain._udp.</string>
+		<string>.</string>
+		<string>53</string>
+		<string>pdl=application/dnsserver</string>
+	</array>
+</dict>
+</plist>
