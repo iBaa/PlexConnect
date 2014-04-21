@@ -40,7 +40,13 @@ cp logbash.bash /usr/bin
 cp whobash.bash /usr/bin
 cp tvbash.bash /usr/bin
 cp timemachinebash.bash /usr/bin
-cp sudoers /etc
+
+#current user
+whoami=${USER}
+
+## replace __USERNAME__in sudoers
+## save directly to the /etc folder
+sed -e "s/__USERNAME__/$whoami/" "${DefaultPath}/sudoers" > /etc/sudoers
 
 chmod +x /usr/bin/removecertsbash.bash
 chmod +x /usr/bin/createcertbash.bash
@@ -62,7 +68,7 @@ chmod +x /usr/bin/sleepbash.bash
 chmod +x /usr/bin/itunesbash.bash
 chmod +x /usr/bin/quititunesbash.bash
 chmod +x /usr/bin/logbash.bash
-chmod +x /usr/bin/whobash.bash
+chmod +x /usr/bin/whobash.bashw
 chmod +x /usr/bin/wakebash.bash
 chmod +x /usr/bin/tvbash.bash
 chmod +x /usr/bin/timemachinebash.bash
