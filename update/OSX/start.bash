@@ -10,7 +10,7 @@ launchctl load com.plex.plexconnect.bash.plist
 ## display the running status of PlexConnect
 launchctl list | grep com.plex.plexconnect.bash
 
-Allow log to refresh
+## Allow log to refresh
 Sleep 3
 
 ## Display PlexConnect log
