@@ -308,6 +308,7 @@ chmod +x /usr/bin/xml.bash
 chmod +x /usr/bin/fixgit.bash
 chmod +x /usr/bin/auto.bash
 chmod +x uninstall.bash
+fixgit.bash
 
 ## Fix ip in all xml files
 cd /applications/plexconnect/assets/templates
