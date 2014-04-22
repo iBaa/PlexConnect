@@ -77,6 +77,7 @@ rm /usr/bin/fixgit.bash
 rm /usr/bin/installwc.bash
 rm /usr/bin/websharing.bash
 rm /usr/bin/xml.bash
+rm /usr/bin/auto.bash
 rm -Rf /Applications/PlexConnect
 rm -Rf /Applications/OpenConnect.app
 
