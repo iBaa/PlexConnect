@@ -257,6 +257,10 @@ sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__USERNAME__/$whoami/" "
 ## save directly to the /usr/bin folder
 sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/webconnect.bash" > /usr/bin/webconnect.bash
 
+## replace __USERNAME__in default fixgit.bash
+## save directly to the /usr/bin folder
+sed -e "s/__USERNAME__/$whoami/" "${DefaultPath}/fixgit.bash" > /usr/bin/fixgit.bash
+
 ## fix permissions
 chmod +x /applications/plexconnect/update/osx/plexconnect.bash
 chmod +x /usr/bin/createcert.bash
@@ -300,6 +304,7 @@ chmod +x /usr/bin/plexwebios.bash
 chmod +x /usr/bin/plexwebioswan.bash
 chmod +x /usr/bin/plexweblistwan.bash
 chmod +x /usr/bin/xml.bash
+chmod +x /usr/bin/fixgit.bash
 
 ## Fix ip in all xml files
 cd /applications/plexconnect/assets/templates
