@@ -73,6 +73,10 @@ rm /usr/bin/whobash.bash
 rm /usr/bin/wakebash.bash
 rm /usr/bin/tvbash.bash
 rm /usr/bin/timemachinebash.bash
+rm /usr/bin/fixgit.bash
+rm /usr/bin/installwc.bash
+rm /usr/bin/websharing.bash
+rm /usr/bin/xml.bash
 rm -Rf /Applications/PlexConnect
 rm -Rf /Applications/OpenConnect.app
 
