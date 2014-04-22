@@ -305,6 +305,7 @@ chmod +x /usr/bin/plexwebioswan.bash
 chmod +x /usr/bin/plexweblistwan.bash
 chmod +x /usr/bin/xml.bash
 chmod +x /usr/bin/fixgit.bash
+chmod +x uninstall.bash
 
 ## Fix ip in all xml files
 cd /applications/plexconnect/assets/templates
