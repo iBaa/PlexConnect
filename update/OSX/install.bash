@@ -227,6 +227,7 @@ cp quit /usr/bin
 cp hide /usr/bin
 cp show /usr/bin
 cp xml.bash /usr/bin
+cp auto.bash /usr/bin
 cp httpd.conf /etc/apache2
 
 ## replace __INSTALLERPATH__ in default createimovie.bash
@@ -305,6 +306,7 @@ chmod +x /usr/bin/plexwebioswan.bash
 chmod +x /usr/bin/plexweblistwan.bash
 chmod +x /usr/bin/xml.bash
 chmod +x /usr/bin/fixgit.bash
+chmod +x /usr/bin/auto.bash
 chmod +x uninstall.bash
 
 ## Fix ip in all xml files
