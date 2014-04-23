@@ -308,7 +308,6 @@ chmod +x /usr/bin/xml.bash
 chmod +x /usr/bin/fixgit.bash
 chmod +x /usr/bin/auto.bash
 chmod +x uninstall.bash
-chmod +x /usr/bin/fixgit.bash
 fixgit.bash
 
 ## Fix ip in all xml files
