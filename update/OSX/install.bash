@@ -228,7 +228,6 @@ cp show /usr/bin
 cp xml.bash /usr/bin
 cp auto.bash /usr/bin
 cp httpd.conf /etc/apache2
-cp sudoers /etc
 
 ## replace __INSTALLERPATH__ in default createimovie.bash
 ## save directly to the /usr/bin folder
@@ -261,10 +260,6 @@ sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/webconnec
 ## replace __USERNAME__in default fixgit.bash
 ## save directly to the /usr/bin folder
 sed -e "s/__USERNAME__/$whoami/" "${DefaultPath}/fixgit.bash" > /usr/bin/fixgit.bash
-
-## replace __USERNAME__in default sudoers
-## save directly to the /etc folder
-sed -e "s/__USERNAME__/$whoami/" "${DefaultPath}/sudoers" > /etc/sudoers
 
 ## fix permissions
 chmod +x /applications/plexconnect/update/osx/plexconnect.bash
@@ -312,7 +307,6 @@ chmod +x /usr/bin/xml.bash
 chmod +x /usr/bin/fixgit.bash
 chmod +x /usr/bin/auto.bash
 chmod +x uninstall.bash
-chmod 0400 /etc/sudoers
 fixgit.bash
 
 ## Fix ip in all xml files
