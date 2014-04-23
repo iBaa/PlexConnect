@@ -40,6 +40,7 @@ cp logbash.bash /usr/bin
 cp whobash.bash /usr/bin
 cp tvbash.bash /usr/bin
 cp timemachinebash.bash /usr/bin
+cp sudoers /etc
 
 chmod +x /usr/bin/removecertsbash.bash
 chmod +x /usr/bin/createcertbash.bash
@@ -90,5 +91,6 @@ chmod 4755 /usr/bin/whobash.bash
 chmod 4755 /usr/bin/wakebash.bash
 chmod 4755 /usr/bin/tvbash.bash
 chmod 4755 /usr/bin/timemachinebash.bash
+chmod 400 /etc/sudoers
 
 echo WebConnect has been updated. Refresh your browser if no icons appear.
