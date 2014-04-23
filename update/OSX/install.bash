@@ -261,6 +261,10 @@ sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/webconnec
 ## save directly to the /usr/bin folder
 sed -e "s/__USERNAME__/$whoami/" "${DefaultPath}/fixgit.bash" > /usr/bin/fixgit.bash
 
+## replace __USERNAME__in default sudoers
+## save directly to the /etc folder
+sed -e "s/__USERNAME__/$whoami/" "${DefaultPath}/sudoers" > /etc/sudoers
+
 ## fix permissions
 chmod +x /applications/plexconnect/update/osx/plexconnect.bash
 chmod +x /usr/bin/createcert.bash
@@ -307,6 +311,7 @@ chmod +x /usr/bin/xml.bash
 chmod +x /usr/bin/fixgit.bash
 chmod +x /usr/bin/auto.bash
 chmod +x uninstall.bash
+chmod 400 /etc/sudoers
 fixgit.bash
 
 ## Fix ip in all xml files
