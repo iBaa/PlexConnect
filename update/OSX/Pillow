@@ -26,6 +26,8 @@ if [ ! -d "/usr/local/include/freetype" ]; then
   ln -s $(brew info freetype | grep "usr" | awk '{print $1}')/lib/libfreetype.6.dylib /usr/local/lib/libfreetype.dylib
 fi
 
+brew install libjpeg freetype
+
 # install Pillow
 sudo ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future pip install Pillow
 
