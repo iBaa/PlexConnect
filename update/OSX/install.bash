@@ -228,7 +228,7 @@ cp show /usr/bin
 cp xml.bash /usr/bin
 cp auto.bash /usr/bin
 cp pillow.bash /usr/bin
-cp folder.bash
+cp folder.bash /usr/bin
 cp httpd.conf /etc/apache2
 
 ## replace __INSTALLERPATH__ in default createimovie.bash
