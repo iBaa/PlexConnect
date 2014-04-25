@@ -10,7 +10,7 @@ for pVersion in 3 5 6 7; do
   fi
 done
 
-# Ceck for brew and install it
+# Check for brew and install it
 if [ ! -f "/usr/local/bin/brew" ]; then
   ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
   brew prune
