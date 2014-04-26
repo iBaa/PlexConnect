@@ -1,0 +1,315 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/scrobble.js)}}" />
+  </head>
+
+  {{VAR(studio:grandparentStudio)}}
+  {{VAR(contentRating:grandparentContentRating)}}
+  {{VAR(title1:title1)}}
+  {{VAR(title2:title2)}}
+  {{VAR(artwork:art)}}
+  
+  <body>
+
+<!--Gradient-->
+
+    <itemCollectionWithImageHeader id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
+	<header>
+        <imageHeader>
+          <image insets="{{VAL(^aTVScreenResolution:1:720=820|1080=690)}}, 0, 0, 0" required="true">http://{{VAL(%ip)}}:5050/Gradienttv/gradient.php?image={{IMAGEURL(art:::)}}&amp;hd={{VAL(^aTVScreenResolution)}}</image>
+        </imageHeader>
+      </header>
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+              <oneLineMenuItem id="{{VAL(ratingKey)}}"
+                                         onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                                         onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
+                                         onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
+                {{COPY(Video:index::=|0 =COPY)}}
+                <label>{{VAL(title)}}</label>
+                <ordinal>{{VAL(index)}}</ordinal>
+                <maxOrdinalDigits>2</maxOrdinalDigits>
+                <accessories>
+                <unplayedDot/>{{CUT(viewOffset)}}
+                  <progressBar percentage="{{EVAL({{VAL(viewOffset:0)}} * 100 / {{VAL(duration:1)}})}}"/>{{CUT(viewOffset:CUT:=)}}
+                <!---<progressBar percentage="100"/>{{CUT(viewCount:CUT:=)}}{{CUT(viewOffset)}}-->
+                </accessories>{{CUT(viewCount)}}
+
+                <preview>
+                  <longDescriptionPreview>
+                    <title>{{VAL(title)}}</title>
+                    <summary><![CDATA[{{VAL(summary)}}]]></summary>{{CUT($showsynopsis::Hide=CUT|Show=)}}
+                    <summary><![CDATA[{{VAL(summary)}}]]></summary>{{CUT(viewCount:CUT:=)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
+                    <summary>{{TEXT(Synopsis hidden.)}}</summary>{{CUT(viewCount)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
+                    <rating>{{VAL(#contentRating)}}</rating>
+                    <image>{{IMAGEURL(thumb::800)}}</image>
+                    <metadata>
+                      <label>{{VAL(#title1)}}: {{VAL(#title2)}}</label>
+                      <label>Aired: {{VAL(originallyAvailableAt)}}</label>
+                      <label>Studio: {{VAL(#studio)}}</label>
+                      <label>Runtime: {{getDurationString(duration)}}</label>
+                      <label>Quality: {{VAL(Media/videoResolution:Unknown:1080=1080p|720=720p|576=576 SD|480=480 SD|sd=SD)}}   {{VAL(Media/audioCodec:Unknown:ac3=AC3|aac=AAC|mp3=MP3|dca=DTS|drms=DRMS)}} {{VAL(Media/audioChannels:Unknown:2=Stereo 2.0|6=5.1|8=7.1)}} </label>
+                      <starRating hasUserSetRating="true">
+                        <percentage>{{EVAL({{VAL(userRating:0)}} * 10)}}</percentage>
+                      </starRating>{{CUT(userRating:CUT:0=)}}
+                      <starRating>
+                        <percentage>{{EVAL({{VAL(rating:0)}} * 10)}}</percentage>
+                      </starRating>{{CUT(userRating::0=CUT)}}             
+                    </metadata>
+                  </longDescriptionPreview>
+                </preview>
+              </oneLineMenuItem>{{CUT(Video/title:CUT:=)}}
+
+              <oneLineMenuItem id="none">
+                <label>{{TEXT(No episodes)}}</label>
+              </oneLineMenuItem>{{CUT(Video/title::=CUT)}}
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </itemCollectionWithImageHeader>{{CUT($episode_list::Gradient=|Off=CUT|No Gradient=CUT|Banner=CUT|Full Gradient=CUT)}}
+    
+    <!--Off -->
+    
+    <listWithPreview id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
+      <header>
+        <simpleHeader>
+          <title>{{VAL(title1)}}</title>
+          <subtitle>{{VAL(title2)}}</subtitle>
+        </simpleHeader>
+      </header>
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+              <oneLineMenuItem id="{{VAL(ratingKey)}}"
+                                         onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                                         onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
+                                         onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
+                {{COPY(Video:index::=|0 =COPY)}}
+                <label>{{VAL(title)}}</label>
+                <ordinal>{{VAL(index)}}</ordinal>
+                <maxOrdinalDigits>2</maxOrdinalDigits>
+                <accessories>
+                <unplayedDot/>{{CUT(viewOffset)}}
+                  <progressBar percentage="{{EVAL({{VAL(viewOffset:0)}} * 100 / {{VAL(duration:1)}})}}"/>{{CUT(viewOffset:CUT:=)}}
+                <!---<progressBar percentage="100"/>{{CUT(viewCount:CUT:=)}}{{CUT(viewOffset)}}-->
+                </accessories>{{CUT(viewCount)}}
+
+                <preview>
+                  <longDescriptionPreview>
+                    <title>{{VAL(title)}}</title>
+                    <summary><![CDATA[{{VAL(summary)}}]]></summary>{{CUT($showsynopsis::Hide=CUT|Show=)}}
+                    <summary><![CDATA[{{VAL(summary)}}]]></summary>{{CUT(viewCount:CUT:=)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
+                    <summary>{{TEXT(Synopsis hidden.)}}</summary>{{CUT(viewCount)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
+                    <rating>{{VAL(#contentRating)}}</rating>
+                    <image>{{IMAGEURL(thumb::800)}}</image>
+                    <metadata>
+                      <label>Aired: {{VAL(originallyAvailableAt)}}</label>
+                      <label>Studio: {{VAL(#studio)}}</label>
+                      <label>Runtime: {{getDurationString(duration)}}</label>
+                      <label>Quality: {{VAL(Media/videoResolution:Unknown:1080=1080p|720=720p|576=576 SD|480=480 SD|sd=SD)}}   {{VAL(Media/audioCodec:Unknown:ac3=AC3|aac=AAC|mp3=MP3|dca=DTS|drms=DRMS)}} {{VAL(Media/audioChannels:Unknown:2=Stereo 2.0|6=5.1|8=7.1)}} </label>
+                      <starRating hasUserSetRating="true">
+                        <percentage>{{EVAL({{VAL(userRating:0)}} * 10)}}</percentage>
+                      </starRating>{{CUT(userRating:CUT:0=)}}
+                      <starRating>
+                        <percentage>{{EVAL({{VAL(rating:0)}} * 10)}}</percentage>
+                      </starRating>{{CUT(userRating::0=CUT)}}             
+                    </metadata>
+                  </longDescriptionPreview>
+                </preview>
+              </oneLineMenuItem>{{CUT(Video/title:CUT:=)}}
+
+              <oneLineMenuItem id="none">
+                <label>{{TEXT(No episodes)}}</label>
+              </oneLineMenuItem>{{CUT(Video/title::=CUT)}}
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </listWithPreview>{{CUT($episode_list::Off=|Gradient=CUT|No Gradient=CUT|Banner=CUT|Full Gradient=CUT)}}
+    
+    <!--Banner-->
+        <itemCollectionWithImageHeader id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
+
+      <header>
+        <imageHeader>
+          <image insets="50, 0, 0, 0" required="true">{{IMAGEURL(banner)}}</image>
+        </imageHeader>
+      </header>
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+			<oneLineMenuItem id="{{VAL(ratingKey)}}"
+                                         onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                                         onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
+                                         onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
+                {{COPY(Video:index::=|0 =COPY)}}
+                <label>{{VAL(title)}}</label>
+                <ordinal>{{VAL(index)}}</ordinal>
+                <maxOrdinalDigits>2</maxOrdinalDigits>
+                <accessories>
+                <unplayedDot/>{{CUT(viewOffset)}}
+                  <progressBar percentage="{{EVAL({{VAL(viewOffset:0)}} * 100 / {{VAL(duration:1)}})}}"/>{{CUT(viewOffset:CUT:=)}}
+                <!---<progressBar percentage="100"/>{{CUT(viewCount:CUT:=)}}{{CUT(viewOffset)}}-->
+                </accessories>{{CUT(viewCount)}}
+
+                <preview>
+                  <longDescriptionPreview>
+                    <title>{{VAL(title)}}</title>
+                    <summary><![CDATA[{{VAL(summary)}}]]></summary>{{CUT($showsynopsis::Hide=CUT|Show=)}}
+                    <summary><![CDATA[{{VAL(summary)}}]]></summary>{{CUT(viewCount:CUT:=)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
+                    <summary>{{TEXT(Synopsis hidden.)}}</summary>{{CUT(viewCount)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
+                    <rating>{{VAL(#contentRating)}}</rating>
+                    <image>{{IMAGEURL(thumb::800)}}</image>
+                    <metadata>
+                      <label>{{VAL(#title1)}}: {{VAL(#title2)}}</label>
+                      <label>Aired: {{VAL(originallyAvailableAt)}}</label>
+                      <label>Studio: {{VAL(#studio)}}</label>
+                      <label>Runtime: {{getDurationString(duration)}}</label>
+                      <label>Quality: {{VAL(Media/videoResolution:Unknown:1080=1080p|720=720p|576=576 SD|480=480 SD|sd=SD)}}   {{VAL(Media/audioCodec:Unknown:ac3=AC3|aac=AAC|mp3=MP3|dca=DTS|drms=DRMS)}} {{VAL(Media/audioChannels:Unknown:2=Stereo 2.0|6=5.1|8=7.1)}} </label>
+                      <starRating hasUserSetRating="true">
+                        <percentage>{{EVAL({{VAL(userRating:0)}} * 10)}}</percentage>
+                      </starRating>{{CUT(userRating:CUT:0=)}}
+                      <starRating>
+                        <percentage>{{EVAL({{VAL(rating:0)}} * 10)}}</percentage>
+                      </starRating>{{CUT(userRating::0=CUT)}}             
+                    </metadata>
+                  </longDescriptionPreview>
+                </preview>
+              </oneLineMenuItem>{{CUT(Video/title:CUT:=)}}
+
+              <oneLineMenuItem id="none">
+                <label>{{TEXT(No episodes)}}</label>
+              </oneLineMenuItem>{{CUT(Video/title::=CUT)}}
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </itemCollectionWithImageHeader>{{CUT($episode_list::Banner=|Off=CUT|No Gradient=CUT|Gradient=CUT|Full Gradient=CUT)}}
+    <!--No Gradient-->
+    
+    <itemCollectionWithImageHeader id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
+      <header>
+        <imageHeader>
+          <image insets="720, 0, 0, 0" required="true">{{IMAGEURL(art::)}}</image>
+        </imageHeader>
+      </header>
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+              <oneLineMenuItem id="{{VAL(ratingKey)}}"
+                                         onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                                         onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
+                                         onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
+                {{COPY(Video:index::=|0 =COPY)}}
+                <label>{{VAL(title)}}</label>
+                <ordinal>{{VAL(index)}}</ordinal>
+                <maxOrdinalDigits>2</maxOrdinalDigits>
+                <accessories>
+                <unplayedDot/>{{CUT(viewOffset)}}
+                  <progressBar percentage="{{EVAL({{VAL(viewOffset:0)}} * 100 / {{VAL(duration:1)}})}}"/>{{CUT(viewOffset:CUT:=)}}
+                <!---<progressBar percentage="100"/>{{CUT(viewCount:CUT:=)}}{{CUT(viewOffset)}}-->
+                </accessories>{{CUT(viewCount)}}
+
+                <preview>
+                  <longDescriptionPreview>
+                    <title>{{VAL(title)}}</title>
+                    <summary><![CDATA[{{VAL(summary)}}]]></summary>{{CUT($showsynopsis::Hide=CUT|Show=)}}
+                    <summary><![CDATA[{{VAL(summary)}}]]></summary>{{CUT(viewCount:CUT:=)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
+                    <summary>{{TEXT(Synopsis hidden.)}}</summary>{{CUT(viewCount)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
+                    <rating>{{VAL(#contentRating)}}</rating>
+                    <image>{{IMAGEURL(thumb::800)}}</image>
+                    <metadata>
+                      <label>{{VAL(#title1)}}: {{VAL(#title2)}}</label>
+                      <label>Aired: {{VAL(originallyAvailableAt)}}</label>
+                      <label>Studio: {{VAL(#studio)}}</label>
+                      <label>Runtime: {{getDurationString(duration)}}</label>
+                      <label>Quality: {{VAL(Media/videoResolution:Unknown:1080=1080p|720=720p|576=576 SD|480=480 SD|sd=SD)}}   {{VAL(Media/audioCodec:Unknown:ac3=AC3|aac=AAC|mp3=MP3|dca=DTS|drms=DRMS)}} {{VAL(Media/audioChannels:Unknown:2=Stereo 2.0|6=5.1|8=7.1)}} </label>
+                      <starRating hasUserSetRating="true">
+                        <percentage>{{EVAL({{VAL(userRating:0)}} * 10)}}</percentage>
+                      </starRating>{{CUT(userRating:CUT:0=)}}
+                      <starRating>
+                        <percentage>{{EVAL({{VAL(rating:0)}} * 10)}}</percentage>
+                      </starRating>{{CUT(userRating::0=CUT)}}             
+                    </metadata>
+                  </longDescriptionPreview>
+                </preview>
+              </oneLineMenuItem>{{CUT(Video/title:CUT:=)}}
+
+              <oneLineMenuItem id="none">
+                <label>{{TEXT(No episodes)}}</label>
+              </oneLineMenuItem>{{CUT(Video/title::=CUT)}}
+            </items>
+          </menuSection>
+        </sections>
+      </menu>uj
+    </itemCollectionWithImageHeader>{{CUT($episode_list::No Gradient=|Off=CUT|Gradient=CUT|Banner=CUT|Full Gradient=CUT)}}
+    
+    <!--Full Gradient-->
+    
+    <itemCollectionWithImageHeader id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
+        <header>
+            <imageHeader>
+                <image insets="{{VAL(^aTVScreenResolution:1:720=820|1080=690)}}, 0, 0, 0" required="true">http://__LOCALIP__:5050/Gradienttv/fullgradient.php?image={{IMAGEURL(art:::)}}&amp;gradient=tvseason&amp;hd=1080</image>
+            </imageHeader>
+        </header>
+        <menu>
+            <sections>
+                <menuSection>
+                    <items>
+                        <oneLineMenuItem id="{{VAL(ratingKey)}}"
+                            onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                            onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
+                            onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
+                            {{COPY(Video:index::=|0 =COPY)}}
+                            <label>{{VAL(title)}}</label>
+                            <ordinal>{{VAL(index)}}</ordinal>
+                            <maxOrdinalDigits>2</maxOrdinalDigits>
+                            <accessories>
+                                <unplayedDot/>{{CUT(viewOffset)}}
+                                <progressBar percentage="{{EVAL({{VAL(viewOffset:0)}} * 100 / {{VAL(duration:1)}})}}"/>{{CUT(viewOffset:CUT:=)}}
+                                <!---<progressBar percentage="100"/>{{CUT(viewCount:CUT:=)}}{{CUT(viewOffset)}}-->
+                            </accessories>{{CUT(viewCount)}}
+                            
+                            <preview>
+                                <longDescriptionPreview>
+                                    <title>{{VAL(title)}}</title>
+                                    <summary><![CDATA[{{VAL(summary)}}]]></summary>{{CUT($showsynopsis::Hide=CUT|Show=)}}
+                                    <summary><![CDATA[{{VAL(summary)}}]]></summary>{{CUT(viewCount:CUT:=)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
+                                    <summary>{{TEXT(Synopsis hidden.)}}</summary>{{CUT(viewCount)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
+                                    <rating>{{VAL(#contentRating)}}</rating>
+                                    <image>{{IMAGEURL(thumb::800)}}</image>
+                                    <metadata>
+                                        <label>{{VAL(#title1)}}: {{VAL(#title2)}}</label>
+                                        <label>Aired: {{VAL(originallyAvailableAt)}}</label>
+                                        <label>Studio: {{VAL(#studio)}}</label>
+                                        <label>Runtime: {{getDurationString(duration)}}</label>
+                                        <label>Quality: {{VAL(Media/videoResolution:Unknown:1080=1080p|720=720p|576=576 SD|480=480 SD|sd=SD)}}   {{VAL(Media/audioCodec:Unknown:ac3=AC3|aac=AAC|mp3=MP3|dca=DTS|drms=DRMS)}} {{VAL(Media/audioChannels:Unknown:2=Stereo 2.0|6=5.1|8=7.1)}} </label>
+                                        <starRating hasUserSetRating="true">
+                                            <percentage>{{EVAL({{VAL(userRating:0)}} * 10)}}</percentage>
+                                        </starRating>{{CUT(userRating:CUT:0=)}}
+                                        <starRating>
+                                            <percentage>{{EVAL({{VAL(rating:0)}} * 10)}}</percentage>
+                                        </starRating>{{CUT(userRating::0=CUT)}}
+                                    </metadata>
+                                </longDescriptionPreview>
+                            </preview>
+                        </oneLineMenuItem>{{CUT(Video/title:CUT:=)}}
+                        
+                        <oneLineMenuItem id="none">
+                            <label>{{TEXT(No episodes)}}</label>
+                        </oneLineMenuItem>{{CUT(Video/title::=CUT)}}
+                    </items>
+                </menuSection>
+            </sections>
+        </menu>
+    </itemCollectionWithImageHeader>{{CUT($episode_list::Full Gradient=|Off=CUT|No Gradient=CUT|Banner=CUT|Gradient=CUT)}}
+
+    </body>
+</atv>
