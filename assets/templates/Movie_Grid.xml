@@ -1,7 +1,6 @@
 <atv>
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
-    <script src="{{URL(:/js/scrobble.js)}}" />
   </head>
   
   <body>
@@ -16,13 +15,13 @@
       <items>
         <grid columnCount="7" id="grid_0">
           <items>
-            <moviePoster id="{{VAL(key)}}" 
+            <moviePoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_movies::Highlighted Only=false|Show All=true)}}"
                              onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                              onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')"
-                             onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Movie)}}');">
+                             onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
               {{COPY(Video)}}
               <title>{{VAL(title)}}</title>
-              <subtitle>{{VAL(year)}}</subtitle>
+              <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
               <image>{{IMAGEURL(thumb::384)}}</image>
               <defaultImage>resource://Poster.png</defaultImage>
             </moviePoster>

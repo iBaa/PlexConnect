@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/settings.js)}}" />
+  </head>
+
+  <body>
+    <listWithPreview id="SettingsPage_Library">
+      <header>
+        <simpleHeader>
+          <title>{{TEXT(Settings)}}</title>
+        </simpleHeader>
+      </header>
+      <preview>
+        <keyedPreview>
+          <title>&#x00AD;<!--soft-hyphen--></title>
+          <summary/>
+          <metadataKeys>
+            <label>{{TEXT(Version)}}</label>
+            <label>{{TEXT(Authors)}}</label>
+            <label>{{TEXT(Wiki/Docs)}}</label>
+            <label>{{TEXT(Homepage)}}</label>
+            <label>{{TEXT(Forum)}}</label>
+          </metadataKeys>
+          <metadataValues>
+            <label>{{EVAL(__VERSION__)}}</label>
+            <label>Baa, roidy</label>
+            <label>f00b4r, meltman</label>
+            <label>https://github.com/ibaa/plexconnect</label>
+            <label>http://forums.plexapp.com/...plexconnect</label>
+          </metadataValues>
+          <image>{{URL(:/thumbnails/PlexConnectLogo.jpg)}}</image>
+        </keyedPreview>
+      </preview>
+
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+              <oneLineMenuItem id="LibraryView" onSelect="toggleSettings('LibraryView', 'Settings_Library')">
+                <label>{{TEXT(Library View)}}</label>
+                <rightLabel>{{SETTING(libraryview)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="LibraryView_Remote" onSelect="toggleSettings('LibraryView_Remote', 'Settings_Library')">
+                <label>{{TEXT(Library View Shared)}}</label>
+                <rightLabel>{{SETTING(libraryview_remote)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="SectionIcons" onSelect="toggleSettings('SectionIcons', 'Settings_Library')">
+                <label>{{TEXT(Library Icons)}}</label>
+                <rightLabel>{{SETTING(sectionicons)}}</rightLabel>
+              </oneLineMenuItem>
+                <oneLineMenuItem id="SectionIcons_Shared" onSelect="toggleSettings('SectionIcons_Shared', 'Settings_Library')">
+                <label>{{TEXT(Library Icons Shared)}}</label>
+                <rightLabel>{{SETTING(sectionicons_shared)}}</rightLabel>
+              </oneLineMenuItem>               
+                <oneLineMenuItem id="ImageHeader" onSelect="toggleSettings('ImageHeader', 'Settings_Library')">
+                <label>{{TEXT(Header)}}</label>
+                <rightLabel>{{SETTING(imageheader)}}</rightLabel>
+              </oneLineMenuItem>{{CUT(^aTVFirmwareVersion:CUT:=CUT|6.0=)}}
+			  <oneLineMenuItem id="SectionsPosition" onSelect="toggleSettings('SectionsPosition', 'Settings_Library')">
+                <label>{{TEXT(Sections Position)}}</label>
+                <rightLabel>{{SETTING(sectionsposition)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="Library_Search" onSelect="toggleSettings('Library_Search', 'Settings_Library')">
+                <label>{{TEXT(Search Section)}}</label>
+                <rightLabel>{{SETTING(Library_search)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="ShowTitles_Library" onSelect="toggleSettings('ShowTitles_Library', 'Settings_Library')">
+                <label>{{TEXT(Poster Titles)}}</label>
+                <rightLabel>{{SETTING(showtitles_library)}}</rightLabel>
+              </oneLineMenuItem> 
+              <oneLineMenuItem id="ChannelView" onSelect="toggleSettings('ChannelView', 'Settings_TopLevel')">
+                <label>{{TEXT(Channel View)}}</label>
+                <rightLabel>{{SETTING(channelview)}}</rightLabel>
+              </oneLineMenuItem>            
+            </items>
+          </menuSection>
+
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{TEXT(Library)}}</title>
+              </horizontalDivider>
+            </header>
+            <items>
+
+              <oneLineMenuItem id="Library_OnDeck" onSelect="toggleSettings('Library_OnDeck', 'Settings_Library')">
+                <label>{{TEXT(On Deck)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($library_ondeck::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+
+              <oneLineMenuItem id="Library_RecentlyAdded" onSelect="toggleSettings('Library_RecentlyAdded', 'Settings_Library')">
+                <label>{{TEXT(Recently Added)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($library_recentlyadded::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>               
+              <oneLineMenuItem id="Library_Channels" onSelect="toggleSettings('Library_Channels', 'Settings_Library')">
+                <label>{{TEXT(Channels)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($library_channels::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>              
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </listWithPreview>
+  </body>
+</atv>

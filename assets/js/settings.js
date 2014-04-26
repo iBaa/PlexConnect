@@ -108,20 +108,6 @@ function discover(opt, template)
 };
 
 /*
- * Refresh library
- */
-function refreshLibrary(addrPMS) 
-{
-	atv.loadURL("{{URL(/RefreshLibrary.xml)}}");
-	var url = "http://" + addrPMS + "/library/sections/all/refresh";
-	var req = new XMLHttpRequest();
-	req.open('GET', url, true);
-	req.send();
-};
-
-
-
-/*
  * MyPlex sign in/out
  */
 
@@ -222,17 +208,18 @@ myPlexSignInOut = function()
             
             // update MyPlexSignInOut
             hidePict(_myPlexElem, 'spinner');
+            setLabel(_myPlexElem, 'label', getLabel(new_myPlexElem, 'label'));
             var username = getLabel(new_myPlexElem, 'rightLabel')
             if (username)
             {
                 setLabel(_myPlexElem, 'rightLabel', username);
+                atv.loadAndSwapURL("{{URL(/PlexConnect.xml)}}&PlexConnectUDID=" + atv.device.udid);
             }
             else
             {
                 showPict(_myPlexElem, 'arrow')
                 setLabel(_myPlexElem, 'rightLabel', _failed);
             }
-            setLabel(_myPlexElem, 'label', getLabel(new_myPlexElem, 'label'));
             
             log("MyPlex Login - done");
         };
@@ -265,6 +252,8 @@ myPlexSignInOut = function()
         setLabel(_myPlexElem, 'rightLabel', getLabel(new_myPlexElem, 'rightLabel'));
         
         log("MyPlex Logout - done");
+        
+        atv.loadAndSwapURL("{{URL(/PlexConnect.xml)}}&PlexConnectUDID=" + atv.device.udid);
     };
     
     
@@ -273,10 +262,12 @@ myPlexSignInOut = function()
     if (username == '' ||
         username == _failed)
     {
-        SignIn()
+        SignIn();
     }
     else
     {
-        SignOut()
+        SignOut();
     }
+    
+
 };

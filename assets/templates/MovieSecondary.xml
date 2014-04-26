@@ -105,12 +105,12 @@
                 </preview>
               </oneLineMenuItem>
 
-              <oneLineMenuItem id="folder" onPlay="atv.loadURL('{{URL(key)}}/folder&amp;PlexConnect=ByFolder')" onSelect="atv.loadURL('{{URL(key)}}/folder&amp;PlexConnect=ByFolder')">
+              <oneLineMenuItem id="folder" onPlay="atv.loadURL('{{URL(key)}}/folder&amp;PlexConnect=MovieByFolder')" onSelect="atv.loadURL('{{URL(key)}}/folder&amp;PlexConnect=MovieByFolder')">
                 <label>{{TEXT(By Folder)}}</label>
                 <preview>
                   <link>{{URL(key)}}/folder?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
                 </preview>
-              </oneLineMenuItem>
+              </oneLineMenuItem>{{CUT($movies_navbar_byfolder::checked=CUT|unchecked=)}}
 
             </items>
           </menuSection>

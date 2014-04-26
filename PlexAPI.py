@@ -33,6 +33,8 @@ import sys
 import struct
 import time
 import urllib2, socket
+from threading import Thread
+import Queue
 
 try:
     import xml.etree.cElementTree as etree
@@ -62,7 +64,7 @@ parameters:
     uuid - PMS ID
     name, scheme, ip, port, type, owned, token
 """
-def declarePMS(ATV_udid, uuid, name, scheme, ip, port, type, owned, token):
+def declarePMS(ATV_udid, uuid, name, scheme, ip, port):
     # store PMS information in g_PMS database
     global g_PMS
     if not ATV_udid in g_PMS:
@@ -74,9 +76,9 @@ def declarePMS(ATV_udid, uuid, name, scheme, ip, port, type, owned, token):
                               'scheme':scheme, 'ip': ip , 'port': port,
                               'address': address,
                               'baseURL': baseURL,
-                              'type': type,
-                              'owned': owned,
-                              'accesstoken': token
+                              'local': '1',
+                              'owned': '1',
+                              'accesstoken': ''
                             }
 
 def updatePMSProperty(ATV_udid, uuid, tag, value):
@@ -243,14 +245,14 @@ def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
             uuid = Server.get('machineIdentifier')
             name = Server.get('name')
             
-            declarePMS(ATV_udid, uuid, name, 'http', ip, port, 'local', '', '')
+            declarePMS(ATV_udid, uuid, name, 'http', ip, port)  # dflt: token='', local, owned
     
     else:
         # PlexGDM
         PMS_list = PlexGDM()
         for uuid in PMS_list:
             PMS = PMS_list[uuid]
-            declarePMS(ATV_udid, PMS['uuid'], PMS['serverName'], 'http', PMS['ip'], PMS['port'], 'local', '', '')
+            declarePMS(ATV_udid, PMS['uuid'], PMS['serverName'], 'http', PMS['ip'], PMS['port'])  # dflt: token='', local, owned
     
     # MyPlex servers
     if not MyPlexToken=='':
@@ -259,6 +261,9 @@ def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
         if XML==False:
             pass  # no data from MyPlex
         else:
+            queue = Queue.Queue()
+            threads = []
+            
             for Dir in XML.getiterator('Server'):
                 uuid = Dir.get('machineIdentifier')
                 name = Dir.get('name')
@@ -268,7 +273,12 @@ def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
                 token = Dir.get('accessToken', '')
                 owned = Dir.get('owned', '0')
                 
-                if not uuid in g_PMS.get(ATV_udid, {}):
+                if uuid in g_PMS.get(ATV_udid, {}):
+                    # server known: local, manually defined or PlexGDM
+                    updatePMSProperty(ATV_udid, uuid, 'accesstoken', token)
+                    updatePMSProperty(ATV_udid, uuid, 'owned', owned)
+                else:
+                    # remote servers
                     # check MyPlex data age - skip if >2 days
                     infoAge = time.time() - int(Dir.get('updatedAt'))
                     oneDayInSec = 60*60*24
@@ -276,13 +286,34 @@ def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
                         dprint(__name__, 1, "Server {0} not updated for {1} days - skipping.", name, infoAge/oneDayInSec)
                         continue
                     
-                    # poke PMS - skip if not accessible
-                    PMS = getXMLFromPMS(scheme+'://'+ip+':'+port, '/', None, token)
+                    # poke PMS, own thread for each poke
+                    PMS = { 'baseURL': scheme+'://'+ip+':'+port, 'path': '/', 'options': None, 'token': token, \
+                            'data': Dir }
+                    t = Thread(target=getXMLFromPMSToQueue, args=(PMS, queue))
+                    t.start()
+                    threads.append(t)
+            
+            # wait for requests being answered
+            for t in threads:
+                t.join()
+            
+            # declare new PMSs
+            while not queue.empty():
+                    (Dir, PMS) = queue.get()
+                    
                     if PMS==False:
                         continue
                     
-                    declarePMS(ATV_udid, uuid, name, scheme, ip, port, 'myplex', owned, token)
-                else:
+                    uuid = Dir.get('machineIdentifier')
+                    name = Dir.get('name')
+                    scheme = Dir.get('scheme')
+                    ip = Dir.get('address')
+                    port = Dir.get('port')
+                    token = Dir.get('accessToken', '')
+                    owned = Dir.get('owned', '0')
+                    
+                    declarePMS(ATV_udid, uuid, name, scheme, ip, port)  # dflt: token='', local, owned - updated later
+                    updatePMSProperty(ATV_udid, uuid, 'local', '0')  # todo - check IP?
                     updatePMSProperty(ATV_udid, uuid, 'accesstoken', token)
                     updatePMSProperty(ATV_udid, uuid, 'owned', owned)
     
@@ -341,6 +372,12 @@ def getXMLFromPMS(baseURL, path, options={}, authtoken=''):
 
 
 
+def getXMLFromPMSToQueue(PMS, queue):
+    XML = getXMLFromPMS(PMS['baseURL'],PMS['path'],PMS['options'],PMS['token'])
+    queue.put( (PMS['data'], XML) )
+
+
+
 def getXArgsDeviceInfo(options={}):
     xargs = dict()
     xargs['X-Plex-Device'] = 'AppleTV'
@@ -367,41 +404,90 @@ provide combined XML representation of local servers' XMLs, eg. /library/section
 parameters:
     ATV_udid
     path
+    type - owned <> shared (previously: local, myplex)
     options
 result:
     XML
 """
 def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
+    queue = Queue.Queue()
+    threads = []
+    
     root = etree.Element("MediaConverter")
-    root.set('friendlyName', 'localServers')
+    root.set('friendlyName', type+' Servers')
+    
+    if type=='owned':
+        owned='1'
+    elif type=='shared':
+        owned='0'
     
     for uuid in g_PMS.get(ATV_udid, {}):
-        PMS = g_PMS[ATV_udid][uuid]
-        if PMS['type']==type:
+        if getPMSProperty(ATV_udid, uuid, 'owned')==owned:
             Server = etree.SubElement(root, 'Server')  # create "Server" node
             Server.set('name',    getPMSProperty(ATV_udid, uuid, 'name'))
             Server.set('address', getPMSProperty(ATV_udid, uuid, 'ip'))
             Server.set('port',    getPMSProperty(ATV_udid, uuid, 'port'))
+            Server.set('baseURL', getPMSProperty(ATV_udid, uuid, 'baseURL'))
+            Server.set('local',   getPMSProperty(ATV_udid, uuid, 'local'))
+            Server.set('owned',   getPMSProperty(ATV_udid, uuid, 'owned'))
             
             baseURL = getPMSProperty(ATV_udid, uuid, 'baseURL')
             token = getPMSProperty(ATV_udid, uuid, 'accesstoken')
+            PMS_mark = 'PMS(' + getPMSProperty(ATV_udid, uuid, 'ip') + ')'
             
-            PMS_baseURL = 'PMS(' + baseURL + ')'
-            Server.set('searchKey', PMS_baseURL + getURL('', '', '/SearchForm.xml'))
+            Server.set('searchKey', PMS_mark + getURL('', '', '/SearchForm.xml'))
             
-            XML = getXMLFromPMS(baseURL, path, options, token)
+            # request XMLs, one thread for each
+            PMS = { 'baseURL':baseURL, 'path':path, 'options':options, 'token':token, \
+                    'data': {'uuid': uuid, 'Server': Server} }
+            t = Thread(target=getXMLFromPMSToQueue, args=(PMS, queue))
+            t.start()
+            threads.append(t)
+    
+    # wait for requests being answered
+    for t in threads:
+        t.join()
+    
+    # add new data to root XML, individual Server
+    while not queue.empty():
+            (data, XML) = queue.get()
+            uuid = data['uuid']
+            Server = data['Server']
+            
+            baseURL = getPMSProperty(ATV_udid, uuid, 'baseURL')
+            token = getPMSProperty(ATV_udid, uuid, 'accesstoken')
+            PMS_mark = 'PMS(' + getPMSProperty(ATV_udid, uuid, 'ip') + ')'
+            
             if XML==False:
                 Server.set('size',    '0')
             else:
                 Server.set('size',    XML.getroot().get('size', '0'))
                 
                 for Dir in XML.getiterator('Directory'):  # copy "Directory" content, add PMS to links
-                    Dir.set('key',    PMS_baseURL + getURL('', path, Dir.get('key')))
+                    key = Dir.get('key')  # absolute path
+                    Dir.set('key',    PMS_mark + getURL('', path, key))
+                    Dir.set('refreshKey', getURL(baseURL, path, key) + '/refresh')
                     if 'thumb' in Dir.attrib:
-                        Dir.set('thumb',  PMS_baseURL + getURL('', path, Dir.get('thumb')))
+                        Dir.set('thumb',  PMS_mark + getURL('', path, Dir.get('thumb')))
                     if 'art' in Dir.attrib:
-                        Dir.set('art',    PMS_baseURL + getURL('', path, Dir.get('art')))
+                        Dir.set('art',    PMS_mark + getURL('', path, Dir.get('art')))
                     Server.append(Dir)
+                
+                for Video in XML.getiterator('Video'):  # copy "Video" content, add PMS to links
+                    key = Video.get('key')  # absolute path
+                    Video.set('key',    PMS_mark + getURL('', path, key))
+                    Video.set('refreshKey', getURL(baseURL, path, key) + '/refresh')
+                    if 'thumb' in Video.attrib:
+                        Video.set('thumb',  PMS_mark + getURL('', path, Video.get('thumb')))                    
+                    if 'grandparentThumb' in Video.attrib:
+                        Video.set('grandparentThumb',  PMS_mark + getURL('', path, Video.get('grandparentThumb')))                   
+                    if 'grandparentKey' in Video.attrib:
+                    	Video.set('grandparentKey',  PMS_mark + getURL('', path, Video.get('grandparentKey'))) 
+                    if 'parentThumb' in Video.attrib:
+                        Video.set('parentThumb',  PMS_mark + getURL('', path, Video.get('parentThumb')))
+                    if 'art' in Video.attrib:
+                        Video.set('art',    PMS_mark + getURL('', path, Video.get('art')))
+                    Server.append(Video)
     
     root.set('size', str(len(root.findall('Server'))))
     
@@ -532,11 +618,12 @@ parameters:
     options - dict() of PlexConnect-options as received from aTV
     action - transcoder action: Auto, Directplay, Transcode
     quality - (resolution, quality, bitrate)
-    settings - (subtitlesize, audioboost)
+    subtitle - {'selected', 'dontBurnIn', 'size'}
+    audio - {'boost'}
 result:
     final path to pull in PMS transcoder
 """
-def getTranscodeVideoPath(path, AuthToken, options, action, quality, settings):
+def getTranscodeVideoPath(path, AuthToken, options, action, quality, subtitle, audio):
     UDID = options['PlexConnectUDID']
     
     transcodePath = '/video/:/transcode/universal/start.m3u8?'
@@ -545,10 +632,8 @@ def getTranscodeVideoPath(path, AuthToken, options, action, quality, settings):
     vQ = quality[1]
     mVB = quality[2]
     dprint(__name__, 1, "Setting transcode quality Res:{0} Q:{1} {2}Mbps", vRes, vQ, mVB)
-    sS = settings[0]
-    dprint(__name__, 1, "Subtitle size: {0}", sS)
-    aB = settings[1]
-    dprint(__name__, 1, "Audio Boost: {0}", aB)
+    dprint(__name__, 1, "Subtitle: selected {0}, dontBurnIn {1}, size {2}", subtitle['selected'], subtitle['dontBurnIn'], subtitle['size'])
+    dprint(__name__, 1, "Audio: boost {0}", audio['boost'])
     
     args = dict()
     args['session'] = UDID
@@ -558,8 +643,9 @@ def getTranscodeVideoPath(path, AuthToken, options, action, quality, settings):
     args['videoQuality'] = vQ
     args['directStream'] = '0' if action=='Transcode' else '1'
     # 'directPlay' - handled by the client in MEDIARUL()
-    args['subtitleSize'] = sS
-    args['audioBoost'] = aB
+    args['subtitleSize'] = subtitle['size']
+    args['skipSubtitles'] = subtitle['dontBurnIn']  #'1'  # shut off PMS subtitles. Todo: skip only for aTV native/SRT (or other supported)
+    args['audioBoost'] = audio['boost']
     args['fastSeek'] = '1'
     args['path'] = path
     

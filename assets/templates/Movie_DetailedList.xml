@@ -1,7 +1,6 @@
 <atv>
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
-    <script src="{{URL(:/js/scrobble.js)}}" />
   </head>
 
   <body>
@@ -21,7 +20,7 @@
               <oneLineMenuItem id="{{VAL(key)}}"
                              onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                              onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')"
-                             onHoldSelect="scrobbleMenu('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(ratingKey)}}', '{{TEXT(Movie)}}');">
+                             onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
                 {{COPY(Video)}}
                 <label>{{VAL(title)}}</label>
                 <accessories>
@@ -42,7 +41,7 @@
 										<metadataValues>
 											<label>{{VAL(Role/tag)}}{{VAL(Role[2]/tag::=, )}}{{VAL(Role[2]/tag)}}{{VAL(Role[3]/tag::=, )}}{{VAL(Role[3]/tag)}}</label>
 											<label>{{VAL(Director/tag)}}</label>
-											<label>{{VAL(Genre/tag)}}{{VAL(Role[2]/tag::=, )}}{{VAL(Genre[2]/tag)}}</label>
+											<label>{{VAL(Genre/tag)}}{{VAL(Genre[2]/tag::=, )}}{{VAL(Genre[2]/tag)}}</label>
 											<label>{{getDurationString(duration)}}</label>
 										</metadataValues>
                   </keyedPreview>

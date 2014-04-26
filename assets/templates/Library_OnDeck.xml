@@ -1,0 +1,92 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/scrobble.js)}}" />
+    <script src="{{URL(:/js/settings.js)}}" />
+  </head>
+
+  <body>
+      {{VAR(sections:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
+      {{ADDXML(OnDeck::/library/onDeck)}}      
+      {{VAR(items:NoKey:FALSE)}}
+
+      <itemCollectionWithImageHeader id="com.sample.menu-items-with-sections">
+      <header>
+        <imageHeader>
+            <image insets="100, 0, 0, 0" required="true">{{URL(:/thumbnails/header{{VAL(^aTVScreenResolution)}}.png)}}</image>
+        </imageHeader>
+      </header>
+          
+      <menu>
+        <sections>
+          <menuSection>
+              {{COPY(Server:@OnDeck/size::0=|1=COPY)}}
+            
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{TEXT(On Deck)}}</title>
+              </horizontalDivider>
+            </header>{{CUT(@OnDeck/Server/size:CUT:0=CUT|1=)}}
+            
+            <items>
+              <twoLineMenuItem id="{{VAL(key)}}"
+                                       onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                                       onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect={{VAL(type::movie=Movie|episode=Episode)}}PrePlay')"
+                                       onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
+                {{COPY(@OnDeck/Server/Video)}}
+                {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                <label>{{VAL(type::movie={{VAL(title)}}|episode={{VAL(grandparentTitle)}})}}</label>
+                <label2>{{VAL(type::movie={{VAL(year)}}|episode={{episodestring(parentIndex:0:index:0)}})}}</label2>
+                <accessories>
+                  <unplayedDot/>{{CUT(viewOffset)}}
+                  <partiallyPlayedDot/>
+                </accessories>{{CUT(viewCount)}}
+                <preview>
+                  <crossFadePreview>
+                    <image>{{IMAGEURL({{VAL(type::movie=thumb|episode=grandparentThumb)}}::384)}}</image>
+                  </crossFadePreview>
+                </preview>
+              </twoLineMenuItem> 
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </itemCollectionWithImageHeader>{{CUT($imageheader::Hide=CUT|Show=)}}{{CUT(^aTVFirmwareVersion:CUT:=CUT|6.0=)}}{{CUT(@OnDeck/Server/size:CUT:0=CUT|1=)}}
+      
+    <listWithPreview id="com.sample.menu-items-with-sections">
+      <header>
+        <simpleHeader>
+          <title>{{TEXT(On Deck)}}</title>
+        </simpleHeader>
+      </header>
+          
+      <menu>
+        <sections>
+          <menuSection>
+            {{COPY(Server:@OnDeck/size::0=|1=COPY)}}
+            <items>
+              <twoLineMenuItem id="{{VAL(key)}}"
+                                       onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                                       onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect={{VAL(type::movie=Movie|episode=Episode)}}PrePlay')"
+                                       onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
+                {{COPY(@OnDeck/Server/Video)}}
+                {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                <label>{{VAL(type::movie={{VAL(title)}}|episode={{VAL(grandparentTitle)}})}}</label>
+                <label2>{{VAL(type::movie={{VAL(year)}}|episode={{episodestring(parentIndex:0:index:0)}})}}</label2>
+                <accessories>
+                  <unplayedDot/>{{CUT(viewOffset)}}
+                  <partiallyPlayedDot/>
+                </accessories>{{CUT(viewCount)}}
+                <preview>
+                  <crossFadePreview>
+                    <image>{{IMAGEURL({{VAL(type::movie=thumb|episode=grandparentThumb)}}::384)}}</image>
+                  </crossFadePreview>
+                </preview>
+              </twoLineMenuItem> 
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </listWithPreview>{{CUT($imageheader::Hide=|Show=CUT)}}{{CUT(@OnDeck/Server/size:CUT:0=CUT|1=)}}
+  </body>
+</atv>

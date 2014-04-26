@@ -4,9 +4,9 @@
   </head>
 
   <body>
-    {{ADDXML(VideoChannels:://local/video)}}
-    {{ADDXML(AudioChannels:://local/music)}}
-    {{ADDXML(PhotoChannels:://local/photos)}}
+    {{ADDXML(VideoChannels::/video)}}
+    {{ADDXML(AudioChannels::/music)}}
+    {{ADDXML(PhotoChannels::/photos)}}
     
     {{VAR(channels:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
     
@@ -27,7 +27,7 @@
             <header>
               <horizontalDivider alignment="left">
                 <title>{{TEXT(Video)}}</title>{{CUT(@VideoChannels/size::1=|2=CUT)}}
-                <title>{{TEXT(Video)}} - {{VAL(name)}}</title>{{CUT(@VideoChannels/size:CUT:1=CUT|2=)}}
+                <title>{{TEXT(Video)}} - {{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>{{CUT(@VideoChannels/size:CUT:1=CUT|2=)}}
               </horizontalDivider>
             </header>
             
@@ -57,7 +57,7 @@
             <header>
               <horizontalDivider alignment="left">
                 <title>{{TEXT(Audio)}}</title>{{CUT(@VideoChannels/size::1=|2=CUT)}}
-                <title>{{TEXT(Audio)}} - {{VAL(name)}}</title>{{CUT(@VideoChannels/size:CUT:1=CUT|2=)}}
+                <title>{{TEXT(Audio)}} - {{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>{{CUT(@VideoChannels/size:CUT:1=CUT|2=)}}
               </horizontalDivider>
             </header>
             
@@ -86,7 +86,7 @@
             <header>
               <horizontalDivider alignment="left">
                 <title>{{TEXT(Photo)}}</title>{{CUT(@VideoChannels/size::1=|2=CUT)}}
-                <title>{{TEXT(Photo)}} - {{VAL(name)}}</title>{{CUT(@VideoChannels/size:CUT:1=CUT|2=)}}
+                <title>{{TEXT(Photo)}} - {{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>{{CUT(@VideoChannels/size:CUT:1=CUT|2=)}}
               </horizontalDivider>
             </header>
             

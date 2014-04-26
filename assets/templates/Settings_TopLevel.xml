@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/settings.js)}}" />
+  </head>
+
+  <body>
+    <listWithPreview id="SettingsPage_VideoOSD">
+      <header>
+        <simpleHeader>
+          <title>{{TEXT(Settings)}}</title>
+        </simpleHeader>
+      </header>
+      <preview>
+        <keyedPreview>
+          <title>&#x00AD;<!--soft-hyphen--></title>
+          <summary/>
+          <metadataKeys>
+            <label>{{TEXT(Version)}}</label>
+            <label>{{TEXT(Authors)}}</label>
+            <label>{{TEXT(Wiki/Docs)}}</label>
+            <label>{{TEXT(Homepage)}}</label>
+            <label>{{TEXT(Forum)}}</label>
+          </metadataKeys>
+          <metadataValues>
+            <label>{{EVAL(__VERSION__)}}</label>
+            <label>Baa, roidy</label>
+            <label>f00b4r, meltman</label>
+            <label>https://github.com/ibaa/plexconnect</label>
+            <label>http://forums.plexapp.com/...plexconnect</label>
+          </metadataValues>
+          <image>{{URL(:/thumbnails/PlexConnectLogo.jpg)}}</image>
+        </keyedPreview>
+      </preview>
+
+      <menu>
+        <sections>
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{TEXT(Channels)}}</title>
+              </horizontalDivider>
+            </header>
+            <items>
+              <oneLineMenuItem id="ChannelView" onSelect="toggleSettings('ChannelView', 'Settings_TopLevel')">
+                <label>{{TEXT(Channel View)}}</label>
+                <rightLabel>{{SETTING(channelview)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="ShowTitles_Channels" onSelect="toggleSettings('ShowTitles_Channels', 'Settings_TopLevel')">
+                <label>{{TEXT(Poster Titles)}}</label>
+                <rightLabel>{{SETTING(showtitles_channels)}}</rightLabel>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </listWithPreview>
+  </body>
+</atv>
