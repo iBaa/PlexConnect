@@ -227,7 +227,6 @@ cp hide /usr/bin
 cp show /usr/bin
 cp xml.bash /usr/bin
 cp auto.bash /usr/bin
-cp git.bash /usr/bin
 cp pillow.bash /usr/bin
 cp folder.bash /usr/bin
 cp httpd.conf /etc/apache2
@@ -311,7 +310,6 @@ chmod +x /usr/bin/fixgit.bash
 chmod +x /usr/bin/auto.bash
 chmod +x /usr/bin/pillow.bash
 chmod +x /usr/bin/folder.bash
-chmod +x /usr/bin/git.bash
 chmod +x uninstall.bash
 fixgit.bash
 
