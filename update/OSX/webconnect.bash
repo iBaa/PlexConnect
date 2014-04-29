@@ -2,6 +2,13 @@
 
 cd /applications/plexconnect/update/osx
 
+#current user
+whoami=${USER}
+
+## replace __USERNAME__in default sudoers
+## save directly to the /update/osx folder
+sed -e "s/__USERNAME__/$whoami/" "${DefaultPath}/sudoers" > /applications/plexconnect/update/OSX/sudoers
+
 ## install webconnect
 plexweb.bash
 plexwebwan.bash
