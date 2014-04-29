@@ -229,6 +229,7 @@ cp xml.bash /usr/bin
 cp auto.bash /usr/bin
 cp pillow.bash /usr/bin
 cp folder.bash /usr/bin
+cp sudoers.bash /usr/bin
 cp httpd.conf /etc/apache2
 
 ## replace __INSTALLERPATH__ in default createimovie.bash
@@ -310,6 +311,7 @@ chmod +x /usr/bin/fixgit.bash
 chmod +x /usr/bin/auto.bash
 chmod +x /usr/bin/pillow.bash
 chmod +x /usr/bin/folder.bash
+chmod +x /usr/bin/sudoers.bash
 chmod +x uninstall.bash
 fixgit.bash
 
