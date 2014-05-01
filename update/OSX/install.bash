@@ -231,6 +231,30 @@ cp pillow.bash /usr/bin
 cp folder.bash /usr/bin
 cp sudoers.bash /usr/bin
 cp httpd.conf /etc/apache2
+cp removecertsbash.bash /usr/bin
+cp createcertbash.bash /usr/bin
+cp createimoviebash.bash /usr/bin
+cp createwsjbash.bash /usr/bin
+cp createplistbash.bash /usr/bin
+cp updatebash.bash /usr/bin
+cp stopbash.bash /usr/bin
+cp startbash.bash /usr/bin
+cp restartbash.bash /usr/bin
+cp statusbash.bash /usr/bin
+cp rebootbash.bash /usr/bin
+cp lockbash.bash /usr/bin
+cp trashbash.bash /usr/bin
+cp updatewcbash.bash /usr/bin
+cp pmsscanbash.bash /usr/bin
+cp shutdownbash.bash /usr/bin
+cp sleepbash.bash /usr/bin
+cp itunesbash.bash /usr/bin
+cp quititunesbash.bash /usr/bin
+cp wakebash.bash /usr/bin
+cp logbash.bash /usr/bin
+cp whobash.bash /usr/bin
+cp tvbash.bash /usr/bin
+cp timemachinebash.bash /usr/bin
 
 ## replace __INSTALLERPATH__ in default createimovie.bash
 ## save directly to the /usr/bin folder
@@ -313,7 +337,56 @@ chmod +x /usr/bin/pillow.bash
 chmod +x /usr/bin/folder.bash
 chmod +x /usr/bin/sudoers.bash
 chmod +x uninstall.bash
+chmod +x /usr/bin/removecertsbash.bash
+chmod +x /usr/bin/createcertbash.bash
+chmod +x /usr/bin/createimoviebash.bash
+chmod +x /usr/bin/createwsjbash.bash
+chmod +x /usr/bin/createplistbash.bash
+chmod +x /usr/bin/updatebash.bash
+chmod +x /usr/bin/stopbash.bash
+chmod +x /usr/bin/startbash.bash
+chmod +x /usr/bin/restartbash.bash
+chmod +x /usr/bin/statusbash.bash
+chmod +x /usr/bin/rebootbash.bash
+chmod +x /usr/bin/lockbash.bash
+chmod +x /usr/bin/trashbash.bash
+chmod +x /usr/bin/updatewcbash.bash
+chmod +x /usr/bin/pmsscanbash.bash
+chmod +x /usr/bin/shutdownbash.bash
+chmod +x /usr/bin/sleepbash.bash
+chmod +x /usr/bin/itunesbash.bash
+chmod +x /usr/bin/quititunesbash.bash
+chmod +x /usr/bin/logbash.bash
+chmod +x /usr/bin/whobash.bashw
+chmod +x /usr/bin/wakebash.bash
+chmod +x /usr/bin/tvbash.bash
+chmod +x /usr/bin/timemachinebash.bash
 fixgit.bash
+
+chmod 4755 /usr/bin/removecertsbash.bash
+chmod 4755 /usr/bin/createcertbash.bash
+chmod 4755 /usr/bin/createimoviebash.bash
+chmod 4755 /usr/bin/createwsjbash.bash
+chmod 4755 /usr/bin/createplistbash.bash
+chmod 4755 /usr/bin/updatebash.bash
+chmod 4755 /usr/bin/stopbash.bash
+chmod 4755 /usr/bin/startbash.bash
+chmod 4755 /usr/bin/restartbash.bash
+chmod 4755 /usr/bin/statusbash.bash
+chmod 4755 /usr/bin/rebootbash.bash
+chmod 4755 /usr/bin/lockbash.bash
+chmod 4755 /usr/bin/trashbash.bash
+chmod 4755 /usr/bin/updatewcbash.bash
+chmod 4755 /usr/bin/pmsscanbash.bash
+chmod 4755 /usr/bin/shutdownbash.bash
+chmod 4755 /usr/bin/sleepbash.bash
+chmod 4755 /usr/bin/itunesbash.bash
+chmod 4755 /usr/bin/quititunesbash.bash
+chmod 4755 /usr/bin/logbash.bash
+chmod 4755 /usr/bin/whobash.bash
+chmod 4755 /usr/bin/wakebash.bash
+chmod 4755 /usr/bin/tvbash.bash
+chmod 4755 /usr/bin/timemachinebash.bash
 
 ## Fix ip in all xml files
 cd /applications/plexconnect/assets/templates
