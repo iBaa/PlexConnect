@@ -1,9 +1,10 @@
 #!/bin/bash
 
-cd /applications/plexconnect/update/osx
+
 
 ## save path to installer files
-cd "$( cd "$( dirname "$0" )" && pwd )"
+## cd "$( cd "$( dirname "$0" )" && pwd )"
+cd /applications/plexconnect/update/osx
 InstallerPath=${PWD}
 
 ## find PlexConnect main path
