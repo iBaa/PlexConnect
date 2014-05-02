@@ -28,6 +28,5 @@ sed -i '' 's/www.icloud.com/secure.marketwatch.com/g' settings.cfg
 echo 'Generating WSJ certs'
 echo 'Settings.cfg changed to hijack secure.marketwatch.com'
 echo 'Upload profile to ATV using this url http://secure.marketwatch.com/trailers.cer'
-restart.bash
 
 fi
