@@ -90,6 +90,6 @@ chmod 4755 /usr/bin/whobash.bash
 chmod 4755 /usr/bin/wakebash.bash
 chmod 4755 /usr/bin/tvbash.bash
 chmod 4755 /usr/bin/timemachinebash.bash
-chmod 400 /etc/sudoers
+chmod 440 /etc/sudoers
 
 echo WebConnect has been updated. Refresh your browser if no icons appear.
