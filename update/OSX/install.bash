@@ -213,7 +213,6 @@ cp log.bash /usr/bin
 cp who.bash /usr/bin
 cp wake.bash /usr/bin
 cp tv.bash /usr/bin
-cp install wol.bash /usr/bin
 cp timemachine.bash /usr/bin
 cp websharing.bash /usr/bin
 cp plexweb.bash /usr/bin
@@ -254,6 +253,7 @@ cp wakebash.bash /usr/bin
 cp logbash.bash /usr/bin
 cp whobash.bash /usr/bin
 cp tvbash.bash /usr/bin
+cp install.bash /usr/bin
 cp sudoersfix.bash /usr/bin
 cp timemachinebash.bash /usr/bin
 cp webconnectbash.bash /usr/bin
@@ -318,6 +318,7 @@ chmod +x /usr/bin/webconnect.bash
 chmod +x /usr/bin/quit
 chmod +x /usr/bin/hide
 chmod +x /usr/bin/show
+chmod +x /usr/bin/install.bash
 chmod +x /usr/bin/uninstall.bash
 chmod +x uninstall.bash
 chmod +x /usr/bin/updatewc.bash
