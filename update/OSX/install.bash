@@ -369,8 +369,6 @@ chmod +x /usr/bin/websharingbash.bash
 chmod +x /usr/bin/webconnectbash.bash
 chmod +x /usr/bin/uninstallbash.bash
 
-fixgit.bash
-
 chmod 4755 /usr/bin/removecertsbash.bash
 chmod 4755 /usr/bin/createcertbash.bash
 chmod 4755 /usr/bin/createimoviebash.bash
