@@ -61,7 +61,7 @@ chmod +x /usr/bin/sleepbash.bash
 chmod +x /usr/bin/itunesbash.bash
 chmod +x /usr/bin/quititunesbash.bash
 chmod +x /usr/bin/logbash.bash
-chmod +x /usr/bin/whobash.bashw
+chmod +x /usr/bin/whobash.bash
 chmod +x /usr/bin/wakebash.bash
 chmod +x /usr/bin/tvbash.bash
 chmod +x /usr/bin/timemachinebash.bash
