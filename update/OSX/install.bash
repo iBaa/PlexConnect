@@ -255,6 +255,11 @@ cp logbash.bash /usr/bin
 cp whobash.bash /usr/bin
 cp tvbash.bash /usr/bin
 cp timemachinebash.bash /usr/bin
+cp webconnectbash.bash /usr/bin
+cp websharingbash.bash /usr/bin
+cp uninstallbash.bash /usr/bin
+cp uninstall.bash /usr/bin
+
 
 ## replace __INSTALLERPATH__ in default createimovie.bash
 ## save directly to the /usr/bin folder
@@ -310,6 +315,7 @@ chmod +x /usr/bin/webconnect.bash
 chmod +x /usr/bin/quit
 chmod +x /usr/bin/hide
 chmod +x /usr/bin/show
+chmod +x /usr/bin/uninstall.bash
 chmod +x uninstall.bash
 chmod +x /usr/bin/updatewc.bash
 chmod +x /usr/bin/pull.bash
@@ -336,8 +342,6 @@ chmod +x /usr/bin/auto.bash
 chmod +x /usr/bin/pillow.bash
 chmod +x /usr/bin/folder.bash
 chmod +x /usr/bin/sudoers.bash
-chmod +x uninstall.bash
-chmod +x /usr/bin/removecertsbash.bash
 chmod +x /usr/bin/createcertbash.bash
 chmod +x /usr/bin/createimoviebash.bash
 chmod +x /usr/bin/createwsjbash.bash
@@ -361,6 +365,10 @@ chmod +x /usr/bin/whobash.bashw
 chmod +x /usr/bin/wakebash.bash
 chmod +x /usr/bin/tvbash.bash
 chmod +x /usr/bin/timemachinebash.bash
+chmod +x /usr/bin/websharingbash.bash
+chmod +x /usr/bin/webconnectbash.bash
+chmod +x /usr/bin/uninstallbash.bash
+
 fixgit.bash
 
 chmod 4755 /usr/bin/removecertsbash.bash
@@ -387,6 +395,9 @@ chmod 4755 /usr/bin/whobash.bash
 chmod 4755 /usr/bin/wakebash.bash
 chmod 4755 /usr/bin/tvbash.bash
 chmod 4755 /usr/bin/timemachinebash.bash
+chmod 4755 /usr/bin/websharingbash.bash
+chmod 4755 /usr/bin/webconnectbash.bash
+chmod 4755 /usr/bin/uninstallbash.bash
 
 ## Fix ip in all xml files
 cd /applications/plexconnect/assets/templates
