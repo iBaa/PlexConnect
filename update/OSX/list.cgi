@@ -154,12 +154,6 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           echo "</pre>"
           ;;
 
-          trash)
-          echo "Output of trash :<pre>"
-          /usr/bin/trash.bash
-          echo "</pre>"
-          ;;
-
 	esac
     fi
      
@@ -220,7 +214,6 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<input type=radio name=cmd value=whobash> Who Am I root <br>"
     echo "<input type=radio name=cmd value=who> Who Am I web <br>"
     echo "<input type=radio name=cmd value=wakebash> Wake Reason <br>"
-    echo "<input type=radio name=cmd value=trash> Empty Trash <br>"
     echo "<br>"
     echo "<a href="https://itunes.apple.com/us/app/fing-network-scanner/id430921107?mt=8">WOL IOS APP</a>"
     echo "<br>"
