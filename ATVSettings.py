@@ -15,47 +15,47 @@ options = { \
     'actorview'         :('Movies', 'Portrait'), \
     'showview'          :('Grid', 'List', 'Bookcase'), \
     'flattenseason'     :('False', 'True'), \
-    'seasonview'        :('Grid', 'Coverflow', 'List'), \
-    'channelview'       :('List', 'Grid', 'Bookcase'), \
+    'seasonview'        :('Coverflow', 'Grid', 'List'), \
+    'channelview'       :('Grid', 'List', 'Bookcase'), \
     'durationformat'    :('Hours/Minutes', 'Minutes'), \
     'showtitles_library'        :('Show All', 'Highlighted Only'), \
     'showtitles_movies'         :('Show All', 'Highlighted Only'), \
     'showtitles_tvshows'        :('Show All', 'Highlighted Only'), \
     'showtitles_homevideos'     :('Show All', 'Highlighted Only'), \
     'showtitles_channels'       :('Show All', 'Highlighted Only'), \
-    'movies_navbar_unwatched'   :('checked', 'unchecked'), \
-    'movies_navbar_byfolder'    :('checked', 'unchecked'), \
-    'movies_navbar_collections' :('checked', 'unchecked'), \
-    'movies_navbar_genres'      :('checked', 'unchecked'), \
-    'movies_navbar_decades'     :('checked', 'unchecked'), \
-    'movies_navbar_directors'   :('checked', 'unchecked'), \
-    'movies_navbar_actors'      :('checked', 'unchecked'), \
+    'movies_navbar_unwatched'   :('unchecked', 'checked'), \
+    'movies_navbar_byfolder'    :('unchecked', 'checked'), \
+    'movies_navbar_collections' :('unchecked', 'checked'), \
+    'movies_navbar_genres'      :('unchecked', 'checked'), \
+    'movies_navbar_decades'     :('unchecked', 'checked'), \
+    'movies_navbar_directors'   :('unchecked', 'checked'), \
+    'movies_navbar_actors'      :('unchecked', 'checked'), \
     'movies_navbar_more'        :('checked', 'unchecked'), \
     'homevideos_navbar_unwatched'   :('checked', 'unchecked'), \
     'homevideos_navbar_byfolder'    :('checked', 'unchecked'), \
     'homevideos_navbar_collections' :('checked', 'unchecked'), \
     'homevideos_navbar_genres'      :('checked', 'unchecked'), \
-    'tv_navbar_unwatched'       :('checked', 'unchecked'), \
-    'tv_navbar_genres'          :('checked', 'unchecked'), \
+    'tv_navbar_unwatched'       :('unchecked', 'checked'), \
+    'tv_navbar_genres'          :('unchecked', 'checked'), \
     'tv_navbar_more'            :('checked', 'unchecked'), \
     'libraryview'               :('Grid', 'List', 'Bookcase'), \
     'libraryview_remote'        :('Grid', 'List', 'Bookcase', 'TopGrid'), \
-    'imageheader'               :('Hide', 'Show'), \
-    'sectionicons'              :('Apple', 'Plex', 'Fanart', 'Custom'), \
-    'sectionicons_shared'       :('Apple', 'Plex', 'Fanart', 'Custom'), \
-    'sectionsposition'          :('Flow', 'Top', 'Middle', 'Bottom'), \
+    'imageheader'               :('Show', 'Hide'), \
+    'sectionicons'              :('Custom', 'Plex', 'Fanart', 'Apple'), \
+    'sectionicons_shared'       :('Custom', 'Plex', 'Fanart', 'Apple'), \
+    'sectionsposition'          :('Top', 'Bottom', 'Middle', 'Flow'), \
     'library_search'            :('Hide', 'Show'), \
     'library_ondeck'            :('checked', 'unchecked'), \
     'library_recentlyadded'     :('checked', 'unchecked'), \
     'library_channels'          :('unchecked', 'checked'), \
-    'movie_preplay'           :('Off', 'No Gradient', 'Gradient', 'Full Gradient'), \
-    'movie_preplay_poster'    :('On', 'Off'), \
-    'tvshow_list'             :('Off', 'Banner', 'No Gradient', 'Gradient', 'Full Gradient'), \
-    'tvshow_cover'            :('Off', 'Banner', 'No Gradient', 'Gradient', 'Full Gradient'), \
-        'tvshow_grid'             :('Off', 'Banner', 'No Gradient', 'Gradient', 'Full Gradient'), \
-    'episode_list'            :('Off', 'Banner', 'No Gradient', 'Gradient', 'Full Gradient'), \
-    'episode_preplay'         :('Off', 'No Gradient', 'Gradient', 'Full Gradient'), \
-    'episode_preplay_poster'  :('On', 'Off'), \
+    'movie_preplay'           :('Full Gradient', 'No Gradient', 'Gradient', 'Off'), \
+    'movie_preplay_poster'    :('Off', 'On'), \
+    'tvshow_list'             :('Full Gradient', 'Banner', 'No Gradient', 'Gradient', 'Off'), \
+    'tvshow_cover'            :('Full Gradient', 'Banner', 'No Gradient', 'Gradient', 'Off'), \
+        'tvshow_grid'             :('Full Gradient', 'Banner', 'No Gradient', 'Gradient', 'Off'), \
+    'episode_list'            :('Full Gradient', 'Banner', 'No Gradient', 'Gradient', 'Off'), \
+    'episode_preplay'         :('Full Gradient', 'No Gradient', 'Gradient', 'Off'), \
+    'episode_preplay_poster'  :('Off', 'On'), \
     'transcodequality'  :('1080p 40.0Mbps', \
                           '480p 2.0Mbps', \
                           '720p 3.0Mbps', '720p 4.0Mbps', \
