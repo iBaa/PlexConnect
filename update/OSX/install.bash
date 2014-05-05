@@ -186,10 +186,8 @@ i
 wq
 EOF
 
-cp -R Gradient /library/webserver/documents
 cp -R GradientTV /library/webserver/documents
 cp -R GradientMovies /library/webserver/documents
-chmod -R 0777 /library/webserver/documents/gradient/ *.*
 chmod -R 0777 /library/webserver/documents/gradienttv/ *.*
 chmod -R 0777 /library/webserver/documents/gradientmovies/ *.*
 
