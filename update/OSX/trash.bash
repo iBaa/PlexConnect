@@ -2,4 +2,4 @@
 
 cd ~/.Trash/
 
-rm -rf *
+osascript -e 'tell app "Finder" to empty'
