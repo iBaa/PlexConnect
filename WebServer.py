@@ -44,7 +44,7 @@ def JSConverter(file, options):
     f.close()
     
     # PlexConnect {{URL()}}->baseURL
-    for path in set(re.findall(r'\{\{URL\((.+?)\)\}\}', JS)):
+    for path in set(re.findall(r'\{\{URL\((.*?)\)\}\}', JS)):
         JS = JS.replace('{{URL(%s)}}' % path, g_param['baseURL']+path)
     
     # localization
