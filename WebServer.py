@@ -79,34 +79,33 @@ class MyHandler(BaseHTTPRequestHandler):
                 self.path = self.path[pms_end+1:]
             
             # break up path, separate PlexConnect options
-            options = {}
-            while True:
-                cmd_start = self.path.find('&PlexConnect')
-                cmd_end = self.path.find('&', cmd_start+1)
-                
-                if cmd_start==-1:
-                    break
-                if cmd_end>-1:
-                    cmd = self.path[cmd_start+1:cmd_end]
-                    self.path = self.path[:cmd_start] + self.path[cmd_end:]
-                else:
-                    cmd = self.path[cmd_start+1:]
-                    self.path = self.path[:cmd_start]
-                
-                parts = cmd.split('=', 1)
-                if len(parts)==1:
-                    options[parts[0]] = ''
-                else:
-                    options[parts[0]] = urllib.unquote(parts[1])
-            
-            # break up path, separate additional arguments
-            # clean path needed for filetype decoding... has to be merged back when forwarded.
-            parts = self.path.split('?', 1)
+            # clean path needed for filetype decoding
+            parts = re.split(r'[?&]', self.path, 1)  # should be '?' only, but we do some things different :-)
             if len(parts)==1:
-                args = ''
+                self.path = parts[0]
+                options = {}
+                query = ''
             else:
                 self.path = parts[0]
-                args = '?'+parts[1]
+                
+                # break up query string
+                options = {}
+                query = ''
+                parts = parts[1].split('&')
+                for part in parts:
+                    if part.startswith('PlexConnect'):
+                        # get options[]
+                        opt = part.split('=', 1)
+                        if len(opt)==1:
+                            options[opt[0]] = ''
+                        else:
+                            options[opt[0]] = urllib.unquote(opt[1])
+                    else:
+                        # recreate query string (non-PlexConnect) - has to be merged back when forwarded
+                        if query=='':
+                            query = '?' + part
+                        else:
+                            query += '&' + part
             
             # get aTV language setting
             options['aTVLanguage'] = Localize.pickLanguage(self.headers.get('Accept-Language', 'en'))
@@ -124,7 +123,7 @@ class MyHandler(BaseHTTPRequestHandler):
             dprint(__name__, 2, "pms address:\n{0}", PMSaddress)
             dprint(__name__, 2, "cleaned path:\n{0}", self.path)
             dprint(__name__, 2, "PlexConnect options:\n{0}", options)
-            dprint(__name__, 2, "additional arguments:\n{0}", args)
+            dprint(__name__, 2, "additional arguments:\n{0}", query)
             
             if 'User-Agent' in self.headers and \
                'AppleTV' in self.headers['User-Agent']:
@@ -205,7 +204,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 if 'PlexConnect' in options and \
                    options['PlexConnect']=='Subtitle':
                     dprint(__name__, 1, "serving subtitle: "+self.path)
-                    XML = Subtitle.getSubtitleJSON(PMSaddress, self.path + args, options)
+                    XML = Subtitle.getSubtitleJSON(PMSaddress, self.path + query, options)
                     self.send_response(200)
                     self.send_header('Content-type', 'application/json')
                     self.end_headers()
@@ -215,7 +214,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 # get everything else from XMLConverter - formerly limited to trailing "/" and &PlexConnect Cmds
                 if True:
                     dprint(__name__, 1, "serving .xml: "+self.path)
-                    XML = XMLConverter.XML_PMS2aTV(PMSaddress, self.path + args, options)
+                    XML = XMLConverter.XML_PMS2aTV(PMSaddress, self.path + query, options)
                     self.send_response(200)
                     self.send_header('Content-type', 'text/xml')
                     self.end_headers()
