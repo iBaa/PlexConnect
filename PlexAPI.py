@@ -105,7 +105,7 @@ def getPMSFromAddress(ATV_udid, address):
         return ''  # no server known for this aTV
     
     for uuid in g_PMS[ATV_udid]:
-        if address in g_PMS[ATV_udid][uuid].get('baseURL', None):
+        if address==g_PMS[ATV_udid][uuid].get('ip', None):
             return uuid
     return ''  # IP not found
 
