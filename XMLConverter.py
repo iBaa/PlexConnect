@@ -301,7 +301,7 @@ def XML_PMS2aTV(PMS_address, path, options):
         XMLtemplate = 'MovieSecondary.xml'
     
     elif cmd == 'AllShows':
-        XMLtemplate = 'Show_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'showview')+'.xml'  
+        XMLtemplate = 'Show_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'showview').replace(' ','')+'.xml'  
           
     elif cmd == 'TVSecondary':
         XMLtemplate = 'TVSecondary.xml'
