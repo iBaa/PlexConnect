@@ -297,7 +297,7 @@ atv.onExecuteQuery = function(query, callback) {
   var requestedNumImages = query.length;
 
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", "{{URL(/)}}" + "/ScreenSaver.json?PlexConnectUDID=" + atv.device.udid + "&length=" + requestedNumImages, false);
+  xhr.open("GET", "{{URL(/)}}" + "/ScreenSaver.json?PlexConnectUDID=" + atv.device.udid + "&PlexConnectImagesLength=" + requestedNumImages, false);
   xhr.send();
 
   var ScreensaverPhotos = JSON.parse(xhr.responseText);
