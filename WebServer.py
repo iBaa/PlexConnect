@@ -28,6 +28,7 @@ import XMLConverter  # XML_PMS2aTV, XML_PlayVideo
 import re
 import Localize
 import Subtitle
+import PlexPosterScreensaver
 
 
 
@@ -177,7 +178,17 @@ class MyHandler(BaseHTTPRequestHandler):
                     self.end_headers()
                     self.wfile.write(JS)
                     return
-                
+
+                # serve "screensaver.json" to aTV
+                if self.path.endswith(".json"):
+                    dprint(__name__, 1, "serving screensaver.json")
+                    json = PlexPosterScreensaver.getScreensaverJSON(options)
+                    self.send_response(200)
+                    self.send_header('Content-type', 'text/json')
+                    self.end_headers()
+                    self.wfile.write(json)
+                    return
+
                 # serve "*.jpg" - thumbnails for old-style mainpage
                 if self.path.endswith(".jpg"):
                     dprint(__name__, 1, "serving *.jpg: "+self.path)
