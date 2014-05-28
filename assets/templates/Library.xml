@@ -1,13 +1,14 @@
 <atv>
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/sectionHoldSelect.js)}}" />
   </head>
 
   <body>
     {{VAR(sections:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
     
     <!-- List -->
-    <listWithPreview id="com.sample.menu-items-with-sections">
+    <listWithPreview id="Library_List">
     {{CUT($libraryview::=CUT|List=|List =CUT)}}
       <header>
         <simpleHeader>
@@ -77,26 +78,19 @@
           <grid id="Library_Grid_{{VAL(name)}}" columnCount="5">
             <items>
               <!-- /library/sections -->
+              {{VAR(serverName:name)}}
+              {{VAR(searchKey:searchKey)}}
               <squarePoster id="{{VAL(key)}}" showOutline="false" alwaysShowTitles="true"
                            onPlay="atv.loadURL('{{URL(key)}}')"
                            onSelect="atv.loadURL('{{URL(key)}}')"
-                           onHoldSelect="refreshSection('{{VAL(key)}}', '{{URL(refreshKey)}}')">
+                           onHoldSelect="sectionHoldSelect('{{VAL(key)}}', '{{URL(#searchKey)}}', '{{VAL(#serverName)}}', '{{URL(refreshKey)}}', '{{VAL(title)}}')">
               {{COPY(Directory)}}
               {{VAR(sections:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <title>{{VAL(title)}}</title>
-                <subtitle>{{VAL(year:&#x00AD;)}}</subtitle><!--bugfix to prevent different poster sizes-->
+                <subtitle>&#x00AD;</subtitle><!--bugfix to prevent different poster sizes-->
                 <image>{{IMAGEURL(thumb::384)}}</image>
                 <defaultImage>resource://Square.png</defaultImage>
                 <!--badgeCount></badgeCount-->
-              </squarePoster>
-              
-              <!-- search -->
-              <squarePoster id="{{VAL(searchKey)}}" showOutline="false" alwaysShowTitles="true"
-                           onPlay="atv.loadURL('{{URL(searchKey)}}')"
-                           onSelect="atv.loadURL('{{URL(searchKey)}}')">
-                <title>{{TEXT(Search)}}</title>
-                <image>{{IMAGEURL(searchThumb::384)}}</image>  <!--searchThumb not yet defined-->
-                <defaultImage>resource://Square.png</defaultImage>
               </squarePoster>
               
             </items>
@@ -127,25 +121,19 @@
               <shelfSection>
                 <items>
                   <!-- /library/sections -->
+                  {{VAR(serverName:name)}}
+                  {{VAR(searchKey:searchKey)}}
                   <squarePoster id="{{VAL(key)}}" showOutline="false" alwaysShowTitles="true"
                                onPlay="atv.loadURL('{{URL(key)}}')"
                                onSelect="atv.loadURL('{{URL(key)}}')"
-                               onHoldSelect="refreshSection(...)">
+                               onHoldSelect="sectionHoldSelect('{{VAL(key)}}', '{{URL(#searchKey)}}', '{{VAL(#serverName)}}', '{{URL(refreshKey)}}', '{{VAL(title)}}')">
                   {{COPY(Directory)}}
                   {{VAR(sections:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                     <title>{{VAL(title)}}</title>
+                    <subtitle>&#x00AD;</subtitle><!--bugfix to prevent different poster sizes-->
                     <image>{{IMAGEURL(thumb::384)}}</image>
                     <defaultImage>resource://Square.png</defaultImage>
                     <!--badgeCount></badgeCount-->
-                  </squarePoster>
-                  
-                  <!-- search -->
-                  <squarePoster id="{{VAL(searchKey)}}" showOutline="false" alwaysShowTitles="true"
-                               onPlay="atv.loadURL('{{URL(searchKey)}}')"
-                               onSelect="atv.loadURL('{{URL(searchKey)}}')">
-                    <title>{{TEXT(Search)}}</title>
-                    <image>{{IMAGEURL(searchThumb::384)}}</image>  <!--searchThumb not yet defined-->
-                    <defaultImage>resource://Square.png</defaultImage>
                   </squarePoster>
                   
                 </items>
