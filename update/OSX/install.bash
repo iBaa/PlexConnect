@@ -407,7 +407,3 @@ chmod 4755 /usr/bin/webconnectbash.bash
 chmod 4755 /usr/bin/installbash.bash
 chmod 4755 /usr/bin/sudoersfixbash.bash
 chmod 4755 /usr/bin/uninstallbash.bash
-
-## Fix ip in all xml files
-cd /applications/plexconnect/assets/templates
-xml.bash
