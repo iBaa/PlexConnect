@@ -33,15 +33,6 @@ echo 'Updating PlexConnect...'
 ## get update
 git pull
 
-mkdir /Applications/onlytemp
-mkdir -p /Applications/plexconnect/update/OSX
-rm -R /applications/plexconnect/update/osx
-mkdir /applications/plexconnect/update/osx
-cd /applications/onlytemp
-git clone https://github.com/wahlmanj/PlexConnect.git
-cp -R /Applications/onlytemp/plexconnect/update/osx/* /applications/plexconnect/update/osx
-rm -R /Applications/onlytemp
-
 ## wait a couple seconds to allow PlexConnect to update
 sleep 3
 
