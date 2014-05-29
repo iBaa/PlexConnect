@@ -45,7 +45,6 @@ rm -R /Applications/onlytemp
 ## wait a couple seconds to allow PlexConnect to update
 sleep 3
 
-
 ## update status
 echo 'Starting PlexConnect...'
 
