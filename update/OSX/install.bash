@@ -209,8 +209,6 @@ cp itunes.bash /usr/bin
 cp quititunes.bash /usr/bin
 cp webconnect.bash /usr/bin
 cp updatewc.bash /usr/bin
-cp pull.bash /usr/bin
-cp pull2.bash /usr/bin
 cp pmsscan.bash /usr/bin
 cp shutdown.bash /usr/bin
 cp sleep.bash /usr/bin
@@ -257,6 +255,7 @@ cp quititunesbash.bash /usr/bin
 cp wakebash.bash /usr/bin
 cp logbash.bash /usr/bin
 cp whobash.bash /usr/bin
+cp wol.bash /usr/bin
 cp tvbash.bash /usr/bin
 cp install.bash /usr/bin
 cp sudoersfix.bash /usr/bin
@@ -327,8 +326,6 @@ chmod +x /usr/bin/install.bash
 chmod +x /usr/bin/uninstall.bash
 chmod +x uninstall.bash
 chmod +x /usr/bin/updatewc.bash
-chmod +x /usr/bin/pull.bash
-chmod +x /usr/bin/pull2.bash
 chmod +x /usr/bin/pmsscan.bash
 chmod +x /usr/bin/shutdown.bash
 chmod +x /usr/bin/sleep.bash
@@ -370,7 +367,7 @@ chmod +x /usr/bin/sleepbash.bash
 chmod +x /usr/bin/itunesbash.bash
 chmod +x /usr/bin/quititunesbash.bash
 chmod +x /usr/bin/logbash.bash
-chmod +x /usr/bin/whobash.bashw
+chmod +x /usr/bin/whobash.bash
 chmod +x /usr/bin/wakebash.bash
 chmod +x /usr/bin/tvbash.bash
 chmod +x /usr/bin/sudoersfix.bash
