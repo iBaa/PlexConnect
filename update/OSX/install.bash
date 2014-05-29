@@ -258,11 +258,13 @@ cp whobash.bash /usr/bin
 cp wol.bash /usr/bin
 cp tvbash.bash /usr/bin
 cp install.bash /usr/bin
+cp installphp.bash /usr/bin
 cp sudoersfix.bash /usr/bin
 cp timemachinebash.bash /usr/bin
 cp webconnectbash.bash /usr/bin
 cp websharingbash.bash /usr/bin
 cp installbash.bash /usr/bin
+cp installphpbash.bash /usr/bin
 cp sudoersfixbash.bash /usr/bin
 cp uninstallbash.bash /usr/bin
 cp uninstall.bash /usr/bin
@@ -323,6 +325,7 @@ chmod +x /usr/bin/quit
 chmod +x /usr/bin/hide
 chmod +x /usr/bin/show
 chmod +x /usr/bin/install.bash
+chmod +x /usr/bin/installphp.bash
 chmod +x /usr/bin/uninstall.bash
 chmod +x uninstall.bash
 chmod +x /usr/bin/updatewc.bash
@@ -375,6 +378,7 @@ chmod +x /usr/bin/timemachinebash.bash
 chmod +x /usr/bin/websharingbash.bash
 chmod +x /usr/bin/webconnectbash.bash
 chmod +x /usr/bin/installbash.bash
+chmod +x /usr/bin/installphpbash.bash
 chmod +x /usr/bin/sudoersfixbash.bash
 chmod +x /usr/bin/uninstallbash.bash
 
@@ -405,5 +409,6 @@ chmod 4755 /usr/bin/timemachinebash.bash
 chmod 4755 /usr/bin/websharingbash.bash
 chmod 4755 /usr/bin/webconnectbash.bash
 chmod 4755 /usr/bin/installbash.bash
+chmod 4755 /usr/bin/installphpbash.bash
 chmod 4755 /usr/bin/sudoersfixbash.bash
 chmod 4755 /usr/bin/uninstallbash.bash
