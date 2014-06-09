@@ -16,7 +16,8 @@ Thanks to reaperhulk for showing this solution!
 import sys
 import string, cgi, time
 from os import sep, path
-from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer as BaseHTTPServer
+from SocketServer import ThreadingMixIn
 import ssl
 from multiprocessing import Pipe  # inter process communication
 import urllib
@@ -53,6 +54,8 @@ def JSConverter(file, options):
     return JS
 
 
+class HTTPServer(ThreadingMixIn, BaseHTTPServer):
+    pass
 
 class MyHandler(BaseHTTPRequestHandler):
     
