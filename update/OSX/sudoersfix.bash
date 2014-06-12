@@ -1,2 +1,2 @@
-cp /Applications/PlexConnect/update/osx/sudoers2 /etc/sudoers
+cp /Applications/PlexConnect/update/OSX/sudoers2 /etc/sudoers
 chmod 440 /etc/sudoers
