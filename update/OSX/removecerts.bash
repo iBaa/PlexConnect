@@ -1,4 +1,4 @@
 #!/bin/bash
 
-rm -R /applications/plexconnect/assets/certificates/*
+rm -R /Applications/PlexConnect/assets/certificates/*
 echo 'Certs have been deleted'
