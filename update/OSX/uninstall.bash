@@ -79,7 +79,7 @@ rm /usr/bin/websharing.bash
 rm /usr/bin/xml.bash
 rm /usr/bin/auto.bash
 rm -Rf /Applications/PlexConnect
-rm -Rf /Applications/OpenConnect.app
+rm -Rf /Applications/OpenPlex.app
 
 ## display the running status of PlexConnect
 launchctl list | grep com.plex.plexconnect.bash
