@@ -50,7 +50,7 @@ sleep 2
 launchctl list | grep com.plex.plexconnect.bash
 
 ## Display PlexConnect log
-FILE="/Applications/PlexConnect/plexconnect.log"
+FILE="/Applications/PlexConnect/PlexConnect.log"
 echo "*** File - $FILE contents ***"
 cat $FILE
 
