@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## go back to InstallerPath
-cd /applications/plexconnect/update/OSX
+cd /Applications/PlexConnect/update/OSX
 
 ## Copy wol plists to /Library/LaunchAgents
 cp com.plexconnect.wake_dns.plist /Library/LaunchAgents
