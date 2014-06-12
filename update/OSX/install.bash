@@ -4,7 +4,7 @@
 
 ## save path to installer files
 ## cd "$( cd "$( dirname "$0" )" && pwd )"
-cd /Applications/plexconnect/update/osx
+cd /Applications/plexconnect/update/OSX
 InstallerPath=${PWD}
 
 ## find PlexConnect main path
@@ -188,8 +188,8 @@ EOF
 
 cp -R GradientTV /library/webserver/documents
 cp -R GradientMovies /library/webserver/documents
-chmod -R 0777 /library/webserver/documents/gradienttv/ *.*
-chmod -R 0777 /library/webserver/documents/gradientmovies/ *.*
+chmod -R 0777 /library/webserver/documents/gradientTV/ *.*
+chmod -R 0777 /library/webserver/documents/gradientMovies/ *.*
 
 ## copy files to /usr/bin for system wide access
 cp createcert.bash /usr/bin
@@ -303,7 +303,7 @@ sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/webconnec
 sed -e "s/__USERNAME__/$whoami/" "${DefaultPath}/fixgit.bash" > /usr/bin/fixgit.bash
 
 ## fix permissions
-chmod +x /Applications/plexconnect/update/osx/plexconnect.bash
+chmod +x /Applications/PlexConnect/update/OSX/plexconnect.bash
 chmod +x /usr/bin/createcert.bash
 chmod +x /usr/bin/createimovie.bash
 chmod +x /usr/bin/createwsj.bash
