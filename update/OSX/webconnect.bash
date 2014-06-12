@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /applications/plexconnect/update/osx
+cd /Applications/PlexConnect/update/osx
 
 ## install webconnect
 plexweb.bash
