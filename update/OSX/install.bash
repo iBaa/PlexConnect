@@ -188,8 +188,8 @@ EOF
 
 cp -R GradientTV /library/webserver/documents
 cp -R GradientMovies /library/webserver/documents
-chmod -R 0777 /library/webserver/documents/gradientTV/ *.*
-chmod -R 0777 /library/webserver/documents/gradientMovies/ *.*
+chmod -R 0777 /library/webserver/documents/GradientTV/ *.*
+chmod -R 0777 /library/webserver/documents/GradientMovies/ *.*
 
 ## copy files to /usr/bin for system wide access
 cp createcert.bash /usr/bin
@@ -303,7 +303,7 @@ sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/webconnec
 sed -e "s/__USERNAME__/$whoami/" "${DefaultPath}/fixgit.bash" > /usr/bin/fixgit.bash
 
 ## fix permissions
-chmod +x /Applications/PlexConnect/update/OSX/plexconnect.bash
+chmod +x /Applications/PlexConnect/update/OSX/PlexConnect.bash
 chmod +x /usr/bin/createcert.bash
 chmod +x /usr/bin/createimovie.bash
 chmod +x /usr/bin/createwsj.bash
