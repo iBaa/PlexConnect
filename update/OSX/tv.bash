@@ -1,13 +1,13 @@
 #!/bin/bash
 
 #Initiate hide command
-hide iTunes
+hide TeamViewer
 
-# Open itunes
+# Open TeamViewer
 open -a TeamViewer
 
-# Wait for itunes to open
+# Wait for TeamViewer to open
 Sleep 5
 
-#Hide iTunes
+#Hide TeamViewer
 hide TeamViewer
