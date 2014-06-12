@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cd /Applications/PlexConnect/update/osx
+cd /Applications/PlexConnect/update/OSX
 yes | ./pillow
