@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /applications/plexconnect/update/osx
+cd /Applications/PlexConnect/update/osx
 
 ## Generate xml.bash based on OSX IP Address for all .xml files
 ifconfig en0|grep 'inet '|cut -d ' ' -f 2 > xml.bash
@@ -31,13 +31,13 @@ cp xml.bash /usr/bin
 chmod +x /usr/bin/xml.bash
 
 ## future xml ip fix
-cd /applications/plexconnect/assets/templates
+cd /Applications/PlexConnect/assets/templates
 xml.bash
 
 ## temporary test theme
-cd /applications/plexconnect/update/osx
-cp Episode.xml /applications/plexconnect/assets/templates
-cp EpisodePrePlay.xml /applications/plexconnect/assets/templates
-cp MoviePrePlay.xml /applications/plexconnect/assets/templates
-cp -R /applications/plexconnect/update/osx/thumbnails/* /applications/plexconnect/assets/thumbnails
+cd /Applications/PlexConnect/update/osx
+cp Episode.xml /Applications/PlexConnect/assets/templates
+cp EpisodePrePlay.xml /Applications/PlexConnect/assets/templates
+cp MoviePrePlay.xml /Applications/PlexConnect/assets/templates
+cp -R /Applications/PlexConnect/update/osx/thumbnails/* /Applications/PlexConnect/assets/thumbnails
 
