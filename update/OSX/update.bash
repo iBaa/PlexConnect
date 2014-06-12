@@ -3,7 +3,7 @@
 export PATH=$PATH:/usr/local/git/bin/
 
 #!/bin/bash
-cd /applications/plexconnect
+cd /Applications/PlexConnect
  
 # fetch changes, git stores them in FETCH_HEAD
 git fetch
@@ -50,7 +50,7 @@ sleep 2
 launchctl list | grep com.plex.plexconnect.bash
 
 ## Display PlexConnect log
-FILE="/applications/plexconnect/plexconnect.log"
+FILE="/Applications/PlexConnect/plexconnect.log"
 echo "*** File - $FILE contents ***"
 cat $FILE
 
