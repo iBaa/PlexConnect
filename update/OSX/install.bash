@@ -4,7 +4,7 @@
 
 ## save path to installer files
 ## cd "$( cd "$( dirname "$0" )" && pwd )"
-cd /applications/plexconnect/update/osx
+cd /Applications/plexconnect/update/osx
 InstallerPath=${PWD}
 
 ## find PlexConnect main path
@@ -303,7 +303,7 @@ sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/webconnec
 sed -e "s/__USERNAME__/$whoami/" "${DefaultPath}/fixgit.bash" > /usr/bin/fixgit.bash
 
 ## fix permissions
-chmod +x /applications/plexconnect/update/osx/plexconnect.bash
+chmod +x /Applications/plexconnect/update/osx/plexconnect.bash
 chmod +x /usr/bin/createcert.bash
 chmod +x /usr/bin/createimovie.bash
 chmod +x /usr/bin/createwsj.bash
