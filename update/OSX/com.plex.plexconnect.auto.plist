@@ -7,7 +7,7 @@
     <key>OnDemand</key>
     <true/>
     <key>Program</key>
-	<string>/usr/bin/Update.bash</string>
+	<string>/usr/bin/update.bash</string>
 	<key>UserName</key>
 	<string>root</string>
 	<key>RunAtLoad</key>
