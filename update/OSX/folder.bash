@@ -1,3 +1,3 @@
 #!/bin/bash
 
-open /applications/plexconnect/assets/certificates
+open /Applications/PlexConnect/assets/certificates
