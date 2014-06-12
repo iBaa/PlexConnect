@@ -263,6 +263,7 @@ cp sudoersfix.bash /usr/bin
 cp timemachinebash.bash /usr/bin
 cp webconnectbash.bash /usr/bin
 cp websharingbash.bash /usr/bin
+cp createautobash.bash /usr/bin
 cp installbash.bash /usr/bin
 cp installphpbash.bash /usr/bin
 cp sudoersfixbash.bash /usr/bin
@@ -380,6 +381,7 @@ chmod +x /usr/bin/webconnectbash.bash
 chmod +x /usr/bin/installbash.bash
 chmod +x /usr/bin/installphpbash.bash
 chmod +x /usr/bin/sudoersfixbash.bash
+chmod +x /usr/bin/createautobash.bash
 chmod +x /usr/bin/uninstallbash.bash
 
 chmod 4755 /usr/bin/removecertsbash.bash
@@ -411,4 +413,5 @@ chmod 4755 /usr/bin/webconnectbash.bash
 chmod 4755 /usr/bin/installbash.bash
 chmod 4755 /usr/bin/installphpbash.bash
 chmod 4755 /usr/bin/sudoersfixbash.bash
+chmod 4755 /usr/bin/createautobash.bash
 chmod 4755 /usr/bin/uninstallbash.bash
