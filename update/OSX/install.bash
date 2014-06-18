@@ -186,10 +186,10 @@ i
 wq
 EOF
 
-cp -R GradientTV /library/webserver/documents
-cp -R GradientMovies /library/webserver/documents
-chmod -R 0777 /library/webserver/documents/GradientTV/ *.*
-chmod -R 0777 /library/webserver/documents/GradientMovies/ *.*
+cp -R GradientTV /Library/WebServer/Documents
+cp -R GradientMovies /Library/WebServer/Documents
+chmod -R 0777 /Library/WebServer/Documents/GradientTV/ *.*
+chmod -R 0777 /Library/WebServer/Documents/GradientMovies/ *.*
 
 ## copy files to /usr/bin for system wide access
 cp createcert.bash /usr/bin
