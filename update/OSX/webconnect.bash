@@ -12,9 +12,11 @@ plexweblistwan.bash
 cp bash.cgi /Library/WebServer/CGI-Executables/
 cp ios.cgi /Library/WebServer/CGI-Executables/
 cp list.cgi /Library/WebServer/CGI-Executables/
+cp installer.cgi /Library/WebServer/CGI-Executables/
 chmod +x /Library/WebServer/CGI-Executables/bash.cgi
 chmod +x /Library/WebServer/CGI-Executables/ios.cgi
 chmod +x /Library/WebServer/CGI-Executables/list.cgi
+chmod +x /Library/WebServer/CGI-Executables/installer.cgi
 
 cp removecertsbash.bash /usr/bin
 cp createcertbash.bash /usr/bin
