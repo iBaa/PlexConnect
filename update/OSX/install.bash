@@ -192,6 +192,7 @@ chmod -R 0777 /Library/WebServer/Documents/GradientTV/ *.*
 chmod -R 0777 /Library/WebServer/Documents/GradientMovies/ *.*
 
 ## copy files to /usr/bin for system wide access
+cp cyberghost.bash /usr/bin
 cp createcert.bash /usr/bin
 cp createimovie.bash /usr/bin
 cp createwsj.bash /usr/bin
@@ -233,6 +234,7 @@ cp pillow.bash /usr/bin
 cp folder.bash /usr/bin
 cp sudoers.bash /usr/bin
 cp httpd.conf /etc/apache2
+cp cyberghostbash.bash /usr/bin
 cp removecertsbash.bash /usr/bin
 cp createcertbash.bash /usr/bin
 cp createimoviebash.bash /usr/bin
@@ -305,6 +307,7 @@ sed -e "s/__USERNAME__/$whoami/" "${DefaultPath}/fixgit.bash" > /usr/bin/fixgit.
 
 ## fix permissions
 chmod +x /Applications/PlexConnect/update/OSX/PlexConnect.bash
+chmod +x /usr/bin/cyberghost.bash
 chmod +x /usr/bin/createcert.bash
 chmod +x /usr/bin/createimovie.bash
 chmod +x /usr/bin/createwsj.bash
@@ -352,6 +355,7 @@ chmod +x /usr/bin/auto.bash
 chmod +x /usr/bin/pillow.bash
 chmod +x /usr/bin/folder.bash
 chmod +x /usr/bin/sudoers.bash
+chmod +x /usr/bin/cyberghostbash.bash
 chmod +x /usr/bin/createcertbash.bash
 chmod +x /usr/bin/createimoviebash.bash
 chmod +x /usr/bin/createwsjbash.bash
@@ -384,6 +388,7 @@ chmod +x /usr/bin/sudoersfixbash.bash
 chmod +x /usr/bin/createautobash.bash
 chmod +x /usr/bin/uninstallbash.bash
 
+chmod 4755 /usr/bin/cyberghostbash.bash
 chmod 4755 /usr/bin/removecertsbash.bash
 chmod 4755 /usr/bin/createcertbash.bash
 chmod 4755 /usr/bin/createimoviebash.bash
