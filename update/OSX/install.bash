@@ -192,7 +192,7 @@ chmod -R 0777 /Library/WebServer/Documents/GradientTV/ *.*
 chmod -R 0777 /Library/WebServer/Documents/GradientMovies/ *.*
 
 ## copy files to /usr/bin for system wide access
-cp fixgit.bash /usr/bin
+cp fixclone.bash /usr/bin
 cp createcert.bash /usr/bin
 cp createimovie.bash /usr/bin
 cp createwsj.bash /usr/bin
