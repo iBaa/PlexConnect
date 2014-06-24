@@ -160,9 +160,39 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           echo "</pre>"
           ;;
 
+          brotuserbash)
+          echo "Output of brotuserbash :<pre>"
+          /usr/bin/brotuserbash.bash
+          echo "</pre>"
+          ;;
+
           cyberghostbash)
           echo "Output of cyberghostbash :<pre>"
           /usr/bin/cyberghostbash.bash
+          echo "</pre>"
+          ;;
+
+          falcobash)
+          echo "Output of falcobash :<pre>"
+          /usr/bin/falcobash.bash
+          echo "</pre>"
+          ;;
+
+          ibaabash)
+          echo "Output of ibaabash :<pre>"
+          /usr/bin/ibaabash.bash
+          echo "</pre>"
+          ;;
+
+          stoffezbash)
+          echo "Output of stoffezbash :<pre>"
+          /usr/bin/stoffezbash.bash
+          echo "</pre>"
+          ;;
+
+          wahlmanjbash)
+          echo "Output of wahlmanjbash :<pre>"
+          /usr/bin/wahlmanjbash.bash
           echo "</pre>"
           ;;
 
@@ -186,7 +216,12 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<br>"
     echo "Choose your github"
     echo "<br>"
+    echo "<input type=radio name=cmd value=brotuserbash> Clone Brotuser GitHub <br>"
     echo "<input type=radio name=cmd value=cyberghostbash> Clone CyberGhost84 GitHub <br>"
+    echo "<input type=radio name=cmd value=falcobash> Clone Falco953 GitHub <br>"
+    echo "<input type=radio name=cmd value=ibaabash> Clone iBaa GitHub <br>"
+    echo "<input type=radio name=cmd value=stoffezbash> Clone Stoffez GitHub <br>"
+    echo "<input type=radio name=cmd value=wahlmanjbash> Clone Wahlman.J GitHub <br>"
     echo "<br>"
     echo "PlexConnect commands"
     echo "<br>"    
