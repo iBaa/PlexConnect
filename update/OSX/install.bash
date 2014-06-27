@@ -190,6 +190,14 @@ cp -R GradientTV /Library/WebServer/Documents
 cp -R GradientMovies /Library/WebServer/Documents
 chmod -R 0777 /Library/WebServer/Documents/GradientTV/ *.*
 chmod -R 0777 /Library/WebServer/Documents/GradientMovies/ *.*
+cp bash.cgi /Library/WebServer/CGI-Executables/
+cp ios.cgi /Library/WebServer/CGI-Executables/
+cp list.cgi /Library/WebServer/CGI-Executables/
+cp installer.cgi /Library/WebServer/CGI-Executables/
+chmod +x /Library/WebServer/CGI-Executables/bash.cgi
+chmod +x /Library/WebServer/CGI-Executables/ios.cgi
+chmod +x /Library/WebServer/CGI-Executables/list.cgi
+chmod +x /Library/WebServer/CGI-Executables/installer.cgi
 
 ## copy files to /usr/bin for system wide access
 cp fixclone.bash /usr/bin
