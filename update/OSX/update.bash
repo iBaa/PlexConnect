@@ -54,6 +54,9 @@ FILE="/Applications/PlexConnect/PlexConnect.log"
 echo "*** File - $FILE contents ***"
 cat $FILE
 
+osascript -e 'tell app "OpenPlex" to display dialog "PlexConnect has been updated"'
+
 else
         echo "no updates available"
+osascript -e 'tell app "OpenPlex" to display dialog "No updates avaiable at this time"'
 fi
