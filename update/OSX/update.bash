@@ -54,7 +54,7 @@ FILE="/Applications/PlexConnect/PlexConnect.log"
 echo "*** File - $FILE contents ***"
 cat $FILE
 
-osascript -e 'tell app "System Events" to display dialog "PlexConnect has been Updated"'
+osascript -e 'tell app "System Events" to display dialog "PlexConnect has been Updated exit the hijacked app on your aTV to complete the update"'
 
 else
 osascript -e 'tell app "System Events" to display dialog "No updates available"'
