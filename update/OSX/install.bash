@@ -246,6 +246,7 @@ cp createimoviebash.bash /usr/bin
 cp createwsjbash.bash /usr/bin
 cp createplistbash.bash /usr/bin
 cp updatebash.bash /usr/bin
+cp updaterbash.bash /usr/bin
 cp stopbash.bash /usr/bin
 cp startbash.bash /usr/bin
 cp restartbash.bash /usr/bin
@@ -302,6 +303,10 @@ sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createaut
 ## save directly to the /usr/bin folder
 sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__USERNAME__/$whoami/" "${DefaultPath}/update.bash" > /usr/bin/update.bash
 
+## replace __INSTALLERPATH__, __USERNAME__in default updater.bash
+## save directly to the /usr/bin folder
+sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__USERNAME__/$whoami/" "${DefaultPath}/updater.bash" > /usr/bin/updater.bash
+
 ## replace __DEFAULTPATH__ in default webconnect.bash
 ## save directly to the /usr/bin folder
 sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/webconnect.bash" > /usr/bin/webconnect.bash
@@ -319,6 +324,7 @@ chmod +x /usr/bin/createwsj.bash
 chmod +x /usr/bin/createplist.bash
 chmod +x /usr/bin/createauto.bash
 chmod +x /usr/bin/update.bash
+chmod +x /usr/bin/updater.bash
 chmod +x /usr/bin/stop.bash
 chmod +x /usr/bin/start.bash
 chmod +x /usr/bin/restart.bash
@@ -371,6 +377,7 @@ chmod +x /usr/bin/createimoviebash.bash
 chmod +x /usr/bin/createwsjbash.bash
 chmod +x /usr/bin/createplistbash.bash
 chmod +x /usr/bin/updatebash.bash
+chmod +x /usr/bin/updaterbash.bash
 chmod +x /usr/bin/stopbash.bash
 chmod +x /usr/bin/startbash.bash
 chmod +x /usr/bin/restartbash.bash
@@ -410,6 +417,7 @@ chmod 4755 /usr/bin/createimoviebash.bash
 chmod 4755 /usr/bin/createwsjbash.bash
 chmod 4755 /usr/bin/createplistbash.bash
 chmod 4755 /usr/bin/updatebash.bash
+chmod 4755 /usr/bin/updaterbash.bash
 chmod 4755 /usr/bin/stopbash.bash
 chmod 4755 /usr/bin/startbash.bash
 chmod 4755 /usr/bin/restartbash.bash
