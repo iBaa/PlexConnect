@@ -274,7 +274,7 @@ cp whobash.bash /usr/bin
 cp wol.bash /usr/bin
 cp tvbash.bash /usr/bin
 cp install.bash /usr/bin
-cp trahbase.bash /usr/bin
+cp trashbase.bash /usr/bin
 cp installphp.bash /usr/bin
 cp sudoersfix.bash /usr/bin
 cp timemachinebash.bash /usr/bin
