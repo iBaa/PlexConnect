@@ -55,5 +55,5 @@ echo "*** File - $FILE contents ***"
 cat $FILE
 
 else
-        echo "no updates available"
+osascript -e 'tell app "System Events" to display dialog "No updates available"'
 fi
