@@ -284,6 +284,7 @@ cp createautobash.bash /usr/bin
 cp installbash.bash /usr/bin
 cp installphpbash.bash /usr/bin
 cp sudoersfixbash.bash /usr/bin
+cp trashbasebash.bash /usr/bin
 cp uninstallbash.bash /usr/bin
 cp uninstall.bash /usr/bin
 
@@ -413,6 +414,7 @@ chmod +x /usr/bin/installbash.bash
 chmod +x /usr/bin/installphpbash.bash
 chmod +x /usr/bin/sudoersfixbash.bash
 chmod +x /usr/bin/createautobash.bash
+chmod +x /usr/bin/trashbasebash.bash
 chmod +x /usr/bin/uninstallbash.bash
 
 chmod 4755 /usr/bin/cyberghostbash.bash
@@ -452,4 +454,5 @@ chmod 4755 /usr/bin/installbash.bash
 chmod 4755 /usr/bin/installphpbash.bash
 chmod 4755 /usr/bin/sudoersfixbash.bash
 chmod 4755 /usr/bin/createautobash.bash
+chmod 4755 /usr/bin/trashbasebash.bash
 chmod 4755 /usr/bin/uninstallbash.bash
