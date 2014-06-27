@@ -58,5 +58,5 @@ osascript -e 'tell app "OpenPlex" to display dialog "PlexConnect has been update
 
 else
         echo "no updates available"
-osascript -e 'tell app "OpenPlex" to display dialog "No updates avaiable at this time"'
+osascript -e 'tell app "OpenPlex" to display dialog "No updates available at this time"'
 fi
