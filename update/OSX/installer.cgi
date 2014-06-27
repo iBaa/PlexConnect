@@ -47,7 +47,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           ;;
 
         updaterbash)
-          echo "Output of updaterbash :<pre>"
+          echo "Output of updater :<pre>"
           /usr/bin/updaterbash.bash
           echo "</pre>"
           ;;
