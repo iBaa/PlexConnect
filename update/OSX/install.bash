@@ -274,6 +274,7 @@ cp whobash.bash /usr/bin
 cp wol.bash /usr/bin
 cp tvbash.bash /usr/bin
 cp install.bash /usr/bin
+cp trahbase.bash /usr/bin
 cp installphp.bash /usr/bin
 cp sudoersfix.bash /usr/bin
 cp timemachinebash.bash /usr/bin
@@ -373,6 +374,7 @@ chmod +x /usr/bin/fixgit.bash
 chmod +x /usr/bin/auto.bash
 chmod +x /usr/bin/pillow.bash
 chmod +x /usr/bin/folder.bash
+chmod +x /usr/bin/trashbase.bash
 chmod +x /usr/bin/sudoers.bash
 chmod +x /usr/bin/cyberghostbash.bash
 chmod +x /usr/bin/ibaabash.bash
