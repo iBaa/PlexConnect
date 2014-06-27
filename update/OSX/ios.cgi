@@ -47,9 +47,9 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           echo "</pre>"
           ;;
 
-        updatebash)
-          echo "Output of updatebash :<pre>"
-          /usr/bin/updatebash.bash
+        updaterbash)
+          echo "Output of updaterbash :<pre>"
+          /usr/bin/updaterbash.bash
           echo "</pre>"
           ;;
 
@@ -139,7 +139,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<br>"
     echo "<br>"
     echo "<br>"
-    echo "<input type="image" src="https://forums.plex.tv/uploads/monthly_02_2014/post-137692-0-09149600-1393299823.png" name=cmd title= Install_PlexConnect value=createplistbash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" img src="https://forums.plex.tv/uploads/monthly_03_2014/post-137692-0-32431000-1394050470.png" name=cmd title= Update_PlexConnect value=updatebash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" img src="https://forums.plex.tv/uploads/monthly_03_2014/post-137692-0-63257800-1395860403.png" name=cmd title=Start_PlexConnect value=startbash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" src="https://forums.plex.tv/uploads/monthly_03_2014/post-137692-0-67998300-1395861005.png" name=cmd title= Stop_PlexConnect value=stopbash>"
+    echo "<input type="image" src="https://forums.plex.tv/uploads/monthly_02_2014/post-137692-0-09149600-1393299823.png" name=cmd title= Install_PlexConnect value=createplistbash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" img src="https://forums.plex.tv/uploads/monthly_03_2014/post-137692-0-32431000-1394050470.png" name=cmd title= Update_PlexConnect value=updaterbash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" img src="https://forums.plex.tv/uploads/monthly_03_2014/post-137692-0-63257800-1395860403.png" name=cmd title=Start_PlexConnect value=startbash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" src="https://forums.plex.tv/uploads/monthly_03_2014/post-137692-0-67998300-1395861005.png" name=cmd title= Stop_PlexConnect value=stopbash>"
     echo "<br>"
     echo "<br>"
     echo "<br>"
