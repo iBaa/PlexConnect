@@ -17,6 +17,7 @@ import sys
 import string, cgi, time
 from os import sep, path
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+from SocketServer import ThreadingMixIn
 import ssl
 from multiprocessing import Pipe  # inter process communication
 import urllib
@@ -233,6 +234,11 @@ class MyHandler(BaseHTTPRequestHandler):
 
 
 
+class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
+    """Handle requests in a separate thread."""
+
+
+
 def Run(cmdPipe, param):
     if not __name__ == '__main__':
         signal.signal(signal.SIGINT, signal.SIG_IGN)
@@ -242,7 +248,7 @@ def Run(cmdPipe, param):
     cfg_IP_WebServer = param['IP_self']
     cfg_Port_WebServer = param['CSettings'].getSetting('port_webserver')
     try:
-        server = HTTPServer((cfg_IP_WebServer,int(cfg_Port_WebServer)), MyHandler)
+        server = ThreadedHTTPServer((cfg_IP_WebServer,int(cfg_Port_WebServer)), MyHandler)
         server.timeout = 1
     except Exception, e:
         dprint(__name__, 0, "Failed to connect to HTTP on {0} port {1}: {2}", cfg_IP_WebServer, cfg_Port_WebServer, e)
@@ -306,7 +312,7 @@ def Run_SSL(cmdPipe, param):
     certfile.close()
     
     try:
-        server = HTTPServer((cfg_IP_WebServer,int(cfg_Port_SSL)), MyHandler)
+        server = ThreadedHTTPServer((cfg_IP_WebServer,int(cfg_Port_SSL)), MyHandler)
         server.socket = ssl.wrap_socket(server.socket, certfile=cfg_certfile, server_side=True)
         server.timeout = 1
     except Exception, e:

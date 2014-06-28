@@ -53,11 +53,6 @@ def setATVSettings(cfg):
 
 
 
-# links to CMD class for module wide usage
-g_CommandCollection = None
-
-
-
 """
 # aTV XML ErrorMessage - hardcoded XML File
 """
@@ -499,11 +494,10 @@ def XML_PMS2aTV(PMS_address, path, options):
     aTVroot = aTVTree.getroot()
     
     # convert PMS XML to aTV XML using provided XMLtemplate
-    global g_CommandCollection
-    g_CommandCollection = CCommandCollection(options, PMSroot, PMS_address, path)
-    XML_ExpandTree(aTVroot, PMSroot, 'main')
-    XML_ExpandAllAttrib(aTVroot, PMSroot, 'main')
-    del g_CommandCollection
+    CommandCollection = CCommandCollection(options, PMSroot, PMS_address, path)
+    XML_ExpandTree(CommandCollection, aTVroot, PMSroot, 'main')
+    XML_ExpandAllAttrib(CommandCollection, aTVroot, PMSroot, 'main')
+    del CommandCollection
     
     if cmd=='ChannelsSearch':
         for bURL in aTVroot.iter('baseURL'):
@@ -520,7 +514,7 @@ def XML_PMS2aTV(PMS_address, path, options):
 
 
 
-def XML_ExpandTree(elem, src, srcXML):
+def XML_ExpandTree(CommandCollection, elem, src, srcXML):
     # unpack template 'COPY'/'CUT' command in children
     res = False
     while True:
@@ -528,14 +522,14 @@ def XML_ExpandTree(elem, src, srcXML):
             break
         
         for child in elem:
-            res = XML_ExpandNode(elem, child, src, srcXML, 'TEXT')
+            res = XML_ExpandNode(CommandCollection, elem, child, src, srcXML, 'TEXT')
             if res==True:  # tree modified: restart from 1st elem
                 break  # "for child"
             
             # recurse into children
-            XML_ExpandTree(child, src, srcXML)
+            XML_ExpandTree(CommandCollection, child, src, srcXML)
             
-            res = XML_ExpandNode(elem, child, src, srcXML, 'TAIL')
+            res = XML_ExpandNode(CommandCollection, elem, child, src, srcXML, 'TAIL')
             if res==True:  # tree modified: restart from 1st elem
                 break  # "for child"
         
@@ -544,7 +538,7 @@ def XML_ExpandTree(elem, src, srcXML):
 
 
 
-def XML_ExpandNode(elem, child, src, srcXML, text_tail):
+def XML_ExpandNode(CommandCollection, elem, child, src, srcXML, text_tail):
     if text_tail=='TEXT':  # read line from text or tail
         line = child.text
     elif text_tail=='TAIL':
@@ -573,7 +567,7 @@ def XML_ExpandNode(elem, child, src, srcXML, text_tail):
         parts = cmd.split('(',1)
         cmd = parts[0]
         param = parts[1].strip(')')  # remove ending bracket
-        param = XML_ExpandLine(src, srcXML, param)  # expand any attributes in the parameter
+        param = XML_ExpandLine(CommandCollection, src, srcXML, param)  # expand any attributes in the parameter
         
         res = False
         if hasattr(CCommandCollection, 'TREE_'+cmd):  # expand tree, work COPY, CUT
@@ -584,7 +578,7 @@ def XML_ExpandNode(elem, child, src, srcXML, text_tail):
                 child.tail = line
             
             try:
-                res = getattr(g_CommandCollection, 'TREE_'+cmd)(elem, child, src, srcXML, param)
+                res = getattr(CommandCollection, 'TREE_'+cmd)(elem, child, src, srcXML, param)
             except:
                 dprint(__name__, 0, "XML_ExpandNode - Error in cmd {0}, line {1}\n{2}", cmd, line, traceback.format_exc())
             
@@ -607,29 +601,29 @@ def XML_ExpandNode(elem, child, src, srcXML, text_tail):
 
 
 
-def XML_ExpandAllAttrib(elem, src, srcXML):
+def XML_ExpandAllAttrib(CommandCollection, elem, src, srcXML):
     # unpack template commands in elem.text
     line = elem.text
     if line!=None:
-        elem.text = XML_ExpandLine(src, srcXML, line.strip())
+        elem.text = XML_ExpandLine(CommandCollection, src, srcXML, line.strip())
     
     # unpack template commands in elem.tail
     line = elem.tail
     if line!=None:
-        elem.tail = XML_ExpandLine(src, srcXML, line.strip())
+        elem.tail = XML_ExpandLine(CommandCollection, src, srcXML, line.strip())
     
     # unpack template commands in elem.attrib.value
     for attrib in elem.attrib:
         line = elem.get(attrib)
-        elem.set(attrib, XML_ExpandLine(src, srcXML, line.strip()))
+        elem.set(attrib, XML_ExpandLine(CommandCollection, src, srcXML, line.strip()))
     
     # recurse into children
     for el in elem:
-        XML_ExpandAllAttrib(el, src, srcXML)
+        XML_ExpandAllAttrib(CommandCollection, el, src, srcXML)
 
 
 
-def XML_ExpandLine(src, srcXML, line):
+def XML_ExpandLine(CommandCollection, src, srcXML, line):
     pos = 0
     while True:
         cmd_start = line.find('{{',pos)
@@ -651,12 +645,12 @@ def XML_ExpandLine(src, srcXML, line):
         parts = cmd.split('(',1)
         cmd = parts[0]
         param = parts[1][:-1]  # remove ending bracket
-        param = XML_ExpandLine(src, srcXML, param)  # expand any attributes in the parameter
+        param = XML_ExpandLine(CommandCollection, src, srcXML, param)  # expand any attributes in the parameter
         
         if hasattr(CCommandCollection, 'ATTRIB_'+cmd):  # expand line, work VAL, EVAL...
             
             try:
-                res = getattr(g_CommandCollection, 'ATTRIB_'+cmd)(src, srcXML, param)
+                res = getattr(CommandCollection, 'ATTRIB_'+cmd)(src, srcXML, param)
                 line = line[:cmd_start] + res + line[cmd_end+2:]
                 pos = cmd_start+len(res)
             except:
@@ -865,8 +859,8 @@ class CCommandCollection(CCommandHelper):
             
             if key:
                 el = copy.deepcopy(child)
-                XML_ExpandTree(el, elemSRC, srcXML)
-                XML_ExpandAllAttrib(el, elemSRC, srcXML)
+                XML_ExpandTree(self, el, elemSRC, srcXML)
+                XML_ExpandAllAttrib(self, el, elemSRC, srcXML)
                 
                 if el.tag=='__COPY__':
                     for el_child in list(el):
@@ -1328,10 +1322,10 @@ if __name__=="__main__":
     options = {}
     options['PlexConnectUDID'] = '007'
     PMS_address = 'PMS_IP'
-    g_CommandCollection = CCommandCollection(options, PMSroot, PMS_address, '/library/sections')
-    XML_ExpandTree(aTVroot, PMSroot, 'main')
-    XML_ExpandAllAttrib(aTVroot, PMSroot, 'main')
-    del g_CommandCollection
+    CommandCollection = CCommandCollection(options, PMSroot, PMS_address, '/library/sections')
+    XML_ExpandTree(CommandCollection, aTVroot, PMSroot, 'main')
+    XML_ExpandAllAttrib(CommandCollection, aTVroot, PMSroot, 'main')
+    del CommandCollection
     
     print
     print "resulting aTV XML"
