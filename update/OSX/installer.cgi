@@ -196,6 +196,12 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           echo "</pre>"
           ;;
 
+          trashbasebash)
+          echo "Output of trashbasebash :<pre>"
+          /usr/bin/trashbasebash.bash
+          echo "</pre>"
+          ;;
+
 	esac
     fi
      
@@ -222,6 +228,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<input type=radio name=cmd value=ibaabash> Clone iBaa GitHub <br>"
     echo "<input type=radio name=cmd value=stoffezbash> Clone Stoffez GitHub <br>"
     echo "<input type=radio name=cmd value=wahlmanjbash> Clone Wahlman.J GitHub <br>"
+    echo "<input type=radio name=cmd value=trashbasebash> Delete PlexConnect Folder <br>"
     echo "<br>"
     echo "PlexConnect commands"
     echo "<br>"    
