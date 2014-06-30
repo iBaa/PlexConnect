@@ -201,6 +201,18 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           /usr/bin/trashbasebash.bash
           echo "</pre>"
           ;;
+          
+          backupbash)
+          echo "Output of backubash :<pre>"
+          /usr/bin/backupbash.bash
+          echo "</pre>"
+          ;;
+          
+          restorebash)
+          echo "Output of restorebash :<pre>"
+          /usr/bin/restorebash.bash
+          echo "</pre>"
+          ;;
 
 	esac
     fi
@@ -231,7 +243,9 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<input type=radio name=cmd value=trashbasebash> Delete PlexConnect Folder <br>"
     echo "<br>"
     echo "PlexConnect commands"
-    echo "<br>"    
+    echo "<br>"
+    echo "<input type=radio name=cmd value=backupbash> Backup all settings <br>"
+    echo "<input type=radio name=cmd value=restorebash> Restore all settings <br>"
     echo "<input type=radio name=cmd value=createplistbash> Install Daemon plist <br>"
     echo "<input type=radio name=cmd value=updaterbash> Update PlexConnect <br>"
     echo "<input type=radio name=cmd value=startbash> Start PlexConnect <br>"
