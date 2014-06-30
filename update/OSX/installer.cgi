@@ -203,7 +203,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           ;;
           
           backupbash)
-          echo "Output of backubash :<pre>"
+          echo "Output of backupbash :<pre>"
           /usr/bin/backupbash.bash
           echo "</pre>"
           ;;
