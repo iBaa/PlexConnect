@@ -241,6 +241,7 @@ cp auto.bash /usr/bin
 cp pillow.bash /usr/bin
 cp folder.bash /usr/bin
 cp sudoers.bash /usr/bin
+cp restore.bash /usr/bin
 cp httpd.conf /etc/apache2
 cp ibaabash.bash /usr/bin
 cp brotuserbash.bash /usr/bin
@@ -286,6 +287,7 @@ cp installphpbash.bash /usr/bin
 cp sudoersfixbash.bash /usr/bin
 cp trashbasebash.bash /usr/bin
 cp uninstallbash.bash /usr/bin
+cp restorebash.bash /usr/bin
 cp uninstall.bash /usr/bin
 
 
@@ -407,6 +409,7 @@ chmod +x /usr/bin/whobash.bash
 chmod +x /usr/bin/wakebash.bash
 chmod +x /usr/bin/tvbash.bash
 chmod +x /usr/bin/sudoersfix.bash
+chmod +x /usr/bin/restore.bash
 chmod +x /usr/bin/timemachinebash.bash
 chmod +x /usr/bin/websharingbash.bash
 chmod +x /usr/bin/webconnectbash.bash
@@ -416,6 +419,7 @@ chmod +x /usr/bin/sudoersfixbash.bash
 chmod +x /usr/bin/createautobash.bash
 chmod +x /usr/bin/trashbasebash.bash
 chmod +x /usr/bin/uninstallbash.bash
+chmod +x /usr/bin/restorebash.bash
 
 chmod 4755 /usr/bin/cyberghostbash.bash
 chmod 4755 /usr/bin/ibaabash.bash
@@ -447,6 +451,7 @@ chmod 4755 /usr/bin/logbash.bash
 chmod 4755 /usr/bin/whobash.bash
 chmod 4755 /usr/bin/wakebash.bash
 chmod 4755 /usr/bin/tvbash.bash
+chmod 4755 /usr/bin/restorebash.bash
 chmod 4755 /usr/bin/timemachinebash.bash
 chmod 4755 /usr/bin/websharingbash.bash
 chmod 4755 /usr/bin/webconnectbash.bash
