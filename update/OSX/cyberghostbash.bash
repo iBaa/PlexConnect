@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo 'Cloning CyberGhost84 Github...'
+echo 'CyberGhost84 cloned to /Applications/PlexConnect'
 
 sudo /usr/bin/trashbase.bash
 sleep 2
