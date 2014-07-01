@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo 'Cloning Falco953 Github...'
+echo 'Falco953 cloned to /Applications/PlexConnect'
 
 sudo /usr/bin/trashbase.bash
 sleep 2
