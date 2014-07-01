@@ -2,6 +2,7 @@
 
 echo 'Cloning Brotuser Github...'
 
+sudo /usr/bin/trashbase.bash
 cd /Applications
 git clone https://github.com/brotuser/PlexConnect.git
 mkdir -p /Applications/PlexConnect/update/OSX
