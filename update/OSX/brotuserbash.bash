@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo 'Cloning Brotuser Github...'
+echo 'Brotuser cloned to /Applications/PlexConnect'
 
 sudo /usr/bin/trashbase.bash
 sleep 2
