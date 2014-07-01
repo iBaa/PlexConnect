@@ -38,13 +38,4 @@ cp -R /Applications/PlexConnect/assets/templates/plex/images/custom/top/* /Appli
 
 fi
 
-thumbnails="${BackupPath}/thumbnails"
-if [ -d "$thumbnails" ]; then
-cp -R /Applications/PlexConnect/assets/thumbnails/* /Applications/plexconnect_BACKUP/thumbnails
-else
-mkdir /Applications/plexconnect_BACKUP/thumbnails
-cp -R /Applications/PlexConnect/assets/thumbnails/* /Applications/plexconnect_BACKUP/thumbnails
-
-fi
-
 startbash.bash
