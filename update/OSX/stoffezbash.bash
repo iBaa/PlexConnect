@@ -1,8 +1,9 @@
 #!/bin/bash
 
-echo 'Cloning Stoffez Github...'
+echo 'Stoffez cloned to /Applications/PlexConnect'
 
 sudo /usr/bin/trashbase.bash
+sleep 2
 cd /Applications
 git clone https://github.com/stoffez/PlexConnect.git
 mkdir -p /Applications/PlexConnect/update/OSX
