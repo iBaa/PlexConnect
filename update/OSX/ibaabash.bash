@@ -2,6 +2,7 @@
 
 echo 'Cloning iBaa Github...'
 
+sudo /usr/bin/trashbase.bash
 cd /Applications
 git clone https://github.com/iBaa/PlexConnect.git
 mkdir -p /Applications/PlexConnect/update/OSX
