@@ -25,7 +25,6 @@ cp -R /Applications/plexconnect_BACKUP/flow/* /Applications/PlexConnect/assets/t
 cp -R /Applications/plexconnect_BACKUP/top/* /Applications/PlexConnect/assets/templates/plex/images/custom/top
 else
 echo 'flow and top dir not found'
-echo 'copying custom icons to thumbnails dir'
 
 fi
 
