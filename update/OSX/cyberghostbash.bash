@@ -3,6 +3,7 @@
 echo 'Cloning CyberGhost84 Github...'
 
 sudo /usr/bin/trashbase.bash
+sleep 2
 cd /Applications
 git clone https://github.com/CyberGhost84/PlexConnect.git
 mkdir -p /Applications/PlexConnect/update/OSX
