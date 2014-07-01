@@ -27,3 +27,5 @@ else
 echo 'fanartcache dir not found'
 
 fi
+
+sudo /usr/bin/restart.bash
