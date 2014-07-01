@@ -28,12 +28,4 @@ echo 'flow and top dir not found'
 
 fi
 
-thumbnails="${PlexConnectPath}/assets/thumbnails"
-if [ -d "$thumbnails" ]; then
-cp -R /Applications/plexconnect_BACKUP/thumbnails* /Applications/PlexConnect/assets/thumbnails
-else 
-echo 'thumbnail dir not found'
-
-fi
-
 sudo /usr/bin/restart.bash
