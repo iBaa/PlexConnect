@@ -8,7 +8,7 @@ cd /Library/LaunchDaemons
 launchctl unload /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
 
 ## wait to allow PlexConnect to unload
-Sleep 2
+Sleep 4
 
 ## load plist
 launchctl load /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
