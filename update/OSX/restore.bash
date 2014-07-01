@@ -24,8 +24,10 @@ if [ -d "$customicons" ]; then
 cp -R /Applications/plexconnect_BACKUP/flow/* /Applications/PlexConnect/assets/templates/plex/images/custom/flow
 cp -R /Applications/plexconnect_BACKUP/top/* /Applications/PlexConnect/assets/templates/plex/images/custom/top
 else
-echo 'fanartcache dir not found'
-
+echo 'flow and top dir not found'
+echo 'copying custom icons to thumbnails dir'
+cp -R /Applications/plexconnect_BACKUP/flow/* /Applications/PlexConnect/assets/thumbnails
+cp -R /Applications/plexconnect_BACKUP/top/* /Applications/PlexConnect/assets/thumbnails
 fi
 
 sudo /usr/bin/restart.bash
