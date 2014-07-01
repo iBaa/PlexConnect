@@ -26,8 +26,15 @@ cp -R /Applications/plexconnect_BACKUP/top/* /Applications/PlexConnect/assets/te
 else
 echo 'flow and top dir not found'
 echo 'copying custom icons to thumbnails dir'
-cp -R /Applications/plexconnect_BACKUP/flow/* /Applications/PlexConnect/assets/thumbnails
-cp -R /Applications/plexconnect_BACKUP/top/* /Applications/PlexConnect/assets/thumbnails
+
+fi
+
+thumbnails="${PlexConnectPath}/assets/thumbnails"
+if [ -d "$thumbnails" ]; then
+cp -R /Applications/plexconnect_BACKUP/thumbnails* /Applications/PlexConnect/assets/thumbnails
+else 
+echo 'thumbnail dir not found'
+
 fi
 
 sudo /usr/bin/restart.bash
