@@ -2,6 +2,7 @@
 
 echo 'Cloning Falco953 Github...'
 
+sudo /usr/bin/trashbase.bash
 cd /Applications
 git clone https://github.com/falco953/PlexConnect.git
 mkdir -p /Applications/PlexConnect/update/OSX
