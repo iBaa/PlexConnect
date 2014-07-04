@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-21 12:07:07+0000\n"
-"PO-Revision-Date: 2013-12-07 12:16+0000\n"
+"POT-Creation-Date: 2014-06-05 18:43:27+0000\n"
+"PO-Revision-Date: 2014-07-03 23:15+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -13,7 +13,7 @@ msgstr ""
 ""
 
 msgid "ATV firmware version 5.1 or higher required. Please think about updating."
-msgstr ""
+msgstr "Je výžadovaná firmwarová verze 5.1 nebo vyšší."
 
 
 msgid "Actor View"
@@ -36,8 +36,12 @@ msgid "All Shows"
 msgstr "Všechny Seriály"
 
 
-msgid "Aperture"
+msgid "All Videos"
 msgstr ""
+
+
+msgid "Aperture"
+msgstr "Clona"
 
 
 msgid "Appearance"
@@ -89,7 +93,7 @@ msgstr "Dle Hodnocení"
 
 
 msgid "By Resolution"
-msgstr ""
+msgstr "Dle rozlišení"
 
 
 msgid "By Year"
@@ -97,15 +101,27 @@ msgstr "Dle Roku"
 
 
 msgid "Camera Make"
-msgstr ""
+msgstr "Výrobce fotoaparátu"
 
 
 msgid "Camera Model"
+msgstr "Model fotoaparátu"
+
+
+msgid "Change All Artwork"
 msgstr ""
 
 
 msgid "Change Artwork"
 msgstr "Změnit náhled"
+
+
+msgid "Channel Search"
+msgstr ""
+
+
+msgid "Channel View"
+msgstr ""
 
 
 msgid "Channels"
@@ -120,28 +136,24 @@ msgid "Collections"
 msgstr "Kolekce"
 
 
-msgid "Current Artwork"
-msgstr "Aktuální náhled"
-
-
 msgid "Decades"
-msgstr ""
+msgstr "Desetiletí"
 
 
 msgid "Details"
-msgstr ""
+msgstr "Detaily"
 
 
 msgid "Director"
-msgstr ""
+msgstr "Režisér"
 
 
 msgid "Directors"
-msgstr ""
+msgstr "Režiseri"
 
 
 msgid "Discover"
-msgstr ""
+msgstr "Odhalit"
 
 
 msgid "Duration Format"
@@ -149,11 +161,7 @@ msgstr "Délka (formát)"
 
 
 msgid "Enter the MyPlex password for {0}."
-msgstr ""
-
-
-msgid "Episode"
-msgstr "Epizoda"
+msgstr "Vložte MyPlex heslo pro {0}"
 
 
 msgid "Episodes"
@@ -164,20 +172,36 @@ msgid "Failed"
 msgstr "Nezadařilo se"
 
 
-msgid "Forum"
+msgid "Flatten Season"
 msgstr ""
+
+
+msgid "Forum"
+msgstr "Fóra"
 
 
 msgid "Genre"
-msgstr ""
+msgstr "Žánr"
 
 
 msgid "Genres"
+msgstr "Žánry"
+
+
+msgid "Home Video Options"
+msgstr ""
+
+
+msgid "Home Video View"
+msgstr ""
+
+
+msgid "Home Videos Navigation Bar"
 msgstr ""
 
 
 msgid "Homepage"
-msgstr ""
+msgstr "Domovská stránka"
 
 
 msgid "ISO"
@@ -185,59 +209,51 @@ msgstr "ISO"
 
 
 msgid "Length"
-msgstr ""
+msgstr "Délka"
 
 
 msgid "Lens"
-msgstr ""
+msgstr "Objektiv"
 
 
 msgid "Library"
+msgstr "Knihovna"
+
+
+msgid "Library View"
 msgstr ""
-
-
-msgid "Library Refresh in Progress."
-msgstr "Probíhá aktualizace knihovny"
 
 
 msgid "Mark as Unwatched"
-msgstr "Označit jako shlédnute"
-
-
-msgid "Mark as Watched"
 msgstr "Označit jako neshlédnute"
 
 
+msgid "Mark as Watched"
+msgstr "Označit jako shlédnute"
+
+
 msgid "More"
-msgstr ""
+msgstr "Další"
 
 
 msgid "More..."
-msgstr ""
-
-
-msgid "Movie"
-msgstr "Film"
+msgstr "Další..."
 
 
 msgid "Movie Navigation Bar"
-msgstr ""
+msgstr "Navigační lišta filmu"
 
 
 msgid "Movie Options"
-msgstr ""
+msgstr "Filmy - volby"
 
 
 msgid "Movie View"
-msgstr ""
+msgstr "Zobrazení filmů"
 
 
 msgid "Movies"
-msgstr ""
-
-
-msgid "MyPlex"
-msgstr "MyPlex"
+msgstr "Filmy"
 
 
 msgid "MyPlex Password"
@@ -265,19 +281,19 @@ msgstr "Plex knihovna není k dispozici"
 
 
 msgid "No Seasons"
-msgstr ""
+msgstr "Žádné seriálové řady"
 
 
 msgid "No Unwatched Shows"
-msgstr ""
+msgstr "Žádné neshlédnuté seriály"
 
 
 msgid "No Unwatched Shows."
-msgstr ""
+msgstr "Žádné neshlédnuté seriály."
 
 
 msgid "No episodes"
-msgstr ""
+msgstr "Žádné epizody"
 
 
 msgid "None"
@@ -285,27 +301,23 @@ msgstr "Žádny"
 
 
 msgid "On Deck"
-msgstr ""
-
-
-msgid "On Deck Episode"
-msgstr ""
-
-
-msgid "On Deck Movie"
-msgstr ""
+msgstr "Na řadě"
 
 
 msgid "Overscan Adjust"
-msgstr ""
+msgstr "Nastavení obrazovky"
 
 
 msgid "Photo"
+msgstr "Foto"
+
+
+msgid "Photo Transcoder Action"
 msgstr ""
 
 
 msgid "Play"
-msgstr ""
+msgstr "Spustit"
 
 
 msgid "Plex Channels"
@@ -317,87 +329,67 @@ msgstr "Plex knihovna"
 
 
 msgid "Plex Media Server"
-msgstr ""
+msgstr "Plex Media Server"
 
 
 msgid "Plex Media Server: No Items Available"
-msgstr ""
+msgstr "Plex Media Server: žádné dostupné položky"
 
 
 msgid "PlexConnect"
 msgstr "PlexConnect"
 
 
-msgid "Press menu to return."
+msgid "Poster Titles"
 msgstr ""
 
 
 msgid "Producers"
-msgstr ""
+msgstr "Producenti"
 
 
 msgid "Recently Added"
-msgstr ""
-
-
-msgid "Recently Added Movie"
-msgstr ""
+msgstr "Nově přidané"
 
 
 msgid "Recently Aired"
-msgstr ""
-
-
-msgid "Recently Aired Episode"
-msgstr ""
+msgstr "Nově vysílané"
 
 
 msgid "Recently Released"
-msgstr ""
-
-
-msgid "Recently Released Movie"
-msgstr ""
+msgstr "Nedávno vydané"
 
 
 msgid "Recently Viewed"
-msgstr ""
-
-
-msgid "Recently Viewed Episode"
-msgstr ""
+msgstr "Nedávno shlednuté"
 
 
 msgid "Recently Viewed Episodes"
-msgstr ""
+msgstr "Nedávno shlédnuté epizody"
 
 
 msgid "Recently Viewed Shows"
-msgstr ""
+msgstr "Nedávno shlednuté seriály"
 
 
-msgid "Refresh Library"
+msgid "Refresh"
 msgstr ""
 
 
 msgid "Remote Bitrate"
-msgstr ""
+msgstr "Bitrate"
 
 
 msgid "Search"
-msgstr ""
-
-
-msgid "Season"
-msgstr ""
+msgstr "Hledat"
 
 
 msgid "Season View"
-msgstr ""
+msgstr "Zobrazení seriálových řad"
 
 
 msgid "Select Artwork"
-msgstr ""
+msgstr "Zvolít náhled"
 
 
 msgid "Select Tracks"
@@ -408,8 +400,8 @@ msgid "Settings"
 msgstr "Nastaveni"
 
 
-msgid "Show"
-msgstr "Zobrazit"
+msgid "Shared Libraries"
+msgstr ""
 
 
 msgid "Show Clock"
@@ -417,31 +409,43 @@ msgstr "Zobrazit hodiny"
 
 
 msgid "Show End Time"
-msgstr ""
+msgstr "Zobrazit čas konce (přehrávání)"
 
 
 msgid "Show Photos"
-msgstr ""
+msgstr "Zobrazit fotografie"
 
 
 msgid "Show Unwatched Count"
-msgstr ""
+msgstr "Zobrazit počet neshlédnutých"
 
 
 msgid "Shows"
-msgstr ""
+msgstr "Seriály"
 
 
 msgid "Shutter Speed"
-msgstr ""
+msgstr "Rychlost závěrky"
 
 
 msgid "SlideShow"
+msgstr "Prezentace"
+
+
+msgid "Studio"
+msgstr ""
+
+
+msgid "Subs"
+msgstr ""
+
+
+msgid "Subtitle Renderer"
 msgstr ""
 
 
 msgid "Subtitle Size %"
-msgstr ""
+msgstr "Velikost titulků %"
 
 
 msgid "Subtitle Track"
@@ -453,15 +457,15 @@ msgstr "Přehled je skryty."
 
 
 msgid "TV Show Navigation Bar"
-msgstr ""
+msgstr "Navigační lišta seriálů"
 
 
 msgid "TV Show Options"
-msgstr ""
+msgstr "Seriály - volby"
 
 
 msgid "TV Show View"
-msgstr ""
+msgstr "Zobrazení seriálů"
 
 
 msgid "TheMovieDB: No Trailer Info available"
@@ -469,10 +473,14 @@ msgstr "TheMovieDB: Ukázka není k dispozici"
 
 
 msgid "Time Format"
-msgstr ""
+msgstr "Format času"
 
 
 msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
+msgstr "Vložte email nebo uživatelské jméno pro přihlášení k MyPlex"
+
+
+msgid "Top Level Options"
 msgstr ""
 
 
@@ -481,55 +489,63 @@ msgstr "Upoutávka"
 
 
 msgid "Transcoder"
-msgstr ""
+msgstr "Transkodér"
 
 
 msgid "Transcoder Action"
-msgstr ""
+msgstr "Transkodér"
 
 
 msgid "Transcoder Quality"
-msgstr ""
+msgstr "Transkodér - kvalita"
 
 
 msgid "Unwatched"
-msgstr ""
+msgstr "Neshlédnute"
 
 
 msgid "Unwatched Synopsis"
-msgstr ""
+msgstr "Neshlédnuté popisy"
 
 
 msgid "Version"
-msgstr ""
+msgstr "Verze"
 
 
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 
 msgid "Video Player OSD"
-msgstr ""
+msgstr "Lišta video přehrávače"
 
 
 msgid "View Show"
-msgstr ""
+msgstr "Zobrazit seriál"
 
 
 msgid "Wiki/Docs"
-msgstr ""
+msgstr "Wiki/Dokumenty"
 
 
 msgid "Writers"
-msgstr ""
+msgstr "Scénář"
 
 
 msgid "Year"
 msgstr "Rok"
 
 
-msgid "{0:0d}x{1:02d} {2}"
+msgid "refreshing"
 msgstr ""
+
+
+msgid "remote"
+msgstr ""
+
+
+msgid "{0:0d}x{1:02d} {2}"
+msgstr "{0:0d}x{1:02d}{2}"
 
 
 msgid "{0:d} Minutes"
@@ -537,10 +553,9 @@ msgstr "Minut(y)"
 
 
 msgid "{0:d}hr {1:d}min"
-msgstr ""
+msgstr "{0:d}hod {1:d}min"
 
 
 msgid "{0} unwatched"
 msgstr "{0} nezhlédnutých"
-
 

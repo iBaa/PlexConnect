@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-21 12:07:07+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2014-06-05 18:43:27+0000\n"
+"PO-Revision-Date: 2014-07-03 23:15+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -36,6 +36,10 @@ msgid "All Shows"
 msgstr "所有電視節目"
 
 
+msgid "All Videos"
+msgstr "所有影片"
+
+
 msgid "Aperture"
 msgstr "光圈"
 
@@ -45,7 +49,7 @@ msgstr "外觀"
 
 
 msgid "Audio"
-msgstr "音效"
+msgstr "音訊"
 
 
 msgid "Audio Boost %"
@@ -104,8 +108,20 @@ msgid "Camera Model"
 msgstr "相機型號"
 
 
+msgid "Change All Artwork"
+msgstr "變更全部插圖"
+
+
 msgid "Change Artwork"
 msgstr "變更插圖"
+
+
+msgid "Channel Search"
+msgstr "頻道搜尋"
+
+
+msgid "Channel View"
+msgstr "頻道檢視"
 
 
 msgid "Channels"
@@ -118,10 +134,6 @@ msgstr "時鐘位置"
 
 msgid "Collections"
 msgstr "系列"
-
-
-msgid "Current Artwork"
-msgstr "目前插圖"
 
 
 msgid "Decades"
@@ -152,16 +164,16 @@ msgid "Enter the MyPlex password for {0}."
 msgstr "輸入 {0} 的 MyPlex 密碼。"
 
 
-msgid "Episode"
-msgstr "影集"
-
-
 msgid "Episodes"
 msgstr "集"
 
 
 msgid "Failed"
 msgstr "失敗"
+
+
+msgid "Flatten Season"
+msgstr "攤平集數"
 
 
 msgid "Forum"
@@ -174,6 +186,18 @@ msgstr "類型"
 
 msgid "Genres"
 msgstr "類型"
+
+
+msgid "Home Video Options"
+msgstr "家庭影片選項"
+
+
+msgid "Home Video View"
+msgstr "家庭影片檢視"
+
+
+msgid "Home Videos Navigation Bar"
+msgstr "家庭影片主選單"
 
 
 msgid "Homepage"
@@ -196,8 +220,8 @@ msgid "Library"
 msgstr "資料庫"
 
 
-msgid "Library Refresh in Progress."
-msgstr "資料庫更新中。"
+msgid "Library View"
+msgstr "資料庫檢視"
 
 
 msgid "Mark as Unwatched"
@@ -216,10 +240,6 @@ msgid "More..."
 msgstr "更多⋯"
 
 
-msgid "Movie"
-msgstr "電影"
-
-
 msgid "Movie Navigation Bar"
 msgstr "電影主選單"
 
@@ -234,10 +254,6 @@ msgstr "電影檢視"
 
 msgid "Movies"
 msgstr "電影"
-
-
-msgid "MyPlex"
-msgstr "MyPlex"
 
 
 msgid "MyPlex Password"
@@ -288,20 +304,16 @@ msgid "On Deck"
 msgstr "首頁"
 
 
-msgid "On Deck Episode"
-msgstr "最近看過影集"
-
-
-msgid "On Deck Movie"
-msgstr "最近看過電影"
-
-
 msgid "Overscan Adjust"
 msgstr "Overscan 選項"
 
 
 msgid "Photo"
 msgstr "照片"
+
+
+msgid "Photo Transcoder Action"
+msgstr "相片轉碼器行為"
 
 
 msgid "Play"
@@ -328,8 +340,8 @@ msgid "PlexConnect"
 msgstr "PlexConnect"
 
 
-msgid "Press menu to return."
-msgstr "請按下 Menu 以返回。"
+msgid "Poster Titles"
+msgstr "海報標題"
 
 
 msgid "Producers"
@@ -340,32 +352,16 @@ msgid "Recently Added"
 msgstr "最近加入"
 
 
-msgid "Recently Added Movie"
-msgstr "最近加入電影"
-
-
 msgid "Recently Aired"
 msgstr "最近播出"
-
-
-msgid "Recently Aired Episode"
-msgstr "最近播出影集"
 
 
 msgid "Recently Released"
 msgstr "最近發行"
 
 
-msgid "Recently Released Movie"
-msgstr "最近發行電影"
-
-
 msgid "Recently Viewed"
 msgstr "最近觀看"
-
-
-msgid "Recently Viewed Episode"
-msgstr "最近觀看影集"
 
 
 msgid "Recently Viewed Episodes"
@@ -376,8 +372,8 @@ msgid "Recently Viewed Shows"
 msgstr "最近觀看的節目"
 
 
-msgid "Refresh Library"
-msgstr "更新資料庫"
+msgid "Refresh"
+msgstr "更新"
 
 
 msgid "Remote Bitrate"
@@ -386,10 +382,6 @@ msgstr "遠端流量"
 
 msgid "Search"
 msgstr "搜尋"
-
-
-msgid "Season"
-msgstr "季"
 
 
 msgid "Season View"
@@ -408,8 +400,8 @@ msgid "Settings"
 msgstr "設定"
 
 
-msgid "Show"
-msgstr "電視節目"
+msgid "Shared Libraries"
+msgstr "共享資料庫"
 
 
 msgid "Show Clock"
@@ -438,6 +430,18 @@ msgstr "快門速度"
 
 msgid "SlideShow"
 msgstr "幻燈片秀"
+
+
+msgid "Studio"
+msgstr "電影公司"
+
+
+msgid "Subs"
+msgstr "字幕"
+
+
+msgid "Subtitle Renderer"
+msgstr "字幕宣染器"
 
 
 msgid "Subtitle Size %"
@@ -474,6 +478,10 @@ msgstr "時間格式"
 
 msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
 msgstr "輸入你的 E-mail 帳號、MyPlex 帳號或 Plex 論壇帳號以登入 MyPlex。"
+
+
+msgid "Top Level Options"
+msgstr "最外層選項"
 
 
 msgid "Trailer"
@@ -525,7 +533,15 @@ msgstr "編劇"
 
 
 msgid "Year"
-msgstr "年"
+msgstr "年份"
+
+
+msgid "refreshing"
+msgstr "更新中"
+
+
+msgid "remote"
+msgstr "遠端"
 
 
 msgid "{0:0d}x{1:02d} {2}"
@@ -542,5 +558,4 @@ msgstr "{0:d} 小時 {1:d} 分鐘"
 
 msgid "{0} unwatched"
 msgstr "{0} 集未觀看"
-
 

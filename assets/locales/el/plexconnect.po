@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-21 12:07:07+0000\n"
-"PO-Revision-Date: 2013-12-07 12:16+0000\n"
+"POT-Creation-Date: 2014-06-05 18:43:27+0000\n"
+"PO-Revision-Date: 2014-07-03 23:15+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: el\n"
@@ -34,6 +34,10 @@ msgstr "Όλες οι Φωτογραφίες"
 
 msgid "All Shows"
 msgstr "Όλες οι Σειρές"
+
+
+msgid "All Videos"
+msgstr ""
 
 
 msgid "Aperture"
@@ -104,8 +108,20 @@ msgid "Camera Model"
 msgstr "Μοντέλο Κάμερας"
 
 
+msgid "Change All Artwork"
+msgstr ""
+
+
 msgid "Change Artwork"
 msgstr "Επιλογή εξώφυλλου"
+
+
+msgid "Channel Search"
+msgstr ""
+
+
+msgid "Channel View"
+msgstr ""
 
 
 msgid "Channels"
@@ -118,10 +134,6 @@ msgstr "Θέση ρολογιού"
 
 msgid "Collections"
 msgstr "Συλλογές"
-
-
-msgid "Current Artwork"
-msgstr "Τρέχον εξώφυλλο"
 
 
 msgid "Decades"
@@ -152,16 +164,16 @@ msgid "Enter the MyPlex password for {0}."
 msgstr ""
 
 
-msgid "Episode"
-msgstr "Επεισόδιο"
-
-
 msgid "Episodes"
 msgstr "Επεισόδια"
 
 
 msgid "Failed"
 msgstr "Αποτυχία"
+
+
+msgid "Flatten Season"
+msgstr ""
 
 
 msgid "Forum"
@@ -174,6 +186,18 @@ msgstr "Eίδος"
 
 msgid "Genres"
 msgstr "Eίδη"
+
+
+msgid "Home Video Options"
+msgstr ""
+
+
+msgid "Home Video View"
+msgstr ""
+
+
+msgid "Home Videos Navigation Bar"
+msgstr ""
 
 
 msgid "Homepage"
@@ -196,8 +220,8 @@ msgid "Library"
 msgstr "Bιβλιοθήκη"
 
 
-msgid "Library Refresh in Progress."
-msgstr "Ανανέωση Βιβλιοθήκης σε εξέλιξη."
+msgid "Library View"
+msgstr ""
 
 
 msgid "Mark as Unwatched"
@@ -216,10 +240,6 @@ msgid "More..."
 msgstr "Περισσότερα,,,"
 
 
-msgid "Movie"
-msgstr "Ταινία"
-
-
 msgid "Movie Navigation Bar"
 msgstr "Μπάρα Πλοήγησης Ταινίων"
 
@@ -234,10 +254,6 @@ msgstr ""
 
 msgid "Movies"
 msgstr "Ταινίες"
-
-
-msgid "MyPlex"
-msgstr "Myplex"
 
 
 msgid "MyPlex Password"
@@ -288,20 +304,16 @@ msgid "On Deck"
 msgstr "Στο Πλατό"
 
 
-msgid "On Deck Episode"
-msgstr "Επεισόδια στο Πλατό"
-
-
-msgid "On Deck Movie"
-msgstr "Ταινία στο πλατό"
-
-
 msgid "Overscan Adjust"
 msgstr ""
 
 
 msgid "Photo"
 msgstr "Φωτογραφίες"
+
+
+msgid "Photo Transcoder Action"
+msgstr ""
 
 
 msgid "Play"
@@ -328,8 +340,8 @@ msgid "PlexConnect"
 msgstr "Plexconnect"
 
 
-msgid "Press menu to return."
-msgstr "Πατήστε το μενού για να επιστρέψετε."
+msgid "Poster Titles"
+msgstr ""
 
 
 msgid "Producers"
@@ -340,32 +352,16 @@ msgid "Recently Added"
 msgstr "Προστέθηκαν Πρόσφατα"
 
 
-msgid "Recently Added Movie"
-msgstr "Πρόσφατες ταινίες που προστέθηκαν"
-
-
 msgid "Recently Aired"
 msgstr "Πρόσφατες κυκλοφορίες"
-
-
-msgid "Recently Aired Episode"
-msgstr "Πρόσφατα παιζόμενα επεισόδια"
 
 
 msgid "Recently Released"
 msgstr "Πρόσφατα κυκλοφόρησαν"
 
 
-msgid "Recently Released Movie"
-msgstr "Ταινίες που κυκλοφόρησαν πρόσφατα"
-
-
 msgid "Recently Viewed"
 msgstr "Προβλήθηκαν πρόσφατα"
-
-
-msgid "Recently Viewed Episode"
-msgstr "Επεισόδιο που προβλήθηκε πρόσφατα"
 
 
 msgid "Recently Viewed Episodes"
@@ -376,8 +372,8 @@ msgid "Recently Viewed Shows"
 msgstr "Σειρές που προβλήθηκαν πρόσφατα"
 
 
-msgid "Refresh Library"
-msgstr "Ανανέωση Βιβλιοθήκης"
+msgid "Refresh"
+msgstr ""
 
 
 msgid "Remote Bitrate"
@@ -386,10 +382,6 @@ msgstr "Απομακρυσμένη ποιότητα"
 
 msgid "Search"
 msgstr "Αναζήτηση"
-
-
-msgid "Season"
-msgstr "Σεζόν"
 
 
 msgid "Season View"
@@ -408,8 +400,8 @@ msgid "Settings"
 msgstr "Ρυθμίσεις"
 
 
-msgid "Show"
-msgstr "Προβολή"
+msgid "Shared Libraries"
+msgstr ""
 
 
 msgid "Show Clock"
@@ -437,6 +429,18 @@ msgstr "Ταχύτητα κλείστρου"
 
 
 msgid "SlideShow"
+msgstr ""
+
+
+msgid "Studio"
+msgstr ""
+
+
+msgid "Subs"
+msgstr ""
+
+
+msgid "Subtitle Renderer"
 msgstr ""
 
 
@@ -474,6 +478,10 @@ msgstr "Μορφή ώρας"
 
 msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
 msgstr "Για να γίνει εγγραφή στο MyPlex ,πρόσθεσαι την ηλεκτρονική σου διεύθυνση ή το όνομα χρήστη"
+
+
+msgid "Top Level Options"
+msgstr ""
 
 
 msgid "Trailer"
@@ -528,6 +536,14 @@ msgid "Year"
 msgstr "Χρόνος"
 
 
+msgid "refreshing"
+msgstr ""
+
+
+msgid "remote"
+msgstr ""
+
+
 msgid "{0:0d}x{1:02d} {2}"
 msgstr ""
 
@@ -542,5 +558,4 @@ msgstr ""
 
 msgid "{0} unwatched"
 msgstr "{0} μη προβαλλόμενες"
-
 

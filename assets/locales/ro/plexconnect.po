@@ -6,46 +6,46 @@ msgstr ""
 "PO-Revision-Date: 2014-07-03 23:15+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: it\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 ""
 
 msgid "ATV firmware version 5.1 or higher required. Please think about updating."
-msgstr "E' necessaria la versione firmware 5.1 o superiore. Per favore esegui l'aggiornamento."
+msgstr "Versiunea de firmware minimă este 5.1. Vă rugam să luați în considerare un update."
 
 
 msgid "Actor View"
-msgstr "Vista Attore"
+msgstr "Vizualizeaza Actorul"
 
 
 msgid "Actors"
-msgstr "Attori"
+msgstr "Actori"
 
 
 msgid "All Movies"
-msgstr "Tutti i Film"
+msgstr "Toate filmele"
 
 
 msgid "All Photos"
-msgstr "Tutte le Foto"
+msgstr "Toate Pozele"
 
 
 msgid "All Shows"
-msgstr "Tutte le Serie"
+msgstr "Toate Showurile"
 
 
 msgid "All Videos"
-msgstr "Tutti i video"
+msgstr ""
 
 
 msgid "Aperture"
-msgstr "Aperture"
+msgstr "Apertura"
 
 
 msgid "Appearance"
-msgstr "Aspetto"
+msgstr "Aspect"
 
 
 msgid "Audio"
@@ -53,15 +53,15 @@ msgstr "Audio"
 
 
 msgid "Audio Boost %"
-msgstr "Incremento audio %"
+msgstr "Crestere semnal Audio cu %"
 
 
 msgid "Audio Track"
-msgstr "Traccia Audio"
+msgstr "Track Audio"
 
 
 msgid "Audio/Subs"
-msgstr "Audio/Sottotitoli"
+msgstr "Audio/Subtitrări"
 
 
 msgid "Authors"
@@ -69,111 +69,111 @@ msgstr "Autori"
 
 
 msgid "By Collection"
-msgstr "Per Raccolta"
+msgstr "După Colecție"
 
 
 msgid "By Content Rating"
-msgstr "Per classificazione contenuto"
+msgstr ""
 
 
 msgid "By Country"
-msgstr "Per nazionalità"
+msgstr "După Țară"
 
 
 msgid "By First Letter"
-msgstr "Per nome"
+msgstr "După Prima Literă"
 
 
 msgid "By Folder"
-msgstr "Per cartella"
+msgstr "După Folder"
 
 
 msgid "By Rating"
-msgstr "Per valutazione"
+msgstr "După Rating"
 
 
 msgid "By Resolution"
-msgstr "Per risoluzione"
+msgstr "După Rezoluție"
 
 
 msgid "By Year"
-msgstr "Per anno"
+msgstr "După An"
 
 
 msgid "Camera Make"
-msgstr "Produttore Camera"
+msgstr ""
 
 
 msgid "Camera Model"
-msgstr "Modello Camera"
+msgstr "Modelul Camerei"
 
 
 msgid "Change All Artwork"
-msgstr "Cambia tutte le immagini"
+msgstr ""
 
 
 msgid "Change Artwork"
-msgstr "Cambia immagine"
+msgstr "Modifica Artwork-ul"
 
 
 msgid "Channel Search"
-msgstr "Cerca nei canali"
+msgstr ""
 
 
 msgid "Channel View"
-msgstr "Vista canale"
+msgstr ""
 
 
 msgid "Channels"
-msgstr "Canali"
+msgstr "Canale"
 
 
 msgid "Clock Position"
-msgstr "Posizione orologio"
+msgstr "Poziția Ceasului"
 
 
 msgid "Collections"
-msgstr "Raccolte"
+msgstr "Colecții"
 
 
 msgid "Decades"
-msgstr "Decadi"
+msgstr "Decade"
 
 
 msgid "Details"
-msgstr "Dettagli"
+msgstr "Detalii"
 
 
 msgid "Director"
-msgstr "Regista"
+msgstr "Director"
 
 
 msgid "Directors"
-msgstr "Registi"
+msgstr "Directori"
 
 
 msgid "Discover"
-msgstr "Scopri"
+msgstr "Descoperă"
 
 
 msgid "Duration Format"
-msgstr "Formato Durata"
+msgstr ""
 
 
 msgid "Enter the MyPlex password for {0}."
-msgstr "Inserisci la password myPlex per {0}."
+msgstr ""
 
 
 msgid "Episodes"
-msgstr "Episodi"
+msgstr "Episoade"
 
 
 msgid "Failed"
-msgstr "Fallito"
+msgstr ""
 
 
 msgid "Flatten Season"
-msgstr "Appiattisci stagione"
+msgstr ""
 
 
 msgid "Forum"
@@ -181,27 +181,27 @@ msgstr "Forum"
 
 
 msgid "Genre"
-msgstr "Genere"
+msgstr "Gen"
 
 
 msgid "Genres"
-msgstr "Generi"
+msgstr "Genuri"
 
 
 msgid "Home Video Options"
-msgstr "Opzioni video domestici"
+msgstr ""
 
 
 msgid "Home Video View"
-msgstr "Vista video domestici"
+msgstr ""
 
 
 msgid "Home Videos Navigation Bar"
-msgstr "Barra di navigazione home video"
+msgstr ""
 
 
 msgid "Homepage"
-msgstr "Homepage"
+msgstr "Pagina Principală"
 
 
 msgid "ISO"
@@ -209,131 +209,131 @@ msgstr "ISO"
 
 
 msgid "Length"
-msgstr "Durata"
+msgstr "Lungime"
 
 
 msgid "Lens"
-msgstr "Obiettivo"
+msgstr "Lentila"
 
 
 msgid "Library"
-msgstr "Libreria"
+msgstr "Librărie"
 
 
 msgid "Library View"
-msgstr "Vista libreria"
+msgstr ""
 
 
 msgid "Mark as Unwatched"
-msgstr "Segna come non visto"
+msgstr "Marchează ca nevizionat"
 
 
 msgid "Mark as Watched"
-msgstr "Segna come già visto"
+msgstr "Marchează ca vizionat"
 
 
 msgid "More"
-msgstr "Altro"
+msgstr "Mai Mult"
 
 
 msgid "More..."
-msgstr "Altro..."
+msgstr "Mai Multe..."
 
 
 msgid "Movie Navigation Bar"
-msgstr "Barra di navigazione Film"
+msgstr "Bara de navigație a filmelor"
 
 
 msgid "Movie Options"
-msgstr "Opzioni Film"
+msgstr "Opțiunile Filmului"
 
 
 msgid "Movie View"
-msgstr "Vista Film"
+msgstr "Vizualizarea Filmului"
 
 
 msgid "Movies"
-msgstr "Film"
+msgstr "Filme"
 
 
 msgid "MyPlex Password"
-msgstr "Password MyPlex"
+msgstr "MyPlex Parola"
 
 
 msgid "MyPlex Sign In"
-msgstr "Accesso MyPlex"
+msgstr "Logare MyPlex"
 
 
 msgid "MyPlex Sign Out"
-msgstr "Disconnessione MyPlex"
+msgstr "Delogare MyPlex"
 
 
 msgid "MyPlex Username"
-msgstr "Nome Utente MyPlex"
+msgstr "Nume de utilizator MyPlex"
 
 
 msgid "No Plex Channels Available"
-msgstr "Nessun Canale Plex Disponibile"
+msgstr "Nici un canal Plex disponibil"
 
 
 msgid "No Plex Library Sections Available"
-msgstr "Nessuna Sezione della Libreria Plex Disponibile"
+msgstr "Nici o librărie selectată Plex nu este disponibilă "
 
 
 msgid "No Seasons"
-msgstr "Nessuna stagione"
+msgstr "Nici un sezon"
 
 
 msgid "No Unwatched Shows"
-msgstr "Nessuna serie non vista"
+msgstr "Nici un Show nevizionat"
 
 
 msgid "No Unwatched Shows."
-msgstr "Nessuna serie non vista."
+msgstr "Nici un Show nevizionat."
 
 
 msgid "No episodes"
-msgstr "Nessun episodio"
+msgstr "Nici un Episod"
 
 
 msgid "None"
-msgstr "Nessuno"
+msgstr "Nimic"
 
 
 msgid "On Deck"
-msgstr "In primo piano"
+msgstr ""
 
 
 msgid "Overscan Adjust"
-msgstr "Correzione overscan"
+msgstr "Ajustarea Overscan-ului"
 
 
 msgid "Photo"
-msgstr "Foto"
+msgstr "Poză"
 
 
 msgid "Photo Transcoder Action"
-msgstr "Azione convertitore foto"
+msgstr ""
 
 
 msgid "Play"
-msgstr "Riproduci"
+msgstr "Redare"
 
 
 msgid "Plex Channels"
-msgstr "Canali Plex"
+msgstr "Canale Plex"
 
 
 msgid "Plex Library"
-msgstr "Libreria Plex"
+msgstr "Libraria Plex"
 
 
 msgid "Plex Media Server"
-msgstr "Plex Media Server"
+msgstr "Server Media Plex"
 
 
 msgid "Plex Media Server: No Items Available"
-msgstr "Plex Media Server: Nessun elemento disponibile"
+msgstr "Server Media Plex: Nici un Item Disponibil"
 
 
 msgid "PlexConnect"
@@ -341,147 +341,147 @@ msgstr "PlexConnect"
 
 
 msgid "Poster Titles"
-msgstr "Titoli dei poster"
+msgstr ""
 
 
 msgid "Producers"
-msgstr "Produttori"
+msgstr "Producători"
 
 
 msgid "Recently Added"
-msgstr "Aggiunti di recente"
+msgstr "Adăugate Recent"
 
 
 msgid "Recently Aired"
-msgstr "Trasmessi di recente"
+msgstr ""
 
 
 msgid "Recently Released"
-msgstr "Usciti di recente"
+msgstr ""
 
 
 msgid "Recently Viewed"
-msgstr "Visti di recente"
+msgstr "Vizionate Recent"
 
 
 msgid "Recently Viewed Episodes"
-msgstr "Episodi visti di recente"
+msgstr "Episoade vizionate recent"
 
 
 msgid "Recently Viewed Shows"
-msgstr "Serie viste di recente"
+msgstr "Show-urile Vizionate Recent"
 
 
 msgid "Refresh"
-msgstr "Ricarica"
+msgstr ""
 
 
 msgid "Remote Bitrate"
-msgstr "Bitrate remoto"
+msgstr ""
 
 
 msgid "Search"
-msgstr "Cerca"
+msgstr "Caută"
 
 
 msgid "Season View"
-msgstr "Vista Stagione"
+msgstr "Vizualizează Sezon"
 
 
 msgid "Select Artwork"
-msgstr "Seleziona immagine"
+msgstr "Selecteaza Artwork-ul"
 
 
 msgid "Select Tracks"
-msgstr "Seleziona Tracce"
+msgstr "Selecteaza Track-urile"
 
 
 msgid "Settings"
-msgstr "Impostazioni"
+msgstr "Setări"
 
 
 msgid "Shared Libraries"
-msgstr "Librerie condivise"
+msgstr ""
 
 
 msgid "Show Clock"
-msgstr "Mostra orologio"
+msgstr "Arată Ceasul"
 
 
 msgid "Show End Time"
-msgstr "Mostra orario alla fine"
+msgstr ""
 
 
 msgid "Show Photos"
-msgstr "Mostra Foto"
+msgstr "Arată Pozele"
 
 
 msgid "Show Unwatched Count"
-msgstr "Mostra conteggio non visti"
+msgstr ""
 
 
 msgid "Shows"
-msgstr "Serie"
+msgstr "Show-uri"
 
 
 msgid "Shutter Speed"
-msgstr "Tempo di esposizione"
+msgstr ""
 
 
 msgid "SlideShow"
-msgstr "Presentazione"
+msgstr "Diapozitiv"
 
 
 msgid "Studio"
-msgstr "Studio"
+msgstr ""
 
 
 msgid "Subs"
-msgstr "Sottotitoli"
+msgstr ""
 
 
 msgid "Subtitle Renderer"
-msgstr "Renderer dei sottotitoli"
+msgstr ""
 
 
 msgid "Subtitle Size %"
-msgstr "Dimensione sottotitoli %"
+msgstr "Dimensiunea Subtitrării"
 
 
 msgid "Subtitle Track"
-msgstr "Traccia sottotitoli"
+msgstr "Track-ul Subtitrării"
 
 
 msgid "Synopsis hidden."
-msgstr "Trama nascosta."
+msgstr "Synopsa ascunsa."
 
 
 msgid "TV Show Navigation Bar"
-msgstr "Barra di navigazione Serie TV"
+msgstr ""
 
 
 msgid "TV Show Options"
-msgstr "Opzioni Serie TV"
+msgstr ""
 
 
 msgid "TV Show View"
-msgstr "Vista  Serie TV"
+msgstr ""
 
 
 msgid "TheMovieDB: No Trailer Info available"
-msgstr "TheMovieDB: Nessuna informazione sul trailer disponibile"
+msgstr "TheMovieDB: Nu este disponibila nici o informație despre trailer"
 
 
 msgid "Time Format"
-msgstr "Formato orario"
+msgstr ""
 
 
 msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
-msgstr "Per accedere a MyPlex inserisci la tua email o il nome utente."
+msgstr "Pentru a vă loga în MyPlex, introduceți adresa dumneavoastră de Email, Numele de utilizator sau Numele de utilizator de pe forumul Plex"
 
 
 msgid "Top Level Options"
-msgstr "Opzioni livello principale"
+msgstr ""
 
 
 msgid "Trailer"
@@ -489,73 +489,73 @@ msgstr "Trailer"
 
 
 msgid "Transcoder"
-msgstr "Convertitore"
+msgstr ""
 
 
 msgid "Transcoder Action"
-msgstr "Azione del Convertitore"
+msgstr "Acțiunea Transcoder-ului"
 
 
 msgid "Transcoder Quality"
-msgstr "Qualità di conversione"
+msgstr ""
 
 
 msgid "Unwatched"
-msgstr "Non visti"
+msgstr ""
 
 
 msgid "Unwatched Synopsis"
-msgstr "Trama per Non visti"
+msgstr "Sinopse Nevizionate"
 
 
 msgid "Version"
-msgstr "Versione"
+msgstr ""
 
 
 msgid "Video"
-msgstr "Video"
+msgstr ""
 
 
 msgid "Video Player OSD"
-msgstr "OSD riproduzione video"
+msgstr ""
 
 
 msgid "View Show"
-msgstr "Mostra Serie"
+msgstr "Vizualizeaza Show-ul"
 
 
 msgid "Wiki/Docs"
-msgstr "Wiki/Docs"
+msgstr ""
 
 
 msgid "Writers"
-msgstr "Sceneggiatori"
+msgstr ""
 
 
 msgid "Year"
-msgstr "Anno"
+msgstr "An"
 
 
 msgid "refreshing"
-msgstr "ricaricamento"
+msgstr ""
 
 
 msgid "remote"
-msgstr "remoto"
+msgstr ""
 
 
 msgid "{0:0d}x{1:02d} {2}"
-msgstr "{0:0d}x{1:02d} {2}"
+msgstr ""
 
 
 msgid "{0:d} Minutes"
-msgstr "{0:d} minuti"
+msgstr "{0:d} Minute"
 
 
 msgid "{0:d}hr {1:d}min"
-msgstr "{0:d} ore {1:d} min"
+msgstr "{0:d}Ore {0:d}Minute"
 
 
 msgid "{0} unwatched"
-msgstr "{0} non visti"
+msgstr "{0} Nevizionate"
 

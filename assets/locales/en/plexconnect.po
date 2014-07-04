@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-21 12:07:07+0000\n"
-"PO-Revision-Date: 2013-12-07 12:16+0000\n"
+"POT-Creation-Date: 2014-06-05 18:43:27+0000\n"
+"PO-Revision-Date: 2014-07-03 23:15+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en\n"
@@ -27,6 +27,9 @@ msgid "All Photos"
 msgstr ""
 
 msgid "All Shows"
+msgstr ""
+
+msgid "All Videos"
 msgstr ""
 
 msgid "Aperture"
@@ -80,7 +83,16 @@ msgstr ""
 msgid "Camera Model"
 msgstr ""
 
+msgid "Change All Artwork"
+msgstr ""
+
 msgid "Change Artwork"
+msgstr ""
+
+msgid "Channel Search"
+msgstr ""
+
+msgid "Channel View"
 msgstr ""
 
 msgid "Channels"
@@ -90,9 +102,6 @@ msgid "Clock Position"
 msgstr ""
 
 msgid "Collections"
-msgstr ""
-
-msgid "Current Artwork"
 msgstr ""
 
 msgid "Decades"
@@ -116,13 +125,13 @@ msgstr ""
 msgid "Enter the MyPlex password for {0}."
 msgstr ""
 
-msgid "Episode"
-msgstr ""
-
 msgid "Episodes"
 msgstr ""
 
 msgid "Failed"
+msgstr ""
+
+msgid "Flatten Season"
 msgstr ""
 
 msgid "Forum"
@@ -132,6 +141,15 @@ msgid "Genre"
 msgstr ""
 
 msgid "Genres"
+msgstr ""
+
+msgid "Home Video Options"
+msgstr ""
+
+msgid "Home Video View"
+msgstr ""
+
+msgid "Home Videos Navigation Bar"
 msgstr ""
 
 msgid "Homepage"
@@ -149,7 +167,7 @@ msgstr ""
 msgid "Library"
 msgstr ""
 
-msgid "Library Refresh in Progress."
+msgid "Library View"
 msgstr ""
 
 msgid "Mark as Unwatched"
@@ -164,9 +182,6 @@ msgstr ""
 msgid "More..."
 msgstr ""
 
-msgid "Movie"
-msgstr ""
-
 msgid "Movie Navigation Bar"
 msgstr ""
 
@@ -177,9 +192,6 @@ msgid "Movie View"
 msgstr ""
 
 msgid "Movies"
-msgstr ""
-
-msgid "MyPlex"
 msgstr ""
 
 msgid "MyPlex Password"
@@ -218,16 +230,13 @@ msgstr ""
 msgid "On Deck"
 msgstr ""
 
-msgid "On Deck Episode"
-msgstr ""
-
-msgid "On Deck Movie"
-msgstr ""
-
 msgid "Overscan Adjust"
 msgstr ""
 
 msgid "Photo"
+msgstr ""
+
+msgid "Photo Transcoder Action"
 msgstr ""
 
 msgid "Play"
@@ -248,7 +257,7 @@ msgstr ""
 msgid "PlexConnect"
 msgstr ""
 
-msgid "Press menu to return."
+msgid "Poster Titles"
 msgstr ""
 
 msgid "Producers"
@@ -257,25 +266,13 @@ msgstr ""
 msgid "Recently Added"
 msgstr ""
 
-msgid "Recently Added Movie"
-msgstr ""
-
 msgid "Recently Aired"
-msgstr ""
-
-msgid "Recently Aired Episode"
 msgstr ""
 
 msgid "Recently Released"
 msgstr ""
 
-msgid "Recently Released Movie"
-msgstr ""
-
 msgid "Recently Viewed"
-msgstr ""
-
-msgid "Recently Viewed Episode"
 msgstr ""
 
 msgid "Recently Viewed Episodes"
@@ -284,16 +281,13 @@ msgstr ""
 msgid "Recently Viewed Shows"
 msgstr ""
 
-msgid "Refresh Library"
+msgid "Refresh"
 msgstr ""
 
 msgid "Remote Bitrate"
 msgstr ""
 
 msgid "Search"
-msgstr ""
-
-msgid "Season"
 msgstr ""
 
 msgid "Season View"
@@ -308,7 +302,7 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-msgid "Show"
+msgid "Shared Libraries"
 msgstr ""
 
 msgid "Show Clock"
@@ -330,6 +324,15 @@ msgid "Shutter Speed"
 msgstr ""
 
 msgid "SlideShow"
+msgstr ""
+
+msgid "Studio"
+msgstr ""
+
+msgid "Subs"
+msgstr ""
+
+msgid "Subtitle Renderer"
 msgstr ""
 
 msgid "Subtitle Size %"
@@ -357,6 +360,9 @@ msgid "Time Format"
 msgstr ""
 
 msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
+msgstr ""
+
+msgid "Top Level Options"
 msgstr ""
 
 msgid "Trailer"
@@ -396,6 +402,12 @@ msgid "Writers"
 msgstr ""
 
 msgid "Year"
+msgstr ""
+
+msgid "refreshing"
+msgstr ""
+
+msgid "remote"
 msgstr ""
 
 msgid "{0:0d}x{1:02d} {2}"

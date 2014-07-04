@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-21 12:07:07+0000\n"
-"PO-Revision-Date: 2013-12-07 12:16+0000\n"
+"POT-Creation-Date: 2014-06-05 18:43:27+0000\n"
+"PO-Revision-Date: 2014-07-03 23:15+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -13,7 +13,7 @@ msgstr ""
 ""
 
 msgid "ATV firmware version 5.1 or higher required. Please think about updating."
-msgstr ""
+msgstr "ATV firmware version 5.1 eller nyere kræves. Venligst overvej at opdatere.."
 
 
 msgid "Actor View"
@@ -29,15 +29,19 @@ msgstr ""
 
 
 msgid "All Photos"
-msgstr ""
+msgstr "Alle Billeder"
 
 
 msgid "All Shows"
 msgstr ""
 
 
-msgid "Aperture"
+msgid "All Videos"
 msgstr ""
+
+
+msgid "Aperture"
+msgstr "Aperture"
 
 
 msgid "Appearance"
@@ -53,7 +57,7 @@ msgstr ""
 
 
 msgid "Audio Track"
-msgstr ""
+msgstr "Lydspor"
 
 
 msgid "Audio/Subs"
@@ -104,7 +108,19 @@ msgid "Camera Model"
 msgstr ""
 
 
+msgid "Change All Artwork"
+msgstr ""
+
+
 msgid "Change Artwork"
+msgstr ""
+
+
+msgid "Channel Search"
+msgstr ""
+
+
+msgid "Channel View"
 msgstr ""
 
 
@@ -117,10 +133,6 @@ msgstr ""
 
 
 msgid "Collections"
-msgstr ""
-
-
-msgid "Current Artwork"
 msgstr ""
 
 
@@ -152,15 +164,15 @@ msgid "Enter the MyPlex password for {0}."
 msgstr ""
 
 
-msgid "Episode"
-msgstr ""
-
-
 msgid "Episodes"
 msgstr ""
 
 
 msgid "Failed"
+msgstr "Fejlet"
+
+
+msgid "Flatten Season"
 msgstr ""
 
 
@@ -173,6 +185,18 @@ msgstr ""
 
 
 msgid "Genres"
+msgstr ""
+
+
+msgid "Home Video Options"
+msgstr ""
+
+
+msgid "Home Video View"
+msgstr ""
+
+
+msgid "Home Videos Navigation Bar"
 msgstr ""
 
 
@@ -196,16 +220,16 @@ msgid "Library"
 msgstr ""
 
 
-msgid "Library Refresh in Progress."
+msgid "Library View"
 msgstr ""
 
 
 msgid "Mark as Unwatched"
-msgstr ""
+msgstr "Marker som ikke set"
 
 
 msgid "Mark as Watched"
-msgstr ""
+msgstr "Marker som set"
 
 
 msgid "More"
@@ -213,10 +237,6 @@ msgstr ""
 
 
 msgid "More..."
-msgstr ""
-
-
-msgid "Movie"
 msgstr ""
 
 
@@ -236,28 +256,24 @@ msgid "Movies"
 msgstr ""
 
 
-msgid "MyPlex"
-msgstr ""
-
-
 msgid "MyPlex Password"
-msgstr ""
+msgstr "MyPlex Kodeord"
 
 
 msgid "MyPlex Sign In"
-msgstr ""
+msgstr "MyPlex Log på"
 
 
 msgid "MyPlex Sign Out"
-msgstr ""
+msgstr "MyPlex Log af"
 
 
 msgid "MyPlex Username"
-msgstr ""
+msgstr "MyPlex Brugernavn"
 
 
 msgid "No Plex Channels Available"
-msgstr ""
+msgstr "MyPlex Tilgængelig Kanaler"
 
 
 msgid "No Plex Library Sections Available"
@@ -281,18 +297,10 @@ msgstr ""
 
 
 msgid "None"
-msgstr ""
+msgstr "Ingen"
 
 
 msgid "On Deck"
-msgstr ""
-
-
-msgid "On Deck Episode"
-msgstr ""
-
-
-msgid "On Deck Movie"
 msgstr ""
 
 
@@ -304,8 +312,12 @@ msgid "Photo"
 msgstr ""
 
 
-msgid "Play"
+msgid "Photo Transcoder Action"
 msgstr ""
+
+
+msgid "Play"
+msgstr "Afspil"
 
 
 msgid "Plex Channels"
@@ -328,7 +340,7 @@ msgid "PlexConnect"
 msgstr ""
 
 
-msgid "Press menu to return."
+msgid "Poster Titles"
 msgstr ""
 
 
@@ -340,15 +352,7 @@ msgid "Recently Added"
 msgstr ""
 
 
-msgid "Recently Added Movie"
-msgstr ""
-
-
 msgid "Recently Aired"
-msgstr ""
-
-
-msgid "Recently Aired Episode"
 msgstr ""
 
 
@@ -356,15 +360,7 @@ msgid "Recently Released"
 msgstr ""
 
 
-msgid "Recently Released Movie"
-msgstr ""
-
-
 msgid "Recently Viewed"
-msgstr ""
-
-
-msgid "Recently Viewed Episode"
 msgstr ""
 
 
@@ -376,7 +372,7 @@ msgid "Recently Viewed Shows"
 msgstr ""
 
 
-msgid "Refresh Library"
+msgid "Refresh"
 msgstr ""
 
 
@@ -385,10 +381,6 @@ msgstr ""
 
 
 msgid "Search"
-msgstr ""
-
-
-msgid "Season"
 msgstr ""
 
 
@@ -408,7 +400,7 @@ msgid "Settings"
 msgstr ""
 
 
-msgid "Show"
+msgid "Shared Libraries"
 msgstr ""
 
 
@@ -437,6 +429,18 @@ msgstr ""
 
 
 msgid "SlideShow"
+msgstr ""
+
+
+msgid "Studio"
+msgstr ""
+
+
+msgid "Subs"
+msgstr ""
+
+
+msgid "Subtitle Renderer"
 msgstr ""
 
 
@@ -476,6 +480,10 @@ msgid "To sign in to MyPlex, enter your Email address, username or Plex forum us
 msgstr ""
 
 
+msgid "Top Level Options"
+msgstr ""
+
+
 msgid "Trailer"
 msgstr ""
 
@@ -493,7 +501,7 @@ msgstr ""
 
 
 msgid "Unwatched"
-msgstr ""
+msgstr "Ikke Set"
 
 
 msgid "Unwatched Synopsis"
@@ -505,7 +513,7 @@ msgstr ""
 
 
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 
 msgid "Video Player OSD"
@@ -521,10 +529,18 @@ msgstr ""
 
 
 msgid "Writers"
-msgstr ""
+msgstr "Forfatter"
 
 
 msgid "Year"
+msgstr ""
+
+
+msgid "refreshing"
+msgstr ""
+
+
+msgid "remote"
 msgstr ""
 
 
@@ -542,5 +558,4 @@ msgstr ""
 
 msgid "{0} unwatched"
 msgstr ""
-
 

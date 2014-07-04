@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-21 12:07:07+0000\n"
-"PO-Revision-Date: 2013-12-07 12:16+0000\n"
+"POT-Creation-Date: 2014-06-05 18:43:27+0000\n"
+"PO-Revision-Date: 2014-07-03 23:15+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nl\n"
@@ -34,6 +34,10 @@ msgstr "Alle Foto's"
 
 msgid "All Shows"
 msgstr "Alle Series"
+
+
+msgid "All Videos"
+msgstr ""
 
 
 msgid "Aperture"
@@ -104,8 +108,20 @@ msgid "Camera Model"
 msgstr "Camera Type"
 
 
+msgid "Change All Artwork"
+msgstr ""
+
+
 msgid "Change Artwork"
 msgstr "Wijzig artwork"
+
+
+msgid "Channel Search"
+msgstr ""
+
+
+msgid "Channel View"
+msgstr ""
 
 
 msgid "Channels"
@@ -118,10 +134,6 @@ msgstr "Positie Klok"
 
 msgid "Collections"
 msgstr "Verzamelingen"
-
-
-msgid "Current Artwork"
-msgstr "Huidig artwork"
 
 
 msgid "Decades"
@@ -152,16 +164,16 @@ msgid "Enter the MyPlex password for {0}."
 msgstr "Typ het MyPlex wachtwoord voor {0}."
 
 
-msgid "Episode"
-msgstr "Aflevering"
-
-
 msgid "Episodes"
 msgstr "Afleveringen"
 
 
 msgid "Failed"
 msgstr "Mislukt"
+
+
+msgid "Flatten Season"
+msgstr ""
 
 
 msgid "Forum"
@@ -174,6 +186,18 @@ msgstr "Genre"
 
 msgid "Genres"
 msgstr "Genres"
+
+
+msgid "Home Video Options"
+msgstr ""
+
+
+msgid "Home Video View"
+msgstr ""
+
+
+msgid "Home Videos Navigation Bar"
+msgstr ""
 
 
 msgid "Homepage"
@@ -196,8 +220,8 @@ msgid "Library"
 msgstr "Bibliotheek"
 
 
-msgid "Library Refresh in Progress."
-msgstr "Bibliotheek bijwerken"
+msgid "Library View"
+msgstr ""
 
 
 msgid "Mark as Unwatched"
@@ -216,10 +240,6 @@ msgid "More..."
 msgstr "Meer..."
 
 
-msgid "Movie"
-msgstr "Film"
-
-
 msgid "Movie Navigation Bar"
 msgstr "Navigatiebalk Film"
 
@@ -234,10 +254,6 @@ msgstr "Weergave Film"
 
 msgid "Movies"
 msgstr "Films"
-
-
-msgid "MyPlex"
-msgstr "MyPlex"
 
 
 msgid "MyPlex Password"
@@ -285,15 +301,7 @@ msgstr "Geen"
 
 
 msgid "On Deck"
-msgstr "Deels gekeken"
-
-
-msgid "On Deck Episode"
-msgstr "Deels gekeken aflevering"
-
-
-msgid "On Deck Movie"
-msgstr "Deels gekeken film"
+msgstr "Actueel"
 
 
 msgid "Overscan Adjust"
@@ -302,6 +310,10 @@ msgstr "Overscan aanpassen"
 
 msgid "Photo"
 msgstr "Foto"
+
+
+msgid "Photo Transcoder Action"
+msgstr ""
 
 
 msgid "Play"
@@ -328,8 +340,8 @@ msgid "PlexConnect"
 msgstr "PlexConnect"
 
 
-msgid "Press menu to return."
-msgstr "Druk op 'Menu' om terug te gaan"
+msgid "Poster Titles"
+msgstr ""
 
 
 msgid "Producers"
@@ -340,32 +352,16 @@ msgid "Recently Added"
 msgstr "Recent toegevoegd"
 
 
-msgid "Recently Added Movie"
-msgstr "Recent toegevoegde film"
-
-
 msgid "Recently Aired"
 msgstr "Recent uitgezonden"
-
-
-msgid "Recently Aired Episode"
-msgstr "Recent toegevoegde aflevering"
 
 
 msgid "Recently Released"
 msgstr "Recent uitgekomen"
 
 
-msgid "Recently Released Movie"
-msgstr "Recent uitgekomen film"
-
-
 msgid "Recently Viewed"
 msgstr "Recent gekeken"
-
-
-msgid "Recently Viewed Episode"
-msgstr "Recent gekeken aflevering"
 
 
 msgid "Recently Viewed Episodes"
@@ -373,11 +369,11 @@ msgstr "Recent gekeken afleveringen"
 
 
 msgid "Recently Viewed Shows"
-msgstr "Recent gekeken series"
+msgstr "Recent bekeken series"
 
 
-msgid "Refresh Library"
-msgstr "Bibliotheek bijwerken"
+msgid "Refresh"
+msgstr ""
 
 
 msgid "Remote Bitrate"
@@ -386,10 +382,6 @@ msgstr "Remote Bitrate"
 
 msgid "Search"
 msgstr "Zoeken"
-
-
-msgid "Season"
-msgstr "Seizoen"
 
 
 msgid "Season View"
@@ -408,8 +400,8 @@ msgid "Settings"
 msgstr "Instellingen"
 
 
-msgid "Show"
-msgstr "Serie"
+msgid "Shared Libraries"
+msgstr ""
 
 
 msgid "Show Clock"
@@ -438,6 +430,18 @@ msgstr "Sluitersnelheid"
 
 msgid "SlideShow"
 msgstr "Dia-voorstelling"
+
+
+msgid "Studio"
+msgstr ""
+
+
+msgid "Subs"
+msgstr ""
+
+
+msgid "Subtitle Renderer"
+msgstr ""
 
 
 msgid "Subtitle Size %"
@@ -474,6 +478,10 @@ msgstr "Tijdformaat"
 
 msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
 msgstr "Om aan te melden bij MyPlex typt u uw Email adres, gebruikersnaam of Plex forum gebruikersnaam"
+
+
+msgid "Top Level Options"
+msgstr ""
 
 
 msgid "Trailer"
@@ -528,6 +536,14 @@ msgid "Year"
 msgstr "Jaar"
 
 
+msgid "refreshing"
+msgstr ""
+
+
+msgid "remote"
+msgstr ""
+
+
 msgid "{0:0d}x{1:02d} {2}"
 msgstr "{0:0d}x{1:02d} {2}"
 
@@ -542,5 +558,4 @@ msgstr "{0:d}Uur {1:d}min"
 
 msgid "{0} unwatched"
 msgstr "{0} unwatched"
-
 

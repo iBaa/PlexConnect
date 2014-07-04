@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-21 12:07:07+0000\n"
-"PO-Revision-Date: 2013-12-07 12:16+0000\n"
+"POT-Creation-Date: 2014-06-05 18:43:27+0000\n"
+"PO-Revision-Date: 2014-07-03 23:15+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fr\n"
@@ -13,7 +13,7 @@ msgstr ""
 ""
 
 msgid "ATV firmware version 5.1 or higher required. Please think about updating."
-msgstr ""
+msgstr "Une version du Firmware 5.1 ou supérieure de votre ATV est requise. Pensez à mettre à jour."
 
 
 msgid "Actor View"
@@ -29,15 +29,19 @@ msgstr "Tous les films"
 
 
 msgid "All Photos"
-msgstr ""
+msgstr "Toutes les photos"
 
 
 msgid "All Shows"
 msgstr "Toutes les séries TV"
 
 
+msgid "All Videos"
+msgstr "Toutes le vidéos"
+
+
 msgid "Aperture"
-msgstr ""
+msgstr "Ouverture"
 
 
 msgid "Appearance"
@@ -97,15 +101,27 @@ msgstr "Par année"
 
 
 msgid "Camera Make"
-msgstr "Fabricant"
+msgstr "Fabricant de la caméra"
 
 
 msgid "Camera Model"
-msgstr "Modèle"
+msgstr "Modèle de la caméra"
+
+
+msgid "Change All Artwork"
+msgstr "Changer toutes les pochettes"
 
 
 msgid "Change Artwork"
-msgstr ""
+msgstr "Changer la pochette"
+
+
+msgid "Channel Search"
+msgstr "Recherche des canaux"
+
+
+msgid "Channel View"
+msgstr "Vue des canaux"
 
 
 msgid "Channels"
@@ -120,12 +136,8 @@ msgid "Collections"
 msgstr "Collections"
 
 
-msgid "Current Artwork"
-msgstr ""
-
-
 msgid "Decades"
-msgstr "Décennie"
+msgstr "Décennies"
 
 
 msgid "Details"
@@ -145,15 +157,11 @@ msgstr "Découvrir"
 
 
 msgid "Duration Format"
-msgstr ""
+msgstr "Format de durée"
 
 
 msgid "Enter the MyPlex password for {0}."
-msgstr ""
-
-
-msgid "Episode"
-msgstr "Épisode"
+msgstr "Entrer le mot de passe MyPlex pour {0}."
 
 
 msgid "Episodes"
@@ -161,6 +169,10 @@ msgstr "Episodes"
 
 
 msgid "Failed"
+msgstr "Échec"
+
+
+msgid "Flatten Season"
 msgstr ""
 
 
@@ -174,6 +186,18 @@ msgstr "Genre"
 
 msgid "Genres"
 msgstr "Genres"
+
+
+msgid "Home Video Options"
+msgstr "Options des vidéos personnelles"
+
+
+msgid "Home Video View"
+msgstr "Vue des vidéos personnels"
+
+
+msgid "Home Videos Navigation Bar"
+msgstr "Baree de navigation des vidéos personnels"
 
 
 msgid "Homepage"
@@ -196,16 +220,16 @@ msgid "Library"
 msgstr "Bibliothèque"
 
 
-msgid "Library Refresh in Progress."
-msgstr "Mise à jour de la bibliothèque en cours."
+msgid "Library View"
+msgstr ""
 
 
 msgid "Mark as Unwatched"
-msgstr ""
+msgstr "Marquer comme non vue"
 
 
 msgid "Mark as Watched"
-msgstr ""
+msgstr "Marquer comme vu"
 
 
 msgid "More"
@@ -214,10 +238,6 @@ msgstr "Plus"
 
 msgid "More..."
 msgstr "Plus..."
-
-
-msgid "Movie"
-msgstr "Film"
 
 
 msgid "Movie Navigation Bar"
@@ -234,10 +254,6 @@ msgstr "Vue Films"
 
 msgid "Movies"
 msgstr "Films"
-
-
-msgid "MyPlex"
-msgstr ""
 
 
 msgid "MyPlex Password"
@@ -257,11 +273,11 @@ msgstr "Nom d'utilisateur MyPlex"
 
 
 msgid "No Plex Channels Available"
-msgstr ""
+msgstr "Aucun canal Plex disponible"
 
 
 msgid "No Plex Library Sections Available"
-msgstr ""
+msgstr "Aucune section disponible dans la bibliothèque Plex"
 
 
 msgid "No Seasons"
@@ -288,16 +304,6 @@ msgid "On Deck"
 msgstr "En cours"
 
 
-msgid "On Deck Episode"
-msgstr "Épisode en cours"
-
-
-msgid "On Deck Movie\n"
-""
-msgstr "Film en cours\n"
-""
-
-
 msgid "Overscan Adjust"
 msgstr "Réglage du balayage"
 
@@ -306,16 +312,20 @@ msgid "Photo"
 msgstr "Photo"
 
 
+msgid "Photo Transcoder Action"
+msgstr ""
+
+
 msgid "Play"
 msgstr "Lecture"
 
 
 msgid "Plex Channels"
-msgstr ""
+msgstr "Chaines Plex"
 
 
 msgid "Plex Library"
-msgstr ""
+msgstr "Bibliothèque Plex"
 
 
 msgid "Plex Media Server"
@@ -327,11 +337,11 @@ msgstr "Plex Media Server : Aucun élément disponible"
 
 
 msgid "PlexConnect"
-msgstr "Plexconnect"
+msgstr "PlexConnect"
 
 
-msgid "Press menu to return."
-msgstr "Appuyer sur menu pour revenir en arrière."
+msgid "Poster Titles"
+msgstr ""
 
 
 msgid "Producers"
@@ -342,56 +352,36 @@ msgid "Recently Added"
 msgstr "Récemment ajoutés"
 
 
-msgid "Recently Added Movie"
-msgstr "Film récemment ajouté"
-
-
 msgid "Recently Aired"
 msgstr "Récemment diffusés"
-
-
-msgid "Recently Aired Episode"
-msgstr "Épisode récemment difusée"
 
 
 msgid "Recently Released"
 msgstr "Récemment sortis"
 
 
-msgid "Recently Released Movie"
-msgstr ""
-
-
 msgid "Recently Viewed"
 msgstr "Récemment vus"
 
 
-msgid "Recently Viewed Episode"
-msgstr ""
-
-
 msgid "Recently Viewed Episodes"
-msgstr ""
+msgstr "Episodes récemment vus"
 
 
 msgid "Recently Viewed Shows"
 msgstr "Séries vues récemment"
 
 
-msgid "Refresh Library"
-msgstr "Actualiser la bibliothèque"
+msgid "Refresh"
+msgstr "Rafraichir"
 
 
 msgid "Remote Bitrate"
-msgstr ""
+msgstr "Débit distant"
 
 
 msgid "Search"
 msgstr "Rechercher"
-
-
-msgid "Season"
-msgstr "Saison"
 
 
 msgid "Season View"
@@ -399,19 +389,19 @@ msgstr "Vue Saison"
 
 
 msgid "Select Artwork"
-msgstr ""
+msgstr "Sélectionnez l'affiche"
 
 
 msgid "Select Tracks"
-msgstr ""
+msgstr "Choisir les pistes"
 
 
 msgid "Settings"
 msgstr "Paramètres"
 
 
-msgid "Show"
-msgstr ""
+msgid "Shared Libraries"
+msgstr "Bibliothèques partagées"
 
 
 msgid "Show Clock"
@@ -435,11 +425,23 @@ msgstr "Séries"
 
 
 msgid "Shutter Speed"
-msgstr ""
+msgstr "Vitesse d'obturation"
 
 
 msgid "SlideShow"
 msgstr "Diaporama"
+
+
+msgid "Studio"
+msgstr ""
+
+
+msgid "Subs"
+msgstr "Sous-titres"
+
+
+msgid "Subtitle Renderer"
+msgstr ""
 
 
 msgid "Subtitle Size %"
@@ -447,11 +449,11 @@ msgstr "Taille des sous-titres %"
 
 
 msgid "Subtitle Track"
-msgstr ""
+msgstr "Piste de sous-titre"
 
 
 msgid "Synopsis hidden."
-msgstr ""
+msgstr "Cacher le synopsis"
 
 
 msgid "TV Show Navigation Bar"
@@ -467,7 +469,7 @@ msgstr "Vue Séries"
 
 
 msgid "TheMovieDB: No Trailer Info available"
-msgstr ""
+msgstr "TheMovieDB : Pas de Bande-annonce disponible"
 
 
 msgid "Time Format"
@@ -475,11 +477,15 @@ msgstr "Format de l'heure"
 
 
 msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
+msgstr "Pour se connecter à MyPlex, entrer votre adresse de courriel, nom d'utilisateur ou le nom d'usager du site Plex forum."
+
+
+msgid "Top Level Options"
 msgstr ""
 
 
 msgid "Trailer"
-msgstr ""
+msgstr "Bande-annonce"
 
 
 msgid "Transcoder"
@@ -487,7 +493,7 @@ msgstr "Transcodeur"
 
 
 msgid "Transcoder Action"
-msgstr ""
+msgstr "Action du transcodeur"
 
 
 msgid "Transcoder Quality"
@@ -499,7 +505,7 @@ msgstr "Non vu"
 
 
 msgid "Unwatched Synopsis"
-msgstr ""
+msgstr "Synopsis non vu"
 
 
 msgid "Version"
@@ -515,7 +521,7 @@ msgstr "Menu du lecteur vidéo"
 
 
 msgid "View Show"
-msgstr ""
+msgstr "Voir l'émission"
 
 
 msgid "Wiki/Docs"
@@ -527,7 +533,15 @@ msgstr "Scénaristes"
 
 
 msgid "Year"
-msgstr ""
+msgstr "Année"
+
+
+msgid "refreshing"
+msgstr "Mise à jour en cours"
+
+
+msgid "remote"
+msgstr "Distant"
 
 
 msgid "{0:0d}x{1:02d} {2}"
@@ -544,5 +558,4 @@ msgstr "{0:d}h {1:d}min"
 
 msgid "{0} unwatched"
 msgstr "{0} non vus"
-
 

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-21 12:07:07+0000\n"
-"PO-Revision-Date: 2013-12-07 12:16+0000\n"
+"POT-Creation-Date: 2014-06-05 18:43:27+0000\n"
+"PO-Revision-Date: 2014-07-03 23:15+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -36,6 +36,10 @@ msgid "All Shows"
 msgstr "כל התוכניות"
 
 
+msgid "All Videos"
+msgstr ""
+
+
 msgid "Aperture"
 msgstr "Aperture"
 
@@ -53,7 +57,7 @@ msgstr "הגברת אודיו %"
 
 
 msgid "Audio Track"
-msgstr ""
+msgstr "רצועת אודיו"
 
 
 msgid "Audio/Subs"
@@ -101,11 +105,23 @@ msgstr ""
 
 
 msgid "Camera Model"
+msgstr "סוג מצלמה"
+
+
+msgid "Change All Artwork"
 msgstr ""
 
 
 msgid "Change Artwork"
 msgstr "שינוי פוסטר"
+
+
+msgid "Channel Search"
+msgstr ""
+
+
+msgid "Channel View"
+msgstr ""
 
 
 msgid "Channels"
@@ -118,10 +134,6 @@ msgstr "מיקום השעון"
 
 msgid "Collections"
 msgstr "אוספים"
-
-
-msgid "Current Artwork"
-msgstr "פוסטר נוכחי"
 
 
 msgid "Decades"
@@ -149,11 +161,7 @@ msgstr ""
 
 
 msgid "Enter the MyPlex password for {0}."
-msgstr ""
-
-
-msgid "Episode"
-msgstr "פרק"
+msgstr "הכנס את סיסמת MyPlex עבור {0}."
 
 
 msgid "Episodes"
@@ -162,6 +170,10 @@ msgstr "פרקים"
 
 msgid "Failed"
 msgstr "נכשל"
+
+
+msgid "Flatten Season"
+msgstr ""
 
 
 msgid "Forum"
@@ -174,6 +186,18 @@ msgstr "ז'אנר"
 
 msgid "Genres"
 msgstr "ז'אנרים"
+
+
+msgid "Home Video Options"
+msgstr ""
+
+
+msgid "Home Video View"
+msgstr ""
+
+
+msgid "Home Videos Navigation Bar"
+msgstr ""
 
 
 msgid "Homepage"
@@ -189,15 +213,15 @@ msgstr "אורך"
 
 
 msgid "Lens"
-msgstr ""
+msgstr "עדשה"
 
 
 msgid "Library"
 msgstr "ספריה"
 
 
-msgid "Library Refresh in Progress."
-msgstr "ריענון הספריה מתבצע."
+msgid "Library View"
+msgstr ""
 
 
 msgid "Mark as Unwatched"
@@ -216,10 +240,6 @@ msgid "More..."
 msgstr "עוד..."
 
 
-msgid "Movie"
-msgstr "סרט"
-
-
 msgid "Movie Navigation Bar"
 msgstr "סרגל ניווט של סרט"
 
@@ -234,10 +254,6 @@ msgstr "תצוגת סרט"
 
 msgid "Movies"
 msgstr "סרטים"
-
-
-msgid "MyPlex"
-msgstr "MyPlex"
 
 
 msgid "MyPlex Password"
@@ -281,19 +297,11 @@ msgstr "אין פרקים"
 
 
 msgid "None"
-msgstr ""
+msgstr "כלום"
 
 
 msgid "On Deck"
 msgstr "בצפייה"
-
-
-msgid "On Deck Episode"
-msgstr "פרק בצפייה"
-
-
-msgid "On Deck Movie"
-msgstr "סרט בצפייה"
 
 
 msgid "Overscan Adjust"
@@ -302,6 +310,10 @@ msgstr "Overscan Adjust"
 
 msgid "Photo"
 msgstr "תמונה"
+
+
+msgid "Photo Transcoder Action"
+msgstr ""
 
 
 msgid "Play"
@@ -328,8 +340,8 @@ msgid "PlexConnect"
 msgstr "PlexConnect"
 
 
-msgid "Press menu to return."
-msgstr "לחץ/י על Menu כדי לחזור."
+msgid "Poster Titles"
+msgstr ""
 
 
 msgid "Producers"
@@ -340,32 +352,16 @@ msgid "Recently Added"
 msgstr "נוסף לאחרונה"
 
 
-msgid "Recently Added Movie"
-msgstr "סרט שנוסף לאחרונה"
-
-
 msgid "Recently Aired"
 msgstr "שודר לאחרונה"
-
-
-msgid "Recently Aired Episode"
-msgstr "פרק ששודר לאחרונה"
 
 
 msgid "Recently Released"
 msgstr "שוחרר לאחרונה"
 
 
-msgid "Recently Released Movie"
-msgstr "סרט ששוחרר לאחרונה"
-
-
 msgid "Recently Viewed"
 msgstr "נצפה לאחרונה"
-
-
-msgid "Recently Viewed Episode"
-msgstr "פרק שנצפה לאחרונה"
 
 
 msgid "Recently Viewed Episodes"
@@ -376,20 +372,16 @@ msgid "Recently Viewed Shows"
 msgstr "תוכניות שנצפו לאחרונה"
 
 
-msgid "Refresh Library"
-msgstr "רענן/י ספריה"
+msgid "Refresh"
+msgstr ""
 
 
 msgid "Remote Bitrate"
-msgstr ""
+msgstr "קצב העברת קבצים משותפים"
 
 
 msgid "Search"
 msgstr "חיפוש"
-
-
-msgid "Season"
-msgstr "עונה"
 
 
 msgid "Season View"
@@ -401,15 +393,15 @@ msgstr "בחירת פוסטר"
 
 
 msgid "Select Tracks"
-msgstr ""
+msgstr "בחר רצועות"
 
 
 msgid "Settings"
 msgstr "הגדרות"
 
 
-msgid "Show"
-msgstr "הצג"
+msgid "Shared Libraries"
+msgstr ""
 
 
 msgid "Show Clock"
@@ -440,12 +432,24 @@ msgid "SlideShow"
 msgstr "מצגת"
 
 
+msgid "Studio"
+msgstr ""
+
+
+msgid "Subs"
+msgstr ""
+
+
+msgid "Subtitle Renderer"
+msgstr ""
+
+
 msgid "Subtitle Size %"
 msgstr "גודל כתוביות %"
 
 
 msgid "Subtitle Track"
-msgstr ""
+msgstr "קובץ תרגום"
 
 
 msgid "Synopsis hidden."
@@ -476,6 +480,10 @@ msgid "To sign in to MyPlex, enter your Email address, username or Plex forum us
 msgstr "על מנת להתחבר לMyPlex, הזן את כתובת הEmail/שם משתמש/שם המשתמש בפורום Plex."
 
 
+msgid "Top Level Options"
+msgstr ""
+
+
 msgid "Trailer"
 msgstr "פרומו"
 
@@ -497,7 +505,7 @@ msgstr "לא נצפה"
 
 
 msgid "Unwatched Synopsis"
-msgstr ""
+msgstr "תקציר לא נצפה"
 
 
 msgid "Version"
@@ -528,6 +536,14 @@ msgid "Year"
 msgstr "שנה"
 
 
+msgid "refreshing"
+msgstr ""
+
+
+msgid "remote"
+msgstr ""
+
+
 msgid "{0:0d}x{1:02d} {2}"
 msgstr "{0:0d}x{1:02d} {2}"
 
@@ -542,5 +558,4 @@ msgstr "{0:d}ש' {1:d}דק'"
 
 msgid "{0} unwatched"
 msgstr "{0} לא נצפה"
-
 
