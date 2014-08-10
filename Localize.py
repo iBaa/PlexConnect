@@ -49,7 +49,7 @@ def pickLanguage(languages):
 def replaceTEXT(textcontent, language):
     translation = getTranslation(language)
     for msgid in set(re.findall(r'\{\{TEXT\((.+?)\)\}\}', textcontent)):
-        msgstr = translation.ugettext(msgid)
+        msgstr = translation.ugettext(msgid).replace('\"', '\\\"')
         textcontent = textcontent.replace('{{TEXT(%s)}}' % msgid, msgstr)
     return textcontent
 
