@@ -86,7 +86,8 @@
                   {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                   <title>{{VAL(title)}}</title>
                   <subtitle>{{episodestring(parentIndex:0:index:0)}}</subtitle>
-                  <image>{{IMAGEURL(parentThumb::768)}}</image>
+                  <image>{{IMAGEURL(parentThumb::768)}}</image>{{CUT(parentThumb:CUT:=CUT| =)}}
+                  <image>{{IMAGEURL(grandparentThumb::768)}}</image>{{CUT(parentThumb:: =CUT)}}
                   <defaultImage>resource://Poster.png</defaultImage>
                 </moviePoster>
               </items>

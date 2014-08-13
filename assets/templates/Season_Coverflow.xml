@@ -10,6 +10,7 @@
           <title>{{VAL(title2)}}</title>
         </simpleHeader>
       </header>
+      {{VAR(parentThumb:thumb)}}
       <items>
       <collectionDivider alignment="left">
             <title></title>
@@ -24,7 +25,8 @@
                               onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenu')">
                   {{COPY(Directory)}}
                   <title>{{VAL(title)}}</title>
-                  <image>{{IMAGEURL(thumb::384)}}</image>
+                  <image>{{IMAGEURL(thumb::768)}}</image>{{CUT(thumb:CUT:=CUT| =)}}
+                  <image>{{IMAGEURL(#parentThumb::768)}}</image>{{CUT(thumb:: =CUT)}}
                   <defaultImage>resource://Poster.png</defaultImage>
                 </goldenPoster>{{CUT(Directory/title:CUT:=)}}
             
