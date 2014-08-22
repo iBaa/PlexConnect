@@ -19,12 +19,22 @@ echo 'fanartcache dir not found'
 
 fi
 
-customicons="${PlexConnectPath}/assets/templates/plex/images/custom/flow"
-if [ -d "$customicons" ]; then
+brotusericons="${PlexConnectPath}/assets/templates/galaxy/images/flow"
+if [ -d "$brotusericons" ]; then
+cp -R /Applications/plexconnect_BACKUP/flow/* /Applications/PlexConnect/assets/templates/plex/images/flow
+cp -R /Applications/plexconnect_BACKUP/flow/* /Applications/PlexConnect/assets/templates/galaxy/images/flow
+else
+echo 'brotuser flow dir not found'
+
+fi
+
+cyberghosticons="${PlexConnectPath}/assets/templates/plexgrey/images/custom/flow"
+if [ -d "$cyberghosticons" ]; then
 cp -R /Applications/plexconnect_BACKUP/flow/* /Applications/PlexConnect/assets/templates/plex/images/custom/flow
 cp -R /Applications/plexconnect_BACKUP/top/* /Applications/PlexConnect/assets/templates/plex/images/custom/top
+cp -R /Applications/plexconnect_BACKUP/flow/* /Applications/PlexConnect/assets/templates/plexgrey/images/custom
 else
-echo 'flow and top dir not found'
+echo 'Cyberghost flow and top dir not found'
 
 fi
 
