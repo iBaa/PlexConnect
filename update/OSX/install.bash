@@ -243,6 +243,7 @@ cp folder.bash /usr/bin
 cp sudoers.bash /usr/bin
 cp restore.bash /usr/bin
 cp backup.bash /usr/bin
+cp icon.bash /usr/bin
 cp httpd.conf /etc/apache2
 cp ibaabash.bash /usr/bin
 cp brotuserbash.bash /usr/bin
@@ -290,6 +291,7 @@ cp trashbasebash.bash /usr/bin
 cp uninstallbash.bash /usr/bin
 cp restorebash.bash /usr/bin
 cp backupbash.bash /usr/bin
+cp iconbash.bash /usr/bin
 cp uninstall.bash /usr/bin
 
 
@@ -349,6 +351,7 @@ chmod +x /usr/bin/lock.bash
 chmod +x /usr/bin/trash.bash
 chmod +x /usr/bin/itunes.bash
 chmod +x /usr/bin/quititunes.bash
+chmod +x /usr/bin/icon.bash
 chmod +x /usr/bin/webconnect.bash
 chmod +x /usr/bin/quit
 chmod +x /usr/bin/hide
@@ -409,6 +412,7 @@ chmod +x /usr/bin/quititunesbash.bash
 chmod +x /usr/bin/logbash.bash
 chmod +x /usr/bin/whobash.bash
 chmod +x /usr/bin/wakebash.bash
+chmod +x /usr/bin/iconbash.bash
 chmod +x /usr/bin/tvbash.bash
 chmod +x /usr/bin/sudoersfix.bash
 chmod +x /usr/bin/restore.bash
@@ -457,6 +461,7 @@ chmod 4755 /usr/bin/wakebash.bash
 chmod 4755 /usr/bin/tvbash.bash
 chmod 4755 /usr/bin/restorebash.bash
 chmod 4755 /usr/bin/backupbash.bash
+chmod 4755 /usr/bin/iconbash.bash
 chmod 4755 /usr/bin/timemachinebash.bash
 chmod 4755 /usr/bin/websharingbash.bash
 chmod 4755 /usr/bin/webconnectbash.bash
