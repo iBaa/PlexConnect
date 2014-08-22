@@ -471,3 +471,21 @@ chmod 4755 /usr/bin/sudoersfixbash.bash
 chmod 4755 /usr/bin/createautobash.bash
 chmod 4755 /usr/bin/trashbasebash.bash
 chmod 4755 /usr/bin/uninstallbash.bash
+
+## Import LAN and WAN IP's into webconnect cgi files
+plexweb.bash
+plexwebwan.bash
+plexwebios.bash
+plexwebioswan.bash
+plexweblist.bash
+plexweblistwan.bash
+
+## Cleanup
+cd /
+rm plexweb.bash
+rm plexwebwan.bash
+rm plexwebios.bash
+rm plexwebioswan.bash
+rm plexweblist.bash
+rm plexweblistwan.bash
+
