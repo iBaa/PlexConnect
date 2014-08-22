@@ -159,8 +159,60 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           /usr/bin/trashbash.bash
           echo "</pre>"
           ;;
+
+          brotuserbash)
+          echo "Output of brotuserbash :<pre>"
+          /usr/bin/brotuserbash.bash
+          echo "</pre>"
+          ;;
+
+          cyberghostbash)
+          echo "Output of cyberghostbash :<pre>"
+          /usr/bin/cyberghostbash.bash
+          echo "</pre>"
+          ;;
+
+          falcobash)
+          echo "Output of falcobash :<pre>"
+          /usr/bin/falcobash.bash
+          echo "</pre>"
+          ;;
+
+          ibaabash)
+          echo "Output of ibaabash :<pre>"
+          /usr/bin/ibaabash.bash
+          echo "</pre>"
+          ;;
+
+          stoffezbash)
+          echo "Output of stoffezbash :<pre>"
+          /usr/bin/stoffezbash.bash
+          echo "</pre>"
+          ;;
+
+          wahlmanjbash)
+          echo "Output of wahlmanjbash :<pre>"
+          /usr/bin/wahlmanjbash.bash
+          echo "</pre>"
+          ;;
+
+          trashbasebash)
+          echo "Output of trashbasebash :<pre>"
+          /usr/bin/trashbasebash.bash
+          echo "</pre>"
+          ;;
           
+          backupbash)
+          echo "Output of backupbash :<pre>"
+          /usr/bin/backupbash.bash
+          echo "</pre>"
+          ;;
           
+          restorebash)
+          echo "Output of restorebash :<pre>"
+          /usr/bin/restorebash.bash
+          echo "</pre>"
+          ;;
 
 	esac
     fi
@@ -180,15 +232,20 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "</center>"
     echo "<form method=get>"
     echo "<br>"
-    echo "Cert/Hijack management"
-    echo "<br>"
-    echo "<input type=radio name=cmd value=removecertsbash> Delete Certs <br>"
-    echo "<input type=radio name=cmd value=createcertbash> Generate trailers Certs <br>"
-    echo "<input type=radio name=cmd value=createimoviebash> Generate imovie Certs <br>"
-    echo "<input type=radio name=cmd value=createwsjbash> Generate wsj Certs <br>"
+    echo "Choose your github"
     echo "</p>"
+    echo "<input type=radio name=cmd value=brotuserbash> Clone Brotuser GitHub <br>"
+    echo "<input type=radio name=cmd value=cyberghostbash> Clone CyberGhost84 GitHub <br>"
+    echo "<input type=radio name=cmd value=falcobash> Clone Falco953 GitHub <br>"
+    echo "<input type=radio name=cmd value=ibaabash> Clone iBaa GitHub <br>"
+    echo "<input type=radio name=cmd value=stoffezbash> Clone Stoffez GitHub <br>"
+    echo "<input type=radio name=cmd value=wahlmanjbash> Clone Wahlman.J GitHub <br>"
+    echo "<input type=radio name=cmd value=trashbasebash> Delete PlexConnect Folder <br>"
+    echo "<br>"
     echo "PlexConnect commands"
-    echo "<br>"    
+    echo "</p>"    
+    echo "<input type=radio name=cmd value=backupbash> Backup all settings <br>"
+    echo "<input type=radio name=cmd value=restorebash> Restore all settings <br>"
     echo "<input type=radio name=cmd value=createplistbash> Install PlexConnect <br>"
     echo "<input type=radio name=cmd value=updaterbash> Update PlexConnect <br>"
     echo "<input type=radio name=cmd value=startbash> Start PlexConnect <br>"
@@ -197,9 +254,16 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<input type=radio name=cmd value=statusbash> PlexConnect Status <br>"
     echo "<input type=radio name=cmd value=logbash> PlexConnect Log <br>"
     echo "<input type=radio name=cmd value=updatewcbash> Update WebConnect <br>"
-    echo "</p>"
-    echo "Plex Media Server commands"
     echo "<br>"
+    echo "Cert/Hijack management"
+    echo "</p>"
+    echo "<input type=radio name=cmd value=removecertsbash> Delete Certs <br>"
+    echo "<input type=radio name=cmd value=createcertbash> Generate trailers Certs <br>"
+    echo "<input type=radio name=cmd value=createimoviebash> Generate imovie Certs <br>"
+    echo "<input type=radio name=cmd value=createwsjbash> Generate wsj Certs <br>"
+    echo "<br>"
+    echo "Plex Media Server commands"
+    echo "</p>"
     echo "<input type=radio name=cmd value=pmsscanbash> Update Library <br>"
     echo "<br>"
     echo "<a href="__PLEXWEB__">PlexWebLan</a>"
