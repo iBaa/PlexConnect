@@ -11,4 +11,6 @@ cd /Applications/PlexConnect/update/OSX
 cp installwc.bash /usr/bin
 chmod +x /usr/bin/installwc.bash
 installwc.bash
-webconnect.bash
+cp install.bash /usr/bin
+chmod +x /usr/bin/install.bash
+install.bash
