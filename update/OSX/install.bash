@@ -478,19 +478,10 @@ cp /Applications/PlexConnect/update/OSX/sudoers2 /etc/sudoers
 chmod 440 /etc/sudoers
 
 ## Import LAN and WAN IP's into webconnect cgi files
+cd /Library/WebServer/CGI-Executables/
 plexweb.bash
 plexwebwan.bash
 plexwebios.bash
 plexwebioswan.bash
 plexweblist.bash
 plexweblistwan.bash
-
-## Cleanup
-cd /
-rm plexweb.bash
-rm plexwebwan.bash
-rm plexwebios.bash
-rm plexwebioswan.bash
-rm plexweblist.bash
-rm plexweblistwan.bash
-
