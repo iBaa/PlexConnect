@@ -39,3 +39,5 @@ cp -R /Applications/PlexConnect/assets/templates/plex/images/custom/top/* /Appli
 fi
 
 startbash.bash
+
+echo 'PlexConnect has been backed up'
