@@ -46,6 +46,14 @@ echo 'stoffez dir not found'
 
 fi
 
+falcoicons="${PlexConnectPath}/assets/thumbnails"
+if [ -d "$falcoicons" ]; then
+cp -R /Applications/PlexConnect/assets/thumbnails/* /Applications/plexconnect_BACKUP/flow
+else
+echo 'falco dir not found'
+
+fi
+
 startbash.bash
 
 echo 'PlexConnect has been backed up'
