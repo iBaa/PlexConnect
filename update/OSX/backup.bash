@@ -28,13 +28,30 @@ cp /Applications/PlexConnect/ATVSettings.cfg /Applications/plexconnect_BACKUP
 
 customicons="${BackupPath}/flow"
 if [ -d "$customicons" ]; then
-cp -R /Applications/PlexConnect/assets/templates/plex/images/custom/flow/* /Applications/plexconnect_BACKUP/flow
-cp -R /Applications/PlexConnect/assets/templates/plex/images/custom/top/* /Applications/plexconnect_BACKUP/top
+echo 'flow and top backup dir already present'
 else
 mkdir /Applications/plexconnect_BACKUP/top
 mkdir /Applications/plexconnect_BACKUP/flow
+echo 'flow and top backup dir created'
+
+fi
+
+brotusericons="${PlexConnectPath}/assets/templates/galaxy/images/flow"
+if [ -d "$brotusericons" ]; then
+cp -R /Applications/PlexConnect/assets/templates/plex/images/flow/* /Applications/plexconnect_BACKUP/flow
+cp -R /Applications/PlexConnect/assets/templates/galaxy/images/flow/* /Applications/plexconnect_BACKUP/flow
+else
+echo 'brotuser flow dir not found'
+
+fi
+
+cyberghosticons="${PlexConnectPath}/assets/templates/plexgrey/images/custom/flow"
+if [ -d "$cyberghosticons" ]; then
 cp -R /Applications/PlexConnect/assets/templates/plex/images/custom/flow/* /Applications/plexconnect_BACKUP/flow
 cp -R /Applications/PlexConnect/assets/templates/plex/images/custom/top/* /Applications/plexconnect_BACKUP/top
+cp -R Applications/PlexConnect/assets/templates/plexgrey/images/custom/* /Applications/plexconnect_BACKUP/flow
+else 
+echo 'Cyberghost flow and top dir not found'
 
 fi
 
