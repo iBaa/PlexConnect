@@ -28,6 +28,14 @@ echo 'flow and top dir not found'
 
 fi
 
+stoffezicons="${PlexConnectPath}/assets/templates/Stoffez/images/Flow"
+if [ -d "$stoffezicons" ]; then
+cp -R /Applications/plexconnect_BACKUP/flow/* /Applications/PlexConnect/assets/templates/Stoffez/images/Flow
+else
+echo 'flow dir not found'
+
+fi
+
 sudo /usr/bin/restart.bash
 
 echo 'All available PlexConnect settings have been restored'
