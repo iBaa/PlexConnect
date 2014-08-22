@@ -29,3 +29,5 @@ echo 'flow and top dir not found'
 fi
 
 sudo /usr/bin/restart.bash
+
+echo 'All available PlexConnect settings have been restored'
