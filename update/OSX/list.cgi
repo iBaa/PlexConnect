@@ -253,7 +253,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<input type=radio name=cmd value=backupbash> Backup all settings <br>"
     echo "<input type=radio name=cmd value=restorebash> Restore all settings <br>"
     echo "<input type=radio name=cmd value=iconbash> Upload Plex icon <br>"
-    echo "<input type=radio name=cmd value=createplistbash> Install PlexConnect <br>"
+    echo "<input type=radio name=cmd value=createplistbash> Install Daemon plist <br>"
     echo "<input type=radio name=cmd value=updaterbash> Update PlexConnect <br>"
     echo "<input type=radio name=cmd value=startbash> Start PlexConnect <br>"
     echo "<input type=radio name=cmd value=stopbash> Stop PlexConnect <br>"
