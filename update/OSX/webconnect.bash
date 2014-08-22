@@ -42,6 +42,7 @@ cp logbash.bash /usr/bin
 cp whobash.bash /usr/bin
 cp tvbash.bash /usr/bin
 cp timemachinebash.bash /usr/bin
+cp install.bash /usr/bin
 
 chmod +x /usr/bin/removecertsbash.bash
 chmod +x /usr/bin/createcertbash.bash
@@ -67,6 +68,7 @@ chmod +x /usr/bin/whobash.bash
 chmod +x /usr/bin/wakebash.bash
 chmod +x /usr/bin/tvbash.bash
 chmod +x /usr/bin/timemachinebash.bash
+chmod +x /usr/bin/install.bash
 
 chmod 4755 /usr/bin/removecertsbash.bash
 chmod 4755 /usr/bin/createcertbash.bash
