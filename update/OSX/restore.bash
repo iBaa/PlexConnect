@@ -32,7 +32,15 @@ stoffezicons="${PlexConnectPath}/assets/templates/Stoffez/images/Custom"
 if [ -d "$stoffezicons" ]; then
 cp -R /Applications/plexconnect_BACKUP/flow/* /Applications/PlexConnect/assets/templates/Stoffez/images/Custom
 else
-echo 'flow dir not found'
+echo 'stoffez flow dir not found'
+
+fi
+
+falcoicons="${PlexConnectPath}/assets/thumbnails"
+if [ -d "$falcoicons" ]; then
+cp -R /Applications/plexconnect_BACKUP/flow/* /Applications/PlexConnect/assets/thumbnails
+else
+echo 'falco953 flow dir not found'
 
 fi
 
