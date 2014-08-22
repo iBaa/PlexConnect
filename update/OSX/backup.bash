@@ -38,6 +38,14 @@ cp -R /Applications/PlexConnect/assets/templates/plex/images/custom/top/* /Appli
 
 fi
 
+stoffezicons="${PlexConnectPath}/assets/templates/Stoffez/images/Flow"
+if [ -d "$stoffezicons" ]; then
+cp -R /Applications/PlexConnect/assets/templates/Stoffez/images/Flow/* /Applications/plexconnect_BACKUP/flow
+else
+echo 'stoffez dir not found'
+
+fi
+
 startbash.bash
 
 echo 'PlexConnect has been backed up'
