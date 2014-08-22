@@ -275,7 +275,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<a href="https://plex.tv">MyPlexSharing</a>"
     echo "</p>"
     echo "OSX system commands"
-    echo "<br>" 
+    echo "</p>" 
     echo "<input type=radio name=cmd value=rebootbash> Reboot OSX <br>"
     echo "<input type=radio name=cmd value=lockbash> Lock Screen <br>"
     echo "<input type=radio name=cmd value=sleepbash> Sleep OSX <br>"
