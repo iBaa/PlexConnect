@@ -8,9 +8,6 @@ cp -R /Applications/onlytemp/PlexConnect/update/OSX/* /Applications/PlexConnect/
 rm -R /Applications/onlytemp
 cd /
 cd /Applications/PlexConnect/update/OSX
-cp installwc.bash /usr/bin
-chmod +x /usr/bin/installwc.bash
-installwc.bash
 cp install.bash /usr/bin
 chmod +x /usr/bin/install.bash
 install.bash
