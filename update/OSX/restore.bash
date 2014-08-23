@@ -46,7 +46,7 @@ echo 'stoffez flow dir not found'
 
 fi
 
-falcoicons="${PlexConnectPath}/assets/thumbnails"
+falcoicons="${PlexConnectPath}/assets/templates/falco953"
 if [ -d "$falcoicons" ]; then
 cp -R /Applications/plexconnect_BACKUP/flow/* /Applications/PlexConnect/assets/thumbnails
 else
