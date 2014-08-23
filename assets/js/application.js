@@ -11,7 +11,9 @@ var subtitleURL, subtitleSize;
 
 // information for atv.player - computed internally to application.js
 var lastReportedTime = -1;
+var lastTranscoderPingTime = -1;
 var remainingTime = 0;
+var isTranscoding = false;
 
 
 
@@ -49,6 +51,7 @@ atv.player.playerTimeDidChange = function(time)
   if (atv.player.asset.getElementByTagName('startTime'))
     thisReportTime += parseInt(atv.player.asset.getElementByTagName('startTime').textContent)
   
+  // report watched time
   if (lastReportedTime == -1 || Math.abs(thisReportTime-lastReportedTime) > 5000)
   {
     lastReportedTime = thisReportTime;
@@ -63,6 +66,15 @@ atv.player.playerTimeDidChange = function(time)
                         '&X-Plex-Client-Identifier=' + atv.device.udid + 
                         '&X-Plex-Device-Name=' + encodeURIComponent(atv.device.displayName) +
                         token );
+  }
+  
+  // ping transcoder to keep it alive
+  if (isTranscoding &&
+       (lastTranscoderPingTime == -1 || Math.abs(thisReportTime-lastTranscoderPingTime) > 60000)
+     )
+  {
+    lastTranscoderPingTime = thisReportTime;
+    loadPage( baseURL + '/video/:/transcode/universal/ping?session=' + atv.device.udid);
   }
   
   if (subtitle)
@@ -92,8 +104,11 @@ atv.player.didStopPlaying = function()
                       '&X-Plex-Device-Name=' + encodeURIComponent(atv.device.displayName) +
                       token );
     
-  // Kill the session.
-  loadPage(baseURL + '/video/:/transcode/universal/stop?session=' + atv.device.udid);
+  // Kill the transcoder session.
+  if (isTranscoding)
+  {
+    loadPage(baseURL + '/video/:/transcode/universal/stop?session=' + atv.device.udid);
+  }
 };
 
 /*
@@ -112,8 +127,14 @@ atv.player.willStartPlaying = function()
             return '';
     };
     
+    // init timer vars
+    lastReportedTime = -1;
+    lastTranscoderPingTime = -1;
+    remainingTime = 0;  // reset remaining time
+  
   // mediaURL and myMetadata
   var url = atv.player.asset.getElementByTagName('mediaURL').textContent;
+  isTranscoding = (url.indexOf('transcode/universal') > -1);
   var metadata = atv.player.asset.getElementByTagName('myMetadata');
   
   // get baseURL, OSD settings, ...
@@ -236,8 +257,6 @@ atv.player.willStartPlaying = function()
   atv.player.overlay = containerView;
   //atv.player.overlay.subviews = Views;
   
-  remainingTime = 0; // Reset remaining time
-  
   log('willStartPlaying done');
 };
 
@@ -295,8 +314,13 @@ atv.player.playerStateChanged = function(newState, timeIntervalSec) {
   if (newState == 'Paused')
   {
     state = 'paused';
-    pingTimer = atv.setInterval(function() {loadPage( baseURL + '/video/:/transcode/universal/ping?session=' + 
-                                                                  atv.device.udid); }, 60000);
+    if (isTranscoding)
+    {
+      pingTimer = atv.setInterval(
+        function() { loadPage( baseURL + '/video/:/transcode/universal/ping?session=' + atv.device.udid); },
+        60000
+      );
+    }
   }
 
   // Playing state, kill paused state ping timer
