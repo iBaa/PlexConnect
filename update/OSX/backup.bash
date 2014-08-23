@@ -73,4 +73,4 @@ fi
 
 startbash.bash
 
-echo 'PlexConnect has been backed up'
+echo 'All available PlexConnect settings have been backed up'
