@@ -59,6 +59,12 @@ def dprint(src, dlevel, *args):
         asc_args = list(args)
         
         for i,arg in enumerate(asc_args):
+            try:
+                if asc_args[i].getroot():
+                    asc_args[i] = prettyXML(asc_args[i])
+            except:
+                pass
+            
             if isinstance(asc_args[i], str):
                 asc_args[i] = asc_args[i].decode('utf-8', 'replace')  # convert as utf-8 just in case
             if isinstance(asc_args[i], unicode):

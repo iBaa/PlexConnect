@@ -363,7 +363,7 @@ def getXMLFromPMS(baseURL, path, options={}, authtoken=''):
     XML = etree.parse(response)
     
     dprint(__name__, 1, "====== received PMS-XML ======")
-    dprint(__name__, 1, prettyXML(XML))
+    dprint(__name__, 1, XML)
     dprint(__name__, 1, "====== PMS-XML finished ======")
     
     #XMLTree = etree.ElementTree(etree.fromstring(response))
@@ -478,7 +478,7 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
     XML = etree.ElementTree(root)
     
     dprint(__name__, 1, "====== Local Server/Sections XML ======")
-    dprint(__name__, 1, prettyXML(XML))
+    dprint(__name__, 1, XML)
     dprint(__name__, 1, "====== Local Server/Sections XML finished ======")
     
     return XML  # XML representation - created "just in time". Do we need to cache it?
