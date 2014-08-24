@@ -123,12 +123,6 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           /usr/bin/quititunesbash.bash
           echo "</pre>"
           ;;
-
-          logbash)
-          echo "Output of logbash :<pre>"
-          /usr/bin/logbash.bash
-          echo "</pre>"
-          ;;
           
           whobash)
           echo "Output of whobash :<pre>"
@@ -259,7 +253,6 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<input type=radio name=cmd value=stopbash> Stop PlexConnect <br>"
     echo "<input type=radio name=cmd value=restartbash> Restart PlexConnect <br>"
     echo "<input type=radio name=cmd value=statusbash> PlexConnect Status <br>"
-    echo "<input type=radio name=cmd value=logbash> PlexConnect Log <br>"
     echo "<input type=radio name=cmd value=updatewcbash> Update WebConnect <br>"
     echo "<br>"
     echo "Cert/Hijack management"
