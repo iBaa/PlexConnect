@@ -130,6 +130,12 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           echo "</pre>"
           ;;
 
+          pmsbash)
+          echo "Output of pmsbash :<pre>"
+          /usr/bin/pmsbash.bash
+          echo "</pre>"
+          ;;
+
           quititunesbash)
           echo "Output of quititunesbash :<pre>"
           /usr/bin/quititunesbash.bash
@@ -264,7 +270,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<input type=radio name=cmd value=startbash> Start PlexConnect <br>"
     echo "<input type=radio name=cmd value=stopbash> Stop PlexConnect <br>"
     echo "<input type=radio name=cmd value=restartbash> Restart PlexConnect <br>"
-    echo "<input type=radio name=cmd value=statusbash> PlexConnect Status <br>"
+    echo "<input type=radio name=cmd value=statusbash> Status PlexConnect <br>"
     echo "<input type=radio name=cmd value=updatewcbash> Update WebConnect <br>"
     echo "<br>"
     echo "Cert/Hijack management"
@@ -276,6 +282,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<br>"
     echo "Plex Media Server commands"
     echo "</p>"
+    echo "<input type=radio name=cmd value=pmsbash> Start Plex Media Server <br>"
     echo "<input type=radio name=cmd value=pmsscanbash> Update Library <br>"
     echo "<br>"
     echo "<a href="__PLEXWEB__">PlexWebLan</a>"
