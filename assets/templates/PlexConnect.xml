@@ -5,7 +5,11 @@
   </head>
   <body>
     <viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadMenuPage(event)">
-      <navigation>
+      <navigation currentIndex="{{VAL($myplex_auth:0:=0| =1)}}">
+        <navigationItem id="Playlists">{{CUT($myplex_auth:CUT:=CUT| =)}}
+          <title>{{TEXT(Playlists)}}</title>
+          <url>{{URL(:/PMS(all)/playlists&amp;PlexConnect=Playlists)}}</url>
+        </navigationItem>
         <navigationItem id="Library">
           <title>{{TEXT(Library)}}</title>
           <url>{{URL(:/PMS(owned)/library/sections)}}</url>

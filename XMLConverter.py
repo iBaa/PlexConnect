@@ -484,6 +484,12 @@ def XML_PMS2aTV(PMS_address, path, options):
             # Photo listing / directory
             XMLtemplate = 'Photo_Directories.xml'
     
+    elif cmd=='Playlists':
+        XMLtemplate = 'Playlists.xml'
+    
+    elif cmd=='Playlist_Video':
+        XMLtemplate = 'Playlist_Video.xml'
+    
     else:
         XMLtemplate = 'Directory.xml'
     

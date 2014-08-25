@@ -1,0 +1,109 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+  
+  <body>
+    {{VAR(items:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
+    {{VAR(movies:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
+    {{VAR(episodes:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
+    
+    <!-- List -->
+    <listWithPreview id="Playlist_List">
+    {{CUT(size:CUT:0=CUT|1=)}}
+      <header>
+        <simpleHeader>
+          <title>{{TEXT(Video Playlist)}}</title>
+        </simpleHeader>
+      </header>
+      
+      <menu>
+        <sections>
+          <!-- Movies -->
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{TEXT(Movies)}}</title>
+              </horizontalDivider>
+            </header>
+            
+            <items>
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}"
+                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                             onSelect="atv.loadURL('{{URL(key)}}?includeExtras=1&amp;PlexConnect=MoviePrePlay')"
+                             onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
+              {{COPY(Video:type::episode=|movie=COPY)}}
+              {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+              {{VAR(movies:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                <label>{{VAL(title)}}</label>
+                <image>{{IMAGEURL(thumb::384)}}</image>
+                <preview>
+                  <keyedPreview>
+                    <title>{{VAL(title)}}</title>
+                    <summary>{{VAL(summary)}}</summary>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
+                    <metadataKeys>
+                      <label>{{TEXT(Actors)}}</label>
+                      <label>{{TEXT(Director)}}</label>
+                      <label>{{TEXT(Genre)}}</label>
+                      <label>{{TEXT(Length)}}</label>
+                    </metadataKeys>
+                    <metadataValues>
+                      <label>{{VAL(Role/tag)}}{{VAL(Role[2]/tag::=, )}}{{VAL(Role[2]/tag)}}{{VAL(Role[3]/tag::=, )}}{{VAL(Role[3]/tag)}}</label>
+                      <label>{{VAL(Director/tag)}}</label>
+                      <label>{{VAL(Genre/tag)}}{{VAL(Genre[2]/tag::=, )}}{{VAL(Genre[2]/tag)}}</label>
+                      <label>{{getDurationString(duration)}}</label>
+                    </metadataValues>
+                  </keyedPreview>
+                </preview>
+              </twoLineEnhancedMenuItem>
+            </items>
+          </menuSection>{{CUT(#movies::FALSE=CUT|TRUE=)}}
+          
+          <!-- Episodes -->
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{TEXT(Episodes)}}</title>
+              </horizontalDivider>
+            </header>
+            
+            <items>
+              <twoLineEnhancedMenuItem id="{{VAL(ratingKey)}}"
+                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
+                             onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
+              {{COPY(Video:type::episode=COPY|movie=)}}
+              {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+              {{VAR(episodes:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                <label>{{VAL(title)}}</label>
+                <label2>{{VAL(grandparentTitle)}}</label2>
+                <ordinal>{{VAL(index)}}</ordinal>
+                <maxOrdinalDigits>2</maxOrdinalDigits>
+                <image>{{IMAGEURL(thumb::384)}}</image>
+                <preview>
+                  <keyedPreview>
+                    <title>{{VAL(title)}}</title>
+                    <summary>{{VAL(summary)}}</summary>{{CUT($showsynopsis::Hide=CUT|Show=)}}
+                    <summary>{{VAL(summary)}}</summary>{{CUT(viewCount:CUT:=)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
+                    <summary>{{TEXT(Synopsis hidden.)}}</summary>{{CUT(viewCount)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
+                    <image>{{IMAGEURL(thumb::768)}}</image>
+                  </keyedPreview>
+                </preview>
+              </twoLineEnhancedMenuItem>
+            </items>
+          </menuSection>{{CUT(#episodes::FALSE=CUT|TRUE=)}}
+          
+        </sections>
+      </menu>
+    </listWithPreview>
+    
+    <!--No Items Available-->
+    <dialog id="com.sample.error-dialog">
+    {{CUT(#items::FALSE=|TRUE=CUT)}}
+      <title>PlexConnect</title>
+      <description>{{TEXT(Video Playlist: No Items Available)}}</description>
+    </dialog>
+    
+  </body>
+</atv>

@@ -416,13 +416,12 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
     root = etree.Element("MediaConverter")
     root.set('friendlyName', type+' Servers')
     
-    if type=='owned':
-        owned='1'
-    elif type=='shared':
-        owned='0'
-    
     for uuid in g_PMS.get(ATV_udid, {}):
-        if getPMSProperty(ATV_udid, uuid, 'owned')==owned:
+        if (type=='all') or \
+           (type=='owned' and getPMSProperty(ATV_udid, uuid, 'owned')=='1') or \
+           (type=='shared' and getPMSProperty(ATV_udid, uuid, 'owned')=='0') or \
+           (type=='local' and getPMSProperty(ATV_udid, uuid, 'local')=='1') or \
+           (type=='remote' and getPMSProperty(ATV_udid, uuid, 'local')=='0'):
             Server = etree.SubElement(root, 'Server')  # create "Server" node
             Server.set('name',    getPMSProperty(ATV_udid, uuid, 'name'))
             Server.set('address', getPMSProperty(ATV_udid, uuid, 'ip'))
@@ -472,6 +471,11 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
                     if 'art' in Dir.attrib:
                         Dir.set('art',    PMS_mark + getURL('', path, Dir.get('art')))
                     Server.append(Dir)
+                
+                for Playlist in XML.getiterator('Playlist'):  # copy "Playlist" content, add PMS to links
+                    key = Playlist.get('key')  # absolute path
+                    Playlist.set('key',    PMS_mark + getURL('', path, key))
+                    Server.append(Playlist)
     
     root.set('size', str(len(root.findall('Server'))))
     
