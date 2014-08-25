@@ -14,16 +14,5 @@ sed -e "s/__USERNAME__/$whoami/" "/Applications/PlexConnect/update/OSX/sudoers" 
 
 fi
 
-if [ -s /usr/bin/currentuser.bash ]
-
-then
-rm /usr/bin/currentuser.bash
-sed -e "s/__USER__/$whoami/" "/Applications/PlexConnect/update/OSX/currentuser.bash" > /usr/bin/currentuser.bash
-
-else
-sed -e "s/__USER__/$whoami/" "/Applications/PlexConnect/update/OSX/currentuser.bash" > /usr/bin/currentuser.bash
-
-fi
-
 
 
