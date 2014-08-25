@@ -475,11 +475,6 @@ chmod 4755 /usr/bin/createautobash.bash
 chmod 4755 /usr/bin/trashbasebash.bash
 chmod 4755 /usr/bin/uninstallbash.bash
 
-## modify sudoers to allow password free script access
-sudoers.bash
-cp /Applications/PlexConnect/update/OSX/sudoers2 /etc/sudoers
-chmod 440 /etc/sudoers
-
 ## Import LAN and WAN IP's into webconnect cgi files
 cd /Library/WebServer/CGI-Executables/
 plexweb.bash
