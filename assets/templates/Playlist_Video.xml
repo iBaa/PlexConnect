@@ -5,8 +5,6 @@
   
   <body>
     {{VAR(items:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
-    {{VAR(movies:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
-    {{VAR(episodes:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
     
     <!-- List -->
     <listWithPreview id="Playlist_List">
@@ -19,22 +17,19 @@
       
       <menu>
         <sections>
-          <!-- Movies -->
+          
           <menuSection>
-            <header>
-              <horizontalDivider alignment="left">
-                <title>{{TEXT(Movies)}}</title>
-              </horizontalDivider>
-            </header>
-            
             <items>
+              <__COPY__>
+              {{COPY(Video)}}
+              
+              <!-- Movies -->
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"
                              onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                              onSelect="atv.loadURL('{{URL(key)}}?includeExtras=1&amp;PlexConnect=MoviePrePlay')"
                              onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
-              {{COPY(Video:type::episode=|movie=COPY)}}
+              {{CUT(type::episode=CUT|movie=)}}
               {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
-              {{VAR(movies:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <label>{{VAL(title)}}</label>
                 <image>{{IMAGEURL(thumb::384)}}</image>
                 <preview>
@@ -57,25 +52,14 @@
                   </keyedPreview>
                 </preview>
               </twoLineEnhancedMenuItem>
-            </items>
-          </menuSection>{{CUT(#movies::FALSE=CUT|TRUE=)}}
-          
-          <!-- Episodes -->
-          <menuSection>
-            <header>
-              <horizontalDivider alignment="left">
-                <title>{{TEXT(Episodes)}}</title>
-              </horizontalDivider>
-            </header>
-            
-            <items>
+              
+              <!-- Episodes -->
               <twoLineEnhancedMenuItem id="{{VAL(ratingKey)}}"
                              onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
                              onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
                              onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
-              {{COPY(Video:type::episode=COPY|movie=)}}
+              {{CUT(type::episode=|movie=CUT)}}
               {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
-              {{VAR(episodes:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <label>{{VAL(title)}}</label>
                 <label2>{{VAL(grandparentTitle)}}</label2>
                 <ordinal>{{VAL(index)}}</ordinal>
@@ -91,8 +75,10 @@
                   </keyedPreview>
                 </preview>
               </twoLineEnhancedMenuItem>
+              
+              </__COPY__>
             </items>
-          </menuSection>{{CUT(#episodes::FALSE=CUT|TRUE=)}}
+          </menuSection>
           
         </sections>
       </menu>
