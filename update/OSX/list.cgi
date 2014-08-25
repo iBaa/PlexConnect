@@ -124,6 +124,12 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           echo "</pre>"
           ;;
 
+          phtbash)
+          echo "Output of phtbash :<pre>"
+          /usr/bin/phtbash.bash
+          echo "</pre>"
+          ;;
+
           quititunesbash)
           echo "Output of quititunesbash :<pre>"
           /usr/bin/quititunesbash.bash
@@ -290,6 +296,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<input type=radio name=cmd value=itunesbash> Start iTunes <br>"
     echo "<input type=radio name=cmd value=quititunesbash> Quit iTunes <br>"
     echo "<input type=radio name=cmd value=utorrentbash> Start uTorrent <br>"
+    echo "<input type=radio name=cmd value=phtbash> Start Plex Home Theater <br>"
     echo "<input type=radio name=cmd value=whobash> Who Am I root <br>"
     echo "<input type=radio name=cmd value=who> Who Am I web <br>"
     echo "<input type=radio name=cmd value=wakebash> Wake Reason <br>"
