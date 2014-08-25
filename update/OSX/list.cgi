@@ -118,6 +118,12 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           echo "</pre>"
           ;;
 
+          utorrentbash)
+          echo "Output of utorrentbash :<pre>"
+          /usr/bin/utorrentbash.bash
+          echo "</pre>"
+          ;;
+
           quititunesbash)
           echo "Output of quititunesbash :<pre>"
           /usr/bin/quititunesbash.bash
@@ -283,6 +289,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<input type=radio name=cmd value=tvbash> Start TeamViewer <br>"
     echo "<input type=radio name=cmd value=itunesbash> Start iTunes <br>"
     echo "<input type=radio name=cmd value=quititunesbash> Quit iTunes <br>"
+    echo "<input type=radio name=cmd value=utorrentbash> Start uTorrent <br>"
     echo "<input type=radio name=cmd value=whobash> Who Am I root <br>"
     echo "<input type=radio name=cmd value=who> Who Am I web <br>"
     echo "<input type=radio name=cmd value=wakebash> Wake Reason <br>"
