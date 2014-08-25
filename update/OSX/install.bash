@@ -215,6 +215,7 @@ cp trash.bash /usr/bin
 cp itunes.bash /usr/bin
 cp utorrent.bash /usr/bin
 cp pht.bash /usr/bin
+cp pms.bash /usr/bin
 cp quititunes.bash /usr/bin
 cp webconnect.bash /usr/bin
 cp updatewc.bash /usr/bin
@@ -272,6 +273,7 @@ cp sleepbash.bash /usr/bin
 cp itunesbash.bash /usr/bin
 cp utorrentbash.bash /usr/bin
 cp phtbash.bash /usr/bin
+cp pmsbash.bash /usr/bin
 cp quititunesbash.bash /usr/bin
 cp wakebash.bash /usr/bin
 cp logbash.bash /usr/bin
@@ -354,6 +356,7 @@ chmod +x /usr/bin/trash.bash
 chmod +x /usr/bin/itunes.bash
 chmod +x /usr/bin/utorrent.bash
 chmod +x /usr/bin/pht.bash
+chmod +x /usr/bin/pms.bash
 chmod +x /usr/bin/quititunes.bash
 chmod +x /usr/bin/icon.bash
 chmod +x /usr/bin/webconnect.bash
@@ -414,6 +417,7 @@ chmod +x /usr/bin/sleepbash.bash
 chmod +x /usr/bin/itunesbash.bash
 chmod +x /usr/bin/utorrentbash.bash
 chmod +x /usr/bin/phtbash.bash
+chmod +x /usr/bin/pmsbash.bash
 chmod +x /usr/bin/quititunesbash.bash
 chmod +x /usr/bin/logbash.bash
 chmod +x /usr/bin/whobash.bash
@@ -462,6 +466,7 @@ chmod 4755 /usr/bin/sleepbash.bash
 chmod 4755 /usr/bin/itunesbash.bash
 chmod 4755 /usr/bin/utorrentbash.bash
 chmod 4755 /usr/bin/phtbash.bash
+chmod 4755 /usr/bin/pmsbash.bash
 chmod 4755 /usr/bin/quititunesbash.bash
 chmod 4755 /usr/bin/logbash.bash
 chmod 4755 /usr/bin/whobash.bash
