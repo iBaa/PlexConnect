@@ -517,12 +517,12 @@ fi
 
 if [ -s /plexweblist.bash ]
 then
-rm /plexwebios.bash
+rm /plexweblist.bash
 fi
 
 if [ -s /plexweblistwan.bash ]
 then
-rm /plexwebioswan.bash
+rm /plexweblistwan.bash
 fi
 
 if [ -s /plexwebios.bash ]
@@ -534,3 +534,5 @@ if [ -s /xml.bash ]
 then
 rm /xml.bash
 fi
+
+echo 'WebConnect has been updated. Refresh your browser if no icons appear.'
