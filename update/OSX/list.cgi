@@ -279,6 +279,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<input type=radio name=cmd value=pmsbash> Start Plex Media Server <br>"
     echo "<input type=radio name=cmd value=phtbash> Start Plex Home Theater <br>"
     echo "<input type=radio name=cmd value=tvbash> Start TeamViewer <br>"
+    echo "<input type=radio name=cmd value=utorrentbash> Start uTorrent <br>"
     echo "<input type=radio name=cmd value=itunesbash> Start iTunes <br>"
     echo "<input type=radio name=cmd value=quititunesbash> Quit iTunes <br>"
     echo "<br>"
