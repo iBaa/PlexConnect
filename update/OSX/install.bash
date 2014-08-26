@@ -498,47 +498,39 @@ plexweblistwan.bash
 if [ -s /plexweb.bash ]
 then
 rm /plexweb.bash
-else
 fi
 
 if [ -s /plexwebwan.bash ]
 then
 rm /plexwebwan.bash
-else
 fi
 
 if [ -s /plexwebios.bash ]
 then
 rm /plexwebios.bash
-else
 fi
 
 if [ -s /plexwebioswan.bash ]
 then
 rm /plexwebioswan.bash
-else
 fi
 
 if [ -s /plexweblist.bash ]
 then
 rm /plexwebios.bash
-else
 fi
 
 if [ -s /plexweblistwan.bash ]
 then
 rm /plexwebioswan.bash
-else
 fi
 
 if [ -s /plexwebios.bash ]
 then
 rm /plexwebios.bash
-else
 fi
 
 if [ -s /xml.bash ]
 then
 rm /xml.bash
-else
 fi
