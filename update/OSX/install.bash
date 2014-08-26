@@ -486,7 +486,6 @@ chmod 4755 /usr/bin/trashbasebash.bash
 chmod 4755 /usr/bin/uninstallbash.bash
 
 ## Import LAN and WAN IP's into webconnect cgi files
-cd /Library/WebServer/CGI-Executables/
 plexweb.bash
 plexwebwan.bash
 plexwebios.bash
