@@ -295,7 +295,6 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<input type=radio name=cmd value=wakebash> Wake Reason <br>"
     echo "<input type=radio name=cmd value=trashbash> Empty Trash Can<br>"
     echo "<br>"
-    echo "<br>"
     echo "<input type=submit>"
 echo "<br>"
 echo "<br>"
