@@ -35,6 +35,11 @@ wq
 EOF
 ed -s plexweb.bash << EOF
 i
+cd /Library/WebServer/CGI-Executables
+.
+wq
+EOF
+i
 #!/bin/bash
 .
 wq
