@@ -282,7 +282,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<input type=radio name=cmd value=itunesbash> Start iTunes <br>"
     echo "<input type=radio name=cmd value=quititunesbash> Quit iTunes <br>"
     echo "<br>"
-    echo "<a href="__PLEXWEB__">PlexWebLan</a>&nbsp;&nbsp;<a href="__PLEXWEBWAN__">PlexWebWan</a>&nbsp;&nbsp;<a href="https://plex.tv">MyPlexSharing</a>&nbsp;&nbsp;<a href="https://itunes.apple.com/us/app/fing-network-scanner/id430921107?mt=8">WOL IOS APP</a>"
+    echo "<a href="__PLEXWEB__">PlexWebLan</a>&nbsp;&nbsp;<a href="__PLEXWEBWAN__">PlexWebWan</a>&nbsp;&nbsp;&nbsp;<a href="https://plex.tv">MyPlexSharing</a>&nbsp;&nbsp;&nbsp;<a href="https://itunes.apple.com/us/app/fing-network-scanner/id430921107?mt=8">WOL IOS APP</a>"
     echo "</p>"
     echo "OSX system commands"
     echo "</p>" 
