@@ -220,6 +220,21 @@ def XML_PMS2aTV(PMS_address, path, options):
         
         return XML_PlayVideo_ChannelsV1('', url.replace('&','&amp;'))
 
+    elif cmd=='Plex_Video_Files_Scanner':
+        XMLtemplate = 'HomeVideoSectionTopLevel.xml'
+
+    elif cmd=='Plex_Movie_Scanner':
+        XMLtemplate = 'MovieSectionTopLevel.xml'
+    
+    elif cmd=='Plex_Series_Scanner':
+        XMLtemplate = 'TVSectionTopLevel.xml'
+        
+    elif cmd=='Plex_Photo_Scanner':
+        XMLtemplate = 'PhotoSectionTopLevel.xml'
+
+    elif cmd=='Plex_Music_Scanner':
+        XMLtemplate = 'Directory.xml'
+    
     elif cmd=='ScrobbleMenu':
         XMLtemplate = 'ScrobbleMenu.xml'
 
@@ -417,18 +432,6 @@ def XML_PMS2aTV(PMS_address, path, options):
     elif not XMLtemplate=='':
         pass  # template already selected
 
-    elif PMSroot.get('viewGroup','')=="secondary" and (PMSroot.get('art','').find('video') != -1 or PMSroot.get('thumb','').find('video') != -1):
-        XMLtemplate = 'HomeVideoSectionTopLevel.xml'
-
-    elif PMSroot.get('viewGroup','')=="secondary" and (PMSroot.get('art','').find('movie') != -1 or PMSroot.get('thumb','').find('movie') != -1):
-        XMLtemplate = 'MovieSectionTopLevel.xml'
-    
-    elif PMSroot.get('viewGroup','')=="secondary" and (PMSroot.get('art','').find('show') != -1 or PMSroot.get('thumb','').find('show') != -1):
-        XMLtemplate = 'TVSectionTopLevel.xml'
-        
-    elif PMSroot.get('viewGroup','')=="secondary" and (PMSroot.get('art','').find('photo') != -1 or PMSroot.get('thumb','').find('photo') != -1):
-        XMLtemplate = 'PhotoSectionTopLevel.xml'
-        
     elif PMSroot.get('viewGroup','')=="secondary":
         XMLtemplate = 'Directory.xml'
     
