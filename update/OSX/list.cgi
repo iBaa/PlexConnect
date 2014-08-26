@@ -16,13 +16,13 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     if [ $CMD ]
     then
       case "$CMD" in
-        removecertsbash)
+          removecertsbash)
           echo "Output of removecertsbash :<pre>"
           /usr/bin/removecertsbash.bash
           echo "</pre>"
           ;;
 
-        createcertbash)
+          createcertbash)
           echo "Output of createcertbash :<pre>"
           /usr/bin/createcertbash.bash
           echo "</pre>"
@@ -40,31 +40,31 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           echo "</pre>"
           ;;
 
-        createplistbash)
+          createplistbash)
           echo "Output of createplistbash :<pre>"
           /usr/bin/createplistbash.bash
           echo "</pre>"
           ;;
 
-        updaterbash)
+          updaterbash)
           echo "Output of updaterbash :<pre>"
           /usr/bin/updaterbash.bash
           echo "</pre>"
           ;;
 
-        startbash)
+          startbash)
           echo "Output of startbash :<pre>"
           /usr/bin/startbash.bash
           echo "</pre>"
           ;;
 
-        stopbash)
+          stopbash)
           echo "Output of stopbash :<pre>"
           /usr/bin/stopbash.bash
           echo "</pre>"
           ;;
 
-        restartbash)
+          restartbash)
           echo "Output of restartbash :<pre>"
           /usr/bin/restartbash.bash
           echo "</pre>"
@@ -282,7 +282,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<input type=radio name=cmd value=itunesbash> Start iTunes <br>"
     echo "<input type=radio name=cmd value=quititunesbash> Quit iTunes <br>"
     echo "<br>"
-    echo "<a href="__PLEXWEB__">PlexWebLan</a>&nbsp;<a href="__PLEXWEBWAN__">PlexWebWan</a>&nbsp;<a href="https://plex.tv">MyPlexSharing</a>"
+    echo "<a href="__PLEXWEB__">PlexWebLan</a>&nbsp;&nbsp;<a href="__PLEXWEBWAN__">PlexWebWan</a>&nbsp;&nbsp;<a href="https://plex.tv">MyPlexSharing</a>&nbsp;&nbsp;<a href="https://itunes.apple.com/us/app/fing-network-scanner/id430921107?mt=8">WOL IOS APP</a>"
     echo "</p>"
     echo "OSX system commands"
     echo "</p>" 
