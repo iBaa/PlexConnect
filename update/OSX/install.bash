@@ -39,11 +39,6 @@ cd /Library/WebServer/CGI-Executables
 .
 wq
 EOF
-i
-#!/bin/bash
-.
-wq
-EOF
 
 ## Generate plexwebios.bash based on OSX IP Address for ios.cgi
 ifconfig en0|grep 'inet '|cut -d ' ' -f 2 > plexwebios.bash
@@ -64,7 +59,7 @@ wq
 EOF
 ed -s plexwebios.bash << EOF
 i
-#!/bin/bash
+cd /Library/WebServer/CGI-Executables
 .
 wq
 EOF
@@ -88,7 +83,7 @@ wq
 EOF
 ed -s plexweblist.bash << EOF
 i
-#!/bin/bash
+cd /Library/WebServer/CGI-Executables
 .
 wq
 EOF
@@ -112,7 +107,7 @@ wq
 EOF
 ed -s plexwebwan.bash << EOF
 i
-#!/bin/bash
+cd /Library/WebServer/CGI-Executables
 .
 wq
 EOF
@@ -136,7 +131,7 @@ wq
 EOF
 ed -s plexwebioswan.bash << EOF
 i
-#!/bin/bash
+cd /Library/WebServer/CGI-Executables
 .
 wq
 EOF
@@ -160,7 +155,7 @@ wq
 EOF
 ed -s plexweblistwan.bash << EOF
 i
-#!/bin/bash
+cd /Library/WebServer/CGI-Executables
 .
 wq
 EOF
@@ -491,6 +486,7 @@ chmod 4755 /usr/bin/trashbasebash.bash
 chmod 4755 /usr/bin/uninstallbash.bash
 
 ## Import LAN and WAN IP's into webconnect cgi files
+cd /Library/WebServer/CGI-Executables
 plexweb.bash
 plexwebwan.bash
 plexwebios.bash
