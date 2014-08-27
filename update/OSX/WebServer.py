@@ -144,7 +144,7 @@ class MyHandler(BaseHTTPRequestHandler):
                         'watchdisneychannel.go.com': 'DisneyChannel_V2',
                         'watchdisneyxd.go.com': 'DisneyXD_V2',
                         'ssl.weather.com': 'weatherchannel',
-                        'secure.marketwatch.com': 'wsjlive'
+                        'secure.marketwatch.com': 'wsj'
                     }
                     if name == hosticons.get(g_param['HostToIntercept']):
                         dprint(__name__, 2, "getting plex icon")
