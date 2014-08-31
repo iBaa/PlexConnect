@@ -17,7 +17,7 @@
 			<sections>
 				<shelfSection>
 					<items>
-						<actionButton id="play" onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')">
+						<actionButton id="play" onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(Video/ratingKey)}}')">
 							<title>{{TEXT(Play)}}</title>
 							<image>resource://Play.png</image>
               <focusedImage>resource://PlayFocused.png</focusedImage>

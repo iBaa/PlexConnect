@@ -191,7 +191,14 @@ def XML_PMS2aTV(PMS_address, path, options):
         XMLtemplate = 'ChannelsSearch.xml'
         path = ''
         
-    elif cmd=='Play':
+    elif cmd.startswith('Play:'):
+        opt = cmd[len('Play:'):]  # cut command:
+        parts = opt.split(':',1)
+        if len(parts)==2:
+            options['PlexConnectPlayType'] = parts[0]  # Single, Continuos # decoded in PlayVideo.xml, COPY_PLAYLIST
+            options['PlexConnectRatingKey'] = parts[1]  # ratingKey # decoded in PlayVideo.xml
+        else:
+            return XML_Error('PlexConnect','Unexpected "Play" command syntax')
         XMLtemplate = 'PlayVideo.xml'
     
     elif cmd=='PlayVideo_ChannelsV1':
@@ -726,7 +733,7 @@ class CCommandHelper():
         # walk the path if neccessary
         while '/' in attrib and el!=None:
             parts = attrib.split('/',1)
-            if parts[0].startswith('#'):  # internal variable in path
+            if parts[0].startswith('#') and attrib[1:] in self.variables:  # internal variable in path
                 el = el.find(self.variables[parts[0][1:]])
             elif parts[0].startswith('$'):  # setting
                 el = el.find(g_ATVSettings.getSetting(self.ATV_udid, parts[0][1:]))
@@ -737,7 +744,7 @@ class CCommandHelper():
             attrib = parts[1]
         
         # check element and get attribute
-        if attrib.startswith('#'):  # internal variable
+        if attrib.startswith('#') and attrib[1:] in self.variables:  # internal variable
             res = self.variables[attrib[1:]]
             dfltd = False
         elif attrib.startswith('$'):  # setting
@@ -746,7 +753,7 @@ class CCommandHelper():
         elif attrib.startswith('%'):  # PMS property
             res = PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, attrib[1:])
             dfltd = False
-        elif attrib.startswith('^'):  # aTV property, http request options
+        elif attrib.startswith('^') and attrib[1:] in self.options:  # aTV property, http request options
             res = self.options[attrib[1:]]
             dfltd = False
         elif el!=None and attrib in el.attrib:
@@ -864,6 +871,58 @@ class CCommandCollection(CCommandHelper):
                     key = self.applyConversion(key, conv)
             
             if key:
+                self.PMSroot['copy_'+tag] = elemSRC
+                el = copy.deepcopy(child)
+                XML_ExpandTree(self, el, elemSRC, srcXML)
+                XML_ExpandAllAttrib(self, el, elemSRC, srcXML)
+                
+                if el.tag=='__COPY__':
+                    for el_child in list(el):
+                        elem.insert(ix, el_child)
+                        ix += 1
+                else:
+                    elem.insert(ix, el)
+                    ix += 1
+        
+        # remove template child
+        elem.remove(child)
+        return True  # tree modified, nodes updated: restart from 1st elem
+    
+    #syntax: Video, playType (Single|Continuos), key to match (^PlexConnectRatingKey), ratingKey
+    def TREE_COPY_PLAYLIST(self, elem, child, src, srcXML, param):
+        tag, leftover  = self.getParam(src, param)
+        playType, leftover, dfltd = self.getKey(src, srcXML, leftover)  # Single (default), Continuos
+        key, leftover, dfltd = self.getKey(src, srcXML, leftover)
+        param_key = leftover
+        
+        src, srcXML, tag = self.getBase(src, srcXML, tag)
+        
+        # walk the src path if neccessary
+        while '/' in tag and src!=None:
+            parts = tag.split('/',1)
+            src = src.find(parts[0])
+            tag = parts[1]
+        
+        # find index of child in elem - to keep consistent order
+        for ix, el in enumerate(list(elem)):
+            if el==child:
+                break
+        
+        # duplicate child and add to tree
+        copy_enbl = False
+        for elemSRC in src.findall(tag):
+            child_key, leftover, dfltd = self.getKey(elemSRC, srcXML, param_key)
+            
+            # find first-to-copy src element
+            if playType == 'Continuos':
+                copy_enbl = copy_enbl or (key==child_key)  # [0 0 1 1 1 1]
+            else:  # 'Single' (default)
+                copy_enbl = (key==child_key)               # [0 0 1 0 0 0]
+            
+            # todo: implement "Shuffle" somewhere around here...
+            
+            if copy_enbl:
+                self.PMSroot['copy_'+tag] = elemSRC
                 el = copy.deepcopy(child)
                 XML_ExpandTree(self, el, elemSRC, srcXML)
                 XML_ExpandAllAttrib(self, el, elemSRC, srcXML)
@@ -1099,14 +1158,14 @@ class CCommandCollection(CCommandHelper):
     
     def ATTRIB_VIDEOURL(self, src, srcXML, param):
         Video, leftover = self.getElement(src, srcXML, param)
+        partIndex, leftover, dfltd = self.getKey(src, srcXML, leftover)
+        partIndex = int(partIndex) if partIndex else 0
         
         AuthToken = PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'accesstoken')
         
         if not Video:
-            # not a complete video structure - take key directly and build direct-play path
-            key, leftover, dfltd = self.getKey(src, srcXML, param)
-            res = PlexAPI.getDirectVideoPath(key, AuthToken)
-            res = PlexAPI.getURL(self.PMS_baseURL, self.path[srcXML], res)
+            dprint(__name__, 0, "VIDEOURL - VIDEO element not found: {0}", param)
+            res = 'VIDEO_ELEMENT_NOT_FOUND'  # not found?
             return res
         
         # complete video structure - request transcoding if needed
@@ -1196,11 +1255,11 @@ class CCommandCollection(CCommandHelper):
                 # or videoATVNative (HTTP live stream m4v/h264/aac...)
                 #    limited by quality setting
                 #    with aTV supported subtitle (iOS embedded tx3g, PlexConnext external srt)
-                res, leftover, dfltd = self.getKey(Media, srcXML, 'Part/key')
+                res, leftover, dfltd = self.getKey(Media, srcXML, 'Part['+str(partIndex+1)+']/key')
                 
                 if Media.get('indirect', False):  # indirect... todo: select suitable resolution, today we just take first Media
                     PMS = PlexAPI.getXMLFromPMS(self.PMS_baseURL, res, self.options, AuthToken)  # todo... check key for trailing '/' or even 'http'
-                    res, leftover, dfltd = self.getKey(PMS.getroot(), srcXML, 'Video/Media/Part/key')
+                    res, leftover, dfltd = self.getKey(PMS.getroot(), srcXML, 'Video/Media/Part['+str(partIndex+1)+']/key')
                 
                 res = PlexAPI.getDirectVideoPath(res, AuthToken)
             else:
@@ -1212,11 +1271,11 @@ class CCommandCollection(CCommandHelper):
                              'dontBurnIn': '1' if subtitleDirectPlay else '0', \
                              'size': g_ATVSettings.getSetting(self.ATV_udid, 'subtitlesize') }
                 audio = { 'boost': g_ATVSettings.getSetting(self.ATV_udid, 'audioboost') }
-                res = PlexAPI.getTranscodeVideoPath(res, AuthToken, self.options, transcoderAction, qLimits, subtitle, audio)
+                res = PlexAPI.getTranscodeVideoPath(res, AuthToken, self.options, transcoderAction, qLimits, subtitle, audio, partIndex)
         
         else:
-            dprint(__name__, 0, "MEDIAPATH - element not found: {0}", param)
-            res = 'FILE_NOT_FOUND'  # not found?
+            dprint(__name__, 0, "VIDEOURL - MEDIA element not found: {0}", param)
+            res = 'MEDIA_ELEMENT_NOT_FOUND'  # not found?
         
         if res.startswith('/'):  # internal full path.
             res = self.PMS_baseURL + res

@@ -16,7 +16,7 @@
           <menuSection>
             <items>
               <twoLineEnhancedMenuItem id="{{VAL(key)}}" 
-                                       onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                                       onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
                                        onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')">
                 {{COPY(Video)}}
                 <label>{{VAL(grandparentTitle)}}</label>

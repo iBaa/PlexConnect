@@ -97,8 +97,8 @@
               </stash>
               
               <items>
-                <actionButton id="play" onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
-                                        onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')">
+                <actionButton id="play" onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(Video/ratingKey)}}')"
+                                        onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(Video/ratingKey)}}')">
                   <title>{{TEXT(Play)}}</title>
                   <image>resource://Play.png</image>
                   <focusedImage>resource://PlayFocused.png</focusedImage>
@@ -144,7 +144,8 @@
           <sections>
             <shelfSection>
               <items>
-                <moviePoster related="true" alwaysShowTitles="true" id="shelf_item_1" onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')">
+                <moviePoster related="true" alwaysShowTitles="true" id="shelf_item_1" 
+                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')">
                   {{COPY(Video/Extras/Video)}}
                   <title>{{VAL(title)}}</title>
                   <subtitle>{{VAL(extraType::1=Trailer|2=Deleted|3=Interview|4=???|5=Behind the Scenes|6=Scene)}}</subtitle>

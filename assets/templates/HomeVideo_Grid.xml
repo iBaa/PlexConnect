@@ -16,7 +16,7 @@
         <grid columnCount="5" id="grid_0">
           <items>
             <sixteenByNinePoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_homevideos::Highlighted Only=false|Show All=true)}}"
-                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
                              onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=HomeVideoPrePlay')"
                              onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
               {{COPY(Video)}}

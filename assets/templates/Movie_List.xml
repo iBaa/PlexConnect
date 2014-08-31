@@ -18,7 +18,7 @@
           <menuSection>
             <items>
               <twoLineMenuItem id="{{VAL(key)}}"
-                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
                              onSelect="atv.loadURL('{{URL(key)}}?includeExtras=1&amp;PlexConnect=MoviePrePlay')"
                              onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
            {{COPY(Video)}}

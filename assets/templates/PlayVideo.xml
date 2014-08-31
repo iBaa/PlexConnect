@@ -1,56 +1,68 @@
 <atv>
   <body>
     <videoPlayer id="com.sample.video-player">
-      <httpFileVideoAsset id="{{VAL(Video/key)}}">
-        <mediaURL>{{VIDEOURL(Video)}}</mediaURL>
-        <title>{{VAL(Video/title)}}</title>
-        <description>{{VAL(Video/summary)}}</description>
-        <bookmarkTime>{{EVAL({{VAL(Video/viewOffset:0)}} / 1000)}}</bookmarkTime>
-        <image>{{IMAGEURL(Video/thumb::384)}}</image>
+      <httpFileVideoAsset id="{{VAL(^PlexConnectRatingKey)}}">
+      {{COPY(Video:ratingKey::=|{{VAL(^PlexConnectRatingKey)}}=COPY|{{VAL(^PlexConnectRatingKey)}} =)}}
         
-        <myMetadata>
+        <mediaURL>{{VIDEOURL()}}</mediaURL>
+        <title>{{VAL(title)}}</title>
+        <description>{{VAL(summary)}}</description>
+        <bookmarkTime>{{EVAL({{VAL(viewOffset:0)}} / 1000)}}</bookmarkTime>
+        <image>{{IMAGEURL(thumb::384)}}</image>
+        
+        <videoPlayerSettings>
             <!-- PMS, OSD settings, ... -->
             <baseURL>{{VAL(%baseURL)}}</baseURL>
             <accessToken>{{VAL(%accesstoken)}}</accessToken>
-            
-            <key>{{VAL(Video/key)}}</key>
-            <ratingKey>{{VAL(Video/ratingKey)}}</ratingKey>
-            <duration>{{VAL(Video/duration)}}</duration>
             
             <showClock>{{VAL($showplayerclock)}}</showClock>
             <timeFormat>{{VAL($timeformat)}}</timeFormat>
             <clockPosition>{{VAL($clockposition)}}</clockPosition>
             <overscanAdjust>{{VAL($overscanadjust)}}</overscanAdjust>
             <showEndtime>{{VAL($showendtime)}}</showEndtime>
+             
+            <subtitleSize>{{VAL($subtitlesize)}}</subtitleSize>
+        </videoPlayerSettings>
+        
+        <myMetadata>
+            <key>{{VAL(key)}}</key>
+            <ratingKey>{{VAL(ratingKey)}}</ratingKey>
+            <duration>{{VAL(duration)}}</duration>
             
             <!-- subtitle -->
             <__COPY__><!--needed as {{COPY}} doesn't work completely clean. Todo: ExpandTree needs to "finish" current element...-->
-            {{COPY(Video/Media/Part/Stream:streamType::=|3=COPY|3 =)}}
+            {{COPY(Media/Part/Stream:streamType::=|3=COPY|3 =)}}
               <subtitleURL> <!-- id="{{VAL(id)}}" key="{{VAL(key)}}" codec="{{VAL(codec)}}"--><!--.srt only -->
               {{CUT(selected:CUT:0=CUT|1=)}}
                 {{URL(key)}}&amp;PlexConnect=Subtitle&amp;PlexConnectSubtitleFormat={{VAL(format)}}
               </subtitleURL>
             </__COPY__>
-            <subtitleSize>{{SETTING(subtitlesize)}}</subtitleSize>
         </myMetadata>
         
-        <myStackedMedia>
-            <!-- stacked media -->
+        <playlistData>
+        <__COPY__>
+        {{COPY_PLAYLIST(@main/Video:^PlexConnectPlayType::^PlexConnectRatingKey::ratingKey:)}}
+            
             <httpFileVideoAsset id="{{VAL(key)}}">
-                <mediaURL>{{VIDEOURL(key)}}</mediaURL>
-                <title>{{VAL(@main/Video/title)}}</title>
-                <description>{{VAL(@main/Video/summary)}}</description>
+            {{VAR(partIndex::-1)}}  <!--dirty hack: VAR is evaluated before VAL, VIDEOURL; so #partIndex is +1-->
+            {{COPY(Media/Part)}}  <!-- stacked media -->
+                <mediaURL>{{VIDEOURL(@copy_Video:#partIndex)}}</mediaURL>
+                {{VAR(partIndex::{{EVAL({{VAL(#partIndex)}}+1)}})}}
+                <title>{{VAL(@copy_Video/title)}}</title>
+                <description>{{VAL(@copy_Video/summary)}}</description>
                 <!--bookmarkTime>{{EVAL({{VAL(@main/Video/viewOffset:0)}} / 1000)}}</bookmarkTime-->
-                <image>{{IMAGEURL(@main/Video/thumb::384)}}</image>
-                <!--title, description, image will get forwarded from main VideoAsset in willStartPlaying()-->
+                <image>{{IMAGEURL(@copy_Video/thumb::384)}}</image>
                 
                 <myMetaData>
-                    <duration>{{VAL(duration)}}</duration>
+                    <key>{{VAL(@copy_Video/key)}}</key>
+                    <ratingKey>{{VAL(@copy_Video/ratingKey)}}</ratingKey>
+                    <duration>{{VAL(@copy_Video/duration)}}</duration>
                     <startTime>0<!--(determined by willStartPlaying())--></startTime>
                 </myMetaData>
                 
-            </httpFileVideoAsset>{{COPY(Video/Media/Part)}}
-        </myStackedMedia>
+            </httpFileVideoAsset>
+        </__COPY__>
+        </playlistData>
         
       </httpFileVideoAsset>
     </videoPlayer>

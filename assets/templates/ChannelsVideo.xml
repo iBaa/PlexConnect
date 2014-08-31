@@ -34,7 +34,7 @@
               
               <!-- channel media V2-->
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                                       onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
                                        onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelPrePlay')">
                 {{COPY(Video:#ChanVer::V1=|V2=COPY)}}
                 <label>{{VAL(title)}}</label>

@@ -613,7 +613,7 @@ parameters:
 result:
     final path to pull in PMS transcoder
 """
-def getTranscodeVideoPath(path, AuthToken, options, action, quality, subtitle, audio):
+def getTranscodeVideoPath(path, AuthToken, options, action, quality, subtitle, audio, partIndex):
     UDID = options['PlexConnectUDID']
     
     transcodePath = '/video/:/transcode/universal/start.m3u8?'
@@ -638,6 +638,7 @@ def getTranscodeVideoPath(path, AuthToken, options, action, quality, subtitle, a
     args['audioBoost'] = audio['boost']
     args['fastSeek'] = '1'
     args['path'] = path
+    args['partIndex'] = partIndex
     
     xargs = getXArgsDeviceInfo(options)
     xargs['X-Plex-Client-Capabilities'] = "protocols=http-live-streaming,http-mp4-streaming,http-streaming-video,http-streaming-video-720p,http-mp4-video,http-mp4-video-720p;videoDecoders=h264{profile:high&resolution:1080&level:41};audioDecoders=mp3,aac{bitrate:160000}"

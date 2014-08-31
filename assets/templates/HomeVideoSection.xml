@@ -30,7 +30,7 @@
             <shelfSection>
               <items>
                 <sixteenByNinePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_homevideos::Highlighted Only=false|Show All=true)}}"
-                            onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                            onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=HomeVideoPrePlay')"
                             onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
                   {{COPY(@OnDeck/Video)}}
@@ -55,7 +55,7 @@
             <shelfSection>
               <items>
                 <sixteenByNinePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_homevideos::Highlighted Only=false|Show All=true)}}"
-                            onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                            onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=HomeVideoPrePlay')"
                             onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
                   {{COPY(@RecentlyAdded/Video)}}
@@ -80,7 +80,7 @@
             <shelfSection>
               <items>
                 <sixteenByNinePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_homevideos::Highlighted Only=false|Show All=true)}}"
-                            onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play')"
+                            onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=HomeVideoPrePlay')"
                             onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
                   {{COPY(@RecentlyReleased/Video)}}
