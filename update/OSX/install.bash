@@ -184,6 +184,7 @@ i
 wq
 EOF
 
+## Fixes for various options
 cp -R GradientTV /Library/WebServer/Documents
 cp -R GradientMovies /Library/WebServer/Documents
 chmod -R 0777 /Library/WebServer/Documents/GradientTV/ *.*
@@ -196,6 +197,7 @@ chmod +x /Library/WebServer/CGI-Executables/bash.cgi
 chmod +x /Library/WebServer/CGI-Executables/ios.cgi
 chmod +x /Library/WebServer/CGI-Executables/list.cgi
 chmod +x /Library/WebServer/CGI-Executables/installer.cgi
+chmod +x /Applications/PlexConnect/update/OSX/storefront.bash
 
 ## copy files to /usr/bin for system wide access
 cp fixclone.bash /usr/bin
