@@ -31,8 +31,8 @@
             <items>
               <!-- /library/sections -->
               <oneLineMenuItem id="{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL(key)}}')"
-                                       onSelect="atv.loadURL('{{URL(key)}}')"
+                                       onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect={{EVAL('{{VAL(scanner)}}'.replace(' ', '_'))}}')"
+                                       onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect={{EVAL('{{VAL(scanner)}}'.replace(' ', '_'))}}')"
                                        onHoldSelect="refreshSection('{{VAL(key)}}', '{{URL(refreshKey)}}')">
               {{COPY(Directory)}}
               {{VAR(sections:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
@@ -81,8 +81,8 @@
               {{VAR(serverName:name)}}
               {{VAR(searchKey:searchKey)}}
               <squarePoster id="{{VAL(key)}}" showOutline="false" alwaysShowTitles="true"
-                           onPlay="atv.loadURL('{{URL(key)}}')"
-                           onSelect="atv.loadURL('{{URL(key)}}')"
+                           onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect={{EVAL('{{VAL(scanner)}}'.replace(' ', '_'))}}')"
+                           onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect={{EVAL('{{VAL(scanner)}}'.replace(' ', '_'))}}')"
                            onHoldSelect="sectionHoldSelect('{{VAL(key)}}', '{{URL(#searchKey)}}', '{{VAL(#serverName)}}', '{{URL(refreshKey)}}', '{{VAL(title)}}')">
               {{COPY(Directory)}}
               {{VAR(sections:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
@@ -124,8 +124,8 @@
                   {{VAR(serverName:name)}}
                   {{VAR(searchKey:searchKey)}}
                   <squarePoster id="{{VAL(key)}}" showOutline="false" alwaysShowTitles="true"
-                               onPlay="atv.loadURL('{{URL(key)}}')"
-                               onSelect="atv.loadURL('{{URL(key)}}')"
+                               onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect={{EVAL('{{VAL(scanner)}}'.replace(' ', '_'))}}')"
+                               onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect={{EVAL('{{VAL(scanner)}}'.replace(' ', '_'))}}')"
                                onHoldSelect="sectionHoldSelect('{{VAL(key)}}', '{{URL(#searchKey)}}', '{{VAL(#serverName)}}', '{{URL(refreshKey)}}', '{{VAL(title)}}')">
                   {{COPY(Directory)}}
                   {{VAR(sections:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->

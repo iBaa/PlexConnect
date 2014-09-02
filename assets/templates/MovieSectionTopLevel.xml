@@ -5,7 +5,7 @@
   </head>
 
 	<body>
-		<viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadItem(event)" volatile="true" onVolatileReload="updatePage('{{URL()}}');">
+		<viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadItem(event)" volatile="true" onVolatileReload="updatePage('{{URL()}}&amp;PlexConnect=Plex_Movie_Scanner');">
 			<navigation currentIndex="1">
 
       <navigationItem id="0">
