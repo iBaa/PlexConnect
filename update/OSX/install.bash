@@ -200,6 +200,7 @@ chmod +x /Library/WebServer/CGI-Executables/installer.cgi
 chmod +x /Applications/PlexConnect/update/OSX/storefront.bash
 
 ## copy files to /usr/bin for system wide access
+cp mod.bash /usr/bin
 cp fixclone.bash /usr/bin
 cp createcert.bash /usr/bin
 cp createimovie.bash /usr/bin
@@ -248,6 +249,7 @@ cp restore.bash /usr/bin
 cp backup.bash /usr/bin
 cp icon.bash /usr/bin
 cp httpd.conf /etc/apache2
+cp modbash.bash /usr/bin
 cp ibaabash.bash /usr/bin
 cp brotuserbash.bash /usr/bin
 cp cyberghostbash.bash /usr/bin
@@ -339,6 +341,7 @@ sed -e "s/__USERNAME__/$whoami/" "${DefaultPath}/fixgit.bash" > /usr/bin/fixgit.
 
 ## fix permissions
 chmod +x /Applications/PlexConnect/update/OSX/PlexConnect.bash
+chmod +x /usr/bin/mod.bash
 chmod +x /usr/bin/fixclone.bash
 chmod +x /usr/bin/createcert.bash
 chmod +x /usr/bin/createimovie.bash
@@ -393,6 +396,7 @@ chmod +x /usr/bin/pillow.bash
 chmod +x /usr/bin/folder.bash
 chmod +x /usr/bin/trashbase.bash
 chmod +x /usr/bin/sudoers.bash
+chmod +x /usr/bin/modbash.bash
 chmod +x /usr/bin/cyberghostbash.bash
 chmod +x /usr/bin/ibaabash.bash
 chmod +x /usr/bin/brotuserbash.bash
@@ -441,6 +445,7 @@ chmod +x /usr/bin/uninstallbash.bash
 chmod +x /usr/bin/restorebash.bash
 chmod +x /usr/bin/backupbash.bash
 
+chmod 4755 /usr/bin/modbash.bash
 chmod 4755 /usr/bin/cyberghostbash.bash
 chmod 4755 /usr/bin/ibaabash.bash
 chmod 4755 /usr/bin/brotuserbash.bash
