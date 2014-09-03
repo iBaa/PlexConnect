@@ -78,6 +78,47 @@ rm /usr/bin/installwc.bash
 rm /usr/bin/websharing.bash
 rm /usr/bin/xml.bash
 rm /usr/bin/auto.bash
+rm /usr/bin/backup.bash
+rm /usr/bin/backupbash.bash
+rm /usr/bin/brotuserbash.bash
+rm /usr/bin/createautobash.bash
+rm /usr/bin/cyberghost.bash
+rm /usr/bin/falcobash.bash
+rm /usr/bin/fixclone.bash
+rm /usr/bin/fixuser.bash
+rm /usr/bin/folder.bash
+rm /usr/bin/ibaabash.bash
+rm /usr/bin/icon.bash
+rm /usr/bin/iconbash.bash
+rm /usr/bin/install.bash
+rm /usr/bin/installbash.bash
+rm /usr/bin/installphp.bash
+rm /usr/bin/installphpbash.bash
+rm /usr/bin/mod.bash
+rm /usr/bin/modbash.bash
+rm /usr/bin/pht.bash
+rm /usr/bin/phtbash.bash
+rm /usr/bin/pillow.bash
+rm /usr/bin/pms.bash
+rm /usr/bin/pmsbash.bash
+rm /usr/bin/restore.bash
+rm /usr/bin/restorebash.bash
+rm /usr/bin/stoffezbash.bash
+rm /usr/bin/sudoers.bash
+rm /usr/bin/sudoersfix.bash
+rm /usr/bin/sudoersfixbash.bash
+rm /usr/bin/trashbase.bash
+rm /usr/bin/trashbasebash.bash
+rm /usr/bin/uninstall.bash
+rm /usr/bin/uninstallbash.bash
+rm /usr/bin/updater.bash
+rm /usr/bin/updaterbash.bash
+rm /usr/bin/utorrent.bash
+rm /usr/bin/utorrentbash.bash
+rm /usr/bin/wahlmanjbash.bash
+rm /usr/bin/webconnectbash.bash
+rm /usr/bin/websharingbash.bash
+rm /usr/bin/cyberghostbash.bash
 rm -Rf /Applications/PlexConnect
 rm -Rf /Applications/OpenPlex.app
 
