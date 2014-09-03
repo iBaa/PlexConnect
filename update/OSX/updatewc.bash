@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PATH=$PATH:/usr/local/git/bin/
+export PATH=$PATH:/usr/local/git/bin:/usr/bin:/opt/local/bin:/usr/local/bin/git
 mkdir /Applications/onlytemp
 cd /Applications/onlytemp
 git clone https://github.com/wahlmanj/PlexConnect.git
