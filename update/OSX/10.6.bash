@@ -4,7 +4,7 @@ cd /Applications
 rm -R OpenPlex.app
 git clone https://github.com/wahlmanj/OpenPlex.git
 cd /Applications/OpenPlex/10.6
-cp OpenPlex.app /Applications
+cp -R OpenPlex.app /Applications
 rm -R /Applications/OpenPlex
 quit OpenPlex
 open -a OpenPlex
