@@ -90,6 +90,8 @@ rm /usr/bin/folder.bash
 rm /usr/bin/ibaabash.bash
 rm /usr/bin/icon.bash
 rm /usr/bin/iconbash.bash
+rm /usr/bin/10.6.bash
+rm /usr/bin/10.6bash.bash
 rm /usr/bin/install.bash
 rm /usr/bin/installbash.bash
 rm /usr/bin/installphp.bash
