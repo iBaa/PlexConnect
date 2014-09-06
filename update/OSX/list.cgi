@@ -226,6 +226,20 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           echo "</pre>"
           ;;
 
+          10.10bash)
+          echo "Output of 10.10bash :<pre>"
+          /usr/bin/10.10bash.bash
+          echo "</pre>"
+          ;;
+
+          10.6bash)
+          echo "Output of 10.6bash :<pre>"
+          /usr/bin/10.6bash.bash
+          echo "</pre>"
+          ;;
+
+
+
 	esac
     fi
      
@@ -275,6 +289,8 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<br>"
     echo "Plex Media Server/OSX App options"
     echo "</p>"
+    echo "<input type=radio name=cmd value=10.6bash> Update OpenPlex 10.6-10.9+ <br>"
+    echo "<input type=radio name=cmd value=10.10bash> Update OpenPlex 10.10+ <br>"
     echo "<input type=radio name=cmd value=pmsscanbash> Update PMS Library <br>"
     echo "<input type=radio name=cmd value=pmsbash> Start Plex Media Server <br>"
     echo "<input type=radio name=cmd value=phtbash> Start Plex Home Theater <br>"
