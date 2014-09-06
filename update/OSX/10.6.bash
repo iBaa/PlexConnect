@@ -7,5 +7,5 @@ cd /Applications/OpenPlex/10.6
 cp -R OpenPlex.app /Applications
 rm -R /Applications/OpenPlex
 quit OpenPlex
-open -a OpenPlex
+open -a /Applications/OpenPlex
 
