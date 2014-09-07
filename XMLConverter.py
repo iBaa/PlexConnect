@@ -195,7 +195,7 @@ def XML_PMS2aTV(PMS_address, path, options):
         opt = cmd[len('Play:'):]  # cut command:
         parts = opt.split(':',1)
         if len(parts)==2:
-            options['PlexConnectPlayType'] = parts[0]  # Single, Continuos # decoded in PlayVideo.xml, COPY_PLAYLIST
+            options['PlexConnectPlayType'] = parts[0]  # Single, Continuous # decoded in PlayVideo.xml, COPY_PLAYLIST
             options['PlexConnectRatingKey'] = parts[1]  # ratingKey # decoded in PlayVideo.xml
         else:
             return XML_Error('PlexConnect','Unexpected "Play" command syntax')
@@ -888,10 +888,10 @@ class CCommandCollection(CCommandHelper):
         elem.remove(child)
         return True  # tree modified, nodes updated: restart from 1st elem
     
-    #syntax: Video, playType (Single|Continuos), key to match (^PlexConnectRatingKey), ratingKey
+    #syntax: Video, playType (Single|Continuous), key to match (^PlexConnectRatingKey), ratingKey
     def TREE_COPY_PLAYLIST(self, elem, child, src, srcXML, param):
         tag, leftover  = self.getParam(src, param)
-        playType, leftover, dfltd = self.getKey(src, srcXML, leftover)  # Single (default), Continuos
+        playType, leftover, dfltd = self.getKey(src, srcXML, leftover)  # Single (default), Continuous
         key, leftover, dfltd = self.getKey(src, srcXML, leftover)
         param_key = leftover
         
@@ -914,7 +914,7 @@ class CCommandCollection(CCommandHelper):
             child_key, leftover, dfltd = self.getKey(elemSRC, srcXML, param_key)
             
             # find first-to-copy src element
-            if playType == 'Continuos':
+            if playType == 'Continuous':
                 copy_enbl = copy_enbl or (key==child_key)  # [0 0 1 1 1 1]
             else:  # 'Single' (default)
                 copy_enbl = (key==child_key)               # [0 0 1 0 0 0]

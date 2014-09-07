@@ -25,7 +25,7 @@
               
               <!-- Movies -->
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"
-                             onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=Play:Continuos:{{VAL(ratingKey)}}')"
+                             onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=Play:Continuous:{{VAL(ratingKey)}}')"
                              onSelect="atv.loadURL('{{URL(key)}}?includeExtras=1&amp;PlexConnect=MoviePrePlay')"
                              onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
               {{CUT(type::episode=CUT|movie=)}}
@@ -55,7 +55,7 @@
               
               <!-- Episodes -->
               <twoLineEnhancedMenuItem id="{{VAL(ratingKey)}}"
-                             onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=Play:Continuos:{{VAL(ratingKey)}}')"
+                             onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=Play:Continuous:{{VAL(ratingKey)}}')"
                              onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
                              onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
               {{CUT(type::episode=|movie=CUT)}}
