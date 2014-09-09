@@ -29,7 +29,7 @@ except ImportError:
     import xml.etree.ElementTree as etree
 
 import time, uuid, hmac, hashlib, base64
-from urllib import quote_plus
+from urllib import quote_plus, unquote_plus
 import urllib2
 import urlparse
 
@@ -807,7 +807,7 @@ class CCommandHelper():
             parts = conv.split('|')
             for part in parts:
                 convstr = part.split('=')
-                convlist.append((convstr[0], convstr[1]))
+                convlist.append((unquote_plus(convstr[0]), unquote_plus(convstr[1])))
         
         dprint(__name__, 2, "CCmds_getConversion: {0},{1}", convlist, leftover)
         return [convlist, leftover]
@@ -1004,7 +1004,7 @@ class CCommandCollection(CCommandHelper):
     def ATTRIB_EVAL(self, src, srcXML, param):
         return str(eval(param))
 
-    def ATTRIB_SVAL(self, src, srcXML, param):
+    def ATTRIB_VAL_QUOTED(self, src, srcXML, param):
         key, leftover, dfltd = self.getKey(src, srcXML, param)
         conv, leftover = self.getConversion(src, leftover)
         if not dfltd:

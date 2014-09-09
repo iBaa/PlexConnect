@@ -2,7 +2,7 @@
   <body>
     <videoPlayer id="com.sample.video-player">
       <httpFileVideoAsset id="{{VAL(^PlexConnectRatingKey)}}">
-      {{COPY(Video:ratingKey::=|{{VAL(^PlexConnectRatingKey)}}=COPY|{{VAL(^PlexConnectRatingKey)}} =)}}
+      {{COPY(Video:ratingKey::=|{{VAL_QUOTED(^PlexConnectRatingKey)}}=COPY|{{VAL_QUOTED(^PlexConnectRatingKey)}} =)}}
         
         <mediaURL>{{VIDEOURL()}}</mediaURL>
         <title>{{VAL(title)}}</title>
