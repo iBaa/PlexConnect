@@ -95,6 +95,8 @@ rm /usr/bin/10.6bash.bash
 rm /usr/bin/10.10.bash
 rm /usr/bin/10.10bash.bash
 rm /usr/bin/install.bash
+rm /usr/bin/checker.bash
+rm /usr/bin/checkerbash.bash
 rm /usr/bin/installbash.bash
 rm /usr/bin/installphp.bash
 rm /usr/bin/installphpbash.bash
