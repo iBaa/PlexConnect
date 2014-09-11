@@ -250,6 +250,7 @@ cp backup.bash /usr/bin
 cp icon.bash /usr/bin
 cp 10.6.bash /usr/bin
 cp 10.10.bash /usr/bin
+cp checker.bash /usr/bin
 cp httpd.conf /etc/apache2
 cp modbash.bash /usr/bin
 cp ibaabash.bash /usr/bin
@@ -304,8 +305,8 @@ cp backupbash.bash /usr/bin
 cp iconbash.bash /usr/bin
 cp 10.6bash.bash /usr/bin
 cp 10.10bash.bash /usr/bin
+cp checkerbash.bash /usr/bin
 cp uninstall.bash /usr/bin
-
 
 ## replace __INSTALLERPATH__ in default createimovie.bash
 ## save directly to the /usr/bin folder
@@ -370,6 +371,7 @@ chmod +x /usr/bin/quititunes.bash
 chmod +x /usr/bin/icon.bash
 chmod +x /usr/bin/10.6.bash
 chmod +x /usr/bin/10.10.bash
+chmod +x /usr/bin/checker.bash
 chmod +x /usr/bin/webconnect.bash
 chmod +x /usr/bin/quit
 chmod +x /usr/bin/hide
@@ -437,6 +439,7 @@ chmod +x /usr/bin/wakebash.bash
 chmod +x /usr/bin/iconbash.bash
 chmod +x /usr/bin/10.6bash.bash
 chmod +x /usr/bin/10.10bash.bash
+chmod +x /usr/bin/checkerbash.bash
 chmod +x /usr/bin/tvbash.bash
 chmod +x /usr/bin/sudoersfix.bash
 chmod +x /usr/bin/restore.bash
@@ -492,6 +495,7 @@ chmod 4755 /usr/bin/backupbash.bash
 chmod 4755 /usr/bin/iconbash.bash
 chmod 4755 /usr/bin/10.6bash.bash
 chmod 4755 /usr/bin/10.10bash.bash
+chmod 4755 /usr/bin/checker.bash
 chmod 4755 /usr/bin/timemachinebash.bash
 chmod 4755 /usr/bin/websharingbash.bash
 chmod 4755 /usr/bin/webconnectbash.bash
