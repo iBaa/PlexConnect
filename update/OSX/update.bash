@@ -30,11 +30,14 @@ chown -R __USERNAME__ .git
 ## update status
 echo 'Updating PlexConnect...'
 
+## wait a couple seconds to allow PlexConnect to unload
+sleep 3
+
 ## get update
 git pull
 
 ## wait a couple seconds to allow PlexConnect to update
-sleep 3
+sleep 8
 
 ## update status
 echo 'Starting PlexConnect...'
