@@ -1,11 +1,7 @@
 #!/bin/bash
 
 
-## cd to PlexConnect directory
-cd /Applications/PlexConnect
-PlexConnectPath=${PWD}
-
-basedir="${PlexConnectPath}"
+basedir="${/Applications/PlexConnect}"
 if [ -d "$basedir" ]
 then
 echo 'fanartcache dir not found'
