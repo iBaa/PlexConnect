@@ -17,3 +17,8 @@ if [ $value = 3 ]
 then 
 osascript -e 'display notification "PlexConnect is Running..." with title "PlexConnect Status"'
 fi
+
+if [ ! -f /Applications/PlexConnect/assets/trailers.cer ]
+then
+osascript -e 'display notification "No Certs present, Choose hijack..." with title "PlexConnect Status"'
+fi
