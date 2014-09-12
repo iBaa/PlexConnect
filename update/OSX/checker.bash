@@ -6,7 +6,8 @@ cd /Applications/PlexConnect
 PlexConnectPath=${PWD}
 
 basedir="${PlexConnectPath}"
-if [ -d "$basedir" ]; then
+if [ -d "$basedir" ]
+then
 echo 'fanartcache dir not found'
 else
 osascript -e 'display notification "No Theme Installed..." with title "PlexConnect Status"'
