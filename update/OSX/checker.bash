@@ -10,8 +10,10 @@ fi
 if grep "Shutting down" /Applications/Plexconnect/PlexConnect.log
 then
 osascript -e 'display notification "PlexConnect is Not Running..." with title "PlexConnect Status"'
-value=$( grep -ic "Serving" /Applications/Plexconnect/PlexConnect.log )
-elif if [ $value = 3 ]
+fi
+
+value=$( grep -ic "Serving\|Shutting" /Applications/PlexConnect/PlexConnect.log )
+if [ $value = 3 ]
 then 
 osascript -e 'display notification "PlexConnect is Running..." with title "PlexConnect Status"'
 fi
