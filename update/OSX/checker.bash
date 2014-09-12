@@ -2,10 +2,8 @@
 
 
 basedir="${/Applications/PlexConnect}"
-if [ -d "$basedir" ]
+if [ ! -d "$basedir" ]
 then
-echo 'fanartcache dir not found'
-else
 osascript -e 'display notification "No Theme Installed..." with title "PlexConnect Status"'
 fi
 
