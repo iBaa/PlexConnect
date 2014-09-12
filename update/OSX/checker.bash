@@ -2,6 +2,8 @@
 
 if [ ! -d "$/Applications/PlexConnect" ]
 then
+echo 'theme installed'
+else
 osascript -e 'display notification "No Theme Installed..." with title "PlexConnect Status"'
 fi
 
