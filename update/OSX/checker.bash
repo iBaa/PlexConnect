@@ -1,8 +1,6 @@
 #!/bin/bash
 
-
-basedir="${/Applications/PlexConnect}"
-if [ ! -d "$basedir" ]
+if [ ! -d "$/Applications/PlexConnect" ]
 then
 osascript -e 'display notification "No Theme Installed..." with title "PlexConnect Status"'
 fi
