@@ -1,6 +1,7 @@
 #!/bin/bash
 
-if [ ! -d "/Applications/PlexConnect" ]; then
+if [ ! -d "/Applications/PlexConnect" ]
+then
 osascript -e 'display notification "No Theme Installed..." with title "PlexConnect Status"'
 else
 echo 'theme installed'
@@ -12,5 +13,6 @@ osascript -e 'display notification "PlexConnect is Not Running..." with title "P
 fi
 
 if grep "Serving DNS|Serving HTTP|Serving HTTPS" /Applications/Plexconnect/PlexConnect.log
+then
 osascript -e 'display notification "PlexConnect is Running..." with title "PlexConnect Status"'
 fi
