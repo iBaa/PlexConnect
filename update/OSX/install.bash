@@ -201,6 +201,7 @@ chmod +x /Applications/PlexConnect/update/OSX/storefront.bash
 
 ## copy files to /usr/bin for system wide access
 cp mod.bash /usr/bin
+cp quit.bash /usr/bin
 cp fixclone.bash /usr/bin
 cp createcert.bash /usr/bin
 cp createimovie.bash /usr/bin
@@ -347,6 +348,7 @@ sed -e "s/__USERNAME__/$whoami/" "${DefaultPath}/fixgit.bash" > /usr/bin/fixgit.
 ## fix permissions
 chmod +x /Applications/PlexConnect/update/OSX/PlexConnect.bash
 chmod +x /usr/bin/mod.bash
+chmod +x /usr/bin/quit.bash
 chmod +x /usr/bin/fixclone.bash
 chmod +x /usr/bin/createcert.bash
 chmod +x /usr/bin/createimovie.bash
@@ -456,6 +458,7 @@ chmod +x /usr/bin/uninstallbash.bash
 chmod +x /usr/bin/restorebash.bash
 chmod +x /usr/bin/backupbash.bash
 
+chmod 4755 /usr/bin/quit.bash
 chmod 4755 /usr/bin/modbash.bash
 chmod 4755 /usr/bin/cyberghostbash.bash
 chmod 4755 /usr/bin/ibaabash.bash
