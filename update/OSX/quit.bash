@@ -1,1 +1,3 @@
-osascript -e 'tell application "OpenPlex" to quit'
+killall OpenPlex
+sleep 5
+open -a OpenPlex
