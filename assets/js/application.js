@@ -116,15 +116,6 @@ atv.player.didStopPlaying = function()
  */
 atv.player.willStartPlaying = function()
 {
-    // getTextContent - return empty string if node not existing.
-    function getTextContent(node)
-    {
-        if (node)
-            return node.textContent;
-        else
-            return '';
-    };
-    
     // init timer vars
     lastReportedTime = -1;
     lastTranscoderPingTime = -1;
@@ -134,34 +125,22 @@ atv.player.willStartPlaying = function()
     var videoPlayerSettings = atv.player.asset.getElementByTagName('videoPlayerSettings');
     if (videoPlayerSettings != null)
     {
-        baseURL = getTextContent(videoPlayerSettings.getElementByTagName('baseURL'));
-        accessToken = getTextContent(videoPlayerSettings.getElementByTagName('accessToken'));
+        baseURL = videoPlayerSettings.getTextContent('baseURL');
+        accessToken = videoPlayerSettings.getTextContent('accessToken');
         
-        showClock = getTextContent(videoPlayerSettings.getElementByTagName('showClock'));
-        timeFormat = getTextContent(videoPlayerSettings.getElementByTagName('timeFormat'));
-        clockPosition = getTextContent(videoPlayerSettings.getElementByTagName('clockPosition'));
-        overscanAdjust = getTextContent(videoPlayerSettings.getElementByTagName('overscanAdjust'));
-        showEndtime = getTextContent(videoPlayerSettings.getElementByTagName('showEndtime'));
+        showClock = videoPlayerSettings.getTextContent('showClock');
+        timeFormat = videoPlayerSettings.getTextContent('timeFormat');
+        clockPosition = videoPlayerSettings.getTextContent('clockPosition');
+        overscanAdjust = videoPlayerSettings.getTextContent('overscanAdjust');
+        showEndtime = videoPlayerSettings.getTextContent('showEndtime');
         
-        subtitleSize = getTextContent(videoPlayerSettings.getElementByTagName('subtitleSize'));
+        subtitleSize = videoPlayerSettings.getTextContent('subtitleSize');
         log('willStartPlaying/getVideoPlayerSettings done');
     }
-  
-  // mediaURL and myMetadata
-  var url = atv.player.asset.getElementByTagName('mediaURL').textContent;
-  isTranscoding = (url.indexOf('transcode/universal') > -1);
-  
-  var metadata = atv.player.asset.getElementByTagName('myMetadata');
-  if (metadata != null)
-  {
-    key = getTextContent(metadata.getElementByTagName('key'));
-    ratingKey = getTextContent(metadata.getElementByTagName('ratingKey'));
-    duration = getTextContent(metadata.getElementByTagName('duration'));
     
-    subtitleURL = getTextContent(metadata.getElementByTagName('subtitleURL'));
-    log('willStartPlaying/getMetadata done');
-  }
-  
+    // mediaURL and myMetadata
+    getMetadata();
+    
   // Use loadMoreAssets callback for playlists
   var playlistData = atv.player.asset.getElementByTagName('playlistData');
   if (playlistData != null)
@@ -180,9 +159,9 @@ atv.player.willStartPlaying = function()
           
           if (videoAssets[i].getElementByTagName('startTime'))
               videoAssets[i].getElementByTagName('startTime').textContent = startTime.toString();
-          startTime += parseInt(getTextContent(videoAssets[i].getElementByTagName('duration')));
+          startTime += parseInt(videoAssets[i].getTextContent('duration'));
           
-          lastRatingKey == getTextContent(videoAssets[i].getElementByTagName('ratingKey'));
+          lastRatingKey == videoAssets[i].getTextContent('ratingKey');
       }
       //todo: work <bookmarkTime> and fix "resume" for stacked media
     
@@ -284,6 +263,34 @@ atv.player.loadMoreAssets = function(callback)
 }
 
 
+atv.player.currentAssetChanged = function()
+{
+    getMetadata();
+    log('currentAssetChanged done');
+}
+
+
+function getMetadata()
+{
+    // update mediaURL and myMetadata
+    var url = atv.player.asset.getTextContent('mediaURL');
+    isTranscoding = (url.indexOf('transcode/universal') > -1);
+    
+    var metadata = atv.player.asset.getElementByTagName('myMetadata');
+    if (metadata != null)
+    {
+        key = metadata.getTextContent('key');
+        ratingKey = metadata.getTextContent('ratingKey');
+        duration = metadata.getTextContent('duration');
+        
+        // todo: subtitle handling with playlists/stacked media
+        subtitleURL = metadata.getTextContent('subtitleURL');
+        log('updateMetadata/getMetadata done');
+    }
+    log('updateMetadata done');
+}
+
+
 // atv.Element extensions
 if( atv.Element ) {
 	atv.Element.prototype.getElementsByTagName = function(tagName) {
@@ -297,6 +304,15 @@ if( atv.Element ) {
 		}
 		return undefined;
 	}
+
+    // getTextContent - return empty string if node not existing.
+    atv.Element.prototype.getTextContent = function(tagName) {
+        var element = this.getElementByTagName(tagName);
+        if (element && element.textContent)
+            return element.textContent;
+        else
+            return '';
+    }
 }
 
 

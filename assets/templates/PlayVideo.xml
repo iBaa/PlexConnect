@@ -53,12 +53,12 @@
                 <!--bookmarkTime>{{EVAL({{VAL(@main/Video/viewOffset:0)}} / 1000)}}</bookmarkTime-->
                 <image>{{IMAGEURL(@copy_Video/thumb::384)}}</image>
                 
-                <myMetaData>
+                <myMetadata>
                     <key>{{VAL(@copy_Video/key)}}</key>
                     <ratingKey>{{VAL(@copy_Video/ratingKey)}}</ratingKey>
                     <duration>{{VAL(@copy_Video/duration)}}</duration>
                     <startTime>0<!--(determined by willStartPlaying())--></startTime>
-                </myMetaData>
+                </myMetadata>
                 
             </httpFileVideoAsset>
         </__COPY__>
