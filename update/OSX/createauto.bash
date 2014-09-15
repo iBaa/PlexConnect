@@ -29,7 +29,7 @@ chmod 644 /Library/LaunchDaemons/com.plex.plexconnect.auto.plist
 echo 'Enabled auto updates for PlexConnect...'
 
 ## launch the plist so that we can use it without a reboot
-launchctl load -w /Library/LaunchDaemons/com.plex.plexconnect.auto.plist
+launchctl load /Library/LaunchDaemons/com.plex.plexconnect.auto.plist
 
 ## wait a couple seconds to allow PlexConnect to load
 sleep 2
@@ -41,4 +41,4 @@ launchctl list | grep com.plex.plexconnect.auto
 sleep 2
 
 ## launch the plist so that we can use it without a reboot
-launchctl unload -w /Library/LaunchDaemons/com.plex.plexconnect.auto.plist
+launchctl unload /Library/LaunchDaemons/com.plex.plexconnect.auto.plist
