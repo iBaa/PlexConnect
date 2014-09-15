@@ -2,7 +2,6 @@
 
 export PATH=$PATH:/usr/local/git/bin/
 
-#!/bin/bash
 cd /Applications/PlexConnect
  
 # fetch changes, git stores them in FETCH_HEAD
