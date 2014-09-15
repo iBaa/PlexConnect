@@ -38,5 +38,7 @@ sleep 2
 #./PlexConnect_daemon.bash status
 launchctl list | grep com.plex.plexconnect.auto
 
+sleep 2
+
 ## launch the plist so that we can use it without a reboot
 launchctl unload -w /Library/LaunchDaemons/com.plex.plexconnect.auto.plist
