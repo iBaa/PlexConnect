@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>Label</key>
-    <string>com.plex.plexconect.auto.plist</string>
-    <key>OnDemand</key>
-    <true/>
-    <key>Program</key>
+	<key>Label</key>
+	<string>com.plex.plexconnect.bash</string>
+	<key>Program</key>
 	<string>/usr/bin/updatebash.bash</string>
 	<key>UserName</key>
 	<string>root</string>
@@ -14,7 +12,7 @@
 	<true/>
 	<key>WorkingDirectory</key>
 	<string>/usr/bin</string>
-    <key>StartInterval</key>
-    <integer>21600</integer>
+        <key>StartInterval</key>
+        <integer>21600</integer>
 </dict>
 </plist>
