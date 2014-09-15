@@ -37,3 +37,6 @@ sleep 2
 ## display the running status of PlexConnect
 #./PlexConnect_daemon.bash status
 launchctl list | grep com.plex.plexconnect.auto
+
+## launch the plist so that we can use it without a reboot
+launchctl unload -w /Library/LaunchDaemons/com.plex.plexconnect.auto.plist
