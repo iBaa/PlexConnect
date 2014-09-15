@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>com.plex.plexconnect.bash</string>
+	<string>com.plex.plexconnect.auto</string>
 	<key>Program</key>
 	<string>/usr/bin/updatebash.bash</string>
 	<key>UserName</key>
