@@ -46,8 +46,8 @@ launchctl load com.plex.plexconnect.bash.plist
 ## wait a couple seconds to allow PlexConnect to load
 sleep 2
 
-osascript -e 'display notification "PlexConnect updated, Exit hijacked app on aTV..." with title "PlexConnect Status"'
+/usr/bin/osascript -e 'display notification "PlexConnect updated, Exit hijacked app on aTV..." with title "PlexConnect Status"'
 
 else
-osascript -e 'display notification "No Updates Available..." with title "PlexConnect Status"'
+/usr/bin/osascript -e 'display notification "No Updates Available..." with title "PlexConnect Status"'
 fi
