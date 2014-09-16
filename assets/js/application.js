@@ -1,12 +1,17 @@
-// settings for atv.player - communicated in PlayVideo/myMetadata
+// settings for atv.player - communicated in PlayVideo/videoPlayerSettings
 var baseURL;
 var accessToken;
+var showClock, timeFormat, clockPosition, overscanAdjust;
+var showEndtime;
+var subtitleSize;
+
+
+// metadata - communicated in PlayVideo/myMetadata
+var mediaURL;
 var key;
 var ratingKey;
 var duration, partDuration;  // milli-sec (int)
-var showClock, timeFormat, clockPosition, overscanAdjust;
-var showEndtime;
-var subtitleURL, subtitleSize;
+var subtitleURL;
 
 
 // information for atv.player - computed internally to application.js
@@ -149,8 +154,8 @@ atv.player.willStartPlaying = function()
   // when... not transcoding or
   //         transcoding and PMS skips subtitle (dontBurnIn)
   if (subtitleURL &&
-       ( url.indexOf('transcode/universal') == -1 ||
-         url.indexOf('transcode/universal') > -1 && url.indexOf('skipSubtitles=1') > -1 )
+       ( !isTranscoding ||
+         isTranscoding && mediaURL.indexOf('skipSubtitles=1') > -1 )
      )
   {
     log("subtitleURL: "+subtitleURL);
@@ -190,8 +195,8 @@ atv.player.willStartPlaying = function()
   
   // create subtitle view
   if (subtitleURL &&
-       ( url.indexOf('transcode/universal') == -1 ||
-         url.indexOf('transcode/universal') > -1 && url.indexOf('skipSubtitles=1') > -1 )
+       ( !isTranscoding ||
+         isTranscoding && mediaURL.indexOf('skipSubtitles=1') > -1 )
      )
   {
       subtitleView = initSubtitleView();
@@ -257,8 +262,8 @@ atv.player.currentAssetChanged = function()
 function getMetadata()
 {
     // update mediaURL and myMetadata
-    var url = atv.player.asset.getTextContent('mediaURL');
-    isTranscoding = (url.indexOf('transcode/universal') > -1);
+    mediaURL = atv.player.asset.getTextContent('mediaURL');
+    isTranscoding = (mediaURL.indexOf('transcode/universal') > -1);
     
     var metadata = atv.player.asset.getElementByTagName('myMetadata');
     if (metadata != null)
