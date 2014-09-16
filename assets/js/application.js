@@ -3,7 +3,7 @@ var baseURL;
 var accessToken;
 var key;
 var ratingKey;
-var duration;
+var duration, partDuration;  // milli-sec (int)
 var showClock, timeFormat, clockPosition, overscanAdjust;
 var showEndtime;
 var subtitleURL, subtitleSize;
@@ -13,6 +13,7 @@ var subtitleURL, subtitleSize;
 var lastReportedTime = -1;
 var lastTranscoderPingTime = -1;
 var remainingTime = 0;
+var startTime = 0;  // milli-sec
 var isTranscoding = false;
 
 
@@ -44,12 +45,11 @@ function log(msg, level)
   */
 atv.player.playerTimeDidChange = function(time)
 {
-  remainingTime = Math.round((parseInt(duration) / 1000) - time);
+  remainingTime = Math.round((duration / 1000) - time);
   var thisReportTime = Math.round(time*1000)
   
   // correct thisReportTime with startTime if stacked media part
-  if (atv.player.asset.getElementByTagName('startTime'))
-    thisReportTime += parseInt(atv.player.asset.getElementByTagName('startTime').textContent)
+  thisReportTime += startTime;
   
   // report watched time
   if (lastReportedTime == -1 || Math.abs(thisReportTime-lastReportedTime) > 5000)
@@ -60,7 +60,7 @@ atv.player.playerTimeDidChange = function(time)
         token = '&X-Plex-Token=' + accessToken;
     loadPage( baseURL + '/:/timeline?ratingKey=' + ratingKey + 
                         '&key=' + key +
-                        '&duration=' + duration + 
+                        '&duration=' + duration.toString() + 
                         '&state=playing' +
                         '&time=' + thisReportTime.toString() + 
                         '&X-Plex-Client-Identifier=' + atv.device.udid + 
@@ -97,7 +97,7 @@ atv.player.didStopPlaying = function()
       token = '&X-Plex-Token=' + accessToken;
   loadPage( baseURL + '/:/timeline?ratingKey=' + ratingKey + 
                       '&key=' + key +
-                      '&duration=' + duration + 
+                      '&duration=' + duration.toString() + 
                       '&state=stopped' +
                       '&time=' + lastReportedTime.toString() + 
                       '&X-Plex-Client-Identifier=' + atv.device.udid + 
@@ -120,6 +120,8 @@ atv.player.willStartPlaying = function()
     lastReportedTime = -1;
     lastTranscoderPingTime = -1;
     remainingTime = 0;  // reset remaining time
+    startTime = 0;  // starting time for stacked media subsequent parts
+    //todo: work <bookmarkTime> and fix "resume" for stacked media
     
     // get baseURL, OSD settings, ...
     var videoPlayerSettings = atv.player.asset.getElementByTagName('videoPlayerSettings');
@@ -141,33 +143,6 @@ atv.player.willStartPlaying = function()
     // mediaURL and myMetadata
     getMetadata();
     
-  // Use loadMoreAssets callback for playlists
-  var playlistData = atv.player.asset.getElementByTagName('playlistData');
-  if (playlistData != null)
-  {
-      var videoAssets = playlistData.getElementsByTagName('httpFileVideoAsset');
-      
-      // determine startTime of stacked parts
-      var startTime = 0;
-      var lastRatingKey = 0;
-      
-      for (var i=0;i<videoAssets.length;i++)
-      {
-          // reset starttime for new video (not stacked media) - check for change in ratingKey
-          if (lastRatingKey != videoAssets[i].getElementByTagName('ratingKey'))
-              startTime = 0;
-          
-          if (videoAssets[i].getElementByTagName('startTime'))
-              videoAssets[i].getElementByTagName('startTime').textContent = startTime.toString();
-          startTime += parseInt(videoAssets[i].getTextContent('duration'));
-          
-          lastRatingKey == videoAssets[i].getTextContent('ratingKey');
-      }
-      //todo: work <bookmarkTime> and fix "resume" for stacked media
-    
-    log('willStartPlaying/loadMoreAssets done');
-  }
-  
   // load subtitle - aTV subtitle JSON
   subtitle = [];
   subtitlePos = 0;
@@ -203,7 +178,7 @@ atv.player.willStartPlaying = function()
       clockView = initClockView();
       Views.push(clockView);
   }
-  if (parseInt(duration) > 0 ) // TODO: grab video length from player not library????
+  if (duration > 0 ) // TODO: grab video length from player not library????
   {
     if (showEndtime == "True")
     {
@@ -265,7 +240,16 @@ atv.player.loadMoreAssets = function(callback)
 
 atv.player.currentAssetChanged = function()
 {
+    // start time for stacked media
+    var lastRatingKey = ratingKey;
+    startTime += partDuration;
+    
     getMetadata();
+    
+    // reset start time on media change (non-stacked)
+    if (lastRatingKey != ratingKey)
+        startTime = 0;
+    
     log('currentAssetChanged done');
 }
 
@@ -281,7 +265,8 @@ function getMetadata()
     {
         key = metadata.getTextContent('key');
         ratingKey = metadata.getTextContent('ratingKey');
-        duration = metadata.getTextContent('duration');
+        duration = parseInt(metadata.getTextContent('duration'));
+        partDuration = parseInt(metadata.getTextContent('partDuration'));
         
         // todo: subtitle handling with playlists/stacked media
         subtitleURL = metadata.getTextContent('subtitleURL');
@@ -380,15 +365,14 @@ atv.player.playerStateChanged = function(newState, timeIntervalSec) {
   var thisReportTime = Math.round(timeIntervalSec*1000);
   
   // correct thisReportTime with startTime if stacked media part
-  if (atv.player.asset.getElementByTagName('startTime'))
-    thisReportTime += parseInt(atv.player.asset.getElementByTagName('startTime').textContent)
+  thisReportTime += startTime;
   
   var token = '';
   if (accessToken!='')
       token = '&X-Plex-Token=' + accessToken;
   loadPage( baseURL + '/:/timeline?ratingKey=' + ratingKey + 
                       '&key=' + key +
-                      '&duration=' + duration + 
+                      '&duration=' + duration.toString() + 
                       '&state=' + state + 
                       '&time=' + thisReportTime.toString() + 
                       '&report=1' +

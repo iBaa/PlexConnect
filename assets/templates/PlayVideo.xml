@@ -28,6 +28,7 @@
             <key>{{VAL(key)}}</key>
             <ratingKey>{{VAL(ratingKey)}}</ratingKey>
             <duration>{{VAL(duration)}}</duration>
+            <partDuration>{{VAL(Media/Part/duration)}}</partDuration>
             
             <!-- subtitle -->
             <__COPY__><!--needed as {{COPY}} doesn't work completely clean. Todo: ExpandTree needs to "finish" current element...-->
@@ -57,7 +58,7 @@
                     <key>{{VAL(@copy_Video/key)}}</key>
                     <ratingKey>{{VAL(@copy_Video/ratingKey)}}</ratingKey>
                     <duration>{{VAL(@copy_Video/duration)}}</duration>
-                    <startTime>0<!--(determined by willStartPlaying())--></startTime>
+                    <partDuration>{{VAL(duration)}}</partDuration>
                 </myMetadata>
                 
             </httpFileVideoAsset>
