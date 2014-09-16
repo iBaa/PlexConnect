@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export PATH=$PATH:/usr/local/git/bin/
-
 cd /Applications/PlexConnect
  
 # fetch changes, git stores them in FETCH_HEAD
@@ -26,8 +24,6 @@ cd ../..
 ## change permissions of .git so update.bash can be ran without su
 chown -R __USERNAME__ .git
 
-## update status
-echo 'Updating PlexConnect...'
 
 ## wait a couple seconds to allow PlexConnect to unload
 sleep 3
@@ -38,23 +34,9 @@ git pull
 ## wait a couple seconds to allow PlexConnect to update
 sleep 8
 
-## update status
-echo 'Starting PlexConnect...'
-
 ## load plexconnect into launchctl after completed update
 cd /library/launchdaemons
 launchctl load com.plex.plexconnect.bash.plist
-
-## wait a couple seconds to allow PlexConnect to load
-sleep 2
-
-## display the running status of PlexConnect
-launchctl list | grep com.plex.plexconnect.bash
-
-## Display PlexConnect log
-FILE="/Applications/PlexConnect/PlexConnect.log"
-echo "*** File - $FILE contents ***"
-cat $FILE
 
 osascript -e 'display notification "PlexConnect updated, Exit hijacked app on aTV..." with title "PlexConnect Status"'
 
