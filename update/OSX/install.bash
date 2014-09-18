@@ -348,6 +348,7 @@ sed -e "s/__USERNAME__/$whoami/" "${DefaultPath}/fixgit.bash" > /usr/bin/fixgit.
 ## fix permissions
 chmod +x /Applications/PlexConnect/update/OSX/PlexConnect.bash
 chmod +x /Applications/PlexConnect/update/OSX/shairport.bash
+chmod +x /Applications/PlexConnect/update/OSX/airplay.bash
 chmod +x /usr/bin/mod.bash
 chmod +x /usr/bin/quit.bash
 chmod +x /usr/bin/fixclone.bash
