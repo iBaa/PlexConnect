@@ -3,7 +3,7 @@ curl -O https://distfiles.macports.org/MacPorts/MacPorts-2.3.1.tar.bz2
 tar xjzf MacPorts-2.3.1.tar.bz2
 cd /Applications/MacPorts-2.3.1
 ./configure && make && sudo make install
-export PATH=$PATH:/opt/local/bin
+export PATH=/usr/local/git/bin:/usr/bin:/opt/local/bin:/usr/local/bin/git:/usr/local/bin
 ./configure && make && sudo make install
 sudo cp /opt/local/bin/* /usr/bin
 sudo port -v selfupdate
@@ -19,7 +19,7 @@ else
 sudo mkdir -p /usr/local/bin
 fi
 sudo cp /opt/local/bin/* /usr/bin
-export PATH=$PATH:/opt/local/bin
+export PATH=/usr/local/git/bin:/usr/bin:/opt/local/bin:/usr/local/bin/git:/usr/local/bin
 make
 cd /Applications/shairport
 cp shairport /usr/local/bin
