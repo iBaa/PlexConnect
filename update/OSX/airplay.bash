@@ -38,6 +38,7 @@ sudo chmod 644 org.mafipulation.shairport.plist
 sudo launchctl load org.mafipulation.shairport.plist
 sudo launchctl unload org.mafipulation.shairport.plist
 sudo launchctl load org.mafipulation.shairport.plist
-rm /Applications/MacPorts-2.3.1.tar.bz2
 sudo chmod -R 777 /Applications/shairport
+sudo chmod -R 777 /Applications/MacPorts-2.3.1.tar.bz2
 sudo rm -R /Applications/shairport
+rm /Applications/MacPorts-2.3.1.tar.bz2
