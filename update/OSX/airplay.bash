@@ -12,7 +12,7 @@ sudo port -v install git libao pkgconfig p5-io-socket-inet6 p5-libwww-perl p5-cr
 cd /Applications
 git clone https://github.com/abrasive/shairport.git
 cd /Applications/shairport
-bindir="/assets/fanartcache"
+bindir="/usr/local/bin"
 if [ -d "$bindir" ]; then
 echo 'bin dir found'
 else
