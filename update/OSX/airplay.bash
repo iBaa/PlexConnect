@@ -20,8 +20,7 @@ sudo mkdir -p /usr/local/bin
 fi
 sudo cp /opt/local/bin/* /usr/bin
 cd /Applications/shairport
-export PATH=$PATH:/usr/local/git/bin:/usr/bin:/opt/local/bin:/usr/local/bin/git:/usr/local/bin
-make
+export PATH=$PATH:/usr/local/git/bin:/usr/bin:/opt/local/bin:/usr/local/bin/git:/usr/local/bin; make
 cp shairport /usr/local/bin
 sudo dscl . -create /Groups/_shairport RealName "AirPlay Daemon Group"
 sudo dscl . -create /Groups/_shairport PrimaryGroupID 235
