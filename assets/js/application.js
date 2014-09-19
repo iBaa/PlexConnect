@@ -175,6 +175,11 @@ atv.player.willStartPlaying = function()
   }
   
   var Views = [];
+  // Dummy animation to make sure clocks start as hidden
+  var animation = {"type": "BasicAnimation", "keyPath": "opacity",
+                  "fromValue": 0, "toValue": 0, "duration": 0,
+                  "removedOnCompletion": false, "fillMode": "forwards",
+                  "animationDidStop": function(finished) {} };
   
   // Create clock view
   containerView.frame = screenFrame;
@@ -182,6 +187,7 @@ atv.player.willStartPlaying = function()
   {
       clockView = initClockView();
       Views.push(clockView);
+      clockView.addAnimation(animation, clockView)
   }
   if (duration > 0 ) // TODO: grab video length from player not library????
   {
@@ -189,6 +195,7 @@ atv.player.willStartPlaying = function()
     {
         endTimeView = initEndTimeView();
         Views.push(endTimeView);
+        endTimeView.addAnimation(animation, endTimeView)
     }
   }
   log('willStartPlaying/createClockView done');
@@ -211,8 +218,7 @@ atv.player.willStartPlaying = function()
   // Paint the views on Screen.
   containerView.subviews = Views;
   atv.player.overlay = containerView;
-  //atv.player.overlay.subviews = Views;
-  
+
   log('willStartPlaying done');
 };
 
