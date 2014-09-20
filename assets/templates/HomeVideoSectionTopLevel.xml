@@ -6,7 +6,7 @@
 
 	<body>
 		<viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadItem(event)" volatile="true" onVolatileReload="updatePage('{{URL()}}&amp;PlexConnect=Plex_Video_Files_Scanner');">
-			<navigation currentIndex="1">
+			<navigation currentIndex="{{VAL($homevideos_navbar_ondeck:0:unchecked=0|checked=1)}}">
 
       <navigationItem id="All">
 					<title>{{TEXT(All Videos)}}</title>
@@ -16,7 +16,7 @@
 				<navigationItem id="On deck">
 					<title>{{TEXT(On Deck)}}</title>
 					<url>{{URL(key)}}&amp;PlexConnect=HomeVideoSection</url>
-				</navigationItem>
+				</navigationItem>{{CUT($homevideos_navbar_ondeck::unchecked=CUT|checked=)}}
 
 				<navigationItem id="Unwatched">
 					<title>{{TEXT(Unwatched)}}</title>

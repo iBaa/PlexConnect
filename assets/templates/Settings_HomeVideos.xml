@@ -57,6 +57,13 @@
             </header>
             <items>
 
+              <oneLineMenuItem id="HomeVideos_NavBar_OnDeck" onSelect="toggleSettings('HomeVideos_NavBar_OnDeck', 'Settings_HomeVideos')">
+                <label>{{TEXT(On Deck)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($homevideos_navbar_ondeck::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+              
               <oneLineMenuItem id="HomeVideos_NavBar_Unwatched" onSelect="toggleSettings('HomeVideos_NavBar_Unwatched', 'Settings_HomeVideos')">
                 <label>{{TEXT(Unwatched)}}</label>
                 <accessories>

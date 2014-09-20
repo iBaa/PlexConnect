@@ -25,6 +25,7 @@ options = { \
     'showtitles_tvshows'        :('Highlighted Only', 'Show All'), \
     'showtitles_homevideos'     :('Highlighted Only', 'Show All'), \
     'showtitles_channels'       :('Highlighted Only', 'Show All'), \
+    'movies_navbar_ondeck'      :('checked', 'unchecked'), \
     'movies_navbar_unwatched'   :('checked', 'unchecked'), \
     'movies_navbar_byfolder'    :('checked', 'unchecked'), \
     'movies_navbar_collections' :('checked', 'unchecked'), \
@@ -33,10 +34,12 @@ options = { \
     'movies_navbar_directors'   :('checked', 'unchecked'), \
     'movies_navbar_actors'      :('checked', 'unchecked'), \
     'movies_navbar_more'        :('checked', 'unchecked'), \
+    'homevideos_navbar_ondeck'      :('checked', 'unchecked'), \
     'homevideos_navbar_unwatched'   :('checked', 'unchecked'), \
     'homevideos_navbar_byfolder'    :('checked', 'unchecked'), \
     'homevideos_navbar_collections' :('checked', 'unchecked'), \
     'homevideos_navbar_genres'      :('checked', 'unchecked'), \
+    'tv_navbar_ondeck'          :('checked', 'unchecked'), \
     'tv_navbar_unwatched'       :('checked', 'unchecked'), \
     'tv_navbar_genres'          :('checked', 'unchecked'), \
     'tv_navbar_more'            :('checked', 'unchecked'), \

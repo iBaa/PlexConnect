@@ -73,6 +73,13 @@
             </header>
             <items>
 
+              <oneLineMenuItem id="TV_NavBar_OnDeck" onSelect="toggleSettings('TV_NavBar_OnDeck', 'Settings_TVShows')">
+                <label>{{TEXT(On Deck)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($tv_navbar_ondeck::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+              
               <oneLineMenuItem id="TV_NavBar_Unwatched" onSelect="toggleSettings('TV_NavBar_Unwatched', 'Settings_TVShows')">
                 <label>{{TEXT(Unwatched)}}</label>
                 <accessories>
