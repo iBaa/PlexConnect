@@ -39,6 +39,24 @@
           <menuSection>
             <header>
               <horizontalDivider alignment="left">
+                <title>{{TEXT(Navigation Bar)}}</title>
+              </horizontalDivider>
+            </header>
+            <items>
+              <oneLineMenuItem id="ShowPlayLists" onSelect="toggleSettings('ShowPlayLists', 'Settings_TopLevel')">
+                <label>{{TEXT(Show Playlists)}}</label>
+                <rightLabel>{{SETTING(showplaylists)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="ShowSharedLibrarys" onSelect="toggleSettings('ShowSharedLibrarys', 'Settings_TopLevel')">
+                <label>{{TEXT(Show Shared Librarys)}}</label>
+                <rightLabel>{{SETTING(showsharedlibrarys)}}</rightLabel>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+          
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
                 <title>{{TEXT(Library)}}</title>
               </horizontalDivider>
             </header>

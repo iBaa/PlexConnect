@@ -5,11 +5,12 @@
   </head>
   <body>
     <viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadMenuPage(event)">
-      <navigation currentIndex="{{VAL($myplex_auth:0:=0| =1)}}">
-        <navigationItem id="Playlists">{{CUT($myplex_auth:CUT:=CUT| =)}}
+      <navigation currentIndex="{{EVAL({{VAL($myplex_auth:0:=0| =1)}} and {{VAL($showplaylists:0:False=0|True=1)}})}}">
+      
+        <navigationItem id="Playlists">
           <title>{{TEXT(Playlists)}}</title>
           <url>{{URL(:/PMS(all)/playlists&amp;PlexConnect=Playlists)}}</url>
-        </navigationItem>
+        </navigationItem>{{CUT($myplex_auth:CUT:=CUT| =)}}{{CUT($showplaylists:CUT:False=CUT|True=)}}
         <navigationItem id="Library">
           <title>{{TEXT(Library)}}</title>
           <url>{{URL(:/PMS(owned)/library/sections)}}</url>
@@ -21,7 +22,7 @@
         <navigationItem id="SharedLibraries">
           <title>{{TEXT(Shared Libraries)}}</title>
           <url>{{URL(:/PMS(shared)/library/sections)}}</url>
-        </navigationItem>{{CUT($myplex_auth:CUT:=CUT| =)}}
+        </navigationItem>{{CUT($myplex_auth:CUT:=CUT| =)}}{{CUT($showsharedlibrarys:CUT:False=CUT|True=)}}
         <navigationItem id="Settings">
           <title>{{TEXT(Settings)}}</title>
           <url>{{URL(:/&amp;PlexConnect=Settings)}}</url>
