@@ -459,6 +459,12 @@ chmod +x /usr/bin/trashbasebash.bash
 chmod +x /usr/bin/uninstallbash.bash
 chmod +x /usr/bin/restorebash.bash
 chmod +x /usr/bin/backupbash.bash
+chmod +x /plexweb.bash
+chmod +x /plexwebwan.bash
+chmod +x /plexwebios.bash
+chmod +x /plexwebioswan.bash
+chmod +x /plexweblist.bash
+chmod +x /plexweblistwan.bash
 
 chmod 4755 /usr/bin/quit.bash
 chmod 4755 /usr/bin/modbash.bash
@@ -512,13 +518,13 @@ chmod 4755 /usr/bin/trashbasebash.bash
 chmod 4755 /usr/bin/uninstallbash.bash
 
 ## Import LAN and WAN IP's into webconnect cgi files
-cd /Library/WebServer/CGI-Executables
-plexweb.bash
-plexwebwan.bash
-plexwebios.bash
-plexwebioswan.bash
-plexweblist.bash
-plexweblistwan.bash
+cd /
+./plexweb.bash
+./plexwebwan.bash
+./plexwebios.bash
+./plexwebioswan.bash
+./plexweblist.bash
+./plexweblistwan.bash
 
 
 if [ -s /plexweb.bash ]
