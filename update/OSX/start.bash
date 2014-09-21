@@ -13,7 +13,12 @@ launchctl list | grep com.plex.plexconnect.bash
 ## Allow log to refresh
 Sleep 3
 
+if [ ! -f /Applications/PlexConnect/PlexConnect.log ]
+then
+echo 'No log present'
+else
 ## Display PlexConnect log
 FILE="/Applications/PlexConnect/PlexConnect.log"
 echo "*** File - $FILE contents ***"
 cat $FILE
+fi
