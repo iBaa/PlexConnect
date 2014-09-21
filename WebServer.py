@@ -21,7 +21,6 @@ from SocketServer import ThreadingMixIn
 import ssl
 from multiprocessing import Pipe  # inter process communication
 import urllib
-import signal
 
 import Settings, ATVSettings
 from Debug import *  # dprint()
@@ -240,9 +239,6 @@ class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
 
 
 def Run(cmdPipe, param):
-    if not __name__ == '__main__':
-        signal.signal(signal.SIGINT, signal.SIG_IGN)
-    
     dinit(__name__, param)  # init logging, WebServer process
     
     cfg_IP_WebServer = param['IP_self']
@@ -277,7 +273,6 @@ def Run(cmdPipe, param):
             server.handle_request()
     
     except KeyboardInterrupt:
-        signal.signal(signal.SIGINT, signal.SIG_IGN)  # we heard you!
         dprint(__name__, 0,"^C received.")
     finally:
         dprint(__name__, 0, "Shutting down.")
@@ -288,9 +283,6 @@ def Run(cmdPipe, param):
 
 
 def Run_SSL(cmdPipe, param):
-    if not __name__ == '__main__':
-        signal.signal(signal.SIGINT, signal.SIG_IGN)
-    
     dinit(__name__, param)  # init logging, WebServer process
     
     cfg_IP_WebServer = param['IP_self']
@@ -339,7 +331,6 @@ def Run_SSL(cmdPipe, param):
             server.handle_request()
     
     except KeyboardInterrupt:
-        signal.signal(signal.SIGINT, signal.SIG_IGN)  # we heard you!
         dprint(__name__, 0,"^C received.")
     finally:
         dprint(__name__, 0, "Shutting down.")

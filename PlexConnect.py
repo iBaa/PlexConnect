@@ -11,7 +11,8 @@ inter-process-communication (queue): http://pymotw.com/2/multiprocessing/communi
 import sys, time
 from os import sep
 import socket
-from multiprocessing import Process, Pipe
+from multiprocessing import Pipe
+from threading import Thread
 import signal, errno
 
 from Version import __VERSION__
@@ -79,7 +80,7 @@ def startup():
     # init DNSServer
     if cfg.getSetting('enable_dnsserver')=='True':
         master, slave = Pipe()  # endpoint [0]-PlexConnect, [1]-DNSServer
-        proc = Process(target=DNSServer.Run, args=(slave, param))
+        proc = Thread(target=DNSServer.Run, args=(slave, param))
         proc.start()
         
         time.sleep(0.1)
@@ -93,7 +94,7 @@ def startup():
     # init WebServer
     if running:
         master, slave = Pipe()  # endpoint [0]-PlexConnect, [1]-WebServer
-        proc = Process(target=WebServer.Run, args=(slave, param))
+        proc = Thread(target=WebServer.Run, args=(slave, param))
         proc.start()
         
         time.sleep(0.1)
@@ -108,7 +109,7 @@ def startup():
     if running and \
        cfg.getSetting('enable_webserver_ssl')=='True':
         master, slave = Pipe()  # endpoint [0]-PlexConnect, [1]-WebServer
-        proc = Process(target=WebServer.Run_SSL, args=(slave, param))
+        proc = Thread(target=WebServer.Run_SSL, args=(slave, param))
         proc.start()
         
         time.sleep(0.1)
