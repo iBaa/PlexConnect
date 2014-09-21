@@ -17,7 +17,6 @@ import sys
 import string, cgi, time
 from os import sep, path
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
-from SocketServer import ThreadingMixIn
 import ssl
 from multiprocessing import Pipe  # inter process communication
 import urllib
@@ -28,7 +27,6 @@ from Debug import *  # dprint()
 import XMLConverter  # XML_PMS2aTV, XML_PlayVideo
 import re
 import Localize
-import Subtitle
 
 
 
@@ -45,7 +43,7 @@ def JSConverter(file, options):
     f.close()
     
     # PlexConnect {{URL()}}->baseURL
-    for path in set(re.findall(r'\{\{URL\((.*?)\)\}\}', JS)):
+    for path in set(re.findall(r'\{\{URL\((.+?)\)\}\}', JS)):
         JS = JS.replace('{{URL(%s)}}' % path, g_param['baseURL']+path)
     
     # localization
@@ -80,42 +78,40 @@ class MyHandler(BaseHTTPRequestHandler):
                 self.path = self.path[pms_end+1:]
             
             # break up path, separate PlexConnect options
-            # clean path needed for filetype decoding
-            parts = re.split(r'[?&]', self.path, 1)  # should be '?' only, but we do some things different :-)
+            options = {}
+            while True:
+                cmd_start = self.path.find('&PlexConnect')
+                cmd_end = self.path.find('&', cmd_start+1)
+                
+                if cmd_start==-1:
+                    break
+                if cmd_end>-1:
+                    cmd = self.path[cmd_start+1:cmd_end]
+                    self.path = self.path[:cmd_start] + self.path[cmd_end:]
+                else:
+                    cmd = self.path[cmd_start+1:]
+                    self.path = self.path[:cmd_start]
+                
+                parts = cmd.split('=', 1)
+                if len(parts)==1:
+                    options[parts[0]] = ''
+                else:
+                    options[parts[0]] = urllib.unquote(parts[1])
+            
+            # break up path, separate additional arguments
+            # clean path needed for filetype decoding... has to be merged back when forwarded.
+            parts = self.path.split('?', 1)
             if len(parts)==1:
-                self.path = parts[0]
-                options = {}
-                query = ''
+                args = ''
             else:
                 self.path = parts[0]
-                
-                # break up query string
-                options = {}
-                query = ''
-                parts = parts[1].split('&')
-                for part in parts:
-                    if part.startswith('PlexConnect'):
-                        # get options[]
-                        opt = part.split('=', 1)
-                        if len(opt)==1:
-                            options[opt[0]] = ''
-                        else:
-                            options[opt[0]] = urllib.unquote(opt[1])
-                    else:
-                        # recreate query string (non-PlexConnect) - has to be merged back when forwarded
-                        if query=='':
-                            query = '?' + part
-                        else:
-                            query += '&' + part
+                args = '?'+parts[1]
             
             # get aTV language setting
             options['aTVLanguage'] = Localize.pickLanguage(self.headers.get('Accept-Language', 'en'))
             
             # add client address - to be used in case UDID is unknown
-            if 'X-Forwarded-For' in self.headers:
-                options['aTVAddress'] = self.headers['X-Forwarded-For'].split(',', 1)[0]
-            else:
-                options['aTVAddress'] = self.client_address[0]
+            options['aTVAddress'] = self.client_address[0]
             
             # get aTV hard-/software parameters
             options['aTVFirmwareVersion'] = self.headers.get('X-Apple-TV-Version', '5.1')
@@ -124,12 +120,12 @@ class MyHandler(BaseHTTPRequestHandler):
             dprint(__name__, 2, "pms address:\n{0}", PMSaddress)
             dprint(__name__, 2, "cleaned path:\n{0}", self.path)
             dprint(__name__, 2, "PlexConnect options:\n{0}", options)
-            dprint(__name__, 2, "additional arguments:\n{0}", query)
-            
+            dprint(__name__, 2, "additional arguments:\n{0}", args)
+                    
             if 'User-Agent' in self.headers and \
                'AppleTV' in self.headers['User-Agent']:
-                   
-                   # serve the plex icon
+                
+                # serve the plex icon
                 if self.headers['Host'] == 'a1.phobos.apple.com' and self.path.endswith(".png"):
                     # possible icon
                     basename = path.basename(self.path)
@@ -139,7 +135,6 @@ class MyHandler(BaseHTTPRequestHandler):
                     dprint(__name__, 2, "icon name: {0} at {1}", name, rez)
                     hosticons = {
                         'www.icloud.com': 'iMovieNewAuth',
-                        'www.icloud.com': 'Theater',
                         'atv.hbogo.com': 'HBOGo',
                         'atv.qello.com': 'QelloV2',
                         'appletv.app.hulu.com': 'huluplus',
@@ -244,9 +239,9 @@ class MyHandler(BaseHTTPRequestHandler):
                 # otherwise: path should be '/js', send /assets/js/*.js
                 dirname = path.dirname(self.path)
                 basename = path.basename(self.path)
-                if basename in ("application.js", "main.js", "javascript-packed.js", "bootstrap.js") or \
+                if basename in ("application.js", "main.js", "javascript-packed.js") or \
                    basename.endswith(".js") and dirname == '/js':
-                    if basename in ("main.js", "javascript-packed.js", "bootstrap.js"):
+                    if basename in ("main.js", "javascript-packed.js"):
                         basename = "application.js"
                     dprint(__name__, 1, "serving /js/{0}", basename)
                     JS = JSConverter(basename, options)
@@ -278,21 +273,10 @@ class MyHandler(BaseHTTPRequestHandler):
                     f.close()
                     return
                 
-                # serve subtitle file - transcoded to aTV subtitle json
-                if 'PlexConnect' in options and \
-                   options['PlexConnect']=='Subtitle':
-                    dprint(__name__, 1, "serving subtitle: "+self.path)
-                    XML = Subtitle.getSubtitleJSON(PMSaddress, self.path + query, options)
-                    self.send_response(200)
-                    self.send_header('Content-type', 'application/json')
-                    self.end_headers()
-                    self.wfile.write(XML)
-                    return
-                
                 # get everything else from XMLConverter - formerly limited to trailing "/" and &PlexConnect Cmds
                 if True:
                     dprint(__name__, 1, "serving .xml: "+self.path)
-                    XML = XMLConverter.XML_PMS2aTV(PMSaddress, self.path + query, options)
+                    XML = XMLConverter.XML_PMS2aTV(PMSaddress, self.path + args, options)
                     self.send_response(200)
                     self.send_header('Content-type', 'text/xml')
                     self.end_headers()
@@ -311,11 +295,6 @@ class MyHandler(BaseHTTPRequestHandler):
 
 
 
-class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
-    """Handle requests in a separate thread."""
-
-
-
 def Run(cmdPipe, param):
     if not __name__ == '__main__':
         signal.signal(signal.SIGINT, signal.SIG_IGN)
@@ -325,7 +304,7 @@ def Run(cmdPipe, param):
     cfg_IP_WebServer = param['IP_self']
     cfg_Port_WebServer = param['CSettings'].getSetting('port_webserver')
     try:
-        server = ThreadedHTTPServer((cfg_IP_WebServer,int(cfg_Port_WebServer)), MyHandler)
+        server = HTTPServer((cfg_IP_WebServer,int(cfg_Port_WebServer)), MyHandler)
         server.timeout = 1
     except Exception, e:
         dprint(__name__, 0, "Failed to connect to HTTP on {0} port {1}: {2}", cfg_IP_WebServer, cfg_Port_WebServer, e)
@@ -339,7 +318,8 @@ def Run(cmdPipe, param):
     
     setParams(param)
     XMLConverter.setParams(param)
-    XMLConverter.setATVSettings(param['CATVSettings'])
+    cfg = ATVSettings.CATVSettings()
+    XMLConverter.setATVSettings(cfg)
     
     try:
         while True:
@@ -357,6 +337,8 @@ def Run(cmdPipe, param):
         dprint(__name__, 0,"^C received.")
     finally:
         dprint(__name__, 0, "Shutting down.")
+        cfg.saveSettings()
+        del cfg
         server.socket.close()
 
 
@@ -386,7 +368,7 @@ def Run_SSL(cmdPipe, param):
     certfile.close()
     
     try:
-        server = ThreadedHTTPServer((cfg_IP_WebServer,int(cfg_Port_SSL)), MyHandler)
+        server = HTTPServer((cfg_IP_WebServer,int(cfg_Port_SSL)), MyHandler)
         server.socket = ssl.wrap_socket(server.socket, certfile=cfg_certfile, server_side=True)
         server.timeout = 1
     except Exception, e:
@@ -400,8 +382,6 @@ def Run_SSL(cmdPipe, param):
     dprint(__name__, 0, "***")
     
     setParams(param)
-    XMLConverter.setParams(param)
-    XMLConverter.setATVSettings(param['CATVSettings'])
     
     try:
         while True:
@@ -429,7 +409,6 @@ if __name__=="__main__":
     cfg = Settings.CSettings()
     param = {}
     param['CSettings'] = cfg
-    param['CATVSettings'] = ATVSettings.CATVSettings()
     
     param['IP_self'] = '192.168.178.20'  # IP_self?
     param['baseURL'] = 'http://'+ param['IP_self'] +':'+ cfg.getSetting('port_webserver')
