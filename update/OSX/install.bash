@@ -238,6 +238,12 @@ cp plexweblist.bash /usr/bin
 cp plexwebios.bash /usr/bin
 cp plexwebioswan.bash /usr/bin
 cp plexweblistwan.bash /usr/bin
+cp plexwebbash.bash /usr/bin
+cp plexwebwanbash.bash /usr/bin
+cp plexweblistbash.bash /usr/bin
+cp plexwebiosbash.bash /usr/bin
+cp plexwebioswanbash.bash /usr/bin
+cp plexweblistwanbash.bash /usr/bin
 cp quit /usr/bin
 cp hide /usr/bin
 cp show /usr/bin
@@ -518,13 +524,12 @@ chmod 4755 /usr/bin/trashbasebash.bash
 chmod 4755 /usr/bin/uninstallbash.bash
 
 ## Import LAN and WAN IP's into webconnect cgi files
-cd /
-./plexweb.bash
-./plexwebwan.bash
-./plexwebios.bash
-./plexwebioswan.bash
-./plexweblist.bash
-./plexweblistwan.bash
+plexwebbash.bash
+plexwebwanbash.bash
+plexwebiosbash.bash
+plexwebioswanbash.bash
+plexweblistbash.bash
+plexweblistwanbash.bash
 
 
 if [ -s /plexweb.bash ]
