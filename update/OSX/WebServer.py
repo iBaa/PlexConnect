@@ -138,7 +138,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     name, rez = iconname.split('@')
                     dprint(__name__, 2, "icon name: {0} at {1}", name, rez)
                     hosticons = {
-                        'www.icloud.com': 'iMovieNewAuth' ,
+                        'www.icloud.com': 'iMovieNewAuth',
                         'www.icloud.com': 'Theater',
                         'atv.hbogo.com': 'HBOGo',
                         'atv.qello.com': 'QelloV2',
