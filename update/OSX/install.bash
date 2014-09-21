@@ -17,7 +17,7 @@ DefaultPath=${PWD}
 whoami=${USER}
 
 ## Generate plexweb.bash based on OSX IP Address for bash.cgi
-ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2 > plexweb.bash
+ifconfig en0|grep 'inet '|cut -d ' ' -f 2 > plexweb.bash
 ed -s plexweb.bash << EOF
 1
 a
@@ -41,7 +41,7 @@ wq
 EOF
 
 ## Generate plexwebios.bash based on OSX IP Address for ios.cgi
-ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2 > plexwebios.bash
+ifconfig en0|grep 'inet '|cut -d ' ' -f 2 > plexwebios.bash
 ed -s plexwebios.bash << EOF
 1
 a
@@ -65,7 +65,7 @@ wq
 EOF
 
 ## Generate plexweblist.bash based on OSX IP Address for list.cgi
-ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2 > plexweblist.bash
+ifconfig en0|grep 'inet '|cut -d ' ' -f 2 > plexweblist.bash
 ed -s plexweblist.bash << EOF
 1
 a
@@ -89,7 +89,7 @@ wq
 EOF
 
 ## Generate PlexWebWan.bash based on Wan IP Address for bash.cgi
-curl -s http://checkip.dyndns.org/ | grep -o "[[:digit:].]\+ > plexwebwan.bash
+curl ifconfig.me > plexwebwan.bash
 ed -s plexwebwan.bash << EOF
 1
 a
@@ -113,7 +113,7 @@ wq
 EOF
 
 ## Generate plexwebioswan.bash based on Wan IP Address for ios.cgi
-curl -s http://checkip.dyndns.org/ | grep -o "[[:digit:].]\+ > plexwebioswan.bash
+curl ifconfig.me > plexwebioswan.bash
 ed -s plexwebioswan.bash << EOF
 1
 a
@@ -137,7 +137,7 @@ wq
 EOF
 
 ## Generate plexweblistwan.bash based on Wan IP Address for list.cgi
-curl -s http://checkip.dyndns.org/ | grep -o "[[:digit:].]\+ > plexweblistwan.bash
+curl ifconfig.me > plexweblistwan.bash
 ed -s plexweblistwan.bash << EOF
 1
 a
