@@ -36,6 +36,12 @@ rm /usr/bin/plexwebios.bash
 rm /usr/bin/plexwebioswan.bash
 rm /usr/bin/plexweblist.bash
 rm /usr/bin/plexweblistwan.bash
+rm /usr/bin/plexwebbash.bash
+rm /usr/bin/plexwebwanbash.bash
+rm /usr/bin/plexwebiosbash.bash
+rm /usr/bin/plexwebioswanbash.bash
+rm /usr/bin/plexweblistbash.bash
+rm /usr/bin/plexweblistwanbash.bash
 rm /usr/bin/shutdown.bash
 rm /usr/bin/sleep.bash
 rm /usr/bin/log.bash
