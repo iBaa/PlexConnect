@@ -279,7 +279,7 @@ def Run(cmdPipe, param):
         signal.signal(signal.SIGINT, signal.SIG_IGN)  # we heard you!
         dprint(__name__, 0,"^C received.")
     finally:
-        dprint(__name__, 0, "Shutting down.")
+        dprint(__name__, 0, "Shutting down (HTTP).")
         server.socket.close()
 
 
@@ -341,7 +341,7 @@ def Run_SSL(cmdPipe, param):
         signal.signal(signal.SIGINT, signal.SIG_IGN)  # we heard you!
         dprint(__name__, 0,"^C received.")
     finally:
-        dprint(__name__, 0, "Shutting down.")
+        dprint(__name__, 0, "Shutting down (HTTPS).")
         server.socket.close()
 
 
