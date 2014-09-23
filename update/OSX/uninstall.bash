@@ -134,8 +134,7 @@ rm /usr/bin/cyberghostbash.bash
 rm -Rf /Applications/PlexConnect
 rm -Rf /Applications/OpenPlex.app
 
-## display the running status of PlexConnect
-launchctl list | grep com.plex.plexconnect.bash
+killall OpenPlex
 
 ## Explain uninstall has been completed
 echo 'OpenConnect and WebConnect have been uninstalled if there is numerous rm commands during this script you did not install WebConnect'
