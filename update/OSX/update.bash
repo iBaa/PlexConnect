@@ -49,5 +49,6 @@ afplay /System/Library/Sounds/Glass.aiff
 /usr/bin/osascript -e 'display notification "PlexConnect updated, Exit hijacked app on aTV..." with title "PlexConnect Status"'
 
 else
+echo "no updates available"
 /usr/bin/osascript -e 'display notification "No Updates Available..." with title "PlexConnect Status"'
 fi
