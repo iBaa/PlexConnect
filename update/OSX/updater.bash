@@ -1,13 +1,10 @@
 #!/bin/bash
 
-export PATH=$PATH:/usr/local/git/bin/
-
-#!/bin/bash
 cd /Applications/PlexConnect
- 
+
 # fetch changes, git stores them in FETCH_HEAD
 git fetch
- 
+
 # check for remote changes in origin repository
 newUpdatesAvailable=`git diff HEAD FETCH_HEAD`
 if [ "$newUpdatesAvailable" != "" ]
@@ -30,6 +27,9 @@ chown -R __USERNAME__ .git
 ## update status
 echo 'Updating PlexConnect...'
 
+## wait a couple seconds to allow PlexConnect to unload
+sleep 3
+
 ## get update
 git pull
 
@@ -42,6 +42,7 @@ echo 'Starting PlexConnect...'
 ## load plexconnect into launchctl after completed update
 cd /library/launchdaemons
 launchctl load com.plex.plexconnect.bash.plist
+
 
 ## wait a couple seconds to allow PlexConnect to load
 sleep 2
