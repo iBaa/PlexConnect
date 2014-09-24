@@ -16,13 +16,13 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     if [ $CMD ]
     then
       case "$CMD" in
-        removecertsbash)
+          removecertsbash)
           echo "Output of removecertsbash :<pre>"
           /usr/bin/removecertsbash.bash
           echo "</pre>"
           ;;
 
-        createcertbash)
+          createcertbash)
           echo "Output of createcertbash :<pre>"
           /usr/bin/createcertbash.bash
           echo "</pre>"
@@ -40,31 +40,31 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           echo "</pre>"
           ;;
 
-        createplistbash)
+          createplistbash)
           echo "Output of createplistbash :<pre>"
           /usr/bin/createplistbash.bash
           echo "</pre>"
           ;;
 
-        updaterbash)
+          updaterbash)
           echo "Output of updaterbash :<pre>"
           /usr/bin/updaterbash.bash
           echo "</pre>"
           ;;
 
-        startbash)
+          startbash)
           echo "Output of startbash :<pre>"
           /usr/bin/startbash.bash
           echo "</pre>"
           ;;
 
-        stopbash)
+          stopbash)
           echo "Output of stopbash :<pre>"
           /usr/bin/stopbash.bash
           echo "</pre>"
           ;;
 
-        restartbash)
+          restartbash)
           echo "Output of restartbash :<pre>"
           /usr/bin/restartbash.bash
           echo "</pre>"
@@ -160,12 +160,6 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           echo "</pre>"
           ;;
 
-          brotuserbash)
-          echo "Output of brotuserbash :<pre>"
-          /usr/bin/brotuserbash.bash
-          echo "</pre>"
-          ;;
-
           cyberghostbash)
           echo "Output of cyberghostbash :<pre>"
           /usr/bin/cyberghostbash.bash
@@ -234,10 +228,9 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<br>"
     echo "Choose your github"
     echo "<br>"
-    echo "<input type=radio name=cmd value=brotuserbash> Clone Brotuser GitHub <br>"
+    echo "<input type=radio name=cmd value=ibaabash> Clone iBaa GitHub <br>"
     echo "<input type=radio name=cmd value=cyberghostbash> Clone CyberGhost84 GitHub <br>"
     echo "<input type=radio name=cmd value=falcobash> Clone Falco953 GitHub <br>"
-    echo "<input type=radio name=cmd value=ibaabash> Clone iBaa GitHub <br>"
     echo "<input type=radio name=cmd value=stoffezbash> Clone Stoffez GitHub <br>"
     echo "<input type=radio name=cmd value=wahlmanjbash> Clone Wahlman.J GitHub <br>"
     echo "<input type=radio name=cmd value=trashbasebash> Delete PlexConnect Folder <br>"
