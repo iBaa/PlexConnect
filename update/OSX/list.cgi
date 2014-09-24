@@ -283,7 +283,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<br>"
     echo "Plex Media Server/OSX App options"
     echo "</p>"
-    echo "<input type=radio name=cmd value=10.6bash> Update OpenPlex
+    echo "<input type=radio name=cmd value=10.6bash> Update OpenPlex <br>"
     echo "<input type=radio name=cmd value=pmsscanbash> Update PMS Library <br>"
     echo "<input type=radio name=cmd value=pmsbash> Start Plex Media Server <br>"
     echo "<input type=radio name=cmd value=phtbash> Start Plex Home Theater <br>"
