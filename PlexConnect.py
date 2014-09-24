@@ -39,8 +39,9 @@ def getIP_self():
 
 
 
-class MyManager(BaseManager):
-    """proxy ATVSettings to WebServer/XMLConverter processes."""
+# initializer for Manager, proxy-ing ATVSettings to WebServer/XMLConverter
+def initProxy():
+    signal.signal(signal.SIGINT, signal.SIG_IGN)
 
 
 
@@ -81,9 +82,9 @@ def startup():
     param['baseURL'] = 'http://'+ param['HostToIntercept']
     
     # proxy for ATVSettings
-    proxy = MyManager()
+    proxy = BaseManager()
     proxy.register('ATVSettings', ATVSettings.CATVSettings)
-    proxy.start()
+    proxy.start(initProxy)
     param['CATVSettings'] = proxy.ATVSettings()
     
     running = True
