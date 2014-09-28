@@ -201,6 +201,16 @@ def XML_PMS2aTV(PMS_address, path, options):
             return XML_Error('PlexConnect','Unexpected "Play" command syntax')
         XMLtemplate = 'PlayVideo.xml'
     
+    elif cmd.startswith('PlayAudio'):  # PlayAudio: or PlayAudio_plist:
+        parts = cmd.split(':',3)
+        if len(parts)==4:
+            XMLtemplate = parts[0] + '.xml'
+            options['PlexConnectPlayType'] = parts[1]  # Single, Continuous # decoded in PlayAudio.xml
+            options['PlexConnectRatingKey'] = parts[2]  # ratingKey
+            options['PlexConnectCopyIx'] = parts[3]  # copy_ix
+        else:
+            return XML_Error('PlexConnect','Unexpected "PlayAudio" command syntax')
+    
     elif cmd=='PlayVideo_ChannelsV1':
         dprint(__name__, 1, "playing Channels XML Version 1: {0}".format(path))
         auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
@@ -466,9 +476,6 @@ def XML_PMS2aTV(PMS_address, path, options):
         else:
           # Movie listing
           XMLtemplate = 'Movie_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'movieview').replace(' ','')+'.xml'
-          
-    elif PMSroot.get('viewGroup','')=='track':
-        XMLtemplate = 'Music_Track.xml'
    
     elif PMSroot.get('viewGroup','')=='episode':
         if PMSroot.get('title2')=='On Deck' or \
@@ -862,6 +869,7 @@ class CCommandCollection(CCommandHelper):
                 break
         
         # duplicate child and add to tree
+        cnt = 0
         for elemSRC in src.findall(tag):
             key = 'COPY'
             if param_enbl!='':
@@ -872,6 +880,8 @@ class CCommandCollection(CCommandHelper):
             
             if key:
                 self.PMSroot['copy_'+tag] = elemSRC
+                self.variables['copy_ix'] = str(cnt)
+                cnt = cnt+1
                 el = copy.deepcopy(child)
                 XML_ExpandTree(self, el, elemSRC, srcXML)
                 XML_ExpandAllAttrib(self, el, elemSRC, srcXML)
@@ -909,6 +919,7 @@ class CCommandCollection(CCommandHelper):
                 break
         
         # duplicate child and add to tree
+        cnt = 0
         copy_enbl = False
         for elemSRC in src.findall(tag):
             child_key, leftover, dfltd = self.getKey(elemSRC, srcXML, param_key)
@@ -923,6 +934,8 @@ class CCommandCollection(CCommandHelper):
             
             if copy_enbl:
                 self.PMSroot['copy_'+tag] = elemSRC
+                self.variables['copy_ix'] = str(cnt)
+                cnt = cnt+1
                 el = copy.deepcopy(child)
                 XML_ExpandTree(self, el, elemSRC, srcXML)
                 XML_ExpandAllAttrib(self, el, elemSRC, srcXML)
