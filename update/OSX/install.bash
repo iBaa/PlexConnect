@@ -200,6 +200,7 @@ chmod +x /Library/WebServer/CGI-Executables/installer.cgi
 chmod +x /Applications/PlexConnect/update/OSX/storefront.bash
 
 ## copy files to /usr/bin for system wide access
+cp hairtunes.bash /usr/bin
 cp mod.bash /usr/bin
 cp quit.bash /usr/bin
 cp fixclone.bash /usr/bin
@@ -352,6 +353,7 @@ sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/webconnec
 sed -e "s/__USERNAME__/$whoami/" "${DefaultPath}/fixgit.bash" > /usr/bin/fixgit.bash
 
 ## fix permissions
+chmod +X /usr/bin/hairtunes.bash
 chmod +x /Applications/PlexConnect/update/OSX/PlexConnect.bash
 chmod +x /Applications/PlexConnect/update/OSX/shairport.bash
 chmod +x /Applications/PlexConnect/update/OSX/airplay.bash
