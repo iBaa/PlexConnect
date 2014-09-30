@@ -20,7 +20,7 @@ import os
 import sys
 import traceback
 import inspect 
-import string, cgi, time
+import string, random
 import copy  # deepcopy()
 
 try:
@@ -918,21 +918,34 @@ class CCommandCollection(CCommandHelper):
             if el==child:
                 break
         
-        # duplicate child and add to tree
+        # filter elements to copy
         cnt = 0
         copy_enbl = False
+        elemsSRC = []
         for elemSRC in src.findall(tag):
             child_key, leftover, dfltd = self.getKey(elemSRC, srcXML, param_key)
-            
-            # find first-to-copy src element
-            if playType == 'Continuous':
+            if not key:
+                copy_enbl = True                           # copy all
+            elif playType == 'Continuous' or playType== 'Shuffle':
                 copy_enbl = copy_enbl or (key==child_key)  # [0 0 1 1 1 1]
             else:  # 'Single' (default)
                 copy_enbl = (key==child_key)               # [0 0 1 0 0 0]
             
-            # todo: implement "Shuffle" somewhere around here...
-            
             if copy_enbl:
+                elemsSRC.append(elemSRC)
+        
+        # shuffle elements
+        if playType == 'Shuffle':
+            if not key:
+                random.shuffle(elemsSRC)                   # shuffle all
+            else:
+                elems = elemsSRC[1:]                       # keep first element fix
+                random.shuffle(elems)
+                elemsSRC = [elemsSRC[0]] + elems
+        
+        # duplicate child and add to tree
+        cnt = 0
+        for elemSRC in elemsSRC:
                 self.PMSroot['copy_'+tag] = elemSRC
                 self.variables['copy_ix'] = str(cnt)
                 cnt = cnt+1
