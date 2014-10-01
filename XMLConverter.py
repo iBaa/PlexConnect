@@ -527,7 +527,7 @@ def XML_PMS2aTV(PMS_address, path, options):
                 bURL.text = channelsearchURL + '&query='
                 
     dprint(__name__, 1, "====== generated aTV-XML ======")
-    dprint(__name__, 1, aTVTree)
+    dprint(__name__, 1, aTVroot)
     dprint(__name__, 1, "====== aTV-XML finished ======")
     
     return etree.tostring(aTVroot)

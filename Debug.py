@@ -59,11 +59,8 @@ def dprint(src, dlevel, *args):
         asc_args = list(args)
         
         for i,arg in enumerate(asc_args):
-            try:
-                if asc_args[i].getroot():
-                    asc_args[i] = prettyXML(asc_args[i])
-            except:
-                pass
+            if etree.iselement(asc_args[i]):
+                asc_args[i] = prettyXML(asc_args[i])
             
             if isinstance(asc_args[i], str):
                 asc_args[i] = asc_args[i].decode('utf-8', 'replace')  # convert as utf-8 just in case
@@ -88,7 +85,7 @@ def dprint(src, dlevel, *args):
             if len(asc_args)==0:
                 print src+":"
             elif len(asc_args)==1:
-                print src+": "+asc_args[0]
+                print src+": "+str(asc_args[0])
             else:
                 print src+": "+asc_args[0].format(*asc_args[1:])
 
@@ -113,9 +110,9 @@ def indent(elem, level=0):
         if level and (not elem.tail or not elem.tail.strip()):
             elem.tail = i
 
-def prettyXML(XML):
-    indent(XML.getroot())
-    return(etree.tostring(XML.getroot()))
+def prettyXML(elem):
+    indent(elem)
+    return(etree.tostring(elem))
 
 
 
