@@ -259,7 +259,6 @@ cp icon.bash /usr/bin
 cp 10.6.bash /usr/bin
 cp 10.10.bash /usr/bin
 cp checker.bash /usr/bin
-cp httpd.conf /etc/apache2
 cp modbash.bash /usr/bin
 cp ibaabash.bash /usr/bin
 cp brotuserbash.bash /usr/bin
