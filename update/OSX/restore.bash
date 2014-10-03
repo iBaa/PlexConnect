@@ -54,6 +54,6 @@ echo 'falco953 flow dir not found'
 
 fi
 
-sudo /usr/bin/restart.bash
+restartbash.bash
 
 echo 'All available PlexConnect settings have been restored'
