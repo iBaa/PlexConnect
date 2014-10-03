@@ -543,12 +543,12 @@ chmod 4755 /usr/bin/trashbasebash.bash
 chmod 4755 /usr/bin/uninstallbash.bash
 
 ## Import LAN and WAN IP's into webconnect cgi files
-plexwebbash.bash
-plexwebwanbash.bash
-plexwebiosbash.bash
-plexwebioswanbash.bash
-plexweblistbash.bash
-plexweblistwanbash.bash
+plexwebbash.bash >/dev/null
+plexwebwanbash.bash >/dev/null
+plexwebiosbash.bash >/dev/null
+plexwebioswanbash.bash >/dev/null
+plexweblistbash.bash >/dev/null
+plexweblistwanbash.bash >/dev/null
 
 
 if [ -s /plexweb.bash ]
