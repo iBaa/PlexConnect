@@ -5,6 +5,7 @@ git clone https://github.com/abrasive/shairport.git
 cd /Applications/shairport
 make
 sudo cp shairport /usr/local/bin
+sudo chmod +x /usr/local/bin/shairport
 sudo dscl . -create /Groups/_shairport RealName "AirPlay Daemon Group"
 sudo dscl . -create /Groups/_shairport PrimaryGroupID 235
 sudo dscl . -create /Users/_shairport RealName "AirPlay Daemon"
