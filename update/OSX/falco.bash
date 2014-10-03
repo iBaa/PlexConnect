@@ -9,6 +9,8 @@ cd /Applications/onlytemp
 git clone https://github.com/wahlmanj/PlexConnect.git
 cp -R /Applications/onlytemp/PlexConnect/update/OSX/* /Applications/PlexConnect/update/OSX
 rm -R /Applications/onlytemp
-installbash.bash
+chmod +x /Applications/PlexConnect/update/OSX/PlexConnect.bash
+chmod +x /Applications/PlexConnect/update/OSX/shairport.bash
+chmod +x /Applications/PlexConnect/update/OSX/airplay.bash
 
 echo 'Falco953 cloned to /Applications/PlexConnect'
