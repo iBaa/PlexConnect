@@ -28,7 +28,7 @@ wq
 EOF
 ed -s plexweb.bash << EOF
 i
-sed -n '' 's/__PLEXWEB__/http:\/\/
+sed -i '' 's/__PLEXWEB__/http:\/\/
 .
 1,2j
 wq
@@ -52,7 +52,7 @@ wq
 EOF
 ed -s plexwebios.bash << EOF
 i
-sed -n '' 's/__PLEXWEB__/http:\/\/
+sed -i '' 's/__PLEXWEB__/http:\/\/
 .
 1,2j
 wq
@@ -76,7 +76,7 @@ wq
 EOF
 ed -s plexweblist.bash << EOF
 i
-sed -n '' 's/__PLEXWEB__/http:\/\/
+sed -i '' 's/__PLEXWEB__/http:\/\/
 .
 1,2j
 wq
