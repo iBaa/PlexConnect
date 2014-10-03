@@ -28,7 +28,7 @@ wq
 EOF
 ed -s plexweb.bash << EOF
 i
-sed -i '' 's/__PLEXWEB__/http:\/\/
+sed --quiet -i '' 's/__PLEXWEB__/http:\/\/
 .
 1,2j
 wq
