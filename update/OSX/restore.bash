@@ -54,6 +54,13 @@ echo 'falco953 flow dir not found'
 
 fi
 
+if [ -s /Library/LaunchDaemons/com.plex.plexconnect.bash.plist ]
+then
+echo 'Found bash plist'
+else
+createplistbash.bash
+fi
+
 restartbash.bash
 
 echo 'All available PlexConnect settings have been restored'
