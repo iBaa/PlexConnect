@@ -2,7 +2,7 @@
 
 trashbase.bash
 sleep 2
-cd /Applications;
+cd /Applications
 git clone https://github.com/iBaa/PlexConnect.git
 mkdir -p /Applications/PlexConnect/update/OSX
 mkdir /Applications/onlytemp
