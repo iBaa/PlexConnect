@@ -81,20 +81,22 @@ def XML_PlayVideo_ChannelsV1(baseURL, path):
         <mediaURL>' + baseURL + path + '</mediaURL>\n\
         <title>*title*</title>\n\
         <!--bookmarkTime>{{EVAL(int({{VAL(Video/viewOffset:0)}}/1000))}}</bookmarkTime-->\n\
-        <myMetadata>\n\
+        <videoPlayerSettings>\n\
           <!-- PMS, OSD settings, ... -->\n\
           <baseURL>' + baseURL + '</baseURL>\n\
           <accessToken></accessToken>\n\
-          <key></key>\n\
-          <ratingKey></ratingKey>\n\
-          <duration></duration>\n\
           <showClock>False</showClock>\n\
           <timeFormat></timeFormat>\n\
           <clockPosition></clockPosition>\n\
           <overscanAdjust></overscanAdjust>\n\
           <showEndtime>False</showEndtime>\n\
-          <subtitleURL></subtitleURL>\n\
           <subtitleSize></subtitleSize>\n\
+        </videoPlayerSettings>\n\
+        <myMetadata>\n\
+          <key></key>\n\
+          <ratingKey></ratingKey>\n\
+          <duration></duration>\n\
+          <subtitleURL></subtitleURL>\n\
         </myMetadata>\n\
       </httpFileVideoAsset>\n\
     </videoPlayer>\n\
