@@ -252,7 +252,7 @@ def XML_PMS2aTV(PMS_address, path, options):
         XMLtemplate = 'PhotoSectionTopLevel.xml'
 
     elif cmd=='Plex_Music_Scanner':
-        XMLtemplate = 'Directory.xml'
+        XMLtemplate = 'MusicSectionTopLevel.xml'
     
     elif cmd=='ScrobbleMenu':
         XMLtemplate = 'ScrobbleMenu.xml'
@@ -338,6 +338,9 @@ def XML_PMS2aTV(PMS_address, path, options):
     elif cmd == 'PhotoSecondary':
         XMLtemplate = 'PhotoSecondary.xml'
         
+    elif cmd == 'MusicSecondary':
+        XMLtemplate = 'MusicSecondary.xml'
+        
     elif cmd == 'Directory':
         XMLtemplate = 'Directory.xml'
     
@@ -365,6 +368,10 @@ def XML_PMS2aTV(PMS_address, path, options):
  
     elif cmd=='SettingsHomeVideos':
         XMLtemplate = 'Settings_HomeVideos.xml'
+        path = ''  # clear path - we don't need PMS-XML
+
+    elif cmd=='SettingsMusic':
+        XMLtemplate = 'Settings_Music.xml'
         path = ''  # clear path - we don't need PMS-XML
 
     elif cmd=='SettingsTopLevel':

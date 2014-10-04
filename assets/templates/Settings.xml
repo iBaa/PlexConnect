@@ -95,6 +95,12 @@
                   <arrow/>
                 </accessories>
               </oneLineMenuItem>
+              <oneLineMenuItem id="MusicView" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsMusic')">
+                <label>{{TEXT(Music Options)}}</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
+              </oneLineMenuItem>
               <oneLineMenuItem id="VideoOSD" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsVideoOSD')">
                 <label>{{TEXT(Video Player OSD)}}</label>
                 <accessories>

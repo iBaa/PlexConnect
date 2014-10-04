@@ -39,6 +39,11 @@ options = { \
     'homevideos_navbar_byfolder'    :('checked', 'unchecked'), \
     'homevideos_navbar_collections' :('checked', 'unchecked'), \
     'homevideos_navbar_genres'      :('checked', 'unchecked'), \
+    'music_navbar_recentlyadded'    :('checked', 'unchecked'), \
+    'music_navbar_genre'            :('checked', 'unchecked'), \
+    'music_navbar_decade'           :('checked', 'unchecked'), \
+    'music_navbar_year'             :('checked', 'unchecked'), \
+    'music_navbar_more'             :('checked', 'unchecked'), \
     'tv_navbar_ondeck'          :('checked', 'unchecked'), \
     'tv_navbar_unwatched'       :('checked', 'unchecked'), \
     'tv_navbar_genres'          :('checked', 'unchecked'), \

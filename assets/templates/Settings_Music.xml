@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/settings.js)}}" />
+  </head>
+
+  <body>
+    <listWithPreview id="SettingsPage_HomeVideos">
+      <header>
+        <simpleHeader>
+          <title>{{TEXT(Settings)}}</title>
+        </simpleHeader>
+      </header>
+      <preview>
+        <keyedPreview>
+          <title>&#x00AD;<!--soft-hyphen--></title>
+          <summary/>
+          <metadataKeys>
+            <label>{{TEXT(Version)}}</label>
+            <label>{{TEXT(Authors)}}</label>
+            <label>{{TEXT(Wiki/Docs)}}</label>
+            <label>{{TEXT(Homepage)}}</label>
+            <label>{{TEXT(Forum)}}</label>
+          </metadataKeys>
+          <metadataValues>
+            <label>{{EVAL(__VERSION__)}}</label>
+            <label>Baa, roidy</label>
+            <label>f00b4r, meltman</label>
+            <label>https://github.com/ibaa/plexconnect</label>
+            <label>http://forums.plexapp.com/...plexconnect</label>
+          </metadataValues>
+          <image>{{URL(:/thumbnails/PlexConnectLogo.jpg)}}</image>
+        </keyedPreview>
+      </preview>
+
+      <menu>
+        <sections>
+          <!--<menuSection>
+            <items>
+              <oneLineMenuItem id="MusicView" onSelect="toggleSettings('MusicView', 'Settings_Music')">
+                <label>{{TEXT(Music View)}}</label>
+                <rightLabel>{{SETTING(musicview)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="ShowTitles_Music" onSelect="toggleSettings('ShowTitles_Music', 'Settings_Music')">
+                <label>{{TEXT(Poster Titles)}}</label>
+                <rightLabel>{{SETTING(showtitles_music)}}</rightLabel>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>-->
+
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{TEXT(Music Navigation Bar)}}</title>
+              </horizontalDivider>
+            </header>
+            <items>
+
+              <oneLineMenuItem id="Music_NavBar_RecentlyAdded" onSelect="toggleSettings('Music_NavBar_RecentlyAdded', 'Settings_Music')">
+                <label>{{TEXT(Recently Added)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($music_navbar_recentlyadded::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+
+              <oneLineMenuItem id="Music_NavBar_Genre" onSelect="toggleSettings('Music_NavBar_Genre', 'Settings_Music')">
+                <label>{{TEXT(Genre)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($music_navbar_genre::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+
+              <oneLineMenuItem id="Music_NavBar_Decade" onSelect="toggleSettings('Music_NavBar_Decade', 'Settings_Music')">
+                <label>{{TEXT(Decade)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($music_navbar_decade::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+
+              <oneLineMenuItem id="Music_NavBar_Year" onSelect="toggleSettings('Music_NavBar_Year', 'Settings_Music')">
+                <label>{{TEXT(Year)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($music_navbar_year::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>   
+
+              <oneLineMenuItem id="Music_NavBar_More" onSelect="toggleSettings('Music_NavBar_More', 'Settings_Music')">
+                <label>{{TEXT(More...)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($music_navbar_more::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>              
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </listWithPreview>
+  </body>
+</atv>

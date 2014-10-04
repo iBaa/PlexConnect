@@ -180,6 +180,11 @@
                 <accessories>
                   <shuffle/>
                 </accessories>
+                <preview>
+                  <crossFadePreview>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
+                  </crossFadePreview>
+                </preview>
               </oneLineMenuItem>
             </items>
           </menuSection>
@@ -228,6 +233,11 @@
                 <accessories>
                   <shuffle/>
                 </accessories>
+                <preview>
+                  <crossFadePreview>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
+                  </crossFadePreview>
+                </preview>
               </oneLineMenuItem>
             </items>
           </menuSection>
