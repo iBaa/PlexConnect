@@ -36,7 +36,7 @@
             <label>{{VAL(Video/Producer/tag)}}</label>
           </row>
           <row>
-            <label>{{getDurationString(Video/duration)}}</label>
+            <label>{{durationToString(NoKey:Video:Video/duration)}}</label>
             <label>{{VAL(Video/Role[2]/tag)}}</label>
             <label>{{VAL(Video/Director[2]/tag)}}</label>
             <label>{{VAL(Video/Producer[2]/tag)}}</label>

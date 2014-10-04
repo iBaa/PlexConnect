@@ -42,7 +42,7 @@
 											<label>{{VAL(Role/tag)}}{{VAL(Role[2]/tag::=, )}}{{VAL(Role[2]/tag)}}{{VAL(Role[3]/tag::=, )}}{{VAL(Role[3]/tag)}}</label>
 											<label>{{VAL(Director/tag)}}</label>
 											<label>{{VAL(Genre/tag)}}{{VAL(Genre[2]/tag::=, )}}{{VAL(Genre[2]/tag)}}</label>
-											<label>{{getDurationString(duration)}}</label>
+											<label>{{durationToString(NoKey:Video:duration)}}</label>
 										</metadataValues>
                   </keyedPreview>
                 </preview>

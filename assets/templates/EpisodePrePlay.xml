@@ -29,7 +29,7 @@
         </columnDefinitions>
         <rows>
           <row>
-            <label>{{getDurationString(Video/duration)}}</label>
+            <label>{{durationToString(NoKey:Video:Video/duration)}}</label>
             <label>{{VAL(Video/Director/tag)}}</label>
             <label>{{VAL(Video/Writer/tag)}}</label>
           </row>

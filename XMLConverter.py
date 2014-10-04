@@ -1328,30 +1328,30 @@ class CCommandCollection(CCommandHelper):
         title, leftover, dfltd = self.getKey(src, srcXML, leftover)
         out = self._("{0:0d}x{1:02d} {2}").format(int(parentIndex), int(index), title)
         return out
-    
-    def ATTRIB_getDurationString(self, src, srcXML, param):
-        duration, leftover, dfltd = self.getKey(src, srcXML, param)
-        min = int(duration)/1000/60
-        if g_ATVSettings.getSetting(self.ATV_udid, 'durationformat') == 'Minutes':
-            return self._("{0:d} Minutes").format(min)
-        else:
+
+    def ATTRIB_durationToString(self, src, srcXML, param):
+        type, leftover, dfltd = self.getKey(src, srcXML, param)
+        duration, leftover, dfltd = self.getKey(src, srcXML, leftover)
+        if type == 'Video':
+            min = int(duration)/1000/60
+            if g_ATVSettings.getSetting(self.ATV_udid, 'durationformat') == 'Minutes':
+                return self._("{0:d} Minutes").format(min)
+            else:
+                if len(duration) > 0:
+                    hour = min/60
+                    min = min%60
+                    if hour == 0: return self._("{0:d} Minutes").format(min)
+                    else: return self._("{0:d}hr {1:d}min").format(hour, min)
+        
+        if type == 'Audio':
+            secs = int(duration)/1000
             if len(duration) > 0:
-                hour = min/60
-                min = min%60
-                if hour == 0: return self._("{0:d} Minutes").format(min)
-                else: return self._("{0:d}hr {1:d}min").format(hour, min)
+                mins = secs/60
+                secs = secs%60
+                return self._("{0:d}:{1:0>2d}").format(mins, secs)
+        
         return ""
         
-    def ATTRIB_getTrackDurationString(self, src, srcXML, param):
-        duration, leftover, dfltd = self.getKey(src, srcXML, param)
-        secs = int(duration)/1000
-        if len(duration) > 0:
-            mins = secs/60
-            secs = secs%60
-            if mins == 0: return self._("0:{0:0>2d}").format(secs)
-            else: return self._("{0:d}:{1:0>2d}").format(mins, secs)
-        return ""
-    
     def ATTRIB_contentRating(self, src, srcXML, param):
         rating, leftover, dfltd = self.getKey(src, srcXML, param)
         if rating.find('/') != -1:
