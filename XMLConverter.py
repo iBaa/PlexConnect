@@ -1348,8 +1348,8 @@ class CCommandCollection(CCommandHelper):
         if len(duration) > 0:
             mins = secs/60
             secs = secs%60
-            if mins == 0: return self._("0:{0:d}").format(secs)
-            else: return self._("{0:d}:{1:d}").format(mins, secs)
+            if mins == 0: return self._("0:{0:0>2d}").format(secs)
+            else: return self._("{0:d}:{1:0>2d}").format(mins, secs)
         return ""
     
     def ATTRIB_contentRating(self, src, srcXML, param):
