@@ -1341,6 +1341,16 @@ class CCommandCollection(CCommandHelper):
                 if hour == 0: return self._("{0:d} Minutes").format(min)
                 else: return self._("{0:d}hr {1:d}min").format(hour, min)
         return ""
+        
+    def ATTRIB_getTrackDurationString(self, src, srcXML, param):
+        duration, leftover, dfltd = self.getKey(src, srcXML, param)
+        secs = int(duration)/1000
+        if len(duration) > 0:
+            mins = secs/60
+            secs = secs%60
+            if mins == 0: return self._("0:{0:d}").format(secs)
+            else: return self._("{0:d}:{1:d}").format(mins, secs)
+        return ""
     
     def ATTRIB_contentRating(self, src, srcXML, param):
         rating, leftover, dfltd = self.getKey(src, srcXML, param)
