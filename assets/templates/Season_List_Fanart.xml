@@ -1,0 +1,70 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+
+  <body>
+    <itemCollectionWithImageHeader id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
+   	  <styles>
+          <color name="titleColor">#fafafa</color>
+          <color name="metadataColor">#fafafa</color>
+        </styles>
+      <header>
+        <imageHeader>
+            <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=440|1080=700)}}, 0" required="true">
+                {{URL(:/fanartcache/{{getBackground({{EVAL({                
+                    'title'       : "{{EVAL(quote_plus("{{VAL(parentTitle)}}"))}}",\
+                    'image'       : "{{IMAGEURL(art:::)}}", 
+                    'resolution' : "{{VAL(^aTVScreenResolution)}}" \
+                    })}})}})}}
+            </image>
+        </imageHeader>
+      </header>
+      
+      {{VAR(parentThumb:thumb)}}
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key)}}')"
+                                                         onSelect="atv.loadURL('{{URL(key)}}')"
+                                                         onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenu')">
+                {{COPY(Directory:title::All=|Season=COPY)}}
+                <label>{{VAL(title)}}</label>
+                <label2>{{VAL(leafCount)}} {{TEXT(Episodes)}}</label2>
+                <rightLabel>{{unwatchedCountList(leafCount:0:viewedLeafCount:0)}}</rightLabel>{{CUT($showunwatched::False=CUT|True=)}}
+                <image>{{IMAGEURL(thumb::768)}}</image>{{CUT(thumb:CUT:=CUT| =)}}
+                <image>{{IMAGEURL(#parentThumb::768)}}</image>{{CUT(thumb:: =CUT)}}
+                <defaultImage>resource://Poster.png</defaultImage>
+                <preview>
+                  <longDescriptionPreview>
+                    <title>{{VAL(title)}}</title>
+                    <summary><![CDATA[{{VAL(/summary)}}]]></summary>
+                    <image required="true">{{IMAGEURL(thumb::800)}}</image>
+
+                    <metadata>
+                      <mainLabel>{{VAL(/parentTitle)}}</mainLabel>
+                      <label>{{VAL(/parentYear)}}</label>
+                      <!--<label>{{durationToString(NoKey:Video:duration)}}</label>   
+                      <label>{{VAL(Media/videoResolution:Unknown:1080=1080p|720=720p|576=576 SD|480=480 SD|sd=SD)}}   {{VAL(Media/audioCodec:Unknown:ac3=AC3|aac=AAC|mp3=MP3|dca=DTS|drms=DRMS)}} {{VAL(Media/audioChannels:Unknown:2=Stereo 2.0|6=5.1|8=7.1)}} </label>
+                      <starRating hasUserSetRating="true">
+                        <percentage>{{EVAL({{VAL(userRating:0)}} * 10)}}</percentage>
+                      </starRating>{{CUT(userRating:CUT:0=)}}
+                      <starRating>
+                        <percentage>{{EVAL({{VAL(rating:0)}} * 10)}}</percentage>
+                      </starRating>{{CUT(userRating::0=CUT)}} -->            
+                    </metadata>
+                  </longDescriptionPreview>
+                </preview>
+              </twoLineEnhancedMenuItem>{{CUT(Directory/title:CUT:=)}}
+
+              <oneLineMenuItem id="none">
+                <label>{{TEXT(No Seasons)}}</label>
+              </oneLineMenuItem>{{CUT(Directory/title::=CUT)}}
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </itemCollectionWithImageHeader>
+  </body>
+</atv>
