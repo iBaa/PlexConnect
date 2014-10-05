@@ -39,7 +39,8 @@ import PlexAPI
 from Debug import *  # dprint(), prettyXML()
 import Localize
 
-
+import PILBackgrounds
+from PILBackgrounds import isPILinstalled
 
 g_param = {}
 def setParams(param):
@@ -282,7 +283,12 @@ def XML_PMS2aTV(PMS_address, path, options):
         XMLtemplate = 'HomeVideoPrePlay.xml'
         
     elif cmd=='MoviePrePlay':
-        XMLtemplate = 'MoviePrePlay.xml'
+        dprint(__name__, 1, "IS PIL installed? "+ str(isPILinstalled()))
+        if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'moviefanart') == 'Show':
+            if isPILinstalled():
+                XMLtemplate = 'MoviePrePlay_Fanart.xml'
+            else: XMLtemplate = 'MoviePrePlay.xml'            
+        else: XMLtemplate = 'MoviePrePlay.xml'
 
     elif cmd=='EpisodePrePlay':
         XMLtemplate = 'EpisodePrePlay.xml'
@@ -1386,7 +1392,10 @@ class CCommandCollection(CCommandHelper):
         else:
             return PMS_name
 
-
+    def ATTRIB_getBackground(self, src, srcXML, param):
+        conf = PILBackgrounds.ImageBackground(eval(param))
+        res = conf.generate()
+        return res
 
 if __name__=="__main__":
     cfg = Settings.CSettings()

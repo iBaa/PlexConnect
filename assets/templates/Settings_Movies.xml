@@ -52,6 +52,11 @@
                 <label>{{TEXT(Poster Titles)}}</label>
                 <rightLabel>{{SETTING(showtitles_movies)}}</rightLabel>
               </oneLineMenuItem>
+              
+              <oneLineMenuItem id="MovieFanart" onSelect="toggleSettings('MovieFanart', 'Settings_Movies')">
+                <label>{{TEXT(Movie Fanart)}}</label>
+                <rightLabel>{{SETTING(moviefanart)}}</rightLabel>
+              </oneLineMenuItem>
             </items>
           </menuSection>
 

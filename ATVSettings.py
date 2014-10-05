@@ -21,6 +21,7 @@ options = { \
     'seasonview'        :('List', 'Coverflow'), \
     'channelview'       :('List', 'Grid', 'Bookcase'), \
     'durationformat'    :('Hours/Minutes', 'Minutes'), \
+    'moviefanart'       :('Hide', 'Show'), \
     'showtitles_movies'         :('Highlighted Only', 'Show All'), \
     'showtitles_tvshows'        :('Highlighted Only', 'Show All'), \
     'showtitles_homevideos'     :('Highlighted Only', 'Show All'), \
