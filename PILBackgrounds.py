@@ -1,6 +1,5 @@
 import re
 import sys
-import math 
 import ntpath
 import urllib
 import urllib2
@@ -10,14 +9,11 @@ import ConfigParser
 import os.path
 import unicodedata
 from Debug import * 
-from Version import __VERSION__  # for {{EVAL()}}, display in settings page
-import Settings, ATVSettings
-import PlexAPI
 
 try:
     from PIL import Image
 except ImportError:
-    dprint(__name__, 0, "No PILL instalation found.")
+    dprint(__name__, 0, "No PIL/Pillow installation found.")
 
 class ImageBackground():
     options = {'title': "empty", 'image' : 'blank.jpg', 'resolution' : '1080'}
@@ -109,7 +105,7 @@ class ImageBackground():
                     dprint(__name__, 1, 'error: {0}', str(e.code)+" "+e.msg+" // url:"+ url )  # Debug
                     background = Image.open(stylepath+"/images/blank.jpg")
                 else:
-                    dprint(__name__, 1, 'Fetting Remote Image.')  # Debug
+                    dprint(__name__, 1, 'Getting Remote Image.')  # Debug
                     output = open(cachepath+"/tmp.jpg",'wb')
                     output.write(bgfile.read())
                     output.close()
