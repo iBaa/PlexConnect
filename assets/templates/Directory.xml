@@ -125,7 +125,7 @@
                                        onSelect="atv.loadURL('{{URL()}}&amp;PlexConnect=PlayAudio_plist:Single:{{VAL(ratingKey)}}:0')">
               {{COPY(Track)}}
                 <label>{{VAL(track)}}</label>
-                <rightLabel>{{durationToString(NoKey:Audio:duration)}}</rightLabel>
+                <rightLabel>{{durationToString(NoKey:Audio:totalTime)}}</rightLabel>
                 <ordinal>{{VAL(index)}}</ordinal>{{CUT(index:CUT:0=CUT|0 =)}}
                 <maxOrdinalDigits>2</maxOrdinalDigits>
                 <preview>
@@ -206,7 +206,7 @@
                                        onSelect="atv.loadURL('{{URL()}}&amp;PlexConnect=PlayAudio:Single:{{VAL(ratingKey)}}:')">
               {{COPY(Track)}}
                 <label>{{VAL(track)}}</label>
-                <rightLabel>{{durationToString(NoKey:Audio:duration)}}</rightLabel>
+                <rightLabel>{{durationToString(NoKey:Audio:totalTime)}}</rightLabel>
                 <ordinal>{{VAL(index)}}</ordinal>{{CUT(index:CUT:0=CUT|0 =)}}
                 <maxOrdinalDigits>2</maxOrdinalDigits>
                 <preview>
