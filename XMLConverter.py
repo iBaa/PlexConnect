@@ -501,7 +501,12 @@ def XML_PMS2aTV(PMS_address, path, options):
             XMLtemplate = 'TV_OnDeck.xml'
         else:
             # TV Episode view
-            XMLtemplate = 'Episode.xml'
+            dprint(__name__, 1, "IS PIL installed? "+ str(isPILinstalled()))
+            if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'tvshowfanart') == 'Show':
+                if isPILinstalled():
+                    XMLtemplate = 'Episode_Fanart.xml'
+                else: XMLtemplate = 'Episode.xml'            
+            else: XMLtemplate = 'Episode.xml'
     
     elif PMSroot.get('viewGroup','')=='photo' or \
        path.startswith('/photos') or \

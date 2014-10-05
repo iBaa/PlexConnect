@@ -1,0 +1,84 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/scrobble.js)}}" />
+  </head>
+
+  {{VAR(studio:grandparentStudio)}}
+  {{VAR(contentRating:grandparentContentRating)}}
+  {{VAR(title1:title1)}}
+  {{VAR(title2:title2)}}
+  {{VAR(artwork:art)}}
+  
+  <body>
+    <itemCollectionWithImageHeader id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
+
+        	  <styles>
+          <color name="titleColor">#fafafa</color>
+          <color name="metadataColor">#fafafa</color>
+        </styles>
+    <header>
+
+	    <imageHeader>
+            <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=440|1080=700)}}, 0" required="true">
+                {{URL(:/fanartcache/{{getBackground({{EVAL({                
+                    'title'       : "{{EVAL(quote_plus("{{VAL(grandparentTitle)}}"))}}",\
+                    'image'       : "{{IMAGEURL(art:::)}}", 
+                    'resolution' : "{{VAL(^aTVScreenResolution)}}" \
+                    })}})}})}}
+            </image>
+	    </imageHeader>
+
+      </header>
+      <menu>
+        <sections>
+          <menuSection>
+            <items>    
+              <oneLineMenuItem id="{{VAL(ratingKey)}}"
+                                         onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=Play:Continuous:{{VAL(ratingKey)}}')"
+                                         onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
+                                         onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
+                {{COPY(Video:index::=|0 =COPY)}}
+                <label>{{VAL(title)}}</label>
+                <ordinal>{{VAL(index)}}</ordinal>
+                <maxOrdinalDigits>2</maxOrdinalDigits>
+                <accessories>
+                <unplayedDot/>{{CUT(viewOffset)}}
+                  <progressBar percentage="{{EVAL({{VAL(viewOffset:0)}} * 100 / {{VAL(duration:1)}})}}"/>{{CUT(viewOffset:CUT:=)}}
+                <!---<progressBar percentage="100"/>{{CUT(viewCount:CUT:=)}}{{CUT(viewOffset)}}-->
+                </accessories>{{CUT(viewCount)}}
+
+                <preview>
+                  <longDescriptionPreview>
+                    <title>{{VAL(title)}}</title>
+                    <summary><![CDATA[{{VAL(summary)}}]]></summary>{{CUT($showsynopsis::Hide=CUT|Show=)}}
+                    <summary><![CDATA[{{VAL(summary)}}]]></summary>{{CUT(viewCount:CUT:=)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
+                    <summary>{{TEXT(Synopsis hidden.)}}</summary>{{CUT(viewCount)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
+                    <image required="true">{{IMAGEURL(thumb::800)}}</image>
+
+                    <metadata>
+                      <label>{{VAL(originallyAvailableAt)}}</label>
+                      <label>{{VAL(#studio)}}</label>
+                      <label>{{durationToString(NoKey:Video:duration)}}</label>   
+                      <label>{{VAL(Media/videoResolution:Unknown:1080=1080p|720=720p|576=576 SD|480=480 SD|sd=SD)}}   {{VAL(Media/audioCodec:Unknown:ac3=AC3|aac=AAC|mp3=MP3|dca=DTS|drms=DRMS)}} {{VAL(Media/audioChannels:Unknown:2=Stereo 2.0|6=5.1|8=7.1)}} </label>
+                      <starRating hasUserSetRating="true">
+                        <percentage>{{EVAL({{VAL(userRating:0)}} * 10)}}</percentage>
+                      </starRating>{{CUT(userRating:CUT:0=)}}
+                      <starRating>
+                        <percentage>{{EVAL({{VAL(rating:0)}} * 10)}}</percentage>
+                      </starRating>{{CUT(userRating::0=CUT)}}             
+                    </metadata>
+                  </longDescriptionPreview>
+                </preview>
+              </oneLineMenuItem>{{CUT(Video/title:CUT:=)}}
+
+              <oneLineMenuItem id="none">
+                <label>{{TEXT(No episodes)}}</label>
+              </oneLineMenuItem>{{CUT(Video/title::=CUT)}}
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </itemCollectionWithImageHeader>{{CUT(^aTVFirmwareVersion:CUT:=CUT|6.0=)}}
+</body>
+</atv>
