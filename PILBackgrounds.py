@@ -1,6 +1,5 @@
 import re
 import sys
-import ntpath
 import urllib
 import urllib2
 
@@ -33,11 +32,6 @@ class ImageBackground():
             if self.cfg[opt] != opts[opt]:
                 self.cfg[opt] = opts[opt]
                 
-    def getRendersize(self, res):
-        renderwidth = 1280
-        renderheight = 720
-        return renderwidth, renderheight
-
     def createFileHandle(self):
         cachefileTitle = normalizeString(self.cfg['title'])
         cachefileRes = normalizeString(self.cfg['resolution'])
@@ -50,33 +44,31 @@ class ImageBackground():
         return cachefile
 
     def resizedMerge (self,background, stylepath):
-        isatv2=0
-
-        renderwidth, renderheight = self.getRendersize(self.cfg['resolution'])
-        if str(renderheight) == "720":
-            height = int(self.cfg['resolution'])
-            if height == 720:
-                isatv2 = 1
-                width = 1920
-                height = 1080
-            elif height == 1080:
-                width = 1920
-        else:
-            width = renderwidth
-            height = renderheight
-            
-        im = Image.new("RGB", (width, height), "black")
-        background = background.resize((width, height), Image.ANTIALIAS)
-    
-      
-        im.paste(background, (0, 0), 0)
-        layer = Image.open(stylepath + "/images/MoviePrePlay.png")
-        layer = layer.resize((width, height), Image.ANTIALIAS)
-        im.paste(layer, ( 0, 0), layer)
         
-        if isatv2>0:
-            im = im.resize((1280, 720), Image.ANTIALIAS)
-        return im
+        height = int(self.cfg['resolution'])
+        if height == 1080:
+            width = 1920
+        else:
+            height = 720
+            width = 1280
+        
+        bgWidth, bgHeight = background.size
+        dprint(__name__,1 ,"Background Height: {0}", bgHeight)
+        dprint(__name__,1 , "aTV Height: {0}", height)
+        
+        if bgHeight != height:
+            background = background.resize((width, height), Image.ANTIALIAS)
+            dprint(__name__,1 , "Resizing background")   
+        if height == 1080:
+            layer = Image.open(stylepath + "/images/gradient_1080.png")
+            dprint(__name__,1 , "Using gradient_1080")
+        else:
+            layer = Image.open(stylepath + "/images/gradient_720.png")
+            dprint(__name__,1 , "Using gradient_720")            
+            
+        background.paste(layer, ( 0, 0), layer)
+        
+        return background
 
     def generate(self):
     

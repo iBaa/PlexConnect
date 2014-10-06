@@ -476,11 +476,10 @@ def XML_PMS2aTV(PMS_address, path, options):
         # TV Season view
         XMLtemplate = 'Season_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'seasonview')
         dprint(__name__, 1, "IS PIL installed? "+ str(isPILinstalled()))
-        if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'tvshowfanart') == 'Show':
+        if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'tvshowfanart') == 'Show' and g_ATVSettings.getSetting(options['PlexConnectUDID'], 'seasonview') == 'List':
             if isPILinstalled():
-                XMLtemplate = XMLtemplate + "_Fanart.xml"
-            else: XMLtemplate = XMLtemplate + ".xml"            
-        else: XMLtemplate = XMLtemplate + ".xml"
+                XMLtemplate = XMLtemplate + "_Fanart"           
+        XMLtemplate = XMLtemplate + ".xml"
 
     elif PMSroot.get('viewGroup','')=='movie' and PMSroot.get('thumb','').find('video') != -1:
         if PMSroot.get('title2')=='By Folder':
