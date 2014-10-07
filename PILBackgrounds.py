@@ -1,5 +1,8 @@
+#!/usr/bin/env python
+
 import re
 import sys
+import io
 import urllib
 import urllib2
 
@@ -92,17 +95,13 @@ class ImageBackground():
                 background = Image.open(stylepath+"/images/"+url)
             elif url[0][0] != "/":
                 try:
-                    bgfile = urllib2.urlopen(url)
-                except urllib2.URLError, e:
-                    dprint(__name__, 1, 'error: {0}', str(e.code)+" "+e.msg+" // url:"+ url )  # Debug
-                    background = Image.open(stylepath+"/images/blank.jpg")
-                else:
                     dprint(__name__, 1, 'Getting Remote Image.')  # Debug
-                    output = open(cachepath+"/tmp.jpg",'wb')
-                    output.write(bgfile.read())
-                    output.close()
-                    background = Image.open(cachepath+"/tmp.jpg")
-                
+                    response = urllib2.urlopen(url)
+                    background = Image.open(io.BytesIO(response.read()))
+                except urllib2.URLError, e:
+                    dprint(__name__, 1, 'error: {0} {1} // url: {2}', str(e.code), e.msg, url)  # Debug
+                    background = Image.open(stylepath+"/images/blank.jpg")
+            
             # Set Resolution and Merge Layers
             dprint(__name__, 1, 'Merging Layers.')  # Debug
             im = self.resizedMerge(background, stylepath)
@@ -133,3 +132,12 @@ def remove_junk(url):
     temp = temp.split('?')[0]
     temp = temp.split('&')[0]
     return temp
+
+
+
+if __name__=="__main__":
+    inst = ImageBackground({
+        "title": "TestBackground", 
+        "image": "http://192.168.178.22:32400/photo/:/transcode/1920x1080/http%3A%2F%2F127.0.0.1%3A32400%2Flibrary%2Fmetadata%2F24466%2Fart%2F1412512746?url=http%3A%2F%2F127.0.0.1%3A32400%2Flibrary%2Fmetadata%2F24466%2Fart%2F1412512746&width=1920&height=1080",
+    })
+    inst.generate()

@@ -1,0 +1,52 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+  
+  <body>
+    <scroller id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
+      <header>
+        <imageHeader>
+           <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=580|1080=900)}}, 0" required="true">
+            {{URL(:/fanartcache/{{getBackground({{EVAL({                
+                    'title'       : "{{EVAL(quote_plus("{{VAL(parentTitle)}}"))}}",\
+                    'image'       : "{{IMAGEURL(art:::)}}", 
+                    'resolution' : "{{VAL(^aTVScreenResolution)}}" \
+                    })}})}})}}
+           </image>
+
+        </imageHeader>
+      </header>
+      {{VAR(parentThumb:thumb)}}
+      <items>
+        <collectionDivider alignment="left"><title/></collectionDivider>
+        <collectionDivider alignment="left"><title/></collectionDivider>
+        <collectionDivider alignment="left"><title/></collectionDivider>
+        <collectionDivider alignment="left"><title/></collectionDivider>
+        <collectionDivider alignment="left"><title/></collectionDivider>
+        <collectionDivider alignment="left"><title/></collectionDivider>      
+
+        <shelf id="coverflow" columnCount="{{EVAL(min({{VAL(size:0)}},7))}}">
+          <sections>
+            <shelfSection>
+              <items>
+                <moviePoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
+                              onPlay="atv.loadURL('{{URL(key)}}')"
+                              onSelect="atv.loadURL('{{URL(key)}}')"
+                              onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenu')">
+                  {{COPY(Directory)}}
+                  <title>{{VAL(title)}}</title>
+                  <image>{{IMAGEURL(thumb::768)}}</image>{{CUT(thumb:CUT:=CUT| =)}}
+                  <image>{{IMAGEURL(#parentThumb::768)}}</image>{{CUT(thumb:: =CUT)}}
+                  <defaultImage>resource://Poster.png</defaultImage>
+                </moviePoster>{{CUT(Directory/title:CUT:=)}}
+              </items>
+            </shelfSection>
+          </sections>
+        </shelf>
+
+        <collectionDivider alignment="left"><title/></collectionDivider>     
+      </items>
+    </scroller>
+  </body>
+</atv>

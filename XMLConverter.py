@@ -476,7 +476,7 @@ def XML_PMS2aTV(PMS_address, path, options):
         # TV Season view
         XMLtemplate = 'Season_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'seasonview')
         dprint(__name__, 1, "IS PIL installed? "+ str(isPILinstalled()))
-        if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'tvshowfanart') == 'Show' and g_ATVSettings.getSetting(options['PlexConnectUDID'], 'seasonview') == 'List':
+        if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'tvshowfanart') == 'Show':
             if isPILinstalled():
                 XMLtemplate = XMLtemplate + "_Fanart"           
         XMLtemplate = XMLtemplate + ".xml"
