@@ -5,7 +5,7 @@
   </head>
   <body>
     <viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadMenuPage(event)">
-      <navigation currentIndex="{{EVAL({{VAL($myplex_auth:0:=0| =1)}} and {{VAL($showplaylists:0:False=0|True=1)}})}}">
+      <navigation currentIndex="{{VAL($showplaylists:0:False=0|True=1)}}">
       
         <navigationItem id="Playlists">
           <title>{{TEXT(Playlists)}}</title>
