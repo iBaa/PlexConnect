@@ -20,6 +20,31 @@
           
           <menuSection>
             <items>
+              <!-- shuffle -->
+              <oneLineMenuItem id="shuffle_{{VAL(key)}}"
+                                       onPlay="atv.loadURL('{{URL(Video)}}&amp;PlexConnect=Play:Shuffle:{{VAL(Video/ratingKey)}}')"
+                                       onSelect="atv.loadURL('{{URL(Video)}}&amp;PlexConnect=Play:Shuffle:{{VAL(Video/ratingKey)}}')">
+                <label>{{TEXT(Shuffle)}}</label>
+                <accessories>
+                  <shuffle/>
+                </accessories>
+                <preview>
+                  <crossFadePreview>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
+                  </crossFadePreview>
+                </preview>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+          
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title />
+              </horizontalDivider>
+            </header>
+            
+            <items>
               <__COPY__>
               {{COPY(Video)}}
               
