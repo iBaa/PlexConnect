@@ -18,7 +18,7 @@
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"
                              onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
                              onSelect="atv.loadURL('{{URL(key)}}?includeExtras=1&amp;PlexConnect=MoviePrePlay')">
-                {{COPY(Video:type::movie=COPY|episode=)}}
+                {{COPY(Video:type::=|movie=COPY|movie =)}}
                 {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
                 <label>{{VAL(title)}}</label>
                 <image>{{IMAGEURL(thumb::384)}}</image>
@@ -37,7 +37,7 @@
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"
                              onPlay="atv.loadURL('{{URL(key)}}')"
                              onSelect="atv.loadURL('{{URL(key)}}')">
-                {{COPY(Directory)}}
+                {{COPY(Directory:type::=|show=COPY|show =)}}
                 {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
                 <label>{{VAL(title)}}</label>
                 <image>{{IMAGEURL(thumb::384)}}</image>
@@ -56,10 +56,49 @@
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"
                              onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
                              onSelect="atv.loadURL('{{URL(key)}}?includeExtras=1&amp;PlexConnect=MoviePrePlay')">
-                {{COPY(Video:type::episode=COPY|movie=)}}
+                {{COPY(Video:type::=|episode=COPY|episode =)}}
                 {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
                 <label>{{VAL(title)}}</label>
                 <label2>{{VAL(grandparentTitle)}}</label2>
+                <image>{{IMAGEURL(thumb::384)}}</image>
+                <defaultImage>resource://Poster.png</defaultImage>
+              </twoLineEnhancedMenuItem>
+            </items>
+          </menuSection>{{CUT(#cut)}}
+
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{TEXT(Albums)}}</title>
+              </horizontalDivider>
+            </header>
+            <items>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}"
+                             onPlay="atv.loadURL('{{URL(key)}}')"
+                             onSelect="atv.loadURL('{{URL(key)}}')">
+                {{COPY(Directory:type::=|album=COPY|album =)}}
+                {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
+                <label>{{VAL(title)}}</label>
+                <label2>{{VAL(parentTitle)}}</label2>
+                <image>{{IMAGEURL(thumb::384)}}</image>
+                <defaultImage>resource://Poster.png</defaultImage>
+              </twoLineEnhancedMenuItem>
+            </items>
+          </menuSection>{{CUT(#cut)}}
+
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{TEXT(Artists)}}</title>
+              </horizontalDivider>
+            </header>
+            <items>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}"
+                             onPlay="atv.loadURL('{{URL(key)}}')"
+                             onSelect="atv.loadURL('{{URL(key)}}')">
+                {{COPY(Directory:type::=|artist=COPY|artist =)}}
+                {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
+                <label>{{VAL(title)}}</label>
                 <image>{{IMAGEURL(thumb::384)}}</image>
                 <defaultImage>resource://Poster.png</defaultImage>
               </twoLineEnhancedMenuItem>
