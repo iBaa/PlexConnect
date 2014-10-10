@@ -15,102 +15,6 @@
       <menu>
         <sections>
 
-          <!-- Directory -->
-          <menuSection>
-          {{CUT(Directory/key:CUT:=)}}
-            <items>
-              <oneLineMenuItem id="{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL(key)}}')"
-                                       onSelect="atv.loadURL('{{URL(key)}}')">
-              {{COPY(Directory)}}
-                <label>{{VAL(title)}}</label>
-                <preview>
-                  <crossFadePreview>
-                    <image>{{IMAGEURL(thumb::768)}}</image>
-                  </crossFadePreview>
-                </preview>
-              </oneLineMenuItem>
-            </items>
-          </menuSection>
-
-          <!-- Artist -->
-          <!-- audio V1 -->
-          <menuSection>
-          {{CUT(Artist/key:CUT:=)}}
-            <items>
-              <oneLineMenuItem id="{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL(key)}}')"
-                                       onSelect="atv.loadURL('{{URL(key)}}')">
-                {{COPY(Artist)}}
-                <label>{{VAL(artist)}}</label>
-                <preview>
-                  <crossFadePreview>
-                    <image>{{IMAGEURL(thumb::768)}}</image>
-                  </crossFadePreview>
-                </preview>
-              </oneLineMenuItem>
-            </items>
-          </menuSection>
-
-          <!-- Album -->
-          <!-- audio V1 -->
-          <menuSection>
-          {{CUT(Album/key:CUT:=)}}
-            <items>
-              <oneLineMenuItem id="{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL(key)}}')"
-                                       onSelect="atv.loadURL('{{URL(key)}}')">
-                {{COPY(Album)}}
-                <label>{{VAL(label)}}</label>
-                <preview>
-                  <crossFadePreview>
-                    <image>{{IMAGEURL(thumb::768)}}</image>
-                  </crossFadePreview>
-                </preview>
-              </oneLineMenuItem>
-            </items>
-          </menuSection>
-
-          <!-- Playlist -->
-          <!-- audio V1 -->
-          <menuSection>
-          {{CUT(Playlist/key:CUT:=)}}
-            <items>
-              <oneLineMenuItem id="{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL(key)}}')"
-                                       onSelect="atv.loadURL('{{URL(key)}}')">
-                {{COPY(Playlist)}}
-                <label>{{VAL(title)}}</label>
-                <rightLabel>{{VAL(count)}}</rightLabel>
-                <preview>
-                  <crossFadePreview>
-                    <image>{{IMAGEURL(thumb::768)}}</image>
-                  </crossFadePreview>
-                </preview>
-              </oneLineMenuItem>
-            </items>
-          </menuSection>
-
-          <!-- Genre -->
-          <!-- audio V1 -->
-          <menuSection>
-          {{CUT(Genre/key:CUT:=)}}
-            <items>
-              <oneLineMenuItem id="{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL(key)}}')"
-                                       onSelect="atv.loadURL('{{URL(key)}}')">
-                {{COPY(Genre)}}
-                <label>{{VAL(genre)}}</label>
-                <preview>
-                  <crossFadePreview>
-                    <image>{{IMAGEURL(thumb::768)}}</image>
-                  </crossFadePreview>
-                </preview>
-              </oneLineMenuItem>
-            </items>
-          </menuSection>
-
-          <!-- Track -->
           <!-- aTVFirmware<7, iOS<8 -->
           <!-- content="songs" -->
           <!-- (viewgroup="track") -->
@@ -137,7 +41,6 @@
             </items>
           </menuSection>
 
-          <!-- Track -->
           <!-- aTVFirmware<7, iOS<8 -->
           <!-- content n/a -->
           <!-- (viewgroup="track") -->
@@ -164,7 +67,6 @@
             </items>
           </menuSection>
 
-          <!-- Track -->
           <!-- aTVFirmware>=7, iOS>=8 -->
           <!-- content="songs" -->
           <!-- (viewgroup="track") -->
@@ -218,7 +120,6 @@
             </items>
           </menuSection>
 
-          <!-- Track -->
           <!-- aTVFirmware>=7, iOS>=8 -->
           <!-- content n/a -->
           <!-- (viewgroup="track") -->
@@ -280,7 +181,7 @@
     <dialog id="com.sample.error-dialog">
     {{CUT(size::0=|1=CUT)}}
       <title>PlexConnect</title>
-      <description>{{TEXT(Plex Media Server: No Items Available)}}</description>
+      <description>{{TEXT(Plex Media Server: No Tracks Available)}}</description>
     </dialog>
   </body>
 </atv>
