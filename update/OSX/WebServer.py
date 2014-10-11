@@ -141,7 +141,7 @@ class MyHandler(BaseHTTPRequestHandler):
                         'appletv.vevo.com': 'com.vevo.appletv',
                         'apps.sho.com': 'com.smithsonian.appletv',
                         'appletv.watchdisneyjunior.go.com': 'com.disney.junior.appletv',
-                        'appletv.watchdisneychannel.go.com': 'DisneyChannel_V2',
+                        'appletv.watchdisneychannel.go.com': 'com.disney.channel.appletv',
                         'appletv.watchdisneyxd.go.com': 'com.disney.xd.appletv',
                         'ssl.weather.com': 'com.weather.appletv',
                         'secure.marketwatch.com': 'wsj',
