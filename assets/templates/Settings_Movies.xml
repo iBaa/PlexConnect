@@ -56,7 +56,11 @@
               <oneLineMenuItem id="MovieFanart" onSelect="toggleSettings('MovieFanart', 'Settings_Movies')">
                 <label>{{TEXT(Movie Fanart)}}</label>
                 <rightLabel>{{SETTING(moviefanart)}}</rightLabel>
-              </oneLineMenuItem>
+              </oneLineMenuItem>{{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
+              <oneLineMenuItem id="MovieFanart" dimmed="true">
+                <label>{{TEXT(Movie Fanart)}}</label>
+                <rightLabel>PIL/Pillow not installed</rightLabel>
+              </oneLineMenuItem>{{CUT(NoKey:{{EVAL(['','CUT'][isPILinstalled()])}})}}
             </items>
           </menuSection>
 
