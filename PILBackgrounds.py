@@ -14,130 +14,77 @@ from Debug import *
 
 try:
     from PIL import Image
+    __isPILinstalled = True
 except ImportError:
     dprint(__name__, 0, "No PIL/Pillow installation found.")
+    __isPILinstalled = False
 
-class ImageBackground():
-    options = {'title': "empty", 'image' : 'blank.jpg', 'resolution' : '1080'}
+
+
+def generate(title, url, resolution):
+    cachepath = sys.path[0]+"/assets/fanartcache"
+    stylepath = sys.path[0]+"/assets/templates/images"
+    cachefile = normalizeString(title) + "_" + normalizeString(resolution) + ".jpg"
     
-    cfg = {}
+    # Already created?
+    dprint(__name__, 1, 'Check for Cachefile.')  # Debug
+    if os.path.isfile(cachepath+"/"+cachefile):
+        dprint(__name__, 1, 'Cachefile  found.')  # Debug
+        return "/fanartcache/"+cachefile
     
-    def __init__(self,opts):
-        for opt in self.options:
-            self.cfg[opt] = self.options[opt]
-        if opts != None:
-         for opt in opts:
-            if self.cfg[opt] != opts[opt]:
-                self.cfg[opt] = opts[opt]
-
-    def setOptions(self,opts):
-        for opt in opts:
-            if self.cfg[opt] != opts[opt]:
-                self.cfg[opt] = opts[opt]
-                
-    def createFileHandle(self):
-        cachefileTitle = normalizeString(self.cfg['title'])
-        cachefileRes = normalizeString(self.cfg['resolution'])
-        
-        sourcefile = remove_junk(str(self.cfg['image']))
-        sourcefile = remove_junk(str(sourcefile))
-   
-        cachefile = cachefileTitle + "_" + cachefileRes
-        
-        return cachefile
-
-    def resizedMerge (self,background, stylepath):
-        
-        height = int(self.cfg['resolution'])
-        if height == 1080:
-            width = 1920
-        else:
-            height = 720
-            width = 1280
-        
-        bgWidth, bgHeight = background.size
-        dprint(__name__,1 ,"Background Height: {0}", bgHeight)
-        dprint(__name__,1 , "aTV Height: {0}", height)
-        
-        if bgHeight != height:
-            background = background.resize((width, height), Image.ANTIALIAS)
-            dprint(__name__,1 , "Resizing background")   
-        if height == 1080:
-            layer = Image.open(stylepath + "/images/gradient_1080.png")
-            dprint(__name__,1 , "Using gradient_1080")
-        else:
-            layer = Image.open(stylepath + "/images/gradient_720.png")
-            dprint(__name__,1 , "Using gradient_720")            
-            
-        background.paste(layer, ( 0, 0), layer)
-        
-        return background
-
-    def generate(self):
+    # No! Request Background from PMS
+    dprint(__name__, 1, 'No Cachefile found. Generating Background.')  # Debug
+    try:
+        dprint(__name__, 1, 'Getting Remote Image.')  # Debug
+        response = urllib2.urlopen(url)
+        background = Image.open(io.BytesIO(response.read()))
+    except urllib2.URLError, e:
+        dprint(__name__, 1, 'error: {0} {1} // url: {2}', str(e.code), e.msg, url)  # Debug
+        background = Image.open(stylepath+"/blank.jpg")
     
-    # Catch the Params
-        cachepath = sys.path[0]+"/assets/fanartcache"
-        stylepath = sys.path[0]+"/assets/templates"
-        cachefile = self.createFileHandle()
-        
-        dprint(__name__, 1, 'Check for Cachefile.')  # Debug
-        # Already created?
-        if os.path.isfile(cachepath+"/"+cachefile+".jpg"):
-            dprint(__name__, 1, 'Cachefile  found.')  # Debug
-            return cachefile+".jpg" # Bye Bye
-        # No it's not
-        else:
-            dprint(__name__, 1, 'No Cachefile found. Generating Background.')  # Debug
-            # Setup Background
-            url = urllib.unquote(self.cfg['image'])
-            if os.path.isfile(stylepath+"/images/"+url):
-                dprint(__name__, 1, 'Fetching Template Image.'  )  # Debug
-                background = Image.open(stylepath+"/images/"+url)
-            elif url[0][0] != "/":
-                try:
-                    dprint(__name__, 1, 'Getting Remote Image.')  # Debug
-                    response = urllib2.urlopen(url)
-                    background = Image.open(io.BytesIO(response.read()))
-                except urllib2.URLError, e:
-                    dprint(__name__, 1, 'error: {0} {1} // url: {2}', str(e.code), e.msg, url)  # Debug
-                    background = Image.open(stylepath+"/images/blank.jpg")
-            
-            # Set Resolution and Merge Layers
-            dprint(__name__, 1, 'Merging Layers.')  # Debug
-            im = self.resizedMerge(background, stylepath)
+    # Get gradient template
+    dprint(__name__, 1, 'Merging Layers.')  # Debug
+    if resolution == '1080':
+        width = 1920
+        height = 1080
+        layer = Image.open(stylepath + "/gradient_1080.png")
+    else:
+        width = 1280
+        height = 720
+        layer = Image.open(stylepath + "/gradient_720.png")
+    
+    # Set background resolution and merge layers
+    bgWidth, bgHeight = background.size
+    dprint(__name__,1 ,"Background size: {0}, {1}", bgWidth, bgHeight)
+    dprint(__name__,1 , "aTV Height: {0}, {1}", width, height)
+    
+    if bgHeight != height:
+        background = background.resize((width, height), Image.ANTIALIAS)
+        dprint(__name__,1 , "Resizing background")   
+    
+    background.paste(layer, ( 0, 0), layer)
+    
+    # Save to Cache
+    background.save(cachepath+"/"+cachefile)  
+    dprint(__name__, 1, 'Cachefile  generated.')  # Debug
+    return "/fanartcache/"+cachefile
 
-            # Save to Cache
-            im.save(cachepath+"/"+cachefile+".jpg")  
-            dprint(__name__, 1, 'Cachefile  generated.')  # Debug
-            return cachefile+".jpg"
+
 
 # HELPERS
 
 def isPILinstalled():
-    try:
-        from PIL import Image
-    except ImportError:
-        return False
-    return True
-    
+    return __isPILinstalled
+
 def normalizeString(text):
     text = urllib.unquote(str(text)).replace(' ','+')
     text = unicodedata.normalize('NFKD',unicode(text,"utf8")).encode("ascii","ignore")  # Only ASCII CHARS
     text = re.sub(r'\W+', '+', text) # No Special Chars  
     return text
-    
-def remove_junk(url):
-    temp = urllib.unquote(str(url))
-    temp = temp.split('/')[-1]
-    temp = temp.split('?')[0]
-    temp = temp.split('&')[0]
-    return temp
 
 
 
 if __name__=="__main__":
-    inst = ImageBackground({
-        "title": "TestBackground", 
-        "image": "http://192.168.178.22:32400/photo/:/transcode/1920x1080/http%3A%2F%2F127.0.0.1%3A32400%2Flibrary%2Fmetadata%2F24466%2Fart%2F1412512746?url=http%3A%2F%2F127.0.0.1%3A32400%2Flibrary%2Fmetadata%2F24466%2Fart%2F1412512746&width=1920&height=1080",
-    })
-    inst.generate()
+    url = "http://192.168.178.22:32400/photo/:/transcode/1920x1080/http%3A%2F%2F127.0.0.1%3A32400%2Flibrary%2Fmetadata%2F24466%2Fart%2F1412512746?url=http%3A%2F%2F127.0.0.1%3A32400%2Flibrary%2Fmetadata%2F24466%2Fart%2F1412512746&width=1920&height=1080"
+    res = generate('TestBackground', url, '1080')
+    dprint(__name__, 0, "Background: {0}", res)

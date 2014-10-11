@@ -8,11 +8,7 @@
       <header>
         <imageHeader>
            <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=580|1080=900)}}, 0" required="true">
-            {{URL(:/fanartcache/{{getBackground({{EVAL({                
-                    'title'       : "{{EVAL(quote_plus("{{VAL(parentTitle)}}"))}}",\
-                    'image'       : "{{IMAGEURL(art:::)}}", 
-                    'resolution' : "{{VAL(^aTVScreenResolution)}}" \
-                    })}})}})}}
+            {{BACKGROUNDURL(parentTitle::art:)}}
            </image>
 
         </imageHeader>

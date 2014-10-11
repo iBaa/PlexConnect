@@ -14,11 +14,7 @@
 
 	    <imageHeader>
             <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=440|1080=690)}}, 0" required="true">
-                {{URL(:/fanartcache/{{getBackground({{EVAL({                
-                    'title'       : "{{VAL_QUOTED(Video/title)}}",\
-                    'image'       : "{{IMAGEURL(Video/art:::)}}", 
-                    'resolution' : "{{VAL(^aTVScreenResolution)}}" \
-                    })}})}})}}
+                {{BACKGROUNDURL(Video/title::Video/art:)}}
             </image>
 	    </imageHeader>
 	   </header>
