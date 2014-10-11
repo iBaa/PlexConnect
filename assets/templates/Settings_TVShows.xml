@@ -68,7 +68,7 @@
               </oneLineMenuItem>{{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
               <oneLineMenuItem id="TVShowFanart" dimmed="true">
                 <label>{{TEXT(TV Show Fanart)}}</label>
-                <rightLabel>PIL/Pillow not installed</rightLabel>
+                <rightLabel>{{TEXT(PIL/Pillow not installed)}}</rightLabel>
               </oneLineMenuItem>{{CUT(NoKey:{{EVAL(['','CUT'][isPILinstalled()])}})}}
             </items>
           </menuSection>
