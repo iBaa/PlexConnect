@@ -62,14 +62,11 @@
                 <label>{{TEXT(Poster Titles)}}</label>
                 <rightLabel>{{SETTING(showtitles_tvshows)}}</rightLabel>
               </oneLineMenuItem>
-              <oneLineMenuItem id="TVShowFanart" onSelect="toggleSettings('TVShowFanart', 'Settings_TVShows')">
+              <oneLineMenuItem id="TVShowFanart" dimmed="{{EVAL(['true','false'][isPILinstalled()])}}" onSelect="toggleSettings('TVShowFanart', 'Settings_TVShows')">
                 <label>{{TEXT(TV Show Fanart)}}</label>
-                <rightLabel>{{SETTING(tvshowfanart)}}</rightLabel>
-              </oneLineMenuItem>{{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
-              <oneLineMenuItem id="TVShowFanart" dimmed="true">
-                <label>{{TEXT(TV Show Fanart)}}</label>
-                <rightLabel>{{TEXT(PIL/Pillow not installed)}}</rightLabel>
-              </oneLineMenuItem>{{CUT(NoKey:{{EVAL(['','CUT'][isPILinstalled()])}})}}
+                <rightLabel>{{SETTING(tvshowfanart)}}</rightLabel>{{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
+                <rightLabel>{{TEXT(PIL/Pillow not installed)}}</rightLabel>{{CUT(NoKey:{{EVAL(['','CUT'][isPILinstalled()])}})}}
+              </oneLineMenuItem>
             </items>
           </menuSection>
 

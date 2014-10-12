@@ -284,14 +284,15 @@ def XML_PMS2aTV(PMS_address, path, options):
         
     elif cmd=='MoviePrePlay':
         dprint(__name__, 1, "IS PIL installed? "+ str(isPILinstalled()))
-        if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'moviefanart') == 'Show':
-            if isPILinstalled():
+        XMLtemplate = "MoviePrePlay.xml"
+        if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'moviefanart') == 'Show' and isPILinstalled():
                 XMLtemplate = 'MoviePrePlay_Fanart.xml'
-            else: XMLtemplate = 'MoviePrePlay.xml'            
-        else: XMLtemplate = 'MoviePrePlay.xml'
 
     elif cmd=='EpisodePrePlay':
+        dprint(__name__, 1, "IS PIL installed? "+ str(isPILinstalled()))
         XMLtemplate = 'EpisodePrePlay.xml'
+        if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'tvshowfanart') == 'Show' and isPILinstalled():
+                XMLtemplate = 'EpisodePrePlay_Fanart.xml'
         
     elif cmd=='ChannelPrePlay':
         XMLtemplate = 'ChannelPrePlay.xml'
@@ -485,8 +486,7 @@ def XML_PMS2aTV(PMS_address, path, options):
         # TV Season view
         XMLtemplate = 'Season_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'seasonview')
         dprint(__name__, 1, "IS PIL installed? "+ str(isPILinstalled()))
-        if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'tvshowfanart') == 'Show':
-            if isPILinstalled():
+        if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'tvshowfanart') == 'Show' and isPILinstalled():
                 XMLtemplate = XMLtemplate + "_Fanart"           
         XMLtemplate = XMLtemplate + ".xml"
 
@@ -515,12 +515,10 @@ def XML_PMS2aTV(PMS_address, path, options):
             XMLtemplate = 'TV_OnDeck.xml'
         else:
             # TV Episode view
+            XMLtemplate = 'Episode.xml' 
             dprint(__name__, 1, "IS PIL installed? "+ str(isPILinstalled()))
-            if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'tvshowfanart') == 'Show':
-                if isPILinstalled():
+            if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'tvshowfanart') == 'Show' and isPILinstalled():
                     XMLtemplate = 'Episode_Fanart.xml'
-                else: XMLtemplate = 'Episode.xml'            
-            else: XMLtemplate = 'Episode.xml'
     
     elif PMSroot.get('viewGroup','')=='photo' or \
        path.startswith('/photos') or \
