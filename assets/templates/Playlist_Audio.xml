@@ -11,7 +11,7 @@
     {{CUT(size:CUT:0=CUT|1=)}}
       <header>
         <simpleHeader>
-          <title>{{TEXT(Audio Playlist)}}</title>
+          <title>{{VAL(title:{{TEXT(Audio Playlist)}})}}</title>
         </simpleHeader>
       </header>
       
