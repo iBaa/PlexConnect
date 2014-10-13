@@ -1,5 +1,17 @@
 #!/bin/bash
 
+## cd to PlexConnect directory
+cd /Applications/PlexConnect
+PlexConnectPath=${PWD}
+
+fanartcache="${PlexConnectPath}/assets/fanartcache"
+if [ -d "$fanartcache" ]; then
+cd /Applications/PlexConnect/assets/fanartcache
+rm -rf *
+else
+echo 'fanartcache dir not found'
+fi
+
 cd /Applications/PlexConnect
  
 # fetch changes, git stores them in FETCH_HEAD
