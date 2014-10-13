@@ -9,7 +9,6 @@ import urllib2
 import ConfigParser
 
 import os.path
-import unicodedata
 from Debug import * 
 
 try:
@@ -21,10 +20,10 @@ except ImportError:
 
 
 
-def generate(title, url, resolution):
+def generate(title, url, authtoken, resolution):
     cachepath = sys.path[0]+"/assets/fanartcache"
     stylepath = sys.path[0]+"/assets/templates/images"
-    cachefile = normalizeString(title) + "_" + normalizeString(resolution) + ".jpg"
+    cachefile = urllib.quote_plus(title + "_" + resolution) + ".jpg"
     
     # Already created?
     dprint(__name__, 1, 'Check for Cachefile.')  # Debug
@@ -36,8 +35,12 @@ def generate(title, url, resolution):
     dprint(__name__, 1, 'No Cachefile found. Generating Background.')  # Debug
     try:
         dprint(__name__, 1, 'Getting Remote Image.')  # Debug
-        response = urllib2.urlopen(url)
-        background = Image.open(io.BytesIO(response.read()))
+        xargs = {}
+        if authtoken:
+            xargs['X-Plex-Token'] = authtoken
+        request = urllib2.Request(url, None, xargs)
+        response = urllib2.urlopen(request).read()
+        background = Image.open(io.BytesIO(response))
     except urllib2.URLError, e:
         dprint(__name__, 1, 'error: {0} {1} // url: {2}', str(e.code), e.msg, url)  # Debug
         background = Image.open(stylepath+"/blank.jpg")
@@ -76,15 +79,9 @@ def generate(title, url, resolution):
 def isPILinstalled():
     return __isPILinstalled
 
-def normalizeString(text):
-    text = urllib.unquote(str(text)).replace(' ','+')
-    text = unicodedata.normalize('NFKD',unicode(text,"utf8")).encode("ascii","ignore")  # Only ASCII CHARS
-    text = re.sub(r'\W+', '+', text) # No Special Chars  
-    return text
-
 
 
 if __name__=="__main__":
     url = "http://192.168.178.22:32400/photo/:/transcode/1920x1080/http%3A%2F%2F127.0.0.1%3A32400%2Flibrary%2Fmetadata%2F24466%2Fart%2F1412512746?url=http%3A%2F%2F127.0.0.1%3A32400%2Flibrary%2Fmetadata%2F24466%2Fart%2F1412512746&width=1920&height=1080"
-    res = generate('TestBackground', url, '1080')
+    res = generate('TestBackground', url, 'authtoken', '1080')
     dprint(__name__, 0, "Background: {0}", res)

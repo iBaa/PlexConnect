@@ -1417,9 +1417,11 @@ class CCommandCollection(CCommandHelper):
         else:  # internal path, add-on
             key = self.PMS_baseURL + self.path[srcXML] + key
         
+        auth_token = PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'accesstoken')
+        
         dprint(__name__, 0, "Background (Source): {0} // {1}", title, key)
         res = g_param['baseURL']  # base address to PlexConnect
-        res = res + PILBackgrounds.generate(title, key, self.options['aTVScreenResolution'])
+        res = res + PILBackgrounds.generate(title, key, auth_token, self.options['aTVScreenResolution'])
         dprint(__name__, 0, "Background: {0}", res)
         return res
 
