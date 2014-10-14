@@ -7,21 +7,13 @@
     <scroller id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
       <header>
         <imageHeader>
-           <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=580|1080=900)}}, 0" required="true">
+           <image insets="{{VAL(^aTVScreenResolution:1:720=-270|1080=-434)}}, 10, {{VAL(^aTVScreenResolution:1:720=580|1080=900)}}, 0" required="true">
             {{BACKGROUNDURL(parentTitle::art:)}}
            </image>
-
         </imageHeader>
       </header>
       {{VAR(parentThumb:thumb)}}
       <items>
-        <collectionDivider alignment="left"><title/></collectionDivider>
-        <collectionDivider alignment="left"><title/></collectionDivider>
-        <collectionDivider alignment="left"><title/></collectionDivider>
-        <collectionDivider alignment="left"><title/></collectionDivider>
-        <collectionDivider alignment="left"><title/></collectionDivider>
-        <collectionDivider alignment="left"><title/></collectionDivider>      
-
         <shelf id="coverflow" columnCount="{{EVAL(min({{VAL(size:0)}},7))}}">
           <sections>
             <shelfSection>
@@ -40,8 +32,6 @@
             </shelfSection>
           </sections>
         </shelf>
-
-        <collectionDivider alignment="left"><title/></collectionDivider>     
       </items>
     </scroller>
   </body>
