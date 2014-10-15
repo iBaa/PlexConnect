@@ -12,7 +12,7 @@ import os.path
 from Debug import * 
 
 try:
-    from PIL import Image
+    from PIL import Image, ImageFilter
     __isPILinstalled = True
 except ImportError:
     dprint(__name__, 0, "No PIL/Pillow installation found.")
@@ -53,10 +53,14 @@ def generate(PMS_uuid, url, authtoken, resolution):
     if resolution == '1080':
         width = 1920
         height = 1080
+        blurRegion = (0, 514, 1920, 1080)
+        blurRadius = 45
         layer = Image.open(stylepath + "/gradient_1080.png")
     else:
         width = 1280
         height = 720
+        blurRegion = (0, 342, 1280, 720)
+        blurRadius = 30
         layer = Image.open(stylepath + "/gradient_720.png")
     
     # Set background resolution and merge layers
@@ -68,6 +72,10 @@ def generate(PMS_uuid, url, authtoken, resolution):
         background = background.resize((width, height), Image.ANTIALIAS)
         dprint(__name__,1 , "Resizing background")   
     
+    blurImage = background.crop(blurRegion)
+    blurImage = blurImage.filter(ImageFilter.GaussianBlur(blurRadius))
+    background.paste(blurImage, blurRegion)
+
     background.paste(layer, ( 0, 0), layer)
     
     # Save to Cache
@@ -85,6 +93,7 @@ def isPILinstalled():
 
 
 if __name__=="__main__":
-    url = "http://192.168.178.22:32400/library/metadata/24466/art/1412512746"
-    res = generate('uuid', url, 'authtoken', '1080')
+    url = "http://thetvdb.com/banners/fanart/original/95451-23.jpg"
+    res = generate('TestBackground', url, 'authtoken', '1080')
+    res = generate('TestBackground', url, 'authtoken', '720')
     dprint(__name__, 0, "Background: {0}", res)
