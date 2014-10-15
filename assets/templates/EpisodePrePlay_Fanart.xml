@@ -14,7 +14,7 @@
 
 	    <imageHeader>
             <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=440|1080=690)}}, 0" required="true">
-                {{BACKGROUNDURL(Video/grandparentTitle::Video/art:)}}
+                {{BACKGROUNDURL(Video/art:)}}
             </image>
 	    </imageHeader>
 	   </header>

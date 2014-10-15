@@ -1407,8 +1407,7 @@ class CCommandCollection(CCommandHelper):
             return PMS_name
     
     def ATTRIB_BACKGROUNDURL(self, src, srcXML, param):
-        title, leftover, dfltd = self.getKey(src, srcXML, param)
-        key, leftover, dfltd = self.getKey(src, srcXML, leftover)
+        key, leftover, dfltd = self.getKey(src, srcXML, param)
         
         if key.startswith('/'):  # internal full path.
             key = self.PMS_baseURL + key
@@ -1419,9 +1418,9 @@ class CCommandCollection(CCommandHelper):
         
         auth_token = PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'accesstoken')
         
-        dprint(__name__, 0, "Background (Source): {0} // {1}", title, key)
+        dprint(__name__, 0, "Background (Source): {0}", key)
         res = g_param['baseURL']  # base address to PlexConnect
-        res = res + PILBackgrounds.generate(title, key, auth_token, self.options['aTVScreenResolution'])
+        res = res + PILBackgrounds.generate(self.PMS_uuid, key, auth_token, self.options['aTVScreenResolution'])
         dprint(__name__, 0, "Background: {0}", res)
         return res
 

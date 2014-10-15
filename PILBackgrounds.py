@@ -5,8 +5,8 @@ import sys
 import io
 import urllib
 import urllib2
-
-import ConfigParser
+import urlparse
+import posixpath
 
 import os.path
 from Debug import * 
@@ -20,10 +20,12 @@ except ImportError:
 
 
 
-def generate(title, url, authtoken, resolution):
+def generate(PMS_uuid, url, authtoken, resolution):
     cachepath = sys.path[0]+"/assets/fanartcache"
     stylepath = sys.path[0]+"/assets/templates/images"
-    cachefile = urllib.quote_plus(title + "_" + resolution) + ".jpg"
+    
+    fileid = posixpath.basename(urlparse.urlparse(url).path)
+    cachefile = urllib.quote_plus(PMS_uuid +"_"+ fileid +"_"+ resolution) + ".jpg"  # quote: just to make sure...
     
     # Already created?
     dprint(__name__, 1, 'Check for Cachefile.')  # Debug
@@ -44,6 +46,7 @@ def generate(title, url, authtoken, resolution):
     except urllib2.URLError, e:
         dprint(__name__, 1, 'error: {0} {1} // url: {2}', str(e.code), e.msg, url)  # Debug
         background = Image.open(stylepath+"/blank.jpg")
+        cachefile = "blank.jpg"
     
     # Get gradient template
     dprint(__name__, 1, 'Merging Layers.')  # Debug
@@ -82,6 +85,6 @@ def isPILinstalled():
 
 
 if __name__=="__main__":
-    url = "http://192.168.178.22:32400/photo/:/transcode/1920x1080/http%3A%2F%2F127.0.0.1%3A32400%2Flibrary%2Fmetadata%2F24466%2Fart%2F1412512746?url=http%3A%2F%2F127.0.0.1%3A32400%2Flibrary%2Fmetadata%2F24466%2Fart%2F1412512746&width=1920&height=1080"
-    res = generate('TestBackground', url, 'authtoken', '1080')
+    url = "http://192.168.178.22:32400/library/metadata/24466/art/1412512746"
+    res = generate('uuid', url, 'authtoken', '1080')
     dprint(__name__, 0, "Background: {0}", res)

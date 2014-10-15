@@ -8,7 +8,7 @@
       <header>
         <imageHeader>
            <image insets="{{VAL(^aTVScreenResolution:1:720=-270|1080=-434)}}, 0, {{VAL(^aTVScreenResolution:1:720=580|1080=900)}}, 0" required="true">
-            {{BACKGROUNDURL(parentTitle::art:)}}
+            {{BACKGROUNDURL(art:)}}
            </image>
         </imageHeader>
       </header>
