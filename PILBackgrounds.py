@@ -49,6 +49,9 @@ def generate(PMS_uuid, url, authtoken, resolution):
     except urllib2.HTTPError as e:
         dprint(__name__, 1, 'HTTPError: {0} {1} // url: {2}', str(e.code), e.msg, url)
         return "/thumbnails/Background_blank_" + resolution + ".jpg"
+    except IOError as e:
+        dprint(__name__, 1, 'IOError: {0} // url: {1}', str(e), url)
+        return "/thumbnails/Background_blank_" + resolution + ".jpg"
     
     # Get gradient template
     dprint(__name__, 1, 'Merging Layers.')  # Debug
