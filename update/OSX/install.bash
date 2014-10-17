@@ -253,10 +253,10 @@ cp auto.bash /usr/bin
 cp pillow.bash /usr/bin
 cp folder.bash /usr/bin
 cp sudoers.bash /usr/bin
-Cp restorecerts.bash /usr/bin
+cp restorecerts.bash /usr/bin
 cp restore.bash /usr/bin
 cp backup.bash /usr/bin
-cp icon.bash /us/bin
+cp icon.bash /usr/bin
 cp 10.6.bash /usr/bin
 cp 10.10.bash /usr/bin
 cp checker.bash /usr/bin
@@ -315,7 +315,7 @@ cp sudoersfixbash.bash /usr/bin
 cp trashbasebash.bash /usr/bin
 cp uninstallbash.bash /usr/bin
 cp restorebash.bash /usr/bin
-cp restorecertsbash.bash
+cp restorecertsbash.bash /usr/bin
 cp backupbash.bash /usr/bin
 cp iconbash.bash /usr/bin
 cp 10.6bash.bash /usr/bin
@@ -466,6 +466,7 @@ chmod +x /usr/bin/10.6bash.bash
 chmod +x /usr/bin/10.10bash.bash
 chmod +x /usr/bin/checkerbash.bash
 chmod +x /usr/bin/tvbash.bash
+chmod +x /usr/bin/sudoersfix.bash
 chmod +x /usr/bin/restore.bash
 chmod +x /usr/bin/restorecerts.bash
 chmod +x /usr/bin/backup.bash
