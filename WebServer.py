@@ -182,10 +182,16 @@ class MyHandler(BaseHTTPRequestHandler):
                 # serve "*.jpg" - thumbnails for old-style mainpage
                 if self.path.endswith(".jpg"):
                     dprint(__name__, 1, "serving *.jpg: "+self.path)
-                    f = open(sys.path[0] + sep + "assets" + self.path, "rb")
                     self.send_response(200)
                     self.send_header('Content-type', 'image/jpeg')
                     self.end_headers()
+
+                    if self.path.startswith('/fanartcache/'):
+                        assetpath = XMLConverter.JPEG_FanartBackground(PMSaddress, self.path, options)
+                    else:
+                        assetpath = self.path
+
+                    f = open(sys.path[0] + sep + "assets" + assetpath, "rb")
                     self.wfile.write(f.read())
                     f.close()
                     return

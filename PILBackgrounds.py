@@ -6,7 +6,6 @@ import io
 import urllib
 import urllib2
 import urlparse
-import posixpath
 
 import os.path
 from Debug import * 
@@ -19,17 +18,16 @@ except ImportError:
     __isPILinstalled = False
 
 
-
-def generate(PMS_uuid, url, authtoken, resolution):
+def generate(PMS_uuid, url, authtoken, resolution, createfile=False):
     cachepath = sys.path[0]+"/assets/fanartcache"
     stylepath = sys.path[0]+"/assets/templates/images"
     
-    fileid = posixpath.basename(urlparse.urlparse(url).path)
+    fileid = urlparse.urlparse(url).path
     cachefile = urllib.quote_plus(PMS_uuid +"_"+ fileid +"_"+ resolution) + ".jpg"  # quote: just to make sure...
-    
+
     # Already created?
     dprint(__name__, 1, 'Check for Cachefile.')  # Debug
-    if os.path.isfile(cachepath+"/"+cachefile):
+    if not createfile or os.path.isfile(cachepath+"/"+cachefile):
         dprint(__name__, 1, 'Cachefile  found.')  # Debug
         return "/fanartcache/"+cachefile
     
@@ -99,11 +97,6 @@ def isPILinstalled():
 
 if __name__=="__main__":
     url = "http://thetvdb.com/banners/fanart/original/95451-23.jpg"
-<<<<<<< HEAD
-    res = generate('TestBackground', url, 'authtoken', '1080')
-    res = generate('TestBackground', url, 'authtoken', '720')
-=======
-    res = generate('uuid', url, 'authtoken', '1080')
-    res = generate('uuid', url, 'authtoken', '720')
->>>>>>> bd6b9ec65e9cc81bd53c509756229d54b9cccba4
+    res = generate('uuid', url, 'authtoken', '1080', createfile=True)
+    res = generate('uuid', url, 'authtoken', '720', createfile=True)
     dprint(__name__, 0, "Background: {0}", res)
