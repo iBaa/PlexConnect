@@ -1,0 +1,77 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/scrobble.js)}}" />
+  </head>
+
+  {{VAR(description:summary)}}
+  
+  <body>
+     <itemCollectionWithImageHeader id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
+  	<header>
+  	<!--Fullscreen-->
+	    <imageHeader>
+	    	      <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=552|1080=835)}}, 0" required="true">
+	    	      {{URL(:/fanartcache/{{getBackground({{EVAL({\
+                  'template'    : "plex",\
+                  'title'       : "{{EVAL(quote_plus("{{VAL(title1)}}"))}}",\
+                  'subtitle'    : "{{EVAL(quote_plus("{{VAL(title2)}}"))}}",\
+                  'image'       : "{{IMAGEURL(art:::)}}",\
+                  'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+                  'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+                  'titleColor'  : "{{VAL($plex_titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+                  'subtitleColor': "{{VAL($plex_subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+                  'imageBlur'   : "{{VAL($plex_fanartblur::1=1|2=2|3=3|0=)}}",\
+                  'layers'      : ["PlexSubList{{VAL($plex_fanarttint::On=Text|Off=)}}"{{VAL($plex_menuhint::On=,"PlexPressMenu_{{VAL($plex_subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+                  })}})}})}}
+	    	      </image>{{CUT($plex_layers::Hide=CUT|Show=)}}
+          <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=552|1080=835)}}, 0" required="true">
+          {{URL(:/fanartcache/{{getBackground({{EVAL({\
+              'template'    : "plex",\
+              'image'       : "{{IMAGEURL(art:::)}}",\
+              'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+              'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+              'titleColor'  : "{{VAL($plex_titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'subtitleColor': "{{VAL($plex_subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              })}})}})}}
+          </image>{{CUT($plex_layers::Hide=|Show=CUT)}}
+
+	    </imageHeader>
+	</header>
+    <!--Banner-->
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key)}}')"
+                                                         onSelect="atv.loadURL('{{URL(key)}}')"
+                                                         onHoldSelect="scrobbleMenu('{{stripChildrenURL(key)}}&amp;PlexConnect=ScrobbleMenuDirectory')">
+                {{COPY(Directory)}}
+                <label>{{VAL(title)}}</label>
+                <label2>{{VAL(leafCount)}} {{TEXT(Episodes)}}</label2>
+                <rightLabel>{{unwatchedCountList(leafCount:0:viewedLeafCount:0)}}</rightLabel>{{CUT($showunwatched::False=CUT|True=)}}
+                <image>{{IMAGEURL(thumb::384)}}</image>										  
+                <defaultImage>resource://Poster.png</defaultImage>
+                <preview>
+                  <longDescriptionPreview>
+                    <title>{{VAL(title)}}</title>
+                    <summary>{{VAL(#description)}}</summary>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
+
+                  </longDescriptionPreview>
+
+                </preview>
+              </twoLineEnhancedMenuItem>{{CUT(Directory/title:CUT:=)}}
+              
+              <oneLineMenuItem id="none">
+                <label>{{TEXT(No Seasons)}}</label>
+              </oneLineMenuItem>{{CUT(Directory/title::=CUT)}}
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </itemCollectionWithImageHeader>
+ 
+
+ </body>
+</atv>

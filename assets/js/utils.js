@@ -42,97 +42,45 @@ function log(msg, level)
 
 
 
-/*
- * refresh section
- */
-// todo: check for owned/shared
-// today: shared servers shouldn't be triggered for refresh, should they?
-var refreshSectionElem = [];
-var refreshSectionTimer = [];
 
-function refreshSection(id, refreshKey)
+
+/*
+ * navigation bar - dynamic loading of manu pages
+ */
+function loadMenuPage(event)
 {
-    setLabel = function(elem, label, text)
-    {
-        if (!elem.getElementByTagName(label))
-        {
-            elem_add = document.makeElementNamed(label);
-            elem.appendChild(elem_add);
-        }
-        elem.getElementByTagName(label).textContent = text;
-    };
+    var id = event.navigationItemId;
+    log("loadItem: "+id);
+    var item = document.getElementById(id);
+    var url = item.getElementByTagName('url').textContent;
     
-    showPict = function(elem, pict)
+    if (url.indexOf("{{URL(/)}}")!=-1)
     {
-        var elem_add;
-        if (!elem.getElementByTagName("accessories"))
-        {
-            elem_add = document.makeElementNamed("accessories");
-            elem.appendChild(elem_add);
-        }
-        elem_add = document.makeElementNamed(pict);
-        elem.getElementByTagName("accessories").appendChild(elem_add);
-    };
-    
-    hidePict = function(elem, pict)
-    {
-        var elem_remove = elem.getElementByTagName("accessories").getElementByTagName(pict);
-        if (!elem_remove) return undefined;  // error - element not found
-        elem_remove.removeFromParent();
-    };
-    
-    checkRefresh = function()
-    {
-        var timer = refreshSectionTimer.shift()
-        var elem = refreshSectionElem.shift()
-        
-        // todo: check PMS XML for "refreshing=1", then stop timer and hide spinner
-        // today: just reset spinner -> setTimeout() would be easier
-        atv.clearInterval(timer);  // stop timer
-        
-        if (elem.tagName=='oneLineMenuItem' ||
-            elem.tagName=='twoLineEnhancedMenuItem' )  // List
-        {
-            // reset spinner
-            setLabel(elem, 'rightLabel', '');
-            hidePict(elem, 'spinner');
-        }
-        else if (elem.tagName=='squarePoster')  // Grid, Bookcase
-        {
-            // reset subtitle
-            setLabel(elem, 'subtitle', '');
-        }
-    };
-    
-    var elem = document.getElementById(id);
-    if (!elem) return;  // error - element not found
-    
-    if (elem.tagName=='oneLineMenuItem' ||
-        elem.tagName=='twoLineEnhancedMenuItem' )  // List
-    {
-        // add spinner
-        setLabel(elem, 'rightLabel', "{{TEXT(refreshing)}}");
-        showPict(elem, 'spinner');
-    }
-    else if (elem.tagName=='squarePoster')  // Grid, Bookcase
-    {
-        // add <refreshing>
-        setLabel(elem, 'subtitle', "<{{TEXT(refreshing)}}>");
-    }
-    else
-    {
-        log('refreshSection() - unknown element '+elem.tagName);
+        url = url + "&PlexConnectUDID=" + atv.device.udid;
     }
     
-    // check status every 10sec
-    refreshSectionElem.push(elem);
-    refreshSectionTimer.push(atv.setInterval(checkRefresh, 10000));
-    
-    // request refresh
     var req = new XMLHttpRequest();
-    req.open('PUT', refreshKey, false);
+    req.onreadystatechange = function()
+    {
+        try
+        {
+            if(req.readyState == 4)
+            {
+                doc = req.responseXML
+                if(event) event.success(doc);
+                else atv.loadXML(doc);
+            }
+        }
+        catch(e)
+        {
+            req.abort();
+        }
+    }
+    req.open('GET', url, true);
     req.send();
-}
+};
+
+
 
 /*
  * lookup movie title on tmdb and pass trailer ID to PlexConnect
@@ -206,7 +154,7 @@ var iOS_atv_loadURL = atv.loadURL;
 atv.loadURL = function(url)
 {
     log("loadURL (override): "+url);
-    if (url.indexOf("{{URL()}}")!=-1)
+    if (url.indexOf("{{URL(/)}}")!=-1)
     {
         url = url + "&PlexConnectUDID=" + atv.device.udid;
         url = url + "&PlexConnectATVName=" + encodeURIComponent(atv.device.displayName);
@@ -225,7 +173,7 @@ var iOS_atv_loadAndSwapURL = atv.loadAndSwapURL;
 atv.loadAndSwapURL = function(url)
 {
     log("loadAndSwapURL (override): "+url);
-    if (url.indexOf("{{URL()}}")!=-1)
+    if (url.indexOf("{{URL(/)}}")!=-1)
     {
         url = url + "&PlexConnectUDID=" + atv.device.udid;
         url = url + "&PlexConnectATVName=" + encodeURIComponent(atv.device.displayName);
@@ -338,6 +286,55 @@ function changeArtwork(PMS_baseURL, accessToken, ratingKey, posterURL, shelf)
 	req.open('PUT', url, true);
 	req.send();
 };
+
+/*
+ * Update Plex library with new artwork
+ */
+function changeFanart(PMS_baseURL, accessToken, ratingKey, posterURL, shelf, path)
+{
+  if (shelf != '')
+  {
+    // Selector logic for Show/Season level artwork
+    var root = document.rootElement;
+    var shelf = document.getElementById(shelf);
+    if (shelf == null) return;
+    var items = shelf.getElementsByTagName('goldenPoster');
+    if (items == null) return;
+  
+    for (var i=0; i<items.length; i++)
+    {
+      if (items[i].getAttribute('id') == posterURL) 
+      {
+      items[i].getElementByTagName('title').textContent = "Selected";
+      }
+      else
+      { 
+        items[i].getElementByTagName('title').textContent = "";
+      }
+    }
+  }
+  
+  // Test if art is from library or external location
+  if (posterURL.indexOf('library') !== -1)
+	{
+		var urlParts = posterURL.split('=');
+		posterURL = urlParts[1];
+	}
+   else
+  {
+    posterURL = encodeURIComponent(posterURL);
+  }
+    
+  var url = PMS_baseURL + "/library/metadata/" + ratingKey + "/art?url=" + posterURL;
+  if (accessToken!='') url = url + '&X-Plex-Token=' + accessToken;
+    
+  var req = new XMLHttpRequest();
+	req.open('PUT', url, true);
+	req.send();
+};
+
+
+
 
 /*
  * ScrobbleMenu

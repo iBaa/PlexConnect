@@ -1,0 +1,53 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+
+  <body>
+    <itemCollectionWithImageHeader id="Show_List">
+      <header>
+	    <imageHeader>
+	      <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=552|1080=828)}}, 0" required="true">
+	      {{URL(:/fanartcache/{{getBackground({{EVAL({\
+              'template'    : "plex",\
+              'title'       : "{{EVAL(quote_plus("{{VAL(title2)}}"))}}",\
+              'subtitle'    : "{{EVAL(quote_plus("{{VAL(title1)}}"))}}",\
+              'image'       : "backgrounds/plex{{VAL($plex_menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+              'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+              'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+              'titleColor'  : "{{VAL($plex_titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'subtitleColor': "{{VAL($plex_subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'layers'      : ["PlexSubList{{VAL($plex_listtint::On=Text|Off=)}}"{{VAL($plex_menuhint::On=,"PlexPressMenu_{{VAL($plex_subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+              })}})}})}}
+
+	      </image>
+	    </imageHeader>
+      </header>
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+              <oneLineMenuItem id="{{VAL(key)}}" onPlay="flattenSeason('{{URL(key)}}', '{{SETTING(flattenseason)}}', 'False')"
+                                                 onSelect="flattenSeason('{{URL(key)}}', '{{SETTING(flattenseason)}}', 'False')"
+                                                 onHoldSelect="scrobbleMenu('{{stripChildrenURL(key)}}&amp;PlexConnect=ScrobbleMenuDirectory')">
+                {{COPY(Directory)}}
+                <label>{{VAL(title)}}</label>
+								<rightLabel>{{unwatchedCountList(leafCount:0:viewedLeafCount:0)}}</rightLabel>{{CUT($showunwatched::False=CUT|True=)}}
+								
+                <preview>
+                  <crossFadePreview>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
+                  </crossFadePreview>
+                </preview>
+              </oneLineMenuItem>{{CUT(Directory/title:CUT:=)}}
+
+              <oneLineMenuItem id="none">
+                <label>{{TEXT(No Unwatched Shows)}}</label>
+              </oneLineMenuItem>{{CUT(Directory/title::=CUT)}}
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </itemCollectionWithImageHeader>
+  </body>
+</atv>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/settings.js)}}" />
+  </head>
+  <body>
+    <itemCollectionWithImageHeader id="SettingsPage" >
+      <header>
+        <imageHeader>
+          <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=552|1080=828)}}, 0" required="true">
+            {{URL(:/fanartcache/{{getBackground({{EVAL({\
+              'template' : "plex",\
+              'title' : "{{EVAL(quote_plus("{{TEXT(Settings)}}"))}}",\
+              'subtitle' : "{{EVAL(quote_plus("{{TEXT(Background Options)}}"))}}",\
+              'image' : "backgrounds/plex{{VAL($plex_menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+              'resolution' : "{{VAL(^aTVScreenResolution)}}",\
+              'font' : "fonts/OpenSans/OpenSans-Light.ttf",\
+              'titleColor' : "{{VAL($plex_titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'subtitleColor' : "{{VAL($plex_subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'layers' : ["PlexSubList{{VAL($plex_listtint::On=Text|Off=)}}"{{VAL($plex_menuhint::On=,"PlexPressMenu_{{VAL($plex_subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+            })}})}})}}
+          </image>
+        </imageHeader>
+      </header>
+      <preview>
+        <keyedPreview>
+          <title>&#x00AD;<!--soft-hyphen--></title>
+          <summary/>
+          <metadataKeys>
+            <label>{{TEXT(Version)}}</label>
+<label>{{TEXT(Designer)}}</label>
+            <label>{{TEXT(Authors)}}</label>
+            <label>{{TEXT(Wiki/Docs)}}</label>
+            <label>{{TEXT(Homepage)}}</label>
+            <label>{{TEXT(Forum)}}</label>
+          </metadataKeys>
+          <metadataValues>
+            <label>{{EVAL(__VERSION__)}}</label>
+<label>CyberGhost84</label>
+            <label>Baa, roidy</label>
+            <label>f00b4r, meltman</label>
+            <label>https://github.com/ibaa/plexconnect</label>
+            <label>http://forums.plexapp.com/...plexconnect</label>
+          </metadataValues>
+          <image>{{URL(:/templates/plex/images/PlexConnectLogo.png)}}</image>
+        </keyedPreview>
+      </preview>
+      
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+              <oneLineMenuItem id="plex_MenuBackground" onSelect="toggleTemplateSettings('plex_MenuBackground', 'Settings/Template/Background')">
+                <label>{{TEXT(Menu Background)}}</label>
+                <rightLabel>{{SETTING(plex_menubackground)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="plex_MenuHint" onSelect="toggleTemplateSettings('plex_MenuHint', 'Settings/Template/Background')">
+                <label>{{TEXT(Menu Hint)}}</label>
+                <rightLabel>{{SETTING(plex_menuhint)}}</rightLabel>
+                </oneLineMenuItem>
+                <oneLineMenuItem id="plex_Layers" onSelect="toggleSettings('plex_Layers', 'Settings/Template/Background')">
+                <label>{{TEXT(Layers)}}</label>
+                <rightLabel>{{SETTING(plex_layers)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="plex_Posters" onSelect="toggleSettings('plex_Posters', 'Settings/Template/Background')">
+                <label>{{TEXT(Posters)}}</label>
+                <rightLabel>{{SETTING(plex_Posters)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="plex_FanartBlur" onSelect="toggleSettings('plex_FanartBlur', 'Settings/Template/Background')">
+                <label>{{TEXT(Fanart Blur)}}</label>
+                <rightLabel>{{SETTING(plex_fanartblur)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="plex_FanartTint" onSelect="toggleSettings('plex_FanartTint', 'Settings/Template/Background')">
+                <label>{{TEXT(Fanart Tint)}}</label>
+                <rightLabel>{{SETTING(plex_fanarttint)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="plex_GridTint" onSelect="toggleSettings('plex_GridTint', 'Settings/Template/Background')">
+                <label>{{TEXT(Grid Tint)}}</label>
+                <rightLabel>{{SETTING(plex_gridtint)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="plex_ListTint" onSelect="toggleTemplateSettings('plex_ListTint', 'Settings/Template/Background')">
+                <label>{{TEXT(List Tint)}}</label>
+                <rightLabel>{{SETTING(plex_listtint)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="plex_ParadeListTint" onSelect="toggleSettings('plex_ParadeListTint', 'Settings/Template/Background')">
+                <label>{{TEXT(Parade List Tint)}}</label>
+                <rightLabel>{{SETTING(plex_paradelisttint)}}</rightLabel>
+              </oneLineMenuItem>
+               </items>
+          </menuSection>
+      
+        </sections>
+      </menu>
+    </itemCollectionWithImageHeader>
+  </body>
+</atv>

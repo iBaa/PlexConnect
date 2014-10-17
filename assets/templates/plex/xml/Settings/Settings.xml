@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/settings.js)}}" />
+  </head>
+  <body>
+    <itemCollectionWithImageHeader id="SettingsPage">
+         <header>
+        <imageHeader>
+          <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=552|1080=828)}}, 0" required="true">
+              {{URL(:/fanartcache/{{getBackground({{EVAL({\
+              'template'    : "plex",\
+              'title'       : "{{EVAL(quote_plus("{{TEXT(PlexConnect)}}"))}}",\
+              'subtitle'    : "{{EVAL(quote_plus("{{TEXT(Settings)}}"))}}",\
+              'image'       : "backgrounds/plex{{VAL($plex_menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+              'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+              'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+              'titleColor'  : "{{VAL($plex_titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'subtitleColor': "{{VAL($plex_subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'layers'      : ["PlexSubList{{VAL($plex_listtint::On=Text|Off=)}}"{{VAL($plex_menuhint::On=,"PlexPressMenu_{{VAL($plex_subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+              })}})}})}}
+          </image>
+        </imageHeader>
+      </header>
+      <preview>
+        <keyedPreview>
+          <title>&#x00AD;<!--soft-hyphen--></title>
+          <summary/>
+          <metadataKeys>
+            <label>{{TEXT(Version)}}</label>
+<label>{{TEXT(Designer)}}</label>
+            <label>{{TEXT(Authors)}}</label>
+            <label>{{TEXT(Wiki/Docs)}}</label>
+            <label>{{TEXT(Homepage)}}</label>
+            <label>{{TEXT(Forum)}}</label>
+          </metadataKeys>
+          <metadataValues>
+            <label>{{EVAL(__VERSION__)}}</label>
+<label>CyberGhost84</label>
+            <label>Baa, roidy</label>
+            <label>f00b4r, meltman</label>
+            <label>https://github.com/ibaa/plexconnect</label>
+            <label>http://forums.plexapp.com/...plexconnect</label>
+          </metadataValues>
+          <image>{{URL(:/templates/plex/images/PlexConnectLogo.png)}}</image>
+        </keyedPreview>
+      </preview>
+      
+      <menu>
+        <sections>
+          
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{TEXT(Plex Media Server)}}</title>
+              </horizontalDivider>
+            </header>
+            <items>
+              <oneLineMenuItem id="discover" onSelect="discover('discover', 'Settings/Settings')">
+                <label>{{TEXT(Discover)}}</label>
+                <rightLabel>Plex Media Servers: {{PMSCOUNT()}}</rightLabel>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="MyPlexSignInOut" onSelect="myPlexSignInOut()">{{CUT($myplex_auth::=| =CUT)}}
+                <label>{{TEXT(MyPlex Sign In)}}</label>
+                <rightLabel></rightLabel>
+                <accessories>
+                  <arrow/>
+                </accessories>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="MyPlexSignInOut" onSelect="myPlexSignInOut()">{{CUT($myplex_auth:CUT:=CUT| =)}}
+                <label>{{TEXT(MyPlex Sign Out)}}</label>
+                <rightLabel>{{SETTING(myplex_user)}}</rightLabel>
+                <accessories></accessories>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="TrancoderView" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsTranscoder')">
+                <label>{{TEXT(Transcoder Options)}}</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
+                
+              </oneLineMenuItem>
+              
+            </items>
+          </menuSection>
+          
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{TEXT(Appearance)}}</title>
+              </horizontalDivider>
+            </header>
+            <items>
+              <oneLineMenuItem id="Template" onSelect="switchTemplate(true);">
+                <label>{{TEXT(Template)}}</label>
+                <rightLabel>{{SETTING(template)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="Precache" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsTemplate')">
+                <label>{{TEXT(Template Options)}}</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="Precache" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsViews')">
+                <label>{{TEXT(Section Options)}}</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
+              </oneLineMenuItem>
+
+            </items>
+          </menuSection>
+          
+         
+          
+        </sections>
+      </menu>
+    </itemCollectionWithImageHeader>
+  </body>
+</atv>

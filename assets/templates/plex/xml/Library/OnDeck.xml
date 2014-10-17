@@ -1,0 +1,66 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/scrobble.js)}}" />
+    <script src="{{URL(:/js/settings.js)}}" />
+  </head>
+
+  <body>
+      {{ADDXML(OnDeck::/library/onDeck?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=40)}}      
+      {{VAR(sections:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
+      {{VAR(items:NoKey:FALSE)}}
+
+      <itemCollectionWithImageHeader id="com.sample.menu-items-with-sections">
+      <header>
+        <imageHeader>	      
+	      	      <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=552|1080=828)}}, 0" required="true">
+	      	  {{URL(:/fanartcache/{{getBackground({{EVAL({\
+              'template'    : "plex",\
+              'title'       : "{{EVAL(quote_plus("{{TEXT(On Deck)}}"))}}",\
+              'subtitle'    : "{{EVAL(quote_plus("{{TEXT(Plex Library)}}"))}}",\
+              'image'       : "backgrounds/plex{{VAL($plex_menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+              'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+              'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+              'titleColor'  : "{{VAL($plex_titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'subtitleColor': "{{VAL($plex_subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'layers'      : ["PlexSubList{{VAL($plex_paradelisttint::On=Text|Off=)}}"{{VAL($plex_menuhint::On=,"PlexPressMenu_{{VAL($plex_subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+              })}})}})}}
+            </image>
+
+        </imageHeader>
+      </header>
+          
+      <menu>
+        <sections>
+          <menuSection>
+              {{COPY(Server:@OnDeck/size::0=|1=COPY)}}
+            
+
+            
+            <items>
+              <twoLineMenuItem id="{{VAL(key)}}"
+                                       onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
+                                       onSelect="atv.loadURL('{{URL(key)}}?includeExtras=1&amp;PlexConnect={{VAL(type::movie=Movie|episode=Episode)}}PrePlay')"
+                                       onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
+                {{COPY(@OnDeck/Server/Video)}}
+                {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                <label>{{VAL(type::movie={{VAL(title)}}|episode={{VAL(grandparentTitle)}})}}</label>
+                <label2>{{VAL(type::movie={{VAL(year)}}|episode={{episodestring(parentIndex:0:index:0)}})}}</label2>
+                <accessories>
+                  <unplayedDot/>{{CUT(viewOffset)}}
+                  <partiallyPlayedDot/>
+                </accessories>{{CUT(viewCount)}}
+                <preview>
+                  <crossFadePreview>
+                    <image>{{IMAGEURL({{VAL(type::movie=thumb|episode=grandparentThumb)}}::768)}}</image>
+                  </crossFadePreview>
+                </preview>
+              </twoLineMenuItem> 
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </itemCollectionWithImageHeader>{{CUT(@OnDeck/Server/size:CUT:0=CUT|1=)}}
+      
+  </body>
+</atv>

@@ -12,11 +12,12 @@ import sys, time
 from os import sep
 import socket
 from multiprocessing import Process, Pipe
+from multiprocessing.managers import BaseManager
 import signal, errno
 
 from Version import __VERSION__
 import DNSServer, WebServer
-import Settings
+import Settings, ATVSettings
 from Debug import *  # dprint()
 
 
@@ -35,6 +36,12 @@ def getIP_self():
         dprint('PlexConnect', 0, "IP_self (from settings): "+IP)
     
     return IP
+
+
+
+# initializer for Manager, proxy-ing ATVSettings to WebServer/XMLConverter
+def initProxy():
+   signal.signal(signal.SIGINT, signal.SIG_IGN)
 
 
 
@@ -73,6 +80,12 @@ def startup():
     param['IP_self'] = getIP_self()
     param['HostToIntercept'] = cfg.getSetting('hosttointercept')
     param['baseURL'] = 'http://'+ param['HostToIntercept']
+    
+    # proxy for ATVSettings
+    proxy = BaseManager()
+    proxy.register('ATVSettings', ATVSettings.CATVSettings)
+    proxy.start(initProxy)
+    param['CATVSettings'] = proxy.ATVSettings()
     
     running = True
     
@@ -141,6 +154,8 @@ def run(timeout=60):
 def shutdown():
     for slave in procs:
         procs[slave].join()
+    param['CATVSettings'].saveSettings()
+    
     dprint('PlexConnect', 0, "shutdown")
 
 def cmdShutdown():

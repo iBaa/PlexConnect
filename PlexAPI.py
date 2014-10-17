@@ -105,7 +105,7 @@ def getPMSFromAddress(ATV_udid, address):
         return ''  # no server known for this aTV
     
     for uuid in g_PMS[ATV_udid]:
-        if address in g_PMS[ATV_udid][uuid].get('baseURL', None):
+        if address==g_PMS[ATV_udid][uuid].get('ip', None):
             return uuid
     return ''  # IP not found
 
@@ -363,7 +363,7 @@ def getXMLFromPMS(baseURL, path, options={}, authtoken=''):
     XML = etree.parse(response)
     
     dprint(__name__, 1, "====== received PMS-XML ======")
-    dprint(__name__, 1, prettyXML(XML))
+    dprint(__name__, 1, XML.getroot())
     dprint(__name__, 1, "====== PMS-XML finished ======")
     
     #XMLTree = etree.ElementTree(etree.fromstring(response))
@@ -416,13 +416,12 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
     root = etree.Element("MediaConverter")
     root.set('friendlyName', type+' Servers')
     
-    if type=='owned':
-        owned='1'
-    elif type=='shared':
-        owned='0'
-    
     for uuid in g_PMS.get(ATV_udid, {}):
-        if getPMSProperty(ATV_udid, uuid, 'owned')==owned:
+        if (type=='all') or \
+           (type=='owned' and getPMSProperty(ATV_udid, uuid, 'owned')=='1') or \
+           (type=='shared' and getPMSProperty(ATV_udid, uuid, 'owned')=='0') or \
+           (type=='local' and getPMSProperty(ATV_udid, uuid, 'local')=='1') or \
+           (type=='remote' and getPMSProperty(ATV_udid, uuid, 'local')=='0'):
             Server = etree.SubElement(root, 'Server')  # create "Server" node
             Server.set('name',    getPMSProperty(ATV_udid, uuid, 'name'))
             Server.set('address', getPMSProperty(ATV_udid, uuid, 'ip'))
@@ -468,11 +467,17 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
                     Dir.set('key',    PMS_mark + getURL('', path, key))
                     Dir.set('refreshKey', getURL(baseURL, path, key) + '/refresh')
                     if 'thumb' in Dir.attrib:
-                        Dir.set('thumb',  PMS_mark + getURL('', path, Dir.get('thumb')))
+                      Dir.set('thumb',  PMS_mark + getURL('', path, Dir.get('thumb')))
+                    if 'grandparentThumb' in Dir.attrib:
+                      Dir.set('grandparentThumb',  PMS_mark + getURL('', path, Dir.get('grandparentThumb'))) 
+                    if 'grandparentKey' in Dir.attrib:
+                      Dir.set('grandparentKey',  PMS_mark + getURL('', path, Dir.get('grandparentKey')))
+                    if 'parentThumb' in Dir.attrib:
+                      Dir.set('parentThumb',  PMS_mark + getURL('', path, Dir.get('parentThumb')))
                     if 'art' in Dir.attrib:
-                        Dir.set('art',    PMS_mark + getURL('', path, Dir.get('art')))
+                      Dir.set('art',    PMS_mark + getURL('', path, Dir.get('art')))
                     Server.append(Dir)
-                
+                    
                 for Video in XML.getiterator('Video'):  # copy "Video" content, add PMS to links
                     key = Video.get('key')  # absolute path
                     Video.set('key',    PMS_mark + getURL('', path, key))
@@ -480,21 +485,28 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
                     if 'thumb' in Video.attrib:
                         Video.set('thumb',  PMS_mark + getURL('', path, Video.get('thumb')))                    
                     if 'grandparentThumb' in Video.attrib:
-                        Video.set('grandparentThumb',  PMS_mark + getURL('', path, Video.get('grandparentThumb')))                   
+                        Video.set('grandparentThumb',  PMS_mark + getURL('', path, Video.get('grandparentThumb'))) 
                     if 'grandparentKey' in Video.attrib:
-                    	Video.set('grandparentKey',  PMS_mark + getURL('', path, Video.get('grandparentKey'))) 
+                        Video.set('grandparentKey',  PMS_mark + getURL('', path, Video.get('grandparentKey')))                    
                     if 'parentThumb' in Video.attrib:
                         Video.set('parentThumb',  PMS_mark + getURL('', path, Video.get('parentThumb')))
                     if 'art' in Video.attrib:
                         Video.set('art',    PMS_mark + getURL('', path, Video.get('art')))
                     Server.append(Video)
+
+                for Playlist in XML.getiterator('Playlist'):  # copy "Playlist" content, add PMS to links
+                    key = Playlist.get('key')  # absolute path
+                    Playlist.set('key',    PMS_mark + getURL('', path, key))
+                    if 'composite' in Playlist.attrib:
+                        Playlist.set('composite', PMS_mark + getURL('', path, Playlist.get('composite')))
+                    Server.append(Playlist)
     
     root.set('size', str(len(root.findall('Server'))))
     
     XML = etree.ElementTree(root)
     
     dprint(__name__, 1, "====== Local Server/Sections XML ======")
-    dprint(__name__, 1, prettyXML(XML))
+    dprint(__name__, 1, XML.getroot())
     dprint(__name__, 1, "====== Local Server/Sections XML finished ======")
     
     return XML  # XML representation - created "just in time". Do we need to cache it?
@@ -623,7 +635,7 @@ parameters:
 result:
     final path to pull in PMS transcoder
 """
-def getTranscodeVideoPath(path, AuthToken, options, action, quality, subtitle, audio):
+def getTranscodeVideoPath(path, AuthToken, options, action, quality, subtitle, audio, partIndex):
     UDID = options['PlexConnectUDID']
     
     transcodePath = '/video/:/transcode/universal/start.m3u8?'
@@ -648,6 +660,7 @@ def getTranscodeVideoPath(path, AuthToken, options, action, quality, subtitle, a
     args['audioBoost'] = audio['boost']
     args['fastSeek'] = '1'
     args['path'] = path
+    args['partIndex'] = partIndex
     
     xargs = getXArgsDeviceInfo(options)
     xargs['X-Plex-Client-Capabilities'] = "protocols=http-live-streaming,http-mp4-streaming,http-streaming-video,http-streaming-video-720p,http-mp4-video,http-mp4-video-720p;videoDecoders=h264{profile:high&resolution:1080&level:41};audioDecoders=mp3,aac{bitrate:160000}"
@@ -710,7 +723,7 @@ def getTranscodeImagePath(key, AuthToken, path, width, height):
     
     # This is bogus (note the extra path component) but ATV is stupid when it comes to caching images, it doesn't use querystrings.
     # Fortunately PMS is lenient...
-    transcodePath = '/photo/:/transcode/' + quote_plus(path)
+    transcodePath = '/photo/:/transcode/' +str(width)+'x'+str(height)+ '/' + quote_plus(path)
     
     args = dict()
     args['width'] = width
@@ -743,6 +756,36 @@ def getDirectImagePath(path, AuthToken):
             path = path + '&' + urlencode(xargs)
     
     return path
+
+
+
+"""
+Transcode Audio support
+
+parameters:
+    path
+    AuthToken
+    options - dict() of PlexConnect-options as received from aTV
+    maxAudioBitrate - [kbps]
+result:
+    final path to pull in PMS transcoder
+"""
+def getTranscodeAudioPath(path, AuthToken, options, maxAudioBitrate):
+    UDID = options['PlexConnectUDID']
+    
+    transcodePath = '/music/:/transcode/universal/start.mp3?'
+    
+    args = dict()
+    args['path'] = path
+    args['session'] = UDID
+    args['protocol'] = 'http'
+    args['maxAudioBitrate'] = maxAudioBitrate
+    
+    xargs = getXArgsDeviceInfo(options)
+    if not AuthToken=='':
+        xargs['X-Plex-Token'] = AuthToken
+    
+    return transcodePath + urlencode(args) + '&' + urlencode(xargs)
 
 
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atv>
+  <body>
+     <preview>
+        <paradePreview inOrder="true">
+          <image>
+            {{COPY(Video:thumb::=COPY)}}
+            {{IMAGEURL(thumb::768)}}
+          </image>
+        </paradePreview>{{CUT(size:CUT:0=CUT|0 =|1=CUT|1 =|2=CUT|2 =|3=CUT|4=CUT|5=CUT|6=)}}
+        
+        <crossFadePreview>
+          <image>
+            {{COPY(Video:thumb::=COPY)}}
+            {{IMAGEURL(thumb::768)}}
+          </image>
+        </crossFadePreview>{{CUT(size::0=|0 =CUT|1=|1 =CUT|2=|2 =CUT|3=|4=|5=|6=CUT)}}
+      </preview>
+  </body>
+</atv>
+

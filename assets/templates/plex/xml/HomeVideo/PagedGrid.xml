@@ -1,0 +1,61 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+  
+  <body>
+    <scroller id="com.sample.movie-grid">
+    {{CUT(size:CUT:0=CUT|1=)}}
+      <header>
+        <imageHeader>
+          <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=540|1080=810)}}, 0" required="true">
+              {{URL(:/fanartcache/{{getBackground({{EVAL({\
+              'template'    : "plex",\
+              'title'       : "{{EVAL(quote_plus("{{VAL(title2)}}"))}}",\
+              'subtitle'    : "{{EVAL(quote_plus("{{VAL(title1)}}"))}}",\
+              'image'       : "backgrounds/plex{{VAL($plex_menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+              'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+              'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+              'titleColor'  : "{{VAL($plex_titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'subtitleColor': "{{VAL($plex_subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'layers'      : ["PlexSubPagedGrid{{VAL($plex_gridtint::On=Text|Off=)}}"{{VAL($plex_menuhint::On=,"PlexPressMenu_{{VAL($plex_subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+              })}})}})}}
+          </image>
+
+        </imageHeader>
+      </header>
+      <items>
+
+      
+        <pagedGrid id="paged-grid-0">
+
+<!--          <grid columnCount="15" id="grid_0">
+             <items>-->
+               <fourByThreePoster id="{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_movies::Highlighted Only=false|Show All=true)}}"
+                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
+                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')"
+                             onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
+                 {{PAGEDCOPY(Video,7,2)}}
+                 <title>{{VAL(title)}}</title>
+                 <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
+                 <image>{{IMAGEURL(thumb::384)}}</image>
+                 <defaultImage>resource://Poster.png</defaultImage>
+               </fourByThreePoster>
+<!--             </items>
+           </grid>-->
+        
+         </pagedGrid>      
+      </items>
+    </scroller>
+    
+    <!--No Items Available-->
+    <dialog id="com.sample.error-dialog">
+    {{CUT(size::0=|1=CUT)}}
+      <title>PlexConnect</title>
+      <description>{{TEXT(Plex Media Server: No Items Available)}}</description>
+    </dialog>
+    
+  </body>
+</atv>
+
+

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<atv>
+  <head>{{CUT(^aTVFirmwareVersion:CUT:4.0=|6.0=CUT)}}
+    <script src="{{URL(:/js/utils.js)}}"/> 
+  </head>
+  
+  <body>{{CUT(^aTVFirmwareVersion:CUT:4.0=|6.0=CUT)}}
+    <optionDialog id="scrobble.optionDialog">
+      <header>
+        <simpleHeader>
+          <title>{{VAL(Video/title)}}</title>
+          <subtitle>{{VAL(Video/grandparentTitle)}}</subtitle>
+        </simpleHeader>
+      </header> 
+      
+      <menu>
+        <sections>
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title></title>
+              </horizontalDivider>
+            </header>
+            
+            <items>
+              <oneLineMenuItem id="item2" onSelect="flattenSeason('{{URL(:{{VAL(Video/grandparentKey)}}/children)}}', '{{SETTING(flattenseason)}}', 'True')">
+                <label>{{TEXT(View Show)}}</label>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="item2" onSelect="markItem('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(Video/ratingKey)}}', 'scrobble');atv.unloadPage();">
+                <label>{{TEXT(Mark as Watched)}}</label>
+              </oneLineMenuItem>
+        
+              <oneLineMenuItem id="item3" onSelect="markItem('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(Video/ratingKey)}}', 'unscrobble');atv.unloadPage();">
+                <label>{{TEXT(Mark as Unwatched)}}</label>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(:{{VAL(Video/grandparentKey)}}/children)}}&amp;PlexConnect=ChangeShowArtwork')">
+                <label>{{TEXT(Change All Artwork)}}</label>
+              </oneLineMenuItem>
+              
+
+            </items>
+
+          </menuSection>
+        </sections>
+      </menu>
+    </optionDialog>
+  </body>
+
+  <body>{{CUT(^aTVFirmwareVersion::4.0=CUT|6.0=)}}
+    <popUpMenu id='context_menu'>
+      <sections>
+        <menuSection>
+          <items>
+            <oneLineMenuItem id="item2" onSelect="flattenSeason('{{URL(:{{VAL(Video/grandparentKey)}}/children)}}', '{{SETTING(flattenseason)}}', 'False')">
+              <label>{{TEXT(View Show)}}</label>
+            </oneLineMenuItem>
+           
+            <oneLineMenuItem id="item2" onSelect="markItem('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(Video/ratingKey)}}', 'scrobble');updateContextXML();">
+              <label>{{TEXT(Mark as Watched)}}</label>
+            </oneLineMenuItem>
+        
+            <oneLineMenuItem id="item3" onSelect="markItem('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(Video/ratingKey)}}', 'unscrobble');updateContextXML();">
+              <label>{{TEXT(Mark as Unwatched)}}</label>
+            </oneLineMenuItem>
+            
+            <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(:{{VAL(Video/grandparentKey)}}/children)}}&amp;PlexConnect=ChangeShowArtwork')">
+              <label>{{TEXT(Change All Artwork)}}</label>
+            </oneLineMenuItem>
+
+          </items>
+        </menuSection>
+      </sections> 
+    </popUpMenu>
+  </body>
+</atv>

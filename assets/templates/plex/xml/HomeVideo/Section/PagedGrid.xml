@@ -1,0 +1,105 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/updateXML.js)}}" />
+    <script src="{{URL(:/js/settings.js)}}" />
+  </head>
+
+  <body>
+    {{ADDXML(OnDeck::onDeck)}}
+    {{ADDXML(RecentlyAdded::recentlyAdded)}}
+    {{ADDXML(RecentlyReleased::newest)}}
+
+    {{VAR(items:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
+
+    <scroller id="com.sample.movie-showcase-grid">
+      <header>
+        <imageHeader>
+	      <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=590|1080=885)}}, 0" required="true">
+              {{URL(:/fanartcache/{{getBackground({{EVAL({\
+              'template'    : "plex",\
+              'title'       : "{{EVAL(quote_plus("{{TEXT(On Deck)}}"))}}",\
+              'subtitle'    : "{{EVAL(quote_plus("{{VAL(title1)}}"))}}",\
+              'image'       : "backgrounds/plex{{VAL($plex_menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+              'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+              'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+              'titleColor'  : "{{VAL($plex_titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'subtitleColor': "{{VAL($plex_subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'layers'      : ["PlexSubGrid{{VAL($plex_gridtint::On=Text|Off=)}}"{{VAL($plex_menuhint::On=,"PlexPressMenu_{{VAL($plex_subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+              })}})}})}}
+          </image>
+	    </imageHeader>
+      </header>
+      
+      <items>
+        <collectionDivider alignment="left" accessibilityLabel="On Deck">
+          {{CUT(@OnDeck/size:CUT:0=CUT|1=)}}
+          <title>{{TEXT(On Deck)}}</title>
+        </collectionDivider>
+          <pagedGrid id="pagedGridOnDeck">
+                    {{CUT(@OnDeck/size:CUT:0=CUT|1=)}}
+
+                <fourByThreePoster id="{{VAL(key)}}" featured="true" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_movies::Highlighted Only=false|Show All=true)}}"
+                            onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
+                            onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')"
+                            onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
+                  {{PAGEDCOPY(@OnDeck/Video,7,1)}}
+                  {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                  <title>{{VAL(title)}}</title>
+                  <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
+                  <image>{{IMAGEURL(thumb::384)}}</image>
+                  <defaultImage>resource://Poster.png</defaultImage>
+                </fourByThreePoster>
+          </pagedGrid>
+
+        <collectionDivider alignment="left" accessibilityLabel="Recently Added">
+          {{CUT(@RecentlyAdded/size:CUT:0=CUT|1=)}}
+          <title>{{TEXT(Recently Added)}}</title>
+        </collectionDivider>
+ 
+          <pagedGrid id="pagedGridRecentlyAdded">
+             {{CUT(@RecentlyAdded/size:CUT:0=CUT|1=)}}
+                <fourByThreePoster id="{{VAL(key)}}" featured="true" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_movies::Highlighted Only=false|Show All=true)}}"
+                            onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
+                            onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')"
+                            onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
+                  {{PAGEDCOPY(@RecentlyAdded/Video,7,1)}}
+                  {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                  <title>{{VAL(title)}}</title>
+                  <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
+                  <image>{{IMAGEURL(thumb::384)}}</image>
+                  <defaultImage>resource://Poster.png</defaultImage>
+                </fourByThreePoster>
+            </pagedGrid>
+
+        <collectionDivider alignment="left" accessibilityLabel="Recently Released">
+          {{CUT(@RecentlyReleased/size:CUT:0=CUT|1=)}}
+          <title>{{TEXT(Recently Released)}}</title>
+        </collectionDivider>
+          <pagedGrid id="pagedGridRecentlyReleased">
+          {{CUT(@RecentlyReleased/size:CUT:0=CUT|1=)}}
+                <fourByThreePoster id="{{VAL(key)}}" featured="true" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_movies::Highlighted Only=false|Show All=true)}}"
+                            onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
+                            onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=MoviePrePlay')"
+                            onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
+                  {{PAGEDCOPY(@RecentlyReleased/Video,7,1)}}
+                  {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                  <title>{{VAL(title)}}</title>
+                  <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
+                  <image>{{IMAGEURL(thumb::384)}}</image>
+                  <defaultImage>resource://Poster.png</defaultImage>
+                </fourByThreePoster>
+        </pagedGrid>
+      </items>
+    </scroller>
+    {{CUT(#items::FALSE=CUT|TRUE=)}}  <!--CUT if no item added-->
+    
+    <!--No Channels Available-->
+    <dialog id="com.sample.error-dialog">
+    {{CUT(#items::FALSE=|TRUE=CUT)}}
+      <title>PlexConnect</title>
+      <description>{{TEXT(Plex Media Server: No Items Available)}}</description>
+    </dialog>
+    
+  </body>
+</atv>

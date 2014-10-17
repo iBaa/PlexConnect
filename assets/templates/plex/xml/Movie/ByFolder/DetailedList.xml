@@ -1,0 +1,82 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+  
+  
+  
+  <body>
+    <itemCollectionWithImageHeader id="Movie_DetailedList" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
+      <header>
+        <imageHeader>
+	      <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=650|1080=975)}}, 0" required="true">
+	     {{URL(:/fanartcache/{{getBackground({{EVAL({\
+              'template'    : "plex",\
+              'title'       : "{{EVAL(quote_plus("{{VAL(title2)}}"))}}",\
+              'subtitle'    : "{{EVAL(quote_plus("{{VAL(title1)}}"))}}",\
+              'image'       : "backgrounds/plex{{VAL($plex_menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+              'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+              'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+              'titleColor'  : "{{VAL($plex_titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'subtitleColor': "{{VAL($plex_subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'layers'      : ["PlexSubList{{VAL($plex_listtint::On=Text|Off=)}}"{{VAL($plex_menuhint::On=,"PlexPressMenu_{{VAL($plex_subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+              })}})}})}}
+	      </image>
+	    </imageHeader>
+      </header>
+
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}"
+                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=MovieByFolder')"
+                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=MovieByFolder')">
+                {{COPY(Directory)}}
+                <label>{{VAL(title)}}</label>
+                <image>{{URL(:/templates/plex/images/Folder.png)}}</image>
+                <defaultImage>resource://Poster.png</defaultImage>
+                <preview>
+                  <crossFadePreview>
+                    <image>{{URL(:/templates/plex/images/Folder.png)}}</image>
+                  </crossFadePreview>
+                </preview>
+              </twoLineEnhancedMenuItem>
+            
+              <oneLineMenuItem id="{{VAL(key)}}"
+                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
+                             onSelect="atv.loadURL('{{URL(key)}}?includeExtras=1&amp;PlexConnect=MoviePrePlay')"
+                             onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
+                {{COPY(Video)}}
+                <label>{{VAL(title)}}</label>
+                <accessories>
+                  <unplayedDot/>{{CUT(viewOffset)}}
+                  <partiallyPlayedDot/>
+                </accessories>{{CUT(viewCount)}}
+                <preview>
+                  <keyedPreview>
+                    <title>{{VAL(title)}}</title>
+                    <summary>{{VAL(summary)}}</summary>
+                    <image>{{IMAGEURL(thumb::384)}}</image>
+										<metadataKeys>
+											<label>{{TEXT(Actors)}}</label>
+											<label>{{TEXT(Director)}}</label>
+											<label>{{TEXT(Genre)}}</label>
+											<label>{{TEXT(Length)}}</label>
+										</metadataKeys>
+										<metadataValues>
+											<label>{{VAL(Role/tag)}}{{VAL(Role[2]/tag::=, )}}{{VAL(Role[2]/tag)}}{{VAL(Role[3]/tag::=, )}}{{VAL(Role[3]/tag)}}</label>
+											<label>{{VAL(Director/tag)}}</label>
+											<label>{{VAL(Genre/tag)}}{{VAL(Genre[2]/tag::=, )}}{{VAL(Genre[2]/tag)}}</label>
+											<label>{{durationToString(NoKey:Video:duration)}}</label>
+										</metadataValues>
+                  </keyedPreview>
+                </preview>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </itemCollectionWithImageHeader>
+  </body>
+  </atv>

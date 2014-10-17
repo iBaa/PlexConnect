@@ -1,0 +1,111 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+
+  <body>
+
+      {{VAR(sections:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
+      {{VAR(items:NoKey:FALSE)}}
+    {{VAR(channels:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
+    <scroller id="Show_Grid">
+      <header>
+	    <imageHeader>
+          <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=590|1080=885)}}, 0" required="true">{{URL(:/fanartcache/{{LFBG("plex","{{EVAL(quote_plus("{{TEXT(Precache)}}"))}}","","backgrounds/plex{{VAL($plex_menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png","{{VAL(^aTVScreenResolution)}}","fonts/OpenSans/OpenSans-Light.ttf","40","25","CCCCCC","ff8800","right","top","60","25","162","","PlexGrid")}})}}</image>
+	    </imageHeader>
+      </header>
+      <items>
+
+        <grid columnCount="7" id="grid_0">
+          <items>
+            <sixteenByNinePoster id="grid_item_1" accessibilityLabel="Grid item 1" featured="true">
+              <title>Library Grid Top Section / Bookcase</title>
+              <image>{{URL(:/fanartcache/{{LFBG("plex","{{EVAL(quote_plus("{{TEXT(Plex Library)}}"))}}","","backgrounds/plex{{VAL($plex_menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png","{{VAL(^aTVScreenResolution)}}","fonts/OpenSans/OpenSans-Light.ttf","40","25","CCCCCC","FF8800","right","top","60","25","","","PlexPagedOnDeck")}})}}</image>
+              <defaultImage>resource://Poster.png</defaultImage>
+            </sixteenByNinePoster>
+          
+            <sixteenByNinePoster id="grid_item_1" accessibilityLabel="Grid item 1" featured="true">
+              <title>Library Grid Flow Section</title>
+              <image>{{URL(:/fanartcache/{{LFBG("plex","{{EVAL(quote_plus("{{TEXT(Plex Library)}}"))}}","","backgrounds/plex{{VAL($plex_menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png","{{VAL(^aTVScreenResolution)}}","fonts/OpenSans/OpenSans-Light.ttf","40","25","CCCCCC","FF8800","right","top","60","25","","","PlexFlowLibrary")}})}}</image>
+              <defaultImage>resource://Poster.png</defaultImage>
+            </sixteenByNinePoster>
+
+            <sixteenByNinePoster id="grid_item_1" accessibilityLabel="Grid item 1" featured="true">
+              <title>Library List</title>
+              <image>{{URL(:/fanartcache/{{LFBG("plex","{{EVAL(quote_plus("{{TEXT(Plex Library)}}"))}}","","backgrounds/plex{{VAL($plex_menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png","{{VAL(^aTVScreenResolution)}}","fonts/OpenSans/OpenSans-Light.ttf","40","","fafafa","","right","top","60","25","","","PlexParadeList")}})}}</image>
+              <defaultImage>resource://Poster.png</defaultImage>
+            </sixteenByNinePoster>
+
+            <sixteenByNinePoster id="grid_item_1" accessibilityLabel="Grid item 1" featured="true">
+              <title>Library List On Deck</title>
+              <image>{{URL(:/fanartcache/{{LFBG("plex","{{EVAL(quote_plus("{{TEXT(Plex Library)}}"))}}","{{EVAL(quote_plus("{{TEXT(On Deck)}}"))}}","backgrounds/plex{{VAL($plex_menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png","{{VAL(^aTVScreenResolution)}}","fonts/OpenSans/OpenSans-Light.ttf","40","25","CCCCCC","FF8800","right","top","70","25","162","","PlexParadeListSub")}})}}</image>
+              <defaultImage>resource://Poster.png</defaultImage>
+            </sixteenByNinePoster>
+
+            <sixteenByNinePoster id="grid_item_1" accessibilityLabel="Grid item 1" featured="true">
+              <title>Library List Recently Added</title>
+              <image>{{URL(:/fanartcache/{{LFBG("plex","{{EVAL(quote_plus("{{TEXT(Plex Library)}}"))}}","{{EVAL(quote_plus("{{TEXT(Recently Added)}}"))}}","backgrounds/plex{{VAL($plex_menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png","{{VAL(^aTVScreenResolution)}}","fonts/OpenSans/OpenSans-Light.ttf","40","25","CCCCCC","FF8800","right","top","70","25","162","","PlexParadeListSub")}})}}</image>
+              <defaultImage>resource://Poster.png</defaultImage>
+            </sixteenByNinePoster>
+                        
+            
+            
+            <sixteenByNinePoster id="grid_item_1" accessibilityLabel="Grid item 1" featured="true">
+              <title>Channels Grid / Bookcase</title>
+              <image>
+              {{URL(:/fanartcache/{{LFBG("plex","{{EVAL(quote_plus("{{TEXT(Plex Channels)}}"))}}","","backgrounds/plex{{VAL($plex_menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png","{{VAL(^aTVScreenResolution)}}","fonts/OpenSans/OpenSans-Light.ttf","40","25","CCCCCC","","right","top","60","25","162","","PlexGrid")}})}}
+              </image>
+              <defaultImage>resource://Poster.png</defaultImage>
+            </sixteenByNinePoster>
+            
+            <sixteenByNinePoster id="grid_item_1" accessibilityLabel="Grid item 1" featured="true">
+              <title>Channels List</title>
+              <image>
+              {{URL(:/fanartcache/{{LFBG("plex","{{EVAL(quote_plus("{{TEXT(Plex Channels)}}"))}}","","backgrounds/plex{{VAL($plex_menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png","{{VAL(^aTVScreenResolution)}}","fonts/OpenSans/OpenSans-Light.ttf","40","","CCCCCC","","right","top","60","25","","","PlexParadeList")}})}}
+              </image>
+              <defaultImage>resource://Poster.png</defaultImage>
+            </sixteenByNinePoster>
+
+            <sixteenByNinePoster id="grid_item_1" accessibilityLabel="Grid item 1" featured="true">
+              <title>Settings</title>
+              <image>
+              {{URL(:/fanartcache/{{LFBG("plex","{{EVAL(quote_plus("{{TEXT(Settings)}}"))}}","","backgrounds/plex{{VAL($plex_menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png","{{VAL(^aTVScreenResolution)}}","fonts/OpenSans/OpenSans-Light.ttf","40","","CCCCCC","","right","top","60","25","","","PlexSettings")}})}}
+              </image>
+              <defaultImage>resource://Poster.png</defaultImage>
+            </sixteenByNinePoster>
+            
+            
+
+          </items>
+        </grid>
+        
+        
+
+        
+         
+<!--         {{ADDXML(AudioChannels::{{URL(:/PMS(owned)/music)}})}}
+         {{ADDXML(PhotoChannels::{{URL(:/PMS(owned)/photos)}})}}-->
+        <__COPY__>
+        <grid id="Channels_Grid_Video_{{VAL(name)}}" columnCount="7">
+
+          <items>
+
+             <sixteenByNinePoster id="grid_item_1" accessibilityLabel="Grid item 1" featured="true">
+             {{COPY(Server:@Channels/Directory)}}
+             {{VAR(channels:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+             <title>Settings</title>
+              <image>
+              {{URL(:/fanartcache/{{LFBG("plex","{{EVAL(quote_plus("{{VAL(title1:Plex Channels)}}"))}}","{{VAL(title2)}}","backgrounds/plex{{VAL($plex_menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png","{{VAL(^aTVScreenResolution)}}","fonts/OpenSans/OpenSans-Light.ttf","{{VAL(title2:40:=40)}}","25","CCCCCC","FF8800","right","top","60","25","162","","PlexParadeListSub")}})}}
+             </image>
+              <defaultImage>resource://Poster.png</defaultImage>
+            </sixteenByNinePoster>
+            
+          </items>
+       </grid> 
+       </__COPY__>
+
+      </items>
+    </scroller>
+    
+  </body>
+</atv>

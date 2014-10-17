@@ -1,0 +1,50 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+  
+  <body>
+    <scroller id="MovieGrid" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
+      <header>
+        <imageHeader>
+	      <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=550|1080=825)}}, 0" required="true">
+	  	    {{URL(:/fanartcache/{{getBackground({{EVAL({\
+              'template'    : "plex",\
+              'title'       : "{{EVAL(quote_plus("{{VAL(title2)}}"))}}",\
+              'subtitle'    : "{{EVAL(quote_plus("{{VAL(title1)}}"))}}",\
+              'image'       : "backgrounds/plex{{VAL($plex_menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+              'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+              'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+              'titleColor'  : "{{VAL($plex_titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'subtitleColor': "{{VAL($plex_subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'layers'      : ["PlexSubPagedGrid{{VAL($plex_gridtint::On=Text|Off=)}}"{{VAL($plex_menuhint::On=,"PlexPressMenu_{{VAL($plex_subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+              })}})}})}}
+	      </image>
+          </imageHeader>
+      </header>
+      <items>
+        <pagedGrid id="grid_0">
+            <fourByThreePoster id="{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_movies::Highlighted Only=false|Show All=true)}}" 
+                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=MovieByFolder')"
+                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=MovieByFolder')">
+              {{PAGEDCOPY(Directory,7,2)}}
+              <title>{{VAL(title)}}</title>
+              <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
+              <image>{{URL(:/templates/plex/images/Folder.png)}}</image>
+              <defaultImage>resource://Poster.png</defaultImage>
+            </fourByThreePoster>
+            
+            <fourByThreePoster id="{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_movies::Highlighted Only=false|Show All=true)}}"
+                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
+                             onSelect="atv.loadURL('{{URL(key)}}?includeExtras=1&amp;PlexConnect=MoviePrePlay')">
+              {{PAGEDCOPY(Video,7,2)}}
+              <title>{{VAL(title)}}</title>
+              <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
+              <image>{{IMAGEURL(thumb::384)}}</image>
+              <defaultImage>resource://Poster.png</defaultImage>
+            </fourByThreePoster>
+        </pagedGrid>
+      </items>
+    </scroller>
+  </body>
+</atv>

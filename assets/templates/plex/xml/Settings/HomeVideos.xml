@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/settings.js)}}" />
+  </head>
+
+  <body>
+    <itemCollectionWithImageHeader id="SettingsPage_HomeVideos">
+      <header>
+        <imageHeader>
+          <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=552|1080=828)}}, 0" required="true">
+            {{URL(:/fanartcache/{{getBackground({{EVAL({\
+              'template' : "plex",\
+              'title' : "{{EVAL(quote_plus("{{TEXT(Settings)}}"))}}",\
+              'subtitle' : "{{EVAL(quote_plus("{{TEXT(Home Video Options)}}"))}}",\
+              'image' : "backgrounds/plex{{VAL($plex_menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+              'resolution' : "{{VAL(^aTVScreenResolution)}}",\
+              'font' : "fonts/OpenSans/OpenSans-Light.ttf",\
+              'titleColor' : "{{VAL($plex_titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'subtitleColor' : "{{VAL($plex_subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'layers' : ["PlexSubList{{VAL($plex_listtint::On=Text|Off=)}}"{{VAL($plex_menuhint::On=,"PlexPressMenu_{{VAL($plex_subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+            })}})}})}}
+          </image>
+        </imageHeader>
+      </header>
+      <preview>
+        <keyedPreview>
+          <title>&#x00AD;<!--soft-hyphen--></title>
+          <summary/>
+          <metadataKeys>
+            <label>{{TEXT(Version)}}</label>
+<label>{{TEXT(Designer)}}</label>
+            <label>{{TEXT(Authors)}}</label>
+            <label>{{TEXT(Wiki/Docs)}}</label>
+            <label>{{TEXT(Homepage)}}</label>
+            <label>{{TEXT(Forum)}}</label>
+          </metadataKeys>
+          <metadataValues>
+            <label>{{EVAL(__VERSION__)}}</label>
+<label>CyberGhost84</label>
+            <label>Baa, roidy</label>
+            <label>f00b4r, meltman</label>
+            <label>https://github.com/ibaa/plexconnect</label>
+            <label>http://forums.plexapp.com/...plexconnect</label>
+          </metadataValues>
+          <image>{{URL(:/templates/plex/images/PlexConnectLogo.png)}}</image>
+        </keyedPreview>
+      </preview>
+
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+              <oneLineMenuItem id="plex_HomeVideoView" onSelect="toggleSettings('plex_HomeVideoView', 'Settings/HomeVideos')">
+                <label>{{TEXT(Home Video View)}}</label>
+                <rightLabel>{{SETTING(plex_homevideoview)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="ShowTitles_HomeVideos" onSelect="toggleSettings('ShowTitles_HomeVideos', 'Settings/HomeVideos')">
+                <label>{{TEXT(Poster Titles)}}</label>
+                <rightLabel>{{SETTING(showtitles_homevideos)}}</rightLabel>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{TEXT(Home Videos Navigation Bar)}}</title>
+              </horizontalDivider>
+            </header>
+            <items>
+
+              <oneLineMenuItem id="HomeVideos_NavBar_OnDeck" onSelect="toggleSettings('HomeVideos_NavBar_OnDeck', 'Settings/HomeVideos')">
+                <label>{{TEXT(On Deck)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($homevideos_navbar_ondeck::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="HomeVideos_NavBar_Unwatched" onSelect="toggleSettings('HomeVideos_NavBar_Unwatched', 'Settings/HomeVideos')">
+                <label>{{TEXT(Unwatched)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($homevideos_navbar_unwatched::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+
+              <oneLineMenuItem id="HomeVideos_NavBar_ByFolder" onSelect="toggleSettings('HomeVideos_NavBar_ByFolder', 'Settings/HomeVideos')">
+                <label>{{TEXT(By Folder)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($homevideos_navbar_byfolder::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="HomeVideos_NavBar_Genres" onSelect="toggleSettings('HomeVideos_NavBar_Genres', 'Settings/HomeVideos')">
+                <label>{{TEXT(Genres)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($homevideos_navbar_genres::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+
+              <oneLineMenuItem id="HomeVideos_NavBar_Collections" onSelect="toggleSettings('HomeVideos_NavBar_Collections', 'Settings/HomeVideos')">
+                <label>{{TEXT(Collections)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($homevideos_navbar_collections::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </itemCollectionWithImageHeader>
+  </body>
+</atv>

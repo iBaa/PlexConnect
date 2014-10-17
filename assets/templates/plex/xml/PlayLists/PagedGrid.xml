@@ -1,0 +1,63 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/settings.js)}}" />
+  </head>
+
+  <body>
+      {{VAR(items:NoKey:FALSE)}}
+
+    <scroller id="com.sample.movie-showcase-grid">
+      <header>
+        <imageHeader>
+	     <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=630|1080=945)}}, 0" required="true">
+	     {{URL(:/fanartcache/{{getBackground({{EVAL({\
+               'template' : "plex",\
+               'title' : "{{EVAL(quote_plus("{{TEXT(Plex Playlists)}}"))}}",\
+               'image' : "backgrounds/plex{{VAL($plex_menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+               'resolution' : "{{VAL(^aTVScreenResolution)}}",\
+               'font' : "fonts/OpenSans/OpenSans-Light.ttf",\
+               'titleColor' : "{{VAL($plex_titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+               'layers' : ["PlexGrid{{VAL($plex_gridtint::On=Text|Off=)}}"{{VAL($plex_menuhint::On=,"PlexPressMenu_{{VAL($plex_subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+               })}})}})}}
+	     </image>
+	   </imageHeader>
+      </header>
+      
+      <items>
+      <__COPY__>
+      {{COPY(Server:size::0=|1=COPY)}}
+
+        
+
+          <collectionDivider alignment="left" accessibilityLabel="Show_Bookcase_Divider">
+            <title>{{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(Shared Playlist)}}&gt;|0 =)}}</title>
+          </collectionDivider>
+          {{CUT(@main/size:CUT:0=CUT|1=CUT|2=)}}
+          
+          <pagedGrid id="shelf_0">              
+                  <fourByThreePoster id="{{VAL(key)}}" featured="true" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($plex_showtitles_library::Highlighted Only=false|Show All=true)}}"
+                                       onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Playlist_Video')"
+                                       onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Playlist_Video')">
+                                       <!--onSelectHold=""-->
+                    {{PAGEDCOPY(Playlist:playlistType::audio=|video=COPY,5,1)}}  <!--currently: video playlists only-->
+                    {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->                  
+                    <title>{{VAL(title)}}</title>
+                    <image>{{IMAGEURL(composite::384)}}</image>
+                    <defaultImage>resource://Poster.png</defaultImage>
+                    <badgeCount>{{unwatchedCountGrid(leafCount:0:viewedLeafCount:0)}}</badgeCount>                  
+                  </fourByThreePoster>            
+        </pagedGrid>
+        </__COPY__>
+    </items>
+    </scroller>{{CUT(#items::FALSE=CUT|TRUE=)}}  <!--CUT if no section added-->
+
+    
+    <!--No Items Available-->
+    <dialog id="com.sample.error-dialog">
+    {{CUT(#items::FALSE=|TRUE=CUT)}}
+      <title>PlexConnect</title>
+      <description>{{TEXT(No Plex Playlists Available)}}</description>
+    </dialog>    
+  </body>
+</atv>

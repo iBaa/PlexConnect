@@ -10,52 +10,99 @@ from Debug import *  # dprint()
 
 
 options = { \
+    'template'                      :('default', 'Plex'), \
+#TemplateSettings
+
+    
+#plex
+#   library view
+    'plex_libraryview_remote'       :('Top Grid', 'Top Paged Grid', 'List'), \
+    'plex_libraryview'              :('Grid', 'Paged Grid', 'List'), \
+    'plex_showplaylists'            :('True', 'False'), \
+    'plex_showsharedlibrarys'       :('True', 'False'), \
+    'plex_movieview'                :('Grid', 'Paged Grid', 'Big Artwork', 'Coverflow', 'List', 'Detailed List'), \
+    'plex_extraview'                :('Grid', 'Paged Grid'), \
+    'plex_homevideoview'            :('Grid', 'Paged Grid', 'Big Artwork', 'Coverflow', 'List', 'Detailed List'), \
+    'plex_showview'                 :('Grid', 'Paged Grid', 'Big Artwork', 'Coverflow', 'List'), \
+    'plex_channelview'              :('Grid', 'List'), \
+    'plex_episodeview'              :('List', 'Grid', 'Paged Grid', 'Coverflow'), \
+    'plex_seasonview'               :('List', 'Grid', 'Paged Grid', 'Big Artwork', 'Coverflow'), \
+    'plex_sectionicons'              :('Fanart', 'Apple', 'Plex', 'Custom'), \
+    'plex_sectionicons_shared'       :('Fanart', 'Apple', 'Plex'), \
+    'plex_sectionsposition'          :('Top', 'Flow'), \
+    'plex_library_search'            :('Hide', 'Show'), \
+    'plex_library_ondeck'            :('checked', 'unchecked'), \
+    'plex_library_recentlyadded'     :('checked', 'unchecked'), \
+    'plex_library_channels'          :('checked', 'unchecked'), \
+    'plex_showtitles_library'        :('Show All', 'Highlighted Only'), \
+#   template options
+    'plex_subtitlecolor'             :('Plex Orange', 'White', 'Grey', 'Apple Blue'), \
+    'plex_titlecolor'                :('Grey', 'Plex Orange', 'White',  'Apple Blue'), \
+    'plex_tabletitlecolor'           :('Plex Orange', 'White', 'Grey', 'Apple Blue'), \
+    'plex_metadatacolor'             :('Grey', 'White'), \
+    'plex_fanartblur'                :('0', '1', '2', '3'), \
+    'plex_layers'                :('Show', 'Hide'), \
+    'plex_fanarttint'                :('On', 'Off'), \
+    'plex_gridtint'                  :('Off', 'On'), \
+    'plex_listtint'                  :('On', 'Off'), \
+    'plex_paradelisttint'            :('Off', 'On'), \
+    'plex_menuhint'                  :('Off', 'On'), \
+    'plex_menubackground'            :('Grey', 'Plex Orange', 'Apple Blue', 'Green'), \
+    'plex_mainmenulabel'             :('Text'), \
+    'plex_showplayinfos'             :('True', 'False'), \
+    'plex_playlistview'              :('Grid', 'Paged Grid', 'List'), \
+    'plex_posters'              :('On', 'Off'), \
+     
+
+# ===================   
+#iBaa legacy Settings
+    'showplaylists'     :('True', 'False'), \
+    'showsharedlibrarys':('True', 'False'), \
+    'libraryview'            :('Grid', 'List'), \
+    'imageheader'            :('Show', 'Hide'), \
+    'sectionicons'            :('Apple', 'Plex', 'Fanart', 'Custom'), \
+    'sectionsposition'            :('Top', 'Bottom', 'Flow', 'Middle'), \
+    'library_search'            :('Show', 'Hide'), \
+    'library_ondeck'            :('checked', 'unchecked'), \
+    'library_recentlyadded'            :('checked', 'unchecked'), \
+    'library_channels'            :('unchecked', 'checked'), \
     'movieview'         :('Grid', 'List', 'Detailed List'), \
+    'starttab'         :('Library', 'Shared Libraries', 'Playlists', 'Channels'), \
     'homevideoview'     :('Grid', 'List', 'Detailed List'), \
     'actorview'         :('Movies', 'Portrait'), \
-    'showview'          :('Grid', 'List', 'Bookcase'), \
+    'showview'          :('List', 'Grid', 'Flow', 'Detailed List', 'Bookcase'), \
     'flattenseason'     :('False', 'True'), \
-    'seasonview'        :('Coverflow', 'Grid', 'List'), \
-    'channelview'       :('Grid', 'List', 'Bookcase'), \
+    'seasonview'        :('List', 'Coverflow'), \
+    'channelview'       :('List', 'Grid', 'Bookcase'), \
     'durationformat'    :('Hours/Minutes', 'Minutes'), \
-    'showtitles_library'        :('Show All', 'Highlighted Only'), \
-    'showtitles_movies'         :('Show All', 'Highlighted Only'), \
-    'showtitles_tvshows'        :('Show All', 'Highlighted Only'), \
-    'showtitles_homevideos'     :('Show All', 'Highlighted Only'), \
-    'showtitles_channels'       :('Show All', 'Highlighted Only'), \
-    'movies_navbar_unwatched'   :('unchecked', 'checked'), \
-    'movies_navbar_byfolder'    :('unchecked', 'checked'), \
-    'movies_navbar_collections' :('unchecked', 'checked'), \
-    'movies_navbar_genres'      :('unchecked', 'checked'), \
-    'movies_navbar_decades'     :('unchecked', 'checked'), \
-    'movies_navbar_directors'   :('unchecked', 'checked'), \
-    'movies_navbar_actors'      :('unchecked', 'checked'), \
+    'showtitles_library'         :('Highlighted Only', 'Show All'), \
+    'showtitles_movies'         :('Highlighted Only', 'Show All'), \
+    'showtitles_tvshows'        :('Highlighted Only', 'Show All'), \
+    'showtitles_homevideos'     :('Highlighted Only', 'Show All'), \
+    'showtitles_channels'       :('Highlighted Only', 'Show All'), \
+    'movies_navbar_ondeck'      :('checked', 'unchecked'), \
+    'movies_navbar_unwatched'   :('checked', 'unchecked'), \
+    'movies_navbar_byfolder'    :('checked', 'unchecked'), \
+    'movies_navbar_collections' :('checked', 'unchecked'), \
+    'movies_navbar_genres'      :('checked', 'unchecked'), \
+    'movies_navbar_decades'     :('checked', 'unchecked'), \
+    'movies_navbar_directors'   :('checked', 'unchecked'), \
+    'movies_navbar_actors'      :('checked', 'unchecked'), \
     'movies_navbar_more'        :('checked', 'unchecked'), \
+    'homevideos_navbar_ondeck'      :('checked', 'unchecked'), \
     'homevideos_navbar_unwatched'   :('checked', 'unchecked'), \
     'homevideos_navbar_byfolder'    :('checked', 'unchecked'), \
     'homevideos_navbar_collections' :('checked', 'unchecked'), \
     'homevideos_navbar_genres'      :('checked', 'unchecked'), \
-    'tv_navbar_unwatched'       :('unchecked', 'checked'), \
-    'tv_navbar_genres'          :('unchecked', 'checked'), \
+    'music_navbar_recentlyadded'    :('checked', 'unchecked'), \
+    'music_navbar_genre'            :('checked', 'unchecked'), \
+    'music_navbar_decade'           :('checked', 'unchecked'), \
+    'music_navbar_year'             :('checked', 'unchecked'), \
+    'music_navbar_more'             :('checked', 'unchecked'), \
+    'tv_navbar_ondeck'          :('checked', 'unchecked'), \
+    'tv_navbar_unwatched'       :('checked', 'unchecked'), \
+    'tv_navbar_genres'          :('checked', 'unchecked'), \
     'tv_navbar_more'            :('checked', 'unchecked'), \
-    'libraryview'               :('Grid', 'List', 'Bookcase'), \
-    'libraryview_remote'        :('Grid', 'List', 'Bookcase', 'TopGrid'), \
-    'imageheader'               :('Show', 'Hide'), \
-    'sectionicons'              :('Custom', 'Plex', 'Fanart', 'Apple'), \
-    'sectionicons_shared'       :('Custom', 'Plex', 'Fanart', 'Apple'), \
-    'sectionsposition'          :('Top', 'Bottom', 'Middle', 'Flow'), \
-    'library_search'            :('Hide', 'Show'), \
-    'library_ondeck'            :('checked', 'unchecked'), \
-    'library_recentlyadded'     :('unchecked', 'checked'), \
-    'library_channels'          :('unchecked', 'checked'), \
-    'movie_preplay'           :('Full Gradient', 'No Gradient', 'Gradient', 'Off'), \
-    'movie_preplay_poster'    :('Off', 'On'), \
-    'tvshow_list'             :('Full Gradient', 'Banner', 'No Gradient', 'Gradient', 'Off'), \
-    'tvshow_cover'            :('Full Gradient', 'Banner', 'No Gradient', 'Gradient', 'Off'), \
-        'tvshow_grid'             :('Full Gradient', 'Banner', 'No Gradient', 'Gradient', 'Off'), \
-    'episode_list'            :('Full Gradient', 'Banner', 'No Gradient', 'Gradient', 'Off'), \
-    'episode_preplay'         :('Full Gradient', 'No Gradient', 'Gradient', 'Off'), \
-    'episode_preplay_poster'  :('Off', 'On'), \
     'transcodequality'  :('1080p 40.0Mbps', \
                           '480p 2.0Mbps', \
                           '720p 3.0Mbps', '720p 4.0Mbps', \
@@ -64,15 +111,17 @@ options = { \
     'remotebitrate'     :('720p 3.0Mbps', '720p 4.0Mbps', \
                           '1080p 8.0Mbps', '1080p 10.0Mbps', '1080p 12.0Mbps', '1080p 20.0Mbps', '1080p 40.0Mbps', \
                           '480p 2.0Mbps'), \
+    'phototranscoderaction'     :('Auto', 'Transcode'), \
     'subtitlerenderer'  :('Auto', 'iOS, PMS', 'PMS'), \
     'subtitlesize'      :('100', '125', '150', '50', '75'), \
     'audioboost'        :('100', '175', '225', '300'), \
     'showunwatched'     :('True', 'False'), \
-    'showsynopsis'      :('Show', 'Hide'), \
+    'showsynopsis'      :('Hide', 'Show'), \
     'showplayerclock'   :('True', 'False'), \
     'overscanadjust'    :('0', '1', '2', '3', '-3', '-2', '-1'), \
     'clockposition'     :('Center', 'Right', 'Left'), \
     'showendtime'       :('True', 'False'), \
+    'showplayinfos'       :('True', 'False'), \
     'timeformat'        :('24 Hour', '12 Hour'), \
     'myplex_user'       :('', ), \
     'myplex_auth'       :('', ), \

@@ -1,0 +1,49 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/scrobble.js)}}" />
+  </head>
+  
+  <body>
+<scroller id="Show_Grid">
+      <header>
+        <imageHeader>
+            <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=590|1080=800)}}, 0" required="true">
+                {{URL(:/fanartcache/{{getBackground({{EVAL({\
+                'template'    : "plex",\
+                'title'       : "{{EVAL(quote_plus("{{VAL(Video/title)}}"))}}",\
+                'subtitle'    : "{{EVAL(quote_plus("{{TEXT(Behind The Scenes)}}"))}}",\
+                'image'       : "{{IMAGEURL(Video/art:::)}}",\
+                'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+                'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+                'imageBlur'   : "{{VAL($plex_fanartblur::1=1|2=2|3=3|0=)}}",\
+                'titleSize' : '50',\
+                'subtitleSize' : '30',\
+                'titleColor'  : "{{VAL($plex_titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+                'subtitleColor': "{{VAL($plex_subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+                'anchorX' : 'right',\
+                'anchorY' : 'top',\
+                'offsetX' : '50',\
+                'offsetY' : '20',\
+                'lineheight' : '175',\
+                'layers'      : ["PlexSubGrid{{VAL($plex_fanarttint::On=Text|Off=)}}"{{VAL($plex_menuhint::On=,"PlexPressMenu_{{VAL($plex_subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+                })}})}})}}
+	      </image>
+	    </imageHeader>
+      </header>     
+            <items>
+             <grid columnCount="4" id="grid_0">
+             <items>
+                <fourByThreePoster id="{{VAL(key)}}" featured="true" alwaysShowTitles="true" 
+                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')">
+                  {{COPY(Video/Extras/Video)}}
+                  <title>{{VAL(title)}}</title>
+                  <subtitle>{{VAL(extraType::1=Trailer|2=Deleted|3=Interview|4=???|5=Behind the Scenes|6=Scene)}}</subtitle>
+                  <image>{{IMAGEURL(thumb::384)}}</image>
+                </fourByThreePoster>
+              </items>
+           </grid>
+         </items>
+    </scroller>
+  </body>
+</atv>
