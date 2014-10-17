@@ -22,6 +22,12 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           echo "</pre>"
           ;;
 
+          restorecertsbash)
+          echo "Output of restorecertsbash :<pre>"
+          /usr/bin/restorecertsbash.bash
+          echo "</pre>"
+          ;;
+
           createcertbash)
           echo "Output of createcertbash :<pre>"
           /usr/bin/createcertbash.bash
@@ -241,6 +247,8 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<br>"
     echo "Cert/Hijack management:"
     echo "<br>"
+    echo "<input type=radio name=cmd value=restorecertsbash> Restore Certs <br>"
+    echo "<input type=radio name=cmd value=removecertsbash> Delete Certs <br>"
     echo "<input type=radio name=cmd value=createcertbash> Generate trailers Certs <br>"
     echo "<input type=radio name=cmd value=createimoviebash> Generate imovie Certs <br>"
     echo "<input type=radio name=cmd value=createwsjbash> Generate wsj Certs <br>"
