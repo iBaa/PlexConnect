@@ -253,9 +253,10 @@ cp auto.bash /usr/bin
 cp pillow.bash /usr/bin
 cp folder.bash /usr/bin
 cp sudoers.bash /usr/bin
+Cp restorecerts.bash /usr/bin
 cp restore.bash /usr/bin
 cp backup.bash /usr/bin
-cp icon.bash /usr/bin
+cp icon.bash /us/bin
 cp 10.6.bash /usr/bin
 cp 10.10.bash /usr/bin
 cp checker.bash /usr/bin
@@ -314,6 +315,7 @@ cp sudoersfixbash.bash /usr/bin
 cp trashbasebash.bash /usr/bin
 cp uninstallbash.bash /usr/bin
 cp restorebash.bash /usr/bin
+cp restorecertsbash.bash
 cp backupbash.bash /usr/bin
 cp iconbash.bash /usr/bin
 cp 10.6bash.bash /usr/bin
@@ -464,8 +466,8 @@ chmod +x /usr/bin/10.6bash.bash
 chmod +x /usr/bin/10.10bash.bash
 chmod +x /usr/bin/checkerbash.bash
 chmod +x /usr/bin/tvbash.bash
-chmod +x /usr/bin/sudoersfix.bash
 chmod +x /usr/bin/restore.bash
+chmod +x /usr/bin/restorecerts.bash
 chmod +x /usr/bin/backup.bash
 chmod +x /usr/bin/timemachinebash.bash
 chmod +x /usr/bin/websharingbash.bash
@@ -477,6 +479,7 @@ chmod +x /usr/bin/createautobash.bash
 chmod +x /usr/bin/trashbasebash.bash
 chmod +x /usr/bin/uninstallbash.bash
 chmod +x /usr/bin/restorebash.bash
+chmod +x /usr/bin/restorecerts.bash
 chmod +x /usr/bin/backupbash.bash
 chmod +x /plexweb.bash
 chmod +x /plexwebwan.bash
@@ -527,6 +530,7 @@ chmod 4755 /usr/bin/whobash.bash
 chmod 4755 /usr/bin/wakebash.bash
 chmod 4755 /usr/bin/tvbash.bash
 chmod 4755 /usr/bin/restorebash.bash
+chmod 4755 /usr/bin/restorecerts.bash
 chmod 4755 /usr/bin/backupbash.bash
 chmod 4755 /usr/bin/iconbash.bash
 chmod 4755 /usr/bin/10.6bash.bash
