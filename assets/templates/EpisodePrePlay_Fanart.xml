@@ -5,7 +5,7 @@
   </head>
 
   <body>
-    <itemDetailWithImageHeader layout="compact" id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}&amp;PlexConnect=MoviePrePlay')">
+    <itemDetailWithImageHeader layout="compact" id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}&amp;PlexConnect=EpisodePrePlay')">
         	  <styles>
           <color name="titleColor">#fafafa</color>
           <color name="metadataColor">#fafafa</color>

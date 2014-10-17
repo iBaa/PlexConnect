@@ -43,10 +43,15 @@ def generate(PMS_uuid, url, authtoken, resolution):
         request = urllib2.Request(url, None, xargs)
         response = urllib2.urlopen(request).read()
         background = Image.open(io.BytesIO(response))
-    except urllib2.URLError, e:
-        dprint(__name__, 1, 'error: {0} {1} // url: {2}', str(e.code), e.msg, url)  # Debug
-        background = Image.open(stylepath+"/blank.jpg")
-        cachefile = "blank.jpg"
+    except urllib2.URLError as e:
+        dprint(__name__, 1, 'URLError: {0} // url: {1}', e.reason, url)
+        return "/thumbnails/Background_blank_" + resolution + ".jpg"
+    except urllib2.HTTPError as e:
+        dprint(__name__, 1, 'HTTPError: {0} {1} // url: {2}', str(e.code), e.msg, url)
+        return "/thumbnails/Background_blank_" + resolution + ".jpg"
+    except IOError as e:
+        dprint(__name__, 1, 'IOError: {0} // url: {1}', str(e), url)
+        return "/thumbnails/Background_blank_" + resolution + ".jpg"
     
     # Get gradient template
     dprint(__name__, 1, 'Merging Layers.')  # Debug
@@ -94,6 +99,11 @@ def isPILinstalled():
 
 if __name__=="__main__":
     url = "http://thetvdb.com/banners/fanart/original/95451-23.jpg"
+<<<<<<< HEAD
     res = generate('TestBackground', url, 'authtoken', '1080')
     res = generate('TestBackground', url, 'authtoken', '720')
+=======
+    res = generate('uuid', url, 'authtoken', '1080')
+    res = generate('uuid', url, 'authtoken', '720')
+>>>>>>> bd6b9ec65e9cc81bd53c509756229d54b9cccba4
     dprint(__name__, 0, "Background: {0}", res)
