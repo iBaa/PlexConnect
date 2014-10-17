@@ -18,13 +18,13 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
       case "$CMD" in
           removecertsbash)
           echo "Output of removecertsbash :<pre>"
-          /usr/bin/removecerts.bash
+          /usr/bin/removecertsbash.bash
           echo "</pre>"
           ;;
 
           restorecertsbash)
           echo "Output of restorecertsbash :<pre>"
-          /usr/bin/restorecerts.bash
+          /usr/bin/restorecertsbash.bash
           echo "</pre>"
           ;;
 
