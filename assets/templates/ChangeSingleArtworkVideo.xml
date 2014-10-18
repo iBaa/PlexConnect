@@ -4,7 +4,7 @@
   </head>
 
   <body>
-    <scroller id="single_artwork_select">
+    <scroller id="single_artwork_select_plus_fanart">
       <header>
         <simpleHeader>
           <title>{{VAL(Video/title)}}</title>{{CUT(Video/title:CUT:=CUT| =)}}
@@ -13,34 +13,48 @@
         </simpleHeader>
       </header>
      
+      {{ADDXML(posters::/library/metadata/{{VAL(Video/ratingKey)}}/posters)}}
+      {{ADDXML(fanart::/library/metadata/{{VAL(Video/ratingKey)}}/arts)}}
+      {{VAR(key:Video/ratingKey)}}
+      
       <items>
         <collectionDivider alignment="left">
-          <title></title>
+          <title>Poster</title>{{CUT(@fanart/size::0=CUT|1=)}}
+          <title/>{{CUT(@fanart/size:CUT:0=|1=CUT)}}
         </collectionDivider>
-        
-        {{ADDXML(posters::/library/metadata/{{VAL(Video/ratingKey)}}/posters)}}
-        {{VAR(key:Video/ratingKey)}}
-        <shelf id="coverflow" columnCount="{{EVAL(min({{VAL(@posters/size:0)}},5))}}">
+
+        <shelf id="poster" columnCount="{{EVAL(min({{VAL(@posters/size:0)}},7))}}">
           <sections>
             <shelfSection>
               <items>
-                <goldenPoster related="true" id="{{VAL(Video/ratingKey)}}" alwaysShowTitles="true"
-                              onSelect="changeArtwork('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(#key)}}', '{{VAL(key)}}', '');atv.unloadPage();">
+                <moviePoster related="true" id="{{VAL(key)}}" alwaysShowTitles="true"
+                              onSelect="changeArtwork('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(#key)}}', '{{VAL(key)}}', 'poster')">
                   {{COPY(@posters/Photo)}}
                   <title>{{VAL(selected::0=|1=Selected)}}</title>
-                  <image>{{IMAGEURL(thumb)}}</image>
+                  <image>{{IMAGEURL(thumb::768)}}</image>
                   <defaultImage>resource://Poster.png</defaultImage>
-                </goldenPoster>
-              
-              
+                </moviePoster>
               </items>
             </shelfSection>
           </sections>
         </shelf>
-        
+
         <collectionDivider alignment="left">
-          <title></title>
-        </collectionDivider>
+          <title>Fanart</title>{{CUT(@fanart/size::0=CUT|1=)}}
+          <title/>{{CUT(@fanart/size:CUT:0=|1=CUT)}}
+        </collectionDivider>{{CUT(^aTVFirmwareVersion::4.0=CUT|6.0=)}}
+
+        <grid id="fanart" columnCount="4">
+              <items>
+                <moviePoster related="true" id="{{VAL(key)}}" alwaysShowTitles="true"
+                              onSelect="changeArtwork('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(#key)}}', '{{VAL(key)}}', 'fanart')">
+                  {{COPY(@fanart/Photo)}}
+                  <title>{{VAL(selected::0=|1=Selected)}}</title>
+                  <image required="true">{{IMAGEURL(thumb::768)}}</image>
+                  <defaultImage>resource://Poster.png</defaultImage>
+                </moviePoster>
+              </items>
+        </grid>{{CUT(@fanart/size::0=CUT|1=)}}{{CUT(^aTVFirmwareVersion::4.0=CUT|6.0=)}}
       </items>
     </scroller>
   </body>

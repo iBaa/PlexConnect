@@ -12,13 +12,14 @@
         </simpleHeader>
       </header>
      
-      <items>
+      {{ADDXML(posters::/library/metadata/{{VAL(key)}}/posters)}}
+      {{VAR(key:key)}}
+     
+     <items>
         <collectionDivider alignment="left">
           <title></title>
         </collectionDivider>
-        
-        {{ADDXML(posters::/library/metadata/{{VAL(key)}}/posters)}}
-        {{VAR(key:key)}}
+
         <shelf id="coverflow" columnCount="{{EVAL(min({{VAL(@posters/size:0)}},5))}}">
           <sections>
             <shelfSection>
@@ -27,11 +28,9 @@
                               onSelect="changeArtwork('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(#key)}}', '{{VAL(key)}}', '');atv.unloadPage();">
                   {{COPY(@posters/Photo)}}
                   <title>{{VAL(selected::0=|1=Selected)}}</title>
-                  <image>{{IMAGEURL(thumb)}}</image>
+                  <image>{{IMAGEURL(thumb::768)}}</image>
                   <defaultImage>resource://Poster.png</defaultImage>
                 </goldenPoster>
-              
-              
               </items>
             </shelfSection>
           </sections>

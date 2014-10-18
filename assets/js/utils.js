@@ -244,20 +244,20 @@ function markItem(PMS_baseURL, accessToken, ratingKey, action)
 /*
  * Update Plex library with new artwork
  */
-function changeArtwork(PMS_baseURL, accessToken, ratingKey, posterURL, shelf)
+function changeArtwork(PMS_baseURL, accessToken, ratingKey, artURL, shelfName)
 {
-  if (shelf != '')
+  if (shelfName != '')
   {
     // Selector logic for Show/Season level artwork
     var root = document.rootElement;
-    var shelf = document.getElementById(shelf);
+    var shelf = document.getElementById(shelfName);
     if (shelf == null) return;
     var items = shelf.getElementsByTagName('moviePoster');
     if (items == null) return;
   
     for (var i=0; i<items.length; i++)
     {
-      if (items[i].getAttribute('id') == posterURL) 
+      if (items[i].getAttribute('id') == artURL) 
       {
       items[i].getElementByTagName('title').textContent = "Selected";
       }
@@ -269,17 +269,24 @@ function changeArtwork(PMS_baseURL, accessToken, ratingKey, posterURL, shelf)
   }
   
   // Test if art is from library or external location
-  if (posterURL.indexOf('library') !== -1)
+  if (artURL.indexOf('library') !== -1)
 	{
-		var urlParts = posterURL.split('=');
-		posterURL = urlParts[1];
+		var urlParts = artURL.split('=');
+		artURL = urlParts[1];
 	}
    else
   {
-    posterURL = encodeURIComponent(posterURL);
+    artURL = encodeURIComponent(artURL);
   }
-    
-  var url = PMS_baseURL + "/library/metadata/" + ratingKey + "/poster?url=" + posterURL;
+  
+  if (shelfName != 'fanart')
+  {
+    var url = PMS_baseURL + "/library/metadata/" + ratingKey + "/poster?url=" + artURL;
+  }
+  else
+  {
+    var url = PMS_baseURL + "/library/metadata/" + ratingKey + "/art?url=" + artURL;
+  }
   if (accessToken!='') url = url + '&X-Plex-Token=' + accessToken;
     
   var req = new XMLHttpRequest();
