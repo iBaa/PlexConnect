@@ -10,6 +10,9 @@ BackupPath=${PWD}
 
 stopbash.bash
 
+## allow atvsettings.cfg to generate if first clean shutdown
+sleep 4
+
 cp /Applications/PlexConnect/assets/certificates/trailers.cer /Applications/plexconnect_BACKUP
 cp /Applications/PlexConnect/assets/certificates/trailers.pem /Applications/plexconnect_BACKUP
 cp /Applications/PlexConnect/assets/certificates/trailers.key /Applications/plexconnect_BACKUP
