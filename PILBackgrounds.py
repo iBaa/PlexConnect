@@ -17,6 +17,14 @@ except ImportError:
     dprint(__name__, 0, "No PIL/Pillow installation found.")
     __isPILinstalled = False
 
+try:
+    import numpy as np
+    import cv2
+    __isOpenCVinstalled = True
+except ImportError:
+    dprint(__name__, 0, "No NumPy/OpenCV installation found.")
+    __isOpenCVinstalled = False
+
 
 def generate(PMS_uuid, url, authtoken, resolution, createfile=False):
     cachepath = sys.path[0]+"/assets/fanartcache"
@@ -75,9 +83,19 @@ def generate(PMS_uuid, url, authtoken, resolution, createfile=False):
         background = background.resize((width, height), Image.ANTIALIAS)
         dprint(__name__,1 , "Resizing background")   
     
-    blurImage = background.crop(blurRegion)
-    blurImage = blurImage.filter(ImageFilter.GaussianBlur(blurRadius))
-    background.paste(blurImage, blurRegion)
+    if isOpenCVinstalled():
+        dprint(__name__,1 ,"Blurring background with OpenCV")
+        blurImage = background.crop(blurRegion)
+        im = np.asarray(blurImage)
+        im = cv2.blur(im, (blurRadius, blurRadius))
+        im = cv2.blur(im, (blurRadius, blurRadius))
+        blurImage = Image.fromarray(im)
+        background.paste(blurImage, blurRegion)
+    else:
+        dprint(__name__,1 ,"Blurring background with PIL/Pillow")
+        blurImage = background.crop(blurRegion)
+        blurImage = blurImage.filter(ImageFilter.GaussianBlur(blurRadius))
+        background.paste(blurImage, blurRegion)
 
     background.paste(layer, ( 0, 0), layer)
     
@@ -94,9 +112,21 @@ def isPILinstalled():
     return __isPILinstalled
 
 
+def isOpenCVinstalled():
+    return __isOpenCVinstalled
+
+
 
 if __name__=="__main__":
+    import time
     url = "http://thetvdb.com/banners/fanart/original/95451-23.jpg"
+
+    t0 = time.time()
     res = generate('uuid', url, 'authtoken', '1080', createfile=True)
+    dprint(__name__, 0, "Background: {0}", res)
+    dprint(__name__, 0, "Background generation takes {0} seconds", time.time() - t0)
+
+    t0 = time.time()
     res = generate('uuid', url, 'authtoken', '720', createfile=True)
     dprint(__name__, 0, "Background: {0}", res)
+    dprint(__name__, 0, "Background generation takes {0} seconds", time.time() - t0)
