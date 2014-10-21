@@ -7,7 +7,6 @@ fi
 brew install openssl pkgconfig libao
 sudo xcodebuild -license
 
-
 bindir="/usr/local/bin"
 if [ -d "$bindir" ]; then
 echo 'bin dir found'
