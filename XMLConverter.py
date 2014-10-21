@@ -394,6 +394,10 @@ def XML_PMS2aTV(PMS_address, path, options):
         XMLtemplate = 'Settings_TopLevel.xml'
         path = ''  # clear path - we don't need PMS-XML
         
+    elif cmd=='SaveSettings':
+        g_ATVSettings.saveSettings();
+        path = ''  # clear path - we don't need PMS-XML
+        
     elif cmd.startswith('SettingsToggle:'):
         opt = cmd[len('SettingsToggle:'):]  # cut command:
         parts = opt.split('+')
