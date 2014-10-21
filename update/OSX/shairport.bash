@@ -1,7 +1,7 @@
 cd /Applications
-curl -O https://distfiles.macports.org/MacPorts/MacPorts-2.3.1.tar.bz2
-tar xf MacPorts-2.3.1.tar.bz2
-cd /Applications/MacPorts-2.3.1
+curl -O https://distfiles.macports.org/MacPorts/MacPorts-2.3.2.tar.bz2
+tar xf MacPorts-2.3.2.tar.bz2
+cd /Applications/MacPorts-2.3.2
 export PATH=$PATH:/usr/local/git/bin:/usr/bin:/opt/local/bin:/usr/local/bin/git:/usr/local/bin
 ./configure && make && sudo make install
 sudo cp /opt/local/bin/* /usr/bin
