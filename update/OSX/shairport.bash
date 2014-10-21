@@ -41,5 +41,5 @@ sudo chmod -R 777 /Applications/shairport
 sudo chmod -R 777 /Applications/MacPorts-2.3.1.tar.bz2
 sudo chmod -R 777 /Applications/MacPorts-2.3.1
 sudo rm -R /Applications/shairport
-rm /Applications/MacPorts-2.3.1.tar.bz2
-rm -R /Applications/MacPorts-2.3.1
+rm /Applications/MacPorts-2.3.2.tar.bz2
+rm -R /Applications/MacPorts-2.3.2
