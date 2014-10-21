@@ -1,2 +1,2 @@
-## kill startup sound
-sudo nvram -d SystemAudioVolume
+## unmute startup sound
+osascript -e ‘set volume without output muted’
