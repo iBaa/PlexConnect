@@ -16,7 +16,7 @@ else
 sudo mkdir -p /usr/local/bin
 fi
 
-sahrportdir="/Applications/shairport"
+shairportdir="/Applications/shairport"
 if [ -d "$shairportdir" ]; then
 rm -rf /Applications/shairport
 fi
