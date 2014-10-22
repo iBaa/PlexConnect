@@ -403,6 +403,7 @@ def XML_PMS2aTV(PMS_address, path, options):
     elif cmd=='SaveSettings':
         g_ATVSettings.saveSettings();
         path = ''  # clear path - we don't need PMS-XML
+        return XML_Error('PlexConnect', 'SaveSettings!')  # not an error - but aTV won't care anyways.
         
     elif cmd.startswith('SettingsToggle:'):
         opt = cmd[len('SettingsToggle:'):]  # cut command:
