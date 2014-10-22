@@ -36,7 +36,7 @@
               </oneLineMenuItem>
               
               <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(:{{VAL(Video/grandparentKey)}}/children)}}&amp;PlexConnect=ChangeShowArtwork')">
-                <label>{{TEXT(Change All Artwork)}}</label>
+                <label>{{TEXT(Change All Posters)}}</label>
               </oneLineMenuItem>
             </items>
 
@@ -64,7 +64,11 @@
             </oneLineMenuItem>
             
             <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(:{{VAL(Video/grandparentKey)}}/children)}}&amp;PlexConnect=ChangeShowArtwork')">
-              <label>{{TEXT(Change All Artwork)}}</label>
+              <label>{{TEXT(Change All Posters)}}</label>
+            </oneLineMenuItem>
+            
+            <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(:{{VAL(Video/grandparentKey)}}/children)}}&amp;PlexConnect=ChangeFanart')">
+              <label>{{TEXT(Change Fanart)}}</label>
             </oneLineMenuItem>
           </items>
         </menuSection>

@@ -272,6 +272,12 @@ def XML_PMS2aTV(PMS_address, path, options):
 
     elif cmd=='ChangeSingleArtworkVideo':
         XMLtemplate = 'ChangeSingleArtworkVideo.xml'
+
+    elif cmd=='ChangeFanart':
+        XMLtemplate = 'ChangeFanart.xml'
+        
+    elif cmd=='ChangeFanartVideo':
+        XMLtemplate = 'ChangeFanartVideo.xml'
         
     elif cmd=='PhotoBrowser':
         XMLtemplate = 'Photo_Browser.xml'
@@ -393,6 +399,10 @@ def XML_PMS2aTV(PMS_address, path, options):
     elif cmd=='SettingsTopLevel':
         XMLtemplate = 'Settings_TopLevel.xml'
         path = ''  # clear path - we don't need PMS-XML
+        
+    elif cmd=='SaveSettings':
+        g_ATVSettings.saveSettings();
+        return XML_Error('PlexConnect', 'SaveSettings!')  # not an error - but aTV won't care anyways.
         
     elif cmd.startswith('SettingsToggle:'):
         opt = cmd[len('SettingsToggle:'):]  # cut command:
