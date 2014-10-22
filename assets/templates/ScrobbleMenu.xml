@@ -32,11 +32,11 @@
               </oneLineMenuItem>
         
               <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChangeShowArtwork')">
-                <label>{{TEXT(Change All Posters)}}</label>
+                <label>{{TEXT(Change All Artwork)}}</label>
               </oneLineMenuItem>{{CUT(viewGroup:CUT:season=)}}
         
               <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChangeSingleArtwork')">
-                <label>{{TEXT(Change Poster)}}</label>
+                <label>{{TEXT(Change Artwork)}}</label>
               </oneLineMenuItem>{{CUT(viewGroup::episode=|season=CUT)}}
             </items>
 
@@ -60,16 +60,12 @@
             </oneLineMenuItem>
             
             <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChangeShowArtwork')">
-              <label>{{TEXT(Change All Posters)}}</label>
+              <label>{{TEXT(Change All Artwork)}}</label>
             </oneLineMenuItem>{{CUT(viewGroup:CUT:season=)}}
         
             <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChangeSingleArtwork')">
-              <label>{{TEXT(Change Poster)}}</label>
+              <label>{{TEXT(Change Artwork)}}</label>
             </oneLineMenuItem>{{CUT(viewGroup::episode=|season=CUT)}}
-            
-            <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChangeFanart')">
-              <label>{{TEXT(Change Fanart)}}</label>
-            </oneLineMenuItem>{{CUT(viewGroup::episode=CUT|season=)}}
           </items>
         </menuSection>
       </sections> 
