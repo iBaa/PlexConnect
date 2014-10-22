@@ -9,7 +9,7 @@
         <simpleHeader>
           <title>{{VAL(Video/title)}}</title>{{CUT(Video/title:CUT:=CUT| =)}}
           <title>{{VAL(title2)}}</title>{{CUT(Video/title:: =CUT)}}
-          <subtitle>{{TEXT(Select Artwork)}}</subtitle>
+          <subtitle>{{TEXT(Select Poster)}}</subtitle>
         </simpleHeader>
       </header>
      

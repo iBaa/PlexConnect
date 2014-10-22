@@ -8,7 +8,7 @@
       <header>
         <simpleHeader>
           <title>{{VAL(title2)}}</title>
-          <subtitle>{{TEXT(Select Artwork)}}</subtitle>
+          <subtitle>{{TEXT(Select Poster)}}</subtitle>
         </simpleHeader>
       </header>
      
