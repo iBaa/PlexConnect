@@ -16,6 +16,10 @@ else
 sudo mkdir -p /usr/local/bin
 fi
 
+sahrportdir="/Applications/shairport"
+if [ -d "$shairportdir" ]; then
+rm -rf /Applications/shairport
+fi
 cd /Applications
 git clone https://github.com/abrasive/shairport.git
 cd /Applications/shairport
