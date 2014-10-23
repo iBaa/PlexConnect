@@ -1,5 +1,5 @@
 #!/bin/bash
 
-echo 'Starting iTunes...'
+echo 'Starting TeamViewer...'
 
 sudo /usr/bin/tv.bash
