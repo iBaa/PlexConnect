@@ -8,7 +8,7 @@
       <header>
         <simpleHeader>
           <title>{{VAL(title2)}}</title>
-          <subtitle>{{TEXT(Select Artwork)}}</subtitle>
+          <subtitle>{{TEXT(Select Posters)}}</subtitle>
         </simpleHeader>
       </header>
       
@@ -18,7 +18,6 @@
         </collectionDivider>
         
         {{ADDXML(showPosters::/library/metadata/{{VAL(key)}}/posters)}}
-        {{ADDXML(fanart::/library/metadata/{{VAL(key)}}/arts)}}
         {{VAR(key:key)}}
         
         <shelf id="Main_Show_Art" columnCount="7">
@@ -62,23 +61,6 @@
             </sections>
           </shelf>{{CUT(#size::0=CUT|1=)}}
         </__COPY__>
-        
-        <collectionDivider alignment="left">
-          <title>Fanart</title>{{CUT(@fanart/size::0=CUT|1=)}}
-          <title/>{{CUT(@fanart/size:CUT:0=|1=CUT)}}
-        </collectionDivider>{{CUT(^aTVFirmwareVersion::4.0=CUT|6.0=)}}
-
-        <grid id="fanart" columnCount="4">
-              <items>
-                <moviePoster related="true" id="{{VAL(key)}}" alwaysShowTitles="true"
-                              onSelect="changeArtwork('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(#key)}}', '{{VAL(key)}}', 'fanart')">
-                  {{COPY(@fanart/Photo)}}
-                  <title>{{VAL(selected::0=|1=Selected)}}</title>
-                  <image>{{IMAGEURL(thumb::768)}}</image>
-                  <defaultImage>resource://Poster.png</defaultImage>
-                </moviePoster>
-              </items>
-        </grid>{{CUT(@fanart/size::0=CUT|1=)}}{{CUT(^aTVFirmwareVersion::4.0=CUT|6.0=)}}
       </items>
     </scroller>
   </body>

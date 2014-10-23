@@ -271,3 +271,18 @@ myPlexSignInOut = function()
     
 
 };
+
+/* 
+ *  Save settings
+ */
+atv.onPageUnload = function(pageID) 
+{
+  if (pageID == 'SettingsPage')
+  {
+    var url = "{{URL(/)}}&PlexConnect=SaveSettings" 
+    var req = new XMLHttpRequest();
+    req.open('GET', url, false);
+    req.send();
+    log('Saving Settings file');
+  }
+}

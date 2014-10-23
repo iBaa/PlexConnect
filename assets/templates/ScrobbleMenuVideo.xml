@@ -32,7 +32,7 @@
               </oneLineMenuItem>
         
               <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(Video/key)}}&amp;PlexConnect=ChangeSingleArtworkVideo')">
-                <label>{{TEXT(Change Artwork)}}</label>
+                <label>{{TEXT(Change Poster)}}</label>
               </oneLineMenuItem>
             </items>
 
@@ -56,8 +56,12 @@
             </oneLineMenuItem>
             
             <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(Video/key)}}&amp;PlexConnect=ChangeSingleArtworkVideo')">
-              <label>{{TEXT(Change Artwork)}}</label>
+              <label>{{TEXT(Change Poster)}}</label>
             </oneLineMenuItem>
+            
+            <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(Video/key)}}&amp;PlexConnect=ChangeFanartVideo')">
+              <label>{{TEXT(Change Fanart)}}</label>
+            </oneLineMenuItem>{{CUT(viewGroup::episode=CUT|movie=)}}
           </items>
         </menuSection>
       </sections> 

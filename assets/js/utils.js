@@ -246,7 +246,7 @@ function markItem(PMS_baseURL, accessToken, ratingKey, action)
  */
 function changeArtwork(PMS_baseURL, accessToken, ratingKey, artURL, shelfName)
 {
-  if (shelfName != '')
+  if (shelfName != '' && shelfName != 'fanart')
   {
     // Selector logic for Show/Season level artwork
     var root = document.rootElement;
