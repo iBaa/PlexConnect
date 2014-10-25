@@ -14,3 +14,9 @@ PlexConnect.log
 *.pem
 
 *.der
+
+/assets/fanartcache/*.png
+
+/assets/templates/plex/images/custom/flow/*.png
+
+/assets/templates/plex/images/custom/top/*.png
