@@ -189,12 +189,6 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           /usr/bin/stoffezbash.bash
           echo "</pre>"
           ;;
-
-          wahlmanjbash)
-          echo "Output of wahlmanjbash :<pre>"
-          /usr/bin/wahlmanjbash.bash
-          echo "</pre>"
-          ;;
           
           backupbash)
           echo "Output of backupbash :<pre>"
@@ -232,7 +226,6 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<input type=radio name=cmd value=cyberghostbash> Clone CyberGhost84 GitHub <br>"
     echo "<input type=radio name=cmd value=falcobash> Clone Falco953 GitHub <br>"
     echo "<input type=radio name=cmd value=stoffezbash> Clone Stoffez GitHub <br>"
-    echo "<input type=radio name=cmd value=wahlmanjbash> Clone Wahlman.J GitHub <br>"
     echo "<br>"
     echo "PlexConnect commands:"
     echo "<br>"
