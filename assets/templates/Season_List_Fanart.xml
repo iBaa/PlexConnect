@@ -36,7 +36,8 @@
                   <longDescriptionPreview>
                     <title>{{VAL(title)}}</title>
                     <summary><![CDATA[{{VAL(/summary)}}]]></summary>
-                    <image>{{IMAGEURL(thumb::768)}}</image>
+                    <image>{{IMAGEURL(thumb::768)}}</image>{{CUT(thumb:CUT:=CUT| =)}}
+                    <image>{{IMAGEURL(#parentThumb::768)}}</image>{{CUT(thumb:: =CUT)}}
                     <metadata>
                       <mainLabel>{{VAL(/parentTitle)}}</mainLabel>
                       <label>{{VAL(/parentYear)}}</label>
