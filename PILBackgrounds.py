@@ -24,8 +24,15 @@ def generate(PMS_uuid, url, authtoken, resolution):
     cachepath = sys.path[0]+"/assets/fanartcache"
     stylepath = sys.path[0]+"/assets/templates/images"
     
-    fileid = posixpath.basename(urlparse.urlparse(url).path)
-    cachefile = urllib.quote_plus(PMS_uuid +"_"+ fileid +"_"+ resolution) + ".jpg"  # quote: just to make sure...
+    # Create cache filename
+    id = re.search('/library/metadata/(?P<ratingKey>\S+)/art/(?P<fileId>\S+)', url)
+    if id:
+        # assumes URL in format "/library/metadata/<ratingKey>/art/fileId>"
+        id = id.groupdict()
+        cachefile = urllib.quote_plus(PMS_uuid +"_"+ id['ratingKey'] +"_"+ id['fileId'] +"_"+ resolution) + ".jpg"
+    else:
+        fileid = posixpath.basename(urlparse.urlparse(url).path)
+        cachefile = urllib.quote_plus(PMS_uuid +"_"+ fileid +"_"+ resolution) + ".jpg"  # quote: just to make sure...
     
     # Already created?
     dprint(__name__, 1, 'Check for Cachefile.')  # Debug
