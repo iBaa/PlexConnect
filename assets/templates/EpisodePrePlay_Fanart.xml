@@ -118,8 +118,9 @@
           <sections>
             <shelfSection>
               <items>
-                <sixteenByNinePoster related="true" alwaysShowTitles="true" id="shelf_item_1" 
-                                     onSelect="atv.loadAndSwapURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')">
+                <sixteenByNinePoster related="true" alwaysShowTitles="true" id="{{URL(ratingKey)}}" 
+                                     onSelect="atv.loadAndSwapURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
+                                     onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')">
                   {{COPY(@parentEpisodes/Video)}}
                   <title>{{VAL(index)}}. {{VAL(title)}}</title>
                   <image>{{IMAGEURL(thumb::384)}}</image>
