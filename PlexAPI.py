@@ -352,7 +352,7 @@ def getXMLFromPMS(baseURL, path, options={}, authtoken=''):
         dprint(__name__, 0, 'No Response from Plex Media Server')
         if hasattr(e, 'reason'):
             dprint(__name__, 0, "We failed to reach a server. Reason: {0}", e.reason)
-        elif hasattr(e, 'code'):
+        if hasattr(e, 'code'):
             dprint(__name__, 0, "The server couldn't fulfill the request. Error code: {0}", e.code)
         return False
     except IOError:
