@@ -10,6 +10,8 @@ from Debug import *  # dprint()
 
 
 options = { \
+    'showlibrarys'      :('True', 'False'), \
+    'showchannels'      :('True', 'False'), \
     'showplaylists'     :('True', 'False'), \
     'showsharedlibrarys':('True', 'False'), \
     'libraryview'       :('List', 'Grid', 'Bookcase'), \
