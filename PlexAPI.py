@@ -350,6 +350,8 @@ def getXMLFromPMS(baseURL, path, options={}, authtoken=''):
         response = urllib2.urlopen(request, timeout=20)
     except urllib2.URLError as e:
         dprint(__name__, 0, 'No Response from Plex Media Server')
+        dprint(__name__, 0, "URL: {0}{1}", baseURL, path)
+        dprint(__name__, 0, "xargs: {0}", xargs)
         if hasattr(e, 'reason'):
             dprint(__name__, 0, "We failed to reach a server. Reason: {0}", e.reason)
         if hasattr(e, 'code'):
