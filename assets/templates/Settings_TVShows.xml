@@ -78,6 +78,11 @@
             </header>
             <items>
 
+              <oneLineMenuItem id="TV_NavBar_Default" onSelect="toggleSettings('TV_NavBar_Default', 'Settings_TVShows')">
+                <label>{{TEXT(Default)}}</label>
+                <rightLabel>{{SETTING(tv_navbar_default)}}</rightLabel>
+              </oneLineMenuItem>
+
               <oneLineMenuItem id="TV_NavBar_OnDeck" onSelect="toggleSettings('TV_NavBar_OnDeck', 'Settings_TVShows')">
                 <label>{{TEXT(On Deck)}}</label>
                 <accessories>
