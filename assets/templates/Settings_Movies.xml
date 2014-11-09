@@ -69,11 +69,6 @@
             </header>
             <items>
             
-              <oneLineMenuItem id="Movies_NavBar_Default" onSelect="toggleSettings('Movies_NavBar_Default', 'Settings_Movies')">
-                <label>{{TEXT(Default)}}</label>
-                <rightLabel>{{SETTING(movies_navbar_default)}}</rightLabel>
-              </oneLineMenuItem>
-            
               <oneLineMenuItem id="Movies_NavBar_OnDeck" onSelect="toggleSettings('Movies_NavBar_OnDeck', 'Settings_Movies')">
                 <label>{{TEXT(On Deck)}}</label>
                 <accessories>
