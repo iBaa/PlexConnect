@@ -173,7 +173,7 @@ msgstr "Échec"
 
 
 msgid "Flatten Season"
-msgstr ""
+msgstr "Désactiver la vue par saison"
 
 
 msgid "Forum"
@@ -221,7 +221,7 @@ msgstr "Bibliothèque"
 
 
 msgid "Library View"
-msgstr ""
+msgstr "Vue des bibliothèques"
 
 
 msgid "Mark as Unwatched"
@@ -255,6 +255,11 @@ msgstr "Vue Films"
 msgid "Movies"
 msgstr "Films"
 
+msgid "Music Navigation Bar"
+msgstr "Barre de navigation des musiques"
+
+msgid "Music Options"
+msgstr "Options des musiques"
 
 msgid "MyPlex Password"
 msgstr "Mot de passe MyPlex"
@@ -271,6 +276,9 @@ msgstr "Fermer une session MyPlex"
 msgid "MyPlex Username"
 msgstr "Nom d'utilisateur MyPlex"
 
+
+msgid "Navigation Bar"
+msgstr "Barre de navigation"
 
 msgid "No Plex Channels Available"
 msgstr "Aucun canal Plex disponible"
@@ -313,7 +321,7 @@ msgstr "Photo"
 
 
 msgid "Photo Transcoder Action"
-msgstr ""
+msgstr "Action de trancodage des photos"
 
 
 msgid "Play"
@@ -341,7 +349,7 @@ msgstr "PlexConnect"
 
 
 msgid "Poster Titles"
-msgstr ""
+msgstr "Titres sous les affiches"
 
 
 msgid "Producers"
@@ -415,6 +423,11 @@ msgstr "Afficher l'heure de fin"
 msgid "Show Photos"
 msgstr "Afficher les photos"
 
+msgid "Show Playlists"
+msgstr "Afficher les playlists"
+
+msgid "Show Shared Librarys"
+msgstr "Afficher les bibliothèques partagées"
 
 msgid "Show Unwatched Count"
 msgstr "Afficher le nombre de non vus"
@@ -441,7 +454,7 @@ msgstr "Sous-titres"
 
 
 msgid "Subtitle Renderer"
-msgstr ""
+msgstr "Rendu de sous-titres"
 
 
 msgid "Subtitle Size %"
@@ -454,7 +467,6 @@ msgstr "Piste de sous-titre"
 
 msgid "Synopsis hidden."
 msgstr "Cacher le synopsis"
-
 
 msgid "TV Show Navigation Bar"
 msgstr "Barre de navigation des séries TV"
@@ -481,7 +493,7 @@ msgstr "Pour se connecter à MyPlex, entrer votre adresse de courriel, nom d'uti
 
 
 msgid "Top Level Options"
-msgstr ""
+msgstr "Options générales"
 
 
 msgid "Trailer"
