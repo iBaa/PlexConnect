@@ -5,7 +5,7 @@
   </head>
 	<body>
 		<viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadItem(event)" volatile="true" onVolatileReload="updatePage('{{URL()}}&amp;PlexConnect=Plex_Series_Scanner');">
-			<navigation currentIndex="{{VAL($tv_navbar_default:0:All shows=0|On deck=1|Unwatched=2)}}">
+			<navigation currentIndex="{{VAL($tv_navbar_default:0:All movies=0|On deck={{VAL($tv_navbar_ondeck:0:unchecked=0|checked=1)}}|Unwatched={{VAL($tv_navbar_unwatched:0:unchecked=0|checked=2)}})}}">
 
 				<navigationItem id="All Shows">
 					<title>{{TEXT(All Shows)}}</title>
@@ -17,7 +17,7 @@
 					<url>{{URL(key)}}&amp;PlexConnect=TVSection</url>
 				</navigationItem>{{CUT($tv_navbar_ondeck::unchecked=CUT|checked=)}}
 
-        <navigationItem id="Unwatched">
+        		<navigationItem id="Unwatched">
 					<title>{{TEXT(Unwatched)}}</title>
 					<url>{{URL(key)}}/unwatched&amp;PlexConnect=AllShows</url>
 				</navigationItem>{{CUT($tv_navbar_unwatched::unchecked=CUT|checked=)}}
