@@ -53,11 +53,15 @@
                 <rightLabel>{{SETTING(showtitles_movies)}}</rightLabel>
               </oneLineMenuItem>
               
-              <oneLineMenuItem id="MovieFanart" dimmed="{{EVAL(['true','false'][isPILinstalled()])}}" onSelect="toggleSettings('MovieFanart', 'Settings_Movies')">
+              <oneLineMenuItem id="MovieFanart" onSelect="toggleSettings('MovieFanart', 'Settings_Movies')">
                 <label>{{TEXT(Movie Fanart)}}</label>
-                <rightLabel>{{SETTING(moviefanart)}}</rightLabel>{{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
-                <rightLabel>{{TEXT(PIL/Pillow not installed)}}</rightLabel>{{CUT(NoKey:{{EVAL(['','CUT'][isPILinstalled()])}})}}
-              </oneLineMenuItem>
+                <rightLabel>{{SETTING(moviefanart)}}</rightLabel>
+              </oneLineMenuItem>{{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
+              
+              <oneLineMenuItem id="MovieFanart" dimmed="true">
+                <label>{{TEXT(Movie Fanart)}}</label>
+                <rightLabel>{{TEXT(PIL/Pillow not installed)}}</rightLabel>
+              </oneLineMenuItem>{{CUT(NoKey:{{EVAL(['','CUT'][isPILinstalled()])}})}}
             </items>
           </menuSection>
 

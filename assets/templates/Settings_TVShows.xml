@@ -42,31 +42,41 @@
                 <label>{{TEXT(TV Show View)}}</label>
                 <rightLabel>{{SETTING(showview)}}</rightLabel>
               </oneLineMenuItem>
+              
               <oneLineMenuItem id="SeasonView" onSelect="toggleSettings('SeasonView', 'Settings_TVShows')">
                 <label>{{TEXT(Season View)}}</label>
                 <rightLabel>{{SETTING(seasonview)}}</rightLabel>
               </oneLineMenuItem>
+              
               <oneLineMenuItem id="ShowUnwatched" onSelect="toggleSettings('ShowUnwatched', 'Settings_TVShows')">
                 <label>{{TEXT(Show Unwatched Count)}}</label>
                 <rightLabel>{{SETTING(showunwatched)}}</rightLabel>
               </oneLineMenuItem>
+              
               <oneLineMenuItem id="ShowSynopsis" onSelect="toggleSettings('ShowSynopsis', 'Settings_TVShows')">
                 <label>{{TEXT(Unwatched Synopsis)}}</label>
                 <rightLabel>{{SETTING(showsynopsis)}}</rightLabel>
               </oneLineMenuItem>
+              
               <oneLineMenuItem id="FlattenSeason" onSelect="toggleSettings('FlattenSeason', 'Settings_TVShows')">
                 <label>{{TEXT(Flatten Season)}}</label>
                 <rightLabel>{{SETTING(flattenseason)}}</rightLabel>
               </oneLineMenuItem>
+              
               <oneLineMenuItem id="ShowTitles_TVShows" onSelect="toggleSettings('ShowTitles_TVShows', 'Settings_TVShows')">
                 <label>{{TEXT(Poster Titles)}}</label>
                 <rightLabel>{{SETTING(showtitles_tvshows)}}</rightLabel>
               </oneLineMenuItem>
-              <oneLineMenuItem id="TVShowFanart" dimmed="{{EVAL(['true','false'][isPILinstalled()])}}" onSelect="toggleSettings('TVShowFanart', 'Settings_TVShows')">
+     
+              <oneLineMenuItem id="TVShowFanart" onSelect="toggleSettings('TVShowFanart', 'Settings_TVShows')">
                 <label>{{TEXT(TV Show Fanart)}}</label>
-                <rightLabel>{{SETTING(tvshowfanart)}}</rightLabel>{{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
-                <rightLabel>{{TEXT(PIL/Pillow not installed)}}</rightLabel>{{CUT(NoKey:{{EVAL(['','CUT'][isPILinstalled()])}})}}
-              </oneLineMenuItem>
+                <rightLabel>{{SETTING(tvshowfanart)}}</rightLabel>
+              </oneLineMenuItem>{{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
+              
+              <oneLineMenuItem id="TVShowFanart" dimmed="true">
+                <label>{{TEXT(TV Show Fanart)}}</label>
+                <rightLabel>{{TEXT(PIL/Pillow not installed)}}</rightLabel>
+              </oneLineMenuItem>{{CUT(NoKey:{{EVAL(['','CUT'][isPILinstalled()])}})}}
             </items>
           </menuSection>
 
