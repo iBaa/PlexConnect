@@ -63,7 +63,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<br>"
     echo "</p>" 
     echo "<br>"
-echo "<input type="image" src="https://raw.githubusercontent.com/wahlmanj/OpenPlex/master/OpenPlexIcons/OP-Logo.png" name=cmd title=OpenPlex value=logo>
+echo "<input type="image" src="https://raw.githubusercontent.com/wahlmanj/OpenPlex/master/OpenPlexIcons/OP-Logo.png" name=cmd title=OpenPlex value=logo>"
 echo "<br>"
 echo "<br>"
 echo "<br>"
