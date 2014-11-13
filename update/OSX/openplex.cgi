@@ -17,7 +17,13 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     if [ $CMD ]
     then
       case "$CMD" in
-        updaterbash)
+        updatewcbash)
+          echo "Output of updatewcbash :<pre>"
+          /usr/bin/updatewcbash.bash
+          echo "</pre>"
+          ;;
+
+          updaterbash)
           echo "Output of updaterbash :<pre>"
           /usr/bin/updaterbash.bash
           echo "</pre>"
@@ -58,10 +64,6 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "</p>" 
     echo "<br>"
     echo "<input type="image" src="https://raw.githubusercontent.com/wahlmanj/OpenPlex/master/OpenPlexIcons/logplex.png" name=cmd title=Status_PlexConnect value=statusbash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" img src="https://raw.githubusercontent.com/wahlmanj/OpenPlex/master/OpenPlexIcons/menuplex.png" name=cmd title= Update_PlexConnect value=updaterbash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" img src="https://raw.githubusercontent.com/wahlmanj/OpenPlex/master/OpenPlexIcons/startplex.png" name=cmd title=Start_PlexConnect value=startbash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" src="https://raw.githubusercontent.com/wahlmanj/OpenPlex/master/OpenPlexIcons/stopplex.png" name=cmd title= Stop_PlexConnect value=stopbash>"
-    echo "<br>"
-    echo "<br>"
-    echo "<br>"
-    echo "<a href="http://alturl.com/5js9g"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" title=Donate_US></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://alturl.com/j8xdb"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" title=Donate_EUR></a>"
     echo "<br>"
     echo "</form>"
     echo "</body>"
