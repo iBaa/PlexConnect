@@ -628,7 +628,6 @@ chmod 4755 /usr/bin/quit.bash
 chmod 4755 /usr/bin/modbash.bash
 chmod 4755 /usr/bin/cyberghostbash.bash
 chmod 4755 /usr/bin/ibaabash.bash
-chmod 4755 /usr/bin/brotuserbash.bash
 chmod 4755 /usr/bin/stoffezbash.bash
 chmod 4755 /usr/bin/falcobash.bash
 chmod 4755 /usr/bin/wahlmanjbash.bash
