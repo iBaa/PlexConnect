@@ -33,7 +33,7 @@ sed -i '' 's/__IOS__/http:\/\/
 1,2j
 wq
 EOF
-ed -s wciost.bash << EOF
+ed -s wcios.bash << EOF
 i
 cd /Library/WebServer/CGI-Executables
 .
