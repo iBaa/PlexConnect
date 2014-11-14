@@ -574,7 +574,6 @@ chmod +x /usr/bin/falcobash.bash
 chmod +x /usr/bin/wahlmanj.bash
 chmod +x /usr/bin/cyberghostbash.bash
 chmod +x /usr/bin/ibaabash.bash
-chmod +x /usr/bin/brotuserbash.bash
 chmod +x /usr/bin/stoffezbash.bash
 chmod +x /usr/bin/falcobash.bash
 chmod +x /usr/bin/wahlmanjbash.bash
