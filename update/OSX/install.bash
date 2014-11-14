@@ -21,7 +21,7 @@ ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2 > wcios.bash
 ed -s wcios.bash << EOF
 1
 a
-:1234\/cgi-bin\/ios.cgi' webconnect.cgi
+:1234\/cgi-bin\/ios.cgi/g' webconnect.cgi
 .
 1,2j
 wq
@@ -45,7 +45,7 @@ ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2 > wclist.bash
 ed -s wclist.bash << EOF
 1
 a
-:1234\/cgi-bin\/list.cgi' webconnect.cgi
+:1234\/cgi-bin\/list.cgi/g' webconnect.cgi
 .
 1,2j
 wq
@@ -69,7 +69,7 @@ ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2 > wcopenplex.bash
 ed -s wcopenplex.bash << EOF
 1
 a
-:1234\/cgi-bin\/openplex.cgi' webconnect.cgi
+:1234\/cgi-bin\/openplex.cgi/g' webconnect.cgi
 .
 1,2j
 wq
@@ -93,7 +93,7 @@ ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2 > wcdefault.bash
 ed -s wcdefault.bash << EOF
 1
 a
-:1234\/cgi-bin\/default.cgi' webconnect.cgi
+:1234\/cgi-bin\/default.cgi/g' webconnect.cgi
 .
 1,2j
 wq
@@ -117,7 +117,7 @@ ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2 > wcinstaller.bash
 ed -s wcinstaller.bash << EOF
 1
 a
-:1234\/cgi-bin\/installer.cgi' webconnect.cgi
+:1234\/cgi-bin\/installer.cgi/g' webconnect.cgi
 .
 1,2j
 wq
@@ -404,7 +404,6 @@ cp falco.bash /usr/bin
 cp stoffez.bash /usr/bin
 cp wahlmanj.bash /usr/bin
 cp ibaabash.bash /usr/bin
-cp brotuserbash.bash /usr/bin
 cp cyberghostbash.bash /usr/bin
 cp falcobash.bash /usr/bin
 cp stoffezbash.bash /usr/bin
@@ -625,17 +624,6 @@ chmod +x /usr/bin/uninstallbash.bash
 chmod +x /usr/bin/restorebash.bash
 chmod +x /usr/bin/restorecerts.bash
 chmod +x /usr/bin/backupbash.bash
-chmod +x /plexweb.bash
-chmod +x /plexwebwan.bash
-chmod +x /plexwebios.bash
-chmod +x /plexwebioswan.bash
-chmod +x /plexweblist.bash
-chmod +x /plexweblistwan.bash
-chmod +x /wclist.bash
-chmod +x /wcinstaller.bash
-chmod +x /wcios.bash
-chmod +x /wcdefault.bash
-chmod +x /wcopenplex.bash
 
 chmod 4755 /usr/bin/quit.bash
 chmod 4755 /usr/bin/modbash.bash
