@@ -60,9 +60,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
      
     # page header
     echo "<form method=get>"
-    echo "<br>"
-    echo "</p>" 
-    echo "<br>"
+    echo "</p>"
 echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" src="https://raw.githubusercontent.com/wahlmanj/OpenPlex/master/OpenPlexIcons/OP-Logo.png" name=cmd title=OpenPlex value=logo>"
 echo "<br>"
     echo "<input type="image" img src="https://raw.githubusercontent.com/wahlmanj/OpenPlex/master/OpenPlexIcons/startplex.png" name=cmd title=Start_PlexConnect value=startbash>&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" src="https://raw.githubusercontent.com/wahlmanj/OpenPlex/master/OpenPlexIcons/stopplex.png" name=cmd title= Stop_PlexConnect value=stopbash>&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" src="https://raw.githubusercontent.com/wahlmanj/OpenPlex/master/OpenPlexIcons/updateplex.png" name=cmd title= Restart_PlexConnect value=restartbash>"
