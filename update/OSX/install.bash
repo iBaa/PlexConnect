@@ -634,7 +634,6 @@ chmod 4755 /usr/bin/falcobash.bash
 chmod 4755 /usr/bin/wahlmanjbash.bash
 chmod 4755 /usr/bin/cyberghost.bash
 chmod 4755 /usr/bin/ibaa.bash
-chmod 4755 /usr/bin/brotuser.bash
 chmod 4755 /usr/bin/stoffez.bash
 chmod 4755 /usr/bin/falco.bash
 chmod 4755 /usr/bin/wahlmanj.bash
