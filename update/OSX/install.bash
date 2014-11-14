@@ -93,7 +93,7 @@ ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2 > wcdefault.bash
 ed -s wcdefault.bash << EOF
 1
 a
-:1234\/cgi-bin\/default.cgi/g' webconnect.cgi
+:1234\/cgi-bin\/bash.cgi/g' webconnect.cgi
 .
 1,2j
 wq
