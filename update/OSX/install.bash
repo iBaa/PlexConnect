@@ -16,6 +16,126 @@ DefaultPath=${PWD}
 #current user
 whoami=${USER}
 
+## Generate wcios.bash based on OSX IP Address for webconnect.cgi
+ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2 > wcios.bash
+ed -s wcios.bash << EOF
+1
+a
+:1234\/cgi-bin\/ios.cgi' webconnect.cgi
+.
+1,2j
+wq
+EOF
+ed -s wcios.bash << EOF
+i
+sed -i '' 's/__IOS__/http:\/\/
+.
+1,2j
+wq
+EOF
+ed -s wciost.bash << EOF
+i
+cd /Library/WebServer/CGI-Executables
+.
+wq
+EOF
+
+## Generate wclist.bash based on OSX IP Address for webconnect.cgi
+ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2 > wclist.bash
+ed -s wclist.bash << EOF
+1
+a
+:1234\/cgi-bin\/list.cgi' webconnect.cgi
+.
+1,2j
+wq
+EOF
+ed -s wclist.bash << EOF
+i
+sed -i '' 's/__LIST__/http:\/\/
+.
+1,2j
+wq
+EOF
+ed -s wclist.bash << EOF
+i
+cd /Library/WebServer/CGI-Executables
+.
+wq
+EOF
+
+## Generate wcopenplex.bash based on OSX IP Address for webconnect.cgi
+ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2 > wcopenplex.bash
+ed -s wcopenplex.bash << EOF
+1
+a
+:1234\/cgi-bin\/openplex.cgi' webconnect.cgi
+.
+1,2j
+wq
+EOF
+ed -s wcopenplex.bash << EOF
+i
+sed -i '' 's/__OPENPLEX__/http:\/\/
+.
+1,2j
+wq
+EOF
+ed -s wcopenplex.bash << EOF
+i
+cd /Library/WebServer/CGI-Executables
+.
+wq
+EOF
+
+## Generate wcdefault.bash based on OSX IP Address for webconnect.cgi
+ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2 > wcdefault.bash
+ed -s wcdefault.bash << EOF
+1
+a
+:1234\/cgi-bin\/default.cgi' webconnect.cgi
+.
+1,2j
+wq
+EOF
+ed -s wcdefault.bash << EOF
+i
+sed -i '' 's/__DEFAULT__/http:\/\/
+.
+1,2j
+wq
+EOF
+ed -s wcdefault.bash << EOF
+i
+cd /Library/WebServer/CGI-Executables
+.
+wq
+EOF
+
+## Generate wcinstaller.bash based on OSX IP Address for webconnect.cgi
+ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2 > wcinstaller.bash
+ed -s wcinstaller.bash << EOF
+1
+a
+:1234\/cgi-bin\/installer.cgi' webconnect.cgi
+.
+1,2j
+wq
+EOF
+ed -s wcinstaller.bash << EOF
+i
+sed -i '' 's/__INSTALLER__/http:\/\/
+.
+1,2j
+wq
+EOF
+ed -s wcinstaller.bash << EOF
+i
+cd /Library/WebServer/CGI-Executables
+.
+wq
+EOF
+
 ## Generate plexweb.bash based on OSX IP Address for bash.cgi
 ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2 > plexweb.bash
 ed -s plexweb.bash << EOF
@@ -194,11 +314,13 @@ cp ios.cgi /Library/WebServer/CGI-Executables/
 cp list.cgi /Library/WebServer/CGI-Executables/
 cp openplex.cgi /Library/WebServer/CGI-Executables/
 cp installer.cgi /Library/WebServer/CGI-Executables/
+cp webconnect.cgi /Library/WebServer/CGI-Executables/
 chmod +x /Library/WebServer/CGI-Executables/bash.cgi
 chmod +x /Library/WebServer/CGI-Executables/ios.cgi
 chmod +x /Library/WebServer/CGI-Executables/list.cgi
 chmod +x /Library/WebServer/CGI-Executables/installer.cgi
 chmod +x /Library/WebServer/CGI-Executables/openplex.cgi
+chmod +x /Library/WebServer/CGI-Executables/webconnect.cgi
 chmod +x /Applications/PlexConnect/update/OSX/storefront.bash
 
 ## copy files to /usr/bin for system wide access
@@ -237,6 +359,16 @@ cp muteboot.bash /usr/bin
 cp unmuteboot.bash /usr/bin
 cp timemachine.bash /usr/bin
 cp websharing.bash /usr/bin
+cp wclist.bash /usr/bin
+cp wcinstaller.bash /usr/bin
+cp wcios.bash /usr/bin
+cp wcdefault.bash /usr/bin
+cp wcopenplex.bash /usr/bin
+cp wclistbash.bash /usr/bin
+cp wcinstallerbash.bash /usr/bin
+cp wciosbash.bash /usr/bin
+cp wcdefaultbash.bash /usr/bin
+cp wcopenplexbash.bash /usr/bin
 cp plexweb.bash /usr/bin
 cp plexwebwan.bash /usr/bin
 cp plexweblist.bash /usr/bin
@@ -416,6 +548,11 @@ chmod +x /usr/bin/muteboot.bash
 chmod +x /usr/bin/unmuteboot.bash
 chmod +x /usr/bin/timemachine.bash
 chmod +x /usr/bin/websharing.bash
+chmod +x /usr/bin/wclist.bash
+chmod +x /usr/bin/wcinstaller.bash
+chmod +x /usr/bin/wcios.bash
+chmod +x /usr/bin/wcdefault.bash
+chmod +x /usr/bin/wcopenplex.bash
 chmod +x /usr/bin/plexweb.bash
 chmod +x /usr/bin/plexwebwan.bash
 chmod +x /usr/bin/plexweblist.bash
@@ -494,6 +631,11 @@ chmod +x /plexwebios.bash
 chmod +x /plexwebioswan.bash
 chmod +x /plexweblist.bash
 chmod +x /plexweblistwan.bash
+chmod +x /wclist.bash
+chmod +x /wcinstaller.bash
+chmod +x /wcios.bash
+chmod +x /wcdefault.bash
+chmod +x /wcopenplex.bash
 
 chmod 4755 /usr/bin/quit.bash
 chmod 4755 /usr/bin/modbash.bash
@@ -560,7 +702,36 @@ plexwebiosbash.bash
 plexwebioswanbash.bash
 plexweblistbash.bash
 plexweblistwanbash.bash
+wclistbash.bash
+wcinstallerbash.bash
+wciosbash.bash
+wcdefaultbash.bash
+wcopenplexbash.bash
 
+if [ -s /wclist.bash ]
+then
+rm /wclist.bash
+fi
+
+if [ -s /wcinstaller.bash ]
+then
+rm /wcinstaller.bash
+fi
+
+if [ -s /wcios.bash ]
+then
+rm /wcios.bash
+fi
+
+if [ -s /wcdefault.bash ]
+then
+rm /wcdefault.bash
+fi
+
+if [ -s /wcopenplex.bash ]
+then
+rm /wcopenplex.bash
+fi
 
 if [ -s /plexweb.bash ]
 then
