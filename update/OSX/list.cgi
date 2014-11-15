@@ -4,6 +4,7 @@
     # our html header
     echo "<html>"
     echo "<head><title>WebConnect</title></head>"
+    echo "<font color=white><body bgcolor="#A9A9A9">"
     echo "<body>"
 
  # read in our parameters
