@@ -245,7 +245,6 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<input type=radio name=cmd value=createcertbash> Generate trailers Certs <br>"
     echo "<input type=radio name=cmd value=createimoviebash> Generate imovie Certs <br>"
     echo "<input type=radio name=cmd value=createwsjbash> Generate wsj Certs <br>"
-    echo "</p>"
     echo "<br>"
     echo "<input type=submit>"
     echo "<br>"
