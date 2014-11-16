@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Cleanup 
+for pVersion in 3 5 6 7; do
+  if [ -d "/Library/Python/2.${pVersion}/site-packages/PIL/" ]; then
+    if [ ! -f "/usr/local/bin/pip" ]; then
+      sudo easy_install pip
+    fi
+    sudo pip uninstall Pillow
+  fi
+done
+
+# Check for brew and install it
+if [ ! -f "/usr/local/bin/brew" ]; then
+  ruby -e "$(wget -O- https://raw.github.com/Homebrew/linuxbrew/go/install)"
+  brew prune
+fi
+
+brew install libjpeg freetype
+ 
+# Check for freetype's destination
+if [ ! -d "/usr/local/include/freetype" ]; then
+  ln -s $(brew info freetype | grep "usr" | awk '{print $1}')/include/freetype2 /usr/local/include/freetype
+  ln -s $(brew info freetype | grep "usr" | awk '{print $1}')/include/ft2build.h /usr/local/include/
+  ln -s $(brew info freetype | grep "usr" | awk '{print $1}')/lib/libfreetype.6.dylib /usr/local/lib/
+  ln -s $(brew info freetype | grep "usr" | awk '{print $1}')/lib/libfreetype.6.dylib /usr/local/lib/libfreetype.dylib
+fi
+
+# install Pillow
+if [ ! -f "/usr/local/bin/pip" ]; then
+      sudo easy_install pip
+fi
+sudo ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future pip install Pillow
