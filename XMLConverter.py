@@ -274,10 +274,10 @@ def XML_PMS2aTV(PMS_address, path, options):
         XMLtemplate = 'ChangeSingleArtworkVideo.xml'
 
     elif cmd=='ChangeFanart':
-        XMLtemplate = 'ChangeFanart.xml'
+        XMLtemplate = 'ChangeFanArt.xml'
         
     elif cmd=='ChangeFanartVideo':
-        XMLtemplate = 'ChangeFanartVideo.xml'
+        XMLtemplate = 'ChangeFanArtVideo.xml'
         
     elif cmd=='PhotoBrowser':
         XMLtemplate = 'Photo_Browser.xml'
