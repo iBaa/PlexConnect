@@ -20,7 +20,7 @@ from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 from SocketServer import ThreadingMixIn
 import ssl
 from multiprocessing import Pipe  # inter process communication
-import urllib
+import urllib, StringIO, gzip, urllib
 import signal
 
 import Settings, ATVSettings
@@ -53,7 +53,31 @@ def JSConverter(file, options):
     
     return JS
 
+def compressBuf(buf):
+    zbuf = StringIO.StringIO()
+    zfile = gzip.GzipFile(mode = 'wb',  fileobj = zbuf, compresslevel = 9)
+    zfile.write(buf)
+    zfile.close()
+    return zbuf.getvalue()
 
+def sendBody(buf, self, enableGzip):
+    try:
+        accept_encoding = self.headers["accept-encoding"]
+        if accept_encoding:
+            accept_encoding = map(string.strip, string.split(accept_encoding, ","))
+        else:
+            accept_encoding = []
+    except KeyError:
+        accept_encoding = []
+    self.send_header('Server', 'PlexConnect')
+    if 'gzip' in accept_encoding and enableGzip:
+        self.send_header('Content-encoding', 'gzip')
+        self.end_headers()
+        self.wfile.write(compressBuf(buf))
+        #self.wfile.write(buf)
+    else:
+        self.end_headers()
+        self.wfile.write(buf)
 
 class MyHandler(BaseHTTPRequestHandler):
     
@@ -175,8 +199,9 @@ class MyHandler(BaseHTTPRequestHandler):
                     JS = JSConverter(basename, options)
                     self.send_response(200)
                     self.send_header('Content-type', 'text/javascript')
-                    self.end_headers()
-                    self.wfile.write(JS)
+                    sendBody(JS, self, True)
+					#self.end_headers()
+                    #self.wfile.write(JS)
                     return
                 
                 # serve "*.jpg" - thumbnails for old-style mainpage
@@ -208,8 +233,9 @@ class MyHandler(BaseHTTPRequestHandler):
                     XML = Subtitle.getSubtitleJSON(PMSaddress, self.path + query, options)
                     self.send_response(200)
                     self.send_header('Content-type', 'application/json')
-                    self.end_headers()
-                    self.wfile.write(XML)
+                    sendBody(XML, self, True)
+                    #self.end_headers()
+                    #self.wfile.write(XML)
                     return
                 
                 # get everything else from XMLConverter - formerly limited to trailing "/" and &PlexConnect Cmds
@@ -218,8 +244,9 @@ class MyHandler(BaseHTTPRequestHandler):
                     XML = XMLConverter.XML_PMS2aTV(PMSaddress, self.path + query, options)
                     self.send_response(200)
                     self.send_header('Content-type', 'text/xml')
-                    self.end_headers()
-                    self.wfile.write(XML)
+                    sendBody(XML, self, True)
+                    #self.end_headers()
+                    #self.wfile.write(XML)
                     return
                 
                 """
