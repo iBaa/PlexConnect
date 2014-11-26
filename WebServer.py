@@ -161,6 +161,38 @@ class MyHandler(BaseHTTPRequestHandler):
                     self.wfile.write(f.read())
                     f.close()
                     return 
+
+                # Serve the plex icon
+                if self.headers['Host'] == 'a1.phobos.apple.com' and self.path.endswith(".png"):
+                    # possible icon
+                    basename = path.basename(self.path)
+                    name, details = basename.split('@')
+                    dprint(__name__, 2, "serving icon {0}", name)
+                    rez, ext = details.split('.')
+                    dprint(__name__, 2, "icon name: {0} at {1}", name, rez)
+                    if name == "movie-trailers":
+                        dprint(__name__, 2, "getting plex icon")
+                        f = open(sys.path[0] + sep + "assets" + sep + "thumbnails" + sep + "Plex@" + rez + ".png", "rb")
+                        self.send_response(200)
+                        self.send_header('Content-type', 'image/png')
+                        self.end_headers()
+                        self.wfile.write(f.read())
+                        f.close()
+                        return
+                    else:
+                        dprint(__name__, 2, "getting app icon")
+                        self.send_response(200)
+                        self.send_header('Content-type', 'image/png')
+                        self.end_headers()
+                        self.wfile.write(urllib.urlopen('http://' + self.headers['Host'] + self.path).read())
+                        return
+                elif self.headers['Host'] == 'a1.phobos.apple.com':
+                    # something other than an icon was requested
+                    self.send_response(200)
+                    self.send_header('Content-type', self.headers['Content-type'])
+                    self.end_headers()
+                    self.wfile.write(urllib.urlopen('http://' + self.headers['Host'] + self.path).read())
+                    return
                 
                 # serve .js files to aTV
                 # application, main: ignore path, send /assets/js/application.js

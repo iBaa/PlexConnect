@@ -337,7 +337,7 @@ def Run(cmdPipe, param):
         dprint(__name__, 0, "Failed to create socket on UDP port 49152: {0}", e)
         sys.exit(1)
     
-    intercept = [param['HostToIntercept']]
+    intercept = [param['HostToIntercept'], 'a1.phobos.apple.com']
     restrain = []
     if param['CSettings'].getSetting('prevent_atv_update')=='True':
         restrain = ['mesu.apple.com', 'appldnld.apple.com', 'appldnld.apple.com.edgesuite.net']

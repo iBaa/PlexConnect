@@ -39,6 +39,13 @@ git pull
 
 See the [Wiki - Install Guide][] for additional documentation.
 
+## Change trailer icon to Plex icon
+
+- Unplug the internet from the router.
+- Make a "Reset All Settings" on your aTV3
+- Change the DNS to whatever plexconnect host.
+- Plug your internet back to the router.
+- Send the trailers.cer to your aTV.
 
 ## Usage
 ```sh
