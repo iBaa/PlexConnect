@@ -80,7 +80,7 @@
               <oneLineMenuItem id="shuffle_{{VAL(key)}}"
                                        onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=PlayAudio:Shuffle::0')"
                                        onSelect="atv.loadURL('{{URL()}}&amp;PlexConnect=PlayAudio:Shuffle::0')">
-                <label>Shuffle</label>
+                <label>{{TEXT(Shuffle)}}</label>
                 <accessories>
                   <shuffle/>
                 </accessories>
@@ -90,6 +90,20 @@
                   </crossFadePreview>
                 </preview>
               </oneLineMenuItem>
+              <!-- now playing -->
+              <oneLineMenuItem id="__NOW_PLAYING__" dimmed="false"
+                                       onSelect="atv.nowPlaying.showNowPlaying();">
+                <label>{{TEXT(Now Playing)}}</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
+                <preview>
+                  <crossFadePreview>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
+                  </crossFadePreview>
+                </preview>
+              </oneLineMenuItem>
+              
             </items>
           </menuSection>
           <menuSection>
@@ -133,7 +147,7 @@
               <oneLineMenuItem id="shuffle_{{VAL(key)}}"
                                        onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=PlayAudio:Shuffle::0')"
                                        onSelect="atv.loadURL('{{URL()}}&amp;PlexConnect=PlayAudio:Shuffle::0')">
-                <label>Shuffle</label>
+                <label>{{TEXT(Shuffle)}}</label>
                 <accessories>
                   <shuffle/>
                 </accessories>
@@ -143,6 +157,20 @@
                   </crossFadePreview>
                 </preview>
               </oneLineMenuItem>
+              <!-- now playing -->
+              <oneLineMenuItem id="__NOW_PLAYING__" dimmed="false"
+                                       onSelect="atv.nowPlaying.showNowPlaying();">
+                <label>{{TEXT(Now Playing)}}</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
+                <preview>
+                  <crossFadePreview>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
+                  </crossFadePreview>
+                </preview>
+              </oneLineMenuItem>
+              
             </items>
           </menuSection>
           <menuSection>
