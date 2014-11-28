@@ -69,14 +69,18 @@
               </oneLineMenuItem>
      
               <oneLineMenuItem id="TVShowFanart" onSelect="toggleSettings('TVShowFanart', 'Settings_TVShows')">
+              {{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
+              {{CUT(^aTVFirmwareVersion:CUT:=CUT|6=)}}  <!-- watch out: this will make trouble with iOS10 -->
                 <label>{{TEXT(TV Show Fanart)}}</label>
                 <rightLabel>{{SETTING(tvshowfanart)}}</rightLabel>
-              </oneLineMenuItem>{{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
+              </oneLineMenuItem>
               
               <oneLineMenuItem id="TVShowFanart" dimmed="true">
+              {{CUT(NoKey:{{EVAL(['','CUT'][isPILinstalled()])}})}}
+              {{CUT(^aTVFirmwareVersion:CUT:=CUT|6=)}}  <!-- watch out: this will make trouble with iOS10 -->
                 <label>{{TEXT(TV Show Fanart)}}</label>
                 <rightLabel>{{TEXT(PIL/Pillow not installed)}}</rightLabel>
-              </oneLineMenuItem>{{CUT(NoKey:{{EVAL(['','CUT'][isPILinstalled()])}})}}
+              </oneLineMenuItem>
             </items>
           </menuSection>
 
