@@ -4,7 +4,7 @@
   </head>
   
   <body>
-    <scroller id="com.sample.homevideo-grid" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
+    <scroller id="com.sample.homevideo-grid" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}&amp;PlexConnect=HomeVideoByFolder')">
       <header>
         <simpleHeader>
           <title>{{VAL(title1)}}</title>
@@ -41,7 +41,7 @@
   
   
 <body>
-    <listWithPreview id="HomeVideoList" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
+    <listWithPreview id="HomeVideoList" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}&amp;PlexConnect=HomeVideoByFolder')">
       <header>
         <simpleHeader>
           <title>{{VAL(title1)}}</title>
@@ -92,7 +92,7 @@
   </body>{{CUT($homevideoview::Detailed=CUT|Grid=CUT|List=)}}
   
   <body>
-    <listWithPreview id="HomeVideo_DetailedList" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
+    <listWithPreview id="HomeVideo_DetailedList" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}&amp;PlexConnect=HomeVideoByFolder')">
       <header>
         <simpleHeader>
           <title>{{VAL(title1)}}</title>
