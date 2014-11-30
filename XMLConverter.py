@@ -1122,18 +1122,12 @@ class CCommandCollection(CCommandHelper):
         photoATVNative = parts[-1].lower() in ['jpg','jpeg','tif','tiff','gif','png']
         dprint(__name__, 2, "photo: ATVNative - {0}", photoATVNative)
         
-        if width=='' and \
-           transcoderAction=='Auto' and \
-           photoATVNative:
-            # direct play
-            res = PlexAPI.getDirectImagePath(key, AuthToken)
-        else:
-            if width=='':
-                width = 1920  # max for HDTV. Relate to aTV version? Increase for KenBurns effect?
-            if height=='':
-                height = 1080  # as above
-            # request transcoding
-            res = PlexAPI.getTranscodeImagePath(key, AuthToken, self.path[srcXML], width, height)
+        if width=='':
+            width = 1920  # max for HDTV. Relate to aTV version? Increase for KenBurns effect?
+        if height=='':
+            height = 1080  # as above
+        # request transcodinng
+        res = PlexAPI.getTranscodeImagePath(key, AuthToken, self.path[srcXML], width, height)
         
         if res.startswith('/'):  # internal full path.
             res = PMS_baseURL + res
