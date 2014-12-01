@@ -47,9 +47,9 @@
                 <label>{{TEXT(Show Playlists)}}</label>
                 <rightLabel>{{SETTING(showplaylists)}}</rightLabel>
               </oneLineMenuItem>
-              <oneLineMenuItem id="ShowLibrarys" onSelect="toggleSettings('ShowLibrarys', 'Settings_TopLevel')">
-                <label>{{TEXT(Show Libraries)}}</label>
-                <rightLabel>{{SETTING(showlibrarys)}}</rightLabel>
+              <oneLineMenuItem id="ShowLibrary" onSelect="toggleSettings('ShowLibrary', 'Settings_TopLevel')">
+                <label>{{TEXT(Show Library)}}</label>
+                <rightLabel>{{SETTING(showlibrary)}}</rightLabel>
               </oneLineMenuItem>
               <oneLineMenuItem id="ShowChannels" onSelect="toggleSettings('ShowChannels', 'Settings_TopLevel')">
                 <label>{{TEXT(Show Channels)}}</label>
