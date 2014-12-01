@@ -55,9 +55,9 @@
                 <label>{{TEXT(Show Channels)}}</label>
                 <rightLabel>{{SETTING(showchannels)}}</rightLabel>
               </oneLineMenuItem>
-              <oneLineMenuItem id="ShowSharedLibrarys" onSelect="toggleSettings('ShowSharedLibrarys', 'Settings_TopLevel')">
+              <oneLineMenuItem id="ShowSharedLibraries" onSelect="toggleSettings('ShowSharedLibraries', 'Settings_TopLevel')">
                 <label>{{TEXT(Show Shared Libraries)}}</label>
-                <rightLabel>{{SETTING(showsharedlibrarys)}}</rightLabel>
+                <rightLabel>{{SETTING(showsharedlibraries)}}</rightLabel>
               </oneLineMenuItem>
             </items>
           </menuSection>

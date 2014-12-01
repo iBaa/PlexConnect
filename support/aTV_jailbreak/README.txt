@@ -17,22 +17,17 @@ Install Python on aTV
   this will update python to 2.7.3
 
 Push PlexConnect to aTV
-- SFTP into aTV and copy the complete PlexConnect directory. Eg. to /Application/PlexConnect.
-- SFTP PlexConnect/support/aTV_jailbreak/Settings.cfg to PlexConnect/Settings.cfg
-  overwrite the later if already there
-  this bring new defaults for PlexConnect@aTV, like disabling DNSServer
-
-Install PlexConnect as daemon
-- SSH into aTV
-- CD into the PlexConnect directory. Eg. "cd /Application/PlexConnect"
-- run "./support/aTV_jailbreak/install.bash"
-
-/etc/hosts
-- optional: add PlexConnect/support/aTV_jailbreak/hosts_addon_preventATVUpdate
-  this prevents aTV update
+- SFTP into aTV and copy the complete PlexConnect directory to eg. /Application/PlexConnect.
 
 
 OPTION A - run PlexConnect as always, re-using trailers.apple.com
+
+- make sure you have good certs in /PlexConnect/assets/certificates
+  if not, generate and add them...
+
+- SFTP PlexConnect/support/aTV_jailbreak/Settings_Trailers.cfg to PlexConnect/Settings.cfg
+  overwrite the later if already there
+  this brings new defaults for PlexConnect@aTV, like disabling DNSServer
 
 /etc/hosts
 - add content of PlexConnect/support/aTV_jailbreak/hosts_addon_PlexConnect to /etc/hosts
@@ -40,6 +35,10 @@ OPTION A - run PlexConnect as always, re-using trailers.apple.com
 
 
 OPTION B - create own PlexConnect button
+
+- SFTP PlexConnect/support/aTV_jailbreak/Settings_PlexConnect.cfg to PlexConnect/Settings.cfg
+  overwrite the later if already there
+  this brings new defaults for PlexConnect@aTV, like disabling DNSServer/WebServer SSL
 
 Install PlexConnect button to aTV home screen
 - SSH into aTV
@@ -53,6 +52,17 @@ Install PlexConnect button to aTV home screen
 
 Thanks to D. Schuetz! (https://intrepidusgroup.com/insight/2013/09/rpi-atv/)
 
+
+FINISH INSTALLATION
+
+Install PlexConnect as daemon
+- SSH into aTV
+- CD into the PlexConnect directory. Eg. "cd /Application/PlexConnect"
+- run "./support/aTV_jailbreak/install.bash"
+
+/etc/hosts
+- optional: add PlexConnect/support/aTV_jailbreak/hosts_addon_preventATVUpdate
+  this prevents aTV update
 
 Reboot
 

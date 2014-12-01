@@ -59,8 +59,8 @@
               
               <!-- Movies -->
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"
-                             onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=Play:Continuous:{{VAL(ratingKey)}}')"
-                             onSelect="atv.loadURL('{{URL(key)}}?includeExtras=1&amp;PlexConnect=MoviePrePlay')"
+                             onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
+                             onSelect="atv.loadURL('{{URL()}}&amp;PlexConnect=Play:Continuous:{{VAL(ratingKey)}}')"
                              onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
               {{CUT(type::episode=CUT|movie=)}}
               {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
@@ -89,8 +89,8 @@
               
               <!-- Episodes -->
               <twoLineEnhancedMenuItem id="{{VAL(ratingKey)}}"
-                             onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=Play:Continuous:{{VAL(ratingKey)}}')"
-                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
+                             onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
+                             onSelect="atv.loadURL('{{URL()}}&amp;PlexConnect=Play:Continuous:{{VAL(ratingKey)}}')"
                              onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
               {{CUT(type::episode=|movie=CUT)}}
               {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
