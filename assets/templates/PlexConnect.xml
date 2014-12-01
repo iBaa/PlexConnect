@@ -14,7 +14,7 @@
         <navigationItem id="Library">
           <title>{{TEXT(Library)}}</title>
           <url>{{URL(:/PMS(owned)/library/sections)}}</url>
-        </navigationItem>{{CUT($showlibrarys:CUT:False=CUT|True=)}}
+        </navigationItem>{{CUT($showlibrary:CUT:False=CUT|True=)}}
         <navigationItem id="Channels">
           <title>{{TEXT(Channels)}}</title>
           <url>{{URL(:/PMS(owned)/channels/all)}}</url>
