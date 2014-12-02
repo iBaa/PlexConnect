@@ -18,6 +18,7 @@ import signal, errno
 from Version import __VERSION__
 import DNSServer, WebServer
 import Settings, ATVSettings
+from PILBackgrounds import isPILinstalled
 from Debug import *  # dprint()
 
 
@@ -75,6 +76,7 @@ def startup():
     dprint('PlexConnect', 0, "Version: {0}", __VERSION__)
     dprint('PlexConnect', 0, "Python: {0}", sys.version)
     dprint('PlexConnect', 0, "Host OS: {0}", sys.platform)
+    dprint('PlexConnect', 0, "PILBackgrounds: Is PIL installed? {0}", isPILinstalled())
     
     # more Settings
     param['IP_self'] = getIP_self()

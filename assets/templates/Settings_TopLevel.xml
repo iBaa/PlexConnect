@@ -47,9 +47,9 @@
                 <label>{{TEXT(Show Playlists)}}</label>
                 <rightLabel>{{SETTING(showplaylists)}}</rightLabel>
               </oneLineMenuItem>
-              <oneLineMenuItem id="ShowSharedLibrarys" onSelect="toggleSettings('ShowSharedLibrarys', 'Settings_TopLevel')">
-                <label>{{TEXT(Show Shared Librarys)}}</label>
-                <rightLabel>{{SETTING(showsharedlibrarys)}}</rightLabel>
+              <oneLineMenuItem id="ShowSharedLibraries" onSelect="toggleSettings('ShowSharedLibraries', 'Settings_TopLevel')">
+                <label>{{TEXT(Show Shared Libraries)}}</label>
+                <rightLabel>{{SETTING(showsharedlibraries)}}</rightLabel>
               </oneLineMenuItem>
             </items>
           </menuSection>

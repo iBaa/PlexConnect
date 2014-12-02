@@ -80,7 +80,7 @@
               <oneLineMenuItem id="shuffle_{{VAL(key)}}"
                                        onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=PlayAudio:Shuffle::0')"
                                        onSelect="atv.loadURL('{{URL()}}&amp;PlexConnect=PlayAudio:Shuffle::0')">
-                <label>Shuffle</label>
+                <label>{{TEXT(Shuffle)}}</label>
                 <accessories>
                   <shuffle/>
                 </accessories>
@@ -90,6 +90,20 @@
                   </crossFadePreview>
                 </preview>
               </oneLineMenuItem>
+              <!-- now playing -->
+              <oneLineMenuItem id="__NOW_PLAYING__" dimmed="false"
+                                       onSelect="atv.nowPlaying.showNowPlaying();">
+                <label>{{TEXT(Now Playing)}}</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
+                <preview>
+                  <crossFadePreview>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
+                  </crossFadePreview>
+                </preview>
+              </oneLineMenuItem>
+              
             </items>
           </menuSection>
           <menuSection>
@@ -104,8 +118,8 @@
             <!-- tracks -->
             <items>
               <oneLineMenuItem id="{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=PlayAudio:Continuous::{{VAL(#copy_ix)}}')"
-                                       onSelect="atv.loadURL('{{URL()}}&amp;PlexConnect=PlayAudio:Single:{{VAL(ratingKey)}}:')">
+                                       onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=PlayAudio:Single:{{VAL(ratingKey)}}:')"
+                                       onSelect="atv.loadURL('{{URL()}}&amp;PlexConnect=PlayAudio:Continuous::{{VAL(#copy_ix)}}')">
               {{COPY(Track)}}
                 <label>{{VAL(track)}}</label>
                 <rightLabel>{{durationToString(NoKey:Audio:totalTime)}}</rightLabel>
@@ -133,7 +147,7 @@
               <oneLineMenuItem id="shuffle_{{VAL(key)}}"
                                        onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=PlayAudio:Shuffle::0')"
                                        onSelect="atv.loadURL('{{URL()}}&amp;PlexConnect=PlayAudio:Shuffle::0')">
-                <label>Shuffle</label>
+                <label>{{TEXT(Shuffle)}}</label>
                 <accessories>
                   <shuffle/>
                 </accessories>
@@ -143,6 +157,20 @@
                   </crossFadePreview>
                 </preview>
               </oneLineMenuItem>
+              <!-- now playing -->
+              <oneLineMenuItem id="__NOW_PLAYING__" dimmed="false"
+                                       onSelect="atv.nowPlaying.showNowPlaying();">
+                <label>{{TEXT(Now Playing)}}</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
+                <preview>
+                  <crossFadePreview>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
+                  </crossFadePreview>
+                </preview>
+              </oneLineMenuItem>
+              
             </items>
           </menuSection>
           <menuSection>
@@ -157,8 +185,8 @@
             <!-- tracks -->
             <items>
               <oneLineMenuItem id="{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=PlayAudio:Continuous::{{VAL(#copy_ix)}}')"
-                                       onSelect="atv.loadURL('{{URL()}}&amp;PlexConnect=PlayAudio:Single:{{VAL(ratingKey)}}:0')">
+                                       onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=PlayAudio:Single:{{VAL(ratingKey)}}:0')"
+                                       onSelect="atv.loadURL('{{URL()}}&amp;PlexConnect=PlayAudio:Continuous::{{VAL(#copy_ix)}}')">
               {{COPY(Track)}}
                 <label>{{VAL(title)}}</label>
                 <rightLabel>{{durationToString(NoKey:Audio:duration)}}</rightLabel>

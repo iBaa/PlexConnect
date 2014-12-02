@@ -56,8 +56,8 @@
             <!-- tracks -->
             <items>
               <oneLineMenuItem id="{{VAL(key)}}"
-                             onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=PlayAudio:Continuous::{{VAL(#copy_ix)}}')"
-                             onSelect="atv.loadURL('{{URL()}}&amp;PlexConnect=PlayAudio:Single:{{VAL(ratingKey)}}:0')">
+                             onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=PlayAudio:Single:{{VAL(ratingKey)}}:0')"
+                             onSelect="atv.loadURL('{{URL()}}&amp;PlexConnect=PlayAudio:Continuous::{{VAL(#copy_ix)}}')">
               {{COPY(Track:type::=|track=COPY|track =)}}
               {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <label>{{VAL(title)}}</label>

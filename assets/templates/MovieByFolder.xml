@@ -4,7 +4,7 @@
   </head>
   
   <body>
-    <scroller id="MovieGrid" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
+    <scroller id="MovieGrid" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}&amp;PlexConnect=MovieByFolder')">
       <header>
         <simpleHeader>
           <title>{{VAL(title1)}}</title>
@@ -41,7 +41,7 @@
   
   
 <body>
-    <listWithPreview id="MovieList" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
+    <listWithPreview id="MovieList" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}&amp;PlexConnect=MovieByFolder')">
       <header>
         <simpleHeader>
           <title>{{VAL(title1)}}</title>
@@ -92,7 +92,7 @@
   </body>{{CUT($movieview::Detailed=CUT|Grid=CUT|List=)}}
   
   <body>
-    <listWithPreview id="Movie_DetailedList" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}')">
+    <listWithPreview id="Movie_DetailedList" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}&amp;PlexConnect=MovieByFolder')">
       <header>
         <simpleHeader>
           <title>{{VAL(title1)}}</title>
