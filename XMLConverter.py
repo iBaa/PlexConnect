@@ -289,16 +289,18 @@ def XML_PMS2aTV(PMS_address, path, options):
         XMLtemplate = 'HomeVideoPrePlay.xml'
         
     elif cmd=='MoviePrePlay':
-        dprint(__name__, 1, "IS PIL installed? "+ str(isPILinstalled()))
         XMLtemplate = "MoviePrePlay.xml"
-        if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'moviefanart') == 'Show' and isPILinstalled():
-                XMLtemplate = 'MoviePrePlay_Fanart.xml'
+        if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'moviefanart') == 'Show' and \
+           isPILinstalled() and \
+           options['aTVFirmwareVersion'] >= '6.0':  # watch out: this will make trouble with iOS10
+            XMLtemplate = 'MoviePrePlay_Fanart.xml'
 
     elif cmd=='EpisodePrePlay':
-        dprint(__name__, 1, "IS PIL installed? "+ str(isPILinstalled()))
         XMLtemplate = 'EpisodePrePlay.xml'
-        if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'tvshowfanart') == 'Show' and isPILinstalled():
-                XMLtemplate = 'EpisodePrePlay_Fanart.xml'
+        if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'tvshowfanart') == 'Show' and \
+           isPILinstalled() and \
+           options['aTVFirmwareVersion'] >= '6.0':  # watch out: this will make trouble with iOS10
+            XMLtemplate = 'EpisodePrePlay_Fanart.xml'
         
     elif cmd=='ChannelPrePlay':
         XMLtemplate = 'ChannelPrePlay.xml'
@@ -306,8 +308,8 @@ def XML_PMS2aTV(PMS_address, path, options):
     elif cmd=='ChannelsVideo':
         XMLtemplate = 'ChannelsVideo.xml'
 
-    elif cmd=='ByFolder':
-        XMLtemplate = 'ByFolder.xml'
+    elif cmd=='ShowByFolder':
+        XMLtemplate = 'ShowByFolder.xml'
 
     elif cmd=='HomeVideoByFolder':
         XMLtemplate = 'HomeVideoByFolder.xml'
@@ -487,7 +489,7 @@ def XML_PMS2aTV(PMS_address, path, options):
     elif PMSroot.get('viewGroup','')=='show':
         if PMSroot.get('title2')=='By Folder':
           # By Folder View
-          XMLtemplate = 'ByFolder.xml'
+          XMLtemplate = 'ShowByFolder.xml'
         else:
           # TV Show grid view
           XMLtemplate = 'Show_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'showview')+'.xml'
@@ -495,11 +497,13 @@ def XML_PMS2aTV(PMS_address, path, options):
     elif PMSroot.get('viewGroup','')=='season':
         # TV Season view
         XMLtemplate = 'Season_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'seasonview')
-        dprint(__name__, 1, "IS PIL installed? "+ str(isPILinstalled()))
-        if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'tvshowfanart') == 'Show' and isPILinstalled():
-                XMLtemplate = XMLtemplate + "_Fanart"           
-        XMLtemplate = XMLtemplate + ".xml"
-
+        if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'tvshowfanart') == 'Show' and \
+           isPILinstalled() and \
+           options['aTVFirmwareVersion'] >= '6.0':  # watch out: this will make trouble with iOS10
+            XMLtemplate = XMLtemplate + '_Fanart.xml'
+        else:
+            XMLtemplate = XMLtemplate + '.xml'
+    
     elif PMSroot.get('viewGroup','')=='movie' and PMSroot.get('thumb','').find('video') != -1:
         if PMSroot.get('title2')=='By Folder':
           # By Folder View
@@ -526,9 +530,10 @@ def XML_PMS2aTV(PMS_address, path, options):
         else:
             # TV Episode view
             XMLtemplate = 'Episode.xml' 
-            dprint(__name__, 1, "IS PIL installed? "+ str(isPILinstalled()))
-            if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'tvshowfanart') == 'Show' and isPILinstalled():
-                    XMLtemplate = 'Episode_Fanart.xml'
+            if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'tvshowfanart') == 'Show' and \
+               isPILinstalled() and \
+               options['aTVFirmwareVersion'] >= '6.0':  # watch out: this will make trouble with iOS10
+                XMLtemplate = 'Episode_Fanart.xml'
     
     elif PMSroot.get('viewGroup','')=='photo' or \
        path.startswith('/photos') or \
