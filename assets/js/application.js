@@ -655,7 +655,7 @@ atv.onAppEntry = function()
         req.send();
         
         // load main page
-        atv.loadURL("{{URL(/PlexConnect.xml)}}&PlexConnectUDID=" + atv.device.udid);
+        atv.loadURL("{{URL(/PlexConnect.xml)}}");
     }
     else
     {
@@ -674,3 +674,22 @@ atv.onAppEntry = function()
         atv.loadXML(doc);
     }
 };
+
+// atv.onGenerateRequest - adding UDID if directed to PlexConnect
+atv.onGenerateRequest = function(request)
+{
+    //log("atv.onGenerateRequest: "+request.url);
+    
+    if (request.url.indexOf("{{URL(/)}}")!=-1)
+    {
+        var sep = "&";
+        if (request.url.indexOf("?")==-1)
+        {
+            sep = "?";
+        }
+        request.url = request.url +sep+ "PlexConnectUDID=" + atv.device.udid;
+        request.url = request.url +"&"+ "PlexConnectATVName=" + encodeURIComponent(atv.device.displayName);
+    }
+    
+    log("atv.onGenerateRequest done: "+request.url);
+}

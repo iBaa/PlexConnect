@@ -213,7 +213,7 @@ myPlexSignInOut = function()
             if (username)
             {
                 setLabel(_myPlexElem, 'rightLabel', username);
-                atv.loadAndSwapURL("{{URL(/PlexConnect.xml)}}&PlexConnectUDID=" + atv.device.udid);
+                atv.loadAndSwapURL("{{URL(/PlexConnect.xml)}}");
             }
             else
             {
@@ -253,7 +253,7 @@ myPlexSignInOut = function()
         
         log("MyPlex Logout - done");
         
-        atv.loadAndSwapURL("{{URL(/PlexConnect.xml)}}&PlexConnectUDID=" + atv.device.udid);
+        atv.loadAndSwapURL("{{URL(/PlexConnect.xml)}}");
     };
     
     

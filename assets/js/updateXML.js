@@ -90,13 +90,7 @@ function loadMenuPages(url, event)
  */
 function updatePage(url)
 {
-  // add UDID
-  if (url.indexOf("{{URL(/)}}")!=-1)
-  {
-    url = url + "&PlexConnectUDID=" + atv.device.udid;
-  }
-  
-  // read new XML
+    // read new XML
 	if (navbarItemNumber == '1') // First navbar item is a special case
 	{
 		atv.loadAndSwapURL(url);
@@ -115,6 +109,11 @@ function updatePage(url)
 			}
 		};
 	};
+    // add UDID
+    if (url.indexOf("{{URL(/)}}")!=-1)
+    {
+        url = url + "&PlexConnectUDID=" + atv.device.udid;
+    }
   req.open('GET', url, false);
   req.send();
 };

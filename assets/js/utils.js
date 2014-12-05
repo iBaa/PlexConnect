@@ -147,42 +147,6 @@ function XML_Error(title,desc)
 
 
 /*
- * override stock atv.loadURL() function, adding UDID if directed to PlexConnect
- */
-var iOS_atv_loadURL = atv.loadURL;
-
-atv.loadURL = function(url)
-{
-    log("loadURL (override): "+url);
-    if (url.indexOf("{{URL(/)}}")!=-1)
-    {
-        url = url + "&PlexConnectUDID=" + atv.device.udid;
-        url = url + "&PlexConnectATVName=" + encodeURIComponent(atv.device.displayName);
-    }
-    
-    iOS_atv_loadURL(url);
-};
-
-
-
-/*
- * override stock atv.loadAndSwapURL() function, adding UDID if directed to PlexConnect
- */
-var iOS_atv_loadAndSwapURL = atv.loadAndSwapURL;
-
-atv.loadAndSwapURL = function(url)
-{
-    log("loadAndSwapURL (override): "+url);
-    if (url.indexOf("{{URL(/)}}")!=-1)
-    {
-        url = url + "&PlexConnectUDID=" + atv.device.udid;
-        url = url + "&PlexConnectATVName=" + encodeURIComponent(atv.device.displayName);
-    }
-    
-    iOS_atv_loadAndSwapURL(url);
-};
-
-/*
  * Flatten TV Seasons
  * If show has only one season then flatten it!
  */
