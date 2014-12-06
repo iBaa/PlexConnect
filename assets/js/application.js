@@ -683,7 +683,8 @@ atv.onGenerateRequest = function(request)
     if (request.url.indexOf("{{URL(/)}}")!=-1)
     {
         var sep = "&";
-        if (request.url.indexOf("?")==-1)
+            // check for "&", too. some PlexConnect requests don't follow the standard.
+        if (request.url.indexOf("?")==-1 && request.url.indexOf("&")==-1)
         {
             sep = "?";
         }
