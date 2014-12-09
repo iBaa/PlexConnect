@@ -396,6 +396,7 @@ cp icon.bash /usr/bin
 cp 10.6.bash /usr/bin
 cp 10.7.bash /usr/bin
 cp 10.10.bash /usr/bin
+cp purgeapp.bash /usr/bin
 cp checker.bash /usr/bin
 cp modbash.bash /usr/bin
 cp ibaa.bash /usr/bin
@@ -457,6 +458,7 @@ cp iconbash.bash /usr/bin
 cp 10.6bash.bash /usr/bin
 cp 10.7bash.bash /usr/bin
 cp 10.10bash.bash /usr/bin
+cp purgeappbash.bash /usr/bin
 cp checkerbash.bash /usr/bin
 cp uninstall.bash /usr/bin
 
@@ -528,6 +530,7 @@ chmod +x /usr/bin/icon.bash
 chmod +x /usr/bin/10.6.bash
 chmod +x /usr/bin/10.7.bash
 chmod +x /usr/bin/10.10.bash
+chmod +x /usr/bin/purgeapp.bash
 chmod +x /usr/bin/checker.bash
 chmod +x /usr/bin/webconnect.bash
 chmod +x /usr/bin/quit
@@ -609,6 +612,7 @@ chmod +x /usr/bin/iconbash.bash
 chmod +x /usr/bin/10.6bash.bash
 chmod +x /usr/bin/10.7bash.bash
 chmod +x /usr/bin/10.10bash.bash
+chmod +x /usr/bin/purgeappbash.bash
 chmod +x /usr/bin/checkerbash.bash
 chmod +x /usr/bin/tvbash.bash
 chmod +x /usr/bin/sudoersfix.bash
@@ -674,6 +678,7 @@ chmod 4755 /usr/bin/iconbash.bash
 chmod 4755 /usr/bin/10.6bash.bash
 chmod 4755 /usr/bin/10.7bash.bash
 chmod 4755 /usr/bin/10.10bash.bash
+chmod 4755 /usr/bin/purgeappbash.bash
 chmod 4755 /usr/bin/checker.bash
 chmod 4755 /usr/bin/timemachinebash.bash
 chmod 4755 /usr/bin/websharingbash.bash
