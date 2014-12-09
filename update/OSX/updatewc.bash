@@ -11,4 +11,3 @@ cd /Applications/PlexConnect/update/OSX
 cp install.bash /usr/bin
 chmod +x /usr/bin/install.bash
 install.bash
-fixuser.bash
