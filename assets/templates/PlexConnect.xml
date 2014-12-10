@@ -2,9 +2,11 @@
 <atv>
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/handlePlexConnectNavbar.js)}}" />
   </head>
   <body>
-    <viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadMenuPage(event)">
+    <viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadMenuPage(event)"
+                           volatile="true" onVolatileReload="reloadNavbar(event);">
       <navigation currentIndex="{{VAL($showplaylists:0:False=0|True=1)}}">
       
         <navigationItem id="Playlists">

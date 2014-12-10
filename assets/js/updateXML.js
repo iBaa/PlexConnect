@@ -1,34 +1,9 @@
-// atv.Document extensions
-if( atv.Document ) {
-  atv.Document.prototype.getElementById = function(id) {
-    var elements = this.evaluateXPath("//*[@id='" + id + "']", this);
-    if ( elements && elements.length > 0 ) {
-        return elements[0];
-    }
-    return undefined;
-  }   
-}
+// Dependency: utils.js
 
-
-// atv.Element extensions
-if( atv.Element ) {
-  atv.Element.prototype.getElementsByTagName = function(tagName) {
-    return this.ownerDocument.evaluateXPath("descendant::" + tagName, this);
-  }
-
-  atv.Element.prototype.getElementByTagName = function(tagName) {
-    var elements = this.getElementsByTagName(tagName);
-    if ( elements && elements.length > 0 ) {
-      return elements[0];
-    }
-    return undefined;
-  }
-}
 
 /*
  * navigation bar - dynamic loading of pages
  */
- 
 var navbarID = null;
 var navbarItemNumber = null;
  
