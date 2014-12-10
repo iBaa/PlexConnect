@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo /usr/bin/ibaa.bash
+sudo /usr/bin/purgesettings.bash
