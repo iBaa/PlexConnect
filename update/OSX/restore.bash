@@ -1,5 +1,7 @@
 #!/bin/bash
 
+stopbash.bash
+
 ## cd to PlexConnect directory
 cd /Applications/PlexConnect
 PlexConnectPath=${PWD}
@@ -53,6 +55,6 @@ echo 'falco953 flow dir not found'
 
 fi
 
-restartbash.bash
+startbash.bash
 
 echo 'All available PlexConnect settings have been restored'
