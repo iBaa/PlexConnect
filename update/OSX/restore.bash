@@ -2,6 +2,9 @@
 
 stopbash.bash
 
+## Wait till PlexConnect saves settings
+sleep 8
+
 ## cd to PlexConnect directory
 cd /Applications/PlexConnect
 PlexConnectPath=${PWD}
