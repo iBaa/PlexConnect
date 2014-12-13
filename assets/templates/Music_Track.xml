@@ -25,7 +25,7 @@
           {{CUT(content:CUT:=CUT|songs=|songs =CUT)}}
             <items>
               <oneLineMenuItem id="{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL())}}&amp;PlexConnect=PlayAudio_plist:Single:{{VAL(ratingKey)}}:0')"
+                                       onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=PlayAudio_plist:Single:{{VAL(ratingKey)}}:0')"
                                        onSelect="atv.loadURL('{{URL()}}&amp;PlexConnect=PlayAudio_plist:Single:{{VAL(ratingKey)}}:0')">
               {{COPY(Track)}}
                 <label>{{VAL(track)}}</label>
