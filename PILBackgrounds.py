@@ -15,7 +15,6 @@ try:
     from PIL import Image
     __isPILinstalled = True
 except ImportError:
-    dprint(__name__, 0, "No PIL/Pillow installation found.")
     __isPILinstalled = False
 
 
