@@ -15,4 +15,8 @@ PlexConnect.log
 
 *.der
 
+*.pyproj
+
+*.sln
+
 /assets/fanartcache/*.jpg
