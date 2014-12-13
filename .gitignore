@@ -19,4 +19,6 @@ PlexConnect.log
 
 *.sln
 
+*.suo
+
 /assets/fanartcache/*.jpg
