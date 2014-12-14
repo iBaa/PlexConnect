@@ -143,7 +143,6 @@ rm /usr/bin/purgeapp.bash
 rm /usr/bin/purgeappbash.bash
 rm /usr/bin/purgesettings.bash
 rm /usr/bin/purgesettingsbash.bash
-rm /usr/bin/purgeapp.bash
 rm /usr/bin/quit.bash
 rm /usr/bin/restorecerts.bash
 rm /usr/bin/restorecertsbash.bash
