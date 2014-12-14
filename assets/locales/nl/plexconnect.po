@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 18:43:27+0000\n"
-"PO-Revision-Date: 2014-07-03 23:15+0000\n"
+"POT-Creation-Date: 2014-11-26 18:56:01+0000\n"
+"PO-Revision-Date: 2014-12-14 12:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nl\n"
@@ -24,6 +24,10 @@ msgid "Actors"
 msgstr "Acteurs"
 
 
+msgid "Albums"
+msgstr ""
+
+
 msgid "All Movies"
 msgstr "Alle films"
 
@@ -37,7 +41,7 @@ msgstr "Alle Series"
 
 
 msgid "All Videos"
-msgstr ""
+msgstr "Alle Video's"
 
 
 msgid "Aperture"
@@ -48,12 +52,20 @@ msgid "Appearance"
 msgstr "Weergave"
 
 
+msgid "Artists"
+msgstr ""
+
+
 msgid "Audio"
 msgstr "Audioversterking %"
 
 
 msgid "Audio Boost %"
 msgstr "Audioversterking %"
+
+
+msgid "Audio Playlist"
+msgstr ""
 
 
 msgid "Audio Track"
@@ -108,16 +120,20 @@ msgid "Camera Model"
 msgstr "Camera Type"
 
 
-msgid "Change All Artwork"
+msgid "Change All Posters"
 msgstr ""
 
 
-msgid "Change Artwork"
-msgstr "Wijzig artwork"
+msgid "Change Fanart"
+msgstr ""
+
+
+msgid "Change Poster"
+msgstr ""
 
 
 msgid "Channel Search"
-msgstr ""
+msgstr "Zoeken"
 
 
 msgid "Channel View"
@@ -134,6 +150,10 @@ msgstr "Positie Klok"
 
 msgid "Collections"
 msgstr "Verzamelingen"
+
+
+msgid "Decade"
+msgstr ""
 
 
 msgid "Decades"
@@ -240,6 +260,10 @@ msgid "More..."
 msgstr "Meer..."
 
 
+msgid "Movie Fanart"
+msgstr ""
+
+
 msgid "Movie Navigation Bar"
 msgstr "Navigatiebalk Film"
 
@@ -254,6 +278,18 @@ msgstr "Weergave Film"
 
 msgid "Movies"
 msgstr "Films"
+
+
+msgid "Music Navigation Bar"
+msgstr ""
+
+
+msgid "Music Options"
+msgstr ""
+
+
+msgid "Music View"
+msgstr ""
 
 
 msgid "MyPlex Password"
@@ -272,12 +308,20 @@ msgid "MyPlex Username"
 msgstr "MyPlex Gebruikersnaam"
 
 
+msgid "Navigation Bar"
+msgstr ""
+
+
 msgid "No Plex Channels Available"
 msgstr "Geen Plex kanalen beschikbaar"
 
 
 msgid "No Plex Library Sections Available"
 msgstr "Geen Plex bibliotheeksecties beschikbaar"
+
+
+msgid "No Plex Playlists Available"
+msgstr ""
 
 
 msgid "No Seasons"
@@ -300,12 +344,20 @@ msgid "None"
 msgstr "Geen"
 
 
+msgid "Now Playing"
+msgstr ""
+
+
 msgid "On Deck"
 msgstr "Actueel"
 
 
 msgid "Overscan Adjust"
 msgstr "Overscan aanpassen"
+
+
+msgid "PIL/Pillow not installed"
+msgstr ""
 
 
 msgid "Photo"
@@ -318,6 +370,10 @@ msgstr ""
 
 msgid "Play"
 msgstr "Afspelen"
+
+
+msgid "Playlists"
+msgstr ""
 
 
 msgid "Plex Channels"
@@ -334,6 +390,14 @@ msgstr "Plex Media Server"
 
 msgid "Plex Media Server: No Items Available"
 msgstr "Plex Media Server: Geen items beschikbaar"
+
+
+msgid "Plex Media Server: No Tracks Available"
+msgstr ""
+
+
+msgid "Plex Playlists"
+msgstr ""
 
 
 msgid "PlexConnect"
@@ -388,8 +452,16 @@ msgid "Season View"
 msgstr "Op seizoen"
 
 
-msgid "Select Artwork"
-msgstr "Kies artwork"
+msgid "Select Fanart"
+msgstr ""
+
+
+msgid "Select Poster"
+msgstr ""
+
+
+msgid "Select Posters"
+msgstr ""
 
 
 msgid "Select Tracks"
@@ -416,12 +488,24 @@ msgid "Show Photos"
 msgstr "Toon foto's"
 
 
+msgid "Show Playlists"
+msgstr ""
+
+
+msgid "Show Shared Libraries"
+msgstr ""
+
+
 msgid "Show Unwatched Count"
 msgstr "Toon aantal ongekeken items"
 
 
 msgid "Shows"
 msgstr "Series"
+
+
+msgid "Shuffle"
+msgstr ""
 
 
 msgid "Shutter Speed"
@@ -454,6 +538,10 @@ msgstr "Ondertitel Spoor"
 
 msgid "Synopsis hidden."
 msgstr "Verberg overzicht"
+
+
+msgid "TV Show Fanart"
+msgstr ""
 
 
 msgid "TV Show Navigation Bar"
@@ -520,6 +608,14 @@ msgid "Video Player OSD"
 msgstr "Videospeler OSD"
 
 
+msgid "Video Playlist"
+msgstr ""
+
+
+msgid "Video Playlist: No Items Available"
+msgstr ""
+
+
 msgid "View Show"
 msgstr "Bekijk serie"
 
@@ -552,10 +648,15 @@ msgid "{0:d} Minutes"
 msgstr "{0:d} Minuten"
 
 
+msgid "{0:d}:{1:0>2d}"
+msgstr ""
+
+
 msgid "{0:d}hr {1:d}min"
 msgstr "{0:d}Uur {1:d}min"
 
 
 msgid "{0} unwatched"
 msgstr "{0} unwatched"
+
 

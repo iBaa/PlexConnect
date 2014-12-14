@@ -2,18 +2,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 18:43:27+0000\n"
-"PO-Revision-Date: 2014-07-03 23:15+0000\n"
+"POT-Creation-Date: 2014-11-26 18:56:01+0000\n"
+"PO-Revision-Date: 2014-12-14 12:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: da\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 ""
 
 msgid "ATV firmware version 5.1 or higher required. Please think about updating."
-msgstr "ATV firmware version 5.1 eller nyere kræves. Venligst overvej at opdatere.."
+msgstr "Vaaditaan firmware versio 5.1 tai uudempi."
 
 
 msgid "Actor View"
@@ -24,12 +24,16 @@ msgid "Actors"
 msgstr ""
 
 
+msgid "Albums"
+msgstr ""
+
+
 msgid "All Movies"
 msgstr ""
 
 
 msgid "All Photos"
-msgstr "Alle Billeder"
+msgstr "Kaikki kuvat"
 
 
 msgid "All Shows"
@@ -41,10 +45,14 @@ msgstr ""
 
 
 msgid "Aperture"
-msgstr "Aperture"
+msgstr "Aukko"
 
 
 msgid "Appearance"
+msgstr ""
+
+
+msgid "Artists"
 msgstr ""
 
 
@@ -56,8 +64,12 @@ msgid "Audio Boost %"
 msgstr ""
 
 
+msgid "Audio Playlist"
+msgstr ""
+
+
 msgid "Audio Track"
-msgstr "Lydspor"
+msgstr "Ääniraita"
 
 
 msgid "Audio/Subs"
@@ -81,11 +93,11 @@ msgstr ""
 
 
 msgid "By First Letter"
-msgstr ""
+msgstr "Ensimmäisen kirjaimen mukaan"
 
 
 msgid "By Folder"
-msgstr ""
+msgstr "Kansion mukaan"
 
 
 msgid "By Rating"
@@ -97,22 +109,26 @@ msgstr ""
 
 
 msgid "By Year"
-msgstr ""
+msgstr "Vuoden mukaan"
 
 
 msgid "Camera Make"
-msgstr ""
+msgstr "Kamera"
 
 
 msgid "Camera Model"
+msgstr "Kameran malli"
+
+
+msgid "Change All Posters"
 msgstr ""
 
 
-msgid "Change All Artwork"
+msgid "Change Fanart"
 msgstr ""
 
 
-msgid "Change Artwork"
+msgid "Change Poster"
 msgstr ""
 
 
@@ -133,6 +149,10 @@ msgstr ""
 
 
 msgid "Collections"
+msgstr ""
+
+
+msgid "Decade"
 msgstr ""
 
 
@@ -161,7 +181,7 @@ msgstr ""
 
 
 msgid "Enter the MyPlex password for {0}."
-msgstr ""
+msgstr "Anna MyPlex salasana tunnukselle {0}."
 
 
 msgid "Episodes"
@@ -169,7 +189,7 @@ msgstr ""
 
 
 msgid "Failed"
-msgstr "Fejlet"
+msgstr ""
 
 
 msgid "Flatten Season"
@@ -181,11 +201,11 @@ msgstr ""
 
 
 msgid "Genre"
-msgstr ""
+msgstr "Tyylilaji"
 
 
 msgid "Genres"
-msgstr ""
+msgstr "Tyylilajit"
 
 
 msgid "Home Video Options"
@@ -201,15 +221,15 @@ msgstr ""
 
 
 msgid "Homepage"
-msgstr ""
+msgstr "Kotisivu"
 
 
 msgid "ISO"
-msgstr ""
+msgstr "ISO"
 
 
 msgid "Length"
-msgstr ""
+msgstr "Kesto"
 
 
 msgid "Lens"
@@ -217,7 +237,7 @@ msgstr ""
 
 
 msgid "Library"
-msgstr ""
+msgstr "Kirjasto"
 
 
 msgid "Library View"
@@ -225,11 +245,11 @@ msgstr ""
 
 
 msgid "Mark as Unwatched"
-msgstr "Marker som ikke set"
+msgstr ""
 
 
 msgid "Mark as Watched"
-msgstr "Marker som set"
+msgstr ""
 
 
 msgid "More"
@@ -237,6 +257,10 @@ msgstr ""
 
 
 msgid "More..."
+msgstr ""
+
+
+msgid "Movie Fanart"
 msgstr ""
 
 
@@ -256,36 +280,56 @@ msgid "Movies"
 msgstr ""
 
 
+msgid "Music Navigation Bar"
+msgstr ""
+
+
+msgid "Music Options"
+msgstr ""
+
+
+msgid "Music View"
+msgstr ""
+
+
 msgid "MyPlex Password"
-msgstr "MyPlex Kodeord"
+msgstr ""
 
 
 msgid "MyPlex Sign In"
-msgstr "MyPlex Log på"
+msgstr "MyPlex kirjaudu"
 
 
 msgid "MyPlex Sign Out"
-msgstr "MyPlex Log af"
+msgstr "MyPlex Kirjaudu ulos"
 
 
 msgid "MyPlex Username"
-msgstr "MyPlex Brugernavn"
+msgstr "MyPlex Käyttäjätunnus"
+
+
+msgid "Navigation Bar"
+msgstr ""
 
 
 msgid "No Plex Channels Available"
-msgstr "MyPlex Tilgængelig Kanaler"
+msgstr "Plex kanavia ei saatavilla"
 
 
 msgid "No Plex Library Sections Available"
+msgstr "Plex kirjastoja ei saatavilla"
+
+
+msgid "No Plex Playlists Available"
 msgstr ""
 
 
 msgid "No Seasons"
-msgstr ""
+msgstr "Ei kausia"
 
 
 msgid "No Unwatched Shows"
-msgstr ""
+msgstr "Ei katsomattomia videoita"
 
 
 msgid "No Unwatched Shows."
@@ -297,7 +341,11 @@ msgstr ""
 
 
 msgid "None"
-msgstr "Ingen"
+msgstr "Ei mitään"
+
+
+msgid "Now Playing"
+msgstr ""
 
 
 msgid "On Deck"
@@ -305,6 +353,10 @@ msgstr ""
 
 
 msgid "Overscan Adjust"
+msgstr ""
+
+
+msgid "PIL/Pillow not installed"
 msgstr ""
 
 
@@ -317,7 +369,11 @@ msgstr ""
 
 
 msgid "Play"
-msgstr "Afspil"
+msgstr "Toista"
+
+
+msgid "Playlists"
+msgstr ""
 
 
 msgid "Plex Channels"
@@ -333,6 +389,14 @@ msgstr ""
 
 
 msgid "Plex Media Server: No Items Available"
+msgstr ""
+
+
+msgid "Plex Media Server: No Tracks Available"
+msgstr ""
+
+
+msgid "Plex Playlists"
 msgstr ""
 
 
@@ -388,7 +452,15 @@ msgid "Season View"
 msgstr ""
 
 
-msgid "Select Artwork"
+msgid "Select Fanart"
+msgstr ""
+
+
+msgid "Select Poster"
+msgstr ""
+
+
+msgid "Select Posters"
 msgstr ""
 
 
@@ -416,11 +488,23 @@ msgid "Show Photos"
 msgstr ""
 
 
+msgid "Show Playlists"
+msgstr ""
+
+
+msgid "Show Shared Libraries"
+msgstr ""
+
+
 msgid "Show Unwatched Count"
 msgstr ""
 
 
 msgid "Shows"
+msgstr ""
+
+
+msgid "Shuffle"
 msgstr ""
 
 
@@ -445,7 +529,7 @@ msgstr ""
 
 
 msgid "Subtitle Size %"
-msgstr ""
+msgstr "Tekstityksen koko %"
 
 
 msgid "Subtitle Track"
@@ -456,12 +540,16 @@ msgid "Synopsis hidden."
 msgstr ""
 
 
+msgid "TV Show Fanart"
+msgstr ""
+
+
 msgid "TV Show Navigation Bar"
 msgstr ""
 
 
 msgid "TV Show Options"
-msgstr ""
+msgstr "TV-sarjan asetukset"
 
 
 msgid "TV Show View"
@@ -473,7 +561,7 @@ msgstr ""
 
 
 msgid "Time Format"
-msgstr ""
+msgstr "Ajan muoto"
 
 
 msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
@@ -501,7 +589,7 @@ msgstr ""
 
 
 msgid "Unwatched"
-msgstr "Ikke Set"
+msgstr ""
 
 
 msgid "Unwatched Synopsis"
@@ -513,10 +601,18 @@ msgstr ""
 
 
 msgid "Video"
-msgstr "Video"
+msgstr ""
 
 
 msgid "Video Player OSD"
+msgstr ""
+
+
+msgid "Video Playlist"
+msgstr ""
+
+
+msgid "Video Playlist: No Items Available"
 msgstr ""
 
 
@@ -529,7 +625,7 @@ msgstr ""
 
 
 msgid "Writers"
-msgstr "Forfatter"
+msgstr ""
 
 
 msgid "Year"
@@ -552,10 +648,15 @@ msgid "{0:d} Minutes"
 msgstr ""
 
 
+msgid "{0:d}:{1:0>2d}"
+msgstr ""
+
+
 msgid "{0:d}hr {1:d}min"
 msgstr ""
 
 
 msgid "{0} unwatched"
 msgstr ""
+
 
