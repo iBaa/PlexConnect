@@ -7,7 +7,7 @@ stop.bash
 sleep 3
 
 ## Remove OpenPlex & WebConnect scripts & folders
-rm /usr/local/git/OP
+rm -Rf /usr/local/git/OP
 rm /Library/Launchdaemons/com.plex.plexconnect.bash.plist
 rm /Library/WebServer/CGI-Executables/bash.cgi
 rm /Library/WebServer/CGI-Executables/ios.cgi
@@ -153,7 +153,7 @@ rm /usr/bin/restorecerts.bash
 rm /usr/bin/restorecertsbash.bash
 rm /usr/bin/wcdefault.bash
 rm /usr/bin/wcdefaultbash.bash
-rm /usr/bin/wcwcinstaller.bash
+rm /usr/bin/wcinstaller.bash
 rm /usr/bin/wcinstallerbash.bash
 rm /usr/bin/wcios.bash
 rm /usr/bin/wciosbash.bash
