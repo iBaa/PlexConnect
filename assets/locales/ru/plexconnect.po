@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 18:43:27+0000\n"
-"PO-Revision-Date: 2014-07-03 23:15+0000\n"
+"POT-Creation-Date: 2014-11-26 18:56:01+0000\n"
+"PO-Revision-Date: 2014-12-14 12:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ru\n"
@@ -22,6 +22,10 @@ msgstr "Просмотр актёров"
 
 msgid "Actors"
 msgstr "Актеры"
+
+
+msgid "Albums"
+msgstr "Альбомы"
 
 
 msgid "All Movies"
@@ -48,12 +52,20 @@ msgid "Appearance"
 msgstr "Внешний вид"
 
 
+msgid "Artists"
+msgstr "Артисты"
+
+
 msgid "Audio"
 msgstr "Звук"
 
 
 msgid "Audio Boost %"
 msgstr "Усиление звука %"
+
+
+msgid "Audio Playlist"
+msgstr "Аудио плейлист"
 
 
 msgid "Audio Track"
@@ -108,12 +120,16 @@ msgid "Camera Model"
 msgstr "Модель камеры"
 
 
-msgid "Change All Artwork"
-msgstr "Изменить все иллюстрации"
+msgid "Change All Posters"
+msgstr "Сменить все обложки"
 
 
-msgid "Change Artwork"
-msgstr "Изменить иллюстрацию"
+msgid "Change Fanart"
+msgstr "Сменить Фон"
+
+
+msgid "Change Poster"
+msgstr "Сменить обложку"
 
 
 msgid "Channel Search"
@@ -134,6 +150,10 @@ msgstr "Позиция часов"
 
 msgid "Collections"
 msgstr "Коллекции"
+
+
+msgid "Decade"
+msgstr "Декада"
 
 
 msgid "Decades"
@@ -240,6 +260,10 @@ msgid "More..."
 msgstr "Еще..."
 
 
+msgid "Movie Fanart"
+msgstr "Фон фильма"
+
+
 msgid "Movie Navigation Bar"
 msgstr "Панель навигации по фильмам"
 
@@ -254,6 +278,18 @@ msgstr "Просмотр фильмов"
 
 msgid "Movies"
 msgstr "Фильмы"
+
+
+msgid "Music Navigation Bar"
+msgstr "Навигация по музыке"
+
+
+msgid "Music Options"
+msgstr "Настройки музыки"
+
+
+msgid "Music View"
+msgstr "Просмотр музыки"
 
 
 msgid "MyPlex Password"
@@ -272,12 +308,20 @@ msgid "MyPlex Username"
 msgstr "MyPlex Логин"
 
 
+msgid "Navigation Bar"
+msgstr "Панель навигации"
+
+
 msgid "No Plex Channels Available"
 msgstr "Нет доступных каналов Plex"
 
 
 msgid "No Plex Library Sections Available"
 msgstr "Нет доступных разделов библиотеки Plex"
+
+
+msgid "No Plex Playlists Available"
+msgstr "Нет доступных плейлистов"
 
 
 msgid "No Seasons"
@@ -300,12 +344,20 @@ msgid "None"
 msgstr "Пусто"
 
 
+msgid "Now Playing"
+msgstr "Сейчас воспроизводится"
+
+
 msgid "On Deck"
 msgstr "На главной"
 
 
 msgid "Overscan Adjust"
 msgstr "Настройка развертки"
+
+
+msgid "PIL/Pillow not installed"
+msgstr "PIL/Pillow не установлен"
 
 
 msgid "Photo"
@@ -318,6 +370,10 @@ msgstr "Действие фото транскодера"
 
 msgid "Play"
 msgstr "Воспроизвести"
+
+
+msgid "Playlists"
+msgstr "Плейлисты"
 
 
 msgid "Plex Channels"
@@ -334,6 +390,14 @@ msgstr "Plex Media Server"
 
 msgid "Plex Media Server: No Items Available"
 msgstr "Plex Media Server: Нет доступных дополнений."
+
+
+msgid "Plex Media Server: No Tracks Available"
+msgstr "Plex Media Server: Нет доступных треков"
+
+
+msgid "Plex Playlists"
+msgstr "Плейлисты Plex"
 
 
 msgid "PlexConnect"
@@ -388,8 +452,16 @@ msgid "Season View"
 msgstr "Просмотр сезона"
 
 
-msgid "Select Artwork"
-msgstr "Выбрать иллюстрацию"
+msgid "Select Fanart"
+msgstr "Выбрать фон"
+
+
+msgid "Select Poster"
+msgstr "Выбрать обложку"
+
+
+msgid "Select Posters"
+msgstr "Выбрать обложки"
 
 
 msgid "Select Tracks"
@@ -416,12 +488,24 @@ msgid "Show Photos"
 msgstr " Просмотр Фотографий"
 
 
+msgid "Show Playlists"
+msgstr "Показать плейлисты"
+
+
+msgid "Show Shared Libraries"
+msgstr "Показать общие библиотеки"
+
+
 msgid "Show Unwatched Count"
 msgstr "Показать количество непросмотренных"
 
 
 msgid "Shows"
 msgstr "Сериалы"
+
+
+msgid "Shuffle"
+msgstr "Перемешать"
 
 
 msgid "Shutter Speed"
@@ -454,6 +538,10 @@ msgstr "Дорожка субтитров"
 
 msgid "Synopsis hidden."
 msgstr "Краткий обзор скрыт."
+
+
+msgid "TV Show Fanart"
+msgstr "Фон сериалов"
 
 
 msgid "TV Show Navigation Bar"
@@ -505,7 +593,7 @@ msgstr "Непросмотренные"
 
 
 msgid "Unwatched Synopsis"
-msgstr "Непросмотренные обзоры"
+msgstr "Непросмотренные краткие обзоры"
 
 
 msgid "Version"
@@ -518,6 +606,14 @@ msgstr "Видео"
 
 msgid "Video Player OSD"
 msgstr "Экранный видео плеер"
+
+
+msgid "Video Playlist"
+msgstr "Видео плейлист"
+
+
+msgid "Video Playlist: No Items Available"
+msgstr "Видео плейлист: Нет доступных объектов"
 
 
 msgid "View Show"
@@ -552,10 +648,15 @@ msgid "{0:d} Minutes"
 msgstr "{0:d} минут "
 
 
+msgid "{0:d}:{1:0>2d}"
+msgstr "{0:d}{1:0>2d}"
+
+
 msgid "{0:d}hr {1:d}min"
 msgstr "{0:d}ч {1:d}мин"
 
 
 msgid "{0} unwatched"
 msgstr "{0} непросмотренных"
+
 

@@ -1,34 +1,9 @@
-// atv.Document extensions
-if( atv.Document ) {
-  atv.Document.prototype.getElementById = function(id) {
-    var elements = this.evaluateXPath("//*[@id='" + id + "']", this);
-    if ( elements && elements.length > 0 ) {
-        return elements[0];
-    }
-    return undefined;
-  }   
-}
+// Dependency: utils.js
 
-
-// atv.Element extensions
-if( atv.Element ) {
-  atv.Element.prototype.getElementsByTagName = function(tagName) {
-    return this.ownerDocument.evaluateXPath("descendant::" + tagName, this);
-  }
-
-  atv.Element.prototype.getElementByTagName = function(tagName) {
-    var elements = this.getElementsByTagName(tagName);
-    if ( elements && elements.length > 0 ) {
-      return elements[0];
-    }
-    return undefined;
-  }
-}
 
 /*
  * navigation bar - dynamic loading of pages
  */
- 
 var navbarID = null;
 var navbarItemNumber = null;
  
@@ -90,13 +65,7 @@ function loadMenuPages(url, event)
  */
 function updatePage(url)
 {
-  // add UDID
-  if (url.indexOf("{{URL(/)}}")!=-1)
-  {
-    url = url + "&PlexConnectUDID=" + atv.device.udid;
-  }
-  
-  // read new XML
+    // read new XML
 	if (navbarItemNumber == '1') // First navbar item is a special case
 	{
 		atv.loadAndSwapURL(url);
@@ -115,6 +84,11 @@ function updatePage(url)
 			}
 		};
 	};
+    // add UDID
+    if (url.indexOf("{{URL(/)}}")!=-1)
+    {
+        url = url + "&PlexConnectUDID=" + atv.device.udid;
+    }
   req.open('GET', url, false);
   req.send();
 };

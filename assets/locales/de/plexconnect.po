@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 18:43:27+0000\n"
-"PO-Revision-Date: 2014-07-03 23:15+0000\n"
+"POT-Creation-Date: 2014-11-26 18:56:01+0000\n"
+"PO-Revision-Date: 2014-12-14 12:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -22,6 +22,10 @@ msgstr "Darsteller anzeigen"
 
 msgid "Actors"
 msgstr "Schauspieler"
+
+
+msgid "Albums"
+msgstr "Alben"
 
 
 msgid "All Movies"
@@ -48,12 +52,20 @@ msgid "Appearance"
 msgstr "Aussehen"
 
 
+msgid "Artists"
+msgstr "Künstler"
+
+
 msgid "Audio"
 msgstr "Audio"
 
 
 msgid "Audio Boost %"
 msgstr "Audio-Boost"
+
+
+msgid "Audio Playlist"
+msgstr ""
 
 
 msgid "Audio Track"
@@ -108,12 +120,16 @@ msgid "Camera Model"
 msgstr "Kameramodell"
 
 
-msgid "Change All Artwork"
-msgstr "Alle Illustrationen ändern"
+msgid "Change All Posters"
+msgstr ""
 
 
-msgid "Change Artwork"
-msgstr "Illustration ändern"
+msgid "Change Fanart"
+msgstr ""
+
+
+msgid "Change Poster"
+msgstr ""
 
 
 msgid "Channel Search"
@@ -134,6 +150,10 @@ msgstr "Uhr Position"
 
 msgid "Collections"
 msgstr "Sammlungen"
+
+
+msgid "Decade"
+msgstr ""
 
 
 msgid "Decades"
@@ -240,6 +260,10 @@ msgid "More..."
 msgstr "Mehr..."
 
 
+msgid "Movie Fanart"
+msgstr ""
+
+
 msgid "Movie Navigation Bar"
 msgstr "Film Navigation Bar"
 
@@ -254,6 +278,18 @@ msgstr "Film Übersicht"
 
 msgid "Movies"
 msgstr "Filme"
+
+
+msgid "Music Navigation Bar"
+msgstr "Musik Navigation Bar"
+
+
+msgid "Music Options"
+msgstr ""
+
+
+msgid "Music View"
+msgstr ""
 
 
 msgid "MyPlex Password"
@@ -272,12 +308,20 @@ msgid "MyPlex Username"
 msgstr "MyPlex Benutzername"
 
 
+msgid "Navigation Bar"
+msgstr ""
+
+
 msgid "No Plex Channels Available"
 msgstr "Keine Plex Kanäle verfügbar"
 
 
 msgid "No Plex Library Sections Available"
 msgstr "Keine Plex Bibliotheksbereiche verfügbar"
+
+
+msgid "No Plex Playlists Available"
+msgstr ""
 
 
 msgid "No Seasons"
@@ -300,12 +344,20 @@ msgid "None"
 msgstr "Keine"
 
 
+msgid "Now Playing"
+msgstr ""
+
+
 msgid "On Deck"
 msgstr "Aktuell"
 
 
 msgid "Overscan Adjust"
 msgstr "Auflösung anpassen"
+
+
+msgid "PIL/Pillow not installed"
+msgstr ""
 
 
 msgid "Photo"
@@ -318,6 +370,10 @@ msgstr "Foto Transcoder Aktion"
 
 msgid "Play"
 msgstr "Play"
+
+
+msgid "Playlists"
+msgstr ""
 
 
 msgid "Plex Channels"
@@ -336,12 +392,20 @@ msgid "Plex Media Server: No Items Available"
 msgstr "Plex Media Server: Keine Inhalte verfügbar"
 
 
+msgid "Plex Media Server: No Tracks Available"
+msgstr ""
+
+
+msgid "Plex Playlists"
+msgstr ""
+
+
 msgid "PlexConnect"
 msgstr "PlexConnect"
 
 
 msgid "Poster Titles"
-msgstr ""
+msgstr "Poster-Titel"
 
 
 msgid "Producers"
@@ -388,8 +452,16 @@ msgid "Season View"
 msgstr "Staffel Übersicht"
 
 
-msgid "Select Artwork"
-msgstr "Poster auswählen"
+msgid "Select Fanart"
+msgstr ""
+
+
+msgid "Select Poster"
+msgstr ""
+
+
+msgid "Select Posters"
+msgstr ""
 
 
 msgid "Select Tracks"
@@ -416,12 +488,24 @@ msgid "Show Photos"
 msgstr "Zeige Fotos"
 
 
+msgid "Show Playlists"
+msgstr ""
+
+
+msgid "Show Shared Libraries"
+msgstr ""
+
+
 msgid "Show Unwatched Count"
 msgstr "Zeige Anzahl ungesehen"
 
 
 msgid "Shows"
 msgstr "Serien"
+
+
+msgid "Shuffle"
+msgstr ""
 
 
 msgid "Shutter Speed"
@@ -441,7 +525,7 @@ msgstr "Untertitel"
 
 
 msgid "Subtitle Renderer"
-msgstr ""
+msgstr "Untertitel-Renderer"
 
 
 msgid "Subtitle Size %"
@@ -454,6 +538,10 @@ msgstr "Untertitelspur"
 
 msgid "Synopsis hidden."
 msgstr "Zusammenfassung nicht verfügbar."
+
+
+msgid "TV Show Fanart"
+msgstr ""
 
 
 msgid "TV Show Navigation Bar"
@@ -520,6 +608,14 @@ msgid "Video Player OSD"
 msgstr "Video Player OSD"
 
 
+msgid "Video Playlist"
+msgstr ""
+
+
+msgid "Video Playlist: No Items Available"
+msgstr ""
+
+
 msgid "View Show"
 msgstr "Serie anzeigen"
 
@@ -552,10 +648,15 @@ msgid "{0:d} Minutes"
 msgstr "{0:d} Minuten"
 
 
+msgid "{0:d}:{1:0>2d}"
+msgstr ""
+
+
 msgid "{0:d}hr {1:d}min"
 msgstr "{0:d}Std {1:d}Min"
 
 
 msgid "{0} unwatched"
 msgstr "{0} Ungesehen"
+
 

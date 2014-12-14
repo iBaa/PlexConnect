@@ -2,11 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 18:43:27+0000\n"
-"PO-Revision-Date: 2014-07-03 23:15+0000\n"
+"POT-Creation-Date: 2014-11-26 18:56:01+0000\n"
+"PO-Revision-Date: 2014-12-14 12:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: zh_TW\n"
+"Language: zh_Hant\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,6 +22,10 @@ msgstr "演員檢視"
 
 msgid "Actors"
 msgstr "演員"
+
+
+msgid "Albums"
+msgstr ""
 
 
 msgid "All Movies"
@@ -48,12 +52,20 @@ msgid "Appearance"
 msgstr "外觀"
 
 
+msgid "Artists"
+msgstr ""
+
+
 msgid "Audio"
 msgstr "音訊"
 
 
 msgid "Audio Boost %"
 msgstr "音量增益 %"
+
+
+msgid "Audio Playlist"
+msgstr ""
 
 
 msgid "Audio Track"
@@ -108,12 +120,16 @@ msgid "Camera Model"
 msgstr "相機型號"
 
 
-msgid "Change All Artwork"
-msgstr "變更全部插圖"
+msgid "Change All Posters"
+msgstr ""
 
 
-msgid "Change Artwork"
-msgstr "變更插圖"
+msgid "Change Fanart"
+msgstr ""
+
+
+msgid "Change Poster"
+msgstr ""
 
 
 msgid "Channel Search"
@@ -134,6 +150,10 @@ msgstr "時鐘位置"
 
 msgid "Collections"
 msgstr "系列"
+
+
+msgid "Decade"
+msgstr ""
 
 
 msgid "Decades"
@@ -240,6 +260,10 @@ msgid "More..."
 msgstr "更多⋯"
 
 
+msgid "Movie Fanart"
+msgstr ""
+
+
 msgid "Movie Navigation Bar"
 msgstr "電影主選單"
 
@@ -254,6 +278,18 @@ msgstr "電影檢視"
 
 msgid "Movies"
 msgstr "電影"
+
+
+msgid "Music Navigation Bar"
+msgstr ""
+
+
+msgid "Music Options"
+msgstr ""
+
+
+msgid "Music View"
+msgstr ""
 
 
 msgid "MyPlex Password"
@@ -272,12 +308,20 @@ msgid "MyPlex Username"
 msgstr "MyPlex 帳號"
 
 
+msgid "Navigation Bar"
+msgstr ""
+
+
 msgid "No Plex Channels Available"
 msgstr "沒有可用的 Plex 頻道"
 
 
 msgid "No Plex Library Sections Available"
 msgstr "沒有可用的 Plex 資料庫"
+
+
+msgid "No Plex Playlists Available"
+msgstr ""
 
 
 msgid "No Seasons"
@@ -300,12 +344,20 @@ msgid "None"
 msgstr "無"
 
 
+msgid "Now Playing"
+msgstr ""
+
+
 msgid "On Deck"
 msgstr "首頁"
 
 
 msgid "Overscan Adjust"
 msgstr "Overscan 選項"
+
+
+msgid "PIL/Pillow not installed"
+msgstr ""
 
 
 msgid "Photo"
@@ -318,6 +370,10 @@ msgstr "相片轉碼器行為"
 
 msgid "Play"
 msgstr "播放"
+
+
+msgid "Playlists"
+msgstr ""
 
 
 msgid "Plex Channels"
@@ -334,6 +390,14 @@ msgstr "Plex 媒體伺服器"
 
 msgid "Plex Media Server: No Items Available"
 msgstr "Plex 媒體伺服器: 沒有可用的項目"
+
+
+msgid "Plex Media Server: No Tracks Available"
+msgstr ""
+
+
+msgid "Plex Playlists"
+msgstr ""
 
 
 msgid "PlexConnect"
@@ -388,8 +452,16 @@ msgid "Season View"
 msgstr "季檢視"
 
 
-msgid "Select Artwork"
-msgstr "選擇插圖"
+msgid "Select Fanart"
+msgstr ""
+
+
+msgid "Select Poster"
+msgstr ""
+
+
+msgid "Select Posters"
+msgstr ""
 
 
 msgid "Select Tracks"
@@ -416,12 +488,24 @@ msgid "Show Photos"
 msgstr "顯示照片"
 
 
+msgid "Show Playlists"
+msgstr ""
+
+
+msgid "Show Shared Libraries"
+msgstr ""
+
+
 msgid "Show Unwatched Count"
 msgstr "顯示未觀看的數量"
 
 
 msgid "Shows"
 msgstr "節目"
+
+
+msgid "Shuffle"
+msgstr ""
 
 
 msgid "Shutter Speed"
@@ -441,7 +525,7 @@ msgstr "字幕"
 
 
 msgid "Subtitle Renderer"
-msgstr "字幕宣染器"
+msgstr "字幕渲染器"
 
 
 msgid "Subtitle Size %"
@@ -454,6 +538,10 @@ msgstr "字幕"
 
 msgid "Synopsis hidden."
 msgstr "影片簡介已隱藏。"
+
+
+msgid "TV Show Fanart"
+msgstr ""
 
 
 msgid "TV Show Navigation Bar"
@@ -520,6 +608,14 @@ msgid "Video Player OSD"
 msgstr "播放器外觀"
 
 
+msgid "Video Playlist"
+msgstr ""
+
+
+msgid "Video Playlist: No Items Available"
+msgstr ""
+
+
 msgid "View Show"
 msgstr "檢視電視節目"
 
@@ -552,10 +648,15 @@ msgid "{0:d} Minutes"
 msgstr "{0:d} 分鐘"
 
 
+msgid "{0:d}:{1:0>2d}"
+msgstr ""
+
+
 msgid "{0:d}hr {1:d}min"
 msgstr "{0:d} 小時 {1:d} 分鐘"
 
 
 msgid "{0} unwatched"
 msgstr "{0} 集未觀看"
+
 

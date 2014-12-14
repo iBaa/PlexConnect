@@ -6,22 +6,22 @@ msgstr ""
 "PO-Revision-Date: 2014-12-14 12:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: da\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 ""
 
 msgid "ATV firmware version 5.1 or higher required. Please think about updating."
-msgstr "ATV firmware version 5.1 eller nyere kræves. Venligst overvej at opdatere.."
+msgstr "Vaaditaan firmware versio 5.1 tai uudempi."
 
 
 msgid "Actor View"
-msgstr "Skuespiller visning"
+msgstr ""
 
 
 msgid "Actors"
-msgstr "Skuespillere"
+msgstr ""
 
 
 msgid "Albums"
@@ -29,27 +29,27 @@ msgstr ""
 
 
 msgid "All Movies"
-msgstr "Alle film"
+msgstr ""
 
 
 msgid "All Photos"
-msgstr "Alle Billeder"
+msgstr "Kaikki kuvat"
 
 
 msgid "All Shows"
-msgstr "Alle serier"
+msgstr ""
 
 
 msgid "All Videos"
-msgstr "Alle Videoer"
+msgstr ""
 
 
 msgid "Aperture"
-msgstr "Aperture"
+msgstr "Aukko"
 
 
 msgid "Appearance"
-msgstr "Udseende"
+msgstr ""
 
 
 msgid "Artists"
@@ -57,11 +57,11 @@ msgstr ""
 
 
 msgid "Audio"
-msgstr "Lyd"
+msgstr ""
 
 
 msgid "Audio Boost %"
-msgstr "Lyd boost %"
+msgstr ""
 
 
 msgid "Audio Playlist"
@@ -69,55 +69,55 @@ msgstr ""
 
 
 msgid "Audio Track"
-msgstr "Lydspor"
+msgstr "Ääniraita"
 
 
 msgid "Audio/Subs"
-msgstr "Lyd/Tekst"
+msgstr ""
 
 
 msgid "Authors"
-msgstr "Forfattere"
+msgstr ""
 
 
 msgid "By Collection"
-msgstr "Efter samling"
+msgstr ""
 
 
 msgid "By Content Rating"
-msgstr "Efter indholdsvurdering"
+msgstr ""
 
 
 msgid "By Country"
-msgstr "Efter land"
+msgstr ""
 
 
 msgid "By First Letter"
-msgstr "Efter første bogstav"
+msgstr "Ensimmäisen kirjaimen mukaan"
 
 
 msgid "By Folder"
-msgstr "Efter folder"
+msgstr "Kansion mukaan"
 
 
 msgid "By Rating"
-msgstr "Efter vurdering"
+msgstr ""
 
 
 msgid "By Resolution"
-msgstr "Efter opløsning"
+msgstr ""
 
 
 msgid "By Year"
-msgstr "Efter år"
+msgstr "Vuoden mukaan"
 
 
 msgid "Camera Make"
-msgstr "Kamera producent"
+msgstr "Kamera"
 
 
 msgid "Camera Model"
-msgstr "Kamera model"
+msgstr "Kameran malli"
 
 
 msgid "Change All Posters"
@@ -133,23 +133,23 @@ msgstr ""
 
 
 msgid "Channel Search"
-msgstr "Kanal søgning"
+msgstr ""
 
 
 msgid "Channel View"
-msgstr "Kanal visning"
+msgstr ""
 
 
 msgid "Channels"
-msgstr "Kanaler"
+msgstr ""
 
 
 msgid "Clock Position"
-msgstr "Ur position"
+msgstr ""
 
 
 msgid "Collections"
-msgstr "Samlinger"
+msgstr ""
 
 
 msgid "Decade"
@@ -157,71 +157,71 @@ msgstr ""
 
 
 msgid "Decades"
-msgstr "Årtier"
+msgstr ""
 
 
 msgid "Details"
-msgstr "Detaljer"
+msgstr ""
 
 
 msgid "Director"
-msgstr "Instruktør"
+msgstr ""
 
 
 msgid "Directors"
-msgstr "Instruktører"
+msgstr ""
 
 
 msgid "Discover"
-msgstr "Opdag"
+msgstr ""
 
 
 msgid "Duration Format"
-msgstr "Varighed format"
+msgstr ""
 
 
 msgid "Enter the MyPlex password for {0}."
-msgstr "Indtast MyPlex kode for {0}."
+msgstr "Anna MyPlex salasana tunnukselle {0}."
 
 
 msgid "Episodes"
-msgstr "Episoder"
+msgstr ""
 
 
 msgid "Failed"
-msgstr "Fejlet"
+msgstr ""
 
 
 msgid "Flatten Season"
-msgstr "Udjævn sæson"
+msgstr ""
 
 
 msgid "Forum"
-msgstr "Forum"
+msgstr ""
 
 
 msgid "Genre"
-msgstr "Genre"
+msgstr "Tyylilaji"
 
 
 msgid "Genres"
-msgstr "Genrer"
+msgstr "Tyylilajit"
 
 
 msgid "Home Video Options"
-msgstr "Hjemmevideo indstillinger"
+msgstr ""
 
 
 msgid "Home Video View"
-msgstr "Hjemmevideo visning"
+msgstr ""
 
 
 msgid "Home Videos Navigation Bar"
-msgstr "Hjemmevideo Navigationsbjælke"
+msgstr ""
 
 
 msgid "Homepage"
-msgstr "Hjemmeside"
+msgstr "Kotisivu"
 
 
 msgid "ISO"
@@ -229,35 +229,35 @@ msgstr "ISO"
 
 
 msgid "Length"
-msgstr "Længde"
+msgstr "Kesto"
 
 
 msgid "Lens"
-msgstr "Optik"
+msgstr ""
 
 
 msgid "Library"
-msgstr "Bibliotek"
+msgstr "Kirjasto"
 
 
 msgid "Library View"
-msgstr "Bibliotek visning"
+msgstr ""
 
 
 msgid "Mark as Unwatched"
-msgstr "Marker som ikke set"
+msgstr ""
 
 
 msgid "Mark as Watched"
-msgstr "Marker som set"
+msgstr ""
 
 
 msgid "More"
-msgstr "Mere"
+msgstr ""
 
 
 msgid "More..."
-msgstr "Mere..."
+msgstr ""
 
 
 msgid "Movie Fanart"
@@ -265,19 +265,19 @@ msgstr ""
 
 
 msgid "Movie Navigation Bar"
-msgstr "Film navigationsbjælke"
+msgstr ""
 
 
 msgid "Movie Options"
-msgstr "Film indstillinger"
+msgstr ""
 
 
 msgid "Movie View"
-msgstr "Film visning"
+msgstr ""
 
 
 msgid "Movies"
-msgstr "Film"
+msgstr ""
 
 
 msgid "Music Navigation Bar"
@@ -293,19 +293,19 @@ msgstr ""
 
 
 msgid "MyPlex Password"
-msgstr "MyPlex Kodeord"
+msgstr ""
 
 
 msgid "MyPlex Sign In"
-msgstr "MyPlex Log på"
+msgstr "MyPlex kirjaudu"
 
 
 msgid "MyPlex Sign Out"
-msgstr "MyPlex Log af"
+msgstr "MyPlex Kirjaudu ulos"
 
 
 msgid "MyPlex Username"
-msgstr "MyPlex Brugernavn"
+msgstr "MyPlex Käyttäjätunnus"
 
 
 msgid "Navigation Bar"
@@ -313,11 +313,11 @@ msgstr ""
 
 
 msgid "No Plex Channels Available"
-msgstr "Ingen Plex Kanaler Tilgængelig"
+msgstr "Plex kanavia ei saatavilla"
 
 
 msgid "No Plex Library Sections Available"
-msgstr "Ingen Plex biblioteker tilgængelige"
+msgstr "Plex kirjastoja ei saatavilla"
 
 
 msgid "No Plex Playlists Available"
@@ -325,23 +325,23 @@ msgstr ""
 
 
 msgid "No Seasons"
-msgstr "Ingen sæsonner"
+msgstr "Ei kausia"
 
 
 msgid "No Unwatched Shows"
-msgstr "Ingen usete serier"
+msgstr "Ei katsomattomia videoita"
 
 
 msgid "No Unwatched Shows."
-msgstr "Ingen usete serier."
+msgstr ""
 
 
 msgid "No episodes"
-msgstr "Ingen episoder"
+msgstr ""
 
 
 msgid "None"
-msgstr "Ingen"
+msgstr "Ei mitään"
 
 
 msgid "Now Playing"
@@ -349,11 +349,11 @@ msgstr ""
 
 
 msgid "On Deck"
-msgstr "På hylden"
+msgstr ""
 
 
 msgid "Overscan Adjust"
-msgstr "Overscan justering"
+msgstr ""
 
 
 msgid "PIL/Pillow not installed"
@@ -361,15 +361,15 @@ msgstr ""
 
 
 msgid "Photo"
-msgstr "Foto"
+msgstr ""
 
 
 msgid "Photo Transcoder Action"
-msgstr "Foto Transkoder handling"
+msgstr ""
 
 
 msgid "Play"
-msgstr "Afspil"
+msgstr "Toista"
 
 
 msgid "Playlists"
@@ -377,19 +377,19 @@ msgstr ""
 
 
 msgid "Plex Channels"
-msgstr "Plex kanaler"
+msgstr ""
 
 
 msgid "Plex Library"
-msgstr "Plex bibliotek"
+msgstr ""
 
 
 msgid "Plex Media Server"
-msgstr "Plex Media Server"
+msgstr ""
 
 
 msgid "Plex Media Server: No Items Available"
-msgstr "Plex Medie Server: Ingen emner tilgængelige"
+msgstr ""
 
 
 msgid "Plex Media Server: No Tracks Available"
@@ -401,55 +401,55 @@ msgstr ""
 
 
 msgid "PlexConnect"
-msgstr "PlexConnect"
+msgstr ""
 
 
 msgid "Poster Titles"
-msgstr "Plakat titler"
+msgstr ""
 
 
 msgid "Producers"
-msgstr "Producenter"
+msgstr ""
 
 
 msgid "Recently Added"
-msgstr "Nyligt tilføjet"
+msgstr ""
 
 
 msgid "Recently Aired"
-msgstr "Nyligt udsendt"
+msgstr ""
 
 
 msgid "Recently Released"
-msgstr "Nyligt udgivet"
+msgstr ""
 
 
 msgid "Recently Viewed"
-msgstr "Nyligt vist"
+msgstr ""
 
 
 msgid "Recently Viewed Episodes"
-msgstr "Nyligt viste episoder"
+msgstr ""
 
 
 msgid "Recently Viewed Shows"
-msgstr "Nyligt viste serier"
+msgstr ""
 
 
 msgid "Refresh"
-msgstr "Genopfrisk"
+msgstr ""
 
 
 msgid "Remote Bitrate"
-msgstr "Fjern bitrate"
+msgstr ""
 
 
 msgid "Search"
-msgstr "Søg"
+msgstr ""
 
 
 msgid "Season View"
-msgstr "Sæson visning"
+msgstr ""
 
 
 msgid "Select Fanart"
@@ -465,27 +465,27 @@ msgstr ""
 
 
 msgid "Select Tracks"
-msgstr "Vælg spor"
+msgstr ""
 
 
 msgid "Settings"
-msgstr "Indstillinger"
+msgstr ""
 
 
 msgid "Shared Libraries"
-msgstr "Delte biblioteker"
+msgstr ""
 
 
 msgid "Show Clock"
-msgstr "Vis ur"
+msgstr ""
 
 
 msgid "Show End Time"
-msgstr "Vis slut tid"
+msgstr ""
 
 
 msgid "Show Photos"
-msgstr "Vis billeder"
+msgstr ""
 
 
 msgid "Show Playlists"
@@ -497,11 +497,11 @@ msgstr ""
 
 
 msgid "Show Unwatched Count"
-msgstr "Vis uset optælling"
+msgstr ""
 
 
 msgid "Shows"
-msgstr "Serier"
+msgstr ""
 
 
 msgid "Shuffle"
@@ -509,35 +509,35 @@ msgstr ""
 
 
 msgid "Shutter Speed"
-msgstr "Lukkerhastighed"
+msgstr ""
 
 
 msgid "SlideShow"
-msgstr "Slideshow"
+msgstr ""
 
 
 msgid "Studio"
-msgstr "Studie"
+msgstr ""
 
 
 msgid "Subs"
-msgstr "Tekst"
+msgstr ""
 
 
 msgid "Subtitle Renderer"
-msgstr "Undertekst fremviser"
+msgstr ""
 
 
 msgid "Subtitle Size %"
-msgstr "Undertekst størrelse %"
+msgstr "Tekstityksen koko %"
 
 
 msgid "Subtitle Track"
-msgstr "Undertekst spor"
+msgstr ""
 
 
 msgid "Synopsis hidden."
-msgstr "Synopsis skjult"
+msgstr ""
 
 
 msgid "TV Show Fanart"
@@ -545,67 +545,67 @@ msgstr ""
 
 
 msgid "TV Show Navigation Bar"
-msgstr "TV Serier navigationsbjælke"
+msgstr ""
 
 
 msgid "TV Show Options"
-msgstr "TV serier indstillinger"
+msgstr "TV-sarjan asetukset"
 
 
 msgid "TV Show View"
-msgstr "TV serier visning"
+msgstr ""
 
 
 msgid "TheMovieDB: No Trailer Info available"
-msgstr "TheMovieDB: Ingen trailer info tilgængelig"
+msgstr ""
 
 
 msgid "Time Format"
-msgstr "Tidsformat"
+msgstr "Ajan muoto"
 
 
 msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
-msgstr "For at logge på MyPlex, indtast e-mail, brugernavn eller Plex forum brugernavn."
+msgstr ""
 
 
 msgid "Top Level Options"
-msgstr "Top niveau indstillinger"
+msgstr ""
 
 
 msgid "Trailer"
-msgstr "Forfilm"
+msgstr ""
 
 
 msgid "Transcoder"
-msgstr "Transkoder"
+msgstr ""
 
 
 msgid "Transcoder Action"
-msgstr "Transkoder handling"
+msgstr ""
 
 
 msgid "Transcoder Quality"
-msgstr "Transkoder kvalitet"
+msgstr ""
 
 
 msgid "Unwatched"
-msgstr "Ikke Set"
+msgstr ""
 
 
 msgid "Unwatched Synopsis"
-msgstr "Ikke set synopsis"
+msgstr ""
 
 
 msgid "Version"
-msgstr "Version"
+msgstr ""
 
 
 msgid "Video"
-msgstr "Video"
+msgstr ""
 
 
 msgid "Video Player OSD"
-msgstr "Video afspiller OSD"
+msgstr ""
 
 
 msgid "Video Playlist"
@@ -617,35 +617,35 @@ msgstr ""
 
 
 msgid "View Show"
-msgstr "Vis serie"
+msgstr ""
 
 
 msgid "Wiki/Docs"
-msgstr "Wiki/Doks"
+msgstr ""
 
 
 msgid "Writers"
-msgstr "Forfattere"
+msgstr ""
 
 
 msgid "Year"
-msgstr "År"
+msgstr ""
 
 
 msgid "refreshing"
-msgstr "genopfrisker"
+msgstr ""
 
 
 msgid "remote"
-msgstr "fjern"
+msgstr ""
 
 
 msgid "{0:0d}x{1:02d} {2}"
-msgstr "{0:0d}x{1:02d} {2}"
+msgstr ""
 
 
 msgid "{0:d} Minutes"
-msgstr "{0:d} Minutter"
+msgstr ""
 
 
 msgid "{0:d}:{1:0>2d}"
@@ -653,10 +653,10 @@ msgstr ""
 
 
 msgid "{0:d}hr {1:d}min"
-msgstr "{0:d}T {1:d}min"
+msgstr ""
 
 
 msgid "{0} unwatched"
-msgstr "{0} usete"
+msgstr ""
 
 
