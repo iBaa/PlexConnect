@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 18:43:27+0000\n"
-"PO-Revision-Date: 2014-07-03 23:15+0000\n"
+"POT-Creation-Date: 2014-11-26 18:56:01+0000\n"
+"PO-Revision-Date: 2014-12-14 12:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -22,6 +22,10 @@ msgstr "Visualizar Atores"
 
 msgid "Actors"
 msgstr "Atores"
+
+
+msgid "Albums"
+msgstr ""
 
 
 msgid "All Movies"
@@ -48,12 +52,20 @@ msgid "Appearance"
 msgstr "Aparência"
 
 
+msgid "Artists"
+msgstr ""
+
+
 msgid "Audio"
-msgstr "Som"
+msgstr "Áudio"
 
 
 msgid "Audio Boost %"
-msgstr "Aumento do Som %"
+msgstr "Aumento do Áudio %"
+
+
+msgid "Audio Playlist"
+msgstr ""
 
 
 msgid "Audio Track"
@@ -61,7 +73,7 @@ msgstr "Faixa de Áudio"
 
 
 msgid "Audio/Subs"
-msgstr "Som/Legendas"
+msgstr "Áudio/Legendas"
 
 
 msgid "Authors"
@@ -108,12 +120,16 @@ msgid "Camera Model"
 msgstr "Modelo da Câmera"
 
 
-msgid "Change All Artwork"
-msgstr "Alterar todas as Artworks"
+msgid "Change All Posters"
+msgstr ""
 
 
-msgid "Change Artwork"
-msgstr "Alterar Artwork"
+msgid "Change Fanart"
+msgstr ""
+
+
+msgid "Change Poster"
+msgstr ""
 
 
 msgid "Channel Search"
@@ -134,6 +150,10 @@ msgstr "Posição do Tempo"
 
 msgid "Collections"
 msgstr "Coleções"
+
+
+msgid "Decade"
+msgstr ""
 
 
 msgid "Decades"
@@ -225,7 +245,7 @@ msgstr "Visualizar Biblioteca"
 
 
 msgid "Mark as Unwatched"
-msgstr "Marcar como Não assistido"
+msgstr "Marcar como Não Assistido"
 
 
 msgid "Mark as Watched"
@@ -238,6 +258,10 @@ msgstr "Mais"
 
 msgid "More..."
 msgstr "Mais..."
+
+
+msgid "Movie Fanart"
+msgstr ""
 
 
 msgid "Movie Navigation Bar"
@@ -256,6 +280,18 @@ msgid "Movies"
 msgstr "Filmes"
 
 
+msgid "Music Navigation Bar"
+msgstr ""
+
+
+msgid "Music Options"
+msgstr ""
+
+
+msgid "Music View"
+msgstr ""
+
+
 msgid "MyPlex Password"
 msgstr "MyPlex Senha"
 
@@ -269,15 +305,23 @@ msgstr "MyPlex Logout"
 
 
 msgid "MyPlex Username"
-msgstr "MyPlex Nome do usuário"
+msgstr "MyPlex Nome do Usuário"
+
+
+msgid "Navigation Bar"
+msgstr ""
 
 
 msgid "No Plex Channels Available"
-msgstr "Nenhum Canal Plex disponível"
+msgstr "Nenhum Canal Plex Disponível"
 
 
 msgid "No Plex Library Sections Available"
 msgstr "Nenhuma Seção de Biblioteca Plex Disponível"
+
+
+msgid "No Plex Playlists Available"
+msgstr ""
 
 
 msgid "No Seasons"
@@ -285,11 +329,11 @@ msgstr "Sem Temporadas"
 
 
 msgid "No Unwatched Shows"
-msgstr "Séries não assistidas"
+msgstr "Séries Não Vistas"
 
 
 msgid "No Unwatched Shows."
-msgstr "Séries não assistidas."
+msgstr "Séries Não Vistas."
 
 
 msgid "No episodes"
@@ -297,7 +341,11 @@ msgstr "Sem Episódios"
 
 
 msgid "None"
-msgstr "Nada"
+msgstr "Nenhuma"
+
+
+msgid "Now Playing"
+msgstr ""
 
 
 msgid "On Deck"
@@ -306,6 +354,10 @@ msgstr "Em Progresso"
 
 msgid "Overscan Adjust"
 msgstr "Ajuste"
+
+
+msgid "PIL/Pillow not installed"
+msgstr ""
 
 
 msgid "Photo"
@@ -317,7 +369,11 @@ msgstr "Atividade do Transcoder de Foto"
 
 
 msgid "Play"
-msgstr "Play"
+msgstr "Reproduzir"
+
+
+msgid "Playlists"
+msgstr ""
 
 
 msgid "Plex Channels"
@@ -334,6 +390,14 @@ msgstr "Plex Media Server"
 
 msgid "Plex Media Server: No Items Available"
 msgstr "Plex Media Server: Sem Ítens Disponíveis"
+
+
+msgid "Plex Media Server: No Tracks Available"
+msgstr ""
+
+
+msgid "Plex Playlists"
+msgstr ""
 
 
 msgid "PlexConnect"
@@ -373,7 +437,7 @@ msgstr "Séries Vistas Recentementes"
 
 
 msgid "Refresh"
-msgstr "Reparar"
+msgstr "Recarregar"
 
 
 msgid "Remote Bitrate"
@@ -388,8 +452,16 @@ msgid "Season View"
 msgstr "Visualização da Temporada"
 
 
-msgid "Select Artwork"
-msgstr "Selecione Artwork"
+msgid "Select Fanart"
+msgstr ""
+
+
+msgid "Select Poster"
+msgstr ""
+
+
+msgid "Select Posters"
+msgstr ""
 
 
 msgid "Select Tracks"
@@ -416,12 +488,24 @@ msgid "Show Photos"
 msgstr "Mostrar Fotos"
 
 
+msgid "Show Playlists"
+msgstr ""
+
+
+msgid "Show Shared Libraries"
+msgstr ""
+
+
 msgid "Show Unwatched Count"
-msgstr "Mostrar Contador de não vistos"
+msgstr "Mostrar Contador de Não Vistos"
 
 
 msgid "Shows"
 msgstr "Séries"
+
+
+msgid "Shuffle"
+msgstr ""
 
 
 msgid "Shutter Speed"
@@ -456,6 +540,10 @@ msgid "Synopsis hidden."
 msgstr "Sinopse oculta"
 
 
+msgid "TV Show Fanart"
+msgstr ""
+
+
 msgid "TV Show Navigation Bar"
 msgstr "Barra de Navegação do Seriado"
 
@@ -469,7 +557,7 @@ msgstr "Visualização do Seriado"
 
 
 msgid "TheMovieDB: No Trailer Info available"
-msgstr "TheMovieDB: Informação do Trailer não disponível"
+msgstr "TheMovieDB: Informação do Trailer Indisponível"
 
 
 msgid "Time Format"
@@ -501,11 +589,11 @@ msgstr "Qualidade do Transcode"
 
 
 msgid "Unwatched"
-msgstr "Não visto"
+msgstr "Não Visto"
 
 
 msgid "Unwatched Synopsis"
-msgstr "Sinopses não vistas"
+msgstr "Sinopses Não Vistas"
 
 
 msgid "Version"
@@ -518,6 +606,14 @@ msgstr "Vídeo"
 
 msgid "Video Player OSD"
 msgstr "OSD do Reprodutor"
+
+
+msgid "Video Playlist"
+msgstr ""
+
+
+msgid "Video Playlist: No Items Available"
+msgstr ""
 
 
 msgid "View Show"
@@ -537,7 +633,7 @@ msgstr "Ano"
 
 
 msgid "refreshing"
-msgstr "reparando"
+msgstr "recarregando"
 
 
 msgid "remote"
@@ -552,10 +648,15 @@ msgid "{0:d} Minutes"
 msgstr "{0:d} Minutos"
 
 
+msgid "{0:d}:{1:0>2d}"
+msgstr ""
+
+
 msgid "{0:d}hr {1:d}min"
 msgstr "{0:d}hr {1:d}min"
 
 
 msgid "{0} unwatched"
 msgstr "{0} não visto"
+
 

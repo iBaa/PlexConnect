@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 18:43:27+0000\n"
-"PO-Revision-Date: 2014-07-03 23:15+0000\n"
+"POT-Creation-Date: 2014-11-26 18:56:01+0000\n"
+"PO-Revision-Date: 2014-12-14 12:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -22,6 +22,10 @@ msgstr "Vista de Actores"
 
 msgid "Actors"
 msgstr "Actores"
+
+
+msgid "Albums"
+msgstr ""
 
 
 msgid "All Movies"
@@ -48,12 +52,20 @@ msgid "Appearance"
 msgstr "Aparición"
 
 
+msgid "Artists"
+msgstr ""
+
+
 msgid "Audio"
 msgstr "Sonido"
 
 
 msgid "Audio Boost %"
 msgstr "Amplificar Sonido (%)"
+
+
+msgid "Audio Playlist"
+msgstr ""
 
 
 msgid "Audio Track"
@@ -108,12 +120,16 @@ msgid "Camera Model"
 msgstr "Modelo de la cámara"
 
 
-msgid "Change All Artwork"
+msgid "Change All Posters"
 msgstr ""
 
 
-msgid "Change Artwork"
-msgstr "Cambiar carátula"
+msgid "Change Fanart"
+msgstr ""
+
+
+msgid "Change Poster"
+msgstr ""
 
 
 msgid "Channel Search"
@@ -134,6 +150,10 @@ msgstr "Posición del Reloj"
 
 msgid "Collections"
 msgstr "Colecciones"
+
+
+msgid "Decade"
+msgstr ""
 
 
 msgid "Decades"
@@ -240,6 +260,10 @@ msgid "More..."
 msgstr "Más..."
 
 
+msgid "Movie Fanart"
+msgstr ""
+
+
 msgid "Movie Navigation Bar"
 msgstr "Barra de Navegación de Película"
 
@@ -254,6 +278,18 @@ msgstr "Vista de Película"
 
 msgid "Movies"
 msgstr "Películas"
+
+
+msgid "Music Navigation Bar"
+msgstr ""
+
+
+msgid "Music Options"
+msgstr ""
+
+
+msgid "Music View"
+msgstr ""
 
 
 msgid "MyPlex Password"
@@ -272,11 +308,19 @@ msgid "MyPlex Username"
 msgstr "Usuario MyPlex"
 
 
+msgid "Navigation Bar"
+msgstr ""
+
+
 msgid "No Plex Channels Available"
 msgstr "Ningún Canal Plex disponible"
 
 
 msgid "No Plex Library Sections Available"
+msgstr ""
+
+
+msgid "No Plex Playlists Available"
 msgstr ""
 
 
@@ -300,12 +344,20 @@ msgid "None"
 msgstr "Ninguno"
 
 
+msgid "Now Playing"
+msgstr ""
+
+
 msgid "On Deck"
 msgstr "Empezadas"
 
 
 msgid "Overscan Adjust"
 msgstr "Ajuste Overscan"
+
+
+msgid "PIL/Pillow not installed"
+msgstr ""
 
 
 msgid "Photo"
@@ -318,6 +370,10 @@ msgstr ""
 
 msgid "Play"
 msgstr "Ver"
+
+
+msgid "Playlists"
+msgstr ""
 
 
 msgid "Plex Channels"
@@ -334,6 +390,14 @@ msgstr "Plex Media Server"
 
 msgid "Plex Media Server: No Items Available"
 msgstr "Plex Media Server: No hay elementos disponibles"
+
+
+msgid "Plex Media Server: No Tracks Available"
+msgstr ""
+
+
+msgid "Plex Playlists"
+msgstr ""
 
 
 msgid "PlexConnect"
@@ -388,8 +452,16 @@ msgid "Season View"
 msgstr "Vista de Temporada"
 
 
-msgid "Select Artwork"
-msgstr "Seleccionar carátula"
+msgid "Select Fanart"
+msgstr ""
+
+
+msgid "Select Poster"
+msgstr ""
+
+
+msgid "Select Posters"
+msgstr ""
 
 
 msgid "Select Tracks"
@@ -416,12 +488,24 @@ msgid "Show Photos"
 msgstr "Mostrar Fotos"
 
 
+msgid "Show Playlists"
+msgstr ""
+
+
+msgid "Show Shared Libraries"
+msgstr ""
+
+
 msgid "Show Unwatched Count"
 msgstr "Mostrar Contador de No Vistas"
 
 
 msgid "Shows"
 msgstr "Series"
+
+
+msgid "Shuffle"
+msgstr ""
 
 
 msgid "Shutter Speed"
@@ -454,6 +538,10 @@ msgstr "Pista de subtítulos"
 
 msgid "Synopsis hidden."
 msgstr "Sinopsis oculta"
+
+
+msgid "TV Show Fanart"
+msgstr ""
 
 
 msgid "TV Show Navigation Bar"
@@ -520,6 +608,14 @@ msgid "Video Player OSD"
 msgstr "OSD del Reproductor"
 
 
+msgid "Video Playlist"
+msgstr ""
+
+
+msgid "Video Playlist: No Items Available"
+msgstr ""
+
+
 msgid "View Show"
 msgstr ""
 
@@ -552,10 +648,15 @@ msgid "{0:d} Minutes"
 msgstr "{0:d} Minutos"
 
 
+msgid "{0:d}:{1:0>2d}"
+msgstr ""
+
+
 msgid "{0:d}hr {1:d}min"
 msgstr "{0:d}h {1:d}min"
 
 
 msgid "{0} unwatched"
 msgstr "{0} no visto"
+
 
