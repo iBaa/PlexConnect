@@ -165,6 +165,9 @@ rm -Rf /Applications/PlexConnect
 rm -Rf /Applications/OpenPlex
 rm -Rf /Applications/OpenPlex.app
 
+cp /Applications/PlexConnect/update/OSX/defaultsudoers /etc/sudoers
+chmod 440 /etc/sudoers
+
 killall OpenPlex
 
 ## Explain uninstall has been completed
