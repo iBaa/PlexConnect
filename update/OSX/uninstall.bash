@@ -6,11 +6,13 @@ stop.bash
 ## Wait until plexConnect is unloaded
 sleep 3
 
-## Remove Openconnect and WebConnect scripts
+## Remove OpenPlex & WebConnect scripts & folders
+rm /usr/local/git/OP
 rm /Library/Launchdaemons/com.plex.plexconnect.bash.plist
 rm /Library/WebServer/CGI-Executables/bash.cgi
 rm /Library/WebServer/CGI-Executables/ios.cgi
 rm /Library/WebServer/CGI-Executables/list.cgi
+rm /Library/WebServer/CGI-Executables/openplex.cgi
 rm /usr/bin/createcert.bash
 rm /usr/bin/createimovie.bash 
 rm /usr/bin/createwsj.bash
@@ -86,6 +88,11 @@ rm /usr/bin/xml.bash
 rm /usr/bin/auto.bash
 rm /usr/bin/backup.bash
 rm /usr/bin/backupbash.bash
+rm /usr/bin/ibaa.bash
+rm /usr/bin/falco.bash
+rm /usr/bin/stoffez.bash
+rm /usr/bin/wahlmanj.bash
+rm /usr/bin/brotuser.bash
 rm /usr/bin/brotuserbash.bash
 rm /usr/bin/createautobash.bash
 rm /usr/bin/cyberghost.bash
@@ -98,6 +105,8 @@ rm /usr/bin/icon.bash
 rm /usr/bin/iconbash.bash
 rm /usr/bin/10.6.bash
 rm /usr/bin/10.6bash.bash
+rm /usr/bin/10.7.bash
+rm /usr/bin/10.7bash.bash
 rm /usr/bin/10.10.bash
 rm /usr/bin/10.10bash.bash
 rm /usr/bin/install.bash
@@ -131,6 +140,27 @@ rm /usr/bin/wahlmanjbash.bash
 rm /usr/bin/webconnectbash.bash
 rm /usr/bin/websharingbash.bash
 rm /usr/bin/cyberghostbash.bash
+rm /usr/bin/hairtunes.bash
+rm /usr/bin/muteboot.bash
+rm /usr/bin/unmuteboot.bash
+rm /usr/bin/purgeapp.bash
+rm /usr/bin/purgeappbash.bash
+rm /usr/bin/purgesettings.bash
+rm /usr/bin/purgesettingsbash.bash
+rm /usr/bin/purgeapp.bash
+rm /usr/bin/quit.bash
+rm /usr/bin/restorecerts.bash
+rm /usr/bin/restorecertsbash.bash
+rm /usr/bin/wcdefault.bash
+rm /usr/bin/wcdefaultbash.bash
+rm /usr/bin/wcwcinstaller.bash
+rm /usr/bin/wcinstallerbash.bash
+rm /usr/bin/wcios.bash
+rm /usr/bin/wciosbash.bash
+rm /usr/bin/wclist.bash
+rm /usr/bin/wclistbash.bash
+rm /usr/bin/wcopenplex.bash
+rm /usr/bin/wcopenplexbash.bash
 rm -Rf /Applications/PlexConnect
 rm -Rf /Applications/OpenPlex.app
 
