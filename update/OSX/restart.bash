@@ -20,7 +20,12 @@ sleep 3
 #./PlexConnect_daemon.bash status
 launchctl list | grep com.plex.plexconnect.bash
 
+if [ ! -f /Applications/PlexConnect/PlexConnect.log ]
+then
+echo 'No log present'
+else
 ## Display PlexConnect log
 FILE="/Applications/PlexConnect/PlexConnect.log"
 echo "*** File - $FILE contents ***"
 cat $FILE
+fi
