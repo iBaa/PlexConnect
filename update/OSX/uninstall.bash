@@ -29,8 +29,6 @@ rm /usr/bin/lock.bash
 rm /usr/bin/trash.bash
 rm /usr/bin/webconnect.bash
 rm /usr/bin/updatewc.bash
-rm /usr/bin/pull.bash
-rm /usr/bin/pull2.bash
 rm /usr/bin/pmsscan.bash
 rm /usr/bin/plexweb.bash
 rm /usr/bin/plexwebwan.bash
@@ -82,7 +80,6 @@ rm /usr/bin/wakebash.bash
 rm /usr/bin/tvbash.bash
 rm /usr/bin/timemachinebash.bash
 rm /usr/bin/fixgit.bash
-rm /usr/bin/installwc.bash
 rm /usr/bin/websharing.bash
 rm /usr/bin/xml.bash
 rm /usr/bin/auto.bash
@@ -93,7 +90,6 @@ rm /usr/bin/falco.bash
 rm /usr/bin/stoffez.bash
 rm /usr/bin/wahlmanj.bash
 rm /usr/bin/brotuser.bash
-rm /usr/bin/brotuserbash.bash
 rm /usr/bin/createautobash.bash
 rm /usr/bin/cyberghost.bash
 rm /usr/bin/falcobash.bash
