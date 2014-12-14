@@ -162,6 +162,7 @@ rm /usr/bin/wclistbash.bash
 rm /usr/bin/wcopenplex.bash
 rm /usr/bin/wcopenplexbash.bash
 rm -Rf /Applications/PlexConnect
+rm -Rf /Applications/OpenPlex
 rm -Rf /Applications/OpenPlex.app
 
 killall OpenPlex
