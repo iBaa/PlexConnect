@@ -1,0 +1,662 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Plex Connect\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-11-26 18:56:01+0000\n"
+"PO-Revision-Date: 2014-12-14 12:00+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+""
+
+msgid "ATV firmware version 5.1 or higher required. Please think about updating."
+msgstr "ATV firmware version 5.1 eller nyere kræves. Venligst overvej at opdatere.."
+
+
+msgid "Actor View"
+msgstr "Skuespiller visning"
+
+
+msgid "Actors"
+msgstr "Skuespillere"
+
+
+msgid "Albums"
+msgstr ""
+
+
+msgid "All Movies"
+msgstr "Alle film"
+
+
+msgid "All Photos"
+msgstr "Alle Billeder"
+
+
+msgid "All Shows"
+msgstr "Alle serier"
+
+
+msgid "All Videos"
+msgstr "Alle Videoer"
+
+
+msgid "Aperture"
+msgstr "Aperture"
+
+
+msgid "Appearance"
+msgstr "Udseende"
+
+
+msgid "Artists"
+msgstr ""
+
+
+msgid "Audio"
+msgstr "Lyd"
+
+
+msgid "Audio Boost %"
+msgstr "Lyd boost %"
+
+
+msgid "Audio Playlist"
+msgstr ""
+
+
+msgid "Audio Track"
+msgstr "Lydspor"
+
+
+msgid "Audio/Subs"
+msgstr "Lyd/Tekst"
+
+
+msgid "Authors"
+msgstr "Forfattere"
+
+
+msgid "By Collection"
+msgstr "Efter samling"
+
+
+msgid "By Content Rating"
+msgstr "Efter indholdsvurdering"
+
+
+msgid "By Country"
+msgstr "Efter land"
+
+
+msgid "By First Letter"
+msgstr "Efter første bogstav"
+
+
+msgid "By Folder"
+msgstr "Efter folder"
+
+
+msgid "By Rating"
+msgstr "Efter vurdering"
+
+
+msgid "By Resolution"
+msgstr "Efter opløsning"
+
+
+msgid "By Year"
+msgstr "Efter år"
+
+
+msgid "Camera Make"
+msgstr "Kamera producent"
+
+
+msgid "Camera Model"
+msgstr "Kamera model"
+
+
+msgid "Change All Posters"
+msgstr ""
+
+
+msgid "Change Fanart"
+msgstr ""
+
+
+msgid "Change Poster"
+msgstr ""
+
+
+msgid "Channel Search"
+msgstr "Kanal søgning"
+
+
+msgid "Channel View"
+msgstr "Kanal visning"
+
+
+msgid "Channels"
+msgstr "Kanaler"
+
+
+msgid "Clock Position"
+msgstr "Ur position"
+
+
+msgid "Collections"
+msgstr "Samlinger"
+
+
+msgid "Decade"
+msgstr ""
+
+
+msgid "Decades"
+msgstr "Årtier"
+
+
+msgid "Details"
+msgstr "Detaljer"
+
+
+msgid "Director"
+msgstr "Instruktør"
+
+
+msgid "Directors"
+msgstr "Instruktører"
+
+
+msgid "Discover"
+msgstr "Opdag"
+
+
+msgid "Duration Format"
+msgstr "Varighed format"
+
+
+msgid "Enter the MyPlex password for {0}."
+msgstr "Indtast MyPlex kode for {0}."
+
+
+msgid "Episodes"
+msgstr "Episoder"
+
+
+msgid "Failed"
+msgstr "Fejlet"
+
+
+msgid "Flatten Season"
+msgstr "Udjævn sæson"
+
+
+msgid "Forum"
+msgstr "Forum"
+
+
+msgid "Genre"
+msgstr "Genre"
+
+
+msgid "Genres"
+msgstr "Genrer"
+
+
+msgid "Home Video Options"
+msgstr "Hjemmevideo indstillinger"
+
+
+msgid "Home Video View"
+msgstr "Hjemmevideo visning"
+
+
+msgid "Home Videos Navigation Bar"
+msgstr "Hjemmevideo Navigationsbjælke"
+
+
+msgid "Homepage"
+msgstr "Hjemmeside"
+
+
+msgid "ISO"
+msgstr "ISO"
+
+
+msgid "Length"
+msgstr "Længde"
+
+
+msgid "Lens"
+msgstr "Optik"
+
+
+msgid "Library"
+msgstr "Bibliotek"
+
+
+msgid "Library View"
+msgstr "Bibliotek visning"
+
+
+msgid "Mark as Unwatched"
+msgstr "Marker som ikke set"
+
+
+msgid "Mark as Watched"
+msgstr "Marker som set"
+
+
+msgid "More"
+msgstr "Mere"
+
+
+msgid "More..."
+msgstr "Mere..."
+
+
+msgid "Movie Fanart"
+msgstr ""
+
+
+msgid "Movie Navigation Bar"
+msgstr "Film navigationsbjælke"
+
+
+msgid "Movie Options"
+msgstr "Film indstillinger"
+
+
+msgid "Movie View"
+msgstr "Film visning"
+
+
+msgid "Movies"
+msgstr "Film"
+
+
+msgid "Music Navigation Bar"
+msgstr ""
+
+
+msgid "Music Options"
+msgstr ""
+
+
+msgid "Music View"
+msgstr ""
+
+
+msgid "MyPlex Password"
+msgstr "MyPlex Kodeord"
+
+
+msgid "MyPlex Sign In"
+msgstr "MyPlex Log på"
+
+
+msgid "MyPlex Sign Out"
+msgstr "MyPlex Log af"
+
+
+msgid "MyPlex Username"
+msgstr "MyPlex Brugernavn"
+
+
+msgid "Navigation Bar"
+msgstr ""
+
+
+msgid "No Plex Channels Available"
+msgstr "Ingen Plex Kanaler Tilgængelig"
+
+
+msgid "No Plex Library Sections Available"
+msgstr "Ingen Plex biblioteker tilgængelige"
+
+
+msgid "No Plex Playlists Available"
+msgstr ""
+
+
+msgid "No Seasons"
+msgstr "Ingen sæsonner"
+
+
+msgid "No Unwatched Shows"
+msgstr "Ingen usete serier"
+
+
+msgid "No Unwatched Shows."
+msgstr "Ingen usete serier."
+
+
+msgid "No episodes"
+msgstr "Ingen episoder"
+
+
+msgid "None"
+msgstr "Ingen"
+
+
+msgid "Now Playing"
+msgstr ""
+
+
+msgid "On Deck"
+msgstr "På hylden"
+
+
+msgid "Overscan Adjust"
+msgstr "Overscan justering"
+
+
+msgid "PIL/Pillow not installed"
+msgstr ""
+
+
+msgid "Photo"
+msgstr "Foto"
+
+
+msgid "Photo Transcoder Action"
+msgstr "Foto Transkoder handling"
+
+
+msgid "Play"
+msgstr "Afspil"
+
+
+msgid "Playlists"
+msgstr ""
+
+
+msgid "Plex Channels"
+msgstr "Plex kanaler"
+
+
+msgid "Plex Library"
+msgstr "Plex bibliotek"
+
+
+msgid "Plex Media Server"
+msgstr "Plex Media Server"
+
+
+msgid "Plex Media Server: No Items Available"
+msgstr "Plex Medie Server: Ingen emner tilgængelige"
+
+
+msgid "Plex Media Server: No Tracks Available"
+msgstr ""
+
+
+msgid "Plex Playlists"
+msgstr ""
+
+
+msgid "PlexConnect"
+msgstr "PlexConnect"
+
+
+msgid "Poster Titles"
+msgstr "Plakat titler"
+
+
+msgid "Producers"
+msgstr "Producenter"
+
+
+msgid "Recently Added"
+msgstr "Nyligt tilføjet"
+
+
+msgid "Recently Aired"
+msgstr "Nyligt udsendt"
+
+
+msgid "Recently Released"
+msgstr "Nyligt udgivet"
+
+
+msgid "Recently Viewed"
+msgstr "Nyligt vist"
+
+
+msgid "Recently Viewed Episodes"
+msgstr "Nyligt viste episoder"
+
+
+msgid "Recently Viewed Shows"
+msgstr "Nyligt viste serier"
+
+
+msgid "Refresh"
+msgstr "Genopfrisk"
+
+
+msgid "Remote Bitrate"
+msgstr "Fjern bitrate"
+
+
+msgid "Search"
+msgstr "Søg"
+
+
+msgid "Season View"
+msgstr "Sæson visning"
+
+
+msgid "Select Fanart"
+msgstr ""
+
+
+msgid "Select Poster"
+msgstr ""
+
+
+msgid "Select Posters"
+msgstr ""
+
+
+msgid "Select Tracks"
+msgstr "Vælg spor"
+
+
+msgid "Settings"
+msgstr "Indstillinger"
+
+
+msgid "Shared Libraries"
+msgstr "Delte biblioteker"
+
+
+msgid "Show Clock"
+msgstr "Vis ur"
+
+
+msgid "Show End Time"
+msgstr "Vis slut tid"
+
+
+msgid "Show Photos"
+msgstr "Vis billeder"
+
+
+msgid "Show Playlists"
+msgstr ""
+
+
+msgid "Show Shared Libraries"
+msgstr ""
+
+
+msgid "Show Unwatched Count"
+msgstr "Vis uset optælling"
+
+
+msgid "Shows"
+msgstr "Serier"
+
+
+msgid "Shuffle"
+msgstr ""
+
+
+msgid "Shutter Speed"
+msgstr "Lukkerhastighed"
+
+
+msgid "SlideShow"
+msgstr "Slideshow"
+
+
+msgid "Studio"
+msgstr "Studie"
+
+
+msgid "Subs"
+msgstr "Tekst"
+
+
+msgid "Subtitle Renderer"
+msgstr "Undertekst fremviser"
+
+
+msgid "Subtitle Size %"
+msgstr "Undertekst størrelse %"
+
+
+msgid "Subtitle Track"
+msgstr "Undertekst spor"
+
+
+msgid "Synopsis hidden."
+msgstr "Synopsis skjult"
+
+
+msgid "TV Show Fanart"
+msgstr ""
+
+
+msgid "TV Show Navigation Bar"
+msgstr "TV Serier navigationsbjælke"
+
+
+msgid "TV Show Options"
+msgstr "TV serier indstillinger"
+
+
+msgid "TV Show View"
+msgstr "TV serier visning"
+
+
+msgid "TheMovieDB: No Trailer Info available"
+msgstr "TheMovieDB: Ingen trailer info tilgængelig"
+
+
+msgid "Time Format"
+msgstr "Tidsformat"
+
+
+msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
+msgstr "For at logge på MyPlex, indtast e-mail, brugernavn eller Plex forum brugernavn."
+
+
+msgid "Top Level Options"
+msgstr "Top niveau indstillinger"
+
+
+msgid "Trailer"
+msgstr "Forfilm"
+
+
+msgid "Transcoder"
+msgstr "Transkoder"
+
+
+msgid "Transcoder Action"
+msgstr "Transkoder handling"
+
+
+msgid "Transcoder Quality"
+msgstr "Transkoder kvalitet"
+
+
+msgid "Unwatched"
+msgstr "Ikke Set"
+
+
+msgid "Unwatched Synopsis"
+msgstr "Ikke set synopsis"
+
+
+msgid "Version"
+msgstr "Version"
+
+
+msgid "Video"
+msgstr "Video"
+
+
+msgid "Video Player OSD"
+msgstr "Video afspiller OSD"
+
+
+msgid "Video Playlist"
+msgstr ""
+
+
+msgid "Video Playlist: No Items Available"
+msgstr ""
+
+
+msgid "View Show"
+msgstr "Vis serie"
+
+
+msgid "Wiki/Docs"
+msgstr "Wiki/Doks"
+
+
+msgid "Writers"
+msgstr "Forfattere"
+
+
+msgid "Year"
+msgstr "År"
+
+
+msgid "refreshing"
+msgstr "genopfrisker"
+
+
+msgid "remote"
+msgstr "fjern"
+
+
+msgid "{0:0d}x{1:02d} {2}"
+msgstr "{0:0d}x{1:02d} {2}"
+
+
+msgid "{0:d} Minutes"
+msgstr "{0:d} Minutter"
+
+
+msgid "{0:d}:{1:0>2d}"
+msgstr ""
+
+
+msgid "{0:d}hr {1:d}min"
+msgstr "{0:d}T {1:d}min"
+
+
+msgid "{0} unwatched"
+msgstr "{0} usete"
+
+
