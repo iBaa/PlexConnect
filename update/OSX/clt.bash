@@ -11,6 +11,8 @@ if [ ! -f "$TOOLS" ]; then
   	  DMGURL=http://devimages.apple.com/downloads/xcode/command_line_tools_for_xcode_os_x_mountain_lion_april_2013.dmg
   elif [ "$OSX_VERS" -eq 9 ]; then
 	  DMGURL=http://adcdownload.apple.com/Developer_Tools/command_line_tools_os_x_mavericks_for_xcode__late_october_2013/command_line_tools_os_x_mavericks_for_xcode__late_october_2013.dmg
+  elif [ "$OSX_VERS" -eq 10 ]; then
+	  DMGURL=https://www.dropbox.com/sh/4ebx2bmx7ca6c0h/AACP3yeFDdSbjnpBriOdtSOia/10.10/command_line_tools_for_osx_10_10_june_2014.dmg?dl=1
   fi
   curl "$DMGURL" -o "$TOOLS"
 fi
