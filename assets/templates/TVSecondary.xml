@@ -14,56 +14,56 @@
         <sections>
           <menuSection>
             <items>
-              <oneLineMenuItem id="unwatched" onPlay="atv.loadURL('{{URL(key)}}/unwatched&amp;PlexConnect=AllShows')" onSelect="atv.loadURL('{{URL(key)}}/unwatched&amp;PlexConnect=AllShows')">
+              <oneLineMenuItem id="unwatched" onPlay="atv.loadURL('{{URL(key::/unwatched:PlexConnect=AllShows)}}')" onSelect="atv.loadURL('{{URL(key::/unwatched:PlexConnect=AllShows)}}')">
                 <label>{{TEXT(Unwatched)}}</label>
                 <preview>
-                  <link>{{URL(key)}}/unwatched?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
+                  <link>{{URL(key::/unwatched:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview)}}</link>
                 </preview>
               </oneLineMenuItem>{{CUT($tv_navbar_unwatched::checked=CUT|unchecked=)}}
 
-              <oneLineMenuItem id="genres" onPlay="atv.loadURL('{{URL(key)}}/genre&amp;PlexConnect=DirectoryWithPreview')" onSelect="atv.loadURL('{{URL(key)}}/genre&amp;PlexConnect=DirectoryWithPreview')">
+              <oneLineMenuItem id="genres" onPlay="atv.loadURL('{{URL(key::/genre:PlexConnect=DirectoryWithPreview)}}')" onSelect="atv.loadURL('{{URL(key::/genre:PlexConnect=DirectoryWithPreview)}}')">
                 <label>{{TEXT(Genres)}}</label>
                 <preview>
-                  <link>{{URL(key)}}/genres?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
+                  <link>{{URL(key::/genres:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview)}}</link>
                 </preview>
               </oneLineMenuItem>{{CUT($tv_navbar_genres::checked=CUT|unchecked=)}}
 
-              <oneLineMenuItem id="recentlyViewedShows" onPlay="atv.loadURL('{{URL(key)}}/recentlyViewedShows')" onSelect="atv.loadURL('{{URL(key)}}/recentlyViewedShows')">
+              <oneLineMenuItem id="recentlyViewedShows" onPlay="atv.loadURL('{{URL(key::/recentlyViewedShows)}}')" onSelect="atv.loadURL('{{URL(key::/recentlyViewedShows)}}')">
                 <label>{{TEXT(Recently Viewed Shows)}}</label>
                 <preview>
-                  <link>{{URL(key)}}/recentlyViewedShows?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
+                  <link>{{URL(key::/recentlyViewedShows:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview)}}</link>
                 </preview>
               </oneLineMenuItem>
 
-              <oneLineMenuItem id="collection" onPlay="atv.loadURL('{{URL(key)}}/collection&amp;PlexConnect=DirectoryWithPreview')" onSelect="atv.loadURL('{{URL(key)}}/collection&amp;PlexConnect=DirectoryWithPreview')">
+              <oneLineMenuItem id="collection" onPlay="atv.loadURL('{{URL(key::/collection:PlexConnect=DirectoryWithPreview)}}')" onSelect="atv.loadURL('{{URL(key::/collection:PlexConnect=DirectoryWithPreview)}}')">
                 <label>{{TEXT(By Collection)}}</label>
                 <preview>
-                  <link>{{URL(key)}}/collection?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
+                  <link>{{URL(key::/collection:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview)}}</link>
                 </preview>
               </oneLineMenuItem>
 
-              <oneLineMenuItem id="year" onPlay="atv.loadURL('{{URL(key)}}/year&amp;PlexConnect=DirectoryWithPreview')" onSelect="atv.loadURL('{{URL(key)}}/year&amp;PlexConnect=DirectoryWithPreview')">
+              <oneLineMenuItem id="year" onPlay="atv.loadURL('{{URL(key::/year:PlexConnect=DirectoryWithPreview)}}')" onSelect="atv.loadURL('{{URL(key::/year:PlexConnect=DirectoryWithPreview)}}')">
                 <label>{{TEXT(By Year)}}</label>
               </oneLineMenuItem>
 
-              <oneLineMenuItem id="contentRating" onPlay="atv.loadURL('{{URL(key)}}/contentRating&amp;PlexConnect=DirectoryWithPreview')" onSelect="atv.loadURL('{{URL(key)}}/contentRating&amp;PlexConnect=DirectoryWithPreview')">
+              <oneLineMenuItem id="contentRating" onPlay="atv.loadURL('{{URL(key::/contentRating:PlexConnect=DirectoryWithPreview)}}')" onSelect="atv.loadURL('{{URL(key::/contentRating:PlexConnect=DirectoryWithPreview)}}')">
                 <label>{{TEXT(By Content Rating)}}</label>
                 <preview>
-                  <link>{{URL(key)}}/contentRating?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
+                  <link>{{URL(key::/contentRating:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview)}}</link>
                 </preview>
               </oneLineMenuItem>
               
-              <oneLineMenuItem id="firstCharacter" onPlay="atv.loadURL('{{URL(key)}}/firstCharacter&amp;PlexConnect=DirectoryWithPreview')" onSelect="atv.loadURL('{{URL(key)}}/firstCharacter&amp;PlexConnect=DirectoryWithPreview')">
+              <oneLineMenuItem id="firstCharacter" onPlay="atv.loadURL('{{URL(key::/firstCharacter:PlexConnect=DirectoryWithPreview)}}')" onSelect="atv.loadURL('{{URL(key::/firstCharacter:PlexConnect=DirectoryWithPreview)}}')">
                 <label>{{TEXT(By First Letter)}}</label>
                 <preview>
-                  <link>{{URL(key)}}/firstCharacter?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
+                  <link>{{URL(key::/firstCharacter:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview)}}</link>
                 </preview>
               </oneLineMenuItem>
 
-              <oneLineMenuItem id="folder" onPlay="atv.loadURL('{{URL(key)}}/folder&amp;PlexConnect=ByFolder')" onSelect="atv.loadURL('{{URL(key)}}/folder&amp;PlexConnect=ByFolder')">
+              <oneLineMenuItem id="folder" onPlay="atv.loadURL('{{URL(key::/folder:PlexConnect=ByFolder)}}')" onSelect="atv.loadURL('{{URL(key::/folder:PlexConnect=ByFolder)}}')">
                 <label>{{TEXT(By Folder)}}</label>
                 <preview>
-                  <link>{{URL(key)}}/folder?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
+                  <link>{{URL(key::/folder:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview)}}</link>
                 </preview>
               </oneLineMenuItem>
             </items>

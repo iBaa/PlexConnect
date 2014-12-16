@@ -5,7 +5,7 @@
   </head>
 
   <body>
-    <itemDetailWithImageHeader layout="compact" id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL()}}&amp;PlexConnect=EpisodePrePlay')">
+    <itemDetailWithImageHeader layout="compact" id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=EpisodePrePlay)}}')">
         	  <styles>
           <color name="titleColor">#fafafa</color>
           <color name="metadataColor">#fafafa</color>
@@ -83,8 +83,8 @@
               </stash>
               
               <items>
-                <actionButton id="play" onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(Video/ratingKey)}}')"
-                                        onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(Video/ratingKey)}}')">
+                <actionButton id="play" onSelect="atv.loadURL('{{URL(key:::PlexConnect=PlayVideo&amp;PlexConnectRatingKey={{VAL(Video/ratingKey)}})}}')"
+                                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=PlayVideo&amp;PlexConnectRatingKey={{VAL(Video/ratingKey)}})}}')">
                   <title>{{TEXT(Play)}}</title>
                   <image>resource://Play.png</image>
                   <focusedImage>resource://PlayFocused.png</focusedImage>
@@ -119,8 +119,8 @@
             <shelfSection>
               <items>
                 <sixteenByNinePoster related="true" alwaysShowTitles="true" id="{{URL(ratingKey)}}" 
-                                     onSelect="atv.loadAndSwapURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
-                                     onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')">
+                                     onSelect="atv.loadAndSwapURL('{{URL(key:::PlexConnect=EpisodePrePlay)}}')"
+                                     onPlay="atv.loadURL('{{URL(key:::PlexConnect=PlayVideo&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')">
                   {{COPY(@parentEpisodes/Video)}}
                   <title>{{VAL(index)}}. {{VAL(title)}}</title>
                   <image>{{IMAGEURL(thumb::384)}}</image>

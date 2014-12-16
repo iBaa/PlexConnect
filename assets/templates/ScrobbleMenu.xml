@@ -31,11 +31,11 @@
                 <label>{{TEXT(Mark as Unwatched)}}</label>
               </oneLineMenuItem>
         
-              <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChangeShowArtwork')">
+              <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(key:::PlexConnect=ChangeShowArtwork)}}')">
                 <label>{{TEXT(Change All Posters)}}</label>
               </oneLineMenuItem>{{CUT(viewGroup:CUT:season=)}}
         
-              <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChangeSingleArtwork')">
+              <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(key:::PlexConnect=ChangeSingleArtwork)}}')">
                 <label>{{TEXT(Change Poster)}}</label>
               </oneLineMenuItem>{{CUT(viewGroup::episode=|season=CUT)}}
             </items>
@@ -59,15 +59,15 @@
               <label>{{TEXT(Mark as Unwatched)}}</label>
             </oneLineMenuItem>
             
-            <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChangeShowArtwork')">
+            <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(key:::PlexConnect=ChangeShowArtwork)}}')">
               <label>{{TEXT(Change All Posters)}}</label>
             </oneLineMenuItem>{{CUT(viewGroup:CUT:season=)}}
         
-            <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChangeSingleArtwork')">
+            <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(key:::PlexConnect=ChangeSingleArtwork)}}')">
               <label>{{TEXT(Change Poster)}}</label>
             </oneLineMenuItem>{{CUT(viewGroup::episode=|season=CUT)}}
             
-            <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChangeFanart')">
+            <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(key:::PlexConnect=ChangeFanart)}}')">
               <label>{{TEXT(Change Fanart)}}</label>
             </oneLineMenuItem>{{CUT(viewGroup::episode=CUT|season=)}}
           </items>

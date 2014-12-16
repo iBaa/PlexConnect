@@ -15,8 +15,8 @@
         <grid columnCount="7" id="grid_0">
           <items>
             <moviePoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}" 
-                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ByFolder')"
-                             onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ByFolder')">
+                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=ByFolder)}}')"
+                             onSelect="atv.loadURL('{{URL(key:::PlexConnect=ByFolder)}}')">
               {{COPY(Directory)}}
               <title>{{VAL(title)}}</title>
               <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
@@ -25,8 +25,8 @@
             </moviePoster>
             
             <moviePoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
-                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
-                             onSelect="atv.loadURL('{{URL(key)}}?includeExtras=1&amp;PlexConnect=EpisodePrePlay')">
+                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=PlayVideo&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                             onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect=EpisodePrePlay)}}')">
               {{COPY(Video)}}
               <title>{{VAL(title)}}</title>
               <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>

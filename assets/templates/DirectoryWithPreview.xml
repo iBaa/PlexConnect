@@ -23,7 +23,7 @@
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>
                 <preview>
-                  <link>{{URL(key)}}?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview</link>
+                  <link>{{URL(key:::X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview)}}</link>
                 </preview>
               </oneLineMenuItem>
             </items>

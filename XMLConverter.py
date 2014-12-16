@@ -194,25 +194,14 @@ def XML_PMS2aTV(PMS_address, path, options):
         XMLtemplate = 'ChannelsSearch.xml'
         path = ''
         
-    elif cmd.startswith('Play:'):
-        opt = cmd[len('Play:'):]  # cut command:
-        parts = opt.split(':',1)
-        if len(parts)==2:
-            options['PlexConnectPlayType'] = parts[0]  # Single, Continuous # decoded in PlayVideo.xml, COPY_PLAYLIST
-            options['PlexConnectRatingKey'] = parts[1]  # ratingKey # decoded in PlayVideo.xml
-        else:
-            return XML_Error('PlexConnect','Unexpected "Play" command syntax')
+    elif cmd=='PlayVideo':
         XMLtemplate = 'PlayVideo.xml'
     
-    elif cmd.startswith('PlayAudio'):  # PlayAudio: or PlayAudio_plist:
-        parts = cmd.split(':',3)
-        if len(parts)==4:
-            XMLtemplate = parts[0] + '.xml'
-            options['PlexConnectPlayType'] = parts[1]  # Single, Continuous # decoded in PlayAudio.xml
-            options['PlexConnectRatingKey'] = parts[2]  # ratingKey
-            options['PlexConnectCopyIx'] = parts[3]  # copy_ix
-        else:
-            return XML_Error('PlexConnect','Unexpected "PlayAudio" command syntax')
+    elif cmd=='PlayAudio':
+        XMLtemplate = 'PlayAudio.xml'
+    
+    elif cmd=='PlayAudio_plist':
+        XMLtemplate = 'PlayAudio_plist.xml'
     
     elif cmd=='PlayVideo_ChannelsV1':
         dprint(__name__, 1, "playing Channels XML Version 1: {0}".format(path))
@@ -1193,6 +1182,8 @@ class CCommandCollection(CCommandHelper):
     
     def ATTRIB_URL(self, src, srcXML, param):
         key, leftover, dfltd = self.getKey(src, srcXML, param)
+        addPath, leftover = self.getParam(src, leftover)
+        addOpt, leftover = self.getParam(src, leftover)
         
         # compare PMS_mark in PlexAPI/getXMLFromMultiplePMS()
         PMS_mark = '/PMS(' + PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'ip') + ')'
@@ -1223,6 +1214,15 @@ class CCommandCollection(CCommandHelper):
             res = res + PMS_mark + self.path[srcXML]
         else:  # internal path, add-on
             res = res + PMS_mark + self.path[srcXML] + '/' + key
+        
+        if addPath:
+            res = res + addPath
+        
+        if addOpt:
+            if not '?' in res:
+                res = res +'?'+ addOpt
+            else:
+                res = res +'&'+ addOpt
         
         return res
     

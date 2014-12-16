@@ -11,7 +11,7 @@
       
         <navigationItem id="Playlists">
           <title>{{TEXT(Playlists)}}</title>
-          <url>{{URL(:/PMS(all)/playlists&amp;PlexConnect=Playlists)}}</url>
+          <url>{{URL(:/PMS(all)/playlists::PlexConnect=Playlists)}}</url>
         </navigationItem>{{CUT($showplaylists:CUT:False=CUT|True=)}}
         <navigationItem id="Library">
           <title>{{TEXT(Library)}}</title>
@@ -27,7 +27,7 @@
         </navigationItem>{{CUT($myplex_auth:CUT:=CUT| =)}}{{CUT($showsharedlibraries:CUT:False=CUT|True=)}}
         <navigationItem id="Settings">
           <title>{{TEXT(Settings)}}</title>
-          <url>{{URL(:/&amp;PlexConnect=Settings)}}</url>
+          <url>{{URL(:/::PlexConnect=Settings)}}</url>
         </navigationItem>
       </navigation>
     </viewWithNavigationBar>

@@ -16,8 +16,8 @@
             </header>
             <items>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"
-                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
-                             onSelect="atv.loadURL('{{URL(key)}}?includeExtras=1&amp;PlexConnect=MoviePrePlay')">
+                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=PlayVideo&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                             onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect=MoviePrePlay)}}')">
                 {{COPY(Video:type::=|movie=COPY|movie =)}}
                 {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
                 <label>{{VAL(title)}}</label>
@@ -54,8 +54,8 @@
             </header>
             <items>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"
-                             onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
-                             onSelect="atv.loadURL('{{URL(key)}}?includeExtras=1&amp;PlexConnect=MoviePrePlay')">
+                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=PlayVideo&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                             onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect=MoviePrePlay)}}')">
                 {{COPY(Video:type::=|episode=COPY|episode =)}}
                 {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
                 <label>{{VAL(title)}}</label>

@@ -22,7 +22,7 @@
                 <goldenPoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
                               onPlay="atv.loadURL('{{URL(key)}}')"
                               onSelect="atv.loadURL('{{URL(key)}}')"
-                              onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenu')">
+                              onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=ScrobbleMenu)}}')">
                   {{COPY(Directory)}}
                   <title>{{VAL(title)}}</title>
                   <image>{{IMAGEURL(thumb::768)}}</image>{{CUT(thumb:CUT:=CUT| =)}}

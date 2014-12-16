@@ -20,12 +20,12 @@
             <items>
               
               <!-- link to photos from current directories -->
-              <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=PhotoBrowser')"
-                                                 onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=PhotoBrowser')">
+              <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key:::PlexConnect=PhotoBrowser)}}')"
+                                                 onSelect="atv.loadURL('{{URL(key:::PlexConnect=PhotoBrowser)}}')">
                 <label>{{TEXT(Show Photos)}}</label>
                 <accessories><arrow/></accessories>
                 <preview>
-                  <link>{{URL(key)}}?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview-Photo</link>
+                  <link>{{URL(key:::X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview-Photo)}}</link>
                 </preview>
               </oneLineMenuItem>{{CUT(Photo/title:CUT:=)}}
               
@@ -35,7 +35,7 @@
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>
                 <preview>
-                  <link>{{URL(key)}}?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview-Photo</link>
+                  <link>{{URL(key:::X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=SectionPreview-Photo)}}</link>
                 </preview>
               </oneLineMenuItem>
               

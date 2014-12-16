@@ -34,8 +34,8 @@
             <items>
               <!-- video channels per server -->
               <twoLineEnhancedMenuItem id="Video_{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelsVideo')"
-                                       onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelsVideo')">
+                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=ChannelsVideo)}}')"
+                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=ChannelsVideo)}}')">
               {{COPY(Directory)}}
               {{VAR(channels:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <label>{{VAL(title)}}</label>

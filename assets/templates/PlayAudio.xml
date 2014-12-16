@@ -22,9 +22,9 @@
 
     <!-- audio V1 - channels (old style plugin, eg iTunes) -->
     <!-- continuous, shuffle -->
-    <audioPlayer id="com.sample.audio-player" startPlaybackAtIndex="{{VAL(^PlexConnectCopyIx)}}">
+    <audioPlayer id="com.sample.audio-player" startPlaybackAtIndex="{{VAL(^PlexConnectCopyIx:0)}}">
     {{CUT(content:CUT:=)}}
-    {{CUT(^PlexConnectPlayType::=CUT|Continuous=|Continuous =CUT|Shuffle=|Shuffle =CUT)}}
+    {{CUT(^PlexConnectPlayType:CUT:=CUT|Continuous=|Continuous =CUT|Shuffle=|Shuffle =CUT)}}
       <httpFileAudioAsset id="{{VAL(key)}}">
       {{COPY_PLAYLIST(Track:^PlexConnectPlayType::^PlexConnectRatingKey::ratingKey:)}}
         <mediaURL>{{MUSICURL(key)}}</mediaURL>
@@ -38,7 +38,7 @@
 
     <!-- audio V2 - library -->
     <!-- single, continuous, shuffle -->
-    <audioPlayer id="com.sample.audio-player" startPlaybackAtIndex="{{VAL(^PlexConnectCopyIx)}}">
+    <audioPlayer id="com.sample.audio-player" startPlaybackAtIndex="{{VAL(^PlexConnectCopyIx:0)}}">
     {{CUT(content::=CUT)}}
       <httpFileAudioAsset id="{{VAL(key)}}">
       {{COPY_PLAYLIST(Track:^PlexConnectPlayType::^PlexConnectRatingKey::ratingKey:)}}
