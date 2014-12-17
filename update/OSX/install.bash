@@ -783,4 +783,9 @@ then
 rm /xml.bash
 fi
 
+if [ -s /Applications/plexconnect_BACKUP ]
+then
+chmod -R 777 /Applications/plexconnect_BACKUP
+fi
+
 echo 'WebConnect has been updated. Refresh your browser if no icons appear.'
