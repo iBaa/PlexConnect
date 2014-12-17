@@ -1,3 +1,3 @@
 cd /Applications/PlexConnect
-sed -i '' 's/Normal/High/g' settings.cfg
+sed -i '' 's/Normal/High/g' Settings.cfg
 restartbash.bash
