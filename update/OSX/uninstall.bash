@@ -143,6 +143,10 @@ rm /usr/bin/purgeapp.bash
 rm /usr/bin/purgeappbash.bash
 rm /usr/bin/purgesettings.bash
 rm /usr/bin/purgesettingsbash.bash
+rm /usr/bin/loghigh.bash
+rm /usr/bin/lognormal.bash
+rm /usr/bin/loghighbash.bash
+rm /usr/bin/lognormalbash.bash
 rm /usr/bin/quit.bash
 rm /usr/bin/restorecerts.bash
 rm /usr/bin/restorecertsbash.bash
@@ -160,9 +164,20 @@ rm /usr/bin/wcopenplexbash.bash
 cp /Applications/PlexConnect/update/OSX/defaultsudoers /etc/sudoers
 chmod 440 /etc/sudoers
 
+if [ -s /Applications/PlexConnect ]
+then
 rm -Rf /Applications/PlexConnect
+fi
+
+if [ -s rm -Rf /Applications/OpenPlex ]
+then
 rm -Rf /Applications/OpenPlex
+fi
+
+if [ -s rm -Rf /Applications/OpenPlex.app ]
+then
 rm -Rf /Applications/OpenPlex.app
+fi
 
 killall OpenPlex
 
