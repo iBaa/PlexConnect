@@ -229,13 +229,13 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           
           lognormalbash)
           echo "Output of lognormalbash :<pre>"
-          /usr/bin/lognormalbash
+          /usr/bin/lognormal.bash
           echo "</pre>"
           ;;
 
           loghighbash)
           echo "Output of loghighbash :<pre>"
-          /usr/bin/loghighbash
+          /usr/bin/loghigh.bash
           echo "</pre>"
           ;;
 
