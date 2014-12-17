@@ -226,6 +226,18 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           /usr/bin/10.6bash.bash
           echo "</pre>"
           ;;
+          
+          lognormalbash)
+          echo "Output of lognormalbash :<pre>"
+          /usr/bin/lognormalbash
+          echo "</pre>"
+          ;;
+
+          loghighbash)
+          echo "Output of loghighbash :<pre>"
+          /usr/bin/loghighbash
+          echo "</pre>"
+          ;;
 
 
 
@@ -258,6 +270,8 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<br>"
     echo "<input type=radio name=cmd value=backupbash> Backup all settings <br>"
     echo "<input type=radio name=cmd value=restorebash> Restore all settings <br>"
+    echo "<input type=radio name=cmd value=lognormalbash> Set loglevel to Normal <br>"
+    echo "<input type=radio name=cmd value=loghighbash> Set loglevel to High <br>"
     echo "<input type=radio name=cmd value=iconbash> Upload Plex icon <br>"
     echo "<input type=radio name=cmd value=createplistbash> Install Daemon plist <br>"
     echo "<input type=radio name=cmd value=updaterbash> Update PlexConnect <br>"
