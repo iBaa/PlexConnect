@@ -76,4 +76,6 @@ fi
 
 startbash.bash
 
+chmod -R 777 /Applications/PlexConnect
+
 echo 'All available PlexConnect settings have been backed up'
