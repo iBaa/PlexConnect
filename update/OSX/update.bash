@@ -5,6 +5,8 @@ cd /Applications/PlexConnect
 PlexConnectPath=${PWD}
 
 cd /Applications/PlexConnect
+
+export PATH=/usr/local/git/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
  
 # fetch changes, git stores them in FETCH_HEAD
 git fetch
