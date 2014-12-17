@@ -1,5 +1,6 @@
 #!/bin/bash
 
+export PATH=/usr/local/git/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 trashbase.bash
 cd /Applications
 git clone https://github.com/iBaa/PlexConnect.git
