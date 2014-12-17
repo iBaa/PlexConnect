@@ -21,9 +21,9 @@ if [ -d "$shairportdir" ]; then
 rm -rf /Applications/shairport
 fi
 cd /Applications
+export PATH=/usr/local/git/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 git clone https://github.com/abrasive/shairport.git
 cd /Applications/shairport
-export PATH=$PATH:/usr/local/git/bin:/usr/bin:/opt/local/bin:/usr/local/bin/git:/usr/local/bin
 make
 cd /Applications/shairport
 sudo cp shairport /usr/local/bin
