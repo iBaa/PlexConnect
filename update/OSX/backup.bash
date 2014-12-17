@@ -76,6 +76,9 @@ fi
 
 startbash.bash
 
-chmod -R 777 /Applications/PlexConnect
+if [ -s /Applications/plexconnect_BACKUP ]
+then
+chmod -R 777 /Applications/plexconnect_BACKUP
+fi
 
 echo 'All available PlexConnect settings have been backed up'
