@@ -444,6 +444,8 @@ cp install.bash /usr/bin
 cp trashbase.bash /usr/bin
 cp installphp.bash /usr/bin
 cp sudoersfix.bash /usr/bin
+cp appupdate.bash /usr/bin
+cp appupdatebash.bash /usr/bin
 cp loghigh.bash /usr/bin
 cp lognormal.bash /usr/bin
 cp loghighbash.bash /usr/bin
@@ -628,6 +630,8 @@ chmod +x /usr/bin/sudoersfix.bash
 chmod +x /usr/bin/restore.bash
 chmod +x /usr/bin/restorecerts.bash
 chmod +x /usr/bin/backup.bash
+chmod +x /usr/bin/appupdate.bash
+chmod +x /usr/bin/appupdatebash.bash
 chmod +x /usr/bin/loghigh.bash 
 chmod +x /usr/bin/lognormal.bash
 chmod +x /usr/bin/loghighbash.bash 
@@ -688,6 +692,7 @@ chmod 4755 /usr/bin/wakebash.bash
 chmod 4755 /usr/bin/tvbash.bash
 chmod 4755 /usr/bin/restorebash.bash
 chmod 4755 /usr/bin/restorecerts.bash
+chmod 4755 /usr/bin/appupdate.bash
 chmod 4755 /usr/bin/backupbash.bash
 chmod 4755 /usr/bin/iconbash.bash
 chmod 4755 /usr/bin/10.6bash.bash
