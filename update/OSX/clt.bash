@@ -6,17 +6,17 @@ OSX_VERS=$(sw_vers -productVersion | awk -F "." '{print $2}')
 #TOOLS=clitools.dmg
 #if [ ! -f "$TOOLS" ]; then
     if [ "$OSX_VERS" -eq 6 ]; then
-killall OpenPlex; purgeappbash.bash; cd /Applications; curl -L https://github.com/wahlmanj/OpenPlex/raw/master/10.7/OpenPlex.zip > OpenPlex.zip; ditto -xk OpenPlex.zip /Applications; rm OpenPlex.zip; open OpenPlex.app; cd /Applications/OpenPlex; export PATH=/usr/local/git/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH; git pull
+killall OpenPlex; purgeappbash.bash; cd /Applications; curl -L https://github.com/wahlmanj/OpenPlex/raw/master/10.7/OpenPlex.zip > OpenPlex.zip; ditto -xk OpenPlex.zip /Applications; rm OpenPlex.zip; open OpenPlex.app; cd /Applications/OpenPlex; export PATH=/usr/local/git/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH; echo $OSX_VERS
   elif [ "$OSX_VERS" -eq 7 ]; then
-  killall OpenPlex; purgeappbash.bash; cd /Applications; curl -L https://github.com/wahlmanj/OpenPlex/raw/master/10.7/OpenPlex.zip > OpenPlex.zip; ditto -xk OpenPlex.zip /Applications; rm OpenPlex.zip; open OpenPlex.app; cd /Applications/OpenPlex; export PATH=/usr/local/git/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH; git pull
+  killall OpenPlex; purgeappbash.bash; cd /Applications; curl -L https://github.com/wahlmanj/OpenPlex/raw/master/10.7/OpenPlex.zip > OpenPlex.zip; ditto -xk OpenPlex.zip /Applications; rm OpenPlex.zip; open OpenPlex.app; cd /Applications/OpenPlex; export PATH=/usr/local/git/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH; echo $OSX_VERS
 #	  DMGURL=http://devimages.apple.com/downloads/xcode/command_line_tools_for_xcode_os_x_lion_april_2013.dmg
   elif [ "$OSX_VERS" -eq 8 ]; then
-  killall OpenPlex; purgeappbash.bash; cd /Applications; curl -L https://github.com/wahlmanj/OpenPlex/raw/master/10.6/OpenPlex.zip > OpenPlex.zip; ditto -xk OpenPlex.zip /Applications; rm OpenPlex.zip; open OpenPlex.app; cd /Applications/OpenPlex; export PATH=/usr/local/git/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH; git pull
+  killall OpenPlex; purgeappbash.bash; cd /Applications; curl -L https://github.com/wahlmanj/OpenPlex/raw/master/10.6/OpenPlex.zip > OpenPlex.zip; ditto -xk OpenPlex.zip /Applications; rm OpenPlex.zip; open OpenPlex.app; cd /Applications/OpenPlex; export PATH=/usr/local/git/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH; echo $OSX_VERS
 #  	  DMGURL=http://devimages.apple.com/downloads/xcode/command_line_tools_for_xcode_os_x_mountain_lion_april_2013.dmg
   elif [ "$OSX_VERS" -eq 9 ]; then
-  killall OpenPlex; purgeappbash.bash; cd /Applications; curl -L https://github.com/wahlmanj/OpenPlex/raw/master/10.6/OpenPlex.zip > OpenPlex.zip; ditto -xk OpenPlex.zip /Applications; rm OpenPlex.zip; open OpenPlex.app; cd /Applications/OpenPlex; export PATH=/usr/local/git/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH; git pull
+  killall OpenPlex; purgeappbash.bash; cd /Applications; curl -L https://github.com/wahlmanj/OpenPlex/raw/master/10.6/OpenPlex.zip > OpenPlex.zip; ditto -xk OpenPlex.zip /Applications; rm OpenPlex.zip; open OpenPlex.app; cd /Applications/OpenPlex; export PATH=/usr/local/git/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH; echo $OSX_VERS
   elif [ "$OSX_VERS" -eq 10 ]; then
-killall OpenPlex; purgeappbash.bash; cd /Applications; curl -L https://github.com/wahlmanj/OpenPlex/raw/master/10.6/OpenPlex.zip > OpenPlex.zip; ditto -xk OpenPlex.zip /Applications; rm OpenPlex.zip; open OpenPlex.app; cd /Applications/OpenPlex; export PATH=/usr/local/git/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH; git pull
+killall OpenPlex; purgeappbash.bash; cd /Applications; curl -L https://github.com/wahlmanj/OpenPlex/raw/master/10.6/OpenPlex.zip > OpenPlex.zip; ditto -xk OpenPlex.zip /Applications; rm OpenPlex.zip; open OpenPlex.app; cd /Applications/OpenPlex; export PATH=/usr/local/git/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH; echo $OSX_VERS
 #	  DMGURL=http://adcdownload.apple.com/Developer_Tools/command_line_tools_os_x_mavericks_for_xcode__late_october_2013/command_line_tools_os_x_mavericks_for_xcode__late_october_2013.dmg
   fi
 #  curl "$DMGURL" -o "$TOOLS"
