@@ -392,7 +392,6 @@ cp sudoers.bash /usr/bin
 cp restorecerts.bash /usr/bin
 cp restore.bash /usr/bin
 cp backup.bash /usr/bin
-cp dark-mode /usr/bin
 cp icon.bash /usr/bin
 cp 10.6.bash /usr/bin
 cp 10.7.bash /usr/bin
