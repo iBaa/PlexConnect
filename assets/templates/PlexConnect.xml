@@ -19,7 +19,7 @@
         </navigationItem>
         <navigationItem id="Channels">
           <title>{{TEXT(Channels)}}</title>
-          <url>{{URL(:/PMS(owned)/channels/all)}}</url>
+          <url>{{URL(:/PMS(owned)/channels/all::PlexConnect=Channels)}}</url>
         </navigationItem>
         <navigationItem id="SharedLibraries">
           <title>{{TEXT(Shared Libraries)}}</title>

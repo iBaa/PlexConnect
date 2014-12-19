@@ -296,7 +296,22 @@ def XML_PMS2aTV(PMS_address, path, options):
     
     elif cmd=='ChannelsVideo':
         XMLtemplate = 'ChannelsVideo.xml'
+		
+    elif cmd=='Channels':
+		if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'channelview') == 'Tabbed List':
+			XMLtemplate = 'Channel_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'channelview').replace(' ', '')+'_Video.xml'
+		else:
+			XMLtemplate = 'Channel_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'channelview').replace(' ', '')+'.xml'
 
+    elif cmd=='Channels_VideoList':
+        XMLtemplate = 'Channel_TabbedList_Video.xml'
+
+    elif cmd=='Channels_AudioList':
+        XMLtemplate = 'Channel_TabbedList_Audio.xml'
+
+    elif cmd=='Channels_PhotoList':
+        XMLtemplate = 'Channel_TabbedList_Photo.xml'
+		
     elif cmd=='ShowByFolder':
         XMLtemplate = 'ShowByFolder.xml'
 
@@ -447,11 +462,7 @@ def XML_PMS2aTV(PMS_address, path, options):
         
     elif path=='/library/sections':  # from PlexConnect.xml -> for //local, //myplex
         XMLtemplate = 'Library.xml'
-    
-    elif path=='/channels/all':
-        XMLtemplate = 'Channel_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'channelview')+'.xml'
-        path = ''
-    
+        
     # request PMS XML
     if not path=='':
         if PMS_address[0].isalpha():  # owned, shared
