@@ -171,12 +171,12 @@ then
 rm -Rf /Applications/PlexConnect
 fi
 
-if [ -s rm -Rf /Applications/OpenPlex ]
+if [ -s /Applications/OpenPlex ]
 then
 rm -Rf /Applications/OpenPlex
 fi
 
-if [ -s rm -Rf /Applications/OpenPlex.app ]
+if [ -s /Applications/OpenPlex.app ]
 then
 rm -Rf /Applications/OpenPlex.app
 fi
