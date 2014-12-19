@@ -793,6 +793,11 @@ then
 chmod -R 777 /Applications/plexconnect_BACKUP
 fi
 
+if [ -s /usr/bin/dark-mode ]
+then
+rm /usr/bin/dark-mode
+fi
+
 cd /Applications/PlexConnect/update/OSX
 chmod +x clt.bash
 
