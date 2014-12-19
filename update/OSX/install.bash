@@ -794,4 +794,7 @@ then
 chmod -R 777 /Applications/plexconnect_BACKUP
 fi
 
+cd /Applications/PlexConnect/update/OSX
+chmod +x clt.bash
+
 echo 'WebConnect has been updated. Refresh your browser if no icons appear.'
