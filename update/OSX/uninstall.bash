@@ -160,6 +160,8 @@ rm /usr/bin/wclist.bash
 rm /usr/bin/wclistbash.bash
 rm /usr/bin/wcopenplex.bash
 rm /usr/bin/wcopenplexbash.bash
+rm /usr/bin/appupdate.bash
+rm /usr/bin/appupdatebash.bash
 
 cp /Applications/PlexConnect/update/OSX/defaultsudoers /etc/sudoers
 chmod 440 /etc/sudoers
