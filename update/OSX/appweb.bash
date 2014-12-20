@@ -16,10 +16,6 @@ cd /Applications/OpenPlex/updater
 ditto -xk updater.zip /Applications/OpenPlex/updater
 cd /Applications/OpenPlex/updater
 open updater.app
-cd /Applications/PlexConnect/update/OSX
-./clt.bash
-cd /Applications/OpenPlex
-git pull
 elif [ $REMOTE = $BASE ]; then
 echo "Need to push"
 else
