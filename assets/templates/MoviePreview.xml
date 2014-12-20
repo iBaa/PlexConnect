@@ -17,8 +17,8 @@
           <grid id="grid_0" columnCount="5">
             <items>
               <moviePoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_movies::Highlighted Only=false|Show All=true)}}"
-                           onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
-                           onSelect="atv.loadURL('{{URL(key)}}?includeExtras=1&amp;PlexConnect=MoviePrePlay')">
+                           onPlay="atv.loadURL('{{URL(key:::PlexConnect=PlayVideo&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                           onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect=MoviePrePlay)}}')">
                 {{COPY(Video)}}
                 <title>{{VAL(title)}}</title>
                 <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>

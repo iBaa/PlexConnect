@@ -1,0 +1,662 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Plex Connect\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-11-26 18:56:01+0000\n"
+"PO-Revision-Date: 2014-12-14 12:00+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+""
+
+msgid "ATV firmware version 5.1 or higher required. Please think about updating."
+msgstr "Vaaditaan firmware versio 5.1 tai uudempi."
+
+
+msgid "Actor View"
+msgstr ""
+
+
+msgid "Actors"
+msgstr ""
+
+
+msgid "Albums"
+msgstr ""
+
+
+msgid "All Movies"
+msgstr ""
+
+
+msgid "All Photos"
+msgstr "Kaikki kuvat"
+
+
+msgid "All Shows"
+msgstr ""
+
+
+msgid "All Videos"
+msgstr ""
+
+
+msgid "Aperture"
+msgstr "Aukko"
+
+
+msgid "Appearance"
+msgstr ""
+
+
+msgid "Artists"
+msgstr ""
+
+
+msgid "Audio"
+msgstr ""
+
+
+msgid "Audio Boost %"
+msgstr ""
+
+
+msgid "Audio Playlist"
+msgstr ""
+
+
+msgid "Audio Track"
+msgstr "Ääniraita"
+
+
+msgid "Audio/Subs"
+msgstr ""
+
+
+msgid "Authors"
+msgstr ""
+
+
+msgid "By Collection"
+msgstr ""
+
+
+msgid "By Content Rating"
+msgstr ""
+
+
+msgid "By Country"
+msgstr ""
+
+
+msgid "By First Letter"
+msgstr "Ensimmäisen kirjaimen mukaan"
+
+
+msgid "By Folder"
+msgstr "Kansion mukaan"
+
+
+msgid "By Rating"
+msgstr ""
+
+
+msgid "By Resolution"
+msgstr ""
+
+
+msgid "By Year"
+msgstr "Vuoden mukaan"
+
+
+msgid "Camera Make"
+msgstr "Kamera"
+
+
+msgid "Camera Model"
+msgstr "Kameran malli"
+
+
+msgid "Change All Posters"
+msgstr ""
+
+
+msgid "Change Fanart"
+msgstr ""
+
+
+msgid "Change Poster"
+msgstr ""
+
+
+msgid "Channel Search"
+msgstr ""
+
+
+msgid "Channel View"
+msgstr ""
+
+
+msgid "Channels"
+msgstr ""
+
+
+msgid "Clock Position"
+msgstr ""
+
+
+msgid "Collections"
+msgstr ""
+
+
+msgid "Decade"
+msgstr ""
+
+
+msgid "Decades"
+msgstr ""
+
+
+msgid "Details"
+msgstr ""
+
+
+msgid "Director"
+msgstr ""
+
+
+msgid "Directors"
+msgstr ""
+
+
+msgid "Discover"
+msgstr ""
+
+
+msgid "Duration Format"
+msgstr ""
+
+
+msgid "Enter the MyPlex password for {0}."
+msgstr "Anna MyPlex salasana tunnukselle {0}."
+
+
+msgid "Episodes"
+msgstr ""
+
+
+msgid "Failed"
+msgstr ""
+
+
+msgid "Flatten Season"
+msgstr ""
+
+
+msgid "Forum"
+msgstr ""
+
+
+msgid "Genre"
+msgstr "Tyylilaji"
+
+
+msgid "Genres"
+msgstr "Tyylilajit"
+
+
+msgid "Home Video Options"
+msgstr ""
+
+
+msgid "Home Video View"
+msgstr ""
+
+
+msgid "Home Videos Navigation Bar"
+msgstr ""
+
+
+msgid "Homepage"
+msgstr "Kotisivu"
+
+
+msgid "ISO"
+msgstr "ISO"
+
+
+msgid "Length"
+msgstr "Kesto"
+
+
+msgid "Lens"
+msgstr ""
+
+
+msgid "Library"
+msgstr "Kirjasto"
+
+
+msgid "Library View"
+msgstr ""
+
+
+msgid "Mark as Unwatched"
+msgstr ""
+
+
+msgid "Mark as Watched"
+msgstr ""
+
+
+msgid "More"
+msgstr ""
+
+
+msgid "More..."
+msgstr ""
+
+
+msgid "Movie Fanart"
+msgstr ""
+
+
+msgid "Movie Navigation Bar"
+msgstr ""
+
+
+msgid "Movie Options"
+msgstr ""
+
+
+msgid "Movie View"
+msgstr ""
+
+
+msgid "Movies"
+msgstr ""
+
+
+msgid "Music Navigation Bar"
+msgstr ""
+
+
+msgid "Music Options"
+msgstr ""
+
+
+msgid "Music View"
+msgstr ""
+
+
+msgid "MyPlex Password"
+msgstr ""
+
+
+msgid "MyPlex Sign In"
+msgstr "MyPlex kirjaudu"
+
+
+msgid "MyPlex Sign Out"
+msgstr "MyPlex Kirjaudu ulos"
+
+
+msgid "MyPlex Username"
+msgstr "MyPlex Käyttäjätunnus"
+
+
+msgid "Navigation Bar"
+msgstr ""
+
+
+msgid "No Plex Channels Available"
+msgstr "Plex kanavia ei saatavilla"
+
+
+msgid "No Plex Library Sections Available"
+msgstr "Plex kirjastoja ei saatavilla"
+
+
+msgid "No Plex Playlists Available"
+msgstr ""
+
+
+msgid "No Seasons"
+msgstr "Ei kausia"
+
+
+msgid "No Unwatched Shows"
+msgstr "Ei katsomattomia videoita"
+
+
+msgid "No Unwatched Shows."
+msgstr ""
+
+
+msgid "No episodes"
+msgstr ""
+
+
+msgid "None"
+msgstr "Ei mitään"
+
+
+msgid "Now Playing"
+msgstr ""
+
+
+msgid "On Deck"
+msgstr ""
+
+
+msgid "Overscan Adjust"
+msgstr ""
+
+
+msgid "PIL/Pillow not installed"
+msgstr ""
+
+
+msgid "Photo"
+msgstr ""
+
+
+msgid "Photo Transcoder Action"
+msgstr ""
+
+
+msgid "Play"
+msgstr "Toista"
+
+
+msgid "Playlists"
+msgstr ""
+
+
+msgid "Plex Channels"
+msgstr ""
+
+
+msgid "Plex Library"
+msgstr ""
+
+
+msgid "Plex Media Server"
+msgstr ""
+
+
+msgid "Plex Media Server: No Items Available"
+msgstr ""
+
+
+msgid "Plex Media Server: No Tracks Available"
+msgstr ""
+
+
+msgid "Plex Playlists"
+msgstr ""
+
+
+msgid "PlexConnect"
+msgstr ""
+
+
+msgid "Poster Titles"
+msgstr ""
+
+
+msgid "Producers"
+msgstr ""
+
+
+msgid "Recently Added"
+msgstr ""
+
+
+msgid "Recently Aired"
+msgstr ""
+
+
+msgid "Recently Released"
+msgstr ""
+
+
+msgid "Recently Viewed"
+msgstr ""
+
+
+msgid "Recently Viewed Episodes"
+msgstr ""
+
+
+msgid "Recently Viewed Shows"
+msgstr ""
+
+
+msgid "Refresh"
+msgstr ""
+
+
+msgid "Remote Bitrate"
+msgstr ""
+
+
+msgid "Search"
+msgstr ""
+
+
+msgid "Season View"
+msgstr ""
+
+
+msgid "Select Fanart"
+msgstr ""
+
+
+msgid "Select Poster"
+msgstr ""
+
+
+msgid "Select Posters"
+msgstr ""
+
+
+msgid "Select Tracks"
+msgstr ""
+
+
+msgid "Settings"
+msgstr ""
+
+
+msgid "Shared Libraries"
+msgstr ""
+
+
+msgid "Show Clock"
+msgstr ""
+
+
+msgid "Show End Time"
+msgstr ""
+
+
+msgid "Show Photos"
+msgstr ""
+
+
+msgid "Show Playlists"
+msgstr ""
+
+
+msgid "Show Shared Libraries"
+msgstr ""
+
+
+msgid "Show Unwatched Count"
+msgstr ""
+
+
+msgid "Shows"
+msgstr ""
+
+
+msgid "Shuffle"
+msgstr ""
+
+
+msgid "Shutter Speed"
+msgstr ""
+
+
+msgid "SlideShow"
+msgstr ""
+
+
+msgid "Studio"
+msgstr ""
+
+
+msgid "Subs"
+msgstr ""
+
+
+msgid "Subtitle Renderer"
+msgstr ""
+
+
+msgid "Subtitle Size %"
+msgstr "Tekstityksen koko %"
+
+
+msgid "Subtitle Track"
+msgstr ""
+
+
+msgid "Synopsis hidden."
+msgstr ""
+
+
+msgid "TV Show Fanart"
+msgstr ""
+
+
+msgid "TV Show Navigation Bar"
+msgstr ""
+
+
+msgid "TV Show Options"
+msgstr "TV-sarjan asetukset"
+
+
+msgid "TV Show View"
+msgstr ""
+
+
+msgid "TheMovieDB: No Trailer Info available"
+msgstr ""
+
+
+msgid "Time Format"
+msgstr "Ajan muoto"
+
+
+msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
+msgstr ""
+
+
+msgid "Top Level Options"
+msgstr ""
+
+
+msgid "Trailer"
+msgstr ""
+
+
+msgid "Transcoder"
+msgstr ""
+
+
+msgid "Transcoder Action"
+msgstr ""
+
+
+msgid "Transcoder Quality"
+msgstr ""
+
+
+msgid "Unwatched"
+msgstr ""
+
+
+msgid "Unwatched Synopsis"
+msgstr ""
+
+
+msgid "Version"
+msgstr ""
+
+
+msgid "Video"
+msgstr ""
+
+
+msgid "Video Player OSD"
+msgstr ""
+
+
+msgid "Video Playlist"
+msgstr ""
+
+
+msgid "Video Playlist: No Items Available"
+msgstr ""
+
+
+msgid "View Show"
+msgstr ""
+
+
+msgid "Wiki/Docs"
+msgstr ""
+
+
+msgid "Writers"
+msgstr ""
+
+
+msgid "Year"
+msgstr ""
+
+
+msgid "refreshing"
+msgstr ""
+
+
+msgid "remote"
+msgstr ""
+
+
+msgid "{0:0d}x{1:02d} {2}"
+msgstr ""
+
+
+msgid "{0:d} Minutes"
+msgstr ""
+
+
+msgid "{0:d}:{1:0>2d}"
+msgstr ""
+
+
+msgid "{0:d}hr {1:d}min"
+msgstr ""
+
+
+msgid "{0} unwatched"
+msgstr ""
+
+

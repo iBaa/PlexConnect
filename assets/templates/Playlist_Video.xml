@@ -22,8 +22,8 @@
             <items>
               <!-- shuffle -->
               <oneLineMenuItem id="shuffle_{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL(Video)}}&amp;PlexConnect=Play:Shuffle:{{VAL(Video/ratingKey)}}')"
-                                       onSelect="atv.loadURL('{{URL(Video)}}&amp;PlexConnect=Play:Shuffle:{{VAL(Video/ratingKey)}}')">
+                                       onPlay="atv.loadURL('{{URL(Video:::PlexConnect=PlayVideo&amp;PlexConnectRatingKey={{VAL(Video/ratingKey)}}&amp;PlexConnectPlayType=Shuffle)}}')"
+                                       onSelect="atv.loadURL('{{URL(Video:::PlexConnect=PlayVideo&amp;PlexConnectRatingKey={{VAL(Video/ratingKey)}}&amp;PlexConnectPlayType=Shuffle)}}')">
                 <label>{{TEXT(Shuffle)}}</label>
                 <accessories>
                   <shuffle/>
@@ -59,9 +59,9 @@
               
               <!-- Movies -->
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"
-                             onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
-                             onSelect="atv.loadURL('{{URL()}}&amp;PlexConnect=Play:Continuous:{{VAL(ratingKey)}}')"
-                             onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
+                             onPlay="atv.loadURL('{{URL(:::PlexConnect=PlayVideo&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                             onSelect="atv.loadURL('{{URL(:::PlexConnect=PlayVideo&amp;PlexConnectRatingKey={{VAL(ratingKey)}}&amp;PlexConnectPlayType=Continuous)}}')"
+                             onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=ScrobbleMenuVideo)}}')">
               {{CUT(type::episode=CUT|movie=)}}
               {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <label>{{VAL(title)}}</label>
@@ -89,9 +89,9 @@
               
               <!-- Episodes -->
               <twoLineEnhancedMenuItem id="{{VAL(ratingKey)}}"
-                             onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
-                             onSelect="atv.loadURL('{{URL()}}&amp;PlexConnect=Play:Continuous:{{VAL(ratingKey)}}')"
-                             onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
+                             onPlay="atv.loadURL('{{URL(:::PlexConnect=PlayVideo&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                             onSelect="atv.loadURL('{{URL(:::PlexConnect=PlayVideo&amp;PlexConnectRatingKey={{VAL(ratingKey)}}&amp;PlexConnectPlayType=Continuous)}}')"
+                             onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=ScrobbleMenuVideo)}}')">
               {{CUT(type::episode=|movie=CUT)}}
               {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <label>{{VAL(title)}}</label>

@@ -32,8 +32,8 @@
             <items>
               <!-- Playlist -->
               <oneLineMenuItem id="{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Playlist_Video')"
-                                       onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Playlist_Video')">
+                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Playlist_Video)}}')"
+                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=Playlist_Video)}}')">
                                        <!--onSelectHold=""-->
               {{COPY(Playlist:playlistType::=|video=COPY|video =)}}
               {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
@@ -68,8 +68,8 @@
             <items>
               <!-- Playlist -->
               <oneLineMenuItem id="{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Playlist_Audio')"
-                                       onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Playlist_Audio')">
+                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Playlist_Audio)}}')"
+                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=Playlist_Audio)}}')">
                                        <!--onSelectHold=""-->
               {{COPY(Playlist:playlistType::=|audio=COPY|audio =)}}
               {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->

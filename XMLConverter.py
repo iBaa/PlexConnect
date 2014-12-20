@@ -194,25 +194,14 @@ def XML_PMS2aTV(PMS_address, path, options):
         XMLtemplate = 'ChannelsSearch.xml'
         path = ''
         
-    elif cmd.startswith('Play:'):
-        opt = cmd[len('Play:'):]  # cut command:
-        parts = opt.split(':',1)
-        if len(parts)==2:
-            options['PlexConnectPlayType'] = parts[0]  # Single, Continuous # decoded in PlayVideo.xml, COPY_PLAYLIST
-            options['PlexConnectRatingKey'] = parts[1]  # ratingKey # decoded in PlayVideo.xml
-        else:
-            return XML_Error('PlexConnect','Unexpected "Play" command syntax')
+    elif cmd=='PlayVideo':
         XMLtemplate = 'PlayVideo.xml'
     
-    elif cmd.startswith('PlayAudio'):  # PlayAudio: or PlayAudio_plist:
-        parts = cmd.split(':',3)
-        if len(parts)==4:
-            XMLtemplate = parts[0] + '.xml'
-            options['PlexConnectPlayType'] = parts[1]  # Single, Continuous # decoded in PlayAudio.xml
-            options['PlexConnectRatingKey'] = parts[2]  # ratingKey
-            options['PlexConnectCopyIx'] = parts[3]  # copy_ix
-        else:
-            return XML_Error('PlexConnect','Unexpected "PlayAudio" command syntax')
+    elif cmd=='PlayAudio':
+        XMLtemplate = 'PlayAudio.xml'
+    
+    elif cmd=='PlayAudio_plist':
+        XMLtemplate = 'PlayAudio_plist.xml'
     
     elif cmd=='PlayVideo_ChannelsV1':
         dprint(__name__, 1, "playing Channels XML Version 1: {0}".format(path))
@@ -307,7 +296,22 @@ def XML_PMS2aTV(PMS_address, path, options):
     
     elif cmd=='ChannelsVideo':
         XMLtemplate = 'ChannelsVideo.xml'
+		
+    elif cmd=='Channels':
+		if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'channelview') == 'Tabbed List':
+			XMLtemplate = 'Channel_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'channelview').replace(' ', '')+'_Video.xml'
+		else:
+			XMLtemplate = 'Channel_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'channelview').replace(' ', '')+'.xml'
 
+    elif cmd=='Channels_VideoList':
+        XMLtemplate = 'Channel_TabbedList_Video.xml'
+
+    elif cmd=='Channels_AudioList':
+        XMLtemplate = 'Channel_TabbedList_Audio.xml'
+
+    elif cmd=='Channels_PhotoList':
+        XMLtemplate = 'Channel_TabbedList_Photo.xml'
+		
     elif cmd=='ShowByFolder':
         XMLtemplate = 'ShowByFolder.xml'
 
@@ -366,8 +370,17 @@ def XML_PMS2aTV(PMS_address, path, options):
         XMLtemplate = 'DirectoryWithPreviewActors.xml'
     
     elif cmd=='Playlists':
-        XMLtemplate = 'Playlists.xml'
-    
+		if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'showplaylists') == 'Tabbed List':
+			XMLtemplate = 'Playlists_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'showplaylists').replace(' ', '')+'_Video.xml'
+		else:
+			XMLtemplate = 'Playlists_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'showplaylists').replace(' ', '')+'.xml'
+
+    elif cmd=='Playlists_VideoList':
+        XMLtemplate = 'Playlists_TabbedList_Video.xml'
+
+    elif cmd=='Playlists_AudioList':
+        XMLtemplate = 'Playlists_TabbedList_Audio.xml'
+
     elif cmd=='Playlist_Video':
         XMLtemplate = 'Playlist_Video.xml'
     
@@ -458,11 +471,7 @@ def XML_PMS2aTV(PMS_address, path, options):
         
     elif path=='/library/sections':  # from PlexConnect.xml -> for //local, //myplex
         XMLtemplate = 'Library.xml'
-    
-    elif path=='/channels/all':
-        XMLtemplate = 'Channel_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'channelview')+'.xml'
-        path = ''
-    
+        
     # request PMS XML
     if not path=='':
         if PMS_address[0].isalpha():  # owned, shared
@@ -1193,6 +1202,8 @@ class CCommandCollection(CCommandHelper):
     
     def ATTRIB_URL(self, src, srcXML, param):
         key, leftover, dfltd = self.getKey(src, srcXML, param)
+        addPath, leftover = self.getParam(src, leftover)
+        addOpt, leftover = self.getParam(src, leftover)
         
         # compare PMS_mark in PlexAPI/getXMLFromMultiplePMS()
         PMS_mark = '/PMS(' + PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'ip') + ')'
@@ -1223,6 +1234,15 @@ class CCommandCollection(CCommandHelper):
             res = res + PMS_mark + self.path[srcXML]
         else:  # internal path, add-on
             res = res + PMS_mark + self.path[srcXML] + '/' + key
+        
+        if addPath:
+            res = res + addPath
+        
+        if addOpt:
+            if not '?' in res:
+                res = res +'?'+ addOpt
+            else:
+                res = res +'&'+ addOpt
         
         return res
     
@@ -1435,7 +1455,7 @@ class CCommandCollection(CCommandHelper):
         
         dprint(__name__, 0, "Background (Source): {0}", key)
         res = g_param['baseURL']  # base address to PlexConnect
-        res = res + PILBackgrounds.generate(self.PMS_uuid, key, auth_token, self.options['aTVScreenResolution'])
+        res = res + PILBackgrounds.generate(self.PMS_uuid, key, auth_token, self.options['aTVScreenResolution'], g_ATVSettings.getSetting(self.ATV_udid, 'fanart_blur'))
         dprint(__name__, 0, "Background: {0}", res)
         return res
 

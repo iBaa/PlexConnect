@@ -1,8 +1,6 @@
 <atv>
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
-    <script src="{{URL(:/js/updateXML.js)}}" />
-    <script src="{{URL(:/js/settings.js)}}" />
   </head>
 
   <body>
@@ -30,9 +28,9 @@
             <shelfSection>
               <items>
                 <sixteenByNinePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_homevideos::Highlighted Only=false|Show All=true)}}"
-                            onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
-                            onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=HomeVideoPrePlay')"
-                            onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
+                            onPlay="atv.loadURL('{{URL(key:::PlexConnect=PlayVideo&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                            onSelect="atv.loadURL('{{URL(key:::PlexConnect=HomeVideoPrePlay)}}')"
+                            onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=ScrobbleMenuVideo)}}')">
                   {{COPY(@OnDeck/Video)}}
                   {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                   <title>{{VAL(title)}}</title>
@@ -55,9 +53,9 @@
             <shelfSection>
               <items>
                 <sixteenByNinePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_homevideos::Highlighted Only=false|Show All=true)}}"
-                            onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
-                            onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=HomeVideoPrePlay')"
-                            onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
+                            onPlay="atv.loadURL('{{URL(key:::PlexConnect=PlayVideo&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                            onSelect="atv.loadURL('{{URL(key:::PlexConnect=HomeVideoPrePlay)}}')"
+                            onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=ScrobbleMenuVideo)}}')">
                   {{COPY(@RecentlyAdded/Video)}}
                   {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                   <title>{{VAL(title)}}</title>
@@ -80,9 +78,9 @@
             <shelfSection>
               <items>
                 <sixteenByNinePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_homevideos::Highlighted Only=false|Show All=true)}}"
-                            onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=Play::{{VAL(ratingKey)}}')"
-                            onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=HomeVideoPrePlay')"
-                            onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
+                            onPlay="atv.loadURL('{{URL(key:::PlexConnect=PlayVideo&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                            onSelect="atv.loadURL('{{URL(key:::PlexConnect=HomeVideoPrePlay)}}')"
+                            onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=ScrobbleMenuVideo)}}')">
                   {{COPY(@RecentlyReleased/Video)}}
                   {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                   <title>{{VAL(title)}}</title>

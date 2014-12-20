@@ -35,14 +35,14 @@
             {{COPY(Media/Part/Stream:streamType::=|3=COPY|3 =)}}
               <subtitleURL> <!-- id="{{VAL(id)}}" key="{{VAL(key)}}" codec="{{VAL(codec)}}"--><!--.srt only -->
               {{CUT(selected:CUT:0=CUT|1=)}}
-                {{URL(key)}}&amp;PlexConnect=Subtitle&amp;PlexConnectSubtitleFormat={{VAL(format)}}
+                {{URL(key:::PlexConnect=Subtitle&amp;PlexConnectSubtitleFormat={{VAL(format)}})}}
               </subtitleURL>
             </__COPY__>
         </myMetadata>
         
         <playlistData>
         <__COPY__>
-        {{COPY_PLAYLIST(@main/Video:^PlexConnectPlayType::^PlexConnectRatingKey::ratingKey:)}}
+        {{COPY_PLAYLIST(@main/Video:^PlexConnectPlayType:Single:^PlexConnectRatingKey::ratingKey:)}}
             
             <httpFileVideoAsset id="{{VAL(key)}}">
             {{VAR(partIndex::-1)}}  <!--dirty hack: VAR is evaluated before VAL, VIDEOURL; so #partIndex is +1-->

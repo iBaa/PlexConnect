@@ -34,8 +34,8 @@
             <items>
               <!-- video channels per server -->
               <twoLineEnhancedMenuItem id="Video_{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelsVideo')"
-                                       onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=ChannelsVideo')">
+                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=ChannelsVideo)}}')"
+                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=ChannelsVideo)}}')">
               {{COPY(Directory)}}
               {{VAR(channels:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <label>{{VAL(title)}}</label>
@@ -57,7 +57,7 @@
             <header>
               <horizontalDivider alignment="left">
                 <title>{{TEXT(Audio)}}</title>{{CUT(@VideoChannels/size::1=|2=CUT)}}
-                <title>{{TEXT(Audio)}} - {{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>{{CUT(@VideoChannels/size:CUT:1=CUT|2=)}}
+                <title>{{TEXT(Audio)}} - {{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>{{CUT(@AudioChannels/size:CUT:1=CUT|2=)}}
               </horizontalDivider>
             </header>
             
@@ -86,7 +86,7 @@
             <header>
               <horizontalDivider alignment="left">
                 <title>{{TEXT(Photo)}}</title>{{CUT(@VideoChannels/size::1=|2=CUT)}}
-                <title>{{TEXT(Photo)}} - {{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>{{CUT(@VideoChannels/size:CUT:1=CUT|2=)}}
+                <title>{{TEXT(Photo)}} - {{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>{{CUT(@PhotoChannels/size:CUT:1=CUT|2=)}}
               </horizontalDivider>
             </header>
             

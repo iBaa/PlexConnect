@@ -71,37 +71,37 @@
               </horizontalDivider>
             </header>
             <items>
-              <oneLineMenuItem id="Top Level" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsTopLevel')">
+              <oneLineMenuItem id="Top Level" onSelect="atv.loadURL('{{URL(:/::PlexConnect=SettingsTopLevel)}}')">
                 <label>{{TEXT(Top Level Options)}}</label>
                 <accessories>
                   <arrow/>
                 </accessories>
               </oneLineMenuItem>
-              <oneLineMenuItem id="MovieView" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsMovies')">
+              <oneLineMenuItem id="MovieView" onSelect="atv.loadURL('{{URL(:/::PlexConnect=SettingsMovies)}}')">
                 <label>{{TEXT(Movie Options)}}</label>
                 <accessories>
                   <arrow/>
                 </accessories>
               </oneLineMenuItem>
-              <oneLineMenuItem id="ShowView" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsTVShows')">
+              <oneLineMenuItem id="ShowView" onSelect="atv.loadURL('{{URL(:/::PlexConnect=SettingsTVShows)}}')">
                 <label>{{TEXT(TV Show Options)}}</label>
                 <accessories>
                   <arrow/>
                 </accessories>
               </oneLineMenuItem>
-              <oneLineMenuItem id="HomevideoView" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsHomeVideos')">
+              <oneLineMenuItem id="HomevideoView" onSelect="atv.loadURL('{{URL(:/::PlexConnect=SettingsHomeVideos)}}')">
                 <label>{{TEXT(Home Video Options)}}</label>
                 <accessories>
                   <arrow/>
                 </accessories>
               </oneLineMenuItem>
-              <oneLineMenuItem id="MusicView" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsMusic')">
+              <oneLineMenuItem id="MusicView" onSelect="atv.loadURL('{{URL(:/::PlexConnect=SettingsMusic)}}')">
                 <label>{{TEXT(Music Options)}}</label>
                 <accessories>
                   <arrow/>
                 </accessories>
               </oneLineMenuItem>
-              <oneLineMenuItem id="VideoOSD" onSelect="atv.loadURL('{{URL(:/)}}&amp;PlexConnect=SettingsVideoOSD')">
+              <oneLineMenuItem id="VideoOSD" onSelect="atv.loadURL('{{URL(:/::PlexConnect=SettingsVideoOSD)}}')">
                 <label>{{TEXT(Video Player OSD)}}</label>
                 <accessories>
                   <arrow/>

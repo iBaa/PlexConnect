@@ -31,9 +31,9 @@
           <menuSection>
             <items>    
               <oneLineMenuItem id="{{VAL(ratingKey)}}"
-                                         onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=Play:Continuous:{{VAL(ratingKey)}}')"
-                                         onSelect="atv.loadURL('{{URL(key)}}&amp;PlexConnect=EpisodePrePlay')"
-                                         onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
+                                         onPlay="atv.loadURL('{{URL(:::PlexConnect=PlayVideo&amp;PlexConnectRatingKey={{VAL(ratingKey)}}&amp;PlexConnectPlayType=Continuous)}}')"
+                                         onSelect="atv.loadURL('{{URL(key:::PlexConnect=EpisodePrePlay)}}')"
+                                         onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=ScrobbleMenuVideo)}}')">
                 {{COPY(Video:index::=|0 =COPY)}}
                 <label>{{VAL(title)}}</label>
                 <ordinal>{{VAL(index)}}</ordinal>
