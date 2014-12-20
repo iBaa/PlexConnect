@@ -10,7 +10,7 @@ from Debug import *  # dprint()
 
 
 options = { \
-    'showplaylists'         :('True', 'False'), \
+    'showplaylists'         :('List', 'Tabbed List', 'False'), \
     'showsharedlibraries'   :('True', 'False'), \
     'libraryview'           :('List', 'Grid', 'Bookcase'), \
     'movieview'             :('Grid', 'List', 'Detailed List'), \

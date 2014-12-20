@@ -12,7 +12,7 @@
         <navigationItem id="Playlists">
           <title>{{TEXT(Playlists)}}</title>
           <url>{{URL(:/PMS(all)/playlists::PlexConnect=Playlists)}}</url>
-        </navigationItem>{{CUT($showplaylists:CUT:False=CUT|True=)}}
+        </navigationItem>{{CUT($showplaylists:CUT:False=CUT|List=)}}
         <navigationItem id="Library">
           <title>{{TEXT(Library)}}</title>
           <url>{{URL(:/PMS(owned)/library/sections)}}</url>

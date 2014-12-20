@@ -370,8 +370,17 @@ def XML_PMS2aTV(PMS_address, path, options):
         XMLtemplate = 'DirectoryWithPreviewActors.xml'
     
     elif cmd=='Playlists':
-        XMLtemplate = 'Playlists.xml'
-    
+		if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'showplaylists') == 'Tabbed List':
+			XMLtemplate = 'Playlists_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'showplaylists').replace(' ', '')+'_Video.xml'
+		else:
+			XMLtemplate = 'Playlists_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'showplaylists').replace(' ', '')+'.xml'
+
+    elif cmd=='Playlists_VideoList':
+        XMLtemplate = 'Playlists_TabbedList_Video.xml'
+
+    elif cmd=='Playlists_AudioList':
+        XMLtemplate = 'Playlists_TabbedList_Audio.xml'
+
     elif cmd=='Playlist_Video':
         XMLtemplate = 'Playlist_Video.xml'
     
