@@ -445,6 +445,8 @@ cp installphp.bash /usr/bin
 cp sudoersfix.bash /usr/bin
 cp appupdate.bash /usr/bin
 cp appupdatebash.bash /usr/bin
+cp appweb.bash /usr/bin
+cp appwebbash.bash /usr/bin
 cp loghigh.bash /usr/bin
 cp lognormal.bash /usr/bin
 cp loghighbash.bash /usr/bin
@@ -631,6 +633,8 @@ chmod +x /usr/bin/restorecerts.bash
 chmod +x /usr/bin/backup.bash
 chmod +x /usr/bin/appupdate.bash
 chmod +x /usr/bin/appupdatebash.bash
+chmod +x /usr/bin/appweb.bash
+chmod +x /usr/bin/appwebbash.bash
 chmod +x /usr/bin/loghigh.bash 
 chmod +x /usr/bin/lognormal.bash
 chmod +x /usr/bin/loghighbash.bash 
@@ -686,6 +690,7 @@ chmod 4755 /usr/bin/quititunesbash.bash
 chmod 4755 /usr/bin/logbash.bash
 chmod 4755 /usr/bin/loghigh.bash 
 chmod 4755 /usr/bin/lognormal.bash
+chmod 4755 /usr/bin/appweb.bash
 chmod 4755 /usr/bin/whobash.bash
 chmod 4755 /usr/bin/wakebash.bash
 chmod 4755 /usr/bin/tvbash.bash
