@@ -5,6 +5,7 @@
 
   <body>
     {{ADDXML(AudioChannels::/music)}}
+		{{VAR(channels:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
 
     <listByNavigation id="Channel_TabbedList_Audio">
       <header>
@@ -45,6 +46,7 @@
                                        onPlay="atv.loadURL('{{URL(key)}}')"
                                        onSelect="atv.loadURL('{{URL(key)}}')">
               {{COPY(Directory)}}
+              {{VAR(channels:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <label>{{VAL(title)}}</label>
                 <image>{{IMAGEURL(thumb::384)}}</image>
                 <preview>
@@ -58,6 +60,7 @@
           </menuSection>
         </sections>
       </menu>
+			{{CUT(#channels::FALSE=CUT|TRUE=)}}  <!--CUT if no channel added-->
     </listByNavigation>
   </body>
 </atv>

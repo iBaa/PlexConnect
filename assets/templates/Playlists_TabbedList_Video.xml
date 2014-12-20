@@ -65,8 +65,8 @@
           </__COPY__>
           
         </sections>
-      </menu>
-    </listByNavigation>{{CUT(#items::FALSE=CUT|TRUE=)}}  <!--CUT if no section added-->
+      </menu>{{CUT(#items_section::FALSE=CUT|TRUE=)}}  <!--CUT if no section added-->
+    </listByNavigation>
     
   </body>
 </atv>
