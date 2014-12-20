@@ -238,6 +238,12 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
           /usr/bin/loghighbash.bash
           echo "</pre>"
           ;;
+          
+          appwebbash)
+          echo "Output of appwebbash :<pre>"
+          /usr/bin/appwebbash.bash
+          echo "</pre>"
+          ;;
 
 
 
@@ -291,7 +297,7 @@ FOLDER2=`echo "$QUERY_STRING" | sed -n 's/^.*folder2=\([^&]*\).*$/\1/p' | sed "s
     echo "<br>"
     echo "Plex Media Server/OSX App options:"
     echo "<br>"
-    echo "<input type=radio name=cmd value=10.6bash> Update OpenPlex <br>"
+    echo "<input type=radio name=cmd value=appwebbash> Update OpenPlex <br>"
     echo "<input type=radio name=cmd value=pmsscanbash> Update PMS Library <br>"
     echo "<input type=radio name=cmd value=pmsbash> Start Plex Media Server <br>"
     echo "<input type=radio name=cmd value=phtbash> Start Plex Home Theater <br>"
