@@ -669,7 +669,7 @@ chmod 4755 /usr/bin/stoffez.bash
 chmod 4755 /usr/bin/falco.bash
 chmod 4755 /usr/bin/wahlmanj.bash
 chmod 4755 /usr/bin/show.bash
-chomd 4755 /usr/bin/hide.bash
+chmod 4755 /usr/bin/hide.bash
 chmod 4755 /usr/bin/removecertsbash.bash
 chmod 4755 /usr/bin/createcertbash.bash
 chmod 4755 /usr/bin/createimoviebash.bash
