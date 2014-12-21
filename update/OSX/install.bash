@@ -384,6 +384,8 @@ cp plexweblistwanbash.bash /usr/bin
 cp quit /usr/bin
 cp hide /usr/bin
 cp show /usr/bin
+cp hide.bash /usr/bin
+cp show.bash /usr/bin
 cp xml.bash /usr/bin
 cp auto.bash /usr/bin
 cp pillow.bash /usr/bin
@@ -547,6 +549,8 @@ chmod +x /usr/bin/webconnect.bash
 chmod +x /usr/bin/quit
 chmod +x /usr/bin/hide
 chmod +x /usr/bin/show
+chmod +x /usr/bin/hide.bash
+chmod +x /usr/bin/show.bash
 chmod +x /usr/bin/install.bash
 chmod +x /usr/bin/installphp.bash
 chmod +x /usr/bin/uninstall.bash
@@ -664,6 +668,8 @@ chmod 4755 /usr/bin/ibaa.bash
 chmod 4755 /usr/bin/stoffez.bash
 chmod 4755 /usr/bin/falco.bash
 chmod 4755 /usr/bin/wahlmanj.bash
+chmod 4755 /usr/bin/show.bash
+chomd 4755 /usr/bin/hide.bash
 chmod 4755 /usr/bin/removecertsbash.bash
 chmod 4755 /usr/bin/createcertbash.bash
 chmod 4755 /usr/bin/createimoviebash.bash
