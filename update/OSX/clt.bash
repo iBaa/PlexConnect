@@ -73,3 +73,7 @@ fi
 # rm -rf "$TMPMOUNT"
 # rm "$TOOLS"
 # exit
+
+## test 10.9 clt
+
+## https://developer.apple.com/downloads/download.action?path=Developer_Tools/command_line_tools_os_x_10.9_for_xcode__xcode_6.1.1/commandlinetoolsosx10.9forxcode6.1.1.dmg
