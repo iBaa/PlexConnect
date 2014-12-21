@@ -91,7 +91,7 @@
             <title>{{TEXT(Photo)}} - {{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>{{CUT(@PhotoChannels/size:CUT:1=CUT|2=)}}
           </collectionDivider>
           
-          <shelf id="Channels_Bookcase_Photo_{{VAL(name)}}" columnCount="5">
+          <shelf id="Channels_Bookcase_Photo_{{VAL(name)}}" columnCount="6">
             <sections>
               <shelfSection>
                 
