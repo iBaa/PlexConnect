@@ -77,3 +77,7 @@ fi
 ## test 10.9 clt
 
 ## https://developer.apple.com/downloads/download.action?path=Developer_Tools/command_line_tools_os_x_10.9_for_xcode__xcode_6.1.1/commandlinetoolsosx10.9forxcode6.1.1.dmg
+
+## TEST 10.6
+
+## http://adcdownload.apple.com/Developer_Tools/command_line_tools_for_xcode_4.4__late_march_2012/cltools_lion_latemarch12.dmg
