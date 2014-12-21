@@ -45,8 +45,8 @@
             <items>
               <!-- Playlist -->
               <oneLineMenuItem id="{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Playlist_Audio)}}')"
-                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=Playlist_Audio)}}')">
+                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Playlists_Audio)}}')"
+                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=Playlists_Audio)}}')">
                                        <!--onSelectHold=""-->
               {{COPY(Playlist:playlistType::=|audio=COPY|audio =)}}
               {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
