@@ -64,8 +64,8 @@
             <items>
               <!-- audio channels per server -->
               <twoLineEnhancedMenuItem id="Audio_{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL(key)}}')"
-                                       onSelect="atv.loadURL('{{URL(key)}}')">
+                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Channels_Audio)}}')"
+                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=Channels_Audio)}}')">
               {{COPY(Directory)}}
               {{VAR(channels:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <label>{{VAL(title)}}</label>

@@ -56,8 +56,8 @@
             <items>
               <!-- audio channels per server -->
               <moviePoster id="Audio_{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_channels::Highlighted Only=false|Show All=true)}}"
-                           onPlay="atv.loadURL('{{URL(key)}}')"
-                           onSelect="atv.loadURL('{{URL(key)}}')">
+                           onPlay="atv.loadURL('{{URL(key:::PlexConnect=Channels_Audio)}}')"
+                           onSelect="atv.loadURL('{{URL(key:::PlexConnect=Channels_Audio)}}')">
               {{COPY(Directory)}}
               {{VAR(channels:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <title>{{VAL(title)}}</title>
