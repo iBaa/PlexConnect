@@ -93,8 +93,8 @@
             <items>
               <!-- photo channels per server -->
               <twoLineEnhancedMenuItem id="Photo_{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL(key)}}')"
-                                       onSelect="atv.loadURL('{{URL(key)}}')">
+                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Channels_Photo)}}')"
+                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=Channels_Photo)}}')">
                 {{COPY(Directory)}}
                 {{VAR(channels:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <label>{{VAL(title)}}</label>
