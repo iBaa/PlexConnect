@@ -282,6 +282,7 @@ def XML_PMS2aTV(PMS_address, path, options):
         parts = cmd.split('_')
         dir = parts[0].replace('Series', 'TVShow')
         dir = dir.replace('Video', 'HomeVideo')
+        dir = dir.replace('iTunes', 'Music')
         cmd = 'NavigationBar'
 
     # Commands that contain a directory
