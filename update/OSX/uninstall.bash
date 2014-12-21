@@ -27,6 +27,8 @@ rm /usr/bin/reboot.bash
 rm /usr/bin/removecerts.bash
 rm /usr/bin/lock.bash
 rm /usr/bin/trash.bash
+rm /usr/bin/show.bash
+rm /usr/bin/hide.bash
 rm /usr/bin/webconnect.bash
 rm /usr/bin/updatewc.bash
 rm /usr/bin/pmsscan.bash
