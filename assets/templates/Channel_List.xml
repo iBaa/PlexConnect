@@ -56,7 +56,7 @@
             
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Audio)}}</title>{{CUT(@VideoChannels/size::1=|2=CUT)}}
+                <title>{{TEXT(Audio)}}</title>{{CUT(@AudioChannels/size::1=|2=CUT)}}
                 <title>{{TEXT(Audio)}} - {{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>{{CUT(@AudioChannels/size:CUT:1=CUT|2=)}}
               </horizontalDivider>
             </header>
@@ -85,7 +85,7 @@
             
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Photo)}}</title>{{CUT(@VideoChannels/size::1=|2=CUT)}}
+                <title>{{TEXT(Photo)}}</title>{{CUT(@PhotoChannels/size::1=|2=CUT)}}
                 <title>{{TEXT(Photo)}} - {{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>{{CUT(@PhotoChannels/size:CUT:1=CUT|2=)}}
               </horizontalDivider>
             </header>
