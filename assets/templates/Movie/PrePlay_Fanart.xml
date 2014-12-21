@@ -1,0 +1,209 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/selectAudioAndSubs.js)}}" />
+    <script src="{{URL(:/js/trailers.js)}}" />
+  </head>
+
+  <body>
+    <itemDetailWithImageHeader layout="compact" id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=Movie_PrePlay{{VAL($moviefanart::Hide=|Show=_Fanart)}})}}')">
+        	  <styles>
+          <color name="titleColor">#fafafa</color>
+          <color name="metadataColor">#fafafa</color>
+        </styles>
+    <header>
+
+	    <imageHeader>
+            <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=440|1080=690)}}, 0" required="true">
+                {{BACKGROUNDURL(Video/art:)}}
+            </image>
+	    </imageHeader>
+	   </header>
+      <title>{{VAL(Video/title)}} ({{VAL(Video/year)}})</title>
+      <footnote>{{VAL(Video/studio)}}</footnote>
+      <rating>{{contentRating(Video/contentRating)}}</rating>
+      <summary>{{VAL(Video/summary)}}</summary>
+      <userRatings>            
+        <starRating hasUserSetRating="true">
+          <percentage>{{EVAL({{VAL(Video/userRating:0)}} * 10)}}</percentage>
+        </starRating>{{CUT(Video/userRating:CUT:0=)}}
+        <starRating>
+          <percentage>{{EVAL({{VAL(Video/rating:0)}} * 10)}}</percentage>
+        </starRating>{{CUT(Video/userRating::0=CUT)}}
+      </userRatings>
+      <image style="moviePoster">{{IMAGEURL(Video/thumb::768)}}</image>
+      <defaultImage>resource://Poster.png</defaultImage>
+
+      <table>
+        <columnDefinitions>
+          <columnDefinition width="50" alignment="left">
+            <title>{{TEXT(Details)}}</title>
+          </columnDefinition>
+        </columnDefinitions>
+        <rows>
+          <row>
+            <label>{{VAL(Video/Genre/tag)}}</label>
+          </row>
+          <row>
+            <label>{{durationToString(NoKey:Video:Video/duration)}}</label>
+          </row>
+          <row>
+            <label>{{VAL(Video/Media/videoResolution:Unknown:1080=1080p|720=720p|576=SD|480=SD|sd=SD)}} {{EVAL("{{VAL(Video/Media/container)}} / {{VAL(Video/Media/videoCodec)}}".upper())}} {{VAL(Video/Media/audioCodec:Unknown:ac3=AC3|aac=AAC|mp3=MP3|dca=DTS|drms=DRMS)}} {{VAL(Video/Media/audioChannels:Unknown:2=Stereo|6=5.1|8=7.1)}} </label>
+          </row>
+        </rows>
+      </table>
+
+      <centerShelf>
+        <shelf id="centerShelf" columnCount="3" center="true">
+          <sections>
+            <shelfSection>
+              {{VAR(AudioStreams:NoKey:0)}}
+              {{VAR(SubtitleStreams:NoKey:0)}}
+              <stash>{{CUT(^aTVFirmwareVersion:CUT:=CUT|5.2=)}}
+                <!-- audio streams info-->
+                <stream>
+                  {{COPY(Video/Media/Part/Stream:streamType::=|2=COPY|2 =)}}
+                  {{VAR(AudioStreams:NoKey:{{EVAL({{VAL(#AudioStreams)}}+1)}})}}
+                  <id>{{VAL(id)}}</id>
+                  <language>{{VAL(language:Unknown)}}</language>
+                  <codec>{{VAL(codec)}}</codec>
+                  <streamType>{{VAL(streamType)}}</streamType>
+                  <selected>{{VAL(selected:0)}}</selected>
+                </stream>
+                <!-- subtitle streams info-->
+                <stream>
+                  {{COPY(Video/Media/Part/Stream:streamType::=|3=COPY|3 =)}}
+                  {{VAR(SubtitleStreams:NoKey:{{EVAL({{VAL(#SubtitleStreams)}}+1)}})}}
+                  <id>{{VAL(id)}}</id>
+                  <language>{{VAL(language:Unknown)}}</language>
+                  <format>{{VAL(format)}}</format>
+                  <streamType>{{VAL(streamType)}}</streamType>
+                  <selected>{{VAL(selected:0)}}</selected>
+                </stream>
+              </stash>
+              
+              <items>
+                <actionButton id="play" onSelect="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(Video/ratingKey)}})}}')"
+                                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(Video/ratingKey)}})}}')">
+                  <title>{{TEXT(Play)}}</title>
+                  <image>resource://Play.png</image>
+                  <focusedImage>resource://PlayFocused.png</focusedImage>
+                  <!--<badge></badge>-->
+                </actionButton>
+                <actionButton id="playTrailer" onSelect="playTrailer('{{VAL_QUOTED(Video/title)}}','{{VAL(Video/year)}}')"
+                                        onPlay="playTrailer('{{VAL_QUOTED(Video/title)}}','{{VAL(Video/year)}}')">
+                  <title>{{TEXT(Trailer)}}</title>
+                  <image>resource://Preview.png</image>
+                  <focusedImage>resource://PreviewFocused.png</focusedImage>
+                  <!--<badge></badge>-->
+                </actionButton>
+                <actionButton id="selectAudioAndSubs"
+                              onSelect="selectAudioAndSubs('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(Video/Media/Part/id)}}')"
+                              onHoldSelect="selectAudioAndSubs('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(Video/Media/Part/id)}}')"
+                              onPlay="selectAudioAndSubs('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(Video/Media/Part/id)}}')">
+                {{VAR(SelectAudioAndSubs:NoKey:{{EVAL( {{VAL(#AudioStreams)}}>1 or {{VAL(#SubtitleStreams)}}>0 )}})}}
+                {{CUT(#SelectAudioAndSubs:CUT:False=CUT|True=)}}
+                  <title>{{TEXT(Audio/Subs)}}</title>
+                  <image>resource://Queue.png</image>
+                  <focusedImage>resource://QueueFocused.png</focusedImage>
+                </actionButton>
+              </items>
+            </shelfSection>
+          </sections>
+        </shelf>
+      </centerShelf>
+
+
+      <divider>
+        <smallCollectionDivider alignment="left">
+          <title>Extras</title>
+        </smallCollectionDivider>
+      </divider>{{CUT(Video/Extras/Video/ratingKey:CUT:=)}}
+
+      <bottomShelf>
+        <shelf id="bottomShelf" columnCount="5">
+          <sections>
+            <shelfSection>
+              <items>
+                <moviePoster related="true" alwaysShowTitles="true" id="shelf_item_1" 
+                             onSelect="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')">
+                  {{COPY(Video/Extras/Video)}}
+                  <title>{{VAL(title)}}</title>
+                  <subtitle>{{VAL(extraType::1=Trailer|2=Deleted|3=Interview|4=???|5=Behind the Scenes|6=Scene)}}</subtitle>
+                  <image>{{IMAGEURL(thumb::384)}}</image>
+                </moviePoster>
+              </items>
+            </shelfSection>
+          </sections>
+        </shelf>
+      </bottomShelf>{{CUT(Video/Extras/Video/ratingKey:CUT:=)}}
+
+      <moreInfo>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
+        <listScrollerSplit id="com.sample.list-scroller-split">
+          <menu>
+            <sections>
+              <menuSection>
+                <header>
+                  <textDivider alignment="left" accessibilityLabel="Genres">
+                    <title>{{TEXT(Genres)}}</title>
+                  </textDivider>
+                </header>
+                <items>
+                  <oneLineMenuItem id="list_2">
+                    {{COPY(Video/Genre)}}
+                    {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
+                    <label>{{VAL(tag)}}</label>
+                    <preview>
+                      <link>{{URL(:/:library/sections/{{VAL(/librarySectionID)}}/genre/{{VAL(id)}}:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=50&amp;PlexConnect=Movie_Preview)}}</link>
+                    </preview>
+                  </oneLineMenuItem>
+                </items>
+              </menuSection>{{CUT(Video/Genre/id:CUT:=)}}
+
+              <menuSection>
+                <header>
+                  <textDivider alignment="left" accessibilityLabel="Directors">
+                    <title>{{TEXT(Directors)}}</title>
+                  </textDivider>
+                </header>
+                <items>
+                  <oneLineMenuItem id="list_3" accessibilityLabel="Ivan Reitman">
+                    {{COPY(Video/Director)}}
+                    {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
+                    <label>{{VAL(tag)}}</label>
+                    <preview>
+                      <link>{{URL(:/:library/sections/{{VAL(/librarySectionID)}}/director/{{VAL(id)}}:PlexConnect=Movie_Preview)}}</link>
+                    </preview>
+                  </oneLineMenuItem>
+                </items>
+              </menuSection>{{CUT(Video/Director/id:CUT:=)}}
+
+              <menuSection>
+                <header>
+                  <textDivider alignment="left" accessibilityLabel="Actors">
+                    <title>{{TEXT(Actors)}}</title>
+                  </textDivider>
+                </header>
+                <items>
+                  <twoLineMenuItem id="list_0" accessibilityLabel="Natalie Portman">
+                    {{COPY(Video/Role)}}
+                    {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
+                    <label>{{VAL(tag)}}</label>
+                    <label2>{{VAL(role)}}</label2>
+                    <image>{{IMAGEURL(thumb::384)}}</image>
+                    <defaultImage>resource://Poster.png</defaultImage>
+                    <preview>
+                      <link>{{URL(:/:library/sections/{{VAL(/librarySectionID)}}/actor/{{VAL(id)}}:PlexConnect=Movie_Preview)}}</link>
+                    </preview>
+                  </twoLineMenuItem>
+                </items>
+              </menuSection>{{CUT(Video/Role/id:CUT:=)}}
+
+            </sections>
+          </menu>
+        </listScrollerSplit>
+      </moreInfo>{{CUT(#cut)}}
+
+    </itemDetailWithImageHeader>
+	</body>
+</atv>

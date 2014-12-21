@@ -13,7 +13,7 @@ dlevels = { "PlexConnect": 0, \
             "PlexAPI"    : 0, \
             "DNSServer"  : 1, \
             "WebServer"  : 1, \
-            "XMLConverter" : 0, \
+            "XMLConverter" : 1, \
             "Settings"   : 0, \
             "ATVSettings": 0, \
             "Localize"   : 0, \

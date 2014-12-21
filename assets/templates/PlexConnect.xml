@@ -11,15 +11,15 @@
       
         <navigationItem id="Playlists">
           <title>{{TEXT(Playlists)}}</title>
-          <url>{{URL(:/PMS(all)/playlists::PlexConnect=Playlists)}}</url>
+          <url>{{URL(:/PMS(all)/playlists::PlexConnect=Playlists_{{VAL($showplaylists::Tabbed=TabbedList_Video)}})}}</url>
         </navigationItem>{{CUT($showplaylists:CUT:False=CUT|List=)}}
         <navigationItem id="Library">
           <title>{{TEXT(Library)}}</title>
-          <url>{{URL(:/PMS(owned)/library/sections)}}</url>
+          <url>{{URL(:/PMS(owned)/library/sections::PlexConnect=Main_Library)}}</url>
         </navigationItem>
         <navigationItem id="Channels">
           <title>{{TEXT(Channels)}}</title>
-          <url>{{URL(:/PMS(owned)/channels/all::PlexConnect=Channels)}}</url>
+          <url>{{URL(:/PMS(owned)/channels/all::PlexConnect=Channels_{{VAL($channelview::Tabbed=TabbedList_Video)}})}}</url>
         </navigationItem>
         <navigationItem id="SharedLibraries">
           <title>{{TEXT(Shared Libraries)}}</title>
@@ -27,7 +27,7 @@
         </navigationItem>{{CUT($myplex_auth:CUT:=CUT| =)}}{{CUT($showsharedlibraries:CUT:False=CUT|True=)}}
         <navigationItem id="Settings">
           <title>{{TEXT(Settings)}}</title>
-          <url>{{URL(:/::PlexConnect=Settings)}}</url>
+          <url>{{URL(:/::PlexConnect=Settings_Main)}}</url>
         </navigationItem>
       </navigation>
     </viewWithNavigationBar>

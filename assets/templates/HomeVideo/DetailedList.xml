@@ -1,0 +1,64 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+
+  <body>
+    <listWithPreview id="Movie_DetailedList">
+    {{CUT(size:CUT:0=CUT|1=)}}
+      <header>
+        <simpleHeader>
+          <title>{{VAL(title1)}}</title>
+          <subtitle>{{VAL(title2)}}</subtitle>
+        </simpleHeader>
+      </header>
+
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+              <oneLineMenuItem id="{{VAL(key)}}"
+                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                             onSelect="atv.loadURL('{{URL(key:::PlexConnect=HomeVideo_PrePlay)}}')"
+                             onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
+                {{COPY(Video)}}
+                <label>{{VAL(title)}}</label>
+                <accessories>
+                  <unplayedDot/>{{CUT(viewOffset)}}
+                  <partiallyPlayedDot/>
+                </accessories>{{CUT(viewCount)}}
+                <preview>
+                  <keyedPreview>
+                    <title>{{VAL(title)}}</title>
+                    <summary>{{VAL(summary)}}</summary>
+                    <image>{{IMAGEURL(thumb::384)}}</image>
+										<metadataKeys>
+											<label>{{TEXT(Actors)}}</label>
+											<label>{{TEXT(Director)}}</label>
+											<label>{{TEXT(Genre)}}</label>
+											<label>{{TEXT(Length)}}</label>
+										</metadataKeys>
+										<metadataValues>
+											<label>{{VAL(Role/tag)}}{{VAL(Role[2]/tag::=, )}}{{VAL(Role[2]/tag)}}{{VAL(Role[3]/tag::=, )}}{{VAL(Role[3]/tag)}}</label>
+											<label>{{VAL(Director/tag)}}</label>
+											<label>{{VAL(Genre/tag)}}{{VAL(Genre[2]/tag::=, )}}{{VAL(Genre[2]/tag)}}</label>
+											<label>{{durationToString(NoKey:Video:duration)}}</label>
+										</metadataValues>
+                  </keyedPreview>
+                </preview>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </listWithPreview>
+    
+    <!--No Items Available-->
+    <dialog id="com.sample.error-dialog">
+    {{CUT(size::0=|1=CUT)}}
+      <title>PlexConnect</title>
+      <description>{{TEXT(Plex Media Server: No Items Available)}}</description>
+    </dialog>
+    
+  </body>
+</atv>
