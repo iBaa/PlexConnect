@@ -2,7 +2,9 @@
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
   </head>
-
+	
+	{{VAR(items:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
+	
   <body>
     <listWithPreview id="com.sample.menu-items-with-sections">
     {{CUT(size:CUT:0=CUT|1=)}}
@@ -23,6 +25,7 @@
                                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=Music_Directory)}}')"
                                        onSelect="atv.loadURL('{{URL(key:::PlexConnect=Music_Directory)}}')">
               {{COPY(Directory)}}
+							{{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <label>{{VAL(title)}}</label>
                 <preview>
                   <crossFadePreview>
@@ -41,6 +44,7 @@
                                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=Music_Track)}}')"
                                        onSelect="atv.loadURL('{{URL(key:::PlexConnect=Music_Track)}}')">
               {{COPY(Directory)}}
+							{{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <label>{{VAL(title)}}</label>
                 <preview>
                   <crossFadePreview>
@@ -60,6 +64,7 @@
                                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=Music_Directory)}}')"
                                        onSelect="atv.loadURL('{{URL(key:::PlexConnect=Music_Directory)}}')">
                 {{COPY(Artist)}}
+								{{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <label>{{VAL(artist)}}</label>
                 <preview>
                   <crossFadePreview>
@@ -79,6 +84,7 @@
                                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=Music_Track)}}')"
                                        onSelect="atv.loadURL('{{URL(key:::PlexConnect=Music_Track)}}')">
                 {{COPY(Album)}}
+								{{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <label>{{VAL(label)}}</label>
                 <preview>
                   <crossFadePreview>
@@ -98,6 +104,7 @@
                                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=Music_Track)}}')"
                                        onSelect="atv.loadURL('{{URL(key:::PlexConnect=Music_Track)}}')">
                 {{COPY(Playlist)}}
+								{{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <label>{{VAL(title)}}</label>
                 <rightLabel>{{VAL(count)}}</rightLabel>
                 <preview>
@@ -118,6 +125,7 @@
                                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=Music_Directory)}}')"
                                        onSelect="atv.loadURL('{{URL(key:::PlexConnect=Music_Directory)}}')">
                 {{COPY(Genre)}}
+								{{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <label>{{VAL(genre)}}</label>
                 <preview>
                   <crossFadePreview>
@@ -127,6 +135,25 @@
               </oneLineMenuItem>
             </items>
           </menuSection>
+					
+          <!-- Generic Directory -->
+          <!-- audio V1 -->
+          <menuSection>
+            <items>
+              <oneLineMenuItem id="{{VAL(key)}}"
+                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Music_Directory)}}')"
+                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=Music_Directory)}}')">
+                {{COPY(Directory)}}
+								{{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                <label>{{VAL(title)}}</label>
+                <preview>
+                  <crossFadePreview>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
+                  </crossFadePreview>
+                </preview>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>{{CUT(#items::FALSE=CUT|TRUE=)}}  <!--CUT if no channel added-->
 
         </sections>
       </menu>
