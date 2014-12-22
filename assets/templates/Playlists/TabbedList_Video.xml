@@ -35,11 +35,12 @@
           {{COPY(Server:size::0=|1=COPY)}}
           <menuSection>
           {{VAR(items_section:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
+            
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Video)}} - {{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+                <title>{{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
               </horizontalDivider>
-            </header>{{CUT(@main/size:CUT:0=CUT|1=CUT|2=)}}
+            </header>{{CUT(@main/size:CUT:0=CUT|1=CUT|1 =)}}
             
             <items>
               <!-- Playlist -->
@@ -65,7 +66,7 @@
           </__COPY__>
           
         </sections>
-      </menu>{{CUT(#items_section::FALSE=CUT|TRUE=)}}  <!--CUT if no section added-->
+      </menu>{{CUT(#items::FALSE=CUT|TRUE=)}}  <!--CUT if no section added-->
     </listByNavigation>
     
   </body>

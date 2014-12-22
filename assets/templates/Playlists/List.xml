@@ -25,9 +25,11 @@
           {{VAR(items_section:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Video)}} - {{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+                <title>{{TEXT(Video)}}</title>{{CUT(@main/size::0=CUT|1=|1 =CUT)}}
+                <title>{{TEXT(Video)}} - {{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>{{CUT(@main/size:CUT:0=CUT|1=CUT|1 =)}}
+                
               </horizontalDivider>
-            </header>{{CUT(@main/size:CUT:0=CUT|1=CUT|2=)}}
+            </header>
             
             <items>
               <!-- Playlist -->
@@ -61,9 +63,10 @@
             
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Audio)}} - {{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+                <title>{{TEXT(Audio)}}</title>{{CUT(@main/size::0=CUT|1=|1 =CUT)}}
+                <title>{{TEXT(Audio)}} - {{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>{{CUT(@main/size:CUT:0=CUT|1=CUT|1 =)}}
               </horizontalDivider>
-            </header>{{CUT(@main/size:CUT:0=CUT|1=CUT|2=)}}
+            </header>
             
             <items>
               <!-- Playlist -->
