@@ -291,14 +291,11 @@ def XML_PMS2aTV(PMS_address, path, options):
         if path == '/': path = ''
         dprint(__name__, 1, "Split Directory: {0} Command: {1}", dir, cmd)
         dprint(__name__, 1, "PlexConnectChannelsSearch: " + channelsearchURL)
-        dprint(__name__, 1, "Final XMLTemplate: {0}", XMLtemplate)
+        dprint(__name__, 1, "XMLTemplate: {0}", XMLtemplate)
         dprint(__name__, 1, "---------------------------------------------")
 
     # Special case path requests
-    if path=='/library/sections':  # from PlexConnect.xml -> for //local, //myplex
-        XMLtemplate = 'Main/Library.xml'
-        
-    elif path.startswith('/search?'):
+    if path.startswith('/search?'):
         XMLtemplate = 'Search/Results.xml'
         
     elif path.find('serviceSearch') != -1 or (path.find('video') != -1 and path.lower().find('search') != -1):
@@ -328,6 +325,19 @@ def XML_PMS2aTV(PMS_address, path, options):
     # get XMLtemplate
     aTVTree = etree.parse(sys.path[0]+'/assets/templates/'+XMLtemplate)
     aTVroot = aTVTree.getroot()
+    # redirect if necessary, load final XMLtemplate
+    while aTVroot.tag=='XMLtemplate':
+        CommandCollection = CCommandCollection(options, PMSroot, PMS_address, path)
+        XML_ExpandTree(CommandCollection, aTVroot, PMSroot, 'main')
+        XML_ExpandAllAttrib(CommandCollection, aTVroot, PMSroot, 'main')
+        del CommandCollection
+        
+        XMLtemplate = aTVroot.get('redirect').replace(" ", "")
+        dprint(__name__, 1, "---------------------------------------------")
+        dprint(__name__, 1, "XMLTemplate redirect: {0}", XMLtemplate)
+        dprint(__name__, 1, "---------------------------------------------")
+        aTVTree = etree.parse(sys.path[0]+'/assets/templates/'+XMLtemplate)
+        aTVroot = aTVTree.getroot()
     
     # convert PMS XML to aTV XML using provided XMLtemplate
     CommandCollection = CCommandCollection(options, PMSroot, PMS_address, path)
