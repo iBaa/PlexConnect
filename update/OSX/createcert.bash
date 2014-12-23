@@ -37,6 +37,8 @@ echo 'Upload profile to ATV using this url http://trailers.apple.com/trailers.ce
 
 fi
 
+restartbash.bash
+
 ## Display Settings.cfg
 FILE="/Applications/PlexConnect/settings.cfg"
 echo "*** File - $FILE contents ***"
