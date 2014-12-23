@@ -10,11 +10,9 @@ for pVersion in 3 5 6 7; do
   fi
 done
 
-# Check for brew and install it
-if [ ! -f "/usr/local/bin/brew" ]; then
+
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   brew prune
-fi
 
 brew install libjpeg freetype
  
