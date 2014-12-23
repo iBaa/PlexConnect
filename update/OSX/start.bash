@@ -11,7 +11,7 @@ launchctl load com.plex.plexconnect.bash.plist
 launchctl list | grep com.plex.plexconnect.bash
 
 ## Allow log to refresh
-Sleep 2
+Sleep 4
 
 if [ ! -f /Applications/PlexConnect/PlexConnect.log ]
 then
