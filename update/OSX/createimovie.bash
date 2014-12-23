@@ -5,10 +5,10 @@ cd __INSTALLERPATH__
 cd ../..
 PlexConnectPath=${PWD}
 
-sed -i '' 's/trailers.apple.com/www.icloud.com/g' Settings.cfg
-sed -i '' 's/secure.marketwatch.com/www.icloud.com/g' Settings.cfg
+stopbash.bash
 
-sleep 5
+## Wait till PlexConnect saves settings
+sleep 8
 
 sed -i '' 's/trailers.apple.com/www.icloud.com/g' Settings.cfg
 sed -i '' 's/secure.marketwatch.com/www.icloud.com/g' Settings.cfg
@@ -34,3 +34,5 @@ echo 'Settings.cfg changed to hijack www.icloud.com'
 echo 'Upload profile to ATV using this url http://www.icloud.com/trailers.cer'
 
 fi
+
+stopbash.bash
