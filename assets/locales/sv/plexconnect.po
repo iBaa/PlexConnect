@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 18:43:27+0000\n"
-"PO-Revision-Date: 2014-07-03 23:15+0000\n"
+"POT-Creation-Date: 2014-11-26 18:56:01+0000\n"
+"PO-Revision-Date: 2014-12-14 12:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sv\n"
@@ -24,6 +24,10 @@ msgid "Actors"
 msgstr "Skådespelare"
 
 
+msgid "Albums"
+msgstr ""
+
+
 msgid "All Movies"
 msgstr "Alla Filmer"
 
@@ -37,15 +41,19 @@ msgstr "Alla Serier"
 
 
 msgid "All Videos"
-msgstr ""
+msgstr "Alla videor"
 
 
 msgid "Aperture"
-msgstr "Aperture"
+msgstr "Bländare"
 
 
 msgid "Appearance"
 msgstr "Utseende"
+
+
+msgid "Artists"
+msgstr ""
 
 
 msgid "Audio"
@@ -54,6 +62,10 @@ msgstr "Ljud"
 
 msgid "Audio Boost %"
 msgstr "Ljudförstärkning %"
+
+
+msgid "Audio Playlist"
+msgstr ""
 
 
 msgid "Audio Track"
@@ -105,23 +117,27 @@ msgstr "Kameratillverkare"
 
 
 msgid "Camera Model"
-msgstr "Kamera Modell"
+msgstr "Kameramodell"
 
 
-msgid "Change All Artwork"
+msgid "Change All Posters"
 msgstr ""
 
 
-msgid "Change Artwork"
-msgstr "Ändra Bakgrundsbild"
+msgid "Change Fanart"
+msgstr ""
+
+
+msgid "Change Poster"
+msgstr ""
 
 
 msgid "Channel Search"
-msgstr ""
+msgstr "Sök kanaler"
 
 
 msgid "Channel View"
-msgstr ""
+msgstr "Kanalvy"
 
 
 msgid "Channels"
@@ -134,6 +150,10 @@ msgstr "Klockans Position"
 
 msgid "Collections"
 msgstr "Samlingar"
+
+
+msgid "Decade"
+msgstr ""
 
 
 msgid "Decades"
@@ -173,7 +193,7 @@ msgstr "Misslyckades"
 
 
 msgid "Flatten Season"
-msgstr ""
+msgstr "Platta ut säsong"
 
 
 msgid "Forum"
@@ -189,15 +209,15 @@ msgstr "Genrer"
 
 
 msgid "Home Video Options"
-msgstr ""
+msgstr "Hemvideoalternativ"
 
 
 msgid "Home Video View"
-msgstr ""
+msgstr "Hemvideovy"
 
 
 msgid "Home Videos Navigation Bar"
-msgstr ""
+msgstr "Navigationsfält för Hemvideo"
 
 
 msgid "Homepage"
@@ -221,7 +241,7 @@ msgstr "Bibliotek"
 
 
 msgid "Library View"
-msgstr ""
+msgstr "Biblioteksvy"
 
 
 msgid "Mark as Unwatched"
@@ -240,6 +260,10 @@ msgid "More..."
 msgstr "Mer..."
 
 
+msgid "Movie Fanart"
+msgstr ""
+
+
 msgid "Movie Navigation Bar"
 msgstr "Navigationsfält för filmer"
 
@@ -254,6 +278,18 @@ msgstr "Filmlistevy"
 
 msgid "Movies"
 msgstr "Filmer"
+
+
+msgid "Music Navigation Bar"
+msgstr ""
+
+
+msgid "Music Options"
+msgstr ""
+
+
+msgid "Music View"
+msgstr ""
 
 
 msgid "MyPlex Password"
@@ -272,12 +308,20 @@ msgid "MyPlex Username"
 msgstr "MyPlex Användarnamn"
 
 
+msgid "Navigation Bar"
+msgstr ""
+
+
 msgid "No Plex Channels Available"
 msgstr "Inga Kanaler Tillgängliga"
 
 
 msgid "No Plex Library Sections Available"
 msgstr "Inga Tillgängliga Avdelningar i Biblioteket."
+
+
+msgid "No Plex Playlists Available"
+msgstr ""
 
 
 msgid "No Seasons"
@@ -300,6 +344,10 @@ msgid "None"
 msgstr "Ingen"
 
 
+msgid "Now Playing"
+msgstr ""
+
+
 msgid "On Deck"
 msgstr "Pågående"
 
@@ -308,16 +356,24 @@ msgid "Overscan Adjust"
 msgstr "Justera Överskanning"
 
 
+msgid "PIL/Pillow not installed"
+msgstr ""
+
+
 msgid "Photo"
 msgstr "Foto"
 
 
 msgid "Photo Transcoder Action"
-msgstr ""
+msgstr "Fototranskoderns Åtgärd"
 
 
 msgid "Play"
 msgstr "Spela"
+
+
+msgid "Playlists"
+msgstr ""
 
 
 msgid "Plex Channels"
@@ -334,6 +390,14 @@ msgstr "Plex Media Server"
 
 msgid "Plex Media Server: No Items Available"
 msgstr "Plex Media Server: Inga Objekt Tillgängliga"
+
+
+msgid "Plex Media Server: No Tracks Available"
+msgstr ""
+
+
+msgid "Plex Playlists"
+msgstr ""
 
 
 msgid "PlexConnect"
@@ -373,7 +437,7 @@ msgstr "Nyligen Sedda Serier"
 
 
 msgid "Refresh"
-msgstr ""
+msgstr "Uppdatera"
 
 
 msgid "Remote Bitrate"
@@ -388,8 +452,16 @@ msgid "Season View"
 msgstr "Säsongsvy"
 
 
-msgid "Select Artwork"
-msgstr "Välj Bakgrundsbild"
+msgid "Select Fanart"
+msgstr ""
+
+
+msgid "Select Poster"
+msgstr ""
+
+
+msgid "Select Posters"
+msgstr ""
 
 
 msgid "Select Tracks"
@@ -401,7 +473,7 @@ msgstr "Inställningar"
 
 
 msgid "Shared Libraries"
-msgstr ""
+msgstr "Delade bibliotek"
 
 
 msgid "Show Clock"
@@ -416,12 +488,24 @@ msgid "Show Photos"
 msgstr "Visa Foton"
 
 
+msgid "Show Playlists"
+msgstr ""
+
+
+msgid "Show Shared Libraries"
+msgstr ""
+
+
 msgid "Show Unwatched Count"
 msgstr "Visa Antal Osedda"
 
 
 msgid "Shows"
 msgstr "Serier"
+
+
+msgid "Shuffle"
+msgstr ""
 
 
 msgid "Shutter Speed"
@@ -433,15 +517,15 @@ msgstr " Bildspel"
 
 
 msgid "Studio"
-msgstr ""
+msgstr "Studio"
 
 
 msgid "Subs"
-msgstr ""
+msgstr "Undertexter"
 
 
 msgid "Subtitle Renderer"
-msgstr ""
+msgstr "Rendering för undertexter"
 
 
 msgid "Subtitle Size %"
@@ -454,6 +538,10 @@ msgstr "Undertextspår"
 
 msgid "Synopsis hidden."
 msgstr "Dölj Synopsis"
+
+
+msgid "TV Show Fanart"
+msgstr ""
 
 
 msgid "TV Show Navigation Bar"
@@ -469,7 +557,7 @@ msgstr "TV-Serie Vy"
 
 
 msgid "TheMovieDB: No Trailer Info available"
-msgstr "TheMovieDB: Ingen Trailer Information tillgänglig"
+msgstr "TheMovieDB: Ingen Trailerinformation tillgänglig"
 
 
 msgid "Time Format"
@@ -481,7 +569,7 @@ msgstr "För att logga in på MyPlex, fyll i e-postadress, användarnamn eller a
 
 
 msgid "Top Level Options"
-msgstr ""
+msgstr "Huvudmenyval"
 
 
 msgid "Trailer"
@@ -520,6 +608,14 @@ msgid "Video Player OSD"
 msgstr "Videospelare OSD"
 
 
+msgid "Video Playlist"
+msgstr ""
+
+
+msgid "Video Playlist: No Items Available"
+msgstr ""
+
+
 msgid "View Show"
 msgstr "Se Serie"
 
@@ -537,11 +633,11 @@ msgstr "År"
 
 
 msgid "refreshing"
-msgstr ""
+msgstr "uppdaterar"
 
 
 msgid "remote"
-msgstr ""
+msgstr "fjärr"
 
 
 msgid "{0:0d}x{1:02d} {2}"
@@ -552,10 +648,15 @@ msgid "{0:d} Minutes"
 msgstr "{0:d} Minuter"
 
 
+msgid "{0:d}:{1:0>2d}"
+msgstr ""
+
+
 msgid "{0:d}hr {1:d}min"
 msgstr "{0:d}hr {1:d}min"
 
 
 msgid "{0} unwatched"
 msgstr "{0} osett"
+
 

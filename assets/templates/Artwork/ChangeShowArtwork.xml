@@ -1,0 +1,67 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+
+  <body>
+    <scroller id="Show_Bookcase">
+      <header>
+        <simpleHeader>
+          <title>{{VAL(title2)}}</title>
+          <subtitle>{{TEXT(Select Posters)}}</subtitle>
+        </simpleHeader>
+      </header>
+      
+      <items>
+        <collectionDivider alignment="left" accessibilityLabel="Show_Bookcase_Divider">
+          <title>Main Show Art</title>
+        </collectionDivider>
+        
+        {{ADDXML(showPosters::/library/metadata/{{VAL(key)}}/posters)}}
+        {{VAR(key:key)}}
+        
+        <shelf id="Main_Show_Art" columnCount="7">
+          <sections>
+            <shelfSection>
+              <items>
+                <moviePoster related="true" id="{{VAL(key)}}" alwaysShowTitles="true"
+                             onSelect="changeArtwork('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(#key)}}', '{{VAL(key)}}', 'Main_Show_Art')">
+                  {{COPY(@showPosters/Photo)}}
+                  <title>{{VAL(selected::0=|1=Selected)}}</title>
+                  <image>{{IMAGEURL(thumb::384)}}</image>
+                  <defaultImage>resource://Poster.png</defaultImage>
+                </moviePoster>
+              </items>
+            </shelfSection>
+          </sections>
+        </shelf>
+        
+        <__COPY__>
+          {{COPY(Directory:title:COPY:=COPY|All Episodes=|S=COPY)}}
+          <collectionDivider alignment="left" accessibilityLabel="Show_Bookcase_Divider">
+            <title>{{VAL(title)}}</title>
+          </collectionDivider>
+          <shelf id="{{VAL(title)}}" columnCount="7">
+            <sections>
+              <shelfSection>
+                <items>
+                  {{ADDXML(seasonPoster::/library/metadata/{{VAL(ratingKey)}}/posters)}}
+                  {{VAR(ratingKey:ratingKey)}}
+                  {{VAR(size:@seasonPoster/size)}}
+                  {{VAR(title:title)}}
+                  <moviePoster related="true" id="{{VAL(key)}}" alwaysShowTitles="true"
+                               onSelect="changeArtwork('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(#ratingKey)}}', '{{VAL(key)}}', '{{VAL(#title)}}')">
+                    {{COPY(@seasonPoster/Photo)}}
+                    <title>{{VAL(selected::0=|1=Selected)}}</title>
+                    <image>{{IMAGEURL(thumb::384)}}</image>
+                    <defaultImage>resource://Poster.png</defaultImage>
+                  </moviePoster>
+                </items>
+              </shelfSection>
+            </sections>
+          </shelf>{{CUT(#size::0=CUT|1=)}}
+        </__COPY__>
+      </items>
+    </scroller>
+  </body>
+</atv>

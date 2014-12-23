@@ -1,0 +1,65 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+
+	<body>
+    <listWithPreview id="com.sample.menu-items-with-sections">
+      <header>
+        <simpleHeader>
+          <title>{{TEXT(More...)}}</title>
+        </simpleHeader>
+      </header>
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+              <oneLineMenuItem id="Camera Make" onPlay="atv.loadURL('{{URL(key::/make:PlexConnect=Photo_DirectoryWithPreview)}}')" onSelect="atv.loadURL('{{URL(key::/make:PlexConnect=Photo_DirectoryWithPreview)}}')">
+                <label>{{TEXT(Camera Make)}}</label>
+                <preview>
+                  <link>{{URL(key::/make:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview)}}</link>
+                </preview>
+              </oneLineMenuItem>
+
+              <oneLineMenuItem id="Camera Model" onPlay="atv.loadURL('{{URL(key::/model:PlexConnect=Photo_DirectoryWithPreview)}}')" onSelect="atv.loadURL('{{URL(key::/model:PlexConnect=Photo_DirectoryWithPreview)}}')">
+                <label>{{TEXT(Camera Model)}}</label>
+                <preview>
+                  <link>{{URL(key::/model:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview)}}</link>
+                </preview>
+              </oneLineMenuItem>
+
+              <oneLineMenuItem id="Aperture" onPlay="atv.loadURL('{{URL(key::/aperture:PlexConnect=Photo_DirectoryWithPreview)}}')" onSelect="atv.loadURL('{{URL(key::/aperture:PlexConnect=Photo_DirectoryWithPreview)}}')">
+                <label>{{TEXT(Aperture)}}</label>
+                <preview>
+                  <link>{{URL(key::/aperture:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview)}}</link>
+                </preview>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="Shutter Speed" onPlay="atv.loadURL('{{URL(key::/exposure:PlexConnect=Photo_DirectoryWithPreview)}}')" onSelect="atv.loadURL('{{URL(key::/exposure:PlexConnect=Photo_DirectoryWithPreview)}}')">
+                <label>{{TEXT(Shutter Speed)}}</label>
+                <preview>
+                  <link>{{URL(key::/exposure:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview)}}</link>
+                </preview>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="ISO" onPlay="atv.loadURL('{{URL(key::/iso:PlexConnect=Photo_DirectoryWithPreview)}}')" onSelect="atv.loadURL('{{URL(key::/iso:PlexConnect=Photo_DirectoryWithPreview)}}')">
+                <label>{{TEXT(ISO)}}</label>
+                <preview>
+                  <link>{{URL(key::/iso:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview)}}</link>
+                </preview>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="Lens" onPlay="atv.loadURL('{{URL(key::/lens:PlexConnect=Photo_DirectoryWithPreview)}}')" onSelect="atv.loadURL('{{URL(key::/lens:PlexConnect=Photo_DirectoryWithPreview)}}')">
+                <label>{{TEXT(Lens)}}</label>
+                <preview>
+                  <link>{{URL(key::/lens:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview)}}</link>
+                </preview>
+              </oneLineMenuItem>
+              
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </listWithPreview>
+  </body>
+</atv>

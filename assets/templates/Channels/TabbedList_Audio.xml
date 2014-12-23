@@ -1,0 +1,66 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+
+  <body>
+    {{ADDXML(AudioChannels::/music)}}
+		{{VAR(channels:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
+
+    <listByNavigation id="Channel_TabbedList_Audio">
+      <header>
+        <tabWithTitle>
+          <title>{{TEXT(Plex Channels)}}</title>
+        </tabWithTitle>
+      </header>
+			
+      <navigation currentIndex="0">
+        <navigationItem>
+          <title>Video</title>
+          <url>{{URL(:/PMS(owned)/channels/all::PlexConnect=Channels_TabbedList_Video)}}</url>
+        </navigationItem>
+        <navigationItem>
+          <title>Audio</title>
+          <url>{{URL(:/PMS(owned)/channels/all::PlexConnect=Channels_TabbedList_Audio)}}</url>
+        </navigationItem>
+        <navigationItem>
+          <title>Photo</title>
+          <url>{{URL(:/PMS(owned)/channels/all::PlexConnect=Channels_TabbedList_Photo)}}</url>
+        </navigationItem>
+      </navigation>
+			
+      <menu>
+        <sections>
+          <menuSection>
+          {{COPY(@AudioChannels/Server:size::0=|1=COPY)}}
+            
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+              </horizontalDivider>
+            </header>{{CUT(@AudioChannels/size:CUT:1=CUT|2=)}}
+
+            <items>
+              <!-- audio channels per server -->
+              <twoLineEnhancedMenuItem id="Audio_{{VAL(key)}}"
+                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Channels_Audio)}}')"
+                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=Channels_Audio)}}')">
+              {{COPY(Directory)}}
+              {{VAR(channels:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                <label>{{VAL(title)}}</label>
+                <image>{{IMAGEURL(thumb::384)}}</image>
+                <preview>
+                  <crossFadePreview>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
+                  </crossFadePreview>
+                </preview>
+              </twoLineEnhancedMenuItem>
+            </items>
+						
+          </menuSection>
+        </sections>
+      </menu>
+			{{CUT(#channels::FALSE=CUT|TRUE=)}}  <!--CUT if no channel added-->
+    </listByNavigation>
+  </body>
+</atv>

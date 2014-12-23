@@ -1,0 +1,45 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+
+  <body>
+    <scroller id="single_artwork_select">
+      <header>
+        <simpleHeader>
+          <title>{{VAL(title2)}}</title>
+          <subtitle>{{TEXT(Select Poster)}}</subtitle>
+        </simpleHeader>
+      </header>
+     
+      {{ADDXML(posters::/library/metadata/{{VAL(key)}}/posters)}}
+      {{VAR(key:key)}}
+     
+     <items>
+        <collectionDivider alignment="left">
+          <title></title>
+        </collectionDivider>
+
+        <shelf id="coverflow" columnCount="{{EVAL(min({{VAL(@posters/size:0)}},5))}}">
+          <sections>
+            <shelfSection>
+              <items>
+                <goldenPoster related="true" id="{{VAL(key)}}" alwaysShowTitles="true"
+                              onSelect="changeArtwork('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(#key)}}', '{{VAL(key)}}', '');atv.unloadPage();">
+                  {{COPY(@posters/Photo)}}
+                  <title>{{VAL(selected::0=|1=Selected)}}</title>
+                  <image>{{IMAGEURL(thumb::768)}}</image>
+                  <defaultImage>resource://Poster.png</defaultImage>
+                </goldenPoster>
+              </items>
+            </shelfSection>
+          </sections>
+        </shelf>
+        
+        <collectionDivider alignment="left">
+          <title></title>
+        </collectionDivider>
+      </items>
+    </scroller>
+  </body>
+</atv>

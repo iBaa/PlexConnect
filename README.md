@@ -73,6 +73,8 @@ Handles the aTV settings like ViewModes or Transcoder options. Stores aTV settin
 Holds a couple of utility functions for text translation purposes. Uses dictionaries from ```assets/locales/```.
 * __Subtitle.py__ -
 Subtitle parser functions for PlexConnect's own renderer, converts subs to JSON for easy transfer to aTV.
+* __PILBackgrounds.py__ -
+Modify and cache fanart images for use by aTV.
 
 
 ## License and Disclaimer

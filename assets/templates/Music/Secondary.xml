@@ -1,0 +1,55 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+
+	<body>
+    <listWithPreview id="com.sample.menu-items-with-sections">
+      <header>
+        <simpleHeader>
+          <title>{{TEXT(More...)}}</title>
+        </simpleHeader>
+      </header>
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+              <oneLineMenuItem id="recentlyadded" onPlay="atv.loadURL('{{URL(key::/recentlyAdded:PlexConnect=Music_Directory)}}')" 
+																									onSelect="atv.loadURL('{{URL(key::/recentlyAdded:PlexConnect=Music_Directory)}}')">
+                <label>{{TEXT(Recently Added)}}</label>
+                <preview>
+                  <link>{{URL(key::/recentlyAdded:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview)}}</link>
+                </preview>
+              </oneLineMenuItem>{{CUT($music_navbar_recentlyadded::checked=CUT|unchecked=)}}
+              
+              <oneLineMenuItem id="genre" onPlay="atv.loadURL('{{URL(key::/genre:PlexConnect=Music_Directory)}}')" 
+																					onSelect="atv.loadURL('{{URL(key::/genre:PlexConnect=Music_Directory)}}')">
+                <label>{{TEXT(Genre)}}</label>
+                <preview>
+                  <link>{{URL(key::/genre:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview)}}</link>
+                </preview>
+              </oneLineMenuItem>{{CUT($music_navbar_genre::checked=CUT|unchecked=)}}
+              
+              <oneLineMenuItem id="decade" onPlay="atv.loadURL('{{URL(key::/decade:PlexConnect=Music_Directory)}}')" 
+																					onSelect="atv.loadURL('{{URL(key::/decade:PlexConnect=Music_Directory)}}')">
+                <label>{{TEXT(Decade)}}</label>
+                <preview>
+                  <link>{{URL(key::/decade:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview)}}</link>
+                </preview>
+              </oneLineMenuItem>{{CUT($music_navbar_decade::checked=CUT|unchecked=)}}
+              
+              <oneLineMenuItem id="year" onPlay="atv.loadURL('{{URL(key::/year:PlexConnect=Music_Directory)}}')" 
+																				onSelect="atv.loadURL('{{URL(key::/year:PlexConnect=Music_Directory)}}')">
+                <label>{{TEXT(Year)}}</label>
+                <preview>
+                  <link>{{URL(key::/year:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview)}}</link>
+                </preview>
+              </oneLineMenuItem>{{CUT($music_navbar_year::checked=CUT|unchecked=)}}
+
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </listWithPreview>
+  </body>
+</atv>

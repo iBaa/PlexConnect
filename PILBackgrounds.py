@@ -6,6 +6,7 @@ import io
 import urllib
 import urllib2
 import urlparse
+import posixpath
 
 import os.path
 from Debug import * 
@@ -14,7 +15,6 @@ try:
     from PIL import Image, ImageFilter
     __isPILinstalled = True
 except ImportError:
-    dprint(__name__, 0, "No PIL/Pillow installation found.")
     __isPILinstalled = False
 
 try:
@@ -22,20 +22,27 @@ try:
     import cv2
     __isOpenCVinstalled = True
 except ImportError:
-    dprint(__name__, 0, "No NumPy/OpenCV installation found.")
     __isOpenCVinstalled = False
 
 
-def generate(PMS_uuid, url, authtoken, resolution, createfile=False):
-    cachepath = sys.path[0]+"/assets/fanartcache"
-    stylepath = sys.path[0]+"/assets/templates/images"
-    
-    fileid = urlparse.urlparse(url).path
-    cachefile = urllib.quote_plus(PMS_uuid +"_"+ fileid +"_"+ resolution) + ".jpg"  # quote: just to make sure...
 
+def generate(PMS_uuid, url, authtoken, resolution, blurRadius):
+    cachepath = sys.path[0]+"/assets/fanartcache"
+    stylepath = sys.path[0]+"/assets/thumbnails"
+
+    # Create cache filename
+    id = re.search('/library/metadata/(?P<ratingKey>\S+)/art/(?P<fileId>\S+)', url)
+    if id:
+        # assumes URL in format "/library/metadata/<ratingKey>/art/fileId>"
+        id = id.groupdict()
+        cachefile = urllib.quote_plus(PMS_uuid +"_"+ id['ratingKey'] +"_"+ id['fileId'] +"_"+ resolution +"_"+ blurRadius) + ".jpg"
+    else:
+        fileid = posixpath.basename(urlparse.urlparse(url).path)
+        cachefile = urllib.quote_plus(PMS_uuid +"_"+ fileid +"_"+ resolution +"_"+ blurRadius) + ".jpg"  # quote: just to make sure...
+    
     # Already created?
     dprint(__name__, 1, 'Check for Cachefile.')  # Debug
-    if not createfile or os.path.isfile(cachepath+"/"+cachefile):
+    if os.path.isfile(cachepath+"/"+cachefile):
         dprint(__name__, 1, 'Cachefile  found.')  # Debug
         return "/fanartcache/"+cachefile
     
@@ -59,19 +66,20 @@ def generate(PMS_uuid, url, authtoken, resolution, createfile=False):
         dprint(__name__, 1, 'IOError: {0} // url: {1}', str(e), url)
         return "/thumbnails/Background_blank_" + resolution + ".jpg"
     
+    blurRadius = int(blurRadius)
+    
     # Get gradient template
     dprint(__name__, 1, 'Merging Layers.')  # Debug
     if resolution == '1080':
         width = 1920
         height = 1080
         blurRegion = (0, 514, 1920, 1080)
-        blurRadius = 45
         layer = Image.open(stylepath + "/gradient_1080.png")
     else:
         width = 1280
         height = 720
         blurRegion = (0, 342, 1280, 720)
-        blurRadius = 30
+        blurRadius = int(blurRadius / 1.5)
         layer = Image.open(stylepath + "/gradient_720.png")
     
     # Set background resolution and merge layers
@@ -81,22 +89,23 @@ def generate(PMS_uuid, url, authtoken, resolution, createfile=False):
     
     if bgHeight != height:
         background = background.resize((width, height), Image.ANTIALIAS)
-        dprint(__name__,1 , "Resizing background")   
-    
-    if isOpenCVinstalled():
-        dprint(__name__,1 ,"Blurring background with OpenCV")
-        blurImage = background.crop(blurRegion)
-        im = np.asarray(blurImage)
-        im = cv2.blur(im, (blurRadius, blurRadius))
-        im = cv2.blur(im, (blurRadius, blurRadius))
-        blurImage = Image.fromarray(im)
-        background.paste(blurImage, blurRegion)
-    else:
-        dprint(__name__,1 ,"Blurring background with PIL/Pillow")
-        blurImage = background.crop(blurRegion)
-        blurImage = blurImage.filter(ImageFilter.GaussianBlur(blurRadius))
-        background.paste(blurImage, blurRegion)
-
+        dprint(__name__,1 , "Resizing background")
+        
+    if blurRadius != 0:
+        if isOpenCVinstalled():
+            dprint(__name__,1 ,"Blurring Lower Region with OpenCV")
+            imgBlur = background.crop(blurRegion)
+            im = np.asarray(imgBlur)
+            im = cv2.blur(im, (blurRadius, blurRadius))
+            im = cv2.blur(im, (blurRadius, blurRadius))
+            imgBlur = Image.fromarray(im)
+            background.paste(imgBlur, blurRegion)
+        else:
+            dprint(__name__,1 , "Blurring Lower Region with PIL/Pillow")
+            imgBlur = background.crop(blurRegion)
+            imgBlur = imgBlur.filter(ImageFilter.GaussianBlur(blurRadius))
+            background.paste(imgBlur, blurRegion)
+        
     background.paste(layer, ( 0, 0), layer)
     
     # Save to Cache
@@ -118,15 +127,7 @@ def isOpenCVinstalled():
 
 
 if __name__=="__main__":
-    import time
     url = "http://thetvdb.com/banners/fanart/original/95451-23.jpg"
-
-    t0 = time.time()
-    res = generate('uuid', url, 'authtoken', '1080', createfile=True)
+    res = generate('uuid', url, 'authtoken', '1080', '45')
+    res = generate('uuid', url, 'authtoken', '720', '45')
     dprint(__name__, 0, "Background: {0}", res)
-    dprint(__name__, 0, "Background generation takes {0} seconds", time.time() - t0)
-
-    t0 = time.time()
-    res = generate('uuid', url, 'authtoken', '720', createfile=True)
-    dprint(__name__, 0, "Background: {0}", res)
-    dprint(__name__, 0, "Background generation takes {0} seconds", time.time() - t0)

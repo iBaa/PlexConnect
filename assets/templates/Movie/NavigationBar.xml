@@ -1,0 +1,65 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/updateXML.js)}}" />
+  </head>
+
+	<body>
+		<viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadItem(event)" volatile="true" onVolatileReload="updatePage('{{URL(:::PlexConnect=Plex_Movie_Scanner)}}');">
+			<navigation currentIndex="{{VAL($movies_navbar_ondeck:0:unchecked=0|checked=1)}}">
+
+      <navigationItem id="0">
+					<title>{{TEXT(All Movies)}}</title>
+					<url>{{URL(key::/all:PlexConnect=Movie_{{EVAL('{{VAL($movieview)}}'.replace(' ', ''))}})}}</url>
+				</navigationItem>
+
+				<navigationItem id="1">
+					<title>{{TEXT(On Deck)}}</title>
+					<url>{{URL(key:::PlexConnect=Movie_OnDeck)}}</url>
+				</navigationItem>{{CUT($movies_navbar_ondeck::unchecked=CUT|checked=)}}
+
+				<navigationItem id="2">
+					<title>{{TEXT(Unwatched)}}</title>
+					<url>{{URL(key::/unwatched:PlexConnect=Movie_{{EVAL('{{VAL($movieview)}}'.replace(' ', ''))}})}}</url>
+				</navigationItem>{{CUT($movies_navbar_unwatched::unchecked=CUT|checked=)}}
+				
+        <navigationItem id="3">
+					<title>{{TEXT(By Folder)}}</title>
+					<url>{{URL(key::/folder:PlexConnect=Movie_Directory)}}</url>
+				</navigationItem>{{CUT($movies_navbar_byfolder::unchecked=CUT|checked=)}}
+				
+        <navigationItem id="4">
+					<title>{{TEXT(Collections)}}</title>
+					<url>{{URL(key::/collection:PlexConnect=Movie_DirectoryWithPreview)}}</url>
+				</navigationItem>{{CUT($movies_navbar_collections::unchecked=CUT|checked=)}}
+
+				<navigationItem id="5">
+					<title>{{TEXT(Genres)}}</title>
+					<url>{{URL(key::/genre:PlexConnect=Movie_DirectoryWithPreview)}}</url>
+				</navigationItem>{{CUT($movies_navbar_genres::unchecked=CUT|checked=)}}
+
+				<navigationItem id="6">
+					<title>{{TEXT(Decades)}}</title>
+					<url>{{URL(key::/decade:PlexConnect=Movie_DirectoryWithPreview)}}</url>
+				</navigationItem>{{CUT($movies_navbar_decades::unchecked=CUT|checked=)}}
+
+				<navigationItem id="7">
+					<title>{{TEXT(Directors)}}</title>
+					<url>{{URL(key::/director:PlexConnect=Movie_DirectoryWithPreview)}}</url>
+				</navigationItem>{{CUT($movies_navbar_directors::unchecked=CUT|checked=)}}
+
+				<navigationItem id="8">
+					<title>{{TEXT(Actors)}}</title>
+					<url>{{URL(key::/actor:PlexConnect=Movie_DirectoryWithPreviewActors)}}</url>
+				</navigationItem>{{CUT($movies_navbar_actors::unchecked=CUT|checked=)}}
+
+				<navigationItem id="9">
+					<title>{{TEXT(More...)}}</title>
+					<url>{{URL(key:::PlexConnect=Movie_Secondary)}}</url>
+				</navigationItem>{{CUT($movies_navbar_more::unchecked=CUT|checked=)}}
+
+
+			</navigation>
+		</viewWithNavigationBar>
+	</body>
+</atv>

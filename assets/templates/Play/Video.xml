@@ -1,0 +1,71 @@
+<atv>
+  <body>
+    <videoPlayer id="com.sample.video-player">
+      <httpFileVideoAsset id="{{VAL(^PlexConnectRatingKey)}}">
+      {{COPY(Video:ratingKey::=|{{VAL_QUOTED(^PlexConnectRatingKey)}}=COPY|{{VAL_QUOTED(^PlexConnectRatingKey)}} =)}}
+        
+        <mediaURL>{{VIDEOURL()}}</mediaURL>
+        <title>{{VAL(title)}}</title>
+        <description>{{VAL(summary)}}</description>
+        <bookmarkTime>{{EVAL({{VAL(viewOffset:0)}} / 1000)}}</bookmarkTime>
+        <image>{{IMAGEURL(thumb::384)}}</image>
+        
+        <videoPlayerSettings>
+            <!-- PMS, OSD settings, ... -->
+            <baseURL>{{VAL(%baseURL)}}</baseURL>
+            <accessToken>{{VAL(%accesstoken)}}</accessToken>
+            
+            <showClock>{{VAL($showplayerclock)}}</showClock>
+            <timeFormat>{{VAL($timeformat)}}</timeFormat>
+            <clockPosition>{{VAL($clockposition)}}</clockPosition>
+            <overscanAdjust>{{VAL($overscanadjust)}}</overscanAdjust>
+            <showEndtime>{{VAL($showendtime)}}</showEndtime>
+             
+            <subtitleSize>{{VAL($subtitlesize)}}</subtitleSize>
+        </videoPlayerSettings>
+        
+        <myMetadata>
+            <key>{{VAL(key)}}</key>
+            <ratingKey>{{VAL(ratingKey)}}</ratingKey>
+            <duration>{{VAL(duration)}}</duration>
+            <partDuration>{{VAL(Media/Part/duration)}}</partDuration>
+            
+            <!-- subtitle -->
+            <__COPY__><!--needed as {{COPY}} doesn't work completely clean. Todo: ExpandTree needs to "finish" current element...-->
+            {{COPY(Media/Part/Stream:streamType::=|3=COPY|3 =)}}
+              <subtitleURL> <!-- id="{{VAL(id)}}" key="{{VAL(key)}}" codec="{{VAL(codec)}}"--><!--.srt only -->
+              {{CUT(selected:CUT:0=CUT|1=)}}
+                {{URL(key:::PlexConnect=Subtitle&amp;PlexConnectSubtitleFormat={{VAL(format)}})}}
+              </subtitleURL>
+            </__COPY__>
+        </myMetadata>
+        
+        <playlistData>
+        <__COPY__>
+        {{COPY_PLAYLIST(@main/Video:^PlexConnectPlayType:Single:^PlexConnectRatingKey::ratingKey:)}}
+            
+            <httpFileVideoAsset id="{{VAL(key)}}">
+            {{VAR(partIndex::-1)}}  <!--dirty hack: VAR is evaluated before VAL, VIDEOURL; so #partIndex is +1-->
+            {{COPY(Media/Part)}}  <!-- stacked media -->
+                <mediaURL>{{VIDEOURL(@copy_Video:#partIndex)}}</mediaURL>
+                {{VAR(partIndex::{{EVAL({{VAL(#partIndex)}}+1)}})}}
+                <title>{{VAL(@copy_Video/title)}}</title>
+                <description>{{VAL(@copy_Video/summary)}}</description>
+                <!--bookmarkTime>{{EVAL({{VAL(@main/Video/viewOffset:0)}} / 1000)}}</bookmarkTime-->
+                <image>{{IMAGEURL(@copy_Video/thumb::384)}}</image>
+                
+                <myMetadata>
+                    <key>{{VAL(@copy_Video/key)}}</key>
+                    <ratingKey>{{VAL(@copy_Video/ratingKey)}}</ratingKey>
+                    <duration>{{VAL(@copy_Video/duration)}}</duration>
+                    <partDuration>{{VAL(duration)}}</partDuration>
+                </myMetadata>
+                
+            </httpFileVideoAsset>
+        </__COPY__>
+        </playlistData>
+        
+      </httpFileVideoAsset>
+    </videoPlayer>
+  </body>
+</atv>

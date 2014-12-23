@@ -1,0 +1,49 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/photo.js)}}" />
+  </head>
+
+  <body>
+    <!-- list Photo directories -->
+    <listWithPreview id="com.sample.menu-items-with-sections">
+      <header>
+       <simpleHeader>
+          <title>{{VAL(title1:Plex Library)}}</title>
+          <subtitle>{{VAL(title2)}}</subtitle>
+        </simpleHeader>
+      </header>
+      
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+              
+              <!-- link to photos from current directories -->
+              <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key:::PlexConnect=Channels_Photo_Browser)}}')"
+                                                 onSelect="atv.loadURL('{{URL(key:::PlexConnect=Channels_Photo_Browser)}}')">
+                <label>{{TEXT(Show Photos)}}</label>
+                <accessories><arrow/></accessories>
+                <preview>
+                  <link>{{URL(key:::X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview-Photo)}}</link>
+                </preview>
+              </oneLineMenuItem>{{CUT(Photo/title:CUT:=)}}
+              
+              <!-- link to lower directory -->
+              <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key:::PlexConnect=Channels_Photo)}}')"
+																								onSelect="atv.loadURL('{{URL(key:::PlexConnect=Channels_Photo)}}')">
+                {{COPY(Directory)}}
+                <label>{{VAL(title)}}</label>
+                <preview>
+                  <link>{{URL(key:::X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview-Photo)}}</link>
+                </preview>
+              </oneLineMenuItem>
+              
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </listWithPreview>
+
+  </body>
+</atv>
