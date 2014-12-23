@@ -28,7 +28,7 @@ cd __INSTALLERPATH__
 cd ../..
 
 ## change permissions of .git so update.bash can be ran without su
-chown -R __USERNAME__ .git
+##chown -R __USERNAME__ .git
 
 ## update status
 echo 'Updating PlexConnect...'
