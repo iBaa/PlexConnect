@@ -494,13 +494,13 @@ sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createpli
 ## save directly to the /usr/bin folder
 sed -e "s/__DEFAULTPATH__/${InstallerPath//\//\\/}/" "${InstallerPath}/createauto.bash" > /usr/bin/createauto.bash
 
-## replace __INSTALLERPATH__, __USERNAME__in default update.bash
+## replace __INSTALLERPATH__ in default update.bash
 ## save directly to the /usr/bin folder
-sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__USERNAME__/$whoami/" "${DefaultPath}/update.bash" > /usr/bin/update.bash
+sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/" "${DefaultPath}/update.bash" > /usr/bin/update.bash
 
-## replace __INSTALLERPATH__, __USERNAME__in default updater.bash
+## replace __INSTALLERPATH__ in default updater.bash
 ## save directly to the /usr/bin folder
-sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__USERNAME__/$whoami/" "${DefaultPath}/updater.bash" > /usr/bin/updater.bash
+sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/" "${DefaultPath}/updater.bash" > /usr/bin/updater.bash
 
 ## replace __DEFAULTPATH__ in default webconnect.bash
 ## save directly to the /usr/bin folder
