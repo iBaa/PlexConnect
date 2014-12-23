@@ -48,3 +48,5 @@ echo 'Starting PlexConnect...'
 ## load plexconnect into launchctl after completed update
 cd /library/launchdaemons
 launchctl load com.plex.plexconnect.bash.plist
+
+fi
