@@ -34,6 +34,8 @@ sed -i '' 's/www.icloud.com/secure.marketwatch.com/g' Settings.cfg
 
 restartbash.bash
 
+sleep 2
+
 ## Display Settings.cfg
 FILE="/Applications/PlexConnect/settings.cfg"
 echo "*** File - $FILE contents ***"
