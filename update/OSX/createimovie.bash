@@ -10,7 +10,7 @@ stopbash.bash
 startbash.bash
 
 ## Wait till PlexConnect saves settings
-sleep 8
+sleep 5
 
 sed -i '' 's/trailers.apple.com/www.icloud.com/g' Settings.cfg
 sed -i '' 's/secure.marketwatch.com/www.icloud.com/g' Settings.cfg
@@ -38,3 +38,8 @@ echo 'Upload profile to ATV using this url http://www.icloud.com/trailers.cer'
 fi
 
 restartbash.bash
+
+## Display Settings.cfg
+FILE="/Applications/PlexConnect/settings.cfg"
+echo "*** File - $FILE contents ***"
+cat $FILE
