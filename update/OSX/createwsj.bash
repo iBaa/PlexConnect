@@ -10,7 +10,7 @@ stopbash.bash
 startbash.bash
 
 ## Wait till PlexConnect saves settings
-sleep 5
+sleep 1
 
 sed -i '' 's/trailers.apple.com/secure.marketwatch.com/g' Settings.cfg
 sed -i '' 's/www.icloud.com/secure.marketwatch.com/g' Settings.cfg
