@@ -5,7 +5,10 @@ cd __INSTALLERPATH__
 cd ../..
 PlexConnectPath=${PWD}
 
-sleep 2
+sed -i '' 's/www.icloud.com/trailers.apple.com/g' Settings.cfg
+sed -i '' 's/secure.marketwatch.com/trailers.apple.com/g' Settings.cfg
+
+sleep 5
 
 sed -i '' 's/www.icloud.com/trailers.apple.com/g' Settings.cfg
 sed -i '' 's/secure.marketwatch.com/trailers.apple.com/g' Settings.cfg
