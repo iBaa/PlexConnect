@@ -13,5 +13,6 @@ rm -R /Applications/onlytemp
 chmod +x /Applications/PlexConnect/update/OSX/PlexConnect.bash
 chmod +x /Applications/PlexConnect/update/OSX/shairport.bash
 chmod +x /Applications/PlexConnect/update/OSX/airplay.bash
+chmod -R ugo+rw /Applications/PlexConnect/update/OSX/
 
 echo 'CyberGhost84 cloned to /Applications/PlexConnect'
