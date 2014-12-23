@@ -10,20 +10,21 @@ from Debug import *  # dprint()
 
 
 options = { \
-    'showplaylists'         :('List', 'Tabbed List', 'False'), \
-    'showsharedlibraries'   :('True', 'False'), \
-    'libraryview'           :('List', 'Grid', 'Bookcase'), \
-    'movieview'             :('Grid', 'List', 'Detailed List'), \
-    'homevideoview'         :('Grid', 'List', 'Detailed List'), \
-    'actorview'             :('Movies', 'Portrait'), \
-    'showview'              :('List', 'Detailed List', 'Grid', 'Bookcase'), \
-    'flattenseason'         :('False', 'True'), \
-    'seasonview'            :('List', 'Coverflow'), \
-    'channelview'           :('List', 'Tabbed List', 'Grid', 'Bookcase'), \
-    'durationformat'        :('Hours/Minutes', 'Minutes'), \
-    'moviefanart'           :('Hide', 'Show'), \
-    'tvshowfanart'          :('Hide', 'Show'), \
-    'fanart_blur'           :('0', '5', '10', '15', '20'), \
+    'showplaylists'             :('List', 'Tabbed List', 'False'), \
+    'showsharedlibraries'       :('True', 'False'), \
+    'libraryview'               :('List', 'Grid', 'Bookcase'), \
+    'movieview'                 :('Grid', 'List', 'Detailed List'), \
+    'homevideoview'             :('Grid', 'List', 'Detailed List'), \
+    'actorview'                 :('Movies', 'Portrait'), \
+    'showview'                  :('List', 'Detailed List', 'Grid', 'Bookcase'), \
+    'flattenseason'             :('False', 'True'), \
+    'seasonview'                :('List', 'Coverflow'), \
+    'channelview'               :('List', 'Tabbed List', 'Grid', 'Bookcase'), \
+    'durationformat'            :('Hours/Minutes', 'Minutes'), \
+    'moviefanart'               :('Hide', 'Show'), \
+    'tvshowfanart'              :('Hide', 'Show'), \
+    'fanart_blur'               :('0', '5', '10', '15', '20'), \
+    'moviepreplay_bottomshelf'  :('Extras', 'Related Movies'), \
     'showtitles_movies'         :('Highlighted Only', 'Show All'), \
     'showtitles_tvshows'        :('Highlighted Only', 'Show All'), \
     'showtitles_homevideos'     :('Highlighted Only', 'Show All'), \

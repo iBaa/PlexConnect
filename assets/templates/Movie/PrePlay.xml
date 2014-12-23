@@ -4,7 +4,9 @@
     <script src="{{URL(:/js/selectAudioAndSubs.js)}}" />
     <script src="{{URL(:/js/trailers.js)}}" />
   </head>
-
+	
+	{{ADDXML(related::/library/metadata/{{VAL(Video/ratingKey)}}/similar)}}
+	
   <body>
     <itemDetail id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=Movie_PrePlay{{VAL($moviefanart::Hide=|Show=_Fanart)}})}}')">
       <title>{{VAL(Video/title)}} ({{VAL(Video/year)}})</title>
@@ -138,7 +140,7 @@
         <smallCollectionDivider alignment="left">
           <title>Extras</title>
         </smallCollectionDivider>
-      </divider>{{CUT(Video/Extras/Video/ratingKey:CUT:=)}}
+      </divider>{{CUT(Video/Extras/Video/ratingKey:CUT:=)}}{{CUT($moviepreplay_bottomshelf::Extras=|Related=CUT)}}
 
       <bottomShelf>
         <shelf id="bottomShelf" columnCount="5">
@@ -151,17 +153,64 @@
                   <title>{{VAL(title)}}</title>
                   <subtitle>{{VAL(extraType::1=Trailer|2=Deleted|3=Interview|4=???|5=Behind the Scenes|6=Scene)}}</subtitle>
                   <image>{{IMAGEURL(thumb::384)}}</image>
+									<defaultImage>resource://16x9.png</defaultImage>
                 </moviePoster>
               </items>
             </shelfSection>
           </sections>
         </shelf>
-      </bottomShelf>{{CUT(Video/Extras/Video/ratingKey:CUT:=)}}
+      </bottomShelf>{{CUT(Video/Extras/Video/ratingKey:CUT:=)}}{{CUT($moviepreplay_bottomshelf::Extras=|Related=CUT)}}
+			
+      <divider>
+        <smallCollectionDivider alignment="left">
+          <title>Related Movies</title>
+        </smallCollectionDivider>
+      </divider>{{CUT($moviepreplay_bottomshelf::Extras=CUT|Related=)}}{{CUT(@related/size::0=CUT|1=)}}
 
+      <bottomShelf>
+        <shelf id="bottomShelf" columnCount="7">
+          <sections>
+            <shelfSection>
+              <items>
+                <moviePoster related="true" alwaysShowTitles="true" id="shelf_item_1" 
+                             onSelect="atv.loadAndSwapURL('{{URL(key:::includeExtras=1&amp;PlexConnect=Movie_PrePlay{{VAL($moviefanart::Hide=|Show=_Fanart)}})}}')">
+                  {{COPY(@related/Video)}}
+                  <title>{{VAL(title)}}</title>
+                  <image>{{IMAGEURL(thumb::384)}}</image>
+									<defaultImage>resource://Poster.png</defaultImage>
+                </moviePoster>
+              </items>
+            </shelfSection>
+          </sections>
+        </shelf>
+      </bottomShelf>{{CUT($moviepreplay_bottomshelf::Extras=CUT|Related=)}}{{CUT(@related/size::0=CUT|1=)}}
+			
       <moreInfo>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
         <listScrollerSplit id="com.sample.list-scroller-split">
           <menu>
             <sections>
+              <menuSection>
+                <items>
+                  <oneLineMenuItem id="list_2">
+                    <label>{{TEXT(Extras)}}</label>
+                    <preview>
+                      <link>{{URL(ratingKey:::PlexConnect=Movie_ExtrasPreview)}}</link>
+                    </preview>
+                  </oneLineMenuItem>
+                </items>
+              </menuSection>{{CUT(Video/Extras/Video/ratingKey:CUT:=)}}{{CUT($moviepreplay_bottomshelf::Extras=CUT|Related=)}}
+							
+              <menuSection>
+                <items>
+                  <oneLineMenuItem id="list_2">
+                    <label>{{TEXT(Related Movies)}}</label>
+                    <preview>
+                      <link>{{URL(:/:library/metadata/{{VAL(Video/ratingKey)}}/similar:PlexConnect=Movie_Preview)}}</link>
+                    </preview>
+                  </oneLineMenuItem>
+                </items>
+              </menuSection>{{CUT(@related/size::0=CUT|1=)}}{{CUT($moviepreplay_bottomshelf::Extras=|Related=CUT)}}
+							
               <menuSection>
                 <header>
                   <textDivider alignment="left" accessibilityLabel="Genres">

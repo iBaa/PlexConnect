@@ -52,7 +52,12 @@
                 <label>{{TEXT(Poster Titles)}}</label>
                 <rightLabel>{{SETTING(showtitles_movies)}}</rightLabel>
               </oneLineMenuItem>
-              
+							
+              <oneLineMenuItem id="MoviePrePlay_BottomShelf" onSelect="toggleSettings('MoviePrePlay_BottomShelf', 'Settings_Movies')">
+                <label>{{TEXT(PrePlay Bottom Shelf)}}</label>
+                <rightLabel>{{SETTING(moviepreplay_bottomshelf)}}</rightLabel>
+              </oneLineMenuItem> 
+							
               <oneLineMenuItem id="MovieFanart" onSelect="toggleSettings('MovieFanart', 'Settings_Movies')">
               {{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
               {{CUT(^aTVFirmwareVersion:CUT:=CUT|6=)}}  <!-- watch out: this will make trouble with iOS10 -->
