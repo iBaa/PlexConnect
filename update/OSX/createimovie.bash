@@ -31,9 +31,14 @@ fi
 sed -i '' 's/trailers.apple.com/www.icloud.com/g' Settings.cfg
 sed -i '' 's/secure.marketwatch.com/www.icloud.com/g' Settings.cfg
 
+Sleep 1
+
+sed -i '' 's/trailers.apple.com/www.icloud.com/g' Settings.cfg
+sed -i '' 's/secure.marketwatch.com/www.icloud.com/g' Settings.cfg
+
 restartbash.bash
 
-Sleep 2
+Sleep 1
 
 ## Display Settings.cfg
 FILE="/Applications/PlexConnect/settings.cfg"
