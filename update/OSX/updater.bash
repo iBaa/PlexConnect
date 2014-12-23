@@ -58,5 +58,5 @@ echo "*** File - $FILE contents ***"
 cat $FILE
 
 else
-        echo "no updates available"
+echo "no updates available"
 fi
