@@ -510,32 +510,6 @@ def XML_ExpandLine(CommandCollection, src, srcXML, line):
     return line
 
 
-def JPEG_FanartBackground(PMS_address, path, options):
-    if not path.startswith('/fanartcache/') or not path.endswith('.jpg'):
-        raise ValueError
-
-    # double check aTV UDID, redo from client IP if needed/possible
-    if not 'PlexConnectUDID' in options:
-        UDID = getATVFromIP(options['aTVAddress'])
-        if UDID:
-            options['PlexConnectUDID'] = UDID
-        else:
-            # aTV unidentified, UDID not known    
-            return XML_Error('PlexConnect','Unexpected error - unidentified ATV')
-    else:
-        declareATV(options['PlexConnectUDID'], options['aTVAddress'])  # update with latest info
-    
-    UDID = options['PlexConnectUDID']
-    path = path[len('/fanartcache/'):-len('.jpg')]
-    pathComponents = path.split('_')
-    PMS_uuid = pathComponents[0]
-    PMS_baseURL = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'baseURL')
-    url = PMS_baseURL + unquote_plus('_'.join(pathComponents[1:-1]))
-    authtoken = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
-    resolution = pathComponents[-1]
-
-    return PILBackgrounds.generate(PMS_uuid, url, authtoken, resolution, createfile=True)
-
 
 """
 # Command expander classes
