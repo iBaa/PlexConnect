@@ -5,9 +5,11 @@ cd __INSTALLERPATH__
 cd ../..
 PlexConnectPath=${PWD}
 
-sed -i '' 's/trailers.apple.com/secure.marketwatch.com/g' Settings.cfg
-sed -i '' 's/www.icloud.com/secure.marketwatch.com/g' Settings.cfg
+createplistbash.bash
+stopbash.bash
+startbash.bash
 
+## Wait till PlexConnect saves settings
 sleep 5
 
 sed -i '' 's/trailers.apple.com/secure.marketwatch.com/g' Settings.cfg
@@ -35,3 +37,10 @@ echo 'Settings.cfg changed to hijack secure.marketwatch.com'
 echo 'Upload profile to ATV using this url http://secure.marketwatch.com/trailers.cer'
 
 fi
+
+restartbash.bash
+
+## Display Settings.cfg
+FILE="/Applications/PlexConnect/settings.cfg"
+echo "*** File - $FILE contents ***"
+cat $FILE
