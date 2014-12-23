@@ -48,13 +48,3 @@ echo 'Starting PlexConnect...'
 ## load plexconnect into launchctl after completed update
 cd /library/launchdaemons
 launchctl load com.plex.plexconnect.bash.plist
-
-## wait a couple seconds to allow PlexConnect to load
-sleep 2
-afplay /System/Library/Sounds/Glass.aiff
-/usr/bin/osascript -e 'display notification "PlexConnect updated, Exit hijacked app on aTV..." with title "PlexConnect Status"'
-
-else
-echo "no updates available"
-/usr/bin/osascript -e 'display notification "No Updates Available..." with title "PlexConnect Status"'
-fi
