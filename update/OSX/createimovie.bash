@@ -5,7 +5,9 @@ cd __INSTALLERPATH__
 cd ../..
 PlexConnectPath=${PWD}
 
+createplistbash.bash
 stopbash.bash
+startbash.bash
 
 ## Wait till PlexConnect saves settings
 sleep 8
@@ -35,4 +37,4 @@ echo 'Upload profile to ATV using this url http://www.icloud.com/trailers.cer'
 
 fi
 
-stopbash.bash
+restartbash.bash
