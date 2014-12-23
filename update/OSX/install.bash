@@ -449,6 +449,8 @@ cp appupdate.bash /usr/bin
 cp appupdatebash.bash /usr/bin
 cp updategit.bash /usr/bin
 cp updategitbash.bash /usr/bin
+cp updateapp.bash /usr/bin
+cp updateappbash.bash /usr/bin
 cp appweb.bash /usr/bin
 cp appwebbash.bash /usr/bin
 cp loghigh.bash /usr/bin
@@ -528,6 +530,7 @@ chmod +x /usr/bin/createauto.bash
 chmod +x /usr/bin/update.bash
 chmod +x /usr/bin/updater.bash
 chmod +x /usr/bin/updategit.bash
+chmod +x /usr/bin/updateapp.bash
 chmod +x /usr/bin/stop.bash
 chmod +x /usr/bin/start.bash
 chmod +x /usr/bin/restart.bash
@@ -608,6 +611,7 @@ chmod +x /usr/bin/createplistbash.bash
 chmod +x /usr/bin/updatebash.bash
 chmod +x /usr/bin/updaterbash.bash
 chmod +x /usr/bin/updategitbash.bash
+chmod +x /usr/bin/updateappbash.bash
 chmod +x /usr/bin/stopbash.bash
 chmod +x /usr/bin/startbash.bash
 chmod +x /usr/bin/restartbash.bash
