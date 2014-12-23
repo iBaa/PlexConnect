@@ -7,11 +7,14 @@ echo 'Restarting PlexConnect...'
 cd /Library/LaunchDaemons
 launchctl unload /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
 
+## wait to allow PlexConnect to load and allow log to refresh
+Sleep 1
+
 ## load plist
 launchctl load /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
 
 ## wait to allow PlexConnect to load and allow log to refresh
-Sleep 2
+Sleep 1
 
 ## display the running status of PlexConnect
 #./PlexConnect_daemon.bash status
