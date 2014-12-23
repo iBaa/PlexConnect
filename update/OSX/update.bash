@@ -49,4 +49,7 @@ echo 'Starting PlexConnect...'
 cd /library/launchdaemons
 launchctl load com.plex.plexconnect.bash.plist
 
+else
+echo "no updates available"
+
 fi
