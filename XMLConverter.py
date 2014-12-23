@@ -208,10 +208,6 @@ def XML_PMS2aTV(PMS_address, path, options):
         g_ATVSettings.saveSettings();
         return XML_Error('PlexConnect', 'SaveSettings!')  # not an error - but aTV won't care anyways.
         
-    elif cmd=='ChannelsSearch':
-        XMLtemplate = 'ChannelsSearch.xml'
-        path = ''
-
     elif cmd=='PlayVideo_ChannelsV1':
         dprint(__name__, 1, "playing Channels XML Version 1: {0}".format(path))
         auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
@@ -269,7 +265,17 @@ def XML_PMS2aTV(PMS_address, path, options):
         PlexAPI.discoverPMS(UDID, g_param['CSettings'], auth_token)
         
         return XML_Error('PlexConnect', 'Discover!')  # not an error - but aTV won't care anyways.
+
+    # Special case path requests
+    if path.startswith('/search?'):
+        XMLtemplate = 'Search/Results.xml'
+        
+    elif path.find('serviceSearch') != -1 or (path.find('video') != -1 and path.lower().find('search') != -1):
+        XMLtemplate = 'Channels/VideoSearchResults.xml'
     
+    elif path.find('SearchResults') != -1:
+        XMLtemplate = 'Channels/VideoSearchResults.xml'
+        
     # Not a special command so split it 
     if cmd.find('_') != -1:
         parts = cmd.split('_', 1)
@@ -294,16 +300,6 @@ def XML_PMS2aTV(PMS_address, path, options):
         dprint(__name__, 1, "XMLTemplate: {0}", XMLtemplate)
         dprint(__name__, 1, "---------------------------------------------")
 
-    # Special case path requests
-    if path.startswith('/search?'):
-        XMLtemplate = 'Search/Results.xml'
-        
-    elif path.find('serviceSearch') != -1 or (path.find('video') != -1 and path.lower().find('search') != -1):
-        XMLtemplate = 'ChannelsVideoSearchResults.xml'
-    
-    elif path.find('SearchResults') != -1:
-        XMLtemplate = 'ChannelsVideoSearchResults.xml'
-        
     # request PMS XML
     if not path=='':
         if PMS_address[0].isalpha():  # owned, shared
@@ -345,7 +341,7 @@ def XML_PMS2aTV(PMS_address, path, options):
     XML_ExpandAllAttrib(CommandCollection, aTVroot, PMSroot, 'main')
     del CommandCollection
     
-    if cmd=='ChannelsSearch':
+    if dir=='Channels' and cmd=='Search':
         for bURL in aTVroot.iter('baseURL'):
             if channelsearchURL.find('?') == -1:
                 bURL.text = channelsearchURL + '?query='

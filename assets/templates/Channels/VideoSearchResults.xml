@@ -16,7 +16,6 @@
                 {{COPY(Video:#ChanVer::V1=COPY|V2=)}}
                 <label>{{VAL(title)}}</label>
                 <image>{{IMAGEURL(thumb::384)}}</image>
-                <!--<defaultImage>resource://Poster.png</defaultImage>-->
               </twoLineEnhancedMenuItem>
               
               <!-- channel media V2-->
@@ -26,7 +25,6 @@
                 {{COPY(Video:#ChanVer::V1=|V2=COPY)}}
                 <label>{{VAL(title)}}</label>
                 <image>{{IMAGEURL(thumb::384)}}</image>
-                <!--<defaultImage>resource://Poster.png</defaultImage>-->
               </twoLineEnhancedMenuItem>
               
               <!-- channel directories -->
@@ -36,7 +34,6 @@
                 {{COPY(Directory:search:COPY:=COPY|1=)}}
                 <label>{{VAL(title)}}</label>
                 <image>{{IMAGEURL(thumb::384)}}</image>
-                <defaultImage>resource://Poster.png</defaultImage>
               </twoLineEnhancedMenuItem>
             </items>
           </menuSection>
