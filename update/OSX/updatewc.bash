@@ -8,6 +8,7 @@ cp -R /Applications/onlytemp/PlexConnect/update/OSX/* /Applications/PlexConnect/
 rm -R /Applications/onlytemp
 cd /
 cd /Applications/PlexConnect/update/OSX
+chmod -R ugo+rw /Applications/PlexConnect/update/OSX/
 cp install.bash /usr/bin
 chmod +x /usr/bin/install.bash
 installbash.bash
