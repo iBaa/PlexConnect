@@ -3,11 +3,9 @@
     <script src="{{URL(:/js/utils.js)}}" />
     <script src="{{URL(:/js/photo.js)}}" />
   </head>
-
-  <body>
-
+  
   <!--  ONLY PHOTOS   -->
-
+  <body>
     <mediaBrowser id="browser" gridLayout="mixed">
       <header>
         <headerWithCountAndButtons>
@@ -20,8 +18,8 @@
           </buttons>
         </headerWithCountAndButtons>
       </header>
+      
       <items>
-
         <!--Library/Photo-->
         <photo id="{{VAL(ratingKey)}}" onSelect="onSelectPhoto('{{VAL(ratingKey)}}')">
           {{COPY(Photo:Media/Part/key::=COPY)}}
@@ -46,10 +44,8 @@
             <url>{{IMAGEURL(key)}}</url>
             <directory>false</directory>
           </stash>
-          </photo>
-
+        </photo>
       </items>
     </mediaBrowser>
-
   </body>
 </atv>

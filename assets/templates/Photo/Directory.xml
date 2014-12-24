@@ -1,0 +1,98 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/photo.js)}}" />
+  </head>
+  
+  {{VAR(foundDirectories:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
+  
+  <body>
+    <!-- List Photo directories -->
+    <listWithPreview id="com.sample.menu-items-with-sections">
+
+      <header>
+       <simpleHeader>
+          <title>{{VAL(title1:Plex Library)}}</title>
+          <subtitle>{{VAL(title2)}}</subtitle>
+        </simpleHeader>
+      </header>
+      
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+            
+              <!-- link to photos from current directories -->
+              <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key:::PlexConnect=Photo_Browser)}}')"
+                                                 onSelect="atv.loadURL('{{URL(key:::PlexConnect=Photo_Browser)}}')">
+                <label>{{TEXT(Show Photos)}}</label>
+                <accessories><arrow/></accessories>
+                <preview>
+                  <link>{{URL(key:::X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview-Photo)}}</link>
+                </preview>
+              </oneLineMenuItem>{{CUT(Photo/title:CUT:=)}}
+              
+              <!-- link to lower directory -->
+              <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key:::PlexConnect=Photo_Directory)}}')"
+                                                 onSelect="atv.loadURL('{{URL(key:::PlexConnect=Photo_Directory)}}')">
+                {{COPY(Directory)}}
+                {{VAR(foundDirectories:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                <label>{{VAL(title)}}</label>
+                <preview>
+                  <link>{{URL(key:::X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview-Photo)}}</link>
+                </preview>
+              </oneLineMenuItem>
+              
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+      
+    </listWithPreview>
+  </body>{{CUT(#foundDirectories::FALSE=CUT|TRUE=)}}  <!--CUT if no directories found-->
+  
+  <!--  ONLY PHOTOS   -->
+  <body>
+    <mediaBrowser id="browser" gridLayout="mixed">
+      <header>
+        <headerWithCountAndButtons>
+          <title>{{VAL(title2)}}</title>
+          <count>{{VAL(size)}}</count>
+          <buttons>
+            <actionButton id="slideshow" onSelect="onSettings()" onPlay="onSlideShow()">
+              <title>{{TEXT(SlideShow)}}</title>
+            </actionButton>
+          </buttons>
+        </headerWithCountAndButtons>
+      </header>
+      
+      <items>
+        <!--Library/Photo-->
+        <photo id="{{VAL(ratingKey)}}" onSelect="onSelectPhoto('{{VAL(ratingKey)}}')">
+          {{COPY(Photo:Media/Part/key::=COPY)}}
+          <caption>{{VAL(title)}}</caption>
+          <assets>
+            <photoAsset width="0" height="0" src="{{IMAGEURL(Media/Part/key::384)}}"/>
+          </assets>
+          <stash>
+            <url>{{IMAGEURL(Media/Part/key)}}</url>
+            <directory>false</directory>
+          </stash>
+        </photo>
+
+        <!--Photo channel-->
+        <photo id="{{VAL(key)}}" onSelect="onSelectPhoto('{{VAL(key)}}')">
+          {{COPY(Photo:Media/Part/key:COPY:=)}}
+          <caption>{{VAL(title)}}</caption>
+          <assets>
+            <photoAsset width="0" height="0" src="{{IMAGEURL(key::384)}}"/>
+          </assets>
+          <stash>
+            <url>{{IMAGEURL(key)}}</url>
+            <directory>false</directory>
+          </stash>
+        </photo>
+      </items>
+    </mediaBrowser>
+  </body>{{CUT(#foundDirectories:CUT:FALSE=|TRUE=CUT)}}  <!--CUT if directories found-->
+</atv>
