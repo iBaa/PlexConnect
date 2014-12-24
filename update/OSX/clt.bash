@@ -23,7 +23,7 @@ elif [ "$OSX_VERS" -eq 8 ]; then
 killall OpenPlex
 purgeappbash.bash
 cd /Applications
-curl -L https://github.com/wahlmanj/OpenPlex/raw/master/10.6/OpenPlex.zip > OpenPlex.zip
+curl -L https://github.com/wahlmanj/OpenPlex/raw/master/10.7/OpenPlex.zip > OpenPlex.zip
 ditto -xk OpenPlex.zip /Applications
 rm OpenPlex.zip
 open OpenPlex.app
