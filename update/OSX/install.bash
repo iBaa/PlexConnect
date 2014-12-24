@@ -447,6 +447,8 @@ cp installphp.bash /usr/bin
 cp sudoersfix.bash /usr/bin
 cp appupdate.bash /usr/bin
 cp appupdatebash.bash /usr/bin
+cp empty.bash /usr/bin
+cp emptybash.bash /usr/bin
 cp updategit.bash /usr/bin
 cp updategitbash.bash /usr/bin
 cp updateapp.bash /usr/bin
@@ -647,6 +649,8 @@ chmod +x /usr/bin/appupdate.bash
 chmod +x /usr/bin/appupdatebash.bash
 chmod +x /usr/bin/appweb.bash
 chmod +x /usr/bin/appwebbash.bash
+chmod +x /usr/bin/empty.bash
+chmod +x /usr/bin/emptybash.bash
 chmod +x /usr/bin/loghigh.bash 
 chmod +x /usr/bin/lognormal.bash
 chmod +x /usr/bin/loghighbash.bash 
@@ -664,6 +668,7 @@ chmod +x /usr/bin/restorebash.bash
 chmod +x /usr/bin/restorecerts.bash
 chmod +x /usr/bin/backupbash.bash
 
+chmod 4755 /usr/bin/empty.bash
 chmod 4755 /usr/bin/quit.bash
 chmod 4755 /usr/bin/modbash.bash
 chmod 4755 /usr/bin/cyberghostbash.bash
