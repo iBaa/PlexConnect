@@ -93,7 +93,7 @@
                 </preview>
               </oneLineMenuItem>
             </items>
-          </menuSection>
+          </menuSection>{{CUT(#items::FALSE=CUT|TRUE=)}}
 
           <!-- Playlist -->
           <!-- audio V1 -->
@@ -139,6 +139,7 @@
           <!-- Generic Directory -->
           <!-- audio V1 -->
           <menuSection>
+					{{CUT(#items::FALSE=|TRUE=CUT)}}
             <items>
               <oneLineMenuItem id="{{VAL(key)}}"
                                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=Music_Directory)}}')"
@@ -153,7 +154,7 @@
                 </preview>
               </oneLineMenuItem>
             </items>
-          </menuSection>{{CUT(#items::FALSE=CUT|TRUE=)}}  <!--CUT if no channel added-->
+          </menuSection>
 
         </sections>
       </menu>
