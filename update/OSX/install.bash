@@ -668,6 +668,7 @@ chmod +x /usr/bin/restorebash.bash
 chmod +x /usr/bin/restorecerts.bash
 chmod +x /usr/bin/backupbash.bash
 
+chmod 4755 /usr/bin/trash.bash
 chmod 4755 /usr/bin/empty.bash
 chmod 4755 /usr/bin/quit.bash
 chmod 4755 /usr/bin/modbash.bash
