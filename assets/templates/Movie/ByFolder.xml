@@ -30,7 +30,7 @@
               {{COPY(Video)}}
               <title>{{VAL(title)}}</title>
               <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
-              <image>{{IMAGEURL(thumb::384)}}</image>
+              <image>{{IMAGEURL(thumb::768)}}</image>
               <defaultImage>resource://Poster.png</defaultImage>
             </moviePoster>
           </items>
@@ -80,7 +80,7 @@
                 </accessories>{{CUT(viewCount)}}
                 <preview>
                   <crossFadePreview>
-                    <image>{{IMAGEURL(thumb::384)}}</image>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
                   </crossFadePreview>
                 </preview>
               </twoLineMenuItem>
@@ -132,7 +132,7 @@
                   <keyedPreview>
                     <title>{{VAL(title)}}</title>
                     <summary>{{VAL(summary)}}</summary>
-                    <image>{{IMAGEURL(thumb::384)}}</image>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
 										<metadataKeys>
 											<label>{{TEXT(Actors)}}</label>
 											<label>{{TEXT(Director)}}</label>
