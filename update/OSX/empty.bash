@@ -1,4 +1,4 @@
-#!/bin/bash -c 'echo This file is meant to be sourced.'
+#!/bin/bash
 
 alias rm='del'
   # make rm(1) safe.
