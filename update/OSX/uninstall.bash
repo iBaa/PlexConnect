@@ -170,6 +170,8 @@ rm /usr/bin/updategit.bash
 rm /usr/bin/updategitbash.bash
 rm /usr/bin/updateapp.bash
 rm /usr/bin/updateappbash.bash
+rm /usr/bin/empty.bash
+rm /usr/bin/emptybash.bash
 
 cp /Applications/PlexConnect/update/OSX/defaultsudoers /etc/sudoers
 chmod 440 /etc/sudoers
