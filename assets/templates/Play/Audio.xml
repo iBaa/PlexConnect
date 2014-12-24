@@ -44,9 +44,9 @@
       {{COPY_PLAYLIST(Track:^PlexConnectPlayType::^PlexConnectRatingKey::ratingKey:)}}
         <mediaURL>{{MUSICURL()}}</mediaURL>
         <title>{{VAL(title)}}</title>
-				<artist>{{VAL(/grandparentTitle)}}</artist>{{CUT(/grandparentTitle:CUT:=)}}
+        <artist>{{VAL(/grandparentTitle)}}</artist>{{CUT(/grandparentTitle:CUT:=)}}
         <collection>{{VAL(/parentTitle)}}</collection>{{CUT(/parentTitle:CUT:=)}}
-				<artist>{{VAL(grandparentTitle)}}</artist>{{CUT(/grandparentTitle::=CUT)}}
+        <artist>{{VAL(grandparentTitle)}}</artist>{{CUT(/grandparentTitle::=CUT)}}
         <collection>{{VAL(parentTitle)}}</collection>{{CUT(/parentTitle::=CUT)}}
         <image src720="{{IMAGEURL(/thumb::384)}}" src1080="{{IMAGEURL(/thumb::768)}}" />{{CUT(/thumb:CUT:=)}}
         <image src720="{{IMAGEURL(thumb::384)}}" src1080="{{IMAGEURL(thumb::768)}}" />{{CUT(/thumb::=CUT)}}
