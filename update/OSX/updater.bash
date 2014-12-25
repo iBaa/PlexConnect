@@ -60,3 +60,5 @@ cat $FILE
 else
 echo "no updates available"
 fi
+
+git reset --hard
