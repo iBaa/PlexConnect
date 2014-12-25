@@ -41,7 +41,7 @@ done
 
 
 # Add support for 10.6 and python 2.7.9 if installed
-if [ -s /usr/bin/python ]
+if [ -s /usr/local/bin/python ]
 export PATH=/usr/local/bin:$PATH
 fi
 
