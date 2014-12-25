@@ -33,3 +33,4 @@ echo "Need to push"
 else
 echo "Diverged"
 fi
+git reset --hard
