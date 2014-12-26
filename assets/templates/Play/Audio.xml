@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML audio player support with aTVFirmware>=7, iOS>=8 -->
+<atv>
+  <body>
+
+    <!-- audio V1 - channels (old style plugin, eg iTunes) -->
+    <!-- single file -->
+    <audioPlayer id="com.sample.audio-player" startPlaybackAtIndex="0">
+    {{CUT(content:CUT:=)}}
+    {{CUT(^PlexConnectPlayType::=CUT|Single=|Single =CUT)}}
+      <httpFileAudioAsset id="{{VAL(key)}}">
+      {{COPY_PLAYLIST(Track:NoKey:Single:^PlexConnectRatingKey::ratingKey:)}}
+        <mediaURL>{{MUSICURL(key)}}</mediaURL>
+        <title>{{VAL(track)}}</title>
+        <artist>{{VAL(artist)}}</artist>
+        <collection>{{VAL(album)}}</collection>
+        <image src720="{{IMAGEURL(/thumb::384)}}" src1080="{{IMAGEURL(/thumb::768)}}" />{{CUT(/thumb:CUT:=)}}
+        <image src720="{{IMAGEURL(thumb::384)}}" src1080="{{IMAGEURL(thumb::768)}}" />{{CUT(/thumb::=CUT)}}
+      </httpFileAudioAsset>
+    </audioPlayer>
+
+    <!-- audio V1 - channels (old style plugin, eg iTunes) -->
+    <!-- continuous, shuffle -->
+    <audioPlayer id="com.sample.audio-player" startPlaybackAtIndex="{{VAL(^PlexConnectCopyIx:0)}}">
+    {{CUT(content:CUT:=)}}
+    {{CUT(^PlexConnectPlayType:CUT:=CUT|Continuous=|Continuous =CUT|Shuffle=|Shuffle =CUT)}}
+      <httpFileAudioAsset id="{{VAL(key)}}">
+      {{COPY_PLAYLIST(Track:^PlexConnectPlayType::^PlexConnectRatingKey::ratingKey:)}}
+        <mediaURL>{{MUSICURL(key)}}</mediaURL>
+        <title>{{VAL(track)}}</title>
+        <artist>{{VAL(artist)}}</artist>
+        <collection>{{VAL(album)}}</collection>
+        <image src720="{{IMAGEURL(/thumb::384)}}" src1080="{{IMAGEURL(/thumb::768)}}" />{{CUT(/thumb:CUT:=)}}
+        <image src720="{{IMAGEURL(thumb::384)}}" src1080="{{IMAGEURL(thumb::768)}}" />{{CUT(/thumb::=CUT)}}
+      </httpFileAudioAsset>
+    </audioPlayer>
+
+    <!-- audio V2 - library -->
+    <!-- single, continuous, shuffle -->
+    <audioPlayer id="com.sample.audio-player" startPlaybackAtIndex="{{VAL(^PlexConnectCopyIx:0)}}">
+    {{CUT(content::=CUT)}}
+      <httpFileAudioAsset id="{{VAL(key)}}">
+      {{COPY_PLAYLIST(Track:^PlexConnectPlayType::^PlexConnectRatingKey::ratingKey:)}}
+        <mediaURL>{{MUSICURL()}}</mediaURL>
+        <title>{{VAL(title)}}</title>
+        <artist>{{VAL(/grandparentTitle)}}</artist>{{CUT(/grandparentTitle:CUT:=)}}
+        <collection>{{VAL(/parentTitle)}}</collection>{{CUT(/parentTitle:CUT:=)}}
+        <artist>{{VAL(grandparentTitle)}}</artist>{{CUT(/grandparentTitle::=CUT)}}
+        <collection>{{VAL(parentTitle)}}</collection>{{CUT(/parentTitle::=CUT)}}
+        <image src720="{{IMAGEURL(/thumb::384)}}" src1080="{{IMAGEURL(/thumb::768)}}" />{{CUT(/thumb:CUT:=)}}
+        <image src720="{{IMAGEURL(thumb::384)}}" src1080="{{IMAGEURL(thumb::768)}}" />{{CUT(/thumb::=CUT)}}
+      </httpFileAudioAsset>
+    </audioPlayer>
+
+  </body>
+</atv>

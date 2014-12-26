@@ -1,0 +1,53 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+
+  <body>
+    <scroller id="Show_Bookcase">
+    {{CUT(size:CUT:0=CUT|1=)}}
+      <header>
+        <simpleHeader>
+          <title>{{VAL(title1)}}</title>
+          <subtitle>{{VAL(title2)}}</subtitle>
+        </simpleHeader>
+      </header>
+
+      <items>
+        <__COPY__>
+        {{COPY(Directory)}}
+          <collectionDivider alignment="left" accessibilityLabel="Show_Bookcase_Divider">
+            <title>{{VAL(title)}}</title>
+          </collectionDivider>
+
+          <shelf id="Show_Bookcase_Shelf_{{VAL(title)}}" columnCount="7">
+            <sections>
+              <shelfSection>
+                <items>
+                {{ADDXML(seasons:key)}}
+                  <moviePoster id="Show_Bookcase_{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
+                              onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_List{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
+                              onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_List{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
+                              onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
+                    {{COPY(@seasons/Directory)}}
+                    <title>{{VAL(title)}}</title>
+                    <image>{{IMAGEURL(thumb::384)}}</image>
+                    <defaultImage>resource://Poster.png</defaultImage>
+                    <badgeCount>{{unwatchedCountGrid(leafCount:0:viewedLeafCount:0)}}</badgeCount>{{CUT($showunwatched::False=CUT|True=)}}
+                    </moviePoster><!--{{CUT(Directory/title:CUT:=)}}-->
+                </items>
+              </shelfSection>
+            </sections>
+          </shelf>
+        </__COPY__>
+      </items>
+    </scroller>
+
+    <!--No Shows Available-->
+    <dialog id="com.sample.error-dialog">
+    {{CUT(size::0=|1=CUT)}}
+      <title>PlexConnect</title>
+      <description>{{TEXT(No Unwatched Shows.)}}</description>
+    </dialog>
+  </body>
+</atv>

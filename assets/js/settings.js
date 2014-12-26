@@ -181,7 +181,7 @@ myPlexSignInOut = function()
             var new_myPlexElem = doc.getElementById('MyPlexSignInOut')
             
             // discover
-            discover('discover', 'Settings');
+            discover('discover', 'Settings_Main');
             
             // update MyPlexSignInOut
             hidePict(_myPlexElem, 'spinner');
@@ -226,7 +226,7 @@ myPlexSignInOut = function()
             var new_myPlexElem = doc.getElementById('MyPlexSignInOut')
             
             // discover
-            discover('discover', 'Settings');
+            discover('discover', 'Settings_Main');
             
             // update MyPlexSignInOut
             hidePict(_myPlexElem, 'spinner');

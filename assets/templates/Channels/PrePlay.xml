@@ -1,0 +1,33 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+
+  <body>
+    <itemDetail id="com.apple.trailers">
+		<title>{{VAL(Video/title)}}</title>
+		<subtitle>{{VAL(Video/studio)}}</subtitle>
+		<rating>{{contentRating(Video/contentRating)}}</rating>
+		<summary>{{VAL(Video/summary)}}</summary>
+		<image style="squarePoster">{{IMAGEURL(Video/thumb::384)}}</image>
+		<defaultImage>resource://Poster.png</defaultImage>
+
+		<centerShelf>
+        <shelf id="centerShelf" columnCount="4" center="true">
+			<sections>
+				<shelfSection>
+					<items>
+						<actionButton id="play" onSelect="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL_QUOTED(Video/ratingKey)}})}}')">
+							<title>{{TEXT(Play)}}</title>
+							<image>resource://Play.png</image>
+              <focusedImage>resource://PlayFocused.png</focusedImage>
+							<!--<badge></badge>-->
+						</actionButton>
+					</items>
+				</shelfSection>
+			</sections>
+		</shelf>
+		</centerShelf>
+		</itemDetail>
+	</body>
+</atv>

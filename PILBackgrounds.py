@@ -21,7 +21,7 @@ except ImportError:
 
 def generate(PMS_uuid, url, authtoken, resolution, blurRadius):
     cachepath = sys.path[0]+"/assets/fanartcache"
-    stylepath = sys.path[0]+"/assets/templates/images"
+    stylepath = sys.path[0]+"/assets/thumbnails"
 
     # Create cache filename
     id = re.search('/library/metadata/(?P<ratingKey>\S+)/art/(?P<fileId>\S+)', url)

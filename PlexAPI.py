@@ -434,7 +434,7 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
             token = getPMSProperty(ATV_udid, uuid, 'accesstoken')
             PMS_mark = 'PMS(' + getPMSProperty(ATV_udid, uuid, 'ip') + ')'
             
-            Server.set('searchKey', PMS_mark + getURL('', '', '/SearchForm.xml'))
+            Server.set('searchKey', PMS_mark + getURL('', '', '/Search/Entry.xml'))
             
             # request XMLs, one thread for each
             PMS = { 'baseURL':baseURL, 'path':path, 'options':options, 'token':token, \

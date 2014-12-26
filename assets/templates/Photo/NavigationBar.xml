@@ -1,0 +1,33 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/updateXML.js)}}" />
+  </head>
+  <body>
+    <viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadItem(event)" volatile="true" onVolatileReload="updatePage('{{URL(:::PlexConnect=Plex_Photo_Scanner)}}');">
+      <navigation currentIndex="1">
+
+        <navigationItem id="0">
+          <title>{{TEXT(All Photos)}}</title>
+          <url>{{URL(key::/all:PlexConnect=Photo_Directory)}}</url>
+        </navigationItem>
+
+        <navigationItem id="1">
+          <title>{{TEXT(Recently Added)}}</title>
+          <url>{{URL(key::/recentlyAdded:PlexConnect=Photo_Browser)}}</url>
+        </navigationItem>
+
+        <navigationItem id="2">
+          <title>{{TEXT(Year)}}</title>
+          <url>{{URL(key::/year:PlexConnect=Photo_DirectoryWithPreview)}}</url>
+        </navigationItem>
+
+        <navigationItem id="3">
+          <title>{{TEXT(More...)}}</title>
+          <url>{{URL(key:::PlexConnect=Photo_Secondary)}}</url>
+        </navigationItem>
+
+      </navigation>
+    </viewWithNavigationBar>
+  </body>
+</atv>

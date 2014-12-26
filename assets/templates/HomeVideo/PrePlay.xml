@@ -1,0 +1,92 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/selectAudioAndSubs.js)}}" />
+  </head>
+
+  <body>
+    <itemDetail id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=HomeVideo_PrePlay)}}')">
+      <title>{{VAL(Video/title)}} ({{VAL(Video/year)}})</title>
+      <subtitle>{{VAL(Video/studio)}}</subtitle>
+      <rating>{{contentRating(Video/contentRating)}}</rating>
+      <summary>{{VAL(Video/summary)}}</summary>
+      <image style="sixteenByNinePoster">{{IMAGEURL(Video/thumb::768)}}</image>
+      <defaultImage>resource://Poster.png</defaultImage>
+
+      <table>
+        <columnDefinitions>
+          <columnDefinition width="25" alignment="left">
+            <title>{{TEXT(Details)}}</title>
+          </columnDefinition>
+        </columnDefinitions>
+        <rows>
+          <row>
+            <label>{{VAL(Video/Genre/tag)}}</label>
+          </row>
+          <row>
+            <label>{{durationToString(NoKey:Video:Video/duration)}}</label>
+          </row>
+          <row>
+            <label>{{VAL(Video/Media/videoResolution:Unknown:1080=1080p|720=720p|576=SD|480=SD|sd=SD)}}   {{VAL(Video/Media/audioCodec:Unknown:ac3=AC3|aac=AAC|mp3=MP3|dca=DTS|drms=DRMS)}} {{VAL(Video/Media/audioChannels:Unknown:2=Stereo|6=5.1|8=7.1)}} </label>
+          </row>
+          <row>
+            <label>{{EVAL("{{VAL(Video/Media/container)}} / {{VAL(Video/Media/videoCodec)}}".upper())}}</label>
+          </row>
+        </rows>
+      </table>
+
+      <centerShelf>
+        <shelf id="centerShelf" columnCount="4" center="true">
+          <sections>
+            <shelfSection>
+              {{VAR(AudioStreams:NoKey:0)}}
+              {{VAR(SubtitleStreams:NoKey:0)}}
+              <stash>{{CUT(^aTVFirmwareVersion:CUT:=CUT|5.2=)}}
+                <!-- audio streams info-->
+                <stream>
+                  {{COPY(Video/Media/Part/Stream:streamType::=|2=COPY|2 =)}}
+                  {{VAR(AudioStreams:NoKey:{{EVAL({{VAL(#AudioStreams)}}+1)}})}}
+                  <id>{{VAL(id)}}</id>
+                  <language>{{VAL(language:Unknown)}}</language>
+                  <codec>{{VAL(codec)}}</codec>
+                  <streamType>{{VAL(streamType)}}</streamType>
+                  <selected>{{VAL(selected:0)}}</selected>
+                </stream>
+                <!-- subtitle streams info-->
+                <stream>
+                  {{COPY(Video/Media/Part/Stream:streamType::=|3=COPY|3 =)}}
+                  {{VAR(SubtitleStreams:NoKey:{{EVAL({{VAL(#SubtitleStreams)}}+1)}})}}
+                  <id>{{VAL(id)}}</id>
+                  <language>{{VAL(language:Unknown)}}</language>
+                  <format>{{VAL(format)}}</format>
+                  <streamType>{{VAL(streamType)}}</streamType>
+                  <selected>{{VAL(selected:0)}}</selected>
+                </stream>
+              </stash>
+              
+              <items>
+                <actionButton id="play" onSelect="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(Video/ratingKey)}})}}')"
+                                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(Video/ratingKey)}})}}')">
+                  <title>{{TEXT(Play)}}</title>
+                  <image>resource://Play.png</image>
+                  <focusedImage>resource://PlayFocused.png</focusedImage>
+                  <!--<badge></badge>-->
+                </actionButton>
+                <actionButton id="selectAudioAndSubs"
+                              onSelect="selectAudioAndSubs('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(Video/Media/Part/id)}}')"
+                              onPlay="selectAudioAndSubs('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(Video/Media/Part/id)}}')">
+                {{VAR(SelectAudioAndSubs:NoKey:{{EVAL( {{VAL(#AudioStreams)}}>1 or {{VAL(#SubtitleStreams)}}>0 )}})}}
+                {{CUT(#SelectAudioAndSubs:CUT:False=CUT|True=)}}
+                  <title>{{TEXT(Audio/Subs)}}</title>
+                  <image>resource://Queue.png</image>
+                  <focusedImage>resource://QueueFocused.png</focusedImage>
+                </actionButton>
+              </items>
+            </shelfSection>
+          </sections>
+        </shelf>
+      </centerShelf>
+
+		</itemDetail>
+	</body>
+</atv>

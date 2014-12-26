@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+
+  <body>
+    <preview>
+      <scrollerPreview id="com.sample.moreInfoPreview">
+        <header>
+          <metadataHeader>
+            <title>{{VAL(title2)}}</title>
+            <subtitle>{{VAL(size)}} {{TEXT(Movies)}}</subtitle>
+          </metadataHeader>
+        </header>
+        <items>
+          <grid id="grid_0" columnCount="3">
+            <items>
+              <moviePoster id="{{VAL(key)}}" alwaysShowTitles="true"
+                           onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                           onSelect="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')">
+                {{COPY(Video/Extras/Video)}}
+                <title>{{VAL(title)}}</title>
+                <subtitle>{{VAL(extraType::1=Trailer|2=Deleted|3=Interview|4=???|5=Behind the Scenes|6=Scene)}}</subtitle>
+                <image>{{IMAGEURL(thumb::384)}}</image>
+                <defaultImage>resource://16X9.png</defaultImage>
+              </moviePoster>
+            </items>
+          </grid>
+        </items>
+      </scrollerPreview>
+    </preview>
+  </body>
+</atv>

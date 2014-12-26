@@ -1,0 +1,42 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+
+  <body>
+    <listWithPreview id="com.sample.menu-items-with-sections">
+    {{CUT(size:CUT:0=CUT|1=)}}
+      <header>
+        <simpleHeader>
+          <title>{{VAL(title1:Plex Library)}}</title>
+          <subtitle>{{VAL(title2)}}</subtitle>
+        </simpleHeader>
+      </header>
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+              <!-- library directories -->
+              <oneLineMenuItem id="{{VAL(key)}}"
+                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Movie_ByFolder)}}')"
+                             onSelect="atv.loadURL('{{URL(key:::PlexConnect=Movie_ByFolder)}}')">
+                {{COPY(Directory)}}
+                <label>{{VAL(title)}}</label>
+                <preview>
+                  <link>{{URL(key:::X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview)}}</link>
+                </preview>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </listWithPreview>
+
+    <!--No Items Available-->
+    <dialog id="com.sample.error-dialog">
+    {{CUT(size::0=|1=CUT)}}
+      <title>PlexConnect</title>
+      <description>{{TEXT(Plex Media Server: No Items Available)}}</description>
+    </dialog>
+  </body>
+</atv>

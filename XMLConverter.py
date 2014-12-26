@@ -161,16 +161,18 @@ def XML_PMS2aTV(PMS_address, path, options):
     
     # check cmd to work on
     cmd = ''
+    dir = ''
     channelsearchURL = ''
+    
     if 'PlexConnect' in options:
         cmd = options['PlexConnect']
-    
+        dprint(__name__, 1, "---------------------------------------------")
+        dprint(__name__, 1, "Input: {0} {1} ", PMS_address, path)
+        dprint(__name__, 1, "Initial Command: {0}", cmd)
+
     if 'PlexConnectChannelsSearch' in options:
         channelsearchURL = options['PlexConnectChannelsSearch'].replace('+amp+', '&')
-     
-    dprint(__name__, 1, "PlexConnect Cmd: " + cmd)
-    dprint(__name__, 1, "PlexConnectChannelsSearch: " + channelsearchURL)
-    
+
     # check aTV language setting
     if not 'aTVLanguage' in options:
         dprint(__name__, 1, "no aTVLanguage - pick en")
@@ -189,20 +191,23 @@ def XML_PMS2aTV(PMS_address, path, options):
     if path.endswith(".xml"):
         XMLtemplate = path.lstrip('/')
         path = ''  # clear path - we don't need PMS-XML
+
+    # Deal with any special commands
+    if cmd.startswith('SettingsToggle:'):
+        opt = cmd[len('SettingsToggle:'):]  # cut command:
+        parts = opt.split('+')
+        g_ATVSettings.toggleSetting(options['PlexConnectUDID'], parts[0].lower())
+        parts1 = parts[1].split('_', 1)
+        dir = parts1[0]
+        cmd = parts1[1]
+        XMLtemplate = dir + '/' + cmd + '.xml'
+        dprint(__name__, 2, "ATVSettings->Toggle: {0} in template: {1}", parts[0], parts[1])
+        path = ''  # clear path - we don't need PMS-XML  
     
-    elif cmd=='ChannelsSearch':
-        XMLtemplate = 'ChannelsSearch.xml'
-        path = ''
+    elif cmd=='SaveSettings':
+        g_ATVSettings.saveSettings();
+        return XML_Error('PlexConnect', 'SaveSettings!')  # not an error - but aTV won't care anyways.
         
-    elif cmd=='PlayVideo':
-        XMLtemplate = 'PlayVideo.xml'
-    
-    elif cmd=='PlayAudio':
-        XMLtemplate = 'PlayAudio.xml'
-    
-    elif cmd=='PlayAudio_plist':
-        XMLtemplate = 'PlayAudio_plist.xml'
-    
     elif cmd=='PlayVideo_ChannelsV1':
         dprint(__name__, 1, "playing Channels XML Version 1: {0}".format(path))
         auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
@@ -228,207 +233,8 @@ def XML_PMS2aTV(PMS_address, path, options):
             return XML_Error('PlexConnect','Youtube: ATV compatible Trailer not available')
         
         return XML_PlayVideo_ChannelsV1('', url.replace('&','&amp;'))
-
-    elif cmd=='Plex_Video_Files_Scanner':
-        XMLtemplate = 'HomeVideoSectionTopLevel.xml'
-
-    elif cmd=='Plex_Movie_Scanner':
-        XMLtemplate = 'MovieSectionTopLevel.xml'
-    
-    elif cmd=='Plex_Series_Scanner':
-        XMLtemplate = 'TVSectionTopLevel.xml'
         
-    elif cmd=='Plex_Photo_Scanner':
-        XMLtemplate = 'PhotoSectionTopLevel.xml'
-
-    elif cmd=='Plex_Music_Scanner':
-        XMLtemplate = 'MusicSectionTopLevel.xml'
-    
-    elif cmd=='ScrobbleMenu':
-        XMLtemplate = 'ScrobbleMenu.xml'
-
-    elif cmd=='ScrobbleMenuVideo':
-        XMLtemplate = 'ScrobbleMenuVideo.xml'
-
-    elif cmd=='ScrobbleMenuTVOnDeck':
-        XMLtemplate = 'ScrobbleMenuTVOnDeck.xml'
-        
-    elif cmd=='ChangeShowArtwork':
-        XMLtemplate = 'ChangeShowArtwork.xml'
-
-    elif cmd=='ChangeSingleArtwork':
-        XMLtemplate = 'ChangeSingleArtwork.xml'
-
-    elif cmd=='ChangeSingleArtworkVideo':
-        XMLtemplate = 'ChangeSingleArtworkVideo.xml'
-
-    elif cmd=='ChangeFanart':
-        XMLtemplate = 'ChangeFanArt.xml'
-        
-    elif cmd=='ChangeFanartVideo':
-        XMLtemplate = 'ChangeFanArtVideo.xml'
-        
-    elif cmd=='PhotoBrowser':
-        XMLtemplate = 'Photo_Browser.xml'
-        
-    elif cmd=='MoviePreview':
-        XMLtemplate = 'MoviePreview.xml'
-    
-    elif cmd=='HomeVideoPrePlay':
-        XMLtemplate = 'HomeVideoPrePlay.xml'
-        
-    elif cmd=='MoviePrePlay':
-        XMLtemplate = "MoviePrePlay.xml"
-        if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'moviefanart') == 'Show' and \
-           isPILinstalled() and \
-           options['aTVFirmwareVersion'] >= '6.0':  # watch out: this will make trouble with iOS10
-            XMLtemplate = 'MoviePrePlay_Fanart.xml'
-
-    elif cmd=='EpisodePrePlay':
-        XMLtemplate = 'EpisodePrePlay.xml'
-        if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'tvshowfanart') == 'Show' and \
-           isPILinstalled() and \
-           options['aTVFirmwareVersion'] >= '6.0':  # watch out: this will make trouble with iOS10
-            XMLtemplate = 'EpisodePrePlay_Fanart.xml'
-        
-    elif cmd=='ChannelPrePlay':
-        XMLtemplate = 'ChannelPrePlay.xml'
-    
-    elif cmd=='ChannelsVideo':
-        XMLtemplate = 'ChannelsVideo.xml'
-		
-    elif cmd=='Channels':
-		if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'channelview') == 'Tabbed List':
-			XMLtemplate = 'Channel_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'channelview').replace(' ', '')+'_Video.xml'
-		else:
-			XMLtemplate = 'Channel_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'channelview').replace(' ', '')+'.xml'
-
-    elif cmd=='Channels_VideoList':
-        XMLtemplate = 'Channel_TabbedList_Video.xml'
-
-    elif cmd=='Channels_AudioList':
-        XMLtemplate = 'Channel_TabbedList_Audio.xml'
-
-    elif cmd=='Channels_PhotoList':
-        XMLtemplate = 'Channel_TabbedList_Photo.xml'
-		
-    elif cmd=='ShowByFolder':
-        XMLtemplate = 'ShowByFolder.xml'
-
-    elif cmd=='HomeVideoByFolder':
-        XMLtemplate = 'HomeVideoByFolder.xml'
-
-    elif cmd == 'HomeVideoDirectory':
-        XMLtemplate = 'HomeVideoDirectory.xml'
-
-    elif cmd=='MovieByFolder':
-        XMLtemplate = 'MovieByFolder.xml'
-
-    elif cmd == 'MovieDirectory':
-        XMLtemplate = 'MovieDirectory.xml'
-
-    elif cmd == 'MovieSection':
-        XMLtemplate = 'MovieSection.xml'
-    
-    elif cmd == 'HomeVideoSection':
-        XMLtemplate = 'HomeVideoSection.xml'
-        
-    elif cmd == 'TVSection':
-        XMLtemplate = 'TVSection.xml'
-    
-    elif cmd.find('SectionPreview') != -1:
-        XMLtemplate = cmd + '.xml'
-    
-    elif cmd == 'AllMovies':
-        XMLtemplate = 'Movie_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'movieview').replace(' ','')+'.xml'  
-    
-    elif cmd == 'AllHomeVideos':
-        XMLtemplate = 'HomeVideo_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'homevideoview').replace(' ','')+'.xml'  
-        
-    elif cmd == 'MovieSecondary':
-        XMLtemplate = 'MovieSecondary.xml'
-    
-    elif cmd == 'AllShows':
-        XMLtemplate = 'Show_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'showview').replace(' ','')+'.xml'  
-          
-    elif cmd == 'TVSecondary':
-        XMLtemplate = 'TVSecondary.xml'
-        
-    elif cmd == 'PhotoSecondary':
-        XMLtemplate = 'PhotoSecondary.xml'
-        
-    elif cmd == 'MusicSecondary':
-        XMLtemplate = 'MusicSecondary.xml'
-        
-    elif cmd == 'Directory':
-        XMLtemplate = 'Directory.xml'
-    
-    elif cmd == 'DirectoryWithPreview':
-        XMLtemplate = 'DirectoryWithPreview.xml'
-
-    elif cmd == 'DirectoryWithPreviewActors':
-        XMLtemplate = 'DirectoryWithPreviewActors.xml'
-    
-    elif cmd=='Playlists':
-		if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'showplaylists') == 'Tabbed List':
-			XMLtemplate = 'Playlists_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'showplaylists').replace(' ', '')+'_Video.xml'
-		else:
-			XMLtemplate = 'Playlists_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'showplaylists').replace(' ', '')+'.xml'
-
-    elif cmd=='Playlists_VideoList':
-        XMLtemplate = 'Playlists_TabbedList_Video.xml'
-
-    elif cmd=='Playlists_AudioList':
-        XMLtemplate = 'Playlists_TabbedList_Audio.xml'
-
-    elif cmd=='Playlist_Video':
-        XMLtemplate = 'Playlist_Video.xml'
-    
-    elif cmd=='Playlist_Audio':
-        XMLtemplate = 'Playlist_Audio.xml'
-    
-    elif cmd=='Settings':
-        XMLtemplate = 'Settings.xml'
-        path = ''  # clear path - we don't need PMS-XML
-    
-    elif cmd=='SettingsVideoOSD':
-        XMLtemplate = 'Settings_VideoOSD.xml'
-        path = ''  # clear path - we don't need PMS-XML
-    
-    elif cmd=='SettingsMovies':
-        XMLtemplate = 'Settings_Movies.xml'
-        path = ''  # clear path - we don't need PMS-XML
-        
-    elif cmd=='SettingsTVShows':
-        XMLtemplate = 'Settings_TVShows.xml'
-        path = ''  # clear path - we don't need PMS-XML
- 
-    elif cmd=='SettingsHomeVideos':
-        XMLtemplate = 'Settings_HomeVideos.xml'
-        path = ''  # clear path - we don't need PMS-XML
-
-    elif cmd=='SettingsMusic':
-        XMLtemplate = 'Settings_Music.xml'
-        path = ''  # clear path - we don't need PMS-XML
-
-    elif cmd=='SettingsTopLevel':
-        XMLtemplate = 'Settings_TopLevel.xml'
-        path = ''  # clear path - we don't need PMS-XML
-        
-    elif cmd=='SaveSettings':
-        g_ATVSettings.saveSettings();
-        return XML_Error('PlexConnect', 'SaveSettings!')  # not an error - but aTV won't care anyways.
-        
-    elif cmd.startswith('SettingsToggle:'):
-        opt = cmd[len('SettingsToggle:'):]  # cut command:
-        parts = opt.split('+')
-        g_ATVSettings.toggleSetting(options['PlexConnectUDID'], parts[0].lower())
-        XMLtemplate = parts[1] + ".xml"
-        dprint(__name__, 2, "ATVSettings->Toggle: {0} in template: {1}", parts[0], parts[1])
-        
-        path = ''  # clear path - we don't need PMS-XML
-        
-    elif cmd==('MyPlexLogin'):
+    elif cmd=='MyPlexLogin':
         dprint(__name__, 2, "MyPlex->Logging In...")
         if not 'PlexConnectCredentials' in options:
             return XML_Error('PlexConnect', 'MyPlex Sign In called without Credentials.')
@@ -439,7 +245,7 @@ def XML_PMS2aTV(PMS_address, path, options):
         g_ATVSettings.setSetting(UDID, 'myplex_user', username)
         g_ATVSettings.setSetting(UDID, 'myplex_auth', auth_token)
         
-        XMLtemplate = 'Settings.xml'
+        XMLtemplate = 'Settings/Main.xml'
         path = ''  # clear path - we don't need PMS-XML
     
     elif cmd=='MyPlexLogout':
@@ -451,7 +257,7 @@ def XML_PMS2aTV(PMS_address, path, options):
         g_ATVSettings.setSetting(UDID, 'myplex_user', '')
         g_ATVSettings.setSetting(UDID, 'myplex_auth', '')
         
-        XMLtemplate = 'Settings.xml'
+        XMLtemplate = 'Settings/Main.xml'
         path = ''  # clear path - we don't need PMS-XML
     
     elif cmd.startswith('Discover'):
@@ -459,19 +265,41 @@ def XML_PMS2aTV(PMS_address, path, options):
         PlexAPI.discoverPMS(UDID, g_param['CSettings'], auth_token)
         
         return XML_Error('PlexConnect', 'Discover!')  # not an error - but aTV won't care anyways.
-    
-    elif path.startswith('/search?'):
-        XMLtemplate = 'Search_Results.xml'
-    
+
+    # Special case path requests
+    if path.startswith('/search?'):
+        XMLtemplate = 'Search/Results.xml'
+        
     elif path.find('serviceSearch') != -1 or (path.find('video') != -1 and path.lower().find('search') != -1):
-        XMLtemplate = 'ChannelsVideoSearchResults.xml'
+        XMLtemplate = 'Channels/VideoSearchResults.xml'
     
     elif path.find('SearchResults') != -1:
-        XMLtemplate = 'ChannelsVideoSearchResults.xml'
+        XMLtemplate = 'Channels/VideoSearchResults.xml'
         
-    elif path=='/library/sections':  # from PlexConnect.xml -> for //local, //myplex
-        XMLtemplate = 'Library.xml'
-        
+    # Not a special command so split it 
+    if cmd.find('_') != -1:
+        parts = cmd.split('_', 1)
+        dir = parts[0]
+        cmd = parts[1]
+            
+    # Special case scanners
+    if cmd.find('Scanner') != -1:
+        dprint(__name__, 0, "Section scanner found, updating command.")
+        parts = cmd.split('_')
+        dir = parts[0].replace('Series', 'TVShow')
+        dir = dir.replace('Video', 'HomeVideo')
+        dir = dir.replace('iTunes', 'Music')
+        cmd = 'NavigationBar'
+
+    # Commands that contain a directory
+    if dir != '':
+        XMLtemplate = dir + '/' + cmd + '.xml'
+        if path == '/': path = ''
+        dprint(__name__, 1, "Split Directory: {0} Command: {1}", dir, cmd)
+        dprint(__name__, 1, "PlexConnectChannelsSearch: " + channelsearchURL)
+        dprint(__name__, 1, "XMLTemplate: {0}", XMLtemplate)
+        dprint(__name__, 1, "---------------------------------------------")
+
     # request PMS XML
     if not path=='':
         if PMS_address[0].isalpha():  # owned, shared
@@ -488,83 +316,24 @@ def XML_PMS2aTV(PMS_address, path, options):
         
         dprint(__name__, 1, "viewGroup: "+PMSroot.get('viewGroup','None'))
     
-    # XMLtemplate defined by PMS XML content
-    if path=='':
-        pass  # nothing to load
-    
-    elif not XMLtemplate=='':
-        pass  # template already selected
-    
-    elif PMSroot.get('viewGroup','')=='show':
-        if PMSroot.get('title2')=='By Folder':
-          # By Folder View
-          XMLtemplate = 'ShowByFolder.xml'
-        else:
-          # TV Show grid view
-          XMLtemplate = 'Show_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'showview')+'.xml'
-        
-    elif PMSroot.get('viewGroup','')=='season':
-        # TV Season view
-        XMLtemplate = 'Season_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'seasonview')
-        if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'tvshowfanart') == 'Show' and \
-           isPILinstalled() and \
-           options['aTVFirmwareVersion'] >= '6.0':  # watch out: this will make trouble with iOS10
-            XMLtemplate = XMLtemplate + '_Fanart.xml'
-        else:
-            XMLtemplate = XMLtemplate + '.xml'
-    
-    elif PMSroot.get('viewGroup','')=='movie' and PMSroot.get('thumb','').find('video') != -1:
-        if PMSroot.get('title2')=='By Folder':
-          # By Folder View
-          XMLtemplate = 'HomeVideoByFolder.xml'
-        else:
-          # Home Video listing
-          XMLtemplate = 'HomeVideo_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'homevideoview').replace(' ','')+'.xml'
-    
-    elif PMSroot.get('viewGroup','')=='movie' and PMSroot.get('thumb','').find('movie') != -1:
-        if PMSroot.get('title2')=='By Folder':
-          # By Folder View
-          XMLtemplate = 'MovieByFolder.xml'
-        else:
-          # Movie listing
-          XMLtemplate = 'Movie_'+g_ATVSettings.getSetting(options['PlexConnectUDID'], 'movieview').replace(' ','')+'.xml'
-   
-    elif PMSroot.get('viewGroup','')=='episode':
-        if PMSroot.get('title2')=='On Deck' or \
-           PMSroot.get('title2')=='Recently Viewed Episodes' or \
-           PMSroot.get('title2')=='Recently Aired' or \
-           PMSroot.get('title2')=='Recently Added':
-            # TV On Deck View
-            XMLtemplate = 'TV_OnDeck.xml'
-        else:
-            # TV Episode view
-            XMLtemplate = 'Episode.xml' 
-            if g_ATVSettings.getSetting(options['PlexConnectUDID'], 'tvshowfanart') == 'Show' and \
-               isPILinstalled() and \
-               options['aTVFirmwareVersion'] >= '6.0':  # watch out: this will make trouble with iOS10
-                XMLtemplate = 'Episode_Fanart.xml'
-    
-    elif PMSroot.get('viewGroup','')=='photo' or \
-       path.startswith('/photos') or \
-       PMSroot.find('Photo')!=None:
-        if PMSroot.find('Directory')==None:
-            # Photos only - directly show
-            XMLtemplate = 'Photo_Browser.xml'
-        else:
-            # Photo listing / directory
-            XMLtemplate = 'Photo_Directories.xml'
-    
-    elif PMSroot.get('viewGroup','')=='track':
-        XMLtemplate = "Music_Track.xml"
-    
-    else:
-        XMLtemplate = 'Directory.xml'
-    
     dprint(__name__, 1, "XMLTemplate: "+XMLtemplate)
 
     # get XMLtemplate
     aTVTree = etree.parse(sys.path[0]+'/assets/templates/'+XMLtemplate)
     aTVroot = aTVTree.getroot()
+    # redirect if necessary, load final XMLtemplate
+    while aTVroot.tag=='XMLtemplate':
+        CommandCollection = CCommandCollection(options, PMSroot, PMS_address, path)
+        XML_ExpandTree(CommandCollection, aTVroot, PMSroot, 'main')
+        XML_ExpandAllAttrib(CommandCollection, aTVroot, PMSroot, 'main')
+        del CommandCollection
+        
+        XMLtemplate = aTVroot.get('redirect').replace(" ", "")
+        dprint(__name__, 1, "---------------------------------------------")
+        dprint(__name__, 1, "XMLTemplate redirect: {0}", XMLtemplate)
+        dprint(__name__, 1, "---------------------------------------------")
+        aTVTree = etree.parse(sys.path[0]+'/assets/templates/'+XMLtemplate)
+        aTVroot = aTVTree.getroot()
     
     # convert PMS XML to aTV XML using provided XMLtemplate
     CommandCollection = CCommandCollection(options, PMSroot, PMS_address, path)
@@ -572,7 +341,7 @@ def XML_PMS2aTV(PMS_address, path, options):
     XML_ExpandAllAttrib(CommandCollection, aTVroot, PMSroot, 'main')
     del CommandCollection
     
-    if cmd=='ChannelsSearch':
+    if dir=='Channels' and cmd=='Search':
         for bURL in aTVroot.iter('baseURL'):
             if channelsearchURL.find('?') == -1:
                 bURL.text = channelsearchURL + '?query='

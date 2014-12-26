@@ -1,0 +1,44 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+  
+  <body>
+    <searchResults id="searchResults">
+    <menu>
+        <sections>
+          <menuSection>
+            <items>{{VAR(ChanVer:Video/Media/Part/key:V1:=V2)}}  <!--V1 does not have Video/Media/...-->
+              <!-- channel media V1: no PrePlayScreen, no "in video" additional information-->
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}"
+                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=PlayVideoChannelsV1)}}')"
+                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=PlayVideoChannelsV1)}}')">
+                {{COPY(Video:#ChanVer::V1=COPY|V2=)}}
+                <label>{{VAL(title)}}</label>
+                <image>{{IMAGEURL(thumb::384)}}</image>
+              </twoLineEnhancedMenuItem>
+              
+              <!-- channel media V2-->
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}"
+                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL_QUOTED(ratingKey)}})}}')"
+                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=Channels_PrePlay)}}')">
+                {{COPY(Video:#ChanVer::V1=|V2=COPY)}}
+                <label>{{VAL(title)}}</label>
+                <image>{{IMAGEURL(thumb::384)}}</image>
+              </twoLineEnhancedMenuItem>
+              
+              <!-- channel directories -->
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}" 
+                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Channels_Video)}}')" 
+                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=Channels_Video)}}')">
+                {{COPY(Directory:search:COPY:=COPY|1=)}}
+                <label>{{VAL(title)}}</label>
+                <image>{{IMAGEURL(thumb::384)}}</image>
+              </twoLineEnhancedMenuItem>
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </searchResults>
+  </body>
+</atv>

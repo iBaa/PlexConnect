@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/settings.js)}}" />
+  </head>
+
+  <body>
+    <listWithPreview id="SettingsPage_VideoOSD">
+      <header>
+        <simpleHeader>
+          <title>{{TEXT(Settings)}}</title>
+        </simpleHeader>
+      </header>
+      <preview>
+        <keyedPreview>
+          <title>&#x00AD;<!--soft-hyphen--></title>
+          <summary/>
+          <metadataKeys>
+            <label>{{TEXT(Version)}}</label>
+            <label>{{TEXT(Authors)}}</label>
+            <label>{{TEXT(Wiki/Docs)}}</label>
+            <label>{{TEXT(Homepage)}}</label>
+            <label>{{TEXT(Forum)}}</label>
+          </metadataKeys>
+          <metadataValues>
+            <label>{{EVAL(__VERSION__)}}</label>
+            <label>Baa, roidy</label>
+            <label>f00b4r, meltman</label>
+            <label>https://github.com/ibaa/plexconnect</label>
+            <label>http://forums.plexapp.com/...plexconnect</label>
+          </metadataValues>
+          <image>{{URL(:/thumbnails/PlexConnectLogo.jpg)}}</image>
+        </keyedPreview>
+      </preview>
+
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+              <oneLineMenuItem id="MovieView" onSelect="toggleSettings('MovieView', 'Settings_Movies')">
+                <label>{{TEXT(Movie View)}}</label>
+                <rightLabel>{{SETTING(movieview)}}</rightLabel>
+              </oneLineMenuItem> 
+
+              <oneLineMenuItem id="ActorView" onSelect="toggleSettings('ActorView', 'Settings_Movies')">
+                <label>{{TEXT(Actor View)}}</label>
+                <rightLabel>{{SETTING(actorview)}}</rightLabel>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="ShowTitles_Movies" onSelect="toggleSettings('ShowTitles_Movies', 'Settings_Movies')">
+                <label>{{TEXT(Poster Titles)}}</label>
+                <rightLabel>{{SETTING(showtitles_movies)}}</rightLabel>
+              </oneLineMenuItem>
+							
+              <oneLineMenuItem id="MoviePrePlay_BottomShelf" onSelect="toggleSettings('MoviePrePlay_BottomShelf', 'Settings_Movies')">
+                <label>{{TEXT(PrePlay Bottom Shelf)}}</label>
+                <rightLabel>{{SETTING(moviepreplay_bottomshelf)}}</rightLabel>
+              </oneLineMenuItem> 
+							
+              <oneLineMenuItem id="MovieFanart" onSelect="toggleSettings('MovieFanart', 'Settings_Movies')">
+              {{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
+              {{CUT(^aTVFirmwareVersion:CUT:=CUT|6=)}}  <!-- watch out: this will make trouble with iOS10 -->
+                <label>{{TEXT(Movie Fanart)}}</label>
+                <rightLabel>{{SETTING(moviefanart)}}</rightLabel>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="MovieFanart" dimmed="true">
+              {{CUT(NoKey:{{EVAL(['','CUT'][isPILinstalled()])}})}}
+              {{CUT(^aTVFirmwareVersion:CUT:=CUT|6=)}}  <!-- watch out: this will make trouble with iOS10 -->
+                <label>{{TEXT(Movie Fanart)}}</label>
+                <rightLabel>{{TEXT(PIL/Pillow not installed)}}</rightLabel>
+              </oneLineMenuItem>
+							
+							<oneLineMenuItem id="Fanart_Blur" onSelect="toggleSettings('Fanart_Blur', 'Settings_Movies')">
+              {{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
+              {{CUT(^aTVFirmwareVersion:CUT:=CUT|6=)}}  <!-- watch out: this will make trouble with iOS10 -->
+                <label>{{TEXT(Fanart Lower Blur)}}</label>
+                <rightLabel>{{SETTING(fanart_blur)}}</rightLabel>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{TEXT(Movie Navigation Bar)}}</title>
+              </horizontalDivider>
+            </header>
+            <items>
+            
+              <oneLineMenuItem id="Movies_NavBar_OnDeck" onSelect="toggleSettings('Movies_NavBar_OnDeck', 'Settings_Movies')">
+                <label>{{TEXT(On Deck)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($movies_navbar_ondeck::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+
+              <oneLineMenuItem id="Movies_NavBar_Unwatched" onSelect="toggleSettings('Movies_NavBar_Unwatched', 'Settings_Movies')">
+                <label>{{TEXT(Unwatched)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($movies_navbar_unwatched::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="Movies_NavBar_ByFolder" onSelect="toggleSettings('Movies_NavBar_ByFolder', 'Settings_Movies')">
+                <label>{{TEXT(By Folder)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($movies_navbar_byfolder::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="Movies_NavBar_Collections" onSelect="toggleSettings('Movies_NavBar_Collections', 'Settings_Movies')">
+                <label>{{TEXT(Collections)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($movies_navbar_collections::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+
+              <oneLineMenuItem id="Movies_NavBar_Genres" onSelect="toggleSettings('Movies_NavBar_Genres', 'Settings_Movies')">
+                <label>{{TEXT(Genres)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($movies_navbar_genres::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+
+              <oneLineMenuItem id="Movies_NavBar_Decades" onSelect="toggleSettings('Movies_NavBar_Decades', 'Settings_Movies')">
+                <label>{{TEXT(Decades)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($movies_navbar_decades::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+
+              <oneLineMenuItem id="Movies_NavBar_Directors" onSelect="toggleSettings('Movies_NavBar_Directors', 'Settings_Movies')">
+                <label>{{TEXT(Directors)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($movies_navbar_directors::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+
+              <oneLineMenuItem id="Movies_NavBar_Actors" onSelect="toggleSettings('Movies_NavBar_Actors', 'Settings_Movies')">
+                <label>{{TEXT(Actors)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($movies_navbar_actors::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+
+              <oneLineMenuItem id="Movies_NavBar_More" onSelect="toggleSettings('Movies_NavBar_More', 'Settings_Movies')">
+                <label>{{TEXT(More...)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($movies_navbar_more::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </listWithPreview>
+  </body>
+</atv>

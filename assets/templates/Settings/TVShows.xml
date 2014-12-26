@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/settings.js)}}" />
+  </head>
+
+  <body>
+    <listWithPreview id="SettingsPage_VideoOSD">
+      <header>
+        <simpleHeader>
+          <title>{{TEXT(Settings)}}</title>
+        </simpleHeader>
+      </header>
+      <preview>
+        <keyedPreview>
+          <title>&#x00AD;<!--soft-hyphen--></title>
+          <summary/>
+          <metadataKeys>
+            <label>{{TEXT(Version)}}</label>
+            <label>{{TEXT(Authors)}}</label>
+            <label>{{TEXT(Wiki/Docs)}}</label>
+            <label>{{TEXT(Homepage)}}</label>
+            <label>{{TEXT(Forum)}}</label>
+          </metadataKeys>
+          <metadataValues>
+            <label>{{EVAL(__VERSION__)}}</label>
+            <label>Baa, roidy</label>
+            <label>f00b4r, meltman</label>
+            <label>https://github.com/ibaa/plexconnect</label>
+            <label>http://forums.plexapp.com/...plexconnect</label>
+          </metadataValues>
+          <image>{{URL(:/thumbnails/PlexConnectLogo.jpg)}}</image>
+        </keyedPreview>
+      </preview>
+
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+              <oneLineMenuItem id="ShowView" onSelect="toggleSettings('ShowView', 'Settings_TVShows')">
+                <label>{{TEXT(TV Show View)}}</label>
+                <rightLabel>{{SETTING(showview)}}</rightLabel>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="SeasonView" onSelect="toggleSettings('SeasonView', 'Settings_TVShows')">
+                <label>{{TEXT(Season View)}}</label>
+                <rightLabel>{{SETTING(seasonview)}}</rightLabel>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="ShowUnwatched" onSelect="toggleSettings('ShowUnwatched', 'Settings_TVShows')">
+                <label>{{TEXT(Show Unwatched Count)}}</label>
+                <rightLabel>{{SETTING(showunwatched)}}</rightLabel>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="ShowSynopsis" onSelect="toggleSettings('ShowSynopsis', 'Settings_TVShows')">
+                <label>{{TEXT(Unwatched Synopsis)}}</label>
+                <rightLabel>{{SETTING(showsynopsis)}}</rightLabel>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="FlattenSeason" onSelect="toggleSettings('FlattenSeason', 'Settings_TVShows')">
+                <label>{{TEXT(Flatten Season)}}</label>
+                <rightLabel>{{SETTING(flattenseason)}}</rightLabel>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="ShowTitles_TVShows" onSelect="toggleSettings('ShowTitles_TVShows', 'Settings_TVShows')">
+                <label>{{TEXT(Poster Titles)}}</label>
+                <rightLabel>{{SETTING(showtitles_tvshows)}}</rightLabel>
+              </oneLineMenuItem>
+     
+              <oneLineMenuItem id="TVShowFanart" onSelect="toggleSettings('TVShowFanart', 'Settings_TVShows')">
+              {{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
+              {{CUT(^aTVFirmwareVersion:CUT:=CUT|6=)}}  <!-- watch out: this will make trouble with iOS10 -->
+                <label>{{TEXT(TV Show Fanart)}}</label>
+                <rightLabel>{{SETTING(tvshowfanart)}}</rightLabel>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="TVShowFanart" dimmed="true">
+              {{CUT(NoKey:{{EVAL(['','CUT'][isPILinstalled()])}})}}
+              {{CUT(^aTVFirmwareVersion:CUT:=CUT|6=)}}  <!-- watch out: this will make trouble with iOS10 -->
+                <label>{{TEXT(TV Show Fanart)}}</label>
+                <rightLabel>{{TEXT(PIL/Pillow not installed)}}</rightLabel>
+              </oneLineMenuItem>
+							
+							<oneLineMenuItem id="Fanart_Blur" onSelect="toggleSettings('Fanart_Blur', 'Settings_TVShows')">
+              {{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
+              {{CUT(^aTVFirmwareVersion:CUT:=CUT|6=)}}  <!-- watch out: this will make trouble with iOS10 -->
+                <label>{{TEXT(Fanart Lower Blur)}}</label>
+                <rightLabel>{{SETTING(fanart_blur)}}</rightLabel>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{TEXT(TV Show Navigation Bar)}}</title>
+              </horizontalDivider>
+            </header>
+            <items>
+
+              <oneLineMenuItem id="TV_NavBar_OnDeck" onSelect="toggleSettings('TV_NavBar_OnDeck', 'Settings_TVShows')">
+                <label>{{TEXT(On Deck)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($tv_navbar_ondeck::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="TV_NavBar_Unwatched" onSelect="toggleSettings('TV_NavBar_Unwatched', 'Settings_TVShows')">
+                <label>{{TEXT(Unwatched)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($tv_navbar_unwatched::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+
+              <oneLineMenuItem id="TV_NavBar_Genres" onSelect="toggleSettings('TV_NavBar_Genres', 'Settings_TVShows')">
+                <label>{{TEXT(Genres)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($tv_navbar_genres::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+
+              <oneLineMenuItem id="TV_NavBar_More" onSelect="toggleSettings('TV_NavBar_More', 'Settings_TVShows')">
+                <label>{{TEXT(More...)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($tv_navbar_more::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </listWithPreview>
+  </body>
+</atv>

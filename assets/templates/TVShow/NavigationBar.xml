@@ -1,0 +1,38 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/updateXML.js)}}" />
+  </head>
+	<body>
+		<viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadItem(event)" volatile="true" onVolatileReload="updatePage('{{URL(:::PlexConnect=Plex_Series_Scanner')}});">
+			<navigation currentIndex="{{VAL($tv_navbar_ondeck:0:unchecked=0|checked=1)}}">
+
+				<navigationItem id="All Shows">
+					<title>{{TEXT(All Shows)}}</title>
+					<url>{{URL(key::/all:PlexConnect=TVShow_{{EVAL('{{VAL($showview)}}'.replace(' ', ''))}})}}</url>
+				</navigationItem>
+
+				<navigationItem id="On Deck">
+					<title>{{TEXT(On Deck)}}</title>
+					<url>{{URL(key:::PlexConnect=TVShow_OnDeck)}}</url>
+				</navigationItem>{{CUT($tv_navbar_ondeck::unchecked=CUT|checked=)}}
+
+        <navigationItem id="Unwatched">
+					<title>{{TEXT(Unwatched)}}</title>
+					<url>{{URL(key::/unwatched:PlexConnect=TVShow_{{EVAL('{{VAL($showview)}}'.replace(' ', ''))}})}}</url>
+				</navigationItem>{{CUT($tv_navbar_unwatched::unchecked=CUT|checked=)}}
+
+				<navigationItem id="Genres">
+					<title>{{TEXT(Genres)}}</title>
+					<url>{{URL(key::/genre:PlexConnect=TVShow_DirectoryWithPreview)}}</url>
+				</navigationItem>{{CUT($tv_navbar_genres::unchecked=CUT|checked=)}}
+
+				<navigationItem id="More...">
+					<title>{{TEXT(More...)}}</title>
+					<url>{{URL(key:::PlexConnect=TVShow_Secondary)}}</url>
+				</navigationItem>{{CUT($tv_navbar_more::unchecked=CUT|checked=)}}
+
+			</navigation>
+		</viewWithNavigationBar>
+	</body>
+</atv>
