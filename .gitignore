@@ -23,9 +23,7 @@ PlexConnect.log
 *.suo
 
 
-/assets/templates/plex/images/custom/top/*.png
 
-/assets/templates/plex/images/custom/flow/*.png
 
 /assets/templates/MoviePrePlay_Fanart.xml
 
