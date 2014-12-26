@@ -30,3 +30,7 @@ PlexConnect.log
 /assets/templates/MoviePrePlay_Fanart.xml
 
 /assets/templates/EpisodePrePlay_Fanart.xml
+
+/assets/fanartcache/tmp.png
+
+/assets/fanartcache/*.png
