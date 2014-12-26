@@ -14,7 +14,7 @@
 
 				<navigationItem id="On Deck">
 					<title>{{TEXT(On Deck)}}</title>
-					<url>{{URL(key:::PlexConnect=TVShow_OnDeck)}}</url>
+					<url>{{URL(key:::PlexConnect=TVShow_OnDeck_{{EVAL('{{VAL($showview)}}'.replace(' ', ''))}})}}</url>
 				</navigationItem>{{CUT($tv_navbar_ondeck::unchecked=CUT|checked=)}}
 
         <navigationItem id="Unwatched">

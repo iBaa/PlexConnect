@@ -1,1 +1,0 @@
-<XMLtemplate redirect="Channels/{{VAL($channelview)}}.xml" />

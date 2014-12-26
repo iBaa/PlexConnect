@@ -53,6 +53,64 @@ function toggleSettings(opt, template)
   dispval.textContent = newval.textContent;
 };
 
+
+/*
+ * update Settings
+ */
+function toggleTemplateSettings(opt, template) {
+  // read new XML
+  var url = "{{URL(/)}}&PlexConnect=SettingsToggle:"+ opt + "+" + template + "&PlexConnectUDID="+atv.device.udid;
+  var req = new XMLHttpRequest();
+  req.open('GET', url, false);
+  req.send();
+  atv.loadAndSwapURL("{{URL(/)}}&PlexConnect=" + template + "&PlexConnectUDID=" + atv.device.udid); 
+};
+/*
+ * update Settings
+ */
+
+function switchTemplate(defaultpath) {
+  var xml = (defaultpath ? "Settings" : "Settings_Main");
+  var url = "{{URL(/)}}&PlexConnect=SettingsToggle:template+"+xml+"&PlexConnectUDID="+atv.device.udid;
+  // read new XML
+  var req = new XMLHttpRequest();
+  req.open('GET', url, false);
+  req.send();
+  doc=req.responseXML;
+  
+  atv.loadAndSwapURL('{{URL(:/PlexConnect.xml)}}&PlexConnect=Settings&PlexConnectUDID=' + atv.device.udid);
+};
+
+
+function purgeFanart(opt, template) 
+{
+
+  var dispval = document.getElementById('purgeFanart').getElementByTagName("rightLabel");
+  if (!dispval) return undefined;  // error - element not found
+
+  // read new XML
+  var url = "{{URL(/)}}&PlexConnect=purgeFanart:"+ opt + "+" + template + "&PlexConnectUDID="+atv.device.udid
+  var req = new XMLHttpRequest();
+  req.open('GET', url, false);
+  req.send();
+  
+  // read new XML
+  var url = "{{URL(/)}}&PlexConnect="+ template + "&PlexConnectUDID="+atv.device.udid
+  var req = new XMLHttpRequest();
+  req.open('GET', url, false);
+  req.send();
+  doc=req.responseXML;
+  
+  
+  // get "opt" element of fresh XML
+  var newval = doc.getElementById('purgeFanart').getElementByTagName("rightLabel");
+  if (!newval) return undefined;  // error - element not found
+  log("discover done - "+newval.textContent);
+  
+  // push new value to display
+  dispval.textContent = newval.textContent;
+};
+
 /*
  * discover
  */

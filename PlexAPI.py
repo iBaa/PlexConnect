@@ -467,11 +467,33 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
                     Dir.set('key',    PMS_mark + getURL('', path, key))
                     Dir.set('refreshKey', getURL(baseURL, path, key) + '/refresh')
                     if 'thumb' in Dir.attrib:
-                        Dir.set('thumb',  PMS_mark + getURL('', path, Dir.get('thumb')))
+                      Dir.set('thumb',  PMS_mark + getURL('', path, Dir.get('thumb')))
+                    if 'grandparentThumb' in Dir.attrib:
+                      Dir.set('grandparentThumb',  PMS_mark + getURL('', path, Dir.get('grandparentThumb'))) 
+                    if 'grandparentKey' in Dir.attrib:
+                      Dir.set('grandparentKey',  PMS_mark + getURL('', path, Dir.get('grandparentKey')))
+                    if 'parentThumb' in Dir.attrib:
+                      Dir.set('parentThumb',  PMS_mark + getURL('', path, Dir.get('parentThumb')))
                     if 'art' in Dir.attrib:
-                        Dir.set('art',    PMS_mark + getURL('', path, Dir.get('art')))
+                      Dir.set('art',    PMS_mark + getURL('', path, Dir.get('art')))
                     Server.append(Dir)
-                
+                    
+                for Video in XML.getiterator('Video'):  # copy "Video" content, add PMS to links
+                    key = Video.get('key')  # absolute path
+                    Video.set('key',    PMS_mark + getURL('', path, key))
+                    Video.set('refreshKey', getURL(baseURL, path, key) + '/refresh')
+                    if 'thumb' in Video.attrib:
+                        Video.set('thumb',  PMS_mark + getURL('', path, Video.get('thumb')))                    
+                    if 'grandparentThumb' in Video.attrib:
+                        Video.set('grandparentThumb',  PMS_mark + getURL('', path, Video.get('grandparentThumb'))) 
+                    if 'grandparentKey' in Video.attrib:
+                        Video.set('grandparentKey',  PMS_mark + getURL('', path, Video.get('grandparentKey')))                    
+                    if 'parentThumb' in Video.attrib:
+                        Video.set('parentThumb',  PMS_mark + getURL('', path, Video.get('parentThumb')))
+                    if 'art' in Video.attrib:
+                        Video.set('art',    PMS_mark + getURL('', path, Video.get('art')))
+                    Server.append(Video)
+
                 for Playlist in XML.getiterator('Playlist'):  # copy "Playlist" content, add PMS to links
                     key = Playlist.get('key')  # absolute path
                     Playlist.set('key',    PMS_mark + getURL('', path, key))

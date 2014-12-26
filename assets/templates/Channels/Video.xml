@@ -4,13 +4,26 @@
   </head>
   
   <body>
-    <listWithPreview id="com.sample.menu-items-with-sections">
+    <itemCollectionWithImageHeader id="com.sample.menu-items-with-sections">
     {{CUT(size:CUT:0=CUT|1=)}}
-      <header>
-        <simpleHeader>
-          <title>{{VAL(title1:Plex Channels)}}</title>
-          <subtitle>{{VAL(title2)}}</subtitle>
-        </simpleHeader>
+      <header>{{VAR(ChanVer:Video/Media/Part/key:V1:=V2)}}
+        <imageHeader>
+  
+          <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=552|1080=828)}}, 0" required="true">
+          {{URL(:/fanartcache/{{getBackground({{EVAL({\
+          'template'    : 'plex',\
+          'title'       : "{{EVAL(quote_plus("{{TEXT(Plex Channels)}}"))}}",\
+          'subtitle'    : "{{EVAL(quote_plus("{{VAL(title2)}}"))}}",\
+          'image'       : "backgrounds/plex{{VAL($menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+          'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+          'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+          'imageBlur'   : "{{VAL($fanartblur::1=1|2=2|3=3|0=)}}",\
+          'titleColor'  : "{{VAL($titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+          'subtitleColor': "{{VAL($subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+          'layers'      : ["PlexSubList{{VAL($paradelisttint::On=Text|Off=)}}"{{VAL($menuhint::On=,"PlexPressMenu_{{VAL($subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+          })}})}})}}
+          </image>
+        </imageHeader>
       </header>
       <menu>
         <sections>
@@ -91,7 +104,7 @@
           </menuSection>
         </sections>
       </menu>
-    </listWithPreview>
+    </itemCollectionWithImageHeader>
 
     <!--No Items Available-->
     <dialog id="com.sample.error-dialog">

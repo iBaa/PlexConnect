@@ -4,19 +4,30 @@
   </head>
 
   <body>
-    <listWithPreview id="Show_List">
+    <itemCollectionWithImageHeader id="Show_List">
       <header>
-        <simpleHeader>
-          <title>{{VAL(title1)}}</title>
-          <subtitle>{{VAL(title2)}}</subtitle>
-        </simpleHeader>
+	    <imageHeader>
+	      <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=552|1080=828)}}, 0" required="true">
+	      {{URL(:/fanartcache/{{getBackground({{EVAL({\
+              'template'    : 'plex',\
+              'title'       : "{{EVAL(quote_plus("{{VAL(title1)}}"))}}",\
+              'subtitle'    : "{{EVAL(quote_plus("{{VAL(title2)}}"))}}",\
+              'image'       : "backgrounds/plex{{VAL($menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+              'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+              'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+              'titleColor'  : "{{VAL($titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'subtitleColor': "{{VAL($subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'layers'      : ["PlexSubList{{VAL($listtint::On=Text|Off=)}}"{{VAL($menuhint::On=,"PlexPressMenu_{{VAL($subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+              })}})}})}}
+	      </image>
+	    </imageHeader>
       </header>
       <menu>
         <sections>
           <menuSection>
             <items>
-              <oneLineMenuItem id="{{VAL(key)}}" onPlay="flattenSeason('{{URL(key:::PlexConnect=TVShow_Season_{{VAL($seasonview)}}{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}', '{{SETTING(flattenseason)}}', 'False')"
-                                                 onSelect="flattenSeason('{{URL(key:::PlexConnect=TVShow_Season_{{VAL($seasonview)}}{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}', '{{SETTING(flattenseason)}}', 'False')"
+              <oneLineMenuItem id="{{VAL(key)}}" onPlay="flattenSeason('{{URL(key:::PlexConnect=TVShow_Season_{{VAL($seasonview)}}})}}', '{{SETTING(flattenseason)}}', 'False')"
+                                                 onSelect="flattenSeason('{{URL(key:::PlexConnect=TVShow_Season_{{VAL($seasonview)}})}}', '{{SETTING(flattenseason)}}', 'False')"
                                                  onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>
@@ -35,6 +46,6 @@
           </menuSection>
         </sections>
       </menu>
-    </listWithPreview>
+    </itemCollectionWithImageHeader>
   </body>
 </atv>

@@ -4,12 +4,23 @@
   </head>
   
   <body>
-    <scroller id="com.sample.homevideo-grid" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=HomeVideoByFolder)}}')">
+    <scroller id="com.sample.homevideo-grid" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=HomeVideo_ByFolder)}}')">
       <header>
-        <simpleHeader>
-          <title>{{VAL(title1)}}</title>
-          <subtitle>{{VAL(title2)}}</subtitle>
-        </simpleHeader>
+	  <imageHeader>
+          <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=550|1080=825)}}, 0" required="true">
+	    {{URL(:/fanartcache/{{getBackground({{EVAL({\
+              'template'    : 'plex',\
+              'title'       : "{{EVAL(quote_plus("{{VAL(title1)}}"))}}",\
+              'subtitle'    : "{{EVAL(quote_plus("{{VAL(title2)}}"))}}",\
+              'image'       : "backgrounds/plex{{VAL($menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+              'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+              'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+              'titleColor'  : "{{VAL($titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'subtitleColor': "{{VAL($subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'layers'      : ["PlexSubGrid{{VAL($gridtint::On=Text|Off=)}}"{{VAL($menuhint::On=,"PlexPressMenu_{{VAL($subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+              })}})}})}}
+	      </image>
+	    </imageHeader>
       </header>
       <items>
         <grid columnCount="5" id="grid_0">
@@ -41,12 +52,23 @@
   
   
 <body>
-    <listWithPreview id="HomeVideoList" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=HomeVideo_ByFolder)}}')">
-      <header>
-        <simpleHeader>
-          <title>{{VAL(title1)}}</title>
-          <subtitle>{{VAL(title2)}}</subtitle>
-        </simpleHeader>
+    <itemCollectionWithImageHeader id="HomeVideoList" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=HomeVideo_ByFolder)}}')">
+    <header>
+        <imageHeader>
+            <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=670|1080=1005)}}, 0" required="true">
+                {{URL(:/fanartcache/{{getBackground({{EVAL({\
+                
+                'title'       : "{{EVAL(quote_plus("{{VAL(title1)}}"))}}",\
+                'subtitle'    : "{{EVAL(quote_plus("{{VAL(title2)}}"))}}",\
+                'image'       : "backgrounds/plex{{VAL($menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+                'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+                'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+                'titleColor'  : "{{VAL($titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+                'subtitleColor': "{{VAL($subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+                'layers'      : ["PlexSubList{{VAL($paradelisttint::On=Text|Off=)}}"{{VAL($menuhint::On=,"PlexPressMenu_{{VAL($subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+                })}})}})}}
+            </image>
+	    </imageHeader>
       </header>
 
       <menu>
@@ -68,7 +90,7 @@
               </twoLineEnhancedMenuItem>
               
               <twoLineMenuItem id="{{VAL(key)}}"
-                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=PlayVideo&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
                              onSelect="atv.loadURL('{{URL(key:::PlexConnect=HomeVideo_PrePlay)}}')"
                              onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
                 {{COPY(Video)}}
@@ -88,16 +110,27 @@
           </menuSection>
         </sections>
       </menu>
-    </listWithPreview>
+    </itemCollectionWithImageHeader>
   </body>{{CUT($homevideoview::Detailed=CUT|Grid=CUT|List=)}}
   
   <body>
-    <listWithPreview id="HomeVideo_DetailedList" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=HomeVideo_ByFolder)}}')">
+    <itemCollectionWithImageHeader id="HomeVideo_DetailedList" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=HomeVideo_ByFolder)}}')">
       <header>
-        <simpleHeader>
-          <title>{{VAL(title1)}}</title>
-          <subtitle>{{VAL(title2)}}</subtitle>
-        </simpleHeader>
+        <imageHeader>
+	      <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=650|1080=975)}}, 0" required="true">
+              {{URL(:/fanartcache/{{getBackground({{EVAL({\
+              'template' : 'plex',\
+              'title'       : "{{EVAL(quote_plus("{{VAL(title1)}}"))}}",\
+              'subtitle'    : "{{EVAL(quote_plus("{{VAL(title2)}}"))}}",\
+              'image'       : "backgrounds/plex{{VAL($menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+              'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+              'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+              'titleColor'  : "{{VAL($titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'subtitleColor': "{{VAL($subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'layers'      : ["PlexSubList{{VAL($listtint::On=Text|Off=)}}"{{VAL($menuhint::On=,"PlexPressMenu_{{VAL($subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+              })}})}})}}
+          </image>
+	    </imageHeader>
       </header>
 
       <menu>
@@ -152,6 +185,6 @@
           </menuSection>
         </sections>
       </menu>
-    </listWithPreview>
+    </itemCollectionWithImageHeader>
   </body>{{CUT($homevideoview::Detailed=|Grid=CUT|List=CUT)}}
 </atv>

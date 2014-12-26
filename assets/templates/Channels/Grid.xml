@@ -13,9 +13,19 @@
     <!--Channels Grid-->
     <scroller id="Channels_Grid">
       <header>
-        <simpleHeader>
-          <title>{{TEXT(Plex Channels)}}</title>
-        </simpleHeader>
+        <imageHeader>
+          <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=630|1080=945)}}, 0" required="true">
+          {{URL(:/fanartcache/{{getBackground({{EVAL({\
+           'template'    : 'plex',\
+           'title'       : "{{EVAL(quote_plus("{{TEXT(Plex Channels)}}"))}}",\
+           'image'       : "backgrounds/plex{{VAL($menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+           'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+           'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+           'titleColor'  : "{{VAL($titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+           'layers'      : ["PlexGrid{{VAL($gridtint::On=Text|Off=)}}"{{VAL($menuhint::On=,"PlexPressMenu_{{VAL($subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+           })}})}})}}
+          </image>
+        </imageHeader>
       </header>
       
       <items>

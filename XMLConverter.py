@@ -15,7 +15,7 @@ http://trailers.apple.com/appletv/us/nav.xml
 ->browse:       http://trailers.apple.com/appletv/us/browse.xml
 """
 
-
+import re
 import os
 import sys
 import traceback
@@ -265,6 +265,15 @@ def XML_PMS2aTV(PMS_address, path, options):
         PlexAPI.discoverPMS(UDID, g_param['CSettings'], auth_token)
         
         return XML_Error('PlexConnect', 'Discover!')  # not an error - but aTV won't care anyways.
+        
+    elif cmd.startswith('purgeFanart'): 
+        import PILBackgrounds 
+        PILBackgrounds.purgeFanart()   
+        #opt = cmd[len('purgeFanart:'):]  # cut command: 
+        #parts = opt.split('+') 
+        #XMLtemplate = parts[1] + ".xml" 
+        dprint(__name__, 1, 'purging: {0}', "Fanart Cache")  # Debug  
+        path = ''  # clear path - we don't need PMS-XML   
 
     # Special case path requests
     if path.startswith('/search?'):
@@ -341,7 +350,7 @@ def XML_PMS2aTV(PMS_address, path, options):
     XML_ExpandAllAttrib(CommandCollection, aTVroot, PMSroot, 'main')
     del CommandCollection
     
-    if dir=='Channels' and cmd=='Search':
+    if cmd=='ChannelsSearch':
         for bURL in aTVroot.iter('baseURL'):
             if channelsearchURL.find('?') == -1:
                 bURL.text = channelsearchURL + '?query='
@@ -675,9 +684,14 @@ class CCommandCollection(CCommandHelper):
     # XML TREE modifier commands
     # add new commands to this list!
     def TREE_COPY(self, elem, child, src, srcXML, param):
-        tag, param_enbl = self.getParam(src, param)
-
-        src, srcXML, tag = self.getBase(src, srcXML, tag)        
+        
+        # is MULTICOPY?
+        tags=param.split(',')
+        if len(tags) > 1:
+            tag, param_enbl = self.getParam(src, tags[0])
+        else:
+            tag, param_enbl = self.getParam(src, param)
+        src, srcXML, tag = self.getBase(src, srcXML, tag)
         
         # walk the src path if neccessary
         while '/' in tag and src!=None:
@@ -690,9 +704,21 @@ class CCommandCollection(CCommandHelper):
             if el==child:
                 break
         
-        # duplicate child and add to tree
+        
+        #get all requested tags
+        itemrange = src.findall(tag)
+        # is MULTICOPY?
+        for i in range(len(tags)):
+            if i > 0:
+                itemrange=itemrange+src.findall(tags[i])
+        
+        # sort by addedAt (updatedAt?)
+        if len(tags) > 1:
+            itemrange = sorted(itemrange, key=lambda x: x.attrib.get('addedAt'), reverse=True)
+        
         cnt = 0
-        for elemSRC in src.findall(tag):
+        
+        for elemSRC in itemrange:
             key = 'COPY'
             if param_enbl!='':
                 key, leftover, dfltd = self.getKey(elemSRC, srcXML, param_enbl)
@@ -786,6 +812,92 @@ class CCommandCollection(CCommandHelper):
         # remove template child
         elem.remove(child)
         return True  # tree modified, nodes updated: restart from 1st elem
+    
+    def TREE_PAGEDCOPY(self, elem, child, src, srcXML, param):
+        
+        # is MULTICOPY?
+        tags=param.split(',')
+        tag, param_enbl = self.getParam(src, tags[0])
+        src, srcXML, tag = self.getBase(src, srcXML, tag)
+        columncount=tags[1]
+        rowcount=tags[2]
+        
+        
+        
+        
+        # walk the src path if neccessary
+        while '/' in tag and src!=None:
+            parts = tag.split('/',1)
+            src = src.find(parts[0])
+            tag = parts[1]
+        
+        # find index of child in elem - to keep consistent order
+        for ix, el in enumerate(list(elem)):
+            if el==child:
+                break
+        
+        #get all requested tags
+        itemrange = src.findall(tag)
+        # is MULTICOPY?
+        for i in range(len(tags)):
+            if i > 2:
+                itemrange=itemrange+src.findall(tags[i])
+        
+        maxicons = int(columncount) * int(rowcount)
+        pagecount = 0
+        iconcount = 0
+        
+        if len(tags) > 3:
+            itemrange = sorted(itemrange, key=lambda x: x.attrib.get('addedAt'), reverse=True)
+        
+        for elemSRC in itemrange:
+            
+            key = 'COPY'
+            if param_enbl!='':
+                key, leftover, dfltd = self.getKey(elemSRC, srcXML, param_enbl)
+                conv, leftover = self.getConversion(elemSRC, leftover)
+                if not dfltd:
+                    key = self.applyConversion(key, conv)
+            
+            
+            if key:
+                
+                if iconcount == 0:
+                    pagecount += 1
+                    currentgrid = etree.SubElement(elem, "grid")
+                    currentgrid.set("id","grid_"+str(pagecount))
+                    currentgrid.set("columnCount", columncount )
+                    items = etree.SubElement(currentgrid, "items")
+                elif iconcount % maxicons == 0:
+                    pagecount += 1
+                    currentgrid = etree.SubElement(elem, "grid")
+                    currentgrid.set("id","grid_"+str(pagecount))
+                    currentgrid.set("columnCount", columncount )
+                    items = etree.SubElement(currentgrid, "items")
+                
+                
+                el = copy.deepcopy(child)
+                XML_ExpandTree(self, el, elemSRC, srcXML)
+                XML_ExpandAllAttrib(self, el, elemSRC, srcXML)
+                
+                if el.tag=='__COPY__':
+                    for el_child in list(el):
+                        items.insert(ix, el_child)
+                        ix += 1
+                        iconcount += 1
+                else:
+                    items.insert(ix, el)
+                    ix += 1
+                    iconcount += 1
+        
+        
+        
+        
+        
+        # remove template child
+        elem.remove(child)
+        return True  # tree modified, nodes updated: restart from 1st elem
+    
     
     def TREE_CUT(self, elem, child, src, srcXML, param):
         key, leftover, dfltd = self.getKey(src, srcXML, param)
@@ -1003,7 +1115,7 @@ class CCommandCollection(CCommandHelper):
             res = res + PMS_mark + self.path[srcXML]
         else:  # internal path, add-on
             res = res + PMS_mark + self.path[srcXML] + '/' + key
-        
+            
         if addPath:
             res = res + addPath
         
@@ -1015,6 +1127,53 @@ class CCommandCollection(CCommandHelper):
         
         return res
     
+    def ATTRIB_stripChildrenURL(self, src, srcXML, param):
+        key, leftover, dfltd = self.getKey(src, srcXML, param)
+        key = str(key).replace('/children','')
+        addPath, leftover = self.getParam(src, leftover)
+        addOpt, leftover = self.getParam(src, leftover)
+
+        # compare PMS_mark in PlexAPI/getXMLFromMultiplePMS()
+        PMS_mark = '/PMS(' + PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'ip') + ')'
+        
+        # overwrite with URL embedded PMS address
+        cmd_start = key.find('PMS(')
+        cmd_end = key.find(')', cmd_start)
+        if cmd_start>-1 and cmd_end>-1 and cmd_end>cmd_start:
+            PMS_mark = '/'+key[cmd_start:cmd_end+1]
+            key = key[cmd_end+1:]
+        
+        res = g_param['baseURL']  # base address to PlexConnect
+        
+        if key.endswith('.js'):  # link to PlexConnect owned .js stuff
+            res = res + key
+        elif key.startswith('http://') or key.startswith('https://'):  # external server
+            res = key
+            """
+            parts = urlparse.urlsplit(key)  # (scheme, networklocation, path, ...)
+            key = urlparse.urlunsplit(('', '', parts[2], parts[3], parts[4]))  # keep path only
+            PMS_uuid = PlexAPI.getPMSFromIP(g_param['PMS_list'], parts.hostname)
+            PMSaddress = PlexAPI.getAddress(g_param['PMS_list'], PMS_uuid)  # get PMS address (might be local as well!?!)
+            res = res + '/PMS(' + quote_plus(PMSaddress) + ')' + key
+            """
+        elif key.startswith('/'):  # internal full path.
+            res = res + PMS_mark + key
+        elif key == '':  # internal path
+            res = res + PMS_mark + self.path[srcXML]
+        else:  # internal path, add-on
+            res = res + PMS_mark + self.path[srcXML] + '/' + key
+            
+        if addPath:
+            res = res + addPath
+        
+        if addOpt:
+            if not '?' in res:
+                res = res +'?'+ addOpt
+            else:
+                res = res +'&'+ addOpt
+
+        return res
+
     def ATTRIB_VIDEOURL(self, src, srcXML, param):
         Video, leftover = self.getElement(src, srcXML, param)
         partIndex, leftover, dfltd = self.getKey(src, srcXML, leftover)
@@ -1209,26 +1368,29 @@ class CCommandCollection(CCommandHelper):
             return "No Server in Proximity"
         else:
             return PMS_name
-    
-    def ATTRIB_BACKGROUNDURL(self, src, srcXML, param):
-        key, leftover, dfltd = self.getKey(src, srcXML, param)
-        
-        if key.startswith('/'):  # internal full path.
-            key = self.PMS_baseURL + key
-        elif key.startswith('http://') or key.startswith('https://'):  # external address
-            pass
-        else:  # internal path, add-on
-            key = self.PMS_baseURL + self.path[srcXML] + key
-        
-        auth_token = PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'accesstoken')
-        
-        dprint(__name__, 0, "Background (Source): {0}", key)
-        res = g_param['baseURL']  # base address to PlexConnect
-        res = res + PILBackgrounds.generate(self.PMS_uuid, key, auth_token, self.options['aTVScreenResolution'], g_ATVSettings.getSetting(self.ATV_udid, 'fanart_blur'))
-        dprint(__name__, 0, "Background: {0}", res)
+    def ATTRIB_LFBG(self, src, srcXML, param):
+        import PILBackgrounds
+        res = ""
+        res = PILBackgrounds.generate(self, src, srcXML, param)
+        if res == "":
+            res = sys.path[0]+'/assets/fanart/bg.jpg'
+        dprint(__name__, 1, 'serving: {0}', res+".png")  # Debug
         return res
 
+    def ATTRIB_getBackground(self, src, srcXML, param):
+        import PILBackgrounds
+        conf = PILBackgrounds.ImageBackground(eval(param))
+        res = conf.generate()
+        return res
 
+    def ATTRIB_FanartCOUNT(self, src, srcXML, param):
+        isfile = os.path.isfile
+        join = os.path.join
+        
+        directory = sys.path[0]+"/assets/fanartcache" 
+        res = sum(1 for item in os.listdir(directory) if isfile(join(directory, item)))
+        
+        return str(res)
 
 if __name__=="__main__":
     cfg = Settings.CSettings()

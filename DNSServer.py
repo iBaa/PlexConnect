@@ -323,7 +323,6 @@ def Run(cmdPipe, param):
     
     try:
         DNS = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        DNS.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         DNS.settimeout(5.0)
         DNS.bind((cfg_IP_self, int(cfg_Port_DNSServer)))
     except Exception, e:

@@ -6,18 +6,32 @@
   </head>
 
   <body>
-    <listWithPreview id="SettingsPage_VideoOSD">
+    <itemCollectionWithImageHeader id="SettingsPage_VideoOSD">
       <header>
-        <simpleHeader>
-          <title>{{TEXT(Settings)}}</title>
-        </simpleHeader>
+        <imageHeader>
+          <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=552|1080=828)}}, 0" required="true">
+            {{URL(:/fanartcache/{{getBackground({{EVAL({\
+              'template'     : "plex",\
+              'title'        : "{{EVAL(quote_plus("{{TEXT(Settings)}}"))}}",\
+              'subtitle'     : "{{EVAL(quote_plus("{{TEXT(TV Show Options)}}"))}}",\
+              'image'        : "backgrounds/plex{{VAL($menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+              'resolution'   : "{{VAL(^aTVScreenResolution)}}",\
+              'font'         : "fonts/OpenSans/OpenSans-Light.ttf",\
+              'titleColor'   : "{{VAL($titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'subtitleColor' : "{{VAL($subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'layers'       : ["PlexSubList{{VAL($listtint::On=Text|Off=)}}"{{VAL($menuhint::On=,"PlexPressMenu_{{VAL($subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+            })}})}})}}
+          </image>
+        </imageHeader>
       </header>
+      
       <preview>
         <keyedPreview>
           <title>&#x00AD;<!--soft-hyphen--></title>
           <summary/>
           <metadataKeys>
             <label>{{TEXT(Version)}}</label>
+<label>{{TEXT(Designer)}}</label>
             <label>{{TEXT(Authors)}}</label>
             <label>{{TEXT(Wiki/Docs)}}</label>
             <label>{{TEXT(Homepage)}}</label>
@@ -25,12 +39,13 @@
           </metadataKeys>
           <metadataValues>
             <label>{{EVAL(__VERSION__)}}</label>
+<label>CyberGhost84</label>
             <label>Baa, roidy</label>
             <label>f00b4r, meltman</label>
             <label>https://github.com/ibaa/plexconnect</label>
             <label>http://forums.plexapp.com/...plexconnect</label>
           </metadataValues>
-          <image>{{URL(:/thumbnails/PlexConnectLogo.jpg)}}</image>
+          <image>{{URL(:/templates/plex/images/PlexConnectLogo.png)}}</image>
         </keyedPreview>
       </preview>
 
@@ -42,51 +57,68 @@
                 <label>{{TEXT(TV Show View)}}</label>
                 <rightLabel>{{SETTING(showview)}}</rightLabel>
               </oneLineMenuItem>
-              
               <oneLineMenuItem id="SeasonView" onSelect="toggleSettings('SeasonView', 'Settings_TVShows')">
                 <label>{{TEXT(Season View)}}</label>
                 <rightLabel>{{SETTING(seasonview)}}</rightLabel>
               </oneLineMenuItem>
-              
+              <oneLineMenuItem id="EpisodeView" onSelect="toggleSettings('EpisodeView', 'Settings_TVShows')">
+                <label>{{TEXT(Episode View)}}</label>
+                <rightLabel>{{SETTING(episodeview)}}</rightLabel>
+              </oneLineMenuItem>
               <oneLineMenuItem id="ShowUnwatched" onSelect="toggleSettings('ShowUnwatched', 'Settings_TVShows')">
                 <label>{{TEXT(Show Unwatched Count)}}</label>
                 <rightLabel>{{SETTING(showunwatched)}}</rightLabel>
               </oneLineMenuItem>
-              
               <oneLineMenuItem id="ShowSynopsis" onSelect="toggleSettings('ShowSynopsis', 'Settings_TVShows')">
                 <label>{{TEXT(Unwatched Synopsis)}}</label>
                 <rightLabel>{{SETTING(showsynopsis)}}</rightLabel>
               </oneLineMenuItem>
-              
               <oneLineMenuItem id="FlattenSeason" onSelect="toggleSettings('FlattenSeason', 'Settings_TVShows')">
                 <label>{{TEXT(Flatten Season)}}</label>
                 <rightLabel>{{SETTING(flattenseason)}}</rightLabel>
               </oneLineMenuItem>
-              
               <oneLineMenuItem id="ShowTitles_TVShows" onSelect="toggleSettings('ShowTitles_TVShows', 'Settings_TVShows')">
                 <label>{{TEXT(Poster Titles)}}</label>
                 <rightLabel>{{SETTING(showtitles_tvshows)}}</rightLabel>
               </oneLineMenuItem>
-     
-              <oneLineMenuItem id="TVShowFanart" onSelect="toggleSettings('TVShowFanart', 'Settings_TVShows')">
-              {{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
-              {{CUT(^aTVFirmwareVersion:CUT:=CUT|6=)}}  <!-- watch out: this will make trouble with iOS10 -->
-                <label>{{TEXT(TV Show Fanart)}}</label>
-                <rightLabel>{{SETTING(tvshowfanart)}}</rightLabel>
+            </items>
+          </menuSection>
+          
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{TEXT(Episode PrePlay)}}</title>
+              </horizontalDivider>
+            </header>
+          
+          
+            <items>
+              <oneLineMenuItem id="ShowLayers" onSelect="toggleSettings('ShowLayers', 'Settings_TVShows')">
+                <label>{{TEXT(PrePlay Layer)}}</label>
+                <rightLabel>{{SETTING(showlayers)}}</rightLabel>
               </oneLineMenuItem>
-              
-              <oneLineMenuItem id="TVShowFanart" dimmed="true">
-              {{CUT(NoKey:{{EVAL(['','CUT'][isPILinstalled()])}})}}
-              {{CUT(^aTVFirmwareVersion:CUT:=CUT|6=)}}  <!-- watch out: this will make trouble with iOS10 -->
-                <label>{{TEXT(TV Show Fanart)}}</label>
-                <rightLabel>{{TEXT(PIL/Pillow not installed)}}</rightLabel>
+              <oneLineMenuItem id="EpisodePosters" onSelect="toggleSettings('EpisodePosters', 'Settings_TVShows')">
+                <label>{{TEXT(PrePlay Poster)}}</label>
+                <rightLabel>{{SETTING(episodeposters)}}</rightLabel>
               </oneLineMenuItem>
-							
-							<oneLineMenuItem id="Fanart_Blur" onSelect="toggleSettings('Fanart_Blur', 'Settings_TVShows')">
-              {{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
-              {{CUT(^aTVFirmwareVersion:CUT:=CUT|6=)}}  <!-- watch out: this will make trouble with iOS10 -->
-                <label>{{TEXT(Fanart Lower Blur)}}</label>
-                <rightLabel>{{SETTING(fanart_blur)}}</rightLabel>
+            </items>
+          </menuSection>
+          
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{TEXT(Section Layers)}}</title>
+              </horizontalDivider>
+            </header>
+                 
+            <items>
+              <oneLineMenuItem id="EpisodeLayers" onSelect="toggleSettings('EpisodeLayers', 'Settings_TVShows')">
+                <label>{{TEXT(Episode Layer)}}</label>
+                <rightLabel>{{SETTING(episodelayers)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="SeasonLayers" onSelect="toggleSettings('SeasonLayers', 'Settings_TVShows')">
+                <label>{{TEXT(Season Layer)}}</label>
+                <rightLabel>{{SETTING(seasonlayers)}}</rightLabel>
               </oneLineMenuItem>
             </items>
           </menuSection>
@@ -131,6 +163,6 @@
           </menuSection>
         </sections>
       </menu>
-    </listWithPreview>
+    </itemCollectionWithImageHeader>
   </body>
 </atv>
