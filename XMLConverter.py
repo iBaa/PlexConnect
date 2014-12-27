@@ -344,7 +344,8 @@ def XML_PMS2aTV(PMS_address, path, options):
                 else:  # IP
                     auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
                     PMS = PlexAPI.getXMLFromPMS(PMS_baseURL, newPMS_XML, options, authtoken=auth_token)
-        
+                path = newPMS_XML
+                
             if PMS==False:
                 return XML_Error('PlexConnect', 'No Response from Plex Media Server')
         
