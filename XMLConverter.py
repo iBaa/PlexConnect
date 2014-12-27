@@ -329,6 +329,7 @@ def XML_PMS2aTV(PMS_address, path, options):
         XML_ExpandAllAttrib(CommandCollection, aTVroot, PMSroot, 'main')
         del CommandCollection
         
+        # redirect to new XMLtemplate - if necessary        
         redirect = aTVroot.find('redirect')
         if redirect==None:
             break;
@@ -350,9 +351,6 @@ def XML_PMS2aTV(PMS_address, path, options):
                 return XML_Error('PlexConnect', 'No Response from Plex Media Server')
         
             PMSroot = PMS.getroot()
-            
-        # redirect to new XMLtemplate - if necessary
-        redirect = aTVroot.find('redirect')
         
         XMLtemplate = redirect.get('template').replace(" ", "")
         dprint(__name__, 1, "---------------------------------------------")
