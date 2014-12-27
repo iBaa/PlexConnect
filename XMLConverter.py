@@ -317,29 +317,27 @@ def XML_PMS2aTV(PMS_address, path, options):
         dprint(__name__, 1, "viewGroup: "+PMSroot.get('viewGroup','None'))
     
     dprint(__name__, 1, "XMLTemplate: "+XMLtemplate)
-
-    # get XMLtemplate
-    aTVTree = etree.parse(sys.path[0]+'/assets/templates/'+XMLtemplate)
-    aTVroot = aTVTree.getroot()
-    # redirect if necessary, load final XMLtemplate
-    while aTVroot.tag=='XMLtemplate':
+    
+    while True:
+        # get XMLtemplate
+        aTVTree = etree.parse(sys.path[0]+'/assets/templates/'+XMLtemplate)
+        aTVroot = aTVTree.getroot()
+        
+        # convert PMS XML to aTV XML using provided XMLtemplate
         CommandCollection = CCommandCollection(options, PMSroot, PMS_address, path)
         XML_ExpandTree(CommandCollection, aTVroot, PMSroot, 'main')
         XML_ExpandAllAttrib(CommandCollection, aTVroot, PMSroot, 'main')
         del CommandCollection
         
-        XMLtemplate = aTVroot.get('redirect').replace(" ", "")
+        # redirect to new XMLtemplate - if necessary
+        redirect = aTVroot.find('redirect')
+        if redirect==None:
+            break;
+        
+        XMLtemplate = redirect.get('template').replace(" ", "")
         dprint(__name__, 1, "---------------------------------------------")
         dprint(__name__, 1, "XMLTemplate redirect: {0}", XMLtemplate)
         dprint(__name__, 1, "---------------------------------------------")
-        aTVTree = etree.parse(sys.path[0]+'/assets/templates/'+XMLtemplate)
-        aTVroot = aTVTree.getroot()
-    
-    # convert PMS XML to aTV XML using provided XMLtemplate
-    CommandCollection = CCommandCollection(options, PMSroot, PMS_address, path)
-    XML_ExpandTree(CommandCollection, aTVroot, PMSroot, 'main')
-    XML_ExpandAllAttrib(CommandCollection, aTVroot, PMSroot, 'main')
-    del CommandCollection
     
     if dir=='Channels' and cmd=='Search':
         for bURL in aTVroot.iter('baseURL'):
