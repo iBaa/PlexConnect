@@ -329,10 +329,29 @@ def XML_PMS2aTV(PMS_address, path, options):
         XML_ExpandAllAttrib(CommandCollection, aTVroot, PMSroot, 'main')
         del CommandCollection
         
-        # redirect to new XMLtemplate - if necessary
         redirect = aTVroot.find('redirect')
         if redirect==None:
             break;
+            
+        # get new PMS XML - if necessary
+        newPMS_XML = redirect.get('newPath')
+        if newPMS_XML:
+            dprint(__name__, 1, "Request a new PMS XML")
+            if not path=='':
+                if PMS_address[0].isalpha():  # owned, shared
+                    type = PMS_address
+                    PMS = PlexAPI.getXMLFromMultiplePMS(UDID, newPMS_XML, type, options)
+                else:  # IP
+                    auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
+                    PMS = PlexAPI.getXMLFromPMS(PMS_baseURL, newPMS_XML, options, authtoken=auth_token)
+        
+            if PMS==False:
+                return XML_Error('PlexConnect', 'No Response from Plex Media Server')
+        
+            PMSroot = PMS.getroot()
+            
+        # redirect to new XMLtemplate - if necessary
+        redirect = aTVroot.find('redirect')
         
         XMLtemplate = redirect.get('template').replace(" ", "")
         dprint(__name__, 1, "---------------------------------------------")

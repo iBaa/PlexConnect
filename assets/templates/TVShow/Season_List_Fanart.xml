@@ -1,4 +1,6 @@
 <atv>
+  <redirect newPath="{{VAL(Directory/key)}}" template="TVShow/Episode_List{{VAL($tvshowfanart::Hide=|Show=_Fanart)}}.xml" />{{CUT(size:CUT:0=CUT|1=|2=CUT)}}{{CUT($flattenseason::False=CUT|True=)}}
+  
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
   </head>

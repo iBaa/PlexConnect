@@ -15,8 +15,8 @@
         <sections>
           <menuSection>
             <items>
-              <oneLineMenuItem id="{{VAL(key)}}" onPlay="flattenSeason('{{URL(key:::PlexConnect=TVShow_Season_{{VAL($seasonview)}}{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}', '{{SETTING(flattenseason)}}', 'False')"
-                                                 onSelect="flattenSeason('{{URL(key:::PlexConnect=TVShow_Season_{{VAL($seasonview)}}{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}', '{{SETTING(flattenseason)}}', 'False')"
+              <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Season_{{VAL($seasonview)}}{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
+                                                 onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Season_{{VAL($seasonview)}}{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
                                                  onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>

@@ -15,12 +15,12 @@
         <sections>
           <menuSection>
             <items>
-              <oneLineMenuItem id="{{VAL(key)}}" onPlay="flattenSeason('{{URL(key:::PlexConnect=TVShow_Season_{{VAL($seasonview)}}{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}', '{{SETTING(flattenseason)}}', 'False')"
-                                                 onSelect="flattenSeason('{{URL(key:::PlexConnect=TVShow_Season_{{VAL($seasonview)}}{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}', '{{SETTING(flattenseason)}}', 'False')"
+              <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Season_{{VAL($seasonview)}}{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
+                                                 onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Season_{{VAL($seasonview)}}{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
                                                  onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>
-								<rightLabel>{{unwatchedCountList(leafCount:0:viewedLeafCount:0)}}</rightLabel>{{CUT($showunwatched::False=CUT|True=)}}
+                <rightLabel>{{unwatchedCountList(leafCount:0:viewedLeafCount:0)}}</rightLabel>{{CUT($showunwatched::False=CUT|True=)}}
                 <preview>
                   <crossFadePreview>
                     <image>{{IMAGEURL(thumb::768)}}</image>
