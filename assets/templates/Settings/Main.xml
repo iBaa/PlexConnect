@@ -84,23 +84,7 @@
               </oneLineMenuItem>      
             </items>
           </menuSection>
-          <menuSection>
-            <header>
-              <horizontalDivider alignment="left">
-                <title>{{TEXT(Template)}}</title>
-              </horizontalDivider>
-            </header>
-            
-            
-            <items>
-              <oneLineMenuItem id="Template" dimmed="true">
-<!--              <oneLineMenuItem id="Template" onSelect="switchTemplate(true);">-->
-                <label>{{TEXT(Theme)}}</label>
-                <rightLabel>{{TEXT(Plex)}}</rightLabel>
-              </oneLineMenuItem>
-              </items>
-              
-              </menuSection>
+         
           
               
               <menuSection>
