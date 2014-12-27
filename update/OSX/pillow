@@ -4,7 +4,7 @@
 for pVersion in 3 5 6 7; do
   if [ -d "/Library/Python/2.${pVersion}/site-packages/PIL/" ]; then
     if [ ! -f "/usr/local/bin/pip" ]; then
-      sudo easy_install pip
+      sudo easy_install-2.7 pip
     fi
     sudo pip uninstall Pillow
   fi
@@ -25,7 +25,9 @@ if [ ! -d "/usr/local/include/freetype" ]; then
 fi
 
 # install Pillow
-if [ ! -f "/usr/local/bin/pip" ]; then
-      sudo easy_install pip
-fi
+cd /Applications
+curl -O -L https://github.com/pypa/pip/raw/master/contrib/get-pip.p
+sudo python get-pip.py
+rm /Applications/get-pip.py
+
 sudo ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future pip install Pillow
