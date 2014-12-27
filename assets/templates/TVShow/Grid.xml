@@ -25,7 +25,7 @@
       <items>
         <grid columnCount="7" id="grid_0">
           <items>
-            <moviePoster id="{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
+            <fourByThreePoster id="{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
 												onPlay="flattenSeason('{{URL(key:::PlexConnect=TVShow_Season_{{VAL($seasonview)}})}}', '{{SETTING(flattenseason)}}', 'False')"
                         onSelect="flattenSeason('{{URL(key:::PlexConnect=TVShow_Season_{{VAL($seasonview)}})}}', '{{SETTING(flattenseason)}}', 'False')"
                         onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
@@ -34,7 +34,7 @@
               <image>{{IMAGEURL(thumb::384)}}</image>
               <defaultImage>resource://Poster.png</defaultImage>
 							<badgeCount>{{unwatchedCountGrid(leafCount:0:viewedLeafCount:0)}}</badgeCount>{{CUT($showunwatched::False=CUT|True=)}}
-            </moviePoster>{{CUT(Directory/title:CUT:=)}}
+            </fourByThreePoster>{{CUT(Directory/title:CUT:=)}}
 
             <moviePoster id="none">
               <title>{{TEXT(No Unwatched Shows)}}</title>

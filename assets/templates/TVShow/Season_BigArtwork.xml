@@ -4,7 +4,7 @@
   </head>
  
  <body>
-        <scroller id="Show_Grid" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=TVShow_Season_BigArtwork)}}')">
+     <scroller id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=TVShow_Season_BigArtwork)}}')">
       <header>
 	    <imageHeader>
           <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=550|1080=825)}}, 0" required="true">
@@ -29,20 +29,21 @@
           </image>{{CUT($seasonlayers::Hide=|Show=Hide)}}
 	    </imageHeader>
       </header>
-      
+      {{VAR(parentThumb:thumb)}}
       <items>
         <grid columnCount="5" id="grid_0">
           <items>
             <goldenPoster id="{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
-                              onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_{{EVAL('{{VAL($episodeview)}}'.replace(' ', ''))}})}}')"
+															onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_{{EVAL('{{VAL($episodeview)}}'.replace(' ', ''))}})}}')"
                                                   onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_{{EVAL('{{VAL($episodeview)}}'.replace(' ', ''))}})}}')" 
                                                   onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
               {{COPY(Directory)}}
               <title>{{VAL(title)}}</title>
-              <image>{{IMAGEURL(thumb::768)}}</image>
+              <image>{{IMAGEURL(thumb::768)}}</image>{{CUT(thumb:CUT:=CUT| =)}}
+              <image>{{IMAGEURL(#parentThumb::768)}}</image>{{CUT(thumb:: =CUT)}}
               <defaultImage>resource://Poster.png</defaultImage>
               <badgeCount>{{unwatchedCountGrid(leafCount:0:viewedLeafCount:0)}}</badgeCount>{{CUT($showunwatched::False=CUT|True=)}}
-                </goldenPoster>{{CUT(Directory/title:CUT:=)}}
+             </goldenPoster>{{CUT(Directory/title:CUT:=)}}
 
             <goldenPoster id="none">
               <title>{{TEXT(No Unwatched Shows)}}</title>
