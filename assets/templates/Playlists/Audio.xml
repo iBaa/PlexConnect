@@ -32,8 +32,8 @@
             <items>
               <!-- shuffle -->
               <oneLineMenuItem id="shuffle_{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL(Video:::PlexConnect=Play_Audio&amp;PlexConnectCopyIx=0&amp;PlexConnectPlayType=Shuffle)}}')"
-                                       onSelect="atv.loadURL('{{URL(Video:::PlexConnect=Play_Audio&amp;PlexConnectCopyIx=0&amp;PlexConnectPlayType=Shuffle)}}')">
+                                       onPlay="atv.loadURL('{{URL(:::PlexConnect=Play_Audio&amp;PlexConnectCopyIx=0&amp;PlexConnectPlayType=Shuffle)}}')"
+                                       onSelect="atv.loadURL('{{URL(:::PlexConnect=Play_Audio&amp;PlexConnectCopyIx=0&amp;PlexConnectPlayType=Shuffle)}}')">
                 <label>{{TEXT(Shuffle)}}</label>
                 <accessories>
                   <shuffle/>
@@ -53,6 +53,20 @@
                   </crossFadePreview>{{CUT(leafCount::0=|0 =CUT|1=|1 =CUT|2=|2 =CUT|3=|4=|5=|6=CUT)}}
                 </preview>
               </oneLineMenuItem>
+              <!-- now playing -->
+              <oneLineMenuItem id="__NOW_PLAYING__" dimmed="false"
+                                       onSelect="atv.nowPlaying.showNowPlaying();">
+                <label>{{TEXT(Now Playing)}}</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
+                <preview>
+                  <crossFadePreview>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
+                  </crossFadePreview>
+                </preview>
+              </oneLineMenuItem>
+
             </items>
           </menuSection>
           

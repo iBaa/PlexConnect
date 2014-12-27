@@ -34,3 +34,12 @@ PlexConnect.log
 /assets/fanartcache/tmp.png
 
 /assets/fanartcache/*.png
+assets/templates/Playlists/View.xml
+
+assets/templates/TVShow/DetailedList.xml
+
+assets/templates/TVShow/Episode_List_Fanart.xml
+
+assets/templates/TVShow/Episode_List.xml
+
+assets/templates/Channels/View.xml
