@@ -44,7 +44,7 @@
           <menuSection>
             <items>
               <twoLineEnhancedMenuItem id="{{VAL(ratingKey)}}"
-                                         onPlay="atv.loadURL('{{URL(:::PlexConnect=PlayVideo&amp;PlexConnectRatingKey={{VAL(ratingKey)}}&amp;PlexConnectPlayType=Continuous)}}')"
+                                         onPlay="atv.loadURL('{{URL(:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}}&amp;PlexConnectPlayType=Continuous)}}')"
                                          onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_PrePlay)}}')"
                                          onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=ScrobbleMenuVideo)}}')">
                                          

@@ -29,7 +29,7 @@ options = { \
     'seasonlayers'              :('Show', 'Hide'), \
     'episodelayers'              :('Show', 'Hide'), \
     'episodeview'              :('List', 'Grid'), \
-    'seasonview'               :('Coverflow', 'List', 'Big Artwork', 'Grid'), \
+    'seasonview'               :('Coverflow', 'List', 'Big Artwork'), \
     'sectionicons'              :('Fanart', 'Plex', 'Custom'), \
     'sectionicons_shared'       :('Fanart', 'Plex'), \
     'sectionsposition'          :('Top', 'Flow'), \

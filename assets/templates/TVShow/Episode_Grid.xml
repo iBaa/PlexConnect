@@ -36,7 +36,7 @@
         <grid columnCount="4" id="grid_0">
           <items>
             <fourByThreePoster id="{{VAL(key)}}" featured="true" alwaysShowTitles="true"
-                             onPlay="atv.loadURL('{{URL(:::PlexConnect=PlayVideo&amp;PlexConnectRatingKey={{VAL(ratingKey)}}&amp;PlexConnectPlayType=Continuous)}}')"
+                             onPlay="atv.loadURL('{{URL(:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}}&amp;PlexConnectPlayType=Continuous)}}')"
                                          onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_PrePlay)}}')"
                                          onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=ScrobbleMenuVideo)}}')">
                  {{COPY(Video)}}
