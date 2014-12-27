@@ -52,7 +52,7 @@ sleep 2
 ## display the running status of PlexConnect
 launchctl list | grep com.plex.plexconnect.bash
 
-git fetch
+cd /Applications/PlexConnect
 git reset --hard
 
 ## Display PlexConnect log
