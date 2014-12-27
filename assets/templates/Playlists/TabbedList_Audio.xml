@@ -15,7 +15,7 @@
         </tabWithTitle>
       </header>
 
-      <navigation currentIndex="0">
+      <navigation>
         <navigationItem>
           <title>Video</title>
           <url>{{URL(:/PMS(all)/playlists::PlexConnect=Playlists_TabbedList_Video)}}</url>
@@ -45,7 +45,7 @@
             <items>
               <!-- Playlist -->
               <oneLineMenuItem id="{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Playlists_Audio)}}')"
+                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Audio&amp;PlexConnectCopyIx=0&amp;PlexConnectPlayType=Shuffle)}}')"
                                        onSelect="atv.loadURL('{{URL(key:::PlexConnect=Playlists_Audio)}}')">
                                        <!--onSelectHold=""-->
               {{COPY(Playlist:playlistType::=|audio=COPY|audio =)}}
