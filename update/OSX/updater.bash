@@ -52,12 +52,12 @@ sleep 2
 ## display the running status of PlexConnect
 launchctl list | grep com.plex.plexconnect.bash
 
+git reset --hard
+
 ## Display PlexConnect log
 FILE="/Applications/PlexConnect/PlexConnect.log"
 echo "*** File - $FILE contents ***"
 cat $FILE
-
-git reset --hard
 
 else
 echo "no updates available"
