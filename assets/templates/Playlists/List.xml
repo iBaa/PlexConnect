@@ -45,7 +45,8 @@
               <!-- Playlist -->
               <oneLineMenuItem id="{{VAL(key)}}"
                                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=Playlists_Video)}}')"
-                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=Playlists_Video)}}')">
+                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=Playlists_Video)}}')"
+                                   onHoldSelect="atv.loadURL('{{URL(Video:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(Video/ratingKey)}}&amp;PlexConnectPlayType=Shuffle)}}')">
                                        <!--onSelectHold=""-->
               {{COPY(Playlist:playlistType::=|video=COPY|video =)}}
               {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
