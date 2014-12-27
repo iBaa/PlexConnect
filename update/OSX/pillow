@@ -14,7 +14,7 @@ done
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   brew prune
 
-brew install libjpeg freetype python
+brew install libjpeg freetype
  
 # Check for freetype's destination
 if [ ! -d "/usr/local/include/freetype" ]; then
