@@ -4,7 +4,7 @@
   </head>
 
   <body>
-    <listWithPreview id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::TVShow_Episode_List)}}')">
+    <listWithPreview id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=TVShow_Episode_List)}}')">
       <header>
         <simpleHeader>
           <title>{{VAL(title1)}}</title>
