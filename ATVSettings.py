@@ -17,19 +17,19 @@ options = { \
     'playlistview'               :('List', 'Tabbed List'), \
     'showchannels'            :('True', 'False'), \
     'showsharedlibraries'       :('True', 'False'), \
-    'movieview'                :('BigArtWork', 'Grid', 'List', 'Detailed List'), \
+    'movieview'                :('BigArtwork', 'Grid', 'List', 'Detailed List'), \
     'extraview'                :('Grid'), \
     'movieposters'              :('Show', 'Hide'), \
     'movielayers'              :('Show', 'Hide'), \
     'homevideoview'            :('Grid', 'List', 'Detailed List'), \
-    'showview'                 :('BigArtWork', 'Grid', 'List', 'Bookcase'), \
+    'showview'                 :('BigArtwork', 'Grid', 'List', 'Bookcase'), \
     'channelview'               :('List', 'Tabbed List', 'Grid'), \
     'episodeposters'              :('Show', 'Hide'), \
     'showlayers'              :('Show', 'Hide'), \
     'seasonlayers'              :('Show', 'Hide'), \
     'episodelayers'              :('Show', 'Hide'), \
     'episodeview'              :('List', 'Grid'), \
-    'seasonview'               :('BigArtWork', 'List', 'Coverflow'), \
+    'seasonview'               :('BigArtwork', 'List', 'Coverflow'), \
     'sectionicons'              :('Fanart', 'Plex', 'Custom'), \
     'sectionicons_shared'       :('Fanart', 'Plex'), \
     'sectionsposition'          :('Top', 'Flow'), \
