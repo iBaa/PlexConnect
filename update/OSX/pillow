@@ -26,8 +26,11 @@ fi
 
 # install Pillow
 cd /Applications
-curl -O -L https://github.com/pypa/pip/raw/master/contrib/get-pip.p
+curl -O -L https://github.com/pypa/pip/raw/master/contrib/get-pip.py
 sudo python get-pip.py
 rm /Applications/get-pip.py
+sudo cp /System/Library/Frameworks/Python.framework/Versions/2.7/bin/pip /usr/bin
+sudo mkdir /Library/Frameworks/Python.framework/Versions/2.7
+sudo cp -r /System/Library/Frameworks/Python.framework/Versions/2.7/* /Library/Frameworks/Python.framework/Versions/2.7
 
 sudo ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future pip install Pillow
