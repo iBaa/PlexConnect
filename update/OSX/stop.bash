@@ -14,6 +14,9 @@ if [ ! -f /Applications/PlexConnect/PlexConnect.log ]
 then
 echo 'No log present'
 else
+
+sleep 1
+
 ## Display PlexConnect log
 FILE="/Applications/PlexConnect/PlexConnect.log"
 echo "*** File - $FILE contents ***"
