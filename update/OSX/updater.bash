@@ -57,6 +57,8 @@ FILE="/Applications/PlexConnect/PlexConnect.log"
 echo "*** File - $FILE contents ***"
 cat $FILE
 
+git reset --hard
+
 else
 echo "no updates available"
 fi
