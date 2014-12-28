@@ -28,7 +28,7 @@
       <preview>
         <keyedPreview>
           <title>&#x00AD;<!--soft-hyphen--></title>
-          <summary/>
+          <summary>PlexConnect Theme Dev.</summary>
           <metadataKeys>
             <label>{{TEXT(Version)}}</label>
 <label>{{TEXT(Designer)}}</label>
@@ -45,7 +45,7 @@
             <label>https://github.com/ibaa/plexconnect</label>
             <label>http://forums.plexapp.com/...plexconnect</label>
           </metadataValues>
-          <image>{{URL(:/templates/plex/images/PlexConnectLogo.png)}}</image>
+          <image>{{URL(:/thumbnails/PlexConnectLogo.png)}}</image>
         </keyedPreview>
       </preview>
 

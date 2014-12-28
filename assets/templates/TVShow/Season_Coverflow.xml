@@ -1,4 +1,6 @@
 <atv>
+ <redirect newPath="{{VAL(Directory/key)}}" template="TVShow/Episode_{{EVAL('{{VAL($episodeview)}}'.replace(' ', ''))}}.xml" />{{CUT(size:CUT:0=CUT|1=|2=CUT)}}{{CUT($flattenseason::False=CUT|True=)}}
+
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
   </head>
@@ -32,14 +34,14 @@
       </header>
       {{VAR(parentThumb:thumb)}}
       <items>
-              <shelf id="coverflow" columnCount="{{EVAL(min({{VAL(size:0)}},3))}}">
+              <shelf id="coverflow" columnCount="{{EVAL(min({{VAL(size:0)}},4))}}">
           <sections>
             <shelfSection>
               <items>
                 <goldenPoster id="{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
-															onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_{{EVAL('{{VAL($episodeview)}}'.replace(' ', ''))}})}}')"
-                                                  onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_{{EVAL('{{VAL($episodeview)}}'.replace(' ', ''))}})}}')" 
-                                                  onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
+								onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_{{EVAL('{{VAL($episodeview)}}'.replace(' ', ''))}})}}')"
+                                onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_{{EVAL('{{VAL($episodeview)}}'.replace(' ', ''))}})}}')" 
+                                onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
                   {{COPY(Directory)}}
                   <title>{{VAL(title)}}</title>
                   <image>{{IMAGEURL(thumb::768)}}</image>{{CUT(thumb:CUT:=CUT| =)}}
@@ -47,10 +49,11 @@
                   <defaultImage>resource://Poster.png</defaultImage>
                   <badgeCount>{{unwatchedCountGrid(leafCount:0:viewedLeafCount:0)}}</badgeCount>{{CUT($showunwatched::False=CUT|True=)}}
                 </goldenPoster>{{CUT(Directory/title:CUT:=)}}
-            
-            <!--    <oneLineMenuItem id="none">
-                  <label>No Seasons</label>
-                </oneLineMenuItem>{{CUT(Directory/title::=CUT)}}-->
+                
+                <goldenPoster id="none">
+              <title>{{TEXT(No Unwatched Shows)}}</title>
+              <defaultImage>resource://Poster.png</defaultImage>
+            </goldenPoster>{{CUT(Directory/title::=CUT)}}
               </items>
             </shelfSection>
           </sections>

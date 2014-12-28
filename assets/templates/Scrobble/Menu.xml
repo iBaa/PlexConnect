@@ -64,11 +64,11 @@
             </oneLineMenuItem>{{CUT(viewGroup:CUT:season=)}}
         
             <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(key:::PlexConnect=Artwork_ChangeSingleArtwork)}}')">
-              <label>{{TEXT(Change Poster)}}</label>
+              <label>{{TEXT(Change {{VAL(Video/type::show=TV Show|season=Season|episode=Episode|movie=Movie)}} Poster)}}</label>
             </oneLineMenuItem>{{CUT(viewGroup::episode=|season=CUT)}}
             
             <oneLineMenuItem id="item4" onSelect="atv.loadURL('{{URL(key:::PlexConnect=Artwork_ChangeFanart)}}')">
-              <label>{{TEXT(Change Fanart)}}</label>
+              <label>{{TEXT(Change {{VAL(Video/type::show=TV Show|season=Season|episode=Episode|movie=Movie)}} Fanart)}}</label>
             </oneLineMenuItem>{{CUT(viewGroup::episode=CUT|season=)}}
           </items>
         </menuSection>

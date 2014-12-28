@@ -23,7 +23,7 @@
             </header>
             
             <items>
-              <oneLineMenuItem id="item2" onSelect="atv.loadURL('{{URL(Video/grandparentKey::/children:PlexConnect=TVShow_Season_{{VAL($seasonview)}}{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')">
+              <oneLineMenuItem id="item2" onSelect="atv.loadURL('{{URL(Video/grandparentKey::/children:PlexConnect=TVShow_Season_{{VAL($seasonview)}})}}')">
                 <label>{{TEXT(View Show)}}</label>
               </oneLineMenuItem>
               
@@ -51,7 +51,7 @@
       <sections>
         <menuSection>
           <items>
-            <oneLineMenuItem id="item2" onSelect="atv.loadURL('{{URL(Video/grandparentKey::/children:PlexConnect=TVShow_Season_{{VAL($seasonview)}}{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')">
+            <oneLineMenuItem id="item2" onSelect="atv.loadURL('{{URL(Video/grandparentKey::/children:PlexConnect=TVShow_Season_{{VAL($seasonview)}})}}')">
               <label>{{TEXT(View Show)}}</label>
             </oneLineMenuItem>
            

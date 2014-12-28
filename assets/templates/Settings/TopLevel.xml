@@ -13,7 +13,7 @@
             {{URL(:/fanartcache/{{getBackground({{EVAL({\
               'template'     : "plex",\
               'title'        : "{{EVAL(quote_plus("{{TEXT(Settings)}}"))}}",\
-              'subtitle'     : "{{EVAL(quote_plus("{{TEXT(Navigation Bar Options)}}"))}}",\
+              'subtitle'     : "{{EVAL(quote_plus("{{TEXT(Top Level Options)}}"))}}",\
               'image'        : "backgrounds/plex{{VAL($menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
               'resolution'   : "{{VAL(^aTVScreenResolution)}}",\
               'font'         : "fonts/OpenSans/OpenSans-Light.ttf",\
@@ -28,7 +28,7 @@
       <preview>
         <keyedPreview>
           <title>&#x00AD;<!--soft-hyphen--></title>
-          <summary/>
+          <summary>PlexConnect Theme Dev.</summary>
           <metadataKeys>
             <label>{{TEXT(Version)}}</label>
 <label>{{TEXT(Designer)}}</label>
@@ -45,7 +45,7 @@
             <label>https://github.com/ibaa/plexconnect</label>
             <label>http://forums.plexapp.com/...plexconnect</label>
           </metadataValues>
-          <image>{{URL(:/templates/plex/images/PlexConnectLogo.png)}}</image>
+          <image>{{URL(:/thumbnails/PlexConnectLogo.png)}}</image>
         </keyedPreview>
       </preview>
 
@@ -54,7 +54,7 @@
           <menuSection>
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Navigation Bar)}}</title>
+                <title>{{TEXT(Top Level)}}</title>
               </horizontalDivider>
             </header>
             <items>

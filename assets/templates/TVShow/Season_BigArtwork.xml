@@ -1,4 +1,5 @@
 <atv>
+ <redirect newPath="{{VAL(Directory/key)}}" template="TVShow/Episode_{{EVAL('{{VAL($episodeview)}}'.replace(' ', ''))}}.xml" />{{CUT(size:CUT:0=CUT|1=|2=CUT)}}{{CUT($flattenseason::False=CUT|True=)}}
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
   </head>
@@ -34,9 +35,9 @@
         <grid columnCount="5" id="grid_0">
           <items>
             <goldenPoster id="{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
-															onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_{{EVAL('{{VAL($episodeview)}}'.replace(' ', ''))}})}}')"
-                                                  onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_{{EVAL('{{VAL($episodeview)}}'.replace(' ', ''))}})}}')" 
-                                                  onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
+								onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_{{EVAL('{{VAL($episodeview)}}'.replace(' ', ''))}})}}')"
+                                onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_{{EVAL('{{VAL($episodeview)}}'.replace(' ', ''))}})}}')" 
+                                onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
               {{COPY(Directory)}}
               <title>{{VAL(title)}}</title>
               <image>{{IMAGEURL(thumb::768)}}</image>{{CUT(thumb:CUT:=CUT| =)}}
