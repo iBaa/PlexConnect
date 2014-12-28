@@ -22,19 +22,17 @@ PlexConnect.log
 
 *.suo
 
-/assets/templates/plex/images/custom/top/*.png
+assets/templates/plex/images/custom/top/*.png
 
-/assets/templates/plex/images/custom/flow/*.png
+assets/templates/plex/images/custom/flow/*.png
 
 
-/assets/templates/MoviePrePlay_Fanart.xml
+assets/templates/MoviePrePlay_Fanart.xml
 
-/assets/templates/EpisodePrePlay_Fanart.xml
+assets/templates/EpisodePrePlay_Fanart.xml
 
-/assets/fanartcache/tmp.png
 
-/assets/fanartcache/*.png
-assets/templates/Playlists/View.xml
+assets/fanartcache/*.png
 
 assets/templates/TVShow/DetailedList.xml
 
@@ -47,3 +45,5 @@ assets/templates/Channels/View.xml
 assets/templates/TVShow/Season_Coverflow_Fanart.xml
 
 assets/templates/TVShow/Season_List_Fanart.xml
+
+assets/fanartcache/tmp.png
