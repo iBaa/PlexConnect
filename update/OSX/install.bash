@@ -328,6 +328,7 @@ cp hairtunes.bash /usr/bin
 cp mod.bash /usr/bin
 cp quit.bash /usr/bin
 cp fixclone.bash /usr/bin
+cp fixclonebash.bash /usr/bin
 cp createcert.bash /usr/bin
 cp createimovie.bash /usr/bin
 cp createwsj.bash /usr/bin
@@ -524,6 +525,7 @@ chmod +x /Applications/PlexConnect/update/OSX/airplay.bash
 chmod +x /usr/bin/mod.bash
 chmod +x /usr/bin/quit.bash
 chmod +x /usr/bin/fixclone.bash
+chmod +X /usr/bin/fixclonebash.bash
 chmod +x /usr/bin/createcert.bash
 chmod +x /usr/bin/createimovie.bash
 chmod +x /usr/bin/createwsj.bash
@@ -669,6 +671,7 @@ chmod +x /usr/bin/restorecerts.bash
 chmod +x /usr/bin/backupbash.bash
 
 chmod 4755 /usr/bin/trash.bash
+chmod 4755 /usr/bin/fixclone.bash
 chmod 4755 /usr/bin/empty.bash
 chmod 4755 /usr/bin/quit.bash
 chmod 4755 /usr/bin/modbash.bash
