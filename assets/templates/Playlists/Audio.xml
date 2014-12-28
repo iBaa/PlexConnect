@@ -31,7 +31,7 @@
           <menuSection>
             <items>
               <!-- shuffle -->
-              <oneLineMenuItem id="shuffle_{{VAL(key)}}"
+              <oneLineMenuItem id="shuffle_{{VAL(title)}}"
                                        onPlay="atv.loadURL('{{URL(:::PlexConnect=Play_Audio&amp;PlexConnectCopyIx=0&amp;PlexConnectPlayType=Shuffle)}}')"
                                        onSelect="atv.loadURL('{{URL(:::PlexConnect=Play_Audio&amp;PlexConnectCopyIx=0&amp;PlexConnectPlayType=Shuffle)}}')">
                 <label>{{TEXT(Shuffle)}}</label>
