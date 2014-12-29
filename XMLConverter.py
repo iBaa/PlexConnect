@@ -169,10 +169,7 @@ def XML_PMS2aTV(PMS_address, path, options):
         dprint(__name__, 1, "---------------------------------------------")
         dprint(__name__, 1, "Input: {0} {1} ", PMS_address, path)
         dprint(__name__, 1, "Initial Command: {0}", cmd)
-
-    if 'PlexConnectChannelsSearch' in options:
-        channelsearchURL = options['PlexConnectChannelsSearch'].replace('+amp+', '&')
-
+    
     # check aTV language setting
     if not 'aTVLanguage' in options:
         dprint(__name__, 1, "no aTVLanguage - pick en")
@@ -296,7 +293,6 @@ def XML_PMS2aTV(PMS_address, path, options):
         XMLtemplate = dir + '/' + cmd + '.xml'
         if path == '/': path = ''
         dprint(__name__, 1, "Split Directory: {0} Command: {1}", dir, cmd)
-        dprint(__name__, 1, "PlexConnectChannelsSearch: " + channelsearchURL)
         dprint(__name__, 1, "XMLTemplate: {0}", XMLtemplate)
         dprint(__name__, 1, "---------------------------------------------")
     
@@ -344,13 +340,6 @@ def XML_PMS2aTV(PMS_address, path, options):
             XMLtemplate = XMLtemplate_rdrct.replace(" ", "")
             dprint(__name__, 1, "XMLTemplate redirect: {0}", XMLtemplate)
     
-    if dir=='Channels' and cmd=='Search':
-        for bURL in aTVroot.iter('baseURL'):
-            if channelsearchURL.find('?') == -1:
-                bURL.text = channelsearchURL + '?query='
-            else:
-                bURL.text = channelsearchURL + '&query='
-                
     dprint(__name__, 1, "====== generated aTV-XML ======")
     dprint(__name__, 1, aTVroot)
     dprint(__name__, 1, "====== aTV-XML finished ======")
