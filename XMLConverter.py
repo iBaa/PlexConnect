@@ -299,26 +299,23 @@ def XML_PMS2aTV(PMS_address, path, options):
         dprint(__name__, 1, "PlexConnectChannelsSearch: " + channelsearchURL)
         dprint(__name__, 1, "XMLTemplate: {0}", XMLtemplate)
         dprint(__name__, 1, "---------------------------------------------")
-
-    # request PMS XML
-    if not path=='':
-        if PMS_address[0].isalpha():  # owned, shared
-            type = PMS_address
-            PMS = PlexAPI.getXMLFromMultiplePMS(UDID, path, type, options)
-        else:  # IP
-            auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
-            PMS = PlexAPI.getXMLFromPMS(PMS_baseURL, path, options, authtoken=auth_token)
-        
-        if PMS==False:
-            return XML_Error('PlexConnect', 'No Response from Plex Media Server')
-        
-        PMSroot = PMS.getroot()
-        
-        dprint(__name__, 1, "viewGroup: "+PMSroot.get('viewGroup','None'))
     
-    dprint(__name__, 1, "XMLTemplate: "+XMLtemplate)
-    
+    PMSroot = None
     while True:
+        # request PMS-XML
+        if not path=='' and not PMSroot:
+            if PMS_address[0].isalpha():  # owned, shared
+                type = PMS_address
+                PMS = PlexAPI.getXMLFromMultiplePMS(UDID, path, type, options)
+            else:  # IP
+                auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
+                PMS = PlexAPI.getXMLFromPMS(PMS_baseURL, path, options, authtoken=auth_token)
+            
+            if PMS==False:
+                return XML_Error('PlexConnect', 'No Response from Plex Media Server')
+            
+            PMSroot = PMS.getroot()
+        
         # get XMLtemplate
         aTVTree = etree.parse(sys.path[0]+'/assets/templates/'+XMLtemplate)
         aTVroot = aTVTree.getroot()
@@ -329,33 +326,23 @@ def XML_PMS2aTV(PMS_address, path, options):
         XML_ExpandAllAttrib(CommandCollection, aTVroot, PMSroot, 'main')
         del CommandCollection
         
-        # redirect to new XMLtemplate - if necessary        
+        # no redirect? exit loop!
         redirect = aTVroot.find('redirect')
         if redirect==None:
             break;
             
-        # get new PMS XML - if necessary
-        newPMS_XML = redirect.get('newPath')
-        if newPMS_XML:
-            dprint(__name__, 1, "Request a new PMS XML")
-            if not path=='':
-                if PMS_address[0].isalpha():  # owned, shared
-                    type = PMS_address
-                    PMS = PlexAPI.getXMLFromMultiplePMS(UDID, newPMS_XML, type, options)
-                else:  # IP
-                    auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
-                    PMS = PlexAPI.getXMLFromPMS(PMS_baseURL, newPMS_XML, options, authtoken=auth_token)
-                path = newPMS_XML
-                
-            if PMS==False:
-                return XML_Error('PlexConnect', 'No Response from Plex Media Server')
+        # redirect to new PMS-XML - if necessary
+        path_rdrct = redirect.get('newPath')
+        if path_rdrct:
+            path = path_rdrct
+            PMSroot = None  # force PMS-XML reload
+            dprint(__name__, 1, "PMS-XML redirect: {0}", path)
         
-            PMSroot = PMS.getroot()
-        
-        XMLtemplate = redirect.get('template').replace(" ", "")
-        dprint(__name__, 1, "---------------------------------------------")
-        dprint(__name__, 1, "XMLTemplate redirect: {0}", XMLtemplate)
-        dprint(__name__, 1, "---------------------------------------------")
+        # redirect to new XMLtemplate - if necessary
+        XMLtemplate_rdrct = redirect.get('template')
+        if XMLtemplate_rdrct:
+            XMLtemplate = XMLtemplate_rdrct.replace(" ", "")
+            dprint(__name__, 1, "XMLTemplate redirect: {0}", XMLtemplate)
     
     if dir=='Channels' and cmd=='Search':
         for bURL in aTVroot.iter('baseURL'):

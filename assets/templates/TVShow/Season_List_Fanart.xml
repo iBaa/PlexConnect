@@ -1,13 +1,17 @@
 <atv>
-  <redirect newPath="{{VAL(Directory/key)}}" template="TVShow/Episode_List{{VAL($tvshowfanart::Hide=|Show=_Fanart)}}.xml" />{{CUT(size:CUT:0=CUT|1=|2=|3=CUT)}}{{CUT($flattenseason::False=CUT|True=)}}
+  <redirect newPath="{{VAL(Directory/key)}}" template="TVShow/Episode_List{{VAL($tvshowfanart::Hide=|Show=_Fanart)}}.xml" />
+  {{VAR(flattenSeason::{{VAL($flattenseason::False=|True=T)}}{{VAL(size::=|1=T|1 =|2=T|2 =)}})}}  <!--logical AND results in TT-->
+  {{CUT(#flattenSeason:CUT:=CUT|TT=|TT =CUT)}}
   
   <head>
+  {{CUT(#flattenSeason::=|TT=CUT|TT =)}}
     <script src="{{URL(:/js/utils.js)}}" />
   </head>
-
+  
   <body>
+  {{CUT(#flattenSeason::=|TT=CUT|TT =)}}
     <itemCollectionWithImageHeader id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=TVShow_Season_List_Fanart)}}')">
-   	  <styles>
+      <styles>
           <color name="titleColor">#fafafa</color>
           <color name="metadataColor">#fafafa</color>
         </styles>
