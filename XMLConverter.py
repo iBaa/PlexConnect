@@ -1240,7 +1240,7 @@ if __name__=="__main__":
             </PMS>'
     PMSroot = etree.fromstring(_XML)
     PMSTree = etree.ElementTree(PMSroot)
-    print prettyXML(PMSTree)
+    print prettyXML(PMSroot)
     
     print
     print "load aTV XML template"
@@ -1259,7 +1259,7 @@ if __name__=="__main__":
             </aTV>'
     aTVroot = etree.fromstring(_XML)
     aTVTree = etree.ElementTree(aTVroot)
-    print prettyXML(aTVTree)
+    print prettyXML(aTVroot)
     
     print
     print "unpack PlexConnect COPY/CUT commands"
@@ -1273,7 +1273,7 @@ if __name__=="__main__":
     
     print
     print "resulting aTV XML"
-    print prettyXML(aTVTree)
+    print prettyXML(aTVroot)
     
     print
     #print "store aTV XML"
