@@ -1,0 +1,4 @@
+<atv>
+  <redirect template="TVShow/Season_{{VAL($seasonview)}}.xml" />{{CUT(size::=|1=CUT|1 =|2=CUT|2 =)}}{{CUT($flattenseason::False=CUT|True=)}}
+  <redirect newPath="{{VAL(Directory/key)}}" template="TVShow/Episode_{{VAL($epiosdeview)}}.xml" />
+</atv>

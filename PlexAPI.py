@@ -105,7 +105,7 @@ def getPMSFromAddress(ATV_udid, address):
         return ''  # no server known for this aTV
     
     for uuid in g_PMS[ATV_udid]:
-        if address==g_PMS[ATV_udid][uuid].get('ip', None):
+        if address==g_PMS[ATV_udid][uuid].get('address', None):
             return uuid
     return ''  # IP not found
 
@@ -432,7 +432,7 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
             
             baseURL = getPMSProperty(ATV_udid, uuid, 'baseURL')
             token = getPMSProperty(ATV_udid, uuid, 'accesstoken')
-            PMS_mark = 'PMS(' + getPMSProperty(ATV_udid, uuid, 'ip') + ')'
+            PMS_mark = 'PMS(' + getPMSProperty(ATV_udid, uuid, 'address') + ')'
             
             Server.set('searchKey', PMS_mark + getURL('', '', '/Search/Entry.xml'))
             
@@ -455,7 +455,7 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
             
             baseURL = getPMSProperty(ATV_udid, uuid, 'baseURL')
             token = getPMSProperty(ATV_udid, uuid, 'accesstoken')
-            PMS_mark = 'PMS(' + getPMSProperty(ATV_udid, uuid, 'ip') + ')'
+            PMS_mark = 'PMS(' + getPMSProperty(ATV_udid, uuid, 'address') + ')'
             
             if XML==False:
                 Server.set('size',    '0')

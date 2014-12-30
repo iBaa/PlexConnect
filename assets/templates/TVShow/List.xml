@@ -26,8 +26,8 @@
         <sections>
           <menuSection>
             <items>
-              <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Season_{{VAL($seasonview)}}})}}')"
-                                                 onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Season_{{VAL($seasonview)}})}}')"
+              <oneLineMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Season)}}')"
+                                                 onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Season)}}')"
                                                  onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>

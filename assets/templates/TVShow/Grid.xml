@@ -26,8 +26,8 @@
         <grid columnCount="7" id="grid_0">
           <items>
             <fourByThreePoster id="{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
-					    onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Season_{{VAL($seasonview)}})}}')"
-                        onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Season_{{VAL($seasonview)}})}}')"
+					    onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Season)}}')"
+                        onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Season)}}')"
                         onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
               {{COPY(Directory)}}
               <title>{{VAL(title)}}</title>
