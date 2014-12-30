@@ -33,4 +33,7 @@ echo "Need to push"
 else
 echo "Diverged"
 fi
+
+# Allow OpenPlex git to update to display proper git HEAD commit
+sleep 5
 git reset --hard
