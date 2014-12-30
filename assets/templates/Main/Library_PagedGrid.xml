@@ -1,322 +1,348 @@
 <atv>
-    <head>
-        <script src="{{URL(:/js/utils.js)}}" />
-        <script src="{{URL(:/js/settings.js)}}" />
-        <script src="{{URL(:/js/sectionHoldSelect.js)}}" />
-    </head>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/settings.js)}}" />
+    <script src="{{URL(:/js/sectionHoldSelect.js)}}" />
+  </head>
+
+  <body>
+      {{ADDXML(OnDeck::/library/onDeck?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=40)}}      
+      {{ADDXML(RecentlyAdded::/library/recentlyAdded?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=40)}}
+      {{ADDXML(VideoChannels::/channels/all)}}
+      {{VAR(sections:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
+      {{VAR(items:NoKey:FALSE)}}
+
+    <scroller id="Library_Grid">
     
-    <body>
-        {{ADDXML(OnDeck::/library/onDeck?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=40)}}
-        {{ADDXML(RecentlyAdded::/library/recentlyAdded?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=40)}}
-        {{ADDXML(VideoChannels::/channels/all)}}
-        {{VAR(sections:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
-        {{VAR(items:NoKey:FALSE)}}
-        
-        <scroller id="Library_Grid">
+      <header>
+       <imageHeader>
+           <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=630|1080=945)}}, 0" required="true">
+               {{URL(:/fanartcache/{{getBackground({{EVAL({\
+               'template'    : 'plex',\
+               'title'       : "{{EVAL(quote_plus("{{TEXT(Plex Library)}}"))}}",\
+               'image'       : "backgrounds/plex{{VAL($menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+               'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+               'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+               'titleColor'  : "{{VAL($titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+               'layers'      : ["PlexGrid{{VAL($gridtint::On=Text|Off=)}}"{{VAL($menuhint::On=,"PlexPressMenu_{{VAL($subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+               })}})}})}}
+           </image>{{CUT($sectionsposition::Top=|Flow=CUT))}}
+           
+           <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=630|1080=945)}}, 0" required="true">
+               {{URL(:/fanartcache/{{getBackground({{EVAL({\
+               'template'    : 'plex',\
+               'title'       : "{{EVAL(quote_plus("{{TEXT(Plex Library)}}"))}}",\
+               'image'       : "backgrounds/plex{{VAL($menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+               'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+               'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+               'titleColor'  : "{{VAL($titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+               'layers'      : ["PlexLibraryFlow{{VAL($gridtint::On=Text|Off=)}}"{{VAL($menuhint::On=,"PlexPressMenu_{{VAL($subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+               })}})}})}}
+           </image>{{CUT($sectionsposition::Top=CUT|Flow=))}}{{CUT(^aTVFirmwareVersion::=|7=CUT)}}
+           
+           <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=630|1080=905)}}, 0" required="true">
+               {{URL(:/fanartcache/{{getBackground({{EVAL({\
+               'template'    : 'plex',\
+               'title'       : "{{EVAL(quote_plus("{{TEXT(Plex Library)}}"))}}",\
+               'image'       : "backgrounds/plex{{VAL($menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+               'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+               'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+               'titleColor'  : "{{VAL($titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+               'layers'      : ["PlexLibraryFlow{{VAL($gridtint::On=Text|Off=)}}"{{VAL($menuhint::On=,"PlexPressMenu_{{VAL($subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+               })}})}})}}
+           </image>{{CUT($sectionsposition::Top=CUT|Flow=))}}{{CUT(^aTVFirmwareVersion::=CUT|7=)}}
+	   </imageHeader>
+      </header>
+      
+      
+      <items>
+       <showcase accessibilityLabel="Showcase movies" id="showcase_1" >
+        <initialSelection>
+          <indexPath>
+            <index>0</index>
+          </indexPath>
+        </initialSelection>{{COPY(Server:@main/size::0=|1=COPY)}}
+        <items>
+          {{COPY(Server:@main/size::0=|1=COPY)}}
+          
+          <showcasePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}"
+                          onPlay="atv.loadURL('{{URL(key:::PlexConnect={{EVAL('{{VAL(scanner)}}'.replace(' ', '_'))}})}}')"
+                           onSelect="atv.loadURL('{{URL(key:::PlexConnect={{EVAL('{{VAL(scanner)}}'.replace(' ', '_'))}})}}')"
+                          onHoldSelect="sectionHoldSelect('{{VAL(key)}}', '{{URL(#searchKey)}}', '{{VAL(#serverName)}}', '{{URL(refreshKey)}}', '{{VAL(title)}}')">
+
+            {{VAR(serverName:name)}}
+            {{VAR(searchKey:searchKey)}}
+            {{COPY(Directory)}}
+            {{VAR(items:NoKey:TRUE)}}
+            <image>
+              {{URL(:/fanartcache/{{getBackground({{EVAL({\
+              'template'    : 'plex',\
+              'title'       : "{{VAL(title)}}",\
+              'image'       : "{{IMAGEURL(thumb::768)}}",\
+              'resolution'  : "square",\
+              'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+              'titleSize'   : "40",\
+              'anchorX'     : "center",\
+              'anchorY'     : "top",\
+              'offsetX'     : "0",\
+              'offsetY'     : "5",\
+              'layers'      : ["FlowIconSquare"]\
+              })}})}})}}
+            </image>{{CUT($sectionicons::Apple=CUT|Plex=|Fanart=CUT|Custom=CUT)}}
+            <image>
+                {{URL(:/fanartcache/{{getBackground({{EVAL({\
+                'template'    : 'plex',\
+                'title'       : "{{VAL(title)}}",\
+                'image'       : "flow/{{VAL(type)}}-flow.png",\
+                'resolution'  : "flow",\
+                'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+                'titleSize'   : "40",\
+                'anchorX'     : "center",\
+                'anchorY'     : "bottom",\
+                'offsetX'     : "0",\
+                'offsetY'     : "50",\
+                'layers'      : ["FlowIconApple"]\
+                })}})}})}}
+            </image>{{CUT($sectionicons::Apple=|Plex=CUT|Fanart=CUT|Custom=CUT)}}
+             <image>
+                 {{URL(:/fanartcache/{{getBackground({{EVAL({\
+                 'template'    : 'plex',\
+                 'title'       : "{{VAL(title)}}",\
+                 'image'       : "flow/{{VAL(type)}}-flow-plex.png",\
+                 'resolution'  : "flow",\
+                 'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+                 'titleSize'   : "40",\
+                 'anchorX'     : "center",\
+                 'anchorY'     : "bottom",\
+                 'offsetX'     : "0",\
+                 'offsetY'     : "50",\
+                 'layers'      : ["FlowIconFanart"]\
+                 })}})}})}}
+            </image>{{CUT($sectionicons::Apple=CUT|Plex=CUT|Fanart=|Custom=CUT)}}
+             <image>
+                 {{URL(:/fanartcache/{{getBackground({{EVAL({\
+                 'template'    : 'plex',\
+                 'title'       : "{{VAL(title)}}",\
+                 'image'       : "custom/flow/{{EVAL("{{VAL(title)}}".replace(' ', ''))}}-flow.png",\
+                 'resolution'  : "flow",\
+                 'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+                 'titleSize'   : "40",\
+                 'anchorX'     : "center",\
+                 'anchorY'     : "bottom",\
+                 'offsetX'     : "0",\
+                 'offsetY'     : "50",\
+                 'layers'      : ["FlowIconCostum"]\
+                 })}})}})}}
+            </image>{{CUT($sectionicons::Apple=CUT|Plex=CUT|Fanart=CUT|Custom=)}}
+           
+
+            <defaultImage>resource://Poster.png</defaultImage>
+          </showcasePoster>         
+          <!-- search -->
+          <showcasePoster id="{{VAL(searchKey)}}" accessibilityLabel="{{TEXT(Search)}}"
+                          onPlay="atv.loadURL('{{URL(searchKey)}}')"
+                          onSelect="atv.loadURL('{{URL(searchKey)}}')">
+                          <image>
+                              {{URL(:/fanartcache/{{getBackground({{EVAL({\
+                              'template'    : 'plex',\
+                              'title'       : "{{TEXT(Search)}}",\
+                              'image'       : "icons/plexsearch.png",\
+                              'resolution'  : "square",\
+                              'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+                              'titleSize'   : "40",\
+                              'anchorX'     : "center",\
+                              'anchorY'     : "top",\
+                              'offsetX'     : "0",\
+                              'offsetY'     : "5",\
+                              'layers'      : ["FlowIconSquare"]\
+                              })}})}})}}
+                          </image>{{CUT($sectionicons::Apple=CUT|Plex=|Fanart=CUT|Custom=CUT)}}
+                          <image>
+                              {{URL(:/fanartcache/{{getBackground({{EVAL({\
+                              'template'    : 'plex',\
+                              'title'       : "{{TEXT(Search)}}",\
+                              'image'       : "icons/search-flow.png",\
+                              'resolution'  : "flow",\
+                              'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+                              'titleSize'   : "40",\
+                              'anchorX'     : "center",\
+                              'anchorY'     : "bottom",\
+                              'offsetX'     : "0",\
+                              'offsetY'     : "50",\
+                              'layers'      : ["FlowIconApple"]\
+                              })}})}})}}
+                          </image>{{CUT($sectionicons::Apple=|Plex=CUT|Fanart=CUT|Custom=CUT)}}
+                          <image>
+                              {{URL(:/fanartcache/{{getBackground({{EVAL({\
+                              'template'    : 'plex',\
+                              'title'       : "{{TEXT(Search)}}",\
+                              'image'       : "icons/search-flow.png",\
+                              'resolution'  : "flow",\
+                              'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+                              'titleSize'   : "40",\
+                              'anchorX'     : "center",\
+                              'anchorY'     : "bottom",\
+                              'offsetX'     : "0",\
+                              'offsetY'     : "50",\
+                              'layers'      : ["FlowIconFanart"]\
+                              })}})}})}}
+                          </image>{{CUT($sectionicons::Apple=CUT|Plex=CUT|Fanart=|Custom=CUT)}}
+                          <image>
+                             {{URL(:/fanartcache/{{getBackground({{EVAL({\
+                              'template'    : 'plex',\
+                              'title'       : "{{TEXT(Search)}}",\
+                              'image'       : "icons/search-flow.png",\
+                              'resolution'  : "flow",\
+                              'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+                              'titleSize'   : "40",\
+                              'anchorX'     : "center",\
+                              'anchorY'     : "bottom",\
+                              'offsetX'     : "0",\
+                              'offsetY'     : "50",\
+                              'layers'      : ["FlowIconCostum"]\
+                              })}})}})}}
+                        </image>{{CUT($sectionicons::Apple=CUT|Plex=CUT|Fanart=CUT|Custom=)}}
+            <defaultImage>resource://Poster.png</defaultImage>
             
-            <header>
-                <imageHeader>
-                    <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=630|1080=945)}}, 0" required="true">
-                        {{URL(:/fanartcache/{{getBackground({{EVAL({\
-                        'template'    : 'plex',\
-                        'title'       : "{{EVAL(quote_plus("{{TEXT(Plex Library)}}"))}}",\
-                        'image'       : "backgrounds/plex{{VAL($menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
-                        'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
-                        'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
-                        'titleColor'  : "{{VAL($titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
-                        'layers'      : ["PlexGrid{{VAL($gridtint::On=Text|Off=)}}"{{VAL($menuhint::On=,"PlexPressMenu_{{VAL($subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
-                        })}})}})}}
-                    </image>{{CUT($sectionsposition::Top=|Flow=CUT))}}
-                    
-                    <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=630|1080=945)}}, 0" required="true">
-                        {{URL(:/fanartcache/{{getBackground({{EVAL({\
-                        'template'    : 'plex',\
-                        'title'       : "{{EVAL(quote_plus("{{TEXT(Plex Library)}}"))}}",\
-                        'image'       : "backgrounds/plex{{VAL($menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
-                        'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
-                        'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
-                        'titleColor'  : "{{VAL($titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
-                        'layers'      : ["PlexLibraryFlow{{VAL($gridtint::On=Text|Off=)}}"{{VAL($menuhint::On=,"PlexPressMenu_{{VAL($subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
-                        })}})}})}}
-                    </image>{{CUT($sectionsposition::Top=CUT|Flow=))}}{{CUT(^aTVFirmwareVersion::=|7=CUT)}}
-                    
-                    <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=630|1080=905)}}, 0" required="true">
-                        {{URL(:/fanartcache/{{getBackground({{EVAL({\
-                        'template'    : 'plex',\
-                        'title'       : "{{EVAL(quote_plus("{{TEXT(Plex Library)}}"))}}",\
-                        'image'       : "backgrounds/plex{{VAL($menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
-                        'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
-                        'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
-                        'titleColor'  : "{{VAL($titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
-                        'layers'      : ["PlexLibraryFlow{{VAL($gridtint::On=Text|Off=)}}"{{VAL($menuhint::On=,"PlexPressMenu_{{VAL($subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
-                        })}})}})}}
-                    </image>{{CUT($sectionsposition::Top=CUT|Flow=))}}{{CUT(^aTVFirmwareVersion::=CUT|7=)}}
-                </imageHeader>
-            </header>
-            
-            <items>
-                <showcase accessibilityLabel="Showcase movies" id="showcase_1" >
-                    <initialSelection>
-                        <indexPath>
-                            <index>0</index>
-                        </indexPath>
-                    </initialSelection>{{COPY(Server:@main/size::0=|1=COPY)}}
+          </showcasePoster>{{CUT($library_search::Show=|Hide=CUT)}} 
+        </items>
+      </showcase>{{CUT($sectionsposition::Top=CUT|Bottom=CUT|Flow=|Middle=CUT))}}         
+
+        <!-- servers -->
+        <__COPY__>  
+        {{COPY(Server:@main/size::0=|1=COPY)}}
+        <collectionDivider alignment="center" accessibilityLabel="Library">
+            <title>{{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+        </collectionDivider>{{CUT($sectionsposition::Top=|Bottom=CUT|Flow=CUT|Middle=CUT)}}
+
+        <shelf id="shelf_0" columnCount="5">
+            <sections>                             
+            <!-- local servers -->
+                <shelfSection>
+                   
                     <items>
-                        {{COPY(Server:@main/size::0=|1=COPY)}}
-                        
-                        <showcasePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}"
-                            onPlay="atv.loadURL('{{URL(key:::PlexConnect={{EVAL('{{VAL(scanner)}}'.replace(' ', '_'))}})}}')"
-                            onSelect="atv.loadURL('{{URL(key:::PlexConnect={{EVAL('{{VAL(scanner)}}'.replace(' ', '_'))}})}}')"
-                            onHoldSelect="sectionHoldSelect('{{VAL(key)}}', '{{URL(#searchKey)}}', '{{VAL(#serverName)}}', '{{URL(refreshKey)}}', '{{VAL(title)}}')">
-                            
-                            {{VAR(serverName:name)}}
-                            {{VAR(searchKey:searchKey)}}
-                            {{COPY(Directory)}}
-                            {{VAR(items:NoKey:TRUE)}}
-                            <image>
-                                {{URL(:/fanartcache/{{getBackground({{EVAL({\
-                                'template'    : 'plex',\
-                                'title'       : "{{VAL(title)}}",\
-                                'image'       : "{{IMAGEURL(thumb::768)}}",\
-                                'resolution'  : "square",\
-                                'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
-                                'titleSize'   : "40",\
-                                'anchorX'     : "center",\
-                                'anchorY'     : "top",\
-                                'offsetX'     : "0",\
-                                'offsetY'     : "5",\
-                                'layers'      : ["FlowIconSquare"]\
-                                })}})}})}}
-                            </image>{{CUT($sectionicons::Apple=CUT|Plex=|Fanart=CUT|Custom=CUT)}}
-                            <image>
-                                {{URL(:/fanartcache/{{getBackground({{EVAL({\
-                                'template'    : 'plex',\
-                                'title'       : "{{VAL(title)}}",\
-                                'image'       : "flow/{{VAL(type)}}-flow.png",\
-                                'resolution'  : "flow",\
-                                'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
-                                'titleSize'   : "40",\
-                                'anchorX'     : "center",\
-                                'anchorY'     : "bottom",\
-                                'offsetX'     : "0",\
-                                'offsetY'     : "50",\
-                                'layers'      : ["FlowIconApple"]\
-                                })}})}})}}
-                            </image>{{CUT($sectionicons::Apple=|Plex=CUT|Fanart=CUT|Custom=CUT)}}
-                            <image>
-                                {{URL(:/fanartcache/{{getBackground({{EVAL({\
-                                'template'    : 'plex',\
-                                'title'       : "{{VAL(title)}}",\
-                                'image'       : "flow/{{VAL(type)}}-flow-plex.png",\
-                                'resolution'  : "flow",\
-                                'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
-                                'titleSize'   : "40",\
-                                'anchorX'     : "center",\
-                                'anchorY'     : "bottom",\
-                                'offsetX'     : "0",\
-                                'offsetY'     : "50",\
-                                'layers'      : ["FlowIconFanart"]\
-                                })}})}})}}
-                            </image>{{CUT($sectionicons::Apple=CUT|Plex=CUT|Fanart=|Custom=CUT)}}
-                            <image>
-                                {{URL(:/fanartcache/{{getBackground({{EVAL({\
-                                'template'    : 'plex',\
-                                'title'       : "{{VAL(title)}}",\
-                                'image'       : "custom/flow/{{EVAL("{{VAL(title)}}".replace(' ', ''))}}-flow.png",\
-                                'resolution'  : "flow",\
-                                'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
-                                'titleSize'   : "40",\
-                                'anchorX'     : "center",\
-                                'anchorY'     : "bottom",\
-                                'offsetX'     : "0",\
-                                'offsetY'     : "50",\
-                                'layers'      : ["FlowIconCostum"]\
-                                })}})}})}}
-                            </image>{{CUT($sectionicons::Apple=CUT|Plex=CUT|Fanart=CUT|Custom=)}}
-                            
-                            <defaultImage>resource://Poster.png</defaultImage>
-                        </showcasePoster>
-                        <!-- search -->
-                        <showcasePoster id="{{VAL(searchKey)}}" accessibilityLabel="{{TEXT(Search)}}"
-                            onPlay="atv.loadURL('{{URL(searchKey)}}')"
-                            onSelect="atv.loadURL('{{URL(searchKey)}}')">
-                            <image>
-                                {{URL(:/fanartcache/{{getBackground({{EVAL({\
-                                'template'    : 'plex',\
-                                'title'       : "{{TEXT(Search)}}",\
-                                'image'       : "icons/plexsearch.png",\
-                                'resolution'  : "square",\
-                                'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
-                                'titleSize'   : "40",\
-                                'anchorX'     : "center",\
-                                'anchorY'     : "top",\
-                                'offsetX'     : "0",\
-                                'offsetY'     : "5",\
-                                'layers'      : ["FlowIconSquare"]\
-                                })}})}})}}
-                            </image>{{CUT($sectionicons::Apple=CUT|Plex=|Fanart=CUT|Custom=CUT)}}
-                            <image>
-                                {{URL(:/fanartcache/{{getBackground({{EVAL({\
-                                'template'    : 'plex',\
-                                'title'       : "{{TEXT(Search)}}",\
-                                'image'       : "icons/search-flow.png",\
-                                'resolution'  : "flow",\
-                                'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
-                                'titleSize'   : "40",\
-                                'anchorX'     : "center",\
-                                'anchorY'     : "bottom",\
-                                'offsetX'     : "0",\
-                                'offsetY'     : "50",\
-                                'layers'      : ["FlowIconApple"]\
-                                })}})}})}}
-                            </image>{{CUT($sectionicons::Apple=|Plex=CUT|Fanart=CUT|Custom=CUT)}}
-                            <image>
-                                {{URL(:/fanartcache/{{getBackground({{EVAL({\
-                                'template'    : 'plex',\
-                                'title'       : "{{TEXT(Search)}}",\
-                                'image'       : "icons/search-flow.png",\
-                                'resolution'  : "flow",\
-                                'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
-                                'titleSize'   : "40",\
-                                'anchorX'     : "center",\
-                                'anchorY'     : "bottom",\
-                                'offsetX'     : "0",\
-                                'offsetY'     : "50",\
-                                'layers'      : ["FlowIconFanart"]\
-                                })}})}})}}
-                            </image>{{CUT($sectionicons::Apple=CUT|Plex=CUT|Fanart=|Custom=CUT)}}
-                            <image>
-                                {{URL(:/fanartcache/{{getBackground({{EVAL({\
-                                'template'    : 'plex',\
-                                'title'       : "{{TEXT(Search)}}",\
-                                'image'       : "icons/search-flow.png",\
-                                'resolution'  : "flow",\
-                                'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
-                                'titleSize'   : "40",\
-                                'anchorX'     : "center",\
-                                'anchorY'     : "bottom",\
-                                'offsetX'     : "0",\
-                                'offsetY'     : "50",\
-                                'layers'      : ["FlowIconCostum"]\
-                                })}})}})}}
-                            </image>{{CUT($sectionicons::Apple=CUT|Plex=CUT|Fanart=CUT|Custom=)}}
-                            <defaultImage>resource://Poster.png</defaultImage>
-                            
-                        </showcasePoster>{{CUT($library_search::Show=|Hide=CUT)}}
-                    </items>
-                </showcase>{{CUT($sectionsposition::Top=CUT|Bottom=CUT|Flow=|Middle=CUT))}}
-                
-                <!-- servers -->
-                <__COPY__>
-                    {{COPY(Server:@main/size::0=|1=COPY)}}
-                    <collectionDivider alignment="center" accessibilityLabel="Library">
-                        <title>{{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
-                    </collectionDivider>{{CUT($sectionsposition::Top=|Bottom=CUT|Flow=CUT|Middle=CUT)}}
-                    
-                    <shelf id="shelf_0" columnCount="5">
-                        <sections>
-                            <!-- local servers -->
-                            <shelfSection>
-                                
-                                <items>
-                                    <!-- /library/sections -->
-                                    {{VAR(serverName:name)}}
-                                    {{VAR(searchKey:searchKey)}}
-                                    <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" featured="true"
-                                        alwaysShowTitles="{{VAL($sectionicons::Apple=true|Plex=true|Fanart=true)}}"
-                                        onPlay="atv.loadURL('{{URL(key:::PlexConnect={{EVAL('{{VAL(scanner)}}'.replace(' ', '_'))}})}}')"
-                                        onSelect="atv.loadURL('{{URL(key:::PlexConnect={{EVAL('{{VAL(scanner)}}'.replace(' ', '_'))}})}}')"
-                                        onHoldSelect="sectionHoldSelect('{{VAL(key)}}', '{{URL(#searchKey)}}', '{{VAL(#serverName)}}', '{{URL(refreshKey)}}', '{{VAL(title)}}')">
-                                        {{COPY(Directory)}}
-                                        {{VAR(sections:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
-                                        
-                                        <title>{{VAL(title)}}</title>
-                                        <image>{{IMAGEURL(art::768)}}</image>{{CUT($sectionicons::Apple=|Plex=CUT|Fanart=CUT|Custom=CUT)}}
-                                        <image>{{URL(:/templates/plex/images/icons/{{VAL(type)}}.png)}}</image>{{CUT($sectionicons::Apple=CUT|Plex=CUT|Fanart=|Custom=CUT)}}
-                                        <image>{{IMAGEURL(thumb::768)}}</image>{{CUT($sectionicons::Apple=CUT|Plex=|Fanart=CUT|Custom=CUT)}}
-                                        <image>{{URL(:/templates/plex/images/custom/top/{{EVAL("{{VAL(title)}}".replace(' ', ''))}}.png)}}</image>{{CUT($sectionicons::Apple=CUT|Plex=CUT|Fanart=CUT|Custom=)}}
-                                        <defaultImage>resource://16X9.png</defaultImage>
-                                        <!--badgeCount></badgeCount-->
-                                    </moviePoster>
-                                    
-                                    <!-- search -->
-                                    <moviePoster id="{{VAL(searchKey)}}" featured="true" alwaysShowTitles="{{VAL($sectionicons::Apple=true|Plex=true|Fanart=true)}}"
-                                        onPlay="atv.loadURL('{{URL(searchKey)}}')"
-                                        onSelect="atv.loadURL('{{URL(searchKey)}}')">
-                                        <title>{{TEXT(Search)}}</title>
-                                        <image>{{URL(:/templates/plex/images/icons/search.png)}}</image>
-                                        <defaultImage>resource://16X9.png</defaultImage>
-                                    </moviePoster>{{CUT($library_search::Show=|Hide=CUT)}}
-                                    
-                                </items>
-                            </shelfSection>
-                        </sections>
-                    </shelf> {{CUT($sectionsposition::Top=|Bottom=CUT|Flow=CUT|Middle=CUT))}}
-                    <collectionDivider alignment="left" accessibilityLabel="Show_Bookcase_Divider">
-                        <title></title>
-                    </collectionDivider>{{CUT($sectionsposition::Top=|Bottom=CUT|Flow=CUT|Middle=CUT))}}
-                </__COPY__>
-                
-                <!--On Deck-->
-                <collectionDivider alignment="left" accessibilityLabel="On Deck">
-                    <title>{{TEXT(On Deck)}}</title>
-                </collectionDivider>{{CUT($library_ondeck::checked=|unchecked=CUT)}}
-                <pagedGrid id="shelf_3">{{CUT(@OnDeck/Server/size:CUT:0=CUT|1=)}}{{COPY(@OnDeck/Server:size::0=|1=COPY)}}
-                    <fourByThreePoster id="{{VAL(key)}}" featured="true" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_library::Highlighted Only=false|Show All=true)}}"
-                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video_Pause&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
-                        onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect={{VAL(type::movie=Movie_|episode=Episode_)}}PrePlay)}}')"
-                        onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
-                        {{PAGEDCOPY(Video,6,1)}}
-                        {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
-                        <title>{{VAL(type::movie={{VAL(title)}}|episode={{VAL(grandparentTitle)}})}}</title>
-                        <subtitle>{{VAL(type::movie={{VAL(year)}}|episode={{episodestring(parentIndex:0:index:0)}})}}</subtitle>
-                        <image>{{IMAGEURL({{VAL(type::movie=thumb|episode=grandparentThumb)}}::384)}}</image>
-                        <defaultImage>resource://Poster.png</defaultImage>
-                    </fourByThreePoster>
-                </pagedGrid>{{CUT($library_ondeck::checked=|unchecked=CUT)}}{{CUT(@OnDeck/Server/size:CUT:0=CUT|1=)}}
-                
-                <!--Recently Added-->
-                <collectionDivider alignment="left" accessibilityLabel="Recently Added">
-                    <title>{{TEXT(Recently Added)}}</title>
-                </collectionDivider>{{CUT($library_recentlyadded::checked=|unchecked=CUT)}}
-                <pagedGrid id="shelf_3">{{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}{{COPY(@RecentlyAdded/Server:size::0=|1=COPY)}}
-                    <fourByThreePoster id="{{VAL(key)}}" featured="true" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_library::Highlighted Only=false|Show All=true)}}"
-                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video_Pause&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
-                        onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect={{VAL(type::movie=Movie_|episode=Episode_)}}PrePlay)}}')"
-                        onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
-                        {{PAGEDCOPY(Video,6,1)}}
-                        {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
-                        <title>{{VAL(type::movie={{VAL(title)}}|episode={{VAL(grandparentTitle)}})}}</title>
-                        <subtitle>{{VAL(type::movie={{VAL(year)}}|episode={{episodestring(parentIndex:0:index:0)}})}}</subtitle>
-                        <image>{{IMAGEURL({{VAL(type::movie=thumb|episode=grandparentThumb)}}::384)}}</image>
-                        <defaultImage>resource://Poster.png</defaultImage>
-                    </fourByThreePoster>
-                </pagedGrid>{{CUT($library_recentlyadded::checked=|unchecked=CUT)}}{{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}
-                
-                 <!--Channels-->
-                 <collectionDivider alignment="left" accessibilityLabel="Channels">
-                     <title>{{TEXT(Channels)}}</title>
-                 </collectionDivider>{{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}}
-                 <pagedGrid id="shelf_3">{{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}}{{COPY(@VideoChannels/Server:size::0=|1=COPY)}}
-                     <fourByThreePoster id="Video_{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_channels::Highlighted Only=false|Show All=true)}}"
-                         onPlay="atv.loadURL('{{URL(key:::PlexConnect=Channels_Video)}}')"
-                         onSelect="atv.loadURL('{{URL(key:::PlexConnect=Channels_Video)}}')">
-                         {{PAGEDCOPY(Directory,6,1)}}
-                         {{VAR(channels:NoKey:TRUE)}}
-                         <title>{{VAL(title)}}</title>
-                         <image>{{IMAGEURL(thumb::)}}</image>
-                         <defaultImage>resource://Square.png</defaultImage>
-                     </fourByThreePoster>
-                 </pagedGrid>{{CUT($library_channels:CUT:checked=|unchecked=CUT)}}{{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}}
-            </items>
-        </scroller>{{CUT(#sections::FALSE=CUT|TRUE=)}}
+                        <!-- /library/sections -->
+                  {{VAR(serverName:name)}}
+                  {{VAR(searchKey:searchKey)}}
+                  <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" featured="true" 
+                               alwaysShowTitles="{{VAL($sectionicons::Apple=true|Plex=true|Fanart=true)}}"
+                               onPlay="atv.loadURL('{{URL(key:::PlexConnect={{EVAL('{{VAL(scanner)}}'.replace(' ', '_'))}})}}')"
+                               onSelect="atv.loadURL('{{URL(key:::PlexConnect={{EVAL('{{VAL(scanner)}}'.replace(' ', '_'))}})}}')"
+                               onHoldSelect="sectionHoldSelect('{{VAL(key)}}', '{{URL(#searchKey)}}', '{{VAL(#serverName)}}', '{{URL(refreshKey)}}', '{{VAL(title)}}')">
+                  {{COPY(Directory)}}
+                  {{VAR(sections:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                  
+                    <title>{{VAL(title)}}</title>
+                    <image>{{IMAGEURL(art::768)}}</image>{{CUT($sectionicons::Apple=|Plex=CUT|Fanart=CUT|Custom=CUT)}}
+                    <image>{{URL(:/templates/plex/images/icons/{{VAL(type)}}.png)}}</image>{{CUT($sectionicons::Apple=CUT|Plex=CUT|Fanart=|Custom=CUT)}}
+                    <image>{{IMAGEURL(thumb::768)}}</image>{{CUT($sectionicons::Apple=CUT|Plex=|Fanart=CUT|Custom=CUT)}}
+                    <image>{{URL(:/templates/plex/images/custom/top/{{EVAL("{{VAL(title)}}".replace(' ', ''))}}.png)}}</image>{{CUT($sectionicons::Apple=CUT|Plex=CUT|Fanart=CUT|Custom=)}}
+                    <defaultImage>resource://16X9.png</defaultImage>
+                    <!--badgeCount></badgeCount-->
+                  </moviePoster>
+                  
+                  <!-- search -->
+                  <moviePoster id="{{VAL(searchKey)}}" featured="true" alwaysShowTitles="{{VAL($sectionicons::Apple=true|Plex=true|Fanart=true)}}"
+                               onPlay="atv.loadURL('{{URL(searchKey)}}')"
+                               onSelect="atv.loadURL('{{URL(searchKey)}}')">
+                    <title>{{TEXT(Search)}}</title>
+                    <image>{{URL(:/templates/plex/images/icons/search.png)}}</image>
+                    <defaultImage>resource://16X9.png</defaultImage>
+                  </moviePoster>{{CUT($library_search::Show=|Hide=CUT)}} 
+                  
+                </items>
+              </shelfSection>
+            </sections>
+          </shelf> {{CUT($sectionsposition::Top=|Bottom=CUT|Flow=CUT|Middle=CUT))}} 
+          <collectionDivider alignment="left" accessibilityLabel="Show_Bookcase_Divider">
+            <title></title>
+          </collectionDivider>{{CUT($sectionsposition::Top=|Bottom=CUT|Flow=CUT|Middle=CUT))}}
+        </__COPY__>  
+
+            
+       <!-- ON Deck -->
+      <collectionDivider alignment="left" accessibilityLabel="On Deck">
+        {{CUT(@OnDeck/Server/size:CUT:0=CUT|1=)}}
+        <title>{{TEXT(On Deck)}}</title>
+      </collectionDivider>{{CUT($library_ondeck::checked=|unchecked=CUT)}}
+      
+              <pagedGrid id="paged-grid-0">
+        {{CUT(@OnDeck/size:CUT:0=CUT|1=)}}
+            {{COPY(Server:@OnDeck/size::0=|1=COPY)}}
+<!--          <grid columnCount="15" id="grid_0">
+             <items>-->
+               <fourByThreePoster id="{{VAL(key)}}" featured="true" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_library::Highlighted Only=false|Show All=true)}}"
+                            onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video_Pause&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                            onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect={{VAL(type::movie=Movie_|episode=Episode_)}}PrePlay)}}')"
+                            onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
+                  {{PAGEDCOPY(@OnDeck/Server/Video,6,1)}}
+                  {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                  <title>{{VAL(type::movie={{VAL(title)}}|episode={{VAL(grandparentTitle)}})}}</title>
+                  <subtitle>{{VAL(type::movie={{VAL(year)}}|episode={{episodestring(parentIndex:0:index:0)}})}}</subtitle>
+                  <image>{{IMAGEURL({{VAL(type::movie=thumb|episode=grandparentThumb)}}::384)}}</image>
+                  <defaultImage>resource://Poster.png</defaultImage>
+                </fourByThreePoster>
+<!--             </items>
+           </grid>-->
         
-        <!--No Sections Available-->
-        <dialog id="com.sample.error-dialog">
-            {{CUT(#sections::FALSE=|TRUE=CUT)}}
-            <title>PlexConnect</title>
-            <description>{{TEXT(No Plex Library Sections Available)}}</description>
-        </dialog>
+         </pagedGrid>{{CUT($library_ondeck::checked=|unchecked=CUT)}}{{CUT(@OnDeck/Server/size:CUT:0=CUT|1=)}}  
         
-    </body>
+
+   
+        
+         <collectionDivider alignment="left" accessibilityLabel="Recently Added">
+          {{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}
+          <title>{{TEXT(Recently Added)}}</title>
+        </collectionDivider>{{CUT($library_recentlyadded::checked=|unchecked=CUT)}}{{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}} 
+       
+        
+        <pagedGrid id="paged-grid-0">{{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}
+              {{COPY(Server:@RecentlyAdded/size::0=|1=COPY)}}
+              
+                  <fourByThreePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_library::Highlighted Only=false|Show All=true)}}"
+                            onPlay="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect={{VAL(type::episode=TVShow_PrePlay|movie=Movie_PrePlay|season=TVShow_Episode_{{EVAL('{{VAL($episodeView)}}'.replace(' ', ''))}})}})}}')"
+                            onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect={{VAL(type::episode=TVShow_PrePlay|movie=Movie_PrePlay|season=TVShow_Episode_{{EVAL('{{VAL($episodeView)}}'.replace(' ', ''))}})}})}}')"
+                            onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
+                  {{PAGEDCOPY(@RecentlyAdded/Server/Video,6,1,Directory)}}
+                  {{VAR(items:NoKey:TRUE)}} 
+                  <title>{{VAL(type::movie={{VAL(title)}}|episode={{VAL(parentTitle)}}|season={{VAL(parentTitle)}}|album={{VAL(parentTitle)}})}}</title>
+                  <subtitle>{{VAL(type::movie={{VAL(year)}}|episode={{VAL(title)}}|season={{VAL(title)}}|album={{VAL(title)}})}}</subtitle>
+                  <badgeCount>{{unwatchedCountGrid(leafCount:0:viewedLeafCount:0)}}</badgeCount>{{CUT($showunwatched::False=CUT|True=)}}
+                  <image>{{IMAGEURL(thumb::384)}}</image>        
+                  <defaultImage>resource://{{VAL(type::movie=Poster|episode=Poster|season=Poster|album=Poster|track=Poster)}}.png</defaultImage>
+                </fourByThreePoster>
+        </pagedGrid>{{CUT($library_recentlyadded::checked=|unchecked=CUT)}}{{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}
+        
+
+   
+        <collectionDivider alignment="left" accessibilityLabel="Channels">
+            <title>{{TEXT(Channels)}}</title>
+        </collectionDivider>{{CUT($library_channels:CUT:checked=|unchecked=CUT)}}{{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}} 
+        <pagedGrid id="shelf_3">
+            {{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}}
+
+                    {{COPY(@VideoChannels/Server:size::0=|1=COPY)}}
+
+                        <!-- /library/sections -->
+                        <fourByThreePoster id="Video_{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_channels::Highlighted Only=false|Show All=true)}}"
+                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Channels_Video)}}')"
+                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=Channels_Video)}}')">
+                            {{PAGEDCOPY(Directory,6,1)}}
+                            {{VAR(channels:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                            <title>{{VAL(title)}}</title>
+                            <image>{{IMAGEURL(thumb::)}}</image>
+                            <defaultImage>resource://Square.png</defaultImage>
+                        </fourByThreePoster>
+        </pagedGrid>{{CUT($library_channels:CUT:checked=|unchecked=CUT)}}{{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}}     
+        </items>  
+    </scroller>{{CUT(#sections::FALSE=CUT|TRUE=)}}
+    
+    <!--No Sections Available-->
+    <dialog id="com.sample.error-dialog">
+    {{CUT(#sections::FALSE=|TRUE=CUT)}}
+      <title>PlexConnect</title>
+      <description>{{TEXT(No Plex Library Sections Available)}}</description>
+    </dialog>
+    
+  </body>
 </atv>
