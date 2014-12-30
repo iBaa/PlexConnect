@@ -260,31 +260,27 @@
         </__COPY__>  
 
             
-       <!-- ON Deck -->
+       <!-- On Deck -->
       <collectionDivider alignment="left" accessibilityLabel="On Deck">
         {{CUT(@OnDeck/Server/size:CUT:0=CUT|1=)}}
-        <title>{{TEXT(On Deck)}}</title>
+        <title>{{TEXT(On Deck)}} - {{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
       </collectionDivider>{{CUT($library_ondeck::checked=|unchecked=CUT)}}
       
               <pagedGrid id="paged-grid-0">
-        {{CUT(@OnDeck/size:CUT:0=CUT|1=)}}
-            {{COPY(Server:@OnDeck/size::0=|1=COPY)}}
-<!--          <grid columnCount="15" id="grid_0">
-             <items>-->
+        {{CUT(@OnDeck/Server/size:CUT:0=CUT|1=)}}
+        {{COPY(@OnDeck/Server:size::0=|1=COPY)}}
+
                <fourByThreePoster id="{{VAL(key)}}" featured="true" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_library::Highlighted Only=false|Show All=true)}}"
                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video_Pause&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
                             onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect={{VAL(type::movie=Movie_|episode=Episode_)}}PrePlay)}}')"
                             onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
-                  {{PAGEDCOPY(@OnDeck/Server/Video,6,1)}}
+                  {{PAGEDCOPY(Video,6,1)}}
                   {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                   <title>{{VAL(type::movie={{VAL(title)}}|episode={{VAL(grandparentTitle)}})}}</title>
                   <subtitle>{{VAL(type::movie={{VAL(year)}}|episode={{episodestring(parentIndex:0:index:0)}})}}</subtitle>
                   <image>{{IMAGEURL({{VAL(type::movie=thumb|episode=grandparentThumb)}}::384)}}</image>
                   <defaultImage>resource://Poster.png</defaultImage>
                 </fourByThreePoster>
-<!--             </items>
-           </grid>-->
-        
          </pagedGrid>{{CUT($library_ondeck::checked=|unchecked=CUT)}}{{CUT(@OnDeck/Server/size:CUT:0=CUT|1=)}}  
         
 
@@ -292,18 +288,18 @@
         
          <collectionDivider alignment="left" accessibilityLabel="Recently Added">
           {{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}
-          <title>{{TEXT(Recently Added)}}</title>
+          <title>{{TEXT(Recently Added)}} - {{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
         </collectionDivider>{{CUT($library_recentlyadded::checked=|unchecked=CUT)}}{{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}} 
        
         
         <pagedGrid id="paged-grid-0">{{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}
-              {{COPY(Server:@RecentlyAdded/size::0=|1=COPY)}}
+              {{COPY(@RecentlyAdded/Server:size::0=|1=COPY)}}
               
                   <fourByThreePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_library::Highlighted Only=false|Show All=true)}}"
                             onPlay="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect={{VAL(type::episode=TVShow_PrePlay|movie=Movie_PrePlay|season=TVShow_Episode_{{EVAL('{{VAL($episodeView)}}'.replace(' ', ''))}})}})}}')"
                             onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect={{VAL(type::episode=TVShow_PrePlay|movie=Movie_PrePlay|season=TVShow_Episode_{{EVAL('{{VAL($episodeView)}}'.replace(' ', ''))}})}})}}')"
                             onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
-                  {{PAGEDCOPY(@RecentlyAdded/Server/Video,6,1,Directory)}}
+                  {{PAGEDCOPY(Video,6,1)}}
                   {{VAR(items:NoKey:TRUE)}} 
                   <title>{{VAL(type::movie={{VAL(title)}}|episode={{VAL(parentTitle)}}|season={{VAL(parentTitle)}}|album={{VAL(parentTitle)}})}}</title>
                   <subtitle>{{VAL(type::movie={{VAL(year)}}|episode={{VAL(title)}}|season={{VAL(title)}}|album={{VAL(title)}})}}</subtitle>
@@ -316,7 +312,7 @@
 
    
         <collectionDivider alignment="left" accessibilityLabel="Channels">
-            <title>{{TEXT(Channels)}}</title>
+            <title>{{TEXT(Channels)}} - {{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
         </collectionDivider>{{CUT($library_channels:CUT:checked=|unchecked=CUT)}}{{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}} 
         <pagedGrid id="shelf_3">
             {{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}}
