@@ -35,5 +35,5 @@ echo "Diverged"
 fi
 
 # Allow OpenPlex git to update to display proper git HEAD commit
-sleep 5
+sleep 10
 git reset --hard
