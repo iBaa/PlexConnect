@@ -13,7 +13,7 @@
       {{VAR(items:NoKey:FALSE)}}
 
     <scroller id="Library_Grid">
-    {{CUT($libraryview:CUT:=CUT|Grid=|Grid =CUT)}}
+    
       <header>
        <imageHeader>
            <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=630|1080=945)}}, 0" required="true">
