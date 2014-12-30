@@ -254,9 +254,6 @@
               </shelfSection>
             </sections>
           </shelf> {{CUT($sectionsposition::Top=|Bottom=CUT|Flow=CUT|Middle=CUT))}} 
-          <collectionDivider alignment="left" accessibilityLabel="Show_Bookcase_Divider">
-            <title></title>
-          </collectionDivider>{{CUT($sectionsposition::Top=|Bottom=CUT|Flow=CUT|Middle=CUT))}}
         </__COPY__>  
 
             

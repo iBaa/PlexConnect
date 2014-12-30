@@ -36,7 +36,7 @@
         <!-- servers -->
         <__COPY__>  
         {{COPY(Server:@main/size::0=|1=COPY)}}
-        <collectionDivider alignment="center" accessibilityLabel="Library">
+        <collectionDivider alignment="left" accessibilityLabel="Library">
             <title>{{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
         </collectionDivider>
 
@@ -78,9 +78,6 @@
               </shelfSection>
             </sections>
           </shelf>
-          <collectionDivider alignment="left" accessibilityLabel="Show_Bookcase_Divider">
-            <title></title>
-          </collectionDivider>
         </__COPY__>  
 
             
