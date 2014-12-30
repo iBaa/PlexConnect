@@ -28,9 +28,9 @@
             
              <items>
             <goldenPoster id="{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
-												onPlay="flattenSeason('{{URL(key:::PlexConnect=TVShow_Season_{{VAL($seasonview)}})}}', '{{SETTING(flattenseason)}}', 'False')"
-                        onSelect="flattenSeason('{{URL(key:::PlexConnect=TVShow_Season_{{VAL($seasonview)}})}}', '{{SETTING(flattenseason)}}', 'False')"
-                        onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
+												onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Season_{{VAL($seasonview)}})}}')"
+                                                onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Season_{{VAL($seasonview)}})}}')"
+                                                onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
               {{COPY(Directory)}}
               <title>{{VAL(title)}}</title>
                 <image>{{IMAGEURL(thumb::768)}}</image>
