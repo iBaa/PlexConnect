@@ -84,16 +84,16 @@
         <title>{{TEXT(On Deck)}}</title>
       </collectionDivider>{{CUT($library_ondeck::checked=|unchecked=CUT)}}
       <shelf id="shelf_1" columnCount="7">
-        {{CUT(@OnDeck/size:CUT:0=CUT|1=)}}
+        {{CUT(@OnDeck/size:CUT:0=CUT|1=)}}{{COPY(@OnDeck/Server:size::0=|1=COPY)}}
         <sections>
           <shelfSection>
-            {{COPY(Server:@OnDeck/size::0=|1=COPY)}}
+            
             <items>
                 <fourByThreePoster id="{{VAL(key)}}" featured="true" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_library::Highlighted Only=false|Show All=true)}}"
                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video_Pause&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
                             onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect={{VAL(type::movie=Movie_|episode=Episode_)}}PrePlay)}}')"
                             onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
-                  {{COPY(@OnDeck/Server/Video)}}
+                  {{COPY(Video)}}
                   {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                   <title>{{VAL(type::movie={{VAL(title)}}|episode={{VAL(grandparentTitle)}})}}</title>
                   <subtitle>{{VAL(type::movie={{VAL(year)}}|episode={{episodestring(parentIndex:0:index:0)}})}}</subtitle>
@@ -108,18 +108,18 @@
          <collectionDivider alignment="left" accessibilityLabel="Recently Added">
           {{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}
           <title>{{TEXT(Recently Added)}}</title>
-        </collectionDivider>{{CUT($library_recentlyadded::checked=|unchecked=CUT)}}{{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}} 
+        </collectionDivider>{{CUT($library_recentlyadded::checked=|unchecked=CUT)}} 
         <shelf id="Recently_Bookshelf" columnCount="7">
-          {{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}
+          {{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}{{COPY(@RecentlyAdded/Server:size::0=|1=COPY)}}
           <sections>
             <shelfSection>
-              {{COPY(Server:@RecentlyAdded/size::0=|1=COPY)}}
+              
               <items>
                 <fourByThreePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_library::Highlighted Only=false|Show All=true)}}"
                             onPlay="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect={{VAL(type::episode=TVShow_PrePlay|movie=Movie_PrePlay|season=TVShow_Episode_{{EVAL('{{VAL($episodeView)}}'.replace(' ', ''))}})}})}}')"
                             onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect={{VAL(type::episode=TVShow_PrePlay|movie=Movie_PrePlay|season=TVShow_Episode_{{EVAL('{{VAL($episodeView)}}'.replace(' ', ''))}})}})}}')"
                             onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
-                  {{COPY(@RecentlyAdded/Server/Video,Directory)}}        
+                  {{COPY(Video,Directory)}}        
                   {{VAR(items:NoKey:TRUE)}} 
                   <title>{{VAL(type::movie={{VAL(title)}}|episode={{VAL(parentTitle)}}|season={{VAL(parentTitle)}}|album={{VAL(parentTitle)}})}}</title>
                   <subtitle>{{VAL(type::movie={{VAL(year)}}|episode={{VAL(title)}}|season={{VAL(title)}}|album={{VAL(title)}})}}</subtitle>
@@ -135,12 +135,12 @@
         
         <collectionDivider alignment="left" accessibilityLabel="Channels">
             <title>{{TEXT(Channels)}}</title>
-        </collectionDivider>{{CUT($library_channels:CUT:checked=|unchecked=CUT)}}{{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}} 
+        </collectionDivider>{{CUT($library_channels:CUT:checked=|unchecked=CUT)}}
         <shelf id="shelf_3" columnCount="7">
-            {{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}}
+            {{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}}{{COPY(@VideoChannels/Server:size::0=|1=COPY)}}
             <sections>                             
                 <shelfSection>
-                    {{COPY(@VideoChannels/Server:size::0=|1=COPY)}}
+                    
                     <items>
                         <fourByThreePoster id="Video_{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_channels::Highlighted Only=false|Show All=true)}}"
                                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=Channels_Video)}}')"
