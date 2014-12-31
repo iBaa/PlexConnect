@@ -32,7 +32,7 @@
            </imageHeader>{{CUT($sectionsposition::Top=|Flow=CUT))}}
            
            <imageHeader>
-           <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=630|1080=945)}}, 0" required="true">
+           <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=630|1080=905)}}, 0" required="true">
                {{URL(:/fanartcache/{{getBackground({{EVAL({\
                'template'    : 'plex',\
                'title'       : "{{EVAL(quote_plus("{{TEXT(Plex Library)}}"))}}",\
