@@ -18,7 +18,7 @@
 
           <!-- Directory Album-->
           <menuSection>
-          {{CUT(Directory/type:CUT:a=CUT|album=|b=CUT)}}
+          {{CUT(Directory/type:CUT:=CUT|album=|album =CUT)}}
             <items>
               <oneLineMenuItem id="{{VAL(key)}}"
                                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=Music_Track)}}')"
