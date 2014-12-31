@@ -1,2 +1,2 @@
 killall -s SIGINT Python
-kill -9  Python
+killall -9  Python
