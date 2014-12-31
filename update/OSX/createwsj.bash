@@ -29,19 +29,24 @@ echo 'Upload profile to ATV using this url http://secure.marketwatch.com/trailer
 
 fi
 
-sleep 1
+Sleep 1
 
 sed -i '' 's/trailers.apple.com/secure.marketwatch.com/g' Settings.cfg
 sed -i '' 's/www.icloud.com/secure.marketwatch.com/g' Settings.cfg
 
-sleep 1
+Sleep 1
+
+sed -i '' 's/trailers.apple.com/secure.marketwatch.com/g' Settings.cfg
+sed -i '' 's/www.icloud.com/secure.marketwatch.com/g' Settings.cfg
+
+Sleep 1
 
 sed -i '' 's/trailers.apple.com/secure.marketwatch.com/g' Settings.cfg
 sed -i '' 's/www.icloud.com/secure.marketwatch.com/g' Settings.cfg
 
 restartbash.bash
 
-sleep 1
+Sleep 1
 
 ## Display Settings.cfg
 FILE="/Applications/PlexConnect/settings.cfg"
