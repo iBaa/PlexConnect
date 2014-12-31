@@ -3,6 +3,8 @@
     <script src="{{URL(:/js/utils.js)}}" />
     <script src="{{URL(:/js/selectAudioAndSubs.js)}}" />
   </head>
+ 
+<!--  Standard PrePlay -->
 
   <body>
     <itemDetail id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=TVShow_PrePlay)}}')">
@@ -134,7 +136,7 @@
           </sections>
         </shelf>
       </bottomShelf>
-
-		</itemDetail>
-	</body>
+    </itemDetail>
+  </body>
+  
 </atv>

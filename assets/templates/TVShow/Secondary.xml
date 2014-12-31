@@ -14,8 +14,8 @@
         <sections>
           <menuSection>
             <items>
-              <oneLineMenuItem id="unwatched" onPlay="atv.loadURL('{{URL(key::/unwatched:PlexConnect=TVShow_{{EVAL('{{VAL($showview)}}'.replace(' ', ''))}})}}')"
-																							onSelect="atv.loadURL('{{URL(key::/unwatched:PlexConnect=TVShow_{{EVAL('{{VAL($showview)}}'.replace(' ', ''))}})}}')">
+              <oneLineMenuItem id="unwatched" onPlay="atv.loadURL('{{URL(key::/unwatched:PlexConnect=TVShow_View)}}')"
+                                              onSelect="atv.loadURL('{{URL(key::/unwatched:PlexConnect=TVShow_View)}}')">
                 <label>{{TEXT(Unwatched)}}</label>
                 <preview>
                   <link>{{URL(key::/unwatched:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview)}}</link>
@@ -30,8 +30,8 @@
                 </preview>
               </oneLineMenuItem>{{CUT($tv_navbar_genres::checked=CUT|unchecked=)}}
 
-              <oneLineMenuItem id="recentlyViewedShows" onPlay="atv.loadURL('{{URL(key::/recentlyViewedShows:PlexConnect=TVShow_{{EVAL('{{VAL($showview)}}'.replace(' ', ''))}})}}')"
-                                                        onSelect="atv.loadURL('{{URL(key::/recentlyViewedShows:PlexConnect=TVShow_{{EVAL('{{VAL($showview)}}'.replace(' ', ''))}})}}')">
+              <oneLineMenuItem id="recentlyViewedShows" onPlay="atv.loadURL('{{URL(key::/recentlyViewedShows:PlexConnect=TVShow_View)}}')"
+                                                        onSelect="atv.loadURL('{{URL(key::/recentlyViewedShows:PlexConnect=TVShow_View)}}')">
                 <label>{{TEXT(Recently Viewed Shows)}}</label>
                 <preview>
                   <link>{{URL(key::/recentlyViewedShows:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview)}}</link>

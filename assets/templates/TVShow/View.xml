@@ -1,0 +1,3 @@
+<atv>
+  <redirect template="TVShow/{{VAL($showview)}}.xml" />
+</atv>

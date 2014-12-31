@@ -18,8 +18,8 @@
             <items>
               <!-- library directories -->
               <oneLineMenuItem id="{{VAL(key)}}"
-                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_{{EVAL('{{VAL($showview)}}'.replace(' ', ''))}})}}')"
-                             onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_{{EVAL('{{VAL($showview)}}'.replace(' ', ''))}})}}')">
+                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_View)}}')"
+                             onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_View)}}')">
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>
                 <preview>

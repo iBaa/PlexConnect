@@ -81,8 +81,8 @@
                 <label>{{TEXT(TV Show Fanart)}}</label>
                 <rightLabel>{{TEXT(PIL/Pillow not installed)}}</rightLabel>
               </oneLineMenuItem>
-							
-							<oneLineMenuItem id="Fanart_Blur" onSelect="toggleSettings('Fanart_Blur', 'Settings_TVShows')">
+
+              <oneLineMenuItem id="Fanart_Blur" onSelect="toggleSettings('Fanart_Blur', 'Settings_TVShows')">
               {{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
               {{CUT(^aTVFirmwareVersion:CUT:=CUT|6=)}}  <!-- watch out: this will make trouble with iOS10 -->
                 <label>{{TEXT(Fanart Lower Blur)}}</label>
