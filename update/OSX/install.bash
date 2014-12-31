@@ -479,6 +479,8 @@ cp 10.10bash.bash /usr/bin
 cp purgeappbash.bash /usr/bin
 cp purgesettingsbash.bash /usr/bin
 cp checkerbash.bash /usr/bin
+cp pythonkiller.bash /usr/bin
+cp pythonkillerbash.bash /usr/bin
 cp uninstall.bash /usr/bin
 
 ## replace __INSTALLERPATH__ in default createimovie.bash
@@ -653,6 +655,8 @@ chmod +x /usr/bin/appweb.bash
 chmod +x /usr/bin/appwebbash.bash
 chmod +x /usr/bin/empty.bash
 chmod +x /usr/bin/emptybash.bash
+chmod +x /usr/bin/pythonkiller.bash
+chmod +x /usr/bin/pythonkillerbash.bash
 chmod +x /usr/bin/loghigh.bash 
 chmod +x /usr/bin/lognormal.bash
 chmod +x /usr/bin/loghighbash.bash 
