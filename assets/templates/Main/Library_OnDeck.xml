@@ -32,7 +32,7 @@
         <sections>
         
           <menuSection>
-              {{COPY(Server:@OnDeck/size::0=|1=COPY)}}            
+                          
             <items>
               <twoLineMenuItem id="{{VAL(key)}}"
                                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video_Pause&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"

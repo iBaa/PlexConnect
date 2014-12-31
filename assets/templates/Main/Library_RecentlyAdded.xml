@@ -32,7 +32,7 @@
         <sections>
         
           <menuSection>
-          {{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}
+          
             <items>
               <twoLineMenuItem id="{{VAL(key)}}"
                                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(type::movie=Movie_PrePlay|episode=Episode_PrePlay|season=Season_{{EVAL('{{VAL($showview)}}'.replace(' ', ''))}})}})}})}}')"

@@ -84,7 +84,8 @@
                                        onSelect="atv.loadURL('{{URL(searchKey)}}')">
                 <label>{{TEXT(Search)}}</label>
                 <accessories><arrow/></accessories>
-              </oneLineMenuItem>{{CUT($library_search::Show=|Hide=CUT)}} 
+              </oneLineMenuItem>
+              
               
               </items>
           </menuSection>
