@@ -1,0 +1,3 @@
+cp /Applications/plexconnect_BACKUP/PlexConnect.bash /Applications/PlexConnect/update/OSX
+pythonkillerbash.bash
+restartbash.bash
