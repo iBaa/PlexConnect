@@ -38,6 +38,11 @@ Sleep 1
 sed -i '' 's/trailers.apple.com/www.icloud.com/g' Settings.cfg
 sed -i '' 's/secure.marketwatch.com/www.icloud.com/g' Settings.cfg
 
+Sleep 1
+
+sed -i '' 's/trailers.apple.com/www.icloud.com/g' Settings.cfg
+sed -i '' 's/secure.marketwatch.com/www.icloud.com/g' Settings.cfg
+
 restartbash.bash
 
 Sleep 1
