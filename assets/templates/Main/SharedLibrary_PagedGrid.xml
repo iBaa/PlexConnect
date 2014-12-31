@@ -19,7 +19,7 @@
                     <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=630|1080=945)}}, 0" required="true">
                         {{URL(:/fanartcache/{{getBackground({{EVAL({\
                         'template'    : 'plex',\
-                        'title'       : "{{EVAL(quote_plus("{{TEXT(Plex Library)}}"))}}",\
+                        'title'       : "{{EVAL(quote_plus("{{TEXT(Shared Libraries)}}"))}}",\
                         'image'       : "backgrounds/plex{{VAL($menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
                         'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
                         'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
@@ -29,22 +29,19 @@
                     </image>
                 </imageHeader>
             </header>
-            
-            
-            <items>
-                
+                        
+            <items>                
                 <!-- servers -->
                 <__COPY__>
                     {{COPY(Server:@main/size::0=|1=COPY)}}
                     <collectionDivider alignment="left" accessibilityLabel="Library">
-                        <title>{{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+                        <title>{{VAL(name)}}{{VAL(local::0=|0 =)}}</title>
                     </collectionDivider>
                     
                     <shelf id="shelf_0" columnCount="5">
                         <sections>
                             <!-- local servers -->
-                            <shelfSection>
-                                
+                            <shelfSection>                               
                                 <items>
                                     <!-- /library/sections -->
                                     {{VAR(serverName:name)}}
@@ -72,26 +69,23 @@
                                         <title>{{TEXT(Search)}}</title>
                                         <image>{{URL(:/templates/plex/images/icons/search.png)}}</image>
                                         <defaultImage>resource://16X9.png</defaultImage>
-                                    </moviePoster>{{CUT($library_search::Show=|Hide=CUT)}}
-                                    
+                                    </moviePoster>{{CUT($library_search::Show=|Hide=CUT)}}                                    
                                 </items>
                             </shelfSection>
                         </sections>
                     </shelf>
-                    <collectionDivider alignment="left" accessibilityLabel="Show_Bookcase_Divider">
-                        <title></title>
-                    </collectionDivider>
                 </__COPY__>
                 
-                
-                <!--On Deck-->
-                <collectionDivider alignment="left" accessibilityLabel="On Deck">
-                    <title>{{TEXT(On Deck)}}</title>
-                </collectionDivider>{{CUT($library_ondeck::checked=|unchecked=CUT)}}
-                <pagedGrid id="shelf_3">{{CUT(@OnDeck/Server/size:CUT:0=CUT|1=)}}{{COPY(@OnDeck/Server:size::0=|1=COPY)}}
-                    <fourByThreePoster id="{{VAL(key)}}" featured="true" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_library::Highlighted Only=false|Show All=true)}}"
+       <__COPY__> 
+       {{COPY(@OnDeck/Server:size::0=|1=COPY)}}
+       <collectionDivider alignment="left" accessibilityLabel="On Deck">
+        <title>{{TEXT(On Deck)}} - {{VAL(name)}}{{VAL(local::0=|0 =)}}</title>{{CUT(@OnDeck/Server/size:CUT:0=CUT|1=)}}
+       </collectionDivider>{{CUT($library_ondeck::checked=|unchecked=CUT)}}
+       <pagedGrid id="paged-grid-0">
+       {{CUT(@OnDeck/Server/size:CUT:0=CUT|1=)}}
+        <fourByThreePoster id="{{VAL(key)}}" featured="true" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_library::Highlighted Only=false|Show All=true)}}"
                         onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video_Pause&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
-                        onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect={{VAL(type::movie=Movie_|episode=Episode_)}}PrePlay)}}')"
+                        onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect={{VAL(type::movie=Movie_|episode=TVShow_)}}PrePlay)}}')"
                         onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
                         {{PAGEDCOPY(Video,6,1)}}
                         {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
@@ -101,16 +95,16 @@
                         <defaultImage>resource://Poster.png</defaultImage>
                     </fourByThreePoster>
                     
-                </pagedGrid>{{CUT($library_ondeck::checked=|unchecked=CUT)}}{{CUT(@OnDeck/Server/size:CUT:0=CUT|1=)}}
-                
-                
-                
-                
-                <collectionDivider alignment="left" accessibilityLabel="Recently Added">
-                    <title>{{TEXT(Recently Added)}}</title>
-                </collectionDivider>{{CUT($library_recentlyadded::checked=|unchecked=CUT)}}
-                <pagedGrid id="paged-grid-0">{{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}{{COPY(@RecentlyAdded/Server:size::0=|1=COPY)}}
-                    
+                </pagedGrid>{{CUT($library_ondeck::checked=|unchecked=CUT)}}{{CUT(@OnDeck/Server/size:CUT:0=CUT|1=)}}            
+                </__COPY__> 
+         
+         <__COPY__>
+         {{COPY(@RecentlyAdded/Server:size::0=|1=COPY)}}
+         <collectionDivider alignment="left" accessibilityLabel="Recently Added">        
+          <title>{{TEXT(Recently Added)}} - {{VAL(name)}}{{VAL(local::0=|0 =)}}</title>{{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}
+        </collectionDivider>{{CUT($library_recentlyadded::checked=|unchecked=CUT)}}
+                <pagedGrid id="paged-grid-0">
+                {{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}
                     
                     <fourByThreePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_library::Highlighted Only=false|Show All=true)}}"
                         onPlay="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect={{VAL(type::episode=TVShow_PrePlay|movie=Movie_PrePlay|season=TVShow_Episode_{{EVAL('{{VAL($episodeView)}}'.replace(' ', ''))}})}})}}')"
@@ -125,15 +119,16 @@
                         <defaultImage>resource://{{VAL(type::movie=Poster|episode=Poster|season=Poster|album=Poster|track=Poster)}}.png</defaultImage>
                     </fourByThreePoster>
                 </pagedGrid>{{CUT($library_recentlyadded::checked=|unchecked=CUT)}}{{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}
+                </__COPY__>
+        
+        <__COPY__>
+        {{COPY(@VideoChannels/Server:size::0=|1=COPY)}}
+        <collectionDivider alignment="left" accessibilityLabel="Channels">
+            <title>{{TEXT(Channels)}} - {{VAL(name)}}{{VAL(local::0=|0 =)}}</title>{{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}}
+        </collectionDivider>{{CUT($library_channels:CUT:checked=|unchecked=CUT)}}
                 
-                
-                
-                <collectionDivider alignment="left" accessibilityLabel="Channels">
-                    <title>{{TEXT(Channels)}}</title>
-                </collectionDivider>{{CUT($library_channels:CUT:checked=|unchecked=CUT)}}
-                
-                <pagedGrid id="shelf_3">{{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}}{{COPY(@VideoChannels/Server:size::0=|1=COPY)}}
-                    }
+                <pagedGrid id="paged-grid-0">
+                {{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}}
                     
                     <!-- /library/sections -->
                     <fourByThreePoster id="Video_{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_channels::Highlighted Only=false|Show All=true)}}"
@@ -145,7 +140,8 @@
                         <image>{{IMAGEURL(thumb::)}}</image>
                         <defaultImage>resource://Square.png</defaultImage>
                     </fourByThreePoster>
-                </pagedGrid>{{CUT($library_channels:CUT:checked=|unchecked=CUT)}}{{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}}     
+                </pagedGrid>{{CUT($library_channels:CUT:checked=|unchecked=CUT)}}{{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}} 
+               </__COPY__>
             </items>  
         </scroller>{{CUT(#sections::FALSE=CUT|TRUE=)}}
         

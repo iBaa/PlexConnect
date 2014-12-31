@@ -261,85 +261,81 @@
         </__COPY__>  
 
             
-       <!-- On Deck -->
-      <collectionDivider alignment="left" accessibilityLabel="On Deck">
-        {{CUT(@OnDeck/Server/size:CUT:0=CUT|1=)}}
-        <title>{{TEXT(On Deck)}}</title>
-      </collectionDivider>{{CUT($library_ondeck::checked=|unchecked=CUT)}}
-      
-              <pagedGrid id="paged-grid-0">{{CUT(@OnDeck/Server/size:CUT:0=CUT|1=)}}{{COPY(@OnDeck/Server:size::0=|1=COPY)}}
-                
-
-               <fourByThreePoster id="{{VAL(key)}}" featured="true" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_library::Highlighted Only=false|Show All=true)}}"
-                              
-                         onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video_Pause&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
-                         onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect={{VAL(type::movie=Movie_|episode=TVShow_)}}PrePlay)}}')"
-                         onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
-                  {{PAGEDCOPY(Video,6,1)}}
-                  {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
-                  <title>{{VAL(type::movie={{VAL(title)}}|episode={{VAL(grandparentTitle)}})}}</title>
-                  <subtitle>{{VAL(type::movie={{VAL(year)}}|episode={{episodestring(parentIndex:0:index:0)}})}}</subtitle>
-                  <image>{{IMAGEURL({{VAL(type::movie=thumb|episode=grandparentThumb)}}::384)}}</image>
-                  <defaultImage>resource://Poster.png</defaultImage>
-                </fourByThreePoster>
-         </pagedGrid>{{CUT($library_ondeck::checked=|unchecked=CUT)}}{{CUT(@OnDeck/Server/size:CUT:0=CUT|1=)}}  
-        
-
-   
-        
-         <collectionDivider alignment="left" accessibilityLabel="Recently Added">
-          {{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}
-          <title>{{TEXT(Recently Added)}}</title>
-        </collectionDivider>{{CUT($library_recentlyadded::checked=|unchecked=CUT)}} 
-       
-        
-        <pagedGrid id="paged-grid-0">{{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}{{COPY(@RecentlyAdded/Server:size::0=|1=COPY)}}
-              
-              
-                  <fourByThreePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_library::Highlighted Only=false|Show All=true)}}"
-                            onPlay="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect={{VAL(type::episode=TVShow_PrePlay|movie=Movie_PrePlay|season=TVShow_Episode_{{EVAL('{{VAL($episodeView)}}'.replace(' ', ''))}})}})}}')"
-                            onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect={{VAL(type::episode=TVShow_PrePlay|movie=Movie_PrePlay|season=TVShow_Episode_{{EVAL('{{VAL($episodeView)}}'.replace(' ', ''))}})}})}}')"
-                            onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
-                  {{PAGEDCOPY(Video,6,1)}}
-                  {{VAR(items:NoKey:TRUE)}} 
-                  <title>{{VAL(type::movie={{VAL(title)}}|episode={{VAL(parentTitle)}}|season={{VAL(parentTitle)}}|album={{VAL(parentTitle)}})}}</title>
-                  <subtitle>{{VAL(type::movie={{VAL(year)}}|episode={{VAL(title)}}|season={{VAL(title)}}|album={{VAL(title)}})}}</subtitle>
-                  <badgeCount>{{unwatchedCountGrid(leafCount:0:viewedLeafCount:0)}}</badgeCount>{{CUT($showunwatched::False=CUT|True=)}}
-                  <image>{{IMAGEURL(thumb::384)}}</image>        
-                  <defaultImage>resource://{{VAL(type::movie=Poster|episode=Poster|season=Poster|album=Poster|track=Poster)}}.png</defaultImage>
-                </fourByThreePoster>
-        </pagedGrid>{{CUT($library_recentlyadded::checked=|unchecked=CUT)}}{{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}
-        
-
-   
-        <collectionDivider alignment="left" accessibilityLabel="Channels">
-        {{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}} 
-            <title>{{TEXT(Channels)}}</title>
-        </collectionDivider>{{CUT($library_channels:CUT:checked=|unchecked=CUT)}}
-        <pagedGrid id="shelf_3">{{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}}{{COPY(@VideoChannels/Server:size::0=|1=COPY)}}
-
-
+         <__COPY__> 
+       {{COPY(@OnDeck/Server:size::0=|1=COPY)}}
+       <collectionDivider alignment="left" accessibilityLabel="On Deck">
+        <title>{{TEXT(On Deck)}} - {{VAL(name)}}{{VAL(local::0=|0 =)}}</title>{{CUT(@OnDeck/Server/size:CUT:0=CUT|1=)}}
+       </collectionDivider>{{CUT($library_ondeck::checked=|unchecked=CUT)}}
+       <pagedGrid id="paged-grid-0">
+       {{CUT(@OnDeck/Server/size:CUT:0=CUT|1=)}}
+        <fourByThreePoster id="{{VAL(key)}}" featured="true" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_library::Highlighted Only=false|Show All=true)}}"
+                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video_Pause&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                        onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect={{VAL(type::movie=Movie_|episode=TVShow_)}}PrePlay)}}')"
+                        onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
+                        {{PAGEDCOPY(Video,6,1)}}
+                        {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                        <title>{{VAL(type::movie={{VAL(title)}}|episode={{VAL(grandparentTitle)}})}}</title>
+                        <subtitle>{{VAL(type::movie={{VAL(year)}}|episode={{episodestring(parentIndex:0:index:0)}})}}</subtitle>
+                        <image>{{IMAGEURL({{VAL(type::movie=thumb|episode=grandparentThumb)}}::384)}}</image>
+                        <defaultImage>resource://Poster.png</defaultImage>
+                    </fourByThreePoster>
                     
-                        <!-- /library/sections -->
-                        <fourByThreePoster id="Video_{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_channels::Highlighted Only=false|Show All=true)}}"
-                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Channels_Video)}}')"
-                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=Channels_Video)}}')">
-                            {{PAGEDCOPY(Directory,6,1)}}
-                            {{VAR(channels:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
-                            <title>{{VAL(title)}}</title>
-                            <image>{{IMAGEURL(thumb::)}}</image>
-                            <defaultImage>resource://Square.png</defaultImage>
-                        </fourByThreePoster>
-        </pagedGrid>{{CUT($library_channels:CUT:checked=|unchecked=CUT)}}{{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}}     
-        </items>  
-    </scroller>{{CUT(#sections::FALSE=CUT|TRUE=)}}
-    
-    <!--No Sections Available-->
-    <dialog id="com.sample.error-dialog">
-    {{CUT(#sections::FALSE=|TRUE=CUT)}}
-      <title>PlexConnect</title>
-      <description>{{TEXT(No Plex Library Sections Available)}}</description>
-    </dialog>
-    
-  </body>
+                </pagedGrid>{{CUT($library_ondeck::checked=|unchecked=CUT)}}{{CUT(@OnDeck/Server/size:CUT:0=CUT|1=)}}            
+                </__COPY__> 
+         
+         <__COPY__>
+         {{COPY(@RecentlyAdded/Server:size::0=|1=COPY)}}
+         <collectionDivider alignment="left" accessibilityLabel="Recently Added">        
+          <title>{{TEXT(Recently Added)}} - {{VAL(name)}}{{VAL(local::0=|0 =)}}</title>{{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}
+        </collectionDivider>{{CUT($library_recentlyadded::checked=|unchecked=CUT)}}
+                <pagedGrid id="paged-grid-0">
+                {{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}
+                    
+                    <fourByThreePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_library::Highlighted Only=false|Show All=true)}}"
+                        onPlay="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect={{VAL(type::episode=TVShow_PrePlay|movie=Movie_PrePlay|season=TVShow_Episode_{{EVAL('{{VAL($episodeView)}}'.replace(' ', ''))}})}})}}')"
+                        onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect={{VAL(type::episode=TVShow_PrePlay|movie=Movie_PrePlay|season=TVShow_Episode_{{EVAL('{{VAL($episodeView)}}'.replace(' ', ''))}})}})}}')"
+                        onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
+                        {{PAGEDCOPY(Video,6,1,Directory)}}
+                        {{VAR(items:NoKey:TRUE)}}
+                        <title>{{VAL(type::movie={{VAL(title)}}|episode={{VAL(parentTitle)}}|season={{VAL(parentTitle)}}|album={{VAL(parentTitle)}})}}</title>
+                        <subtitle>{{VAL(type::movie={{VAL(year)}}|episode={{VAL(title)}}|season={{VAL(title)}}|album={{VAL(title)}})}}</subtitle>
+                        <badgeCount>{{unwatchedCountGrid(leafCount:0:viewedLeafCount:0)}}</badgeCount>{{CUT($showunwatched::False=CUT|True=)}}
+                        <image>{{IMAGEURL(thumb::384)}}</image>
+                        <defaultImage>resource://{{VAL(type::movie=Poster|episode=Poster|season=Poster|album=Poster|track=Poster)}}.png</defaultImage>
+                    </fourByThreePoster>
+                </pagedGrid>{{CUT($library_recentlyadded::checked=|unchecked=CUT)}}{{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}
+                </__COPY__>
+        
+        <__COPY__>
+        {{COPY(@VideoChannels/Server:size::0=|1=COPY)}}
+        <collectionDivider alignment="left" accessibilityLabel="Channels">
+            <title>{{TEXT(Channels)}} - {{VAL(name)}}{{VAL(local::0=|0 =)}}</title>{{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}}
+        </collectionDivider>{{CUT($library_channels:CUT:checked=|unchecked=CUT)}}
+                
+                <pagedGrid id="paged-grid-0">
+                {{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}}
+                    
+                    <!-- /library/sections -->
+                    <fourByThreePoster id="Video_{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_channels::Highlighted Only=false|Show All=true)}}"
+                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=Channels_Video)}}')"
+                        onSelect="atv.loadURL('{{URL(key:::PlexConnect=Channels_Video)}}')">
+                        {{PAGEDCOPY(Directory,6,1)}}
+                        {{VAR(channels:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                        <title>{{VAL(title)}}</title>
+                        <image>{{IMAGEURL(thumb::)}}</image>
+                        <defaultImage>resource://Square.png</defaultImage>
+                    </fourByThreePoster>
+                </pagedGrid>{{CUT($library_channels:CUT:checked=|unchecked=CUT)}}{{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}} 
+               </__COPY__>
+            </items>  
+        </scroller>{{CUT(#sections::FALSE=CUT|TRUE=)}}
+        
+        <!--No Sections Available-->
+        <dialog id="com.sample.error-dialog">
+            {{CUT(#sections::FALSE=|TRUE=CUT)}}
+            <title>PlexConnect</title>
+            <description>{{TEXT(No Plex Library Sections Available)}}</description>
+        </dialog>
+        
+    </body>
 </atv>
