@@ -39,9 +39,5 @@ do
     CheckForNetwork
 done
 
-
-# Add support for 10.6 and python 2.7.x if installed otherwise defaults to system python
-export PATH=/usr/local/bin:$PATH
-
 # Start PlexConnect
 ./${APPNAME}
