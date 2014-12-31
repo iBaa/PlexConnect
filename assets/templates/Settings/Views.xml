@@ -72,7 +72,7 @@
               </oneLineMenuItem>
               
               <oneLineMenuItem id="PlayListView" onSelect="atv.loadURL('{{URL(:/::PlexConnect=Settings_PlayList)}}')">
-                <label>{{TEXT(PlayLists Options)}}</label>
+                <label>{{TEXT(Playlists Options)}}</label>
                 <accessories>
                   <arrow/>
                 </accessories>

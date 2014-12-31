@@ -103,8 +103,8 @@
               </items>
             </shelfSection>
           </sections>
-        </shelf>{{CUT($library_ondeck::checked=|unchecked=CUT)}}{{CUT(@OnDeck/Server/size:CUT:0=CUT|1=)}}  
-        
+        </shelf>{{CUT($library_ondeck::checked=|unchecked=CUT)}}{{CUT(@OnDeck/Server/size:CUT:0=CUT|1=)}} 
+                
          <collectionDivider alignment="left" accessibilityLabel="Recently Added">
           {{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}
           <title>{{TEXT(Recently Added)}}</title>
