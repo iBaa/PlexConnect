@@ -524,6 +524,7 @@ chmod +X /usr/bin/hairtunes.bash
 chmod +x /Applications/PlexConnect/update/OSX/PlexConnect.bash
 chmod +x /Applications/PlexConnect/update/OSX/shairport.bash
 chmod +x /Applications/PlexConnect/update/OSX/airplay.bash
+chmod +x /Applications/PlexConnect/update/OSX/fixbash.bash
 chmod +x /usr/bin/mod.bash
 chmod +x /usr/bin/quit.bash
 chmod +x /usr/bin/fixclone.bash
