@@ -36,8 +36,8 @@
             </moviePoster>
             
             <moviePoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_movies::Highlighted Only=false|Show All=true)}}"
-                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
-                             onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;Plex_Connect=MoviePrePlay)}}')">
+                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video_Pause&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                             onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;Plex_Connect=MoviePre_Play)}}')">
               {{COPY(Video)}}
               <title>{{VAL(title)}}</title>
               <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
@@ -48,7 +48,7 @@
         </grid>
       </items>
     </scroller>
-  </body>{{CUT($movieview::Detailed=CUT|Grid=|List=CUT)}}
+  </body>{{CUT($movieview::Detailed=CUT|Grid=|List=CUT|Big=)}}
   
   
 <body>
@@ -79,7 +79,7 @@
               </twoLineEnhancedMenuItem>
               
               <twoLineMenuItem id="{{VAL(key)}}"
-                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video_Pause&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
                              onSelect="atv.loadURL('{{URL(key:::PlexConnect=Movie_PrePlay)}}')"
                              onHoldSelect="scrobbleMenu('{{URL(key:::includeExtras=1&amp;PlexConnect=Scrobble_MenuVideo)}}')">
                 {{COPY(Video)}}
@@ -100,7 +100,7 @@
         </sections>
       </menu>
     </listWithPreview>
-  </body>{{CUT($movieview::Detailed=CUT|Grid=CUT|List=)}}
+  </body>{{CUT($movieview::Detailed=CUT|Grid=CUT|List=|Big=CUT)}}
   
   <body>
     <listWithPreview id="HomeVideo_DetailedList">
@@ -130,7 +130,7 @@
               </twoLineEnhancedMenuItem>
             
               <oneLineMenuItem id="{{VAL(key)}}"
-                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video_Pause&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
                              onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect=Movie_PrePlay)}}')"
                              onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
                 {{COPY(Video)}}
@@ -164,5 +164,5 @@
         </sections>
       </menu>
     </listWithPreview>
-  </body>{{CUT($movieview::Detailed=|Grid=CUT|List=CUT)}}
+  </body>{{CUT($movieview::Detailed=|Grid=CUT|List=CUT|Big=CUT)}}
 </atv>

@@ -4,7 +4,7 @@
   </head>
 
   <body>
-     <itemCollectionWithImageHeader id="com.sample.menu-items-with-sections">
+     <itemCollectionWithImagePreview id="com.sample.menu-items-with-sections">
     {{CUT(size:CUT:0=CUT|1=)}}
       <header>
 	    <imageHeader>
