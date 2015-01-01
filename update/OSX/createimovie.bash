@@ -30,9 +30,10 @@ fi
 
 restartbash.bash
 
-while [ ! /Applications/PlexConnect/Settings.cfg ]
-do
-  sleep 1
+while : ; do
+    [[ -f "/Applications/PlexConnect/Settings.cfg" ]] && break
+    echo "Pausing until file exists."
+    sleep 1
 done
 sed -i '' 's/trailers.apple.com/www.icloud.com/g' Settings.cfg
 sed -i '' 's/secure.marketwatch.com/www.icloud.com/g' Settings.cfg
