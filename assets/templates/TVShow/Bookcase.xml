@@ -26,8 +26,8 @@
                 <items>
                 {{ADDXML(seasons:key)}}
                   <moviePoster id="Show_Bookcase_{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
-                              onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_List{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
-                              onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_List{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
+                              onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_List)}}')"
+                              onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_List)}}')"
                               onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
                     {{COPY(@seasons/Directory)}}
                     <title>{{VAL(title)}}</title>

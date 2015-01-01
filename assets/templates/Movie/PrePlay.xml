@@ -8,7 +8,7 @@
 	{{ADDXML(related::/library/metadata/{{VAL(Video/ratingKey)}}/similar)}}
 	
   <body>
-    <itemDetail id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=Movie_PrePlay{{VAL($moviefanart::Hide=|Show=_Fanart)}})}}')">
+    <itemDetail id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=Movie_PrePlay)}}')">
       <title>{{VAL(Video/title)}} ({{VAL(Video/year)}})</title>
       <subtitle>{{VAL(Video/studio)}}</subtitle>
       <rating>{{contentRating(Video/contentRating)}}</rating>
@@ -173,18 +173,18 @@
             <shelfSection>
               <items>
                 <moviePoster related="true" alwaysShowTitles="true" id="shelf_item_1" 
-                             onSelect="atv.loadAndSwapURL('{{URL(key:::includeExtras=1&amp;PlexConnect=Movie_PrePlay{{VAL($moviefanart::Hide=|Show=_Fanart)}})}}')">
+                             onSelect="atv.loadAndSwapURL('{{URL(key:::includeExtras=1&amp;PlexConnect=Movie_PrePlay)}}')">
                   {{COPY(@related/Video)}}
                   <title>{{VAL(title)}}</title>
                   <image>{{IMAGEURL(thumb::384)}}</image>
-									<defaultImage>resource://Poster.png</defaultImage>
+                  <defaultImage>resource://Poster.png</defaultImage>
                 </moviePoster>
               </items>
             </shelfSection>
           </sections>
         </shelf>
       </bottomShelf>{{CUT($moviepreplay_bottomshelf::Extras=CUT|Related=)}}{{CUT(@related/size::0=CUT|1=)}}
-			
+
       <moreInfo>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
         <listScrollerSplit id="com.sample.list-scroller-split">
           <menu>

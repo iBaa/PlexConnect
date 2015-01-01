@@ -272,12 +272,21 @@ def XML_PMS2aTV(PMS_address, path, options):
     
     elif path.find('SearchResults') != -1:
         XMLtemplate = 'Channels/VideoSearchResults.xml'
-        
+    
+    # Handle fanart
+    if isPILinstalled() and options['aTVFirmwareVersion'] >= '6.0':
+        if cmd in ('TVShow_Episode_List', 'TVShow_PrePlay') and g_ATVSettings.getSetting(options['PlexConnectUDID'], 'tvshowfanart') == 'Show':
+            dprint(__name__, 1, 'Fix template for fanart')
+            cmd = cmd + "_Fanart"
+        if cmd in ('Movie_PrePlay') and g_ATVSettings.getSetting(options['PlexConnectUDID'], 'moviefanart') == 'Show':
+            cmd = cmd + "_Fanart"
+            dprint(__name__, 1, 'Fix template for fanart')
+
     # Not a special command so split it 
     if cmd.find('_') != -1:
         parts = cmd.split('_', 1)
         dir = parts[0]
-        cmd = parts[1]
+        cmd = parts[1].replace(' ', '')
             
     # Special case scanners
     if cmd.find('Scanner') != -1:
