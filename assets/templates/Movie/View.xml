@@ -1,3 +1,0 @@
-<atv>
-  <redirect template="Movie/{{VAL($movieview)}}.xml" />
-</atv>

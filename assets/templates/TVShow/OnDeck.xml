@@ -30,7 +30,7 @@
               <items>
                 <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
-                            onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_PrePlay_View)}}')"
+                            onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_PrePlay{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
                             onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuTVOnDeck)}}')">
                   {{COPY(@OnDeck/Video)}}
                   {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
@@ -55,7 +55,7 @@
               <items>
                 <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
-                            onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_PrePlay_View)}}')"
+                            onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_PrePlay{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
                             onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuTVOnDeck)}}')">
                   {{COPY(@RecentlyAired/Video)}}
                   {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
@@ -80,7 +80,7 @@
               <items>
                 <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
-                            onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_PrePlay_View)}}')"
+                            onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_PrePlay{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
                             onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuTVOnDeck)}}')">
                   {{COPY(@RecentlyAdded/Video)}}
                   {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
@@ -106,7 +106,7 @@
               <items>
                 <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
-                            onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_PrePlay_View)}}')"
+                            onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_PrePlay{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
                             onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuTVOnDeck)}}')">
                   {{COPY(@RecentlyViewedEpisodes/Video)}}
                   {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->

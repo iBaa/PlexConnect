@@ -1,4 +1,0 @@
-<atv>
-  <redirect template="TVShow/PrePlay_Fanart.xml" />{{CUT($tvshowfanart::Hide=CUT|Show=)}}{{CUT(^aTVFirmwareVersion::4.0=CUT|6.0=)}}{{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
-  <redirect template="TVShow/PrePlay.xml" />
-</atv>

@@ -26,7 +26,7 @@
             
             <moviePoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
                              onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
-                             onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect=TVShow_PrePlay)}}')">
+                             onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect=TVShow_PrePlay{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')">
               {{COPY(Video)}}
               <title>{{VAL(title)}}</title>
               <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>

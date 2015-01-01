@@ -3,9 +3,7 @@
     <script src="{{URL(:/js/utils.js)}}" />
     <script src="{{URL(:/js/selectAudioAndSubs.js)}}" />
   </head>
-  
-  <!-- Fanart PrePlay -->
-  
+
   <body>
     <itemDetailWithImageHeader layout="compact" id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=TVShow_PrePlay_Fanart)}}')">
         	  <styles>
@@ -133,6 +131,7 @@
           </sections>
         </shelf>
       </bottomShelf>
-    </itemDetailWithImageHeader>
-  </body>  
+
+		</itemDetailWithImageHeader>
+	</body>
 </atv>

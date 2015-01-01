@@ -8,7 +8,7 @@
 	{{ADDXML(related::/library/metadata/{{VAL(Video/ratingKey)}}/similar)}}
 	
   <body>
-    <itemDetailWithImageHeader layout="compact" id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=Movie_PrePlay_Fanart)}}')">
+    <itemDetailWithImageHeader layout="compact" id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=Movie_PrePlay{{VAL($moviefanart::Hide=|Show=_Fanart)}})}}')">
         	  <styles>
           <color name="titleColor">#fafafa</color>
           <color name="metadataColor">#fafafa</color>
@@ -133,7 +133,7 @@
                   <title>{{VAL(title)}}</title>
                   <subtitle>{{VAL(extraType::1=Trailer|2=Deleted|3=Interview|4=???|5=Behind the Scenes|6=Scene)}}</subtitle>
                   <image>{{IMAGEURL(thumb::384)}}</image>
-                  <defaultImage>resource://16x9.png</defaultImage>
+									<defaultImage>resource://16x9.png</defaultImage>
                 </moviePoster>
               </items>
             </shelfSection>
@@ -153,11 +153,11 @@
             <shelfSection>
               <items>
                 <moviePoster related="true" alwaysShowTitles="true" id="shelf_item_1" 
-                             onSelect="atv.loadAndSwapURL('{{URL(key:::includeExtras=1&amp;PlexConnect=Movie_PrePlay_Fanart)}}')">
+                             onSelect="atv.loadAndSwapURL('{{URL(key:::includeExtras=1&amp;PlexConnect=Movie_PrePlay{{VAL($moviefanart::Hide=|Show=_Fanart)}})}}')">
                   {{COPY(@related/Video)}}
                   <title>{{VAL(title)}}</title>
                   <image>{{IMAGEURL(thumb::384)}}</image>
-                  <defaultImage>resource://Poster.png</defaultImage>
+									<defaultImage>resource://Poster.png</defaultImage>
                 </moviePoster>
               </items>
             </shelfSection>
@@ -179,7 +179,7 @@
                   </oneLineMenuItem>
                 </items>
               </menuSection>{{CUT(Video/Extras/Video/ratingKey:CUT:=)}}{{CUT($moviepreplay_bottomshelf::Extras=CUT|Related=)}}
-
+							
               <menuSection>
                 <items>
                   <oneLineMenuItem id="list_2">
@@ -190,7 +190,7 @@
                   </oneLineMenuItem>
                 </items>
               </menuSection>{{CUT(@related/size::0=CUT|1=)}}{{CUT($moviepreplay_bottomshelf::Extras=|Related=CUT)}}
-
+							
               <menuSection>
                 <header>
                   <textDivider alignment="left" accessibilityLabel="Genres">

@@ -277,7 +277,7 @@ def XML_PMS2aTV(PMS_address, path, options):
     if cmd.find('_') != -1:
         parts = cmd.split('_', 1)
         dir = parts[0]
-        cmd = parts[1].replace(' ', '')
+        cmd = parts[1]
             
     # Special case scanners
     if cmd.find('Scanner') != -1:
