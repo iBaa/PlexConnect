@@ -28,8 +28,6 @@ echo 'Upload profile to ATV using this url http://www.icloud.com/trailers.cer'
 
 fi
 
-restartbash.bash
-
 while : ; do
     [[ -f "/Applications/PlexConnect/Settings.cfg" ]] && break
     echo "Pausing until file exists."
@@ -38,7 +36,9 @@ done
 sed -i '' 's/trailers.apple.com/www.icloud.com/g' Settings.cfg
 sed -i '' 's/secure.marketwatch.com/www.icloud.com/g' Settings.cfg
 
+restartbash.bash
+
 ## Display Settings.cfg
-FILE="/Applications/PlexConnect/settings.cfg"
+FILE="/Applications/PlexConnect/Settings.cfg"
 echo "*** File - $FILE contents ***"
 cat $FILE
