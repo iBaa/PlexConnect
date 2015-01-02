@@ -21,7 +21,6 @@
                         onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">                        
                         {{COPY(Video)}}
                         <title>{{VAL(title)}}</title>
-                        <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
                         <image>{{IMAGEURL(thumb::768)}}</image>
                         <defaultImage>resource://Poster.png</defaultImage>
                     </goldenPoster>

@@ -8,7 +8,7 @@
 <header>
 <imageHeader>
     <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=550|1080=715)}}, 0" required="true">
-    {{IMAGEURL(art:::)}}
+    {{BACKGROUNDURL(art:::)}}
 </image>
 </imageHeader>
 </header>
@@ -16,7 +16,7 @@
         <items>
         <grid columnCount="5" id="grid_0">
               <items>
-                  <goldenPoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
+                  <goldenPoster id="{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
                     onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_List{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
                     onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_List{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
                     onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
