@@ -99,7 +99,7 @@
               <menuSection>
                   <header>
                       <horizontalDivider alignment="left">
-                          <title>{{TEXT(All Libraries))}}</title>
+                          <title>{{TEXT(All Libraries)}}</title>
                       </horizontalDivider>
                   </header>
                   <items>
