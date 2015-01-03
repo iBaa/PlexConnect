@@ -18,8 +18,14 @@
         <navigationItem id="Library">
           <title>{{TEXT(Library)}}</title>
           <url>{{URL(:/PMS(owned)/library/sections::PlexConnect=Main_Library_{{EVAL('{{VAL($libraryview)}}'.replace(' ', ''))}})}}</url>
+          </navigationItem>{{CUT($library_merge:CUT:checked=CUT|unchecked=)}}
+          
+          <navigationItem id="Libraries">
+            <title>{{TEXT(All Libraries)}}</title>
+            <url>{{URL(:/PMS(all)/library/sections::PlexConnect=Main_Libraries_{{EVAL('{{VAL($librariesview)}}'.replace(' ', ''))}})}}</url>
+        </navigationItem>{{CUT($myplex_auth:CUT:=CUT| =)}}{{CUT($library_merge:CUT:unchecked=CUT|checked=)}}
 
-        </navigationItem>
+        
         <navigationItem id="Channels">
           <title>{{TEXT(Channels)}}</title>
           <url>{{URL(:/PMS(owned)/channels/all::PlexConnect=Channels_{{EVAL('{{VAL($channelview)}}'.replace(' ', ''))}})}}</url>
@@ -28,7 +34,7 @@
         <navigationItem id="SharedLibraries">
           <title>{{TEXT(Shared Libraries)}}</title>
           <url>{{URL(:/PMS(shared)/library/sections::PlexConnect=Main_SharedLibrary_{{EVAL('{{VAL($libraryview_remote)}}'.replace(' ', ''))}})}}</url>
-        </navigationItem>{{CUT($myplex_auth:CUT:=CUT| =)}}{{CUT($showsharedlibraries:CUT:False=CUT|True=)}}
+        </navigationItem>{{CUT($myplex_auth:CUT:=CUT| =)}}{{CUT($showsharedlibraries:CUT:False=CUT|True=)}}{{CUT($library_merge:CUT:checked=CUT|unchecked=)}}
         
         <navigationItem id="Settings">
           <title>{{TEXT(Settings)}}</title>

@@ -10,39 +10,42 @@ from Debug import *  # dprint()
 
 
 options = { \
-    'libraryview_remote'       :('Grid', 'Paged Grid', 'List'), \
-    'libraryview'              :('Grid', 'Paged Grid', 'List'), \
-    'sectionsposition'          :('Flow', 'Top'), \
-    'showplaylists'            :('True', 'False'), \
+    'libraryview_remote'         :('Grid', 'Paged Grid', 'List'), \
+    'libraryview'                :('Grid', 'Paged Grid', 'List'), \
+    'sectionsposition'           :('Flow', 'Top'), \
     'playlistview'               :('List', 'Tabbed List'), \
-    'showchannels'            :('True', 'False'), \
-    'showsharedlibraries'       :('True', 'False'), \
-    'movieview'                :('Big Artwork', 'Grid', 'List', 'Detailed List'), \
-    'extraview'                :('Grid'), \
-    'movieposters'              :('Show', 'Hide'), \
-    'movielayers'              :('Show', 'Hide'), \
-    'homevideoview'            :('Grid', 'List', 'Detailed List'), \
-    'showview'                 :('Big Artwork', 'Grid', 'List', 'Bookcase'), \
-    'channelview'               :('Grid', 'List', 'Tabbed List'), \
-    'episodeposters'              :('Show', 'Hide'), \
-    'showlayers'              :('Show', 'Hide'), \
-    'seasonlayers'              :('Show', 'Hide'), \
+    'librariesview'              :('Grid', 'Paged Grid', 'List'), \
+    'showchannels'               :('True', 'False'), \
+    'showsharedlibraries'        :('True', 'False'), \
+    'showplaylists'              :('True', 'False'), \
+    'movieview'                  :('Big Artwork', 'Grid', 'List', 'Detailed List'), \
+    'extraview'                  :('Grid'), \
+    'movieposters'               :('Show', 'Hide'), \
+    'movielayers'                :('Show', 'Hide'), \
+    'homevideoview'              :('Grid', 'List', 'Detailed List'), \
+    'showview'                   :('Big Artwork', 'Grid', 'List', 'Bookcase'), \
+    'channelview'                :('Grid', 'List', 'Tabbed List'), \
+    'episodeposters'             :('Show', 'Hide'), \
+    'showlayers'                 :('Show', 'Hide'), \
+    'seasonlayers'               :('Show', 'Hide'), \
     'episodelayers'              :('Show', 'Hide'), \
-    'episodeview'              :('List', 'Grid'), \
-    'seasonview'               :('Big Artwork', 'Coverflow', 'List'), \
-    'sectionicons'              :('Fanart', 'Plex', 'Custom'), \
-    'sectionicons_shared'       :('Fanart', 'Plex'), \
-    'library_search'            :('Hide', 'Show'), \
-    'libraryremote_search'            :('Hide', 'Show'), \
-    'library_ondeck'            :('checked', 'unchecked'), \
-    'library_recentlyadded'     :('checked', 'unchecked'), \
-    'library_channels'          :('unchecked', 'checked'), \
-    'showtitles_library'        :('Show All', 'Highlighted Only'), \
-    'showplayinfos'             :('True', 'False'), \
-    'starttab'         :('Library', 'Shared Libraries', 'Channels'), \
-    'actorview'         :('Movies', 'Portrait'), \
-    'flattenseason'     :('False', 'True'), \
-    'durationformat'    :('Hours/Minutes', 'Minutes'), \
+    'episodeview'                :('List', 'Grid'), \
+    'seasonview'                 :('Big Artwork', 'Coverflow', 'List'), \
+    'sectionicons'               :('Fanart', 'Plex', 'Custom'), \
+    'sectionicons_shared'        :('Fanart', 'Plex'), \
+    'sectionicons_merge'         :('Fanart', 'Plex'), \
+    'library_search'             :('Hide', 'Show'), \
+    'libraryremote_search'       :('Hide', 'Show'), \
+    'library_ondeck'             :('checked', 'unchecked'), \
+    'library_recentlyadded'      :('checked', 'unchecked'), \
+    'library_channels'           :('unchecked', 'checked'), \
+    'library_merge'              :('unchecked', 'checked'), \
+    'showtitles_library'         :('Show All', 'Highlighted Only'), \
+    'showplayinfos'              :('True', 'False'), \
+    'starttab'                   :('Library', 'Shared Libraries', 'Channels'), \
+    'actorview'                  :('Movies', 'Portrait'), \
+    'flattenseason'              :('False', 'True'), \
+    'durationformat'             :('Hours/Minutes', 'Minutes'), \
     'showtitles_movies'         :('Show All', 'Highlighted Only'), \
     'showtitles_tvshows'        :('Show All', 'Highlighted Only'), \
     'showtitles_homevideos'     :('Show All', 'Highlighted Only'), \

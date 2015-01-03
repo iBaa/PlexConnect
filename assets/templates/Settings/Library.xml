@@ -96,19 +96,26 @@
                </items>
               </menuSection>
               
-              <!--<menuSection>
-           <header>
-              <horizontalDivider alignment="left">
-                <title>{{TEXT(PlayLists)}}</title>
-              </horizontalDivider>
-            </header>
-            <items>
-              <oneLineMenuItem id="PlayListView" onSelect="toggleSettings('PlayListView', 'Settings/Library')">
-                <label>{{TEXT(PlayList View)}}</label>
-                <rightLabel>{{SETTING(playlistview)}}</rightLabel>
+              <menuSection>
+                  <header>
+                      <horizontalDivider alignment="left">
+                          <title>{{TEXT(All Libraries))}}</title>
+                      </horizontalDivider>
+                  </header>
+                  <items>
+                      <oneLineMenuItem id="LibrariesView" onSelect="toggleSettings('LibrariesView', 'Settings_Library')">
+                  <label>{{TEXT(All Libraries View)}}</label>
+                  <rightLabel>{{SETTING(librariesview)}}</rightLabel>
               </oneLineMenuItem>
-              </items>
-              </menuSection>-->
+              <oneLineMenuItem id="SectionIcons_Merge" onSelect="toggleSettings('SectionIcons_Merge', 'Settings_Library')">
+                <label>{{TEXT(All Libraries Icons)}}</label>
+                <rightLabel>{{SETTING(sectionicons_shared)}}</rightLabel>
+              </oneLineMenuItem>
+                  </items>
+              </menuSection>
+              
+              
+              
         
              
               <menuSection>
@@ -138,6 +145,13 @@
               </horizontalDivider>
             </header>
             <items>
+            
+            <oneLineMenuItem id="Library_Merge" onSelect="toggleSettings('Library_Merge', 'Settings_Library')">
+                <label>{{TEXT(Merge All Libaries)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($library_merge::unchecked=CUT|checked=)}}
+              </oneLineMenuItem> 
 
               <oneLineMenuItem id="Library_OnDeck" onSelect="toggleSettings('Library_OnDeck', 'Settings_Library')">
                 <label>{{TEXT(On Deck)}}</label>
