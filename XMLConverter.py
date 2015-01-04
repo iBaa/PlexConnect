@@ -261,6 +261,14 @@ def XML_PMS2aTV(PMS_address, path, options):
         auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
         PlexAPI.discoverPMS(UDID, g_param['CSettings'], auth_token)
         
+        # sanitize aTV settings from not-working combinations
+        # fanart only with PIL/pillow installed, only with iOS>=6.0  # watch out: this check will make trouble with iOS10
+        if not PILBackgrounds.isPILinstalled() or \
+           not options['aTVFirmwareVersion'] >= '6.0':
+            dprint(__name__, 2, "disable fanart (PIL not installed or aTVFirmwareVersion<6.0)")
+            g_ATVSettings.setSetting(UDID, 'moviefanart', 'Hide')
+            g_ATVSettings.setSetting(UDID, 'tvshowfanart', 'Hide')
+        
         return XML_Error('PlexConnect', 'Discover!')  # not an error - but aTV won't care anyways.
 
     # Special case path requests

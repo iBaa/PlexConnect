@@ -7,24 +7,25 @@
   <body>
     <viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadMenuPage(event)"
                            volatile="true" onVolatileReload="reloadNavbar(event);">
-      <navigation currentIndex="{{VAL($showplaylists:0:False=0|True=1)}}">
+      {{VAR(ix::{{VAL($libraryview::=1|Hide={{VAL($sharedlibrariesview::=1|Hide=0|Hide =1)}}|Hide =1)}})}}  <!--1 if library or shared library to be shown-->
+      <navigation currentIndex="{{VAL($playlistsview::={{VAL(#ix)}}|Hide=0|Hide ={{VAL(#ix)}})}}">
       
         <navigationItem id="Playlists">
           <title>{{TEXT(Playlists)}}</title>
           <url>{{URL(:/PMS(all)/playlists::PlexConnect=Playlists_View)}}</url>
-        </navigationItem>{{CUT($showplaylists:CUT:False=CUT|List=)}}
+        </navigationItem>{{CUT($playlistsview:CUT:=|Hide=CUT|Hide =)}}
         <navigationItem id="Library">
           <title>{{TEXT(Library)}}</title>
-          <url>{{URL(:/PMS(owned)/library/sections::PlexConnect=Main_Library)}}</url>
-        </navigationItem>
+          <url>{{URL(:/PMS(owned)/library/sections::PlexConnect=Library_View)}}</url>
+        </navigationItem>{{CUT($libraryview:CUT:=|Hide=CUT|Hide =)}}
+        <navigationItem id="SharedLibraries">
+          <title>{{TEXT(Shared Libraries)}}</title>
+          <url>{{URL(:/PMS(shared)/library/sections::PlexConnect=Library_ViewShared)}}</url>
+        </navigationItem>{{CUT($myplex_auth:CUT:=CUT| =)}}{{CUT($sharedlibrariesview:CUT:=|Hide=CUT|Hide =)}}
         <navigationItem id="Channels">
           <title>{{TEXT(Channels)}}</title>
           <url>{{URL(:/PMS(owned)/channels/all::PlexConnect=Channels_View)}}</url>
-        </navigationItem>
-        <navigationItem id="SharedLibraries">
-          <title>{{TEXT(Shared Libraries)}}</title>
-          <url>{{URL(:/PMS(shared)/library/sections::PlexConnect=Main_Library)}}</url>
-        </navigationItem>{{CUT($myplex_auth:CUT:=CUT| =)}}{{CUT($showsharedlibraries:CUT:False=CUT|True=)}}
+        </navigationItem>{{CUT($channelsview:CUT:=|Hide=CUT|Hide =)}}
         <navigationItem id="Settings">
           <title>{{TEXT(Settings)}}</title>
           <url>{{URL(:/::PlexConnect=Settings_Main)}}</url>

@@ -1,0 +1,67 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/sectionHoldSelect.js)}}" />
+  </head>
+
+  <body>
+    {{VAR(sections:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
+    
+    <listWithPreview id="Library_List">
+      <header>
+        <simpleHeader>
+          <title>{{TEXT(Plex Library)}}</title>
+        </simpleHeader>
+      </header>
+      <menu>
+        <sections>
+          
+          <!-- servers -->
+          <menuSection>
+          {{COPY(Server:@main/size::0=|1=COPY)}}
+            
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+              </horizontalDivider>
+            </header>{{CUT(@main/size:CUT:0=CUT|1=CUT|2=)}}
+            
+            <items>
+              <!-- /library/sections -->
+              <oneLineMenuItem id="{{VAL(key)}}"
+                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect={{EVAL('{{VAL(scanner)}}'.replace(' ', '_'))}})}}')"
+                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect={{EVAL('{{VAL(scanner)}}'.replace(' ', '_'))}})}}')"
+                                       onHoldSelect="refreshSection('{{VAL(key)}}', '{{URL(refreshKey)}}')">
+              {{COPY(Directory)}}
+              {{VAR(sections:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                <label>{{VAL(title)}}</label>
+                <preview>
+                  <link>{{URL(key::/recentlyAdded:stack=1&amp;X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20&amp;PlexConnect=Main_SectionPreview-{{VAL(type)}})}}</link>{{CUT(type::a=|photo=CUT|q=)}}
+                  <link>{{URL(key::/recentlyAdded:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20&amp;PlexConnect=Main_SectionPreview-{{VAL(type)}})}}</link>{{CUT(type:CUT:a=CUT|photo=|q=CUT)}}
+                </preview>
+              </oneLineMenuItem>
+              
+              <!-- search -->
+              <oneLineMenuItem id="{{VAL(searchKey)}}"
+                                       onPlay="atv.loadURL('{{URL(searchKey)}}')"
+                                       onSelect="atv.loadURL('{{URL(searchKey)}}')">
+                <label>{{TEXT(Search)}}</label>
+                <accessories><arrow/></accessories>
+              </oneLineMenuItem>
+              
+            </items>
+          </menuSection>
+        
+        </sections>
+      </menu>
+    </listWithPreview>{{CUT(#sections::FALSE=CUT|TRUE=)}}  <!--CUT if no section added-->
+    
+    <!--No Sections Available-->
+    <dialog id="com.sample.error-dialog">
+    {{CUT(#sections::FALSE=|TRUE=CUT)}}
+      <title>PlexConnect</title>
+      <description>{{TEXT(No Plex Library Sections Available)}}</description>
+    </dialog>
+    
+  </body>
+</atv>
