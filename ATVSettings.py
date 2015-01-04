@@ -24,6 +24,7 @@ options = { \
     'homevideoview'              :('Grid', 'List', 'Detailed List'), \
     'showview'                   :('Big Artwork', 'Grid', 'List', 'Bookcase'), \
     'channelview'                :('Grid', 'List', 'Tabbed List'), \
+    'movieextras'                :('Show', 'Hide'), \
     'episodeposters'             :('Show', 'Hide'), \
     'showlayers'                 :('Show', 'Hide'), \
     'seasonlayers'               :('Show', 'Hide'), \
@@ -50,7 +51,6 @@ options = { \
     'showtitles_homevideos'     :('Show All', 'Highlighted Only'), \
     'showtitles_channels'       :('Show All', 'Highlighted Only'), \
     'movies_navbar_ondeck'      :('checked', 'unchecked'), \
-    'movie_extras'              :('checked', 'unchecked'), \
     'movies_navbar_unwatched'   :('unchecked', 'checked'), \
     'movies_navbar_byfolder'    :('unchecked', 'checked'), \
     'movies_navbar_collections' :('unchecked', 'checked'), \

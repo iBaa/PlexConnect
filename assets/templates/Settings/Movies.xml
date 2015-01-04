@@ -74,6 +74,22 @@
           <menuSection>
             <header>
               <horizontalDivider alignment="left">
+                <title>{{TEXT(Movie Extras)}}</title>
+              </horizontalDivider>
+            </header>
+          
+          
+            <items>
+              <oneLineMenuItem id="MovieExtras" onSelect="toggleSettings('MovieExtras', 'Settings_Movies')">
+                <label>{{TEXT(Movie Extras)}}</label>
+                <rightLabel>{{SETTING(movieextras)}}</rightLabel>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+          
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
                 <title>{{TEXT(Movie PrePlay)}}</title>
               </horizontalDivider>
             </header>
@@ -104,13 +120,6 @@
                 <accessories>
                   <checkMark/>
                 </accessories>{{CUT($movies_navbar_ondeck::unchecked=CUT|checked=)}}
-                
-                <oneLineMenuItem id="Movie_Extras" onSelect="toggleSettings('Movie_Extras', 'Settings_Movies')">
-                <label>{{TEXT(Movie Extras)}}</label>
-                <accessories>
-                  <checkMark/>
-                </accessories>{{CUT($movie_extras::unchecked=CUT|checked=)}}
-              </oneLineMenuItem>
                 
               </oneLineMenuItem>
               <oneLineMenuItem id="Movies_NavBar_Unwatched" onSelect="toggleSettings('Movies_NavBar_Unwatched', 'Settings_Movies')">

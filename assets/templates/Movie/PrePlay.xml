@@ -182,7 +182,7 @@
                   <image>resource://Rate.png</image>
                   <focusedImage>resource://RateFocused.png</focusedImage>
                   <!--<badge></badge>-->
-                </actionButton>{{CUT($movie_extras::unchecked=CUT|checked=)}}{{CUT(Video/Extras/Video/ratingKey:CUT:=)}}
+                </actionButton>{{CUT($movieextras::Hide=CUT|Show=)}}{{CUT(Video/Extras/Video/ratingKey:CUT:=)}}
                 <actionButton id="more" accessibilityLabel="More info" onSelect="atv.showMoreInfo();" onPlay="atv.showMoreInfo();">
                   <title>{{TEXT(More)}}</title>
                   <image>resource://More.png</image>
