@@ -10,16 +10,16 @@ from Debug import *  # dprint()
 
 
 options = { \
-    'showplaylists'             :('List', 'Tabbed List', 'False'), \
-    'showsharedlibraries'       :('True', 'False'), \
-    'libraryview'               :('List', 'Grid', 'Bookcase'), \
+    'playlistsview'             :('List', 'Tabbed List', 'Hide'), \
+    'libraryview'               :('List', 'Grid', 'Bookcase', 'Hide'), \
+    'sharedlibrariesview'       :('List', 'Grid', 'Bookcase', 'Hide'), \
+    'channelview'               :('List', 'Tabbed List', 'Grid', 'Bookcase', 'Hide'), \
     'movieview'                 :('Grid', 'List', 'Detailed List'), \
     'homevideoview'             :('Grid', 'List', 'Detailed List'), \
     'actorview'                 :('Movies', 'Portrait'), \
     'showview'                  :('List', 'Detailed List', 'Grid', 'Bookcase'), \
     'flattenseason'             :('False', 'True'), \
     'seasonview'                :('List', 'Coverflow'), \
-    'channelview'               :('List', 'Tabbed List', 'Grid', 'Bookcase'), \
     'durationformat'            :('Hours/Minutes', 'Minutes'), \
     'moviefanart'               :('Hide', 'Show'), \
     'tvshowfanart'              :('Hide', 'Show'), \

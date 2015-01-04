@@ -71,8 +71,8 @@
               </horizontalDivider>
             </header>
             <items>
-              <oneLineMenuItem id="Top Level" onSelect="atv.loadURL('{{URL(:/::PlexConnect=Settings_TopLevel)}}')">
-                <label>{{TEXT(Top Level Options)}}</label>
+              <oneLineMenuItem id="MainNavigation" onSelect="atv.loadURL('{{URL(:/::PlexConnect=Settings_TopLevel)}}')">
+                <label>{{TEXT(Main Navigation)}}</label>
                 <accessories>
                   <arrow/>
                 </accessories>
