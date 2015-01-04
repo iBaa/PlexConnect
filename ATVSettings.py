@@ -19,7 +19,6 @@ options = { \
     'showsharedlibraries'        :('True', 'False'), \
     'showplaylists'              :('True', 'False'), \
     'movieview'                  :('Big Artwork', 'Grid', 'List', 'Detailed List'), \
-    'extraview'                  :('Grid'), \
     'movieposters'               :('Show', 'Hide'), \
     'movielayers'                :('Show', 'Hide'), \
     'homevideoview'              :('Grid', 'List', 'Detailed List'), \
@@ -51,6 +50,7 @@ options = { \
     'showtitles_homevideos'     :('Show All', 'Highlighted Only'), \
     'showtitles_channels'       :('Show All', 'Highlighted Only'), \
     'movies_navbar_ondeck'      :('checked', 'unchecked'), \
+    'movie_extras'              :('checked', 'unchecked'), \
     'movies_navbar_unwatched'   :('unchecked', 'checked'), \
     'movies_navbar_byfolder'    :('unchecked', 'checked'), \
     'movies_navbar_collections' :('unchecked', 'checked'), \

@@ -173,6 +173,7 @@
                   <image>resource://Queue.png</image>
                   <focusedImage>resource://QueueFocused.png</focusedImage>
                 </actionButton>
+                
                 <actionButton id="{{VAL(key)}}"
                              onPlay="atv.loadURL('{{URL(key:::PlexConnect=Movie_Extras)}}')"
                              onSelect="atv.loadURL('{{URL(key:::PlexConnect=Movie_Extras)}}')"
@@ -181,7 +182,7 @@
                   <image>resource://Rate.png</image>
                   <focusedImage>resource://RateFocused.png</focusedImage>
                   <!--<badge></badge>-->
-                </actionButton>{{CUT(Video/Extras/Video/ratingKey:CUT:=)}}
+                </actionButton>{{CUT($movie_extras::unchecked=CUT|checked=)}}{{CUT(Video/Extras/Video/ratingKey:CUT:=)}}
                 <actionButton id="more" accessibilityLabel="More info" onSelect="atv.showMoreInfo();" onPlay="atv.showMoreInfo();">
                   <title>{{TEXT(More)}}</title>
                   <image>resource://More.png</image>

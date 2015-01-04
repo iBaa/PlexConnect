@@ -58,10 +58,6 @@
                 <rightLabel>{{SETTING(movieview)}}</rightLabel>
               </oneLineMenuItem> 
               
-              <oneLineMenuItem id="ExtraView">
-                <label>{{TEXT(Movie Extras View)}}</label>
-                <rightLabel>{{TEXT(Grid)}}</rightLabel>
-              </oneLineMenuItem>
 
               <oneLineMenuItem id="ActorView" onSelect="toggleSettings('ActorView', 'Settings_Movies')">
                 <label>{{TEXT(Actor View)}}</label>
@@ -108,6 +104,14 @@
                 <accessories>
                   <checkMark/>
                 </accessories>{{CUT($movies_navbar_ondeck::unchecked=CUT|checked=)}}
+                
+                <oneLineMenuItem id="Movie_Extras" onSelect="toggleSettings('Movie_Extras', 'Settings_Movies')">
+                <label>{{TEXT(Movie Extras)}}</label>
+                <accessories>
+                  <checkMark/>
+                </accessories>{{CUT($movie_extras::unchecked=CUT|checked=)}}
+              </oneLineMenuItem>
+                
               </oneLineMenuItem>
               <oneLineMenuItem id="Movies_NavBar_Unwatched" onSelect="toggleSettings('Movies_NavBar_Unwatched', 'Settings_Movies')">
                 <label>{{TEXT(Unwatched)}}</label>
