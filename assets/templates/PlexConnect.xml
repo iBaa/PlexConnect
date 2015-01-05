@@ -25,7 +25,7 @@
         <navigationItem id="Channels">
           <title>{{TEXT(Channels)}}</title>
           <url>{{URL(:/PMS(owned)/channels/all::PlexConnect=Channels_View)}}</url>
-        </navigationItem>{{CUT($channelsview:CUT:=|Hide=CUT|Hide =)}}
+        </navigationItem>{{CUT($channelview:CUT:=|Hide=CUT|Hide =)}}
         <navigationItem id="Settings">
           <title>{{TEXT(Settings)}}</title>
           <url>{{URL(:/::PlexConnect=Settings_Main)}}</url>
