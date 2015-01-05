@@ -2,8 +2,8 @@
 <atv>
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
-    <script src="{{URL(:/js/handlePlexConnectNavbar.js)}}" />
     <script src="{{URL(:/js/updateXML.js)}}" />
+    <script src="{{URL(:/js/handlePlexConnectNavbar.js)}}" />
   </head>
   <body>
     <viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadMenuPage(event)"

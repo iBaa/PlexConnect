@@ -35,8 +35,8 @@
           
             <items>
               <twoLineMenuItem id="{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(type::movie=Movie_PrePlay|episode=Episode_PrePlay|season=Season_{{EVAL('{{VAL($showview)}}'.replace(' ', ''))}})}})}})}}')"
-                                       onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect={{VAL(type::movie=Movie_PrePlay|episode=Episode_PrePlay|season=Season_{{EVAL('{{VAL($showview)}}'.replace(' ', ''))}})}})}})}}')">
+                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(type::movie=Movie_PrePlay|episode=TVShow_PrePlay|season=Season_{{EVAL('{{VAL($showview)}}'.replace(' ', ''))}})}})}}')"
+                                       onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect={{VAL(type::movie=Movie_PrePlay|episode=TVShow_PrePlay|season=Season_{{EVAL('{{VAL($showview)}}'.replace(' ', ''))}})}})}}')">
                 {{COPY(@RecentlyAdded/Server/Directory,Video)}}
                 {{VAR(items:NoKey:TRUE)}}              
                 <label>{{VAL(type::movie={{VAL(title)}}|episode={{VAL(parentTitle)}}|season={{VAL(parentTitle)}}|album={{VAL(parentTitle)}})}}</label>

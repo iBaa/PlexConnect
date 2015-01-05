@@ -139,7 +139,7 @@
                   <focusedImage>resource://PlayFocused.png</focusedImage>
                 </actionButton>
                 <actionButton id="scrobbleMenu" 
-                				onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=ScrobbleMenuVideo')">
+                				onHoldSelect="scrobbleMenu('{{URL(key)}}&amp;PlexConnect=Scrobble_MenuVideo')">
                   <title>{{TEXT(Watch Status)}}</title>
                   <image>resource://More.png</image>
                   <focusedImage>resource://MoreFocused.png</focusedImage>
