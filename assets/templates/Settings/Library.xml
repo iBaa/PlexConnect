@@ -81,12 +81,12 @@
               </horizontalDivider>
             </header>
             <items>
-                <oneLineMenuItem id="LibraryView_Remote" onSelect="toggleSettings('LibraryView_Remote', 'Settings_Library')">
+                <oneLineMenuItem id="SharedLibrariesView" onSelect="toggleSettings('SharedLibraryView', 'Settings_Library')">
                 <label>{{TEXT(Library View)}}</label>
-                <rightLabel>{{SETTING(libraryview_remote)}}</rightLabel>
+                <rightLabel>{{SETTING(sharedlibrariesview)}}</rightLabel>
               </oneLineMenuItem>
               <oneLineMenuItem id="SectionIcons_Shared" onSelect="toggleSettings('SectionIcons_Shared', 'Settings_Library')">
-                <label>{{TEXT(Library Icons)}}</label>
+                <label>{{TEXT(Shared Library Icons)}}</label>
                 <rightLabel>{{SETTING(sectionicons_shared)}}</rightLabel>
               </oneLineMenuItem> 
               <!--<oneLineMenuItem id="LibraryRemote_Search" onSelect="toggleSettings('LibraryRemote_Search', 'Settings/Library')">
@@ -107,9 +107,9 @@
                   <label>{{TEXT(All Libraries View)}}</label>
                   <rightLabel>{{SETTING(librariesview)}}</rightLabel>
               </oneLineMenuItem>
-              <oneLineMenuItem id="SectionIcons_Merge" onSelect="toggleSettings('SectionIcons_Merge', 'Settings_Library')">
+              <oneLineMenuItem id="SectionIcons_All" onSelect="toggleSettings('SectionIcons_All', 'Settings_Library')">
                 <label>{{TEXT(All Libraries Icons)}}</label>
-                <rightLabel>{{SETTING(sectionicons_shared)}}</rightLabel>
+                <rightLabel>{{SETTING(sectionicons_all)}}</rightLabel>
               </oneLineMenuItem>
                   </items>
               </menuSection>
@@ -146,12 +146,12 @@
             </header>
             <items>
             
-            <oneLineMenuItem id="Library_Merge" onSelect="toggleSettings('Library_Merge', 'Settings_Library')">
+            <!--<oneLineMenuItem id="Library_Merge" onSelect="toggleSettings('Library_Merge', 'Settings_Library')">
                 <label>{{TEXT(Merge All Libaries)}}</label>
                 <accessories>
                   <checkMark/>
                 </accessories>{{CUT($library_merge::unchecked=CUT|checked=)}}
-              </oneLineMenuItem> 
+              </oneLineMenuItem>-->
 
               <oneLineMenuItem id="Library_OnDeck" onSelect="toggleSettings('Library_OnDeck', 'Settings_Library')">
                 <label>{{TEXT(On Deck)}}</label>
@@ -165,13 +165,15 @@
                 <accessories>
                   <checkMark/>
                 </accessories>{{CUT($library_recentlyadded::unchecked=CUT|checked=)}}
-              </oneLineMenuItem>               
-              <oneLineMenuItem id="Library_Channels" onSelect="toggleSettings('Library_Channels', 'Settings_Library')">
+              </oneLineMenuItem>      
+              
+              <!--<oneLineMenuItem id="Library_Channels" onSelect="toggleSettings('Library_Channels', 'Settings_Library')">
                 <label>{{TEXT(Channels)}}</label>
                 <accessories>
                   <checkMark/>
                 </accessories>{{CUT($library_channels::unchecked=CUT|checked=)}}
-              </oneLineMenuItem>              
+              </oneLineMenuItem>-->              
+              
             </items>
           </menuSection>
         </sections>

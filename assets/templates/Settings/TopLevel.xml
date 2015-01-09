@@ -6,7 +6,7 @@
   </head>
 
   <body>
-    <itemCollectionWithImageHeader id="SettingsPage_VideoOSD">
+    <itemCollectionWithImageHeader id="SettingsPage_MainNavigation">
       <header>
         <imageHeader>
           <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=552|1080=828)}}, 0" required="true">

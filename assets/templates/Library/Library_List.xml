@@ -13,7 +13,7 @@
 	      <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=552|1080=828)}}, 0" required="true">
 	    {{URL(:/fanartcache/{{getBackground({{EVAL({\
               'template'    : 'plex',\
-              'title'       : "{{EVAL(quote_plus("{{TEXT(Shared Libraries)}}"))}}",\
+              'title'       : "{{EVAL(quote_plus("{{TEXT(Plex Library)}}"))}}",\
               'image'       : "backgrounds/plex{{VAL($menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
               'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
               'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
@@ -25,9 +25,11 @@
       </header>
            
       <menu>
-        <sections>        
+        <sections>
           
-          <!-- servers -->
+          
+          
+          <!-- local servers -->
           <menuSection>
           {{COPY(Server:@main/size::0=|1=COPY)}}
             
@@ -51,23 +53,31 @@
                   <link>{{URL(key::/recentlyAdded:stack=1&amp;X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20&amp;PlexConnect=Main_SectionPreview-{{VAL(type)}})}}</link>{{CUT(type::a=|photo=CUT|q=)}}
                   <link>{{URL(key::/recentlyAdded:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20&amp;PlexConnect=Main_SectionPreview-{{VAL(type)}})}}</link>{{CUT(type:CUT:a=CUT|photo=|q=CUT)}}
                 </preview>
-              </oneLineMenuItem>
-              
-              <!--OnDeck -->
+              </oneLineMenuItem>{{CUT($sectionsposition::Top=|Bottom=CUT|Flow=|Middle=CUT)}}            
+                   
+              <!-- OnDeck -->
               <oneLineMenuItem id="{{VAL(ondeck)}}"
-                                       onPlay="atv.loadURL('{{URL(:/PMS(shared)/library/onDeck)}}&amp;PlexConnect=Main_Library_OnDeck')"
-                                       onSelect="atv.loadURL('{{URL(:/PMS(shared)/library/onDeck)}}&amp;PlexConnect=MAin_Library_OnDeck')">
+                                       onPlay="atv.loadURL('{{URL(:/PMS(owned)/library/onDeck)}}&amp;PlexConnect=Library_Library_OnDeck')"
+                                       onSelect="atv.loadURL('{{URL(:/PMS(owned)/library/onDeck)}}&amp;PlexConnect=Library_Library_OnDeck')">
                <label>{{TEXT(On Deck)}}</label>
+
               </oneLineMenuItem>{{CUT($library_ondeck::checked=|unchecked=CUT)}}             
                               
               <!-- Recently Added -->
               <oneLineMenuItem id="{{VAL(recentlyadded)}}"
-                                       onPlay="atv.loadURL('{{URL(:/PMS(shared)/library/recentylAdded)}}&amp;PlexConnect=MAin_Library_RecentlyAdded')"
-                                       onSelect="atv.loadURL('{{URL(:/PMS(shared)/library/recentylAdded)}}&amp;PlexConnect=Main_Library_RecentlyAdded')">
+                                       onPlay="atv.loadURL('{{URL(:/PMS(owned)/library/recentylAdded)}}&amp;PlexConnect=Library_Library_RecentlyAdded')"
+                                       onSelect="atv.loadURL('{{URL(:/PMS(owned)/library/recentylAdded)}}&amp;PlexConnect=Library_Library_RecentlyAdded')">
                 <label>{{TEXT(Recently Added)}}</label>
-              </oneLineMenuItem>{{CUT($library_recentlyadded::checked=|unchecked=CUT)}}              
-                              
                 
+              </oneLineMenuItem>{{CUT($library_recentlyadded::checked=|unchecked=CUT)}}              
+                
+               <!-- Channels -->
+              <oneLineMenuItem id="{{VAL(channels)}}"
+                                       onPlay="atv.loadURL('{{URL(:/PMS(owned)/channels/all)}}')"
+                                       onSelect="atv.loadURL('{{URL(:/PMS(owned)/channels/all)}}')">
+                <label>{{TEXT(Channels)}}</label>
+              </oneLineMenuItem>{{CUT($library_channels::checked=|unchecked=CUT)}}
+                              
               <!-- search -->
               <oneLineMenuItem id="{{VAL(searchKey)}}"
                                        onPlay="atv.loadURL('{{URL(searchKey)}}')"
@@ -75,6 +85,7 @@
                 <label>{{TEXT(Search)}}</label>
                 <accessories><arrow/></accessories>
               </oneLineMenuItem>
+              
               
               </items>
           </menuSection>

@@ -3,7 +3,7 @@
     <script src="{{URL(:/js/utils.js)}}" />
     <script src="{{URL(:/js/settings.js)}}" />
     <script src="{{URL(:/js/sectionHoldSelect.js)}}" />
-    <script src="{{URL(:/js/updateXML.js)}}" />
+    
   </head>
 
   <body>
@@ -138,31 +138,6 @@
             </shelfSection>          
           </sections>
         </shelf>{{CUT($library_recentlyadded::checked=|unchecked=CUT)}}{{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}
-        </__COPY__>
-        
-        <__COPY__>
-        {{COPY(@VideoChannels/Server:size::0=|1=COPY)}}
-        <collectionDivider alignment="left" accessibilityLabel="Channels">
-            <title>{{TEXT(Channels)}} - {{VAL(name)}}{{VAL(local::0=|0 =)}}</title>{{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}}
-        </collectionDivider>{{CUT($library_channels:CUT:checked=|unchecked=CUT)}}
-        <shelf id="shelf_3" columnCount="7">
-            {{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}}
-            <sections>                             
-                <shelfSection>                    
-                    <items>
-                        <fourByThreePoster id="Video_{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_channels::Highlighted Only=false|Show All=true)}}"
-                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Channels_Video)}}')"
-                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=Channels_Video)}}')">
-                            {{COPY(Directory)}}
-                            {{VAR(channels:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
-                            <title>{{VAL(title)}}</title>
-                            <image>{{IMAGEURL(thumb::)}}</image>
-                            <defaultImage>resource://Square.png</defaultImage>
-                        </fourByThreePoster>
-                    </items>
-                </shelfSection>
-          </sections>
-        </shelf>{{CUT($library_channels:CUT:checked=|unchecked=CUT)}}{{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}}
         </__COPY__>
         
     </items>

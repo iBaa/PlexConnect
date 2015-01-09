@@ -10,20 +10,17 @@ from Debug import *  # dprint()
 
 
 options = { \
-    'libraryview_remote'         :('Grid', 'Paged Grid', 'List'), \
-    'libraryview'                :('Grid', 'Paged Grid', 'List'), \
+    'playlistsview'             :('List', 'Tabbed List', 'Hide'), \
+    'libraryview'               :('Grid', 'Paged Grid', 'List', 'Hide'), \
+    'sharedlibrariesview'       :('Grid', 'Paged Grid', 'List', 'Hide'), \
+    'librariesview'             :('Hide', 'Grid', 'Paged Grid', 'List'), \
+    'channelview'               :('Grid', 'List', 'Tabbed List', 'Hide'), \
     'sectionsposition'           :('Flow', 'Top'), \
-    'playlistview'               :('List', 'Tabbed List'), \
-    'librariesview'              :('Grid', 'Paged Grid', 'List'), \
-    'showchannels'               :('True', 'False'), \
-    'showsharedlibraries'        :('True', 'False'), \
-    'showplaylists'              :('True', 'False'), \
     'movieview'                  :('Big Artwork', 'Grid', 'List', 'Detailed List'), \
     'movieposters'               :('Show', 'Hide'), \
     'movielayers'                :('Show', 'Hide'), \
     'homevideoview'              :('Grid', 'List', 'Detailed List'), \
     'showview'                   :('Big Artwork', 'Grid', 'List', 'Bookcase'), \
-    'channelview'                :('Grid', 'List', 'Tabbed List'), \
     'movieextras'                :('Show', 'Hide'), \
     'episodeposters'             :('Show', 'Hide'), \
     'showlayers'                 :('Show', 'Hide'), \
@@ -33,15 +30,14 @@ options = { \
     'seasonview'                 :('Big Artwork', 'Coverflow', 'List'), \
     'sectionicons'               :('Fanart', 'Plex', 'Custom'), \
     'sectionicons_shared'        :('Fanart', 'Plex'), \
-    'sectionicons_merge'         :('Fanart', 'Plex'), \
+    'sectionicons_all'           :('Fanart', 'Plex'), \
     'library_search'             :('Hide', 'Show'), \
     'libraryremote_search'       :('Hide', 'Show'), \
     'library_ondeck'             :('checked', 'unchecked'), \
     'library_recentlyadded'      :('checked', 'unchecked'), \
     'library_channels'           :('unchecked', 'checked'), \
-    'library_merge'              :('unchecked', 'checked'), \
+    'librarymerge'               :('False', 'True'), \
     'showtitles_library'         :('Show All', 'Highlighted Only'), \
-    'showplayinfos'              :('True', 'False'), \
     'starttab'                   :('Library', 'Shared Libraries', 'Channels'), \
     'actorview'                  :('Movies', 'Portrait'), \
     'flattenseason'              :('False', 'True'), \

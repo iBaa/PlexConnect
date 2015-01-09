@@ -57,12 +57,7 @@
           <menuSection>
             <items>
             
-              <oneLineMenuItem id="Top Level" onSelect="atv.loadURL('{{URL(:/::PlexConnect=Settings_TopLevel)}}')">
-                <label>{{TEXT(Top Level Options)}}</label>
-                <accessories>
-                  <arrow/>
-                </accessories>
-                </oneLineMenuItem>
+              
               
               <oneLineMenuItem id="LibraryView" onSelect="atv.loadURL('{{URL(:/::PlexConnect=Settings_Library)}}')">
                 <label>{{TEXT(Library Options)}}</label>

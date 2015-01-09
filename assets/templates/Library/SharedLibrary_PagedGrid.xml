@@ -3,7 +3,6 @@
         <script src="{{URL(:/js/utils.js)}}" />
         <script src="{{URL(:/js/settings.js)}}" />
         <script src="{{URL(:/js/sectionHoldSelect.js)}}" />
-        <script src="{{URL(:/js/updateXML.js)}}" />
     </head>
     
     <body>
@@ -20,7 +19,7 @@
                     <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=630|1080=945)}}, 0" required="true">
                         {{URL(:/fanartcache/{{getBackground({{EVAL({\
                         'template'    : 'plex',\
-                        'title'       : "{{EVAL(quote_plus("{{TEXT(All Libraries)}}"))}}",\
+                        'title'       : "{{EVAL(quote_plus("{{TEXT(Shared Libraries)}}"))}}",\
                         'image'       : "backgrounds/plex{{VAL($menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
                         'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
                         'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
@@ -122,27 +121,7 @@
                 </pagedGrid>{{CUT($library_recentlyadded::checked=|unchecked=CUT)}}{{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}
                 </__COPY__>
         
-        <__COPY__>
-        {{COPY(@VideoChannels/Server:size::0=|1=COPY)}}
-        <collectionDivider alignment="left" accessibilityLabel="Channels">
-            <title>{{TEXT(Channels)}} - {{VAL(name)}}{{VAL(local::0=|0 =)}}</title>{{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}}
-        </collectionDivider>{{CUT($library_channels:CUT:checked=|unchecked=CUT)}}
-                
-                <pagedGrid id="paged-grid-0">
-                {{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}}
-                    
-                    <!-- /library/sections -->
-                    <fourByThreePoster id="Video_{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_channels::Highlighted Only=false|Show All=true)}}"
-                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=Channels_Video)}}')"
-                        onSelect="atv.loadURL('{{URL(key:::PlexConnect=Channels_Video)}}')">
-                        {{PAGEDCOPY(Directory,6,1)}}
-                        {{VAR(channels:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
-                        <title>{{VAL(title)}}</title>
-                        <image>{{IMAGEURL(thumb::)}}</image>
-                        <defaultImage>resource://Square.png</defaultImage>
-                    </fourByThreePoster>
-                </pagedGrid>{{CUT($library_channels:CUT:checked=|unchecked=CUT)}}{{CUT(@VideoChannels/Server/size:CUT:0=CUT|1=)}} 
-               </__COPY__>
+        
             </items>  
         </scroller>{{CUT(#sections::FALSE=CUT|TRUE=)}}
         

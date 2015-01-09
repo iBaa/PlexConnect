@@ -2,44 +2,46 @@
 <atv>
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/handlePlexConnectNavbar.js)}}" />
     <script src="{{URL(:/js/updateXML.js)}}" />
     
   </head>
   <body>
     <viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadMenuPage(event)"
                            volatile="true" onVolatileReload="updatePage('{{URL()}}/PlexConnect.xml&amp;PlexConnectUDID=' + atv.device.udid);">
-      <navigation currentIndex="{{VAL($showplaylists:0:False=0|True=1)}}">
+      {{VAR(ix::{{VAL($libraryview::=1|Hide={{VAL($sharedlibrariesview::=1|Hide=0|Hide =1)}}|Hide =1)}})}}  <!--1 if library or shared library to be shown-->
+      <navigation currentIndex="{{VAL($libraryview::={{VAL(#ix)}}|Hide=0|Hide ={{VAL(#ix)}})}}">
       
         <navigationItem id="Playlists">
           <title>{{TEXT(Playlists)}}</title>
-          <url>{{URL(:/PMS(all)/playlists::PlexConnect=Playlists_{{EVAL('{{VAL($playlistview)}}'.replace(' ', ''))}})}}</url>
-        </navigationItem>{{CUT($showplaylists:CUT:False=CUT|True=)}}
+          <url>{{URL(:/PMS(all)/playlists::PlexConnect=Playlists_View)}}</url>
+        </navigationItem>{{CUT($playlistsview:CUT:=|Hide=CUT|Hide =)}}
         
         <navigationItem id="Library">
           <title>{{TEXT(Library)}}</title>
-          <url>{{URL(:/PMS(owned)/library/sections::PlexConnect=Main_Library_{{EVAL('{{VAL($libraryview)}}'.replace(' ', ''))}})}}</url>
-          </navigationItem>{{CUT($library_merge:CUT:checked=CUT|unchecked=)}}
-          
-          <navigationItem id="Libraries">
-            <title>{{TEXT(All Libraries)}}</title>
-            <url>{{URL(:/PMS(all)/library/sections::PlexConnect=Main_Libraries_{{EVAL('{{VAL($librariesview)}}'.replace(' ', ''))}})}}</url>
-        </navigationItem>{{CUT($myplex_auth:CUT:=CUT| =)}}{{CUT($library_merge:CUT:unchecked=CUT|checked=)}}
-
+          <url>{{URL(:/PMS(owned)/library/sections::PlexConnect=Library_View)}}</url>
+        </navigationItem>{{CUT($libraryview:CUT:=|Hide=CUT|Hide =)}}{{CUT($librariesview::=CUT|Hide=)}}
+        
+        <navigationItem id="All Libraries">
+          <title>{{TEXT(All Libraires)}}</title>
+          <url>{{URL(:/PMS(all)/library/sections::PlexConnect=Library_ViewAll)}}</url>
+        </navigationItem>{{CUT($librariesview:CUT:=|Hide=CUT|Hide =)}}{{CUT($myplex_auth:CUT:=CUT| =)}}
         
         <navigationItem id="Channels">
           <title>{{TEXT(Channels)}}</title>
-          <url>{{URL(:/PMS(owned)/channels/all::PlexConnect=Channels_{{EVAL('{{VAL($channelview)}}'.replace(' ', ''))}})}}</url>
-        </navigationItem>{{CUT($showchannels:CUT:False=CUT|True=)}}{{CUT($library_channels::checked=CUT|unchecked=)}}
+          <url>{{URL(:/PMS(owned)/channels/all::PlexConnect=Channels_View)}}</url>
+        </navigationItem>{{CUT($channelview:CUT:=|Hide=CUT|Hide =)}}{{CUT($library_channels::checked=CUT|unchecked=)}}
         
         <navigationItem id="SharedLibraries">
           <title>{{TEXT(Shared Libraries)}}</title>
-          <url>{{URL(:/PMS(shared)/library/sections::PlexConnect=Main_SharedLibrary_{{EVAL('{{VAL($libraryview_remote)}}'.replace(' ', ''))}})}}</url>
-        </navigationItem>{{CUT($myplex_auth:CUT:=CUT| =)}}{{CUT($showsharedlibraries:CUT:False=CUT|True=)}}{{CUT($library_merge:CUT:checked=CUT|unchecked=)}}
+          <url>{{URL(:/PMS(shared)/library/sections::PlexConnect=Library_ViewShared)}}</url>
+        </navigationItem>{{CUT($myplex_auth:CUT:=CUT| =)}}{{CUT($sharedlibrariesview:CUT:=|Hide=CUT|Hide =)}}{{CUT($librariesview::=CUT|Hide=)}}
         
         <navigationItem id="Settings">
           <title>{{TEXT(Settings)}}</title>
           <url>{{URL(:/::PlexConnect=Settings_Main)}}</url>
         </navigationItem>
+        
       </navigation>
     </viewWithNavigationBar>
   </body>
