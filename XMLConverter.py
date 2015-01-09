@@ -169,10 +169,7 @@ def XML_PMS2aTV(PMS_address, path, options):
         dprint(__name__, 1, "---------------------------------------------")
         dprint(__name__, 1, "Input: {0} {1} ", PMS_address, path)
         dprint(__name__, 1, "Initial Command: {0}", cmd)
-
-    if 'PlexConnectChannelsSearch' in options:
-        channelsearchURL = options['PlexConnectChannelsSearch'].replace('+amp+', '&')
-
+    
     # check aTV language setting
     if not 'aTVLanguage' in options:
         dprint(__name__, 1, "no aTVLanguage - pick en")
@@ -264,6 +261,14 @@ def XML_PMS2aTV(PMS_address, path, options):
         auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
         PlexAPI.discoverPMS(UDID, g_param['CSettings'], auth_token)
         
+        # sanitize aTV settings from not-working combinations
+        # fanart only with PIL/pillow installed, only with iOS>=6.0  # watch out: this check will make trouble with iOS10
+        if not PILBackgrounds.isPILinstalled() or \
+           not options['aTVFirmwareVersion'] >= '6.0':
+            dprint(__name__, 2, "disable fanart (PIL not installed or aTVFirmwareVersion<6.0)")
+            g_ATVSettings.setSetting(UDID, 'moviefanart', 'Hide')
+            g_ATVSettings.setSetting(UDID, 'tvshowfanart', 'Hide')
+        
         return XML_Error('PlexConnect', 'Discover!')  # not an error - but aTV won't care anyways.
 
     # Special case path requests
@@ -296,58 +301,53 @@ def XML_PMS2aTV(PMS_address, path, options):
         XMLtemplate = dir + '/' + cmd + '.xml'
         if path == '/': path = ''
         dprint(__name__, 1, "Split Directory: {0} Command: {1}", dir, cmd)
-        dprint(__name__, 1, "PlexConnectChannelsSearch: " + channelsearchURL)
         dprint(__name__, 1, "XMLTemplate: {0}", XMLtemplate)
         dprint(__name__, 1, "---------------------------------------------")
-
-    # request PMS XML
-    if not path=='':
-        if PMS_address[0].isalpha():  # owned, shared
-            type = PMS_address
-            PMS = PlexAPI.getXMLFromMultiplePMS(UDID, path, type, options)
-        else:  # IP
-            auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
-            PMS = PlexAPI.getXMLFromPMS(PMS_baseURL, path, options, authtoken=auth_token)
-        
-        if PMS==False:
-            return XML_Error('PlexConnect', 'No Response from Plex Media Server')
-        
-        PMSroot = PMS.getroot()
-        
-        dprint(__name__, 1, "viewGroup: "+PMSroot.get('viewGroup','None'))
     
-    dprint(__name__, 1, "XMLTemplate: "+XMLtemplate)
-
-    # get XMLtemplate
-    aTVTree = etree.parse(sys.path[0]+'/assets/templates/'+XMLtemplate)
-    aTVroot = aTVTree.getroot()
-    # redirect if necessary, load final XMLtemplate
-    while aTVroot.tag=='XMLtemplate':
+    PMSroot = None
+    while True:
+        # request PMS-XML
+        if not path=='' and not PMSroot:
+            if PMS_address[0].isalpha():  # owned, shared
+                type = PMS_address
+                PMS = PlexAPI.getXMLFromMultiplePMS(UDID, path, type, options)
+            else:  # IP
+                auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
+                PMS = PlexAPI.getXMLFromPMS(PMS_baseURL, path, options, authtoken=auth_token)
+            
+            if PMS==False:
+                return XML_Error('PlexConnect', 'No Response from Plex Media Server')
+            
+            PMSroot = PMS.getroot()
+        
+        # get XMLtemplate
+        aTVTree = etree.parse(sys.path[0]+'/assets/templates/'+XMLtemplate)
+        aTVroot = aTVTree.getroot()
+        
+        # convert PMS XML to aTV XML using provided XMLtemplate
         CommandCollection = CCommandCollection(options, PMSroot, PMS_address, path)
         XML_ExpandTree(CommandCollection, aTVroot, PMSroot, 'main')
         XML_ExpandAllAttrib(CommandCollection, aTVroot, PMSroot, 'main')
         del CommandCollection
         
-        XMLtemplate = aTVroot.get('redirect').replace(" ", "")
-        dprint(__name__, 1, "---------------------------------------------")
-        dprint(__name__, 1, "XMLTemplate redirect: {0}", XMLtemplate)
-        dprint(__name__, 1, "---------------------------------------------")
-        aTVTree = etree.parse(sys.path[0]+'/assets/templates/'+XMLtemplate)
-        aTVroot = aTVTree.getroot()
+        # no redirect? exit loop!
+        redirect = aTVroot.find('redirect')
+        if redirect==None:
+            break;
+            
+        # redirect to new PMS-XML - if necessary
+        path_rdrct = redirect.get('newPath')
+        if path_rdrct:
+            path = path_rdrct
+            PMSroot = None  # force PMS-XML reload
+            dprint(__name__, 1, "PMS-XML redirect: {0}", path)
+        
+        # redirect to new XMLtemplate - if necessary
+        XMLtemplate_rdrct = redirect.get('template')
+        if XMLtemplate_rdrct:
+            XMLtemplate = XMLtemplate_rdrct.replace(" ", "")
+            dprint(__name__, 1, "XMLTemplate redirect: {0}", XMLtemplate)
     
-    # convert PMS XML to aTV XML using provided XMLtemplate
-    CommandCollection = CCommandCollection(options, PMSroot, PMS_address, path)
-    XML_ExpandTree(CommandCollection, aTVroot, PMSroot, 'main')
-    XML_ExpandAllAttrib(CommandCollection, aTVroot, PMSroot, 'main')
-    del CommandCollection
-    
-    if dir=='Channels' and cmd=='Search':
-        for bURL in aTVroot.iter('baseURL'):
-            if channelsearchURL.find('?') == -1:
-                bURL.text = channelsearchURL + '?query='
-            else:
-                bURL.text = channelsearchURL + '&query='
-                
     dprint(__name__, 1, "====== generated aTV-XML ======")
     dprint(__name__, 1, aTVroot)
     dprint(__name__, 1, "====== aTV-XML finished ======")
@@ -975,7 +975,7 @@ class CCommandCollection(CCommandHelper):
         addOpt, leftover = self.getParam(src, leftover)
         
         # compare PMS_mark in PlexAPI/getXMLFromMultiplePMS()
-        PMS_mark = '/PMS(' + PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'ip') + ')'
+        PMS_mark = '/PMS(' + PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'address') + ')'
         
         # overwrite with URL embedded PMS address
         cmd_start = key.find('PMS(')
@@ -1248,7 +1248,7 @@ if __name__=="__main__":
             </PMS>'
     PMSroot = etree.fromstring(_XML)
     PMSTree = etree.ElementTree(PMSroot)
-    print prettyXML(PMSTree)
+    print prettyXML(PMSroot)
     
     print
     print "load aTV XML template"
@@ -1267,7 +1267,7 @@ if __name__=="__main__":
             </aTV>'
     aTVroot = etree.fromstring(_XML)
     aTVTree = etree.ElementTree(aTVroot)
-    print prettyXML(aTVTree)
+    print prettyXML(aTVroot)
     
     print
     print "unpack PlexConnect COPY/CUT commands"
@@ -1281,7 +1281,7 @@ if __name__=="__main__":
     
     print
     print "resulting aTV XML"
-    print prettyXML(aTVTree)
+    print prettyXML(aTVroot)
     
     print
     #print "store aTV XML"

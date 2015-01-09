@@ -71,8 +71,8 @@
               
               <!-- channel search item -->
               <twoLineEnhancedMenuItem id="{{VAL(key)}}" 
-                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Channels_Search)}}&amp;PlexConnectChannelsSearch={{EVAL('{{URL(key:::)}}'.replace('&amp;', '+amp+'))}}')"
-                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=Channels_Search)}}&amp;PlexConnectChannelsSearch={{EVAL('{{URL(key:::)}}'.replace('&amp;', '+amp+'))}}')">
+                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Channels_Search&amp;PlexConnectSearchKey={{VAL_QUOTED(key)}})}}')"
+                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=Channels_Search&amp;PlexConnectSearchKey={{VAL_QUOTED(key)}})}}')">
                 {{COPY(Directory:search::1=COPY)}}
                 <label>{{VAL(title)}}</label>
                 <!--

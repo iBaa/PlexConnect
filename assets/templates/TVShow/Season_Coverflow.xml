@@ -20,19 +20,15 @@
             <shelfSection>
               <items>
                 <goldenPoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
-															onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_List{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
-															onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_List{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
-															onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
+                              onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_List{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
+                              onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_List{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
+                              onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
                   {{COPY(Directory)}}
                   <title>{{VAL(title)}}</title>
                   <image>{{IMAGEURL(thumb::768)}}</image>{{CUT(thumb:CUT:=CUT| =)}}
                   <image>{{IMAGEURL(#parentThumb::768)}}</image>{{CUT(thumb:: =CUT)}}
                   <defaultImage>resource://Poster.png</defaultImage>
                 </goldenPoster>{{CUT(Directory/title:CUT:=)}}
-            
-            <!--    <oneLineMenuItem id="none">
-                  <label>No Seasons</label>
-                </oneLineMenuItem>{{CUT(Directory/title::=CUT)}}-->
               </items>
             </shelfSection>
           </sections>

@@ -1,1 +1,3 @@
-<XMLtemplate redirect="Channels/TabbedList_Video.xml" />
+<atv>
+  <redirect template="Channels/TabbedList_Video.xml" />
+</atv>

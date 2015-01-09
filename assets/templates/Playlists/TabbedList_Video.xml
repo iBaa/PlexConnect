@@ -15,7 +15,7 @@
         </tabWithTitle>
       </header>
 
-      <navigation currentIndex="0">
+      <navigation>
         <navigationItem>
           <title>Video</title>
           <url>{{URL(:/PMS(all)/playlists::PlexConnect=Playlists_TabbedList_Video)}}</url>

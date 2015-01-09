@@ -40,52 +40,6 @@ function log(msg, level)
     req.send();
 };
 
-
-/*
- * Flatten TV Seasons
- * If show has only one season then flatten it!
- */
-flattenSeason = function(url, flatten, swap)
-{
-  // read season XML
-  var req = new XMLHttpRequest();
-  req.open('GET', url, false);
-  req.send();
-  var doc=req.responseXML;
-  
-  if (flatten=='True')
-  {
-    var root = doc.rootElement;
-    var elements = root.getElementsByTagName('oneLineMenuItem');
-    if (!elements || elements=='')
-        elements = root.getElementsByTagName('twoLineEnhancedMenuItem');  // Season_List
-    if (!elements || elements=='')
-        elements = root.getElementsByTagName('goldenPoster');  // Season_Coverflow
-    
-    if (elements && elements.length>0 && elements.length<=2)
-    {
-        // skip season, go directly to episodes
-        var onSelect = elements[elements.length-1].getAttribute('onSelect');  // or onPlay?
-        url = onSelect.split(/\('|'\)/)[1];  // atv.loadURL('URL')
-        //log('Episodes URL: '+url);
-        
-        //read episode XML
-        req.open('GET', url, false);
-        req.send();
-        var episodes = req.responseXML;
-        if (episodes)
-            doc = episodes;
-    }
-  }
-  
-  // apply season or episode XML  
-  if (swap == 'False')
-    atv.loadXML(doc);
-  else
-    atv.loadAndSwapXML(doc);
-}
-
-
 /*
  * Mark a item watched or unwatched
  * Pass action as scrobble or unscrobble 

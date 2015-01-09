@@ -6,7 +6,7 @@
   </head>
 
   <body>
-    <listWithPreview id="SettingsPage_VideoOSD">
+    <listWithPreview id="SettingsPage_MainNavigation">
       <header>
         <simpleHeader>
           <title>{{TEXT(Settings)}}</title>
@@ -43,56 +43,24 @@
               </horizontalDivider>
             </header>
             <items>
-              <oneLineMenuItem id="ShowPlayLists" onSelect="toggleSettings('ShowPlayLists', 'Settings_TopLevel')">
-                <label>{{TEXT(Show Playlists)}}</label>
-                <rightLabel>{{SETTING(showplaylists)}}</rightLabel>
+              <oneLineMenuItem id="PlayListsView" onSelect="toggleSettings('PlayListsView', 'Settings_TopLevel')">
+                <label>{{TEXT(Playlists)}}</label>
+                <rightLabel>{{SETTING(playlistsview)}}</rightLabel>
               </oneLineMenuItem>
-              <oneLineMenuItem id="ShowLibrary" onSelect="toggleSettings('ShowLibrary', 'Settings_TopLevel')">
-                <label>{{TEXT(Show Library)}}</label>
-                <rightLabel>{{SETTING(showlibrary)}}</rightLabel>
-              </oneLineMenuItem>
-              <oneLineMenuItem id="ShowChannels" onSelect="toggleSettings('ShowChannels', 'Settings_TopLevel')">
-                <label>{{TEXT(Show Channels)}}</label>
-                <rightLabel>{{SETTING(showchannels)}}</rightLabel>
-              </oneLineMenuItem>
-              <oneLineMenuItem id="ShowSharedLibraries" onSelect="toggleSettings('ShowSharedLibraries', 'Settings_TopLevel')">
-                <label>{{TEXT(Show Shared Libraries)}}</label>
-                <rightLabel>{{SETTING(showsharedlibraries)}}</rightLabel>
-              </oneLineMenuItem>
-            </items>
-          </menuSection>
-          
-          <menuSection>
-            <header>
-              <horizontalDivider alignment="left">
-                <title>{{TEXT(Library)}}</title>
-              </horizontalDivider>
-            </header>
-            <items>
               <oneLineMenuItem id="LibraryView" onSelect="toggleSettings('LibraryView', 'Settings_TopLevel')">
-                <label>{{TEXT(Library View)}}</label>
+                <label>{{TEXT(Library)}}</label>
                 <rightLabel>{{SETTING(libraryview)}}</rightLabel>
               </oneLineMenuItem>
-              <!--oneLineMenuItem id="ShowTitles_Library" onSelect="toggleSettings('ShowTitles_Library', 'Settings_TopLevel')">
-                <label>{{TEXT(Poster Titles)}}</label>
-                <rightLabel>{{SETTING(showtitles_library)}}</rightLabel>
-              </oneLineMenuItem-->
-            </items>
-          </menuSection>
-          
-          <menuSection>
-            <header>
-              <horizontalDivider alignment="left">
-                <title>{{TEXT(Channels)}}</title>
-              </horizontalDivider>
-            </header>
-            <items>
+              <oneLineMenuItem id="SharedLibrariesView" onSelect="toggleSettings('SharedLibrariesView', 'Settings_TopLevel')">
+                <label>{{TEXT(Shared Libraries)}}</label>
+                <rightLabel>{{SETTING(sharedlibrariesview)}}</rightLabel>
+              </oneLineMenuItem>
               <oneLineMenuItem id="ChannelView" onSelect="toggleSettings('ChannelView', 'Settings_TopLevel')">
-                <label>{{TEXT(Channel View)}}</label>
+                <label>{{TEXT(Channels)}}</label>
                 <rightLabel>{{SETTING(channelview)}}</rightLabel>
               </oneLineMenuItem>
               <oneLineMenuItem id="ShowTitles_Channels" onSelect="toggleSettings('ShowTitles_Channels', 'Settings_TopLevel')">
-                <label>{{TEXT(Poster Titles)}}</label>
+                <label>- {{TEXT(Poster Titles)}}</label>
                 <rightLabel>{{SETTING(showtitles_channels)}}</rightLabel>
               </oneLineMenuItem>
             </items>

@@ -11,7 +11,7 @@
   {{VAR(artwork:art)}}
   
   <body>
-    <itemCollectionWithImageHeader id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect-TVShow_Episode_List_Fanart)}}')">
+    <itemCollectionWithImageHeader id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=TVShow_Episode_List_Fanart)}}')">
 
         	  <styles>
           <color name="titleColor">#fafafa</color>

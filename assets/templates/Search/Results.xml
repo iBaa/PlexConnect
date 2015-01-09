@@ -35,8 +35,8 @@
             </header>
             <items>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"
-                             onPlay="atv.loadURL('{{URL(key)}}')"
-                             onSelect="atv.loadURL('{{URL(key)}}')">
+                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Season)}}')"
+                             onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Season)}}')">
                 {{COPY(Directory:type::=|show=COPY|show =)}}
                 {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
                 <label>{{VAL(title)}}</label>

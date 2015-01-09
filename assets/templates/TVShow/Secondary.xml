@@ -14,8 +14,8 @@
         <sections>
           <menuSection>
             <items>
-              <oneLineMenuItem id="unwatched" onPlay="atv.loadURL('{{URL(key::/unwatched:PlexConnect=TVShow_{{EVAL('{{VAL($tvshowview)}}'.replace(' ', ''))}})}}')"
-																							onSelect="atv.loadURL('{{URL(key::/unwatched:PlexConnect=TVShow_{{EVAL('{{VAL($tvshowview)}}'.replace(' ', ''))}})}}')">
+              <oneLineMenuItem id="unwatched" onPlay="atv.loadURL('{{URL(key::/unwatched:PlexConnect=TVShow_{{EVAL('{{VAL($showview)}}'.replace(' ', ''))}})}}')"
+																							onSelect="atv.loadURL('{{URL(key::/unwatched:PlexConnect=TVShow_{{EVAL('{{VAL($showview)}}'.replace(' ', ''))}})}}')">
                 <label>{{TEXT(Unwatched)}}</label>
                 <preview>
                   <link>{{URL(key::/unwatched:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview)}}</link>
@@ -23,15 +23,15 @@
               </oneLineMenuItem>{{CUT($tv_navbar_unwatched::checked=CUT|unchecked=)}}
 
               <oneLineMenuItem id="genres" onPlay="atv.loadURL('{{URL(key::/genre:PlexConnect=TVShow_DirectoryWithPreview)}}')"
-																					onSelect="atv.loadURL('{{URL(key::/genre:PlexConnect=TVShow_DirectoryWithPreview)}}')">
+                                          onSelect="atv.loadURL('{{URL(key::/genre:PlexConnect=TVShow_DirectoryWithPreview)}}')">
                 <label>{{TEXT(Genres)}}</label>
                 <preview>
                   <link>{{URL(key::/genres:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview)}}</link>
                 </preview>
               </oneLineMenuItem>{{CUT($tv_navbar_genres::checked=CUT|unchecked=)}}
 
-              <oneLineMenuItem id="recentlyViewedShows" onPlay="atv.loadURL('{{URL(key::/recentlyViewedShows:PlexConnect=TVShow_{{EVAL('{{VAL($tvshowview)}}'.replace(' ', ''))}})}}')"
-																												onSelect="atv.loadURL('{{URL(key::/recentlyViewedShows:PlexConnect=TVShow_{{EVAL('{{VAL($tvshowview)}}'.replace(' ', ''))}})}}')">
+              <oneLineMenuItem id="recentlyViewedShows" onPlay="atv.loadURL('{{URL(key::/recentlyViewedShows:PlexConnect=TVShow_{{EVAL('{{VAL($showview)}}'.replace(' ', ''))}})}}')"
+                                                        onSelect="atv.loadURL('{{URL(key::/recentlyViewedShows:PlexConnect=TVShow_{{EVAL('{{VAL($showview)}}'.replace(' ', ''))}})}}')">
                 <label>{{TEXT(Recently Viewed Shows)}}</label>
                 <preview>
                   <link>{{URL(key::/recentlyViewedShows:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview)}}</link>
@@ -39,7 +39,7 @@
               </oneLineMenuItem>
 
               <oneLineMenuItem id="collection" onPlay="atv.loadURL('{{URL(key::/collection:PlexConnect=TVShow_DirectoryWithPreview)}}')"
-																							onSelect="atv.loadURL('{{URL(key::/collection:PlexConnect=TVShow_DirectoryWithPreview)}}')">
+                                              onSelect="atv.loadURL('{{URL(key::/collection:PlexConnect=TVShow_DirectoryWithPreview)}}')">
                 <label>{{TEXT(By Collection)}}</label>
                 <preview>
                   <link>{{URL(key::/collection:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview)}}</link>
@@ -47,12 +47,12 @@
               </oneLineMenuItem>
 
               <oneLineMenuItem id="year" onPlay="atv.loadURL('{{URL(key::/year:PlexConnect=TVShow_DirectoryWithPreview)}}')"
-																				onSelect="atv.loadURL('{{URL(key::/year:PlexConnect=TVShow_DirectoryWithPreview)}}')">
+                                        onSelect="atv.loadURL('{{URL(key::/year:PlexConnect=TVShow_DirectoryWithPreview)}}')">
                 <label>{{TEXT(By Year)}}</label>
               </oneLineMenuItem>
 
               <oneLineMenuItem id="contentRating" onPlay="atv.loadURL('{{URL(key::/contentRating:PlexConnect=TVShow_DirectoryWithPreview)}}')"
-																									onSelect="atv.loadURL('{{URL(key::/contentRating:PlexConnect=TVShow_DirectoryWithPreview)}}')">
+                                                  onSelect="atv.loadURL('{{URL(key::/contentRating:PlexConnect=TVShow_DirectoryWithPreview)}}')">
                 <label>{{TEXT(By Content Rating)}}</label>
                 <preview>
                   <link>{{URL(key::/contentRating:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview)}}</link>
@@ -60,7 +60,7 @@
               </oneLineMenuItem>
               
               <oneLineMenuItem id="firstCharacter" onPlay="atv.loadURL('{{URL(key::/firstCharacter:PlexConnect=TVShow_DirectoryWithPreview)}}')"
-																									onSelect="atv.loadURL('{{URL(key::/firstCharacter:PlexConnect=TVShow_DirectoryWithPreview)}}')">
+                                                  onSelect="atv.loadURL('{{URL(key::/firstCharacter:PlexConnect=TVShow_DirectoryWithPreview)}}')">
                 <label>{{TEXT(By First Letter)}}</label>
                 <preview>
                   <link>{{URL(key::/firstCharacter:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview)}}</link>
@@ -68,7 +68,7 @@
               </oneLineMenuItem>
 
               <oneLineMenuItem id="folder" onPlay="atv.loadURL('{{URL(key::/folder:PlexConnect=TVShow_ByFolder)}}')" 
-																					onSelect="atv.loadURL('{{URL(key::/folder:PlexConnect=TVShow_ByFolder)}}')">
+                                          onSelect="atv.loadURL('{{URL(key::/folder:PlexConnect=TVShow_ByFolder)}}')">
                 <label>{{TEXT(By Folder)}}</label>
                 <preview>
                   <link>{{URL(key::/folder:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview)}}</link>

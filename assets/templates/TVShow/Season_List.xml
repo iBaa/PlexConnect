@@ -2,7 +2,7 @@
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
   </head>
-
+  
   <body>
     <listWithPreview id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=TVShow_Season_List)}}')">
       <header>

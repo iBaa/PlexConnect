@@ -7,7 +7,7 @@
             <title>{{TEXT(Channel Search)}}</title>
           </simpleHeader>
         </header>
-      <baseURL></baseURL>
+      <baseURL>{{URL(^PlexConnectSearchKey:::query=)}}</baseURL>
     </search>
   </body>
 </atv>

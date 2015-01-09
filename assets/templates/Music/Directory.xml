@@ -2,9 +2,7 @@
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
   </head>
-	
-	{{VAR(items:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
-	
+
   <body>
     <listWithPreview id="com.sample.menu-items-with-sections">
     {{CUT(size:CUT:0=CUT|1=)}}
@@ -16,29 +14,11 @@
       </header>
       <menu>
         <sections>
+        {{VAR(items:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
 
-          <!-- Directory Artist-->
-          <menuSection>
-          {{CUT(Directory/type:CUT:a=CUT|artist=)}}
-            <items>
-              <oneLineMenuItem id="{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Music_Directory)}}')"
-                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=Music_Directory)}}')">
-              {{COPY(Directory)}}
-							{{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
-                <label>{{VAL(title)}}</label>
-                <preview>
-                  <crossFadePreview>
-                    <image>{{IMAGEURL(thumb::768)}}</image>
-                  </crossFadePreview>
-                </preview>
-              </oneLineMenuItem>
-            </items>
-          </menuSection>
-					
           <!-- Directory Album-->
           <menuSection>
-          {{CUT(Directory/type:CUT:a=CUT|album=|b=CUT)}}
+          {{CUT(Directory/type:CUT:=CUT|album=|album =CUT)}}
             <items>
               <oneLineMenuItem id="{{VAL(key)}}"
                                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=Music_Track)}}')"
@@ -135,17 +115,16 @@
               </oneLineMenuItem>
             </items>
           </menuSection>
-					
+
           <!-- Generic Directory -->
-          <!-- audio V1 -->
+          <!-- audio V1 (eg Decades), V2 (eg Artists) -->
           <menuSection>
-					{{CUT(#items::FALSE=|TRUE=CUT)}}
+          {{CUT(#items::FALSE=|TRUE=CUT)}}
             <items>
               <oneLineMenuItem id="{{VAL(key)}}"
                                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=Music_Directory)}}')"
                                        onSelect="atv.loadURL('{{URL(key:::PlexConnect=Music_Directory)}}')">
                 {{COPY(Directory)}}
-								{{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <label>{{VAL(title)}}</label>
                 <preview>
                   <crossFadePreview>
