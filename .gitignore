@@ -59,3 +59,9 @@ assets/templates/TVShow/Episode_List_Fanart.xml
 assets/templates/TVShow/Season_Coverflow_Fanart.xml
 
 assets/templates/TVShow/Season_List_Fanart.xml
+
+assets/templates/Library/Bookcase.xml
+
+assets/templates/Library/Grid.xml
+
+assets/templates/Library/List.xml
