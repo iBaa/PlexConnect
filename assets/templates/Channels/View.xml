@@ -1,0 +1,3 @@
+<atv>
+  <redirect template="Channels/{{VAL($channelview)}}.xml" />
+</atv>
