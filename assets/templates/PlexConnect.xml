@@ -8,7 +8,7 @@
   </head>
   <body>
     <viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadMenuPage(event)"
-                           volatile="true" onVolatileReload="updatePage('{{URL()}}/PlexConnect.xml&amp;PlexConnectUDID=' + atv.device.udid);">
+                           volatile="true" onVolatileReload="updatePage('{{URL()}}/PlexConnect.xml');">
       {{VAR(ix::{{VAL($libraryview::=1|Hide={{VAL($sharedlibrariesview::=1|Hide=0|Hide =1)}}|Hide =1)}})}}  <!--1 if library or shared library to be shown-->
       <navigation currentIndex="{{VAL($libraryview::={{VAL(#ix)}}|Hide=0|Hide ={{VAL(#ix)}})}}">
       
@@ -30,7 +30,7 @@
         <navigationItem id="Channels">
           <title>{{TEXT(Channels)}}</title>
           <url>{{URL(:/PMS(owned)/channels/all::PlexConnect=Channels_View)}}</url>
-        </navigationItem>{{CUT($channelview:CUT:=|Hide=CUT|Hide =)}}{{CUT($library_channels::checked=CUT|unchecked=)}}
+        </navigationItem>{{CUT($channelview:CUT:=|Hide=CUT|Hide =)}}
         
         <navigationItem id="SharedLibraries">
           <title>{{TEXT(Shared Libraries)}}</title>
