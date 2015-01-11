@@ -38,7 +38,7 @@
           </image>{{CUT($episodelayers::Hide=|Show=Hide)}}
         </imageHeader>
       </header>
-      
+      {{VAR(parentThumb:thumb)}}
       <menu>      
         <sections>
           <menuSection>
@@ -66,7 +66,7 @@
                     <summary><![CDATA[{{VAL(summary)}}]]></summary>{{CUT(viewCount:CUT:=)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
                     <summary>{{TEXT(Synopsis hidden.)}}</summary>{{CUT(viewCount)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
                     <rating>{{VAL(#contentRating)}}</rating>
-                    <image>{{IMAGEURL(thumb::768)}}</image>
+                    <image>{{IMAGEURL(#parentThumb::768)}}</image>
                     <metadata>
                       <label>Aired: {{VAL(originallyAvailableAt)}}</label>
                       <label>Studio: {{VAL(#studio)}}</label>
