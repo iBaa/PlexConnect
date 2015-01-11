@@ -58,9 +58,9 @@
               </horizontalDivider>
             </header>
             <items>
-            <oneLineMenuItem id="PlayListView" onSelect="toggleSettings('PlayListView', 'Settings_PlayList')">
+            <oneLineMenuItem id="PlayListsView" onSelect="toggleSettings('PlayListsView', 'Settings_PlayList')">
                 <label>{{TEXT(Playlists View)}}</label>
-                <rightLabel>{{SETTING(playlistview)}}</rightLabel>
+                <rightLabel>{{SETTING(playlistsview)}}</rightLabel>
               </oneLineMenuItem>   
             </items>
           </menuSection>

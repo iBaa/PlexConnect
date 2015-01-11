@@ -81,7 +81,7 @@
               </horizontalDivider>
             </header>
             <items>
-                <oneLineMenuItem id="SharedLibrariesView" onSelect="toggleSettings('SharedLibraryView', 'Settings_Library')">
+                <oneLineMenuItem id="SharedLibrariesView" onSelect="toggleSettings('SharedLibrariesView', 'Settings_Library')">
                 <label>{{TEXT(Library View)}}</label>
                 <rightLabel>{{SETTING(sharedlibrariesview)}}</rightLabel>
               </oneLineMenuItem>
