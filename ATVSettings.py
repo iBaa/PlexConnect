@@ -14,12 +14,12 @@ options = { \
     'libraryview'               :('List', 'Grid', 'Bookcase', 'Hide'), \
     'sharedlibrariesview'       :('List', 'Grid', 'Bookcase', 'Hide'), \
     'channelview'               :('List', 'Tabbed List', 'Grid', 'Bookcase', 'Hide'), \
-    'movieview'                 :('Grid', 'List', 'Detailed List'), \
+    'movieview'                 :('Grid', 'List', 'Detailed List', 'BigGrid'), \
     'homevideoview'             :('Grid', 'List', 'Detailed List'), \
     'actorview'                 :('Movies', 'Portrait'), \
-    'showview'                  :('List', 'Detailed List', 'Grid', 'Bookcase'), \
+    'showview'                  :('List', 'Detailed List', 'Grid', 'Bookcase', 'BigGrid'), \
     'flattenseason'             :('False', 'True'), \
-    'seasonview'                :('List', 'Coverflow'), \
+    'seasonview'                :('List', 'Coverflow', 'BigGrid'), \
     'durationformat'            :('Hours/Minutes', 'Minutes'), \
     'moviefanart'               :('Hide', 'Show'), \
     'tvshowfanart'              :('Hide', 'Show'), \
