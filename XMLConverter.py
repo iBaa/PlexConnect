@@ -261,6 +261,14 @@ def XML_PMS2aTV(PMS_address, path, options):
         auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
         PlexAPI.discoverPMS(UDID, g_param['CSettings'], auth_token)
         
+        # sanitize aTV settings from not-working combinations
+        # fanart only with PIL/pillow installed, only with iOS>=6.0  # watch out: this check will make trouble with iOS10
+        if not PILBackgrounds.isPILinstalled() or \
+           not options['aTVFirmwareVersion'] >= '6.0':
+            dprint(__name__, 2, "disable fanart (PIL not installed or aTVFirmwareVersion<6.0)")
+            g_ATVSettings.setSetting(UDID, 'moviefanart', 'Hide')
+            g_ATVSettings.setSetting(UDID, 'tvshowfanart', 'Hide')
+        
         return XML_Error('PlexConnect', 'Discover!')  # not an error - but aTV won't care anyways.
 
     # Special case path requests
@@ -305,7 +313,8 @@ def XML_PMS2aTV(PMS_address, path, options):
                 PMS = PlexAPI.getXMLFromMultiplePMS(UDID, path, type, options)
             else:  # IP
                 auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
-                PMS = PlexAPI.getXMLFromPMS(PMS_baseURL, path, options, authtoken=auth_token)
+                enableGzip = not (g_param['IP_self'] in PMS_baseURL)  # enableGzip if different host
+                PMS = PlexAPI.getXMLFromPMS(PMS_baseURL, path, options, auth_token, enableGzip)
             
             if PMS==False:
                 return XML_Error('PlexConnect', 'No Response from Plex Media Server')
@@ -814,7 +823,8 @@ class CCommandCollection(CCommandHelper):
             PMS = PlexAPI.getXMLFromMultiplePMS(self.ATV_udid, path, type, self.options)
         else:  # IP
             auth_token = PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'accesstoken')
-            PMS = PlexAPI.getXMLFromPMS(self.PMS_baseURL, path, self.options, auth_token)
+            enableGzip = not (g_param['IP_self'] in self.PMS_baseURL)  # enableGzip if different host
+            PMS = PlexAPI.getXMLFromPMS(self.PMS_baseURL, path, self.options, auth_token, enableGzip)
         
         self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML
         self.path[tag] = path  # store base path

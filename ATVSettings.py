@@ -14,7 +14,11 @@ options = { \
     'libraryview'               :('List', 'Grid', 'Bookcase', 'Hide'), \
     'sharedlibrariesview'       :('List', 'Grid', 'Bookcase', 'Hide'), \
     'channelview'               :('List', 'Tabbed List', 'Grid', 'Bookcase', 'Hide'), \
+<<<<<<< HEAD
     'movieview'                 :('Grid', 'List', 'Detailed List', 'BigGrid'), \
+=======
+    'movieview'                 :('Grid', 'List', 'Detailed List'), \
+>>>>>>> upstream/master
     'homevideoview'             :('Grid', 'List', 'Detailed List'), \
     'actorview'                 :('Movies', 'Portrait'), \
     'showview'                  :('List', 'Detailed List', 'Grid', 'Bookcase', 'BigGrid'), \

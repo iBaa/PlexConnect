@@ -32,7 +32,7 @@ http://stackoverflow.com/questions/111945/is-there-any-way-to-do-http-put-in-pyt
 import sys
 import struct
 import time
-import urllib2, socket
+import urllib2, socket, StringIO, gzip
 from threading import Thread
 import Queue
 
@@ -335,7 +335,7 @@ parameters:
 result:
     returned XML or 'False' in case of error
 """
-def getXMLFromPMS(baseURL, path, options={}, authtoken=''):
+def getXMLFromPMS(baseURL, path, options={}, authtoken='', enableGzip=False):
     xargs = {}
     if not options==None:
         xargs = getXArgsDeviceInfo(options)
@@ -346,6 +346,10 @@ def getXMLFromPMS(baseURL, path, options={}, authtoken=''):
     dprint(__name__, 1, "xargs: {0}", xargs)
     
     request = urllib2.Request(baseURL+path , None, xargs)
+    request.add_header('User-agent', 'PlexConnect')
+    if enableGzip:
+        request.add_header('Accept-encoding', 'gzip')
+    
     try:
         response = urllib2.urlopen(request, timeout=20)
     except urllib2.URLError as e:
@@ -359,8 +363,13 @@ def getXMLFromPMS(baseURL, path, options={}, authtoken=''):
         dprint(__name__, 0, 'Error loading response XML from Plex Media Server')
         return False
     
-    # parse into etree
-    XML = etree.parse(response)
+    if response.info().get('Content-Encoding') == 'gzip':
+        buf = StringIO.StringIO(response.read())
+        file = gzip.GzipFile(fileobj=buf)
+        XML = etree.parse(file)
+    else:
+        # parse into etree
+        XML = etree.parse(response)
     
     dprint(__name__, 1, "====== received PMS-XML ======")
     dprint(__name__, 1, XML.getroot())
