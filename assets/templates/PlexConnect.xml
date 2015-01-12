@@ -15,7 +15,7 @@
           <url>{{URL(:/PMS(all)/playlists::PlexConnect=Playlists_View)}}</url>
         </navigationItem>{{CUT($playlistsview:CUT:=|Hide=CUT|Hide =)}}
         <navigationItem id="GlobalSearch">
-            <title>{{TEXT(Shared Libraries)}}</title>
+            <title>{{TEXT(Shared All)}}</title>
             <url>{{URL(:/PMS(all)::PlexConnect=Search_Global)}}</url>
         </navigationItem>{{CUT($myplex_auth:CUT:=CUT| =)}}{{CUT($sharedlibrariesview:CUT:=|Hide=CUT|Hide =)}}
         <navigationItem id="Library">
