@@ -6,36 +6,57 @@
   <body>
     <scroller id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=TVShow_Season_Coverflow)}}')">
       <header>
-        <simpleHeader>
-          <title>{{VAL(title2)}}</title>
-        </simpleHeader>
+        <imageHeader>
+           <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=360|1080=600)}}, 0" required="true">
+           {{URL(:/fanartcache/{{getBackground({{EVAL({\
+              'template'    : 'plex',\
+              'title'       : "{{EVAL(quote_plus("{{VAL(title1)}}"))}}",\
+              'subtitle'    : "{{EVAL(quote_plus("{{VAL(title2)}}"))}}",\
+              'image'       : "{{IMAGEURL(art:::)}}",\
+              'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+              'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+              'titleColor'  : "{{VAL($titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'subtitleColor': "{{VAL($subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'imageBlur'   : "{{VAL($fanartblur::1=1|2=2|3=3|0=)}}",\
+              'layers'      : ["PlexSubPagedGrid{{VAL($fanarttint::On=Text|Off=)}}"{{VAL($menuhint::On=,"PlexPressMenu_{{VAL($subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+              })}})}})}}
+              </image>{{CUT($seasonlayers::Hide=CUT|Show=)}}
+          <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=360|1080=600)}}, 0" required="true">
+          {{URL(:/fanartcache/{{getBackground({{EVAL({\
+              'template'    : 'plex',\
+              'image'       : "{{IMAGEURL(art:::)}}",\
+              'resolution'  : "{{VAL(^aTVScreenResolution)}}"\
+              })}})}})}}
+          </image>{{CUT($seasonlayers::Hide=|Show=Hide)}}
+        </imageHeader>
       </header>
       {{VAR(parentThumb:thumb)}}
       <items>
-      <collectionDivider alignment="left">
-            <title></title>
-        </collectionDivider>
-        <shelf id="coverflow" columnCount="{{EVAL(min({{VAL(size:0)}},5))}}">
+              <shelf id="coverflow" columnCount="{{EVAL(min({{VAL(size:0)}},4))}}">
           <sections>
             <shelfSection>
               <items>
-                <goldenPoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
-                              onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_List{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
-                              onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_List{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
-                              onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
+                <goldenPoster id="{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
+								onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_{{EVAL('{{VAL($episodeview)}}'.replace(' ', ''))}})}}')"
+                                onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_{{EVAL('{{VAL($episodeview)}}'.replace(' ', ''))}})}}')" 
+                                onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
                   {{COPY(Directory)}}
                   <title>{{VAL(title)}}</title>
                   <image>{{IMAGEURL(thumb::768)}}</image>{{CUT(thumb:CUT:=CUT| =)}}
                   <image>{{IMAGEURL(#parentThumb::768)}}</image>{{CUT(thumb:: =CUT)}}
                   <defaultImage>resource://Poster.png</defaultImage>
+                  <badgeCount>{{unwatchedCountGrid(leafCount:0:viewedLeafCount:0)}}</badgeCount>{{CUT($showunwatched::False=CUT|True=)}}
                 </goldenPoster>{{CUT(Directory/title:CUT:=)}}
+                
+                <goldenPoster id="none">
+              <title>{{TEXT(No Unwatched Shows)}}</title>
+              <defaultImage>resource://Poster.png</defaultImage>
+            </goldenPoster>{{CUT(Directory/title::=CUT)}}
               </items>
             </shelfSection>
           </sections>
         </shelf>
-        <collectionDivider alignment="left">
-            <title></title>
-        </collectionDivider>
+        
       </items>
     </scroller>
   </body>

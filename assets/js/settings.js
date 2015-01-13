@@ -53,66 +53,93 @@ function toggleSettings(opt, template)
   dispval.textContent = newval.textContent;
 };
 
+
+/*
+ * update Settings
+ */
+function toggleTemplateSettings(opt, template) {
+  // read new XML
+  var url = "{{URL(/)}}&PlexConnect=SettingsToggle:"+ opt + "+" + template + "&PlexConnectUDID="+atv.device.udid;
+  var req = new XMLHttpRequest();
+  req.open('GET', url, false);
+  req.send();
+  atv.loadAndSwapURL("{{URL(/)}}&PlexConnect=" + template + "&PlexConnectUDID=" + atv.device.udid); 
+};
+/*
+ * update Settings
+ */
+
+function switchTemplate(defaultpath) {
+  var xml = (defaultpath ? "Settings" : "Settings_Main");
+  var url = "{{URL(/)}}&PlexConnect=SettingsToggle:template+"+xml+"&PlexConnectUDID="+atv.device.udid;
+  // read new XML
+  var req = new XMLHttpRequest();
+  req.open('GET', url, false);
+  req.send();
+  doc=req.responseXML;
+  
+  atv.loadAndSwapURL('{{URL(:/PlexConnect.xml)}}&PlexConnect=Settings&PlexConnectUDID=' + atv.device.udid);
+};
+
+
+function purgeFanart(opt, template) 
+{
+
+  var dispval = document.getElementById('purgeFanart').getElementByTagName("rightLabel");
+  if (!dispval) return undefined;  // error - element not found
+
+  // read new XML
+  var url = "{{URL(/)}}&PlexConnect=purgeFanart:"+ opt + "+" + template + "&PlexConnectUDID="+atv.device.udid
+  var req = new XMLHttpRequest();
+  req.open('GET', url, false);
+  req.send();
+  
+  // read new XML
+  var url = "{{URL(/)}}&PlexConnect="+ template + "&PlexConnectUDID="+atv.device.udid
+  var req = new XMLHttpRequest();
+  req.open('GET', url, false);
+  req.send();
+  doc=req.responseXML;
+  
+  
+  // get "opt" element of fresh XML
+  var newval = doc.getElementById('purgeFanart').getElementByTagName("rightLabel");
+  if (!newval) return undefined;  // error - element not found
+  log("discover done - "+newval.textContent);
+  
+  // push new value to display
+  dispval.textContent = newval.textContent;
+};
+
 /*
  * discover
  */
 function discover(opt, template) 
 {
-    gotDiscoverResponse = function(doc)
-    {
-        // request updated settings XML
-        var url = "{{URL(/)}}&PlexConnect="+ template + "&PlexConnectUDID="+atv.device.udid
-        var req = new XMLHttpRequest();
-        req.open('GET', url, false);
-        req.send();
-        doc = req.responseXML;
-        
-        // get "opt" element of fresh XML
-        var newval = doc.getElementById(opt).getElementByTagName("rightLabel");
-        if (!newval) return undefined;  // error - element not found
-        
-        // push new value to display, remove spinner
-        dispval.textContent = newval.textContent;
-        var elem_remove = elem.getElementByTagName("accessories").getElementByTagName("spinner");
-        if (elem_remove) elem_remove.removeFromParent();
-        log("discover done - "+newval.textContent);
-    }
-    
   // get "opt" element of displayed XML
-  var elem = document.getElementById(opt);
-  if (!elem) return undefined;  // error - element not found
-  var dispval = elem.getElementByTagName("rightLabel");
+  var dispval = document.getElementById(opt).getElementByTagName("rightLabel");
   if (!dispval) return undefined;  // error - element not found
-  
-  // clear number of PMSs, show spinner
-  dispval.textContent =  '';
-  if (!elem.getElementByTagName("accessories"))
-  {
-      var elem_add = document.makeElementNamed("accessories");
-      elem.appendChild(elem_add);
-  }
-  var elem_add = document.makeElementNamed("spinner");
-  elem.getElementByTagName("accessories").appendChild(elem_add);
   
   // discover - trigger PlexConnect, ignore response
   var url = "{{URL(/)}}&PlexConnect=Discover&PlexConnectUDID="+atv.device.udid
   var req = new XMLHttpRequest();
-  req.onreadystatechange = function()
-  {
-        try
-        {
-            if(req.readyState == 4)
-            {
-                gotDiscoverResponse(req.responseXML)
-            }
-        }
-        catch(e)
-        {
-            req.abort();
-        }
-  }
-  req.open('GET', url, true);
+  req.open('GET', url, false);
   req.send();
+  
+  // read new XML
+  var url = "{{URL(/)}}&PlexConnect="+ template + "&PlexConnectUDID="+atv.device.udid
+  var req = new XMLHttpRequest();
+  req.open('GET', url, false);
+  req.send();
+  doc=req.responseXML;
+  
+  // get "opt" element of fresh XML
+  var newval = doc.getElementById(opt).getElementByTagName("rightLabel");
+  if (!newval) return undefined;  // error - element not found
+  log("discover done - "+newval.textContent);
+    
+  // push new value to display
+  dispval.textContent = newval.textContent;
 };
 
 /*

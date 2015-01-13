@@ -1,0 +1,64 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/scrobble.js)}}" />
+    <script src="{{URL(:/js/settings.js)}}" />
+  </head>
+
+  <body>
+      {{ADDXML(RecentlyAdded::/library/recentlyAdded)}}
+      {{VAR(sections:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
+      {{VAR(items:NoKey:FALSE)}}
+      
+      <itemCollectionWithImageHeader id="com.sample.menu-items-with-sections">
+      <header>
+	    <imageHeader>	      
+	      <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=552|1080=828)}}, 0" required="true">
+	      	  {{URL(:/fanartcache/{{getBackground({{EVAL({\
+              'template'    : 'plex',\
+              'title'       : "{{EVAL(quote_plus("{{TEXT(Recently Added)}}"))}}",\
+              'image'       : "backgrounds/plex{{VAL($menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+              'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+              'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+              'titleColor'  : "{{VAL($titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'subtitleColor': "{{VAL($subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'layers'      : ["PlexList{{VAL($paradelisttint::On=Text|Off=)}}"{{VAL($menuhint::On=,"PlexPressMenu_{{VAL($subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+              })}})}})}}
+	      </image>
+	    </imageHeader>
+      </header>
+          
+      <menu>
+        <sections>
+        
+          <menuSection>
+          
+            <items>
+              <twoLineMenuItem id="{{VAL(key)}}"
+                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(type::movie=Movie_PrePlay|episode=TVShow_PrePlay|season=Season_{{EVAL('{{VAL($showview)}}'.replace(' ', ''))}})}})}}')"
+                                       onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect={{VAL(type::movie=Movie_PrePlay|episode=TVShow_PrePlay|season=Season_{{EVAL('{{VAL($showview)}}'.replace(' ', ''))}})}})}}')">
+                {{COPY(@RecentlyAdded/Server/Directory,Video)}}
+                {{VAR(items:NoKey:TRUE)}}              
+                <label>{{VAL(type::movie={{VAL(title)}}|episode={{VAL(parentTitle)}}|season={{VAL(parentTitle)}}|album={{VAL(parentTitle)}})}}</label>
+                <label2>{{VAL(type::movie={{VAL(year)}}|episode={{VAL(title)}}|season={{VAL(title)}}|album={{VAL(title)}})}}</label2>
+                <accessories>
+                  <unplayedDot/>{{CUT(viewOffset)}}
+                  <partiallyPlayedDot/>
+                </accessories>{{CUT(viewCount)}}
+                <preview>
+                  <crossFadePreview>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
+                  </crossFadePreview>
+                </preview>
+              </twoLineMenuItem> 
+            </items>
+          </menuSection>{{CUT(@RecentlyAdded/Server/size:CUT:0=CUT|1=)}}
+        
+        </sections>
+      </menu>
+    </itemCollectionWithImageHeader>
+    
+  </body>
+</atv>
+
+

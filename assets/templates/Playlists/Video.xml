@@ -7,12 +7,22 @@
     {{VAR(items:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
     
     <!-- List -->
-    <listWithPreview id="Playlist_List">
+    <itemCollectionWithImageHeader id="Playlist_List">
     {{CUT(size:CUT:0=CUT|1=)}}
       <header>
-        <simpleHeader>
-          <title>{{VAL(title:{{TEXT(Video Playlist)}})}}</title>
-        </simpleHeader>
+	    <imageHeader>
+	      <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=552|1080=828)}}, 0" required="true">
+	    {{URL(:/fanartcache/{{getBackground({{EVAL({\
+              'template'    : 'plex',\
+              'title'       : "{{EVAL(quote_plus("{{VAL(title:{{TEXT(Video Playlist)}})}}"))}}",\
+              'image'       : "backgrounds/plex{{VAL($menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+              'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+              'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+              'titleColor'  : "{{VAL($titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'layers'      : ["PlexList{{VAL($paradelisttint::On=Text|Off=)}}"{{VAL($menuhint::On=,"PlexPressMenu_{{VAL($subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+              })}})}})}}
+              </image>
+	    </imageHeader>
       </header>
       
       <menu>
@@ -59,7 +69,7 @@
               
               <!-- Movies -->
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"
-                             onPlay="atv.loadURL('{{URL(:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                             onPlay="atv.loadURL('{{URL(:::PlexConnect=Play_Video_Pause&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
                              onSelect="atv.loadURL('{{URL(:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}}&amp;PlexConnectPlayType=Continuous)}}')"
                              onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
               {{CUT(type::episode=CUT|movie=)}}
@@ -89,7 +99,7 @@
               
               <!-- Episodes -->
               <twoLineEnhancedMenuItem id="{{VAL(ratingKey)}}"
-                             onPlay="atv.loadURL('{{URL(:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                             onPlay="atv.loadURL('{{URL(:::PlexConnect=Play_Video_Pause&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
                              onSelect="atv.loadURL('{{URL(:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}}&amp;PlexConnectPlayType=Continuous)}}')"
                              onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
               {{CUT(type::episode=|movie=CUT)}}
@@ -116,7 +126,7 @@
           
         </sections>
       </menu>
-    </listWithPreview>
+    </itemCollectionWithImageHeader>
     
     <!--No Items Available-->
     <dialog id="com.sample.error-dialog">

@@ -3,40 +3,83 @@
     <script src="{{URL(:/js/utils.js)}}" />
   </head>
 
+  {{VAR(studio:grandparentStudio)}}
+  {{VAR(contentRating:grandparentContentRating)}}
+  {{VAR(title1:title1)}}
+  {{VAR(title2:title2)}}
+  {{VAR(artwork:art)}}
+  
   <body>
-    <listWithPreview id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=TVShow_Episode_List)}}')">
-      <header>
-        <simpleHeader>
-          <title>{{VAL(title1)}}</title>
-          <subtitle>{{VAL(title2)}}</subtitle>
-        </simpleHeader>
+
+
+    <itemCollectionWithImageHeader id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=TVShow_Episode_List)}}')">
+	<header>
+        <imageHeader>
+          <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=552|1080=835)}}, 0" required="true">
+	    	 {{URL(:/fanartcache/{{getBackground({{EVAL({\
+              'template'    : 'plex',\
+              'title'       : "{{EVAL(quote_plus("{{VAL(title1)}}"))}}",\
+              'subtitle'    : "{{EVAL(quote_plus("{{VAL(title2)}}"))}}",\
+              'image'       : "{{IMAGEURL(art:::)}}",\
+              'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+              'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+              'imageBlur'   : "{{VAL($fanartblur::1=1|2=2|3=3|0=)}}",\
+              'titleColor'  : "{{VAL($titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'subtitleColor': "{{VAL($subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'layers'      : ["PlexSubList{{VAL($fanarttint::On=Text|Off=)}}"{{VAL($menuhint::On=,"PlexPressMenu_{{VAL($subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+              })}})}})}}
+          </image>{{CUT($episodelayers::Hide=CUT|Show=)}}
+          <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=550|1080=835)}}, 0" required="true">
+          {{URL(:/fanartcache/{{getBackground({{EVAL({\
+              
+              'image'       : "{{IMAGEURL(art:::)}}",\
+              'resolution'  : "{{VAL(^aTVScreenResolution)}}"\
+              })}})}})}}
+          </image>{{CUT($episodelayers::Hide=|Show=Hide)}}
+        </imageHeader>
       </header>
-      <menu>
+      {{VAR(parentThumb:thumb)}}
+      <menu>      
         <sections>
           <menuSection>
             <items>
               <twoLineEnhancedMenuItem id="{{VAL(ratingKey)}}"
                                          onPlay="atv.loadURL('{{URL(:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}}&amp;PlexConnectPlayType=Continuous)}}')"
-                                         onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_PrePlay{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
+                                         onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_PrePlay)}}')"
                                          onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
+                                         
                 {{COPY(Video:index::=|0 =COPY)}}
                 <label>{{VAL(title)}}</label>
                 <ordinal>{{VAL(index)}}</ordinal>
                 <maxOrdinalDigits>2</maxOrdinalDigits>
-                <image>{{IMAGEURL(thumb::800)}}</image>
-                <!--<defaultImage>resource://16X9.png</defaultImage>      This causes the thumbnail to be too small, not sure why.-->
+                 <image>{{IMAGEURL(thumb::800)}}</image>
                 <accessories>
-                  <unplayedDot/>{{CUT(viewOffset)}}
-                  <partiallyPlayedDot/>
+                <unplayedDot/>{{CUT(viewOffset)}}
+                  <progressBar percentage="{{EVAL({{VAL(viewOffset:0)}} * 100 / {{VAL(duration:1)}})}}"/>{{CUT(viewOffset:CUT:=)}}
+                <!---<progressBar percentage="100"/>{{CUT(viewCount:CUT:=)}}{{CUT(viewOffset)}}-->
                 </accessories>{{CUT(viewCount)}}
+
                 <preview>
-                  <keyedPreview>
+                  <longDescriptionPreview>
                     <title>{{VAL(title)}}</title>
-                    <summary>{{VAL(summary)}}</summary>{{CUT($showsynopsis::Hide=CUT|Show=)}}
-                    <summary>{{VAL(summary)}}</summary>{{CUT(viewCount:CUT:=)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
+                    <summary><![CDATA[{{VAL(summary)}}]]></summary>{{CUT($showsynopsis::Hide=CUT|Show=)}}
+                    <summary><![CDATA[{{VAL(summary)}}]]></summary>{{CUT(viewCount:CUT:=)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
                     <summary>{{TEXT(Synopsis hidden.)}}</summary>{{CUT(viewCount)}}{{CUT($showsynopsis::Show=CUT|Hide=)}}
-                    <image>{{IMAGEURL(thumb::800)}}</image>
-                  </keyedPreview>
+                    <rating>{{VAL(#contentRating)}}</rating>
+                    <image>{{IMAGEURL(#parentThumb::768)}}</image>
+                    <metadata>
+                      <label>Aired: {{VAL(originallyAvailableAt)}}</label>
+                      <label>Studio: {{VAL(#studio)}}</label>
+                      <label>Runtime: {{durationToString(NoKey:Video:duration)}}</label>
+                      <label>Quality: {{VAL(Media/videoResolution:Unknown:1080=HD 1080p|720=HD 720p|576=576p|480=480p|sd=SD)}}   {{VAL(Media/audioCodec:Unknown:ac3=AC3|aac=AAC|mp3=MP3|dca=DTS|drms=DRMS)}} {{VAL(Media/audioChannels:Unknown:2=Stereo 2.0|6=5.1|8=7.1)}} </label>
+                      <starRating hasUserSetRating="true">
+                        <percentage>{{EVAL({{VAL(userRating:0)}} * 10)}}</percentage>
+                      </starRating>{{CUT(userRating:CUT:0=)}}
+                      <starRating>
+                        <percentage>{{EVAL({{VAL(rating:0)}} * 10)}}</percentage>
+                      </starRating>{{CUT(userRating::0=CUT)}}             
+                    </metadata>
+                  </longDescriptionPreview>
                 </preview>
               </twoLineEnhancedMenuItem>{{CUT(Video/title:CUT:=)}}
 
@@ -47,6 +90,7 @@
           </menuSection>
         </sections>
       </menu>
-    </listWithPreview>
-  </body>
+    </itemCollectionWithImageHeader>
+
+    </body>
 </atv>

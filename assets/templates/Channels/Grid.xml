@@ -13,9 +13,19 @@
     <!--Channels Grid-->
     <scroller id="Channels_Grid">
       <header>
-        <simpleHeader>
-          <title>{{TEXT(Plex Channels)}}</title>
-        </simpleHeader>
+        <imageHeader>
+          <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=630|1080=945)}}, 0" required="true">
+          {{URL(:/fanartcache/{{getBackground({{EVAL({\
+           'template'    : 'plex',\
+           'title'       : "{{EVAL(quote_plus("{{TEXT(Plex Channels)}}"))}}",\
+           'image'       : "backgrounds/plex{{VAL($menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+           'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+           'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+           'titleColor'  : "{{VAL($titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+           'layers'      : ["PlexGrid{{VAL($gridtint::On=Text|Off=)}}"{{VAL($menuhint::On=,"PlexPressMenu_{{VAL($subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+           })}})}})}}
+          </image>
+        </imageHeader>
       </header>
       
       <items>
@@ -30,7 +40,7 @@
           <grid id="Channels_Grid_Video_{{VAL(name)}}" columnCount="5">
             <items>
               <!-- video channels per server -->
-              <moviePoster id="Video_{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_channels::Highlighted Only=false|Show All=true)}}"
+              <fourByThreePoster id="Video_{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_channels::Highlighted Only=false|Show All=true)}}"
                            onPlay="atv.loadURL('{{URL(key:::PlexConnect=Channels_Video)}}')"
                            onSelect="atv.loadURL('{{URL(key:::PlexConnect=Channels_Video)}}')">
               {{COPY(Directory)}}
@@ -39,7 +49,7 @@
                 <image>{{IMAGEURL(thumb::384)}}</image>
                 <defaultImage>resource://Poster.png</defaultImage>
                 <!--badgeCount></badgeCount-->
-              </moviePoster>
+              </fourByThreePoster>
             </items>
           </grid>
         </__COPY__>
@@ -55,7 +65,7 @@
           <grid id="Channels_Grid_Audio_{{VAL(name)}}" columnCount="5">
             <items>
               <!-- audio channels per server -->
-              <moviePoster id="Audio_{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_channels::Highlighted Only=false|Show All=true)}}"
+              <fourByThreePoster id="Audio_{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($showtitles_channels::Highlighted Only=false|Show All=true)}}"
                            onPlay="atv.loadURL('{{URL(key:::PlexConnect=Channels_Audio)}}')"
                            onSelect="atv.loadURL('{{URL(key:::PlexConnect=Channels_Audio)}}')">
               {{COPY(Directory)}}
@@ -64,7 +74,7 @@
                 <image>{{IMAGEURL(thumb::384)}}</image>
                 <defaultImage>resource://Poster.png</defaultImage>
                 <!--badgeCount></badgeCount-->
-              </moviePoster>
+              </fourByThreePoster>
             </items>
           </grid>
         </__COPY__>
@@ -80,7 +90,7 @@
           <grid id="Channels_Grid_Photo_{{VAL(name)}}" columnCount="5">
             <items>
               <!-- video channels per server -->
-              <moviePoster id="Photo_{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_channels::Highlighted Only=false|Show All=true)}}"
+              <fourByThreePoster id="Photo_{{VAL(key)}}" featured= "true" alwaysShowTitles="{{VAL($showtitles_channels::Highlighted Only=false|Show All=true)}}"
                            onPlay="atv.loadURL('{{URL(key:::PlexConnect=Channels_Photo)}}')"
                            onSelect="atv.loadURL('{{URL(key:::PlexConnect=Channels_Photo)}}')">
               {{COPY(Directory)}}
@@ -89,7 +99,7 @@
                 <image>{{IMAGEURL(thumb::384)}}</image>
                 <defaultImage>resource://Poster.png</defaultImage>
                 <!--badgeCount></badgeCount-->
-              </moviePoster>
+              </fourByThreePoster>
             </items>
           </grid>
         </__COPY__>

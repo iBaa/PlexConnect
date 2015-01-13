@@ -15,7 +15,7 @@
 
 				<navigationItem id="1">
 					<title>{{TEXT(On Deck)}}</title>
-					<url>{{URL(key:::PlexConnect=Movie_OnDeck)}}</url>
+					<url>{{URL(key:::PlexConnect=Movie_OnDeck_{{EVAL('{{VAL($movieview)}}'.replace(' ', ''))}})}}</url>
 				</navigationItem>{{CUT($movies_navbar_ondeck::unchecked=CUT|checked=)}}
 
 				<navigationItem id="2">

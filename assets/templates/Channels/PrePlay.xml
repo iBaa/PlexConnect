@@ -4,9 +4,33 @@
   </head>
 
   <body>
-    <itemDetail id="com.apple.trailers">
-		<title>{{VAL(Video/title)}}</title>
-		<subtitle>{{VAL(Video/studio)}}</subtitle>
+    <itemDetailWithImageHeader id="com.apple.trailers">
+    <header>
+	    <imageHeader>
+            <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=440|1080=690)}}, 0" required="true">
+                {{URL(:/fanartcache/{{getBackground({{EVAL({\
+                'template'    : 'plex',\
+                'title'       : "{{EVAL(quote_plus("{{VAL(Video/title)}}"))}}",\
+                'subtitle'    : "{{EVAL(quote_plus("{{VAL(title2)}}"))}}",\
+                'image'       : "backgrounds/plex{{VAL($menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+                'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+                'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+                'imageBlur'   : "{{VAL($fanartblur::1=1|2=2|3=3|0=)}}",\
+                'titleSize' : '50',\
+                'subtitleSize' : '30',\
+                'titleColor'  : "{{VAL($titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+                'subtitleColor': "{{VAL($subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+                'anchorX' : 'right',\
+                'anchorY' : 'top',\
+                'offsetX' : '50',\
+                'offsetY' : '20',\
+                'lineheight' : '175',\
+                'layers': ["PlexPrePlay{{VAL($fanarttint::On=Text|Off=)}}","PlexPrePlayLine"{{VAL($menuhint::On=,"PlexPressMenu_{{VAL($subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+                })}})}})}}
+
+	      </image>
+	     </imageHeader>
+	    </header>
 		<rating>{{contentRating(Video/contentRating)}}</rating>
 		<summary>{{VAL(Video/summary)}}</summary>
 		<image style="squarePoster">{{IMAGEURL(Video/thumb::384)}}</image>
@@ -28,6 +52,6 @@
 			</sections>
 		</shelf>
 		</centerShelf>
-		</itemDetail>
+		</itemDetailWithImageHeader>
 	</body>
 </atv>

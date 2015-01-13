@@ -1,23 +1,45 @@
 <atv>
+  
   <head>
     <script src="{{URL(:/js/utils.js)}}" />
   </head>
-  
+
   <body>
-    <listWithPreview id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=TVShow_Season_List)}}')">
+    <itemCollectionWithImageHeader id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=TVShow_Season_List)}}')">
       <header>
-        <simpleHeader>
-          <title>{{VAL(title2)}}</title>
-        </simpleHeader>
+        <imageHeader>
+	    	      <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=552|1080=835)}}, 0" required="true">
+	    	      {{URL(:/fanartcache/{{getBackground({{EVAL({\
+                  'template'    : 'plex',\
+                  'title'       : "{{EVAL(quote_plus("{{VAL(title1)}}"))}}",\
+                  'subtitle'    : "{{EVAL(quote_plus("{{VAL(title2)}}"))}}",\
+                  'image'       : "{{IMAGEURL(art:::)}}",\
+                  'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+                  'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+                  'titleColor'  : "{{VAL($titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+                  'subtitleColor': "{{VAL($subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+                  'imageBlur'   : "{{VAL($fanartblur::1=1|2=2|3=3|0=)}}",\
+                  'layers'      : ["PlexSubList{{VAL($fanarttint::On=Text|Off=)}}"{{VAL($menuhint::On=,"PlexPressMenu_{{VAL($subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+                  })}})}})}}
+	    	      </image>{{CUT($seasonlayers::Hide=CUT|Show=)}}
+          <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=550|1080=835)}}, 0" required="true">
+          {{URL(:/fanartcache/{{getBackground({{EVAL({\
+              'template'    : 'plex',\
+              'image'       : "{{IMAGEURL(art:::)}}",\
+              'resolution'  : "{{VAL(^aTVScreenResolution)}}"\
+              })}})}})}}
+          </image>{{CUT($seasonlayers::Hide=|Show=Hide)}}
+	    </imageHeader>
       </header>
       {{VAR(parentThumb:thumb)}}
       <menu>
         <sections>
           <menuSection>
             <items>
-              <twoLineEnhancedMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_List{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
-                                                         onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_List{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
-                                                         onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}" 
+                                    onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_{{EVAL('{{VAL($episodeview)}}'.replace(' ', ''))}})}}')"
+                                    onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_{{EVAL('{{VAL($episodeview)}}'.replace(' ', ''))}})}}')" 
+                                    onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>
                 <label2>{{VAL(leafCount)}} {{TEXT(Episodes)}}</label2>
@@ -40,6 +62,6 @@
           </menuSection>
         </sections>
       </menu>
-    </listWithPreview>
+    </itemCollectionWithImageHeader>
   </body>
 </atv>

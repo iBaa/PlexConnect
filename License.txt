@@ -1,4 +1,4 @@
-PlexConnect - licensed under the MIT License
+PlexConnect - licensed under the MIT License.
 
 Copyright (c) 2013
     - Baa <http://forums.plexapp.com/index.php/user/41519-baa/>

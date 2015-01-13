@@ -1,4 +1,5 @@
 
+
 *.pyc
 
 /ATVSettings.cfg
@@ -21,4 +22,45 @@ PlexConnect.log
 
 *.suo
 
-/assets/fanartcache/*.jpg
+assets/templates/plex/images/custom/top/*.png
+
+assets/templates/plex/images/custom/flow/*.png
+
+
+assets/templates/MoviePrePlay_Fanart.xml
+
+assets/templates/EpisodePrePlay_Fanart.xml
+
+
+assets/fanartcache/*.png
+
+assets/templates/TVShow/DetailedList.xml
+
+assets/templates/TVShow/Episode_List_Fanart.xml
+
+assets/templates/TVShow/Episode_List.xml
+
+
+assets/templates/TVShow/Season_Coverflow_Fanart.xml
+
+assets/templates/TVShow/Season_List_Fanart.xml
+
+assets/fanartcache/tmp.png
+
+assets/templates/TVShow/Season_Coverflow_Fanart.xml
+
+assets/templates/TVShow/Season_List_Fanart.xml
+
+assets/templates/Movie/PrePlay_Fanart.xml
+
+assets/templates/TVShow/Episode_List_Fanart.xml
+
+assets/templates/TVShow/Season_Coverflow_Fanart.xml
+
+assets/templates/TVShow/Season_List_Fanart.xml
+
+assets/templates/Library/Bookcase.xml
+
+assets/templates/Library/Grid.xml
+
+assets/templates/Library/List.xml

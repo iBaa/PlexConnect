@@ -15,7 +15,7 @@
 
 				<navigationItem id="On deck">
 					<title>{{TEXT(On Deck)}}</title>
-					<url>{{URL(key:::PlexConnect=HomeVideo_OnDeck)}}</url>
+					<url>{{URL(key:::PlexConnect=HomeVideo_OnDeck{{EVAL('{{VAL($homevideoview)}}'.replace(' ', ''))}})}}</url>
 				</navigationItem>{{CUT($homevideos_navbar_ondeck::unchecked=CUT|checked=)}}
 
 				<navigationItem id="Unwatched">

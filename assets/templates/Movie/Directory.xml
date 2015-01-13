@@ -6,10 +6,21 @@
   <body>
     <scroller id="com.sample.homevideo-grid">
       <header>
-        <simpleHeader>
-          <title>{{VAL(title1)}}</title>
-          <subtitle>{{VAL(title2)}}</subtitle>
-        </simpleHeader>
+        <imageHeader>
+          <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=550|1080=825)}}, 0" required="true">
+          {{URL(:/fanartcache/{{getBackground({{EVAL({\
+              'template'    : 'plex',\
+              'title'       : "{{EVAL(quote_plus("{{VAL(title1)}}"))}}",\
+              'subtitle'    : "{{EVAL(quote_plus("{{VAL(title2)}}"))}}",\
+              'image'       : "backgrounds/plex{{VAL($menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+              'resolution'  : "{{VAL(^aTVScreenResolution)}}",\
+              'font'        : "fonts/OpenSans/OpenSans-Light.ttf",\
+              'titleColor'  : "{{VAL($titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'subtitleColor': "{{VAL($subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'layers'      : ["PlexSubGrid{{VAL($gridtint::On=Text|Off=)}}"{{VAL($menuhint::On=,"PlexPressMenu_{{VAL($subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+              })}})}})}}
+          </image>
+        </imageHeader>
       </header>
       <items>
         <grid columnCount="7" id="grid_0">
@@ -25,8 +36,8 @@
             </moviePoster>
             
             <moviePoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_movies::Highlighted Only=false|Show All=true)}}"
-                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
-                             onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;Plex_Connect=MoviePrePlay)}}')">
+                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video_Pause&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                             onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;Plex_Connect=MoviePre_Play)}}')">
               {{COPY(Video)}}
               <title>{{VAL(title)}}</title>
               <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
@@ -37,7 +48,7 @@
         </grid>
       </items>
     </scroller>
-  </body>{{CUT($movieview::Detailed=CUT|Grid=|List=CUT)}}
+  </body>{{CUT($movieview::Detailed=CUT|Grid=|List=CUT|Big=)}}
   
   
 <body>
@@ -68,8 +79,8 @@
               </twoLineEnhancedMenuItem>
               
               <twoLineMenuItem id="{{VAL(key)}}"
-                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
-                             onSelect="atv.loadURL('{{URL(key:::PlexConnect=Movie_PrePlay{{VAL($moviefanart::Hide=|Show=_Fanart)}})}}')"
+                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video_Pause&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                             onSelect="atv.loadURL('{{URL(key:::PlexConnect=Movie_PrePlay)}}')"
                              onHoldSelect="scrobbleMenu('{{URL(key:::includeExtras=1&amp;PlexConnect=Scrobble_MenuVideo)}}')">
                 {{COPY(Video)}}
                 <label>{{VAL(title)}}</label>
@@ -89,7 +100,7 @@
         </sections>
       </menu>
     </listWithPreview>
-  </body>{{CUT($movieview::Detailed=CUT|Grid=CUT|List=)}}
+  </body>{{CUT($movieview::Detailed=CUT|Grid=CUT|List=|Big=CUT)}}
   
   <body>
     <listWithPreview id="HomeVideo_DetailedList">
@@ -119,8 +130,8 @@
               </twoLineEnhancedMenuItem>
             
               <oneLineMenuItem id="{{VAL(key)}}"
-                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
-                             onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect=Movie_PrePlay{{VAL($moviefanart::Hide=|Show=_Fanart)}})}}')"
+                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video_Pause&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                             onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect=Movie_PrePlay)}}')"
                              onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
                 {{COPY(Video)}}
                 <label>{{VAL(title)}}</label>
@@ -153,5 +164,5 @@
         </sections>
       </menu>
     </listWithPreview>
-  </body>{{CUT($movieview::Detailed=|Grid=CUT|List=CUT)}}
+  </body>{{CUT($movieview::Detailed=|Grid=CUT|List=CUT|Big=CUT)}}
 </atv>

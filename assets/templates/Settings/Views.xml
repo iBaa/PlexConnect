@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/settings.js)}}" />
+  </head>
+  <body>
+    <itemCollectionWithImageHeader id="SettingsPage" >
+      <header>
+        <imageHeader>
+          <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=552|1080=828)}}, 0" required="true">
+              {{URL(:/fanartcache/{{getBackground({{EVAL({\
+              'template'     : "plex",\
+              'title'        : "{{EVAL(quote_plus("{{TEXT(Settings)}}"))}}",\
+              'subtitle'     : "{{EVAL(quote_plus("{{TEXT(Section Options)}}"))}}",\
+              'image'        : "backgrounds/plex{{VAL($menubackground::Grey=default|Plex Orange=orange|Apple Blue=blue|Green=green)}}.png",\
+              'resolution'   : "{{VAL(^aTVScreenResolution)}}",\
+              'font'         : "fonts/OpenSans/OpenSans-Light.ttf",\
+              'titleColor'   : "{{VAL($titlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'subtitleColor' : "{{VAL($subtitlecolor::White=fafafa|Grey=878787|Plex Orange=ff8800|Apple Blue=1357d4)}}",\
+              'layers'       : ["PlexSubList{{VAL($listtint::On=Text|Off=)}}"{{VAL($menuhint::On=,"PlexPressMenu_{{VAL($subtitlecolor::White=white|Plex Orange=orange|Apple Blue=blue|Grey=grey)}}"|Off=)}}]\
+              })}})}})}}
+          </image>
+        </imageHeader>
+      </header>
+      
+      <preview>
+        <keyedPreview>
+          <title>&#x00AD;<!--soft-hyphen--></title>
+          <summary>PlexConnect Theme Dev.</summary>
+          <metadataKeys>
+            <label>{{TEXT(Version)}}</label>
+<label>{{TEXT(Designer)}}</label>
+            <label>{{TEXT(Authors)}}</label>
+            <label>{{TEXT(Wiki/Docs)}}</label>
+            <label>{{TEXT(Homepage)}}</label>
+            <label>{{TEXT(Forum)}}</label>
+          </metadataKeys>
+          <metadataValues>
+            <label>{{EVAL(__VERSION__)}}</label>
+<label>CyberGhost84</label>
+            <label>Baa, roidy</label>
+            <label>f00b4r, meltman</label>
+            <label>https://github.com/ibaa/plexconnect</label>
+            <label>http://forums.plexapp.com/...plexconnect</label>
+          </metadataValues>
+          <image>{{URL(:/thumbnails/PlexConnectLogo.png)}}</image>
+        </keyedPreview>
+      </preview>
+      
+      <menu>
+        <sections>
+        
+          
+         
+          
+          <menuSection>
+            <items>
+            
+              
+              
+              <oneLineMenuItem id="LibraryView" onSelect="atv.loadURL('{{URL(:/::PlexConnect=Settings_Library)}}')">
+                <label>{{TEXT(Library Options)}}</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="PlayListView" onSelect="atv.loadURL('{{URL(:/::PlexConnect=Settings_PlayList)}}')">
+                <label>{{TEXT(Playlists Options)}}</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
+              </oneLineMenuItem>
+
+              
+              <oneLineMenuItem id="MovieView" onSelect="atv.loadURL('{{URL(:/::PlexConnect=Settings_Movies)}}')">
+                <label>{{TEXT(Movie Options)}}</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="MusicView" onSelect="atv.loadURL('{{URL(:/::PlexConnect=Settings_Music)}}')">
+                <label>{{TEXT(Music Options)}}</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="ShowView" onSelect="atv.loadURL('{{URL(:/::PlexConnect=Settings_TVShows)}}')">
+                <label>{{TEXT(TV Show Options)}}</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="ChannelView" onSelect="atv.loadURL('{{URL(:/::PlexConnect=Settings_Channels)}}')">
+                <label>{{TEXT(Channels Options)}}</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="HomevideoView" onSelect="atv.loadURL('{{URL(:/::PlexConnect=Settings_HomeVideos)}}')">
+                <label>{{TEXT(Home Video Options)}}</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="VideoOSD" onSelect="atv.loadURL('{{URL(:/::PlexConnect=Settings_VideoOSD)}}')">
+                <label>{{TEXT(Video Player OSD)}}</label>
+                <accessories>
+                  <arrow/>
+                </accessories>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="DurationFormat" onSelect="toggleSettings('DurationFormat', 'Settings_Views')">
+                <label>{{TEXT(Duration Format)}}</label>
+                <rightLabel>{{SETTING(durationformat)}}</rightLabel>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+          
+         
+
+          
+        </sections>
+      </menu>
+    </itemCollectionWithImageHeader>
+  </body>
+</atv>

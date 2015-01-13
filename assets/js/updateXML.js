@@ -2,7 +2,57 @@
 
 
 /*
- * navigation bar - dynamic loading of pages
+ * PlexConnect navigation bar - dynamic loading of menu pages
+ */
+function loadMenuPage(event)
+{
+    // Get navbar item id name and number
+    navbarID = event.navigationItemId;
+    var root = document.rootElement;
+    var navitems = root.getElementsByTagName('navigationItem')
+    for (var i=0;i<navitems.length;i++)
+    { 
+      if (navitems[i].getAttribute('id') == navbarID) 
+      {
+        navbarItemNumber = i.toString();
+        break;
+      }
+    }
+    log(navbarItemNumber);
+    log(navbarID);
+  
+    var id = event.navigationItemId;
+    log("loadItem: "+id);
+    var item = document.getElementById(id);
+    var url = item.getElementByTagName('url').textContent;
+    
+    if (url.indexOf("{{URL()}}")!=-1)
+    {
+        url = url + "&PlexConnectUDID=" + atv.device.udid;
+    }
+    
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function()
+    {
+        try
+        {
+            if(req.readyState == 4)
+            {
+                doc = req.responseXML
+                if(event) event.success(doc);
+                else atv.loadXML(doc);
+            }
+        }
+        catch(e)
+        {
+            req.abort();
+        }
+    }
+    req.open('GET', url, true);
+    req.send();
+};
+/*
+ * Section navigation bar - dynamic loading of pages
  */
 var navbarID = null;
 var navbarItemNumber = null;
@@ -65,13 +115,20 @@ function loadMenuPages(url, event)
  */
 function updatePage(url)
 {
-    // read new XML
-	if (navbarItemNumber == '1') // First navbar item is a special case
-	{
-		atv.loadAndSwapURL(url);
-	}
-	else
-	{
+  log(url);
+  // add UDID
+  if (url.indexOf("{{URL(/)}}")!=-1)
+  {
+    url = url + "&PlexConnectUDID=" + atv.device.udid;
+  }
+  
+  // read new XML
+	//if (navbarItemNumber == '1') // First navbar item is a special case
+	//{
+	//	atv.loadAndSwapURL(url);
+	//}
+	//else
+	//{
 		var req = new XMLHttpRequest();
 		req.onreadystatechange = function(){
 			if(req.readyState == 4)
@@ -83,12 +140,7 @@ function updatePage(url)
 				atv.loadAndSwapXML(doc);
 			}
 		};
-	};
-    // add UDID
-    if (url.indexOf("{{URL(/)}}")!=-1)
-    {
-        url = url + "&PlexConnectUDID=" + atv.device.udid;
-    }
+	//};
   req.open('GET', url, false);
   req.send();
 };
