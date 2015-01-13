@@ -17,7 +17,7 @@
                 <navigationItem id="GlobalSearch">
                     <title>{{TEXT(Search All)}}</title>
                     <url>{{URL(:/PMS(all)::PlexConnect=Search_Global)}}</url>
-                </navigationItem>{{CUT($myplex_auth:CUT:=CUT| =)}}{{CUT($sharedlibrariesview:CUT:=|Hide=CUT|Hide =)}}
+                </navigationItem>{{CUT($myplex_auth:CUT:=CUT| =)}}{{CUT($searchglobal::Show=|Hide=CUT)}}
                 <navigationItem id="Libraries">
                     <title>{{TEXT(All Libraries)}}</title>
                     <url>{{URL(:/PMS(all)/library/sections::PlexConnect=Library_ViewMerged)}}</url>
@@ -25,11 +25,11 @@
                 <navigationItem id="Library">
                     <title>{{TEXT(Library)}}</title>
                     <url>{{URL(:/PMS(owned)/library/sections::PlexConnect=Library_View)}}</url>
-                </navigationItem>{{CUT($libraryview:CUT:=|Hide=CUT|Hide =)}}{{CUT($librariesmergeview:CUT:=CUT| =)}}
+                </navigationItem>{{CUT($libraryview:CUT:=|Hide=CUT|Hide =)}}{{CUT($librariesmergeview::Hide=|List=CUT|Grid=CUT|Bookcase=CUT)}}
                 <navigationItem id="SharedLibraries">
                     <title>{{TEXT(Shared Libraries)}}</title>
                     <url>{{URL(:/PMS(shared)/library/sections::PlexConnect=Library_ViewShared)}}</url>
-                </navigationItem>{{CUT($myplex_auth:CUT:=CUT| =)}}{{CUT($sharedlibrariesview:CUT:=|Hide=CUT|Hide =)}}{{CUT($librariesmergeview:CUT:=CUT| =)}}
+                </navigationItem>{{CUT($myplex_auth:CUT:=CUT| =)}}{{CUT($sharedlibrariesview:CUT:=|Hide=CUT|Hide =)}}{{CUT($librariesmergeview::Hide=|List=CUT|Grid=CUT|Bookcase=CUT)}}
                 <navigationItem id="Channels">
                     <title>{{TEXT(Channels)}}</title>
                     <url>{{URL(:/PMS(owned)/channels/all::PlexConnect=Channels_View)}}</url>
