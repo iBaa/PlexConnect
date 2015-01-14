@@ -220,6 +220,27 @@ class MyHandler(BaseHTTPRequestHandler):
                     self.sendResponse(XML, 'application/json', True)
                     return
                 
+                if self.path.endswith("f00b4rAllMovies.xml.raw"):
+                    dprint(__name__, 1, "serving .xml: "+self.path)
+                    f = open(sys.path[0] + sep + "assets/templates" + self.path[:-4], "rb")
+                    self.sendResponse(f.read(), 'text/xml', True)
+                    f.close()
+                    return
+                
+                if self.path.endswith("f00b4rAllMovies.xml.zip"):
+                    dprint(__name__, 1, "serving .xml: "+self.path)
+                    f = open(sys.path[0] + sep + "assets/templates" + self.path[:-4], "rb")
+                    self.sendResponse(f.read(), 'text/xml', False)
+                    f.close()
+                    return
+                
+                if self.path.endswith("f00b4rAllMovies.xml"):
+                    dprint(__name__, 1, "serving .xml: "+self.path)
+                    f = open(sys.path[0] + sep + "assets/templates" + self.path, "rb")
+                    self.sendResponse(f.read(), 'text/xml', False)
+                    f.close()
+                    return
+                
                 # get everything else from XMLConverter - formerly limited to trailing "/" and &PlexConnect Cmds
                 if True:
                     dprint(__name__, 1, "serving .xml: "+self.path)
