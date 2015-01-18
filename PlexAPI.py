@@ -78,7 +78,8 @@ def declarePMS(ATV_udid, uuid, name, scheme, ip, port):
                               'baseURL': baseURL,
                               'local': '1',
                               'owned': '1',
-                              'accesstoken': ''
+                              'accesstoken': '',
+                              'enableGzip': False
                             }
 
 def updatePMSProperty(ATV_udid, uuid, tag, value):
@@ -222,7 +223,7 @@ parameters:
 result:
     g_PMS database for ATV_udid
 """
-def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
+def discoverPMS(ATV_udid, CSettings, IP_self, MyPlexToken=''):
     global g_PMS
     g_PMS[ATV_udid] = {}
     
@@ -246,6 +247,7 @@ def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
             name = Server.get('name')
             
             declarePMS(ATV_udid, uuid, name, 'http', ip, port)  # dflt: token='', local, owned
+            # todo - check IP to verify "local"?
     
     else:
         # PlexGDM
@@ -316,6 +318,14 @@ def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
                     updatePMSProperty(ATV_udid, uuid, 'local', '0')  # todo - check IP?
                     updatePMSProperty(ATV_udid, uuid, 'accesstoken', token)
                     updatePMSProperty(ATV_udid, uuid, 'owned', owned)
+    
+    # all servers - update enableGzip
+    for uuid in g_PMS.get(ATV_udid, {}):
+        # enable Gzip if not on same host, local&remote PMS depending on setting
+        enableGzip = (not getPMSProperty(ATV_udid, uuid, 'ip')==IP_self) and ( \
+                     (getPMSProperty(ATV_udid, uuid, 'local')=='1' and CSettings.getSetting('allow_gzip_pmslocal')=='True' ) or \
+                     (getPMSProperty(ATV_udid, uuid, 'local')=='0' and CSettings.getSetting('allow_gzip_pmsremote')=='True') )
+        updatePMSProperty(ATV_udid, uuid, 'enableGzip', enableGzip)
     
     # debug print all servers
     dprint(__name__, 0, "Servers (local+MyPlex): {0}", len(g_PMS[ATV_udid]))
