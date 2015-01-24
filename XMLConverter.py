@@ -841,7 +841,59 @@ class CCommandCollection(CCommandHelper):
         self.variables[var] = key
         return False  # tree unchanged
     
-    
+    def TREE_MEDIABADGES(self, elem, child, src, srcXML, param):
+        resolution, leftover, dfltd = self.getKey(src, srcXML, param + "/videoResolution")
+        container, leftover, dfltd = self.getKey(src, srcXML, param + "/container")
+        vCodec, leftover, dfltd = self.getKey(src, srcXML, param + "/videoCodec")
+        aCodec, leftover, dfltd = self.getKey(src, srcXML, param + "/audioCodec")
+        channels, leftover, dfltd = self.getKey(src, srcXML, param + "/audioChannels")  
+        
+        additionalBadges = etree.Element("additionalMediaBadges")
+        index = 0
+        attribs = {'insertIndex': '0', 'required': 'true', 'src': ''}
+        
+        # Resolution
+        if resolution not in ['720', '1080']:
+            attribs['src'] = g_param['baseURL'] + '/thumbnails/MediaBadges/sd.png'
+        else:
+            attribs['src'] = g_param['baseURL'] + '/thumbnails/MediaBadges/' + resolution + '.png'
+        urlBadge = etree.SubElement(additionalBadges, "urlBadge", attribs)
+        index += 1
+        # Special case iTunes DRM
+        if vCodec == 'drmi' or aCodec == 'drms':
+            attribs['insertIndex'] = str(index)
+            attribs['src'] = g_param['baseURL'] + '/thumbnails/MediaBadges/iTunesDRM.png'
+            urlBadge = etree.SubElement(additionalBadges, "urlBadge", attribs)
+            child.append(additionalBadges)
+            return True # Finish, no more info needed
+        # File container
+        if container != '':
+            attribs['insertIndex'] = str(index)
+            attribs['src'] = g_param['baseURL'] + '/thumbnails/MediaBadges/' + container + '.png'
+            urlBadge = etree.SubElement(additionalBadges, "urlBadge", attribs)
+            index += 1 
+        # Video Codec
+        if vCodec != '':
+            attribs['insertIndex'] = str(index)
+            attribs['src'] = g_param['baseURL'] + '/thumbnails/MediaBadges/' + vCodec + '.png'
+            urlBadge = etree.SubElement(additionalBadges, "urlBadge", attribs)
+            index += 1    
+        # Audio Codec
+        if aCodec != '':
+            attribs['insertIndex'] = str(index)
+            attribs['src'] = g_param['baseURL'] + '/thumbnails/MediaBadges/' + aCodec + '.png'
+            urlBadge = etree.SubElement(additionalBadges, "urlBadge", attribs)
+            index += 1 
+        # Audio Channels
+        if channels != '':
+            attribs['insertIndex'] = str(index)
+            attribs['src'] = g_param['baseURL'] + '/thumbnails/MediaBadges/' + channels + '.png'
+            urlBadge = etree.SubElement(additionalBadges, "urlBadge", attribs)
+        # Append XML
+        child.append(additionalBadges)
+        return True # Tree changed
+        
+            
     # XML ATTRIB modifier commands
     # add new commands to this list!
     def ATTRIB_VAL(self, src, srcXML, param):
