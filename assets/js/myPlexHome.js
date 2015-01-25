@@ -42,11 +42,35 @@ switchHomeUser = function(id, prtct)
     if (!_elem) return;  // error - element not found
     
     
+    showPinEntryPage = function(in_title, in_prompt, in_initPinCode, callback_submit, callback_cancel)
+    {
+        log("switchHomeUser - showPinEntryPage");
+        var pinEntry = new atv.PINEntry();
+        
+        pinEntry.title = in_title;
+        pinEntry.prompt = in_prompt;
+        pinEntry.initialPINCode = in_initPinCode;
+        pinEntry.numDigits = 4;
+        pinEntry.userEditable = true;
+        pinEntry.hideDigits = false;
+        pinEntry.onSubmit = callback_submit;
+        pinEntry.onCancel = callback_cancel;
+        
+        pinEntry.show();
+    };
+    
     gotPin = function(value)
     {
         log("switchHomeUser - gotPin");
         _pin = value;
         doLogin();
+    };
+    
+    gotCancel = function()
+    {
+        hidePict(_elem, 'spinner');
+        
+        // "leave home" for defined status
     };
     
     // switch user - trigger PlexConnect, request updated settings page
@@ -142,7 +166,7 @@ switchHomeUser = function(id, prtct)
     
     if (prtct=='1')
     {
-        log("protected user");  // todo: request user input - 4 digit pin
+        showPinEntryPage("{{TEXT(Plex Home User PIN)}}", "{{TEXT(PROMPT)}}", "0000", gotPin, gotCancel);
     }
     else
     {

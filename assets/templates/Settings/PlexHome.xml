@@ -50,7 +50,7 @@
                   <paired/>
                   {{CUT($myplex_homeauth::=CUT| =)}}
                   {{CUT(title::=CUT|{{SETTING(myplex_homeuser)}}=|{{SETTING(myplex_homeuser)}} =CUT)}}
-                  <lock/>{{CUT(protected:CUT:0=CUT|1=)}}>
+                  <lock/>{{CUT(protected:CUT:0=CUT|1=)}}
                 </accessories>
               </oneLineMenuItem>
             </items>
