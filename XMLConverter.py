@@ -166,9 +166,10 @@ def XML_PMS2aTV(PMS_address, path, options):
     
     if 'PlexConnect' in options:
         cmd = options['PlexConnect']
-        dprint(__name__, 1, "---------------------------------------------")
-        dprint(__name__, 1, "Input: {0} {1} ", PMS_address, path)
-        dprint(__name__, 1, "Initial Command: {0}", cmd)
+    
+    dprint(__name__, 1, "---------------------------------------------")
+    dprint(__name__, 1, "PMS, path: {0} {1} ", PMS_address, path)
+    dprint(__name__, 1, "Initial Command: {0}", cmd)
     
     # check aTV language setting
     if not 'aTVLanguage' in options:
@@ -241,6 +242,8 @@ def XML_PMS2aTV(PMS_address, path, options):
         
         g_ATVSettings.setSetting(UDID, 'myplex_user', username)
         g_ATVSettings.setSetting(UDID, 'myplex_auth', auth_token)
+        g_ATVSettings.setSetting(UDID, 'myplex_homeuser', '')
+        g_ATVSettings.setSetting(UDID, 'myplex_homeauth', '')
         
         XMLtemplate = 'Settings/Main.xml'
         path = ''  # clear path - we don't need PMS-XML
@@ -253,12 +256,35 @@ def XML_PMS2aTV(PMS_address, path, options):
         
         g_ATVSettings.setSetting(UDID, 'myplex_user', '')
         g_ATVSettings.setSetting(UDID, 'myplex_auth', '')
+        g_ATVSettings.setSetting(UDID, 'myplex_homeuser', '')
+        g_ATVSettings.setSetting(UDID, 'myplex_homeauth', '')
         
         XMLtemplate = 'Settings/Main.xml'
         path = ''  # clear path - we don't need PMS-XML
     
-    elif cmd.startswith('Discover'):
+    elif cmd=='MyPlexSwitchHomeUser':
+        dprint(__name__, 2, "MyPlex->switch HomeUser...")
+        if not 'PlexConnectCredentials' in options:
+            return XML_Error('PlexConnect', 'MyPlex HomeUser called without Credentials.')
+        
+        parts = options['PlexConnectCredentials'].split(':',1)
+        if len(parts)!=2:
+            return XML_Error('PlexConnect', 'MyPlex HomeUser called with bad Credentials.')
+        
         auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
+        (username, auth_token) = PlexAPI.MyPlexSwitchHomeUser(parts[0], parts[1], options, auth_token)
+        
+        if auth_token:
+            g_ATVSettings.setSetting(UDID, 'myplex_homeuser', username)
+            g_ATVSettings.setSetting(UDID, 'myplex_homeauth', auth_token)
+        
+        XMLtemplate = 'Settings/PlexHome.xml'
+        #path = ''  # clear path - we don't need PMS-XML
+        
+    elif cmd.startswith('Discover'):
+        auth_token = g_ATVSettings.getSetting(UDID, 'myplex_homeauth')
+        if not auth_token:
+            auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
         PlexAPI.discoverPMS(UDID, g_param['CSettings'], g_param['IP_self'], auth_token)
         
         # sanitize aTV settings from not-working combinations
@@ -300,21 +326,22 @@ def XML_PMS2aTV(PMS_address, path, options):
     if dir != '':
         XMLtemplate = dir + '/' + cmd + '.xml'
         if path == '/': path = ''
-        dprint(__name__, 1, "Split Directory: {0} Command: {1}", dir, cmd)
-        dprint(__name__, 1, "XMLTemplate: {0}", XMLtemplate)
-        dprint(__name__, 1, "---------------------------------------------")
+    
+    dprint(__name__, 1, "Split Directory: {0} Command: {1}", dir, cmd)
+    dprint(__name__, 1, "XMLTemplate: {0}", XMLtemplate)
+    dprint(__name__, 1, "---------------------------------------------")
     
     PMSroot = None
     while True:
         # request PMS-XML
-        if not path=='' and not PMSroot:
-            if PMS_address[0].isalpha():  # owned, shared
-                type = PMS_address
-                PMS = PlexAPI.getXMLFromMultiplePMS(UDID, path, type, options)
-            else:  # IP
+        if not path=='' and not PMSroot and PMS_address:
+            if PMS_address[0].isdigit() or PMS_address=='plex.tv':  # IP:port or plex.tv
                 auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
                 enableGzip = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'enableGzip')
                 PMS = PlexAPI.getXMLFromPMS(PMS_baseURL, path, options, auth_token, enableGzip)
+            else:  # owned, shared PMSs
+                type = PMS_address
+                PMS = PlexAPI.getXMLFromMultiplePMS(UDID, path, type, options)
             
             if PMS==False:
                 return XML_Error('PlexConnect', 'No Response from Plex Media Server')
@@ -818,13 +845,13 @@ class CCommandCollection(CCommandHelper):
         else:  # internal path, add-on
             path = self.path[srcXML] + '/' + key
         
-        if PMS_address[0].isalpha():  # owned, shared
-            type = self.PMS_address
-            PMS = PlexAPI.getXMLFromMultiplePMS(self.ATV_udid, path, type, self.options)
-        else:  # IP
+        if PMS_address[0].isdigit() or PMS_address=='plex.tv':  # IP:port or plex.tv
             auth_token = PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'accesstoken')
             enableGzip = PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'enableGzip')
             PMS = PlexAPI.getXMLFromPMS(self.PMS_baseURL, path, self.options, auth_token, enableGzip)
+        else:  # owned, shared PMSs
+            type = self.PMS_address
+            PMS = PlexAPI.getXMLFromMultiplePMS(self.ATV_udid, path, type, self.options)
         
         self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML
         self.path[tag] = path  # store base path
@@ -1255,7 +1282,7 @@ class CCommandCollection(CCommandHelper):
         return self._(param)
     
     def ATTRIB_PMSCOUNT(self, src, srcXML, param):
-        return str(PlexAPI.getPMSCount(self.ATV_udid))
+        return str(PlexAPI.getPMSCount(self.ATV_udid) - 1)  # -1: correct for plex.tv
     
     def ATTRIB_PMSNAME(self, src, srcXML, param):
         PMS_name = PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'name')

@@ -106,7 +106,7 @@ def getPMSFromAddress(ATV_udid, address):
         return ''  # no server known for this aTV
     
     for uuid in g_PMS[ATV_udid]:
-        if address==g_PMS[ATV_udid][uuid].get('address', None):
+        if address in g_PMS[ATV_udid][uuid].get('address', None):
             return uuid
     return ''  # IP not found
 
@@ -227,6 +227,12 @@ def discoverPMS(ATV_udid, CSettings, IP_self, MyPlexToken=''):
     global g_PMS
     g_PMS[ATV_udid] = {}
     
+    # install plex.tv "virtual" PMS - for myPlex, PlexHome
+    declarePMS(ATV_udid, 'plex.tv', 'plex.tv', 'https', 'plex.tv', '443')
+    updatePMSProperty(ATV_udid, 'plex.tv', 'local', '-')
+    updatePMSProperty(ATV_udid, 'plex.tv', 'owned', '-')
+    updatePMSProperty(ATV_udid, 'plex.tv', 'accesstoken', MyPlexToken)
+    
     #debug
     #declarePMS(ATV_udid, '2ndServer', '2ndServer', 'http', '192.168.178.22', '32400', 'local', '1', 'token')
     #declarePMS(ATV_udid, 'remoteServer', 'remoteServer', 'http', '127.0.0.1', '1234', 'myplex', '1', 'token')
@@ -328,7 +334,7 @@ def discoverPMS(ATV_udid, CSettings, IP_self, MyPlexToken=''):
         updatePMSProperty(ATV_udid, uuid, 'enableGzip', enableGzip)
     
     # debug print all servers
-    dprint(__name__, 0, "Servers (local+MyPlex): {0}", len(g_PMS[ATV_udid]))
+    dprint(__name__, 0, "Servers (local, plex.tv, MyPlex): {0}", len(g_PMS[ATV_udid]))
     for uuid in g_PMS[ATV_udid]:
         dprint(__name__, 1, str(g_PMS[ATV_udid][uuid]))
 
@@ -615,6 +621,43 @@ def MyPlexSignOut(authtoken):
     dprint(__name__, 1, response)
     dprint(__name__, 1, "====== MyPlex sign out XML finished ======")
     dprint(__name__, 0, 'MyPlex Sign Out done')
+
+
+
+def MyPlexSwitchHomeUser(id, pin, options, authtoken):
+    MyPlexHost = 'https://plex.tv'
+    MyPlexURL = MyPlexHost + '/api/home/users/' + id + '/switch'
+    
+    if pin:
+        MyPlexURL += '?pin=' + pin
+    
+    xargs = {}
+    if options:
+        xargs = getXArgsDeviceInfo(options)
+    xargs['X-Plex-Token'] = authtoken
+    
+    request = urllib2.Request(MyPlexURL, None, xargs)
+    request.get_method = lambda: 'POST'  # turn into 'POST' - done automatically with data!=None. But we don't have data.
+    
+    response = urllib2.urlopen(request).read()
+    
+    dprint(__name__, 1, "====== MyPlexHomeUser XML ======")
+    dprint(__name__, 1, response)
+    dprint(__name__, 1, "====== MyPlexHomeUser XML finished ======")
+    
+    # analyse response
+    XMLTree = etree.ElementTree(etree.fromstring(response))
+    
+    el_user = XMLTree.getroot()  # root=<user>. double check?
+    username = el_user.attrib.get('title', '')
+    authtoken = el_user.attrib.get('authenticationToken', '')
+    
+    if username and authtoken:
+        dprint(__name__, 0, 'MyPlex switch HomeUser change successfull')
+    else:
+        dprint(__name__, 0, 'MyPlex switch HomeUser change failed')
+    
+    return (username, authtoken)
 
 
 
