@@ -280,7 +280,15 @@ def XML_PMS2aTV(PMS_address, path, options):
         
         XMLtemplate = 'Settings/PlexHome.xml'
         #path = ''  # clear path - we don't need PMS-XML
+    
+    elif cmd=='MyPlexLogoutHomeUser':
+        dprint(__name__, 2, "MyPlex->Logging Out HomeUser...")
         
+        g_ATVSettings.setSetting(UDID, 'myplex_homeuser', '')
+        g_ATVSettings.setSetting(UDID, 'myplex_homeauth', '')
+        
+        return XML_Error('PlexConnect', 'Log out!')  # not an error - but aTV won't care anyways.
+    
     elif cmd.startswith('Discover'):
         auth_token = g_ATVSettings.getSetting(UDID, 'myplex_homeauth')
         if not auth_token:

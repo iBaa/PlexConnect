@@ -55,6 +55,21 @@
               </oneLineMenuItem>
             </items>
           </menuSection>
+          
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{TEXT(Plex Home Options)}}</title>
+              </horizontalDivider>
+            </header>
+            <items>
+              <oneLineMenuItem id="signOutHomeUser"
+                               onSelect="signOutHomeUser()">
+                <label>{{TEXT(Sign Out)}}</label>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+          
         </sections>
       </menu>
     </listWithPreview>
