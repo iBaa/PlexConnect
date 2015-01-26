@@ -909,6 +909,8 @@ class CCommandCollection(CCommandHelper):
             index += 1 
         # Video Codec
         if vCodec != '':
+            if vCodec == 'mpeg4':
+                vCodec, leftover, dfltd = self.getKey(src, srcXML, param + "/Part/Stream/codecID")
             attribs['insertIndex'] = str(index)
             attribs['src'] = g_param['baseURL'] + '/thumbnails/MediaBadges/' + vCodec + '.png'
             urlBadge = etree.SubElement(additionalBadges, "urlBadge", attribs)
