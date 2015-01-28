@@ -4,14 +4,19 @@
 getLabel = function(elem, label)
 {
     var elem_label = elem.getElementByTagName(label);
-    if (!elem_label) return undefined;  // error - element not found
+    if (!elem_label) return '';  // error - element not found
     return(elem_label.textContent)
 };
 
 setLabel = function(elem, label, text)
 {
     var elem_label = elem.getElementByTagName(label);
-    if (elem_label) elem_label.textContent = text;
+    if (!elem_label)
+    {
+        elem_label = document.makeElementNamed(label);
+        elem.appendChild(elem_label);
+    }
+    elem_label.textContent = text;
 };
 
 showPict = function(elem, pict)
@@ -38,17 +43,16 @@ doXMLHttpRequest = function(url, callback_ok, callback_nok)
     var req = new XMLHttpRequest();
     req.onreadystatechange = function()
     {
-        try
+        if (req.readyState == 4)
         {
-            if(req.readyState == 4)
+            if (req.status == 200)
             {
                 callback_ok(req.responseXML);
             }
-        }
-        catch(e)
-        {
-            req.abort();
-            callback_nok();
+            else
+            {
+                callback_nok();
+            }
         }
     }
     req.open('GET', url, true);
@@ -68,7 +72,7 @@ switchHomeUser = function(id, prtct)
     
     var _elem = document.getElementById(id);
     if (!_elem) return;  // error - element not found
-    
+    var _switch = !_elem.getElementByTagName('paired');
     
     showPinEntryPage = function(in_title, in_prompt, in_initPinCode, callback_submit, callback_cancel)
     {
@@ -99,20 +103,11 @@ switchHomeUser = function(id, prtct)
         log("switchHomeUser - gotCancel");
         
         // sign out for defined status
-        var url = "{{URL(/)}}" + 
+        var url = "{{URL(/PMS(plex.tv)/api/home/users)}}" + 
                   "&PlexConnect=MyPlexLogoutHomeUser" +
                   "&PlexConnectUDID=" + atv.device.udid;
-        doXMLHttpRequest(url, gotLogoutResponse, gotError);
+        doXMLHttpRequest(url, gotLoginResponse, gotError);
     }
-    
-    gotLogoutResponse = function()
-    {
-        log("switchHomeUser - gotLogoutResponse");
-        
-        // discover - trigger PlexConnect, ignore response
-        var url = "{{URL(/)}}&PlexConnect=Discover&PlexConnectUDID="+atv.device.udid;
-        doXMLHttpRequest(url, gotDiscoverResponse, gotError);
-    };
     
     // switch user - trigger PlexConnect, request updated settings page
     doLogin = function()
@@ -125,36 +120,30 @@ switchHomeUser = function(id, prtct)
         doXMLHttpRequest(url, gotLoginResponse, gotError);
     };
     
-    // analyse updated page, update "paired"
+    // analyse updated page, update "paired"  // evolved to Login/Logout response
     gotLoginResponse = function(doc)
     {
         log("switchHomeUser - gotLoginResponse");
         
         // update "paired" in place
-        var new_elem = doc.getElementById(id);
-        paired = new_elem.getElementsByTagName("paired");
-        if (paired)
+        var new_elem = doc.getElementById(_id);
+        setLabel(_elem, 'rightLabel', getLabel(new_elem, 'rightLabel'));
+        var paired = new_elem.getElementByTagName('paired');
+        if (_switch && paired)
         {
             showPict(_elem, 'paired');
             log("switchHomeUser - login done");
         }
-        else
+        else if (_switch && !paired)
         {
             setLabel(_elem, 'rightLabel', _failed);
             log("switchHomeUser - login failed");
         }
+        else
+        {
+            log("switchHomeUser - logout done");  // logout with response "paired" should never happen, obviously
+        }
         
-        // discover - trigger PlexConnect, ignore response
-        var url = "{{URL(/)}}&PlexConnect=Discover&PlexConnectUDID="+atv.device.udid;
-        doXMLHttpRequest(url, gotDiscoverResponse, gotError);
-    };
-    
-    // done - clean up
-    gotDiscoverResponse = function(doc)
-    {
-        log("switchHomeUser - gotDiscoverResponse");
-        
-        // done...
         hidePict(_elem, 'spinner');
     }
     
@@ -162,6 +151,7 @@ switchHomeUser = function(id, prtct)
     gotError = function()
     {
         log("switchHomeUser - gotError");
+        setLabel(_elem, 'rightLabel', _failed);
         hidePict(_elem, 'spinner');
     }
     
@@ -179,61 +169,25 @@ switchHomeUser = function(id, prtct)
     // show spinner on current item
     showPict(_elem, 'spinner');
     
-    if (prtct=='1')
+    if (_switch)
     {
-        showPinEntryPage("{{TEXT(Plex Home User PIN)}}", "{{TEXT(PROMPT)}}", "0000", gotPin, gotCancel);
+        // switch home user
+        if (prtct=='1')
+        {
+            var user = getLabel(_elem, 'label');
+            showPinEntryPage("{{TEXT(PlexHome User PIN)}}", "{{TEXT(Enter the PlexHome user pin for {0}.)}}".format(user), "0000", gotPin, gotCancel);
+        }
+        else
+        {
+            gotPin('');
+        }
     }
     else
     {
-        gotPin('');
+        // sign out home user
+        var url = "{{URL(/PMS(plex.tv)/api/home/users)}}" + 
+                  "&PlexConnect=MyPlexLogoutHomeUser" +
+                  "&PlexConnectUDID=" + atv.device.udid;
+        doXMLHttpRequest(url, gotLoginResponse, gotError);
     }
-};
-
-
-signOutHomeUser = function()
-{
-    var _elem = document.getElementById('signOutHomeUser');
-    if (!_elem) return;  // error - element not found
-    
-    gotLogoutResponse = function(doc)
-    {
-        log("signOutHomeUser - gotLogoutResponse");
-        
-        // discover - trigger PlexConnect, ignore response
-        var url = "{{URL(/)}}&PlexConnect=Discover&PlexConnectUDID="+atv.device.udid;
-        doXMLHttpRequest(url, gotDiscoverResponse, gotError);
-    };
-    
-    gotDiscoverResponse = function(doc)
-    {
-        log("signOutHomeUser - gotDiscoverResponse");
-        hidePict(_elem, 'spinner');
-    };
-    
-    // error - clean up
-    gotError = function()
-    {
-        log("signOutHomeUser - gotError");
-        hidePict(_elem, 'spinner');
-    };
-    
-    
-    log("signOutHomeUser");
-    
-    // remove "paired" from all users, remove label (eg. "failed")
-    var elem = document.getElementById('myPlexHomeUsers');
-    var elems = elem.getElementsByTagName('oneLineMenuItem');
-    for (var i=0; i<elems.length; i++)
-    {
-        hidePict(elems[i], 'paired');
-        setLabel(elems[i], 'rightLabel', '');
-    }
-    
-    // show spinner on current item
-    showPict(_elem, 'spinner');
-    
-    var url = "{{URL(/)}}" + 
-              "&PlexConnect=MyPlexLogoutHomeUser" +
-              "&PlexConnectUDID=" + atv.device.udid;
-    doXMLHttpRequest(url, gotLogoutResponse, gotError);
 };

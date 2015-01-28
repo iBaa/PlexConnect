@@ -239,11 +239,13 @@ def XML_PMS2aTV(PMS_address, path, options):
         
         parts = options['PlexConnectCredentials'].split(':',1)        
         (username, auth_token) = PlexAPI.MyPlexSignIn(parts[0], parts[1], options)
+        PlexAPI.discoverPMS(UDID, g_param['CSettings'], g_param['IP_self'], {'MyPlex': auth_token})
         
         g_ATVSettings.setSetting(UDID, 'myplex_user', username)
         g_ATVSettings.setSetting(UDID, 'myplex_auth', auth_token)
-        g_ATVSettings.setSetting(UDID, 'myplex_homeuser', '')
-        g_ATVSettings.setSetting(UDID, 'myplex_homeauth', '')
+        g_ATVSettings.setSetting(UDID, 'plexhome_enable', 'False')
+        g_ATVSettings.setSetting(UDID, 'plexhome_user', '')
+        g_ATVSettings.setSetting(UDID, 'plexhome_auth', '')
         
         XMLtemplate = 'Settings/Main.xml'
         path = ''  # clear path - we don't need PMS-XML
@@ -253,11 +255,13 @@ def XML_PMS2aTV(PMS_address, path, options):
         
         auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
         PlexAPI.MyPlexSignOut(auth_token)
+        PlexAPI.discoverPMS(UDID, g_param['CSettings'], g_param['IP_self'], {'MyPlex': ''})
         
         g_ATVSettings.setSetting(UDID, 'myplex_user', '')
         g_ATVSettings.setSetting(UDID, 'myplex_auth', '')
-        g_ATVSettings.setSetting(UDID, 'myplex_homeuser', '')
-        g_ATVSettings.setSetting(UDID, 'myplex_homeauth', '')
+        g_ATVSettings.setSetting(UDID, 'plexhome_enable', 'False')
+        g_ATVSettings.setSetting(UDID, 'plexhome_user', '')
+        g_ATVSettings.setSetting(UDID, 'plexhome_auth', '')
         
         XMLtemplate = 'Settings/Main.xml'
         path = ''  # clear path - we don't need PMS-XML
@@ -272,28 +276,45 @@ def XML_PMS2aTV(PMS_address, path, options):
             return XML_Error('PlexConnect', 'MyPlex HomeUser called with bad Credentials.')
         
         auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
-        (username, auth_token) = PlexAPI.MyPlexSwitchHomeUser(parts[0], parts[1], options, auth_token)
+        (plexHome_user, plexHome_auth) = PlexAPI.MyPlexSwitchHomeUser(parts[0], parts[1], options, auth_token)
+        PlexAPI.discoverPMS(UDID, g_param['CSettings'], g_param['IP_self'], {'MyPlex': auth_token, 'PlexHome': plexHome_auth})
         
-        if auth_token:
-            g_ATVSettings.setSetting(UDID, 'myplex_homeuser', username)
-            g_ATVSettings.setSetting(UDID, 'myplex_homeauth', auth_token)
+        g_ATVSettings.setSetting(UDID, 'plexhome_enable', 'True')
+        g_ATVSettings.setSetting(UDID, 'plexhome_user', plexHome_user)
+        g_ATVSettings.setSetting(UDID, 'plexhome_auth', plexHome_auth)
         
         XMLtemplate = 'Settings/PlexHome.xml'
-        #path = ''  # clear path - we don't need PMS-XML
     
     elif cmd=='MyPlexLogoutHomeUser':
         dprint(__name__, 2, "MyPlex->Logging Out HomeUser...")
         
-        g_ATVSettings.setSetting(UDID, 'myplex_homeuser', '')
-        g_ATVSettings.setSetting(UDID, 'myplex_homeauth', '')
+        auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
+        PlexAPI.discoverPMS(UDID, g_param['CSettings'], g_param['IP_self'], {'MyPlex': auth_token, 'PlexHome': ''})
         
-        return XML_Error('PlexConnect', 'Log out!')  # not an error - but aTV won't care anyways.
+        g_ATVSettings.setSetting(UDID, 'plexhome_enable', 'True')  # stays at PlexHome mode
+        g_ATVSettings.setSetting(UDID, 'plexhome_user', '')
+        g_ATVSettings.setSetting(UDID, 'plexhome_auth', '')
+        
+        XMLtemplate = 'Settings/PlexHome.xml'
+    
+    elif cmd=='MyPlexLeaveHome':
+        dprint(__name__, 2, "MyPlex->Leave Home...")
+        
+        auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
+        PlexAPI.discoverPMS(UDID, g_param['CSettings'], g_param['IP_self'], {'MyPlex': auth_token})
+        
+        g_ATVSettings.setSetting(UDID, 'plexhome_enable', 'False')  # exit PlexHome mode completely
+        g_ATVSettings.setSetting(UDID, 'plexhome_user', '')
+        g_ATVSettings.setSetting(UDID, 'plexhome_auth', '')
+        
+        XMLtemplate = 'Settings/PlexHome.xml'
     
     elif cmd.startswith('Discover'):
-        auth_token = g_ATVSettings.getSetting(UDID, 'myplex_homeauth')
-        if not auth_token:
-            auth_token = g_ATVSettings.getSetting(UDID, 'myplex_auth')
-        PlexAPI.discoverPMS(UDID, g_param['CSettings'], g_param['IP_self'], auth_token)
+        tokenDict = {}
+        tokenDict['MyPlex'] = g_ATVSettings.getSetting(UDID, 'myplex_auth')
+        if g_ATVSettings.getSetting(UDID, 'plexhome_enable') == 'True':
+            tokenDict['PlexHome'] = g_ATVSettings.getSetting(UDID, 'plexhome_auth')
+        PlexAPI.discoverPMS(UDID, g_param['CSettings'], g_param['IP_self'], tokenDict)
         
         # sanitize aTV settings from not-working combinations
         # fanart only with PIL/pillow installed, only with iOS>=6.0  # watch out: this check will make trouble with iOS10

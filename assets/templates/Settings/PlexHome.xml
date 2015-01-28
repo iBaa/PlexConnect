@@ -46,30 +46,16 @@
                                onSelect="switchHomeUser('{{VAL(id)}}', '{{VAL(protected)}}')">
                 {{COPY(User)}}
                 <label>{{VAL(title)}}</label>
+                <rightLabel>{{TEXT(Sign Out)}}</rightLabel>
+                {{CUT(title::=CUT|{{SETTING(plexhome_user)}}=|{{SETTING(plexhome_user)}} =CUT)}}
                 <accessories>
                   <paired/>
-                  {{CUT($myplex_homeauth::=CUT| =)}}
-                  {{CUT(title::=CUT|{{SETTING(myplex_homeuser)}}=|{{SETTING(myplex_homeuser)}} =CUT)}}
+                  {{CUT(title::=CUT|{{SETTING(plexhome_user)}}=|{{SETTING(plexhome_user)}} =CUT)}}
                   <lock/>{{CUT(protected:CUT:0=CUT|1=)}}
                 </accessories>
               </oneLineMenuItem>
             </items>
           </menuSection>
-          
-          <menuSection>
-            <header>
-              <horizontalDivider alignment="left">
-                <title>{{TEXT(Plex Home Options)}}</title>
-              </horizontalDivider>
-            </header>
-            <items>
-              <oneLineMenuItem id="signOutHomeUser"
-                               onSelect="signOutHomeUser()">
-                <label>{{TEXT(Sign Out)}}</label>
-              </oneLineMenuItem>
-            </items>
-          </menuSection>
-          
         </sections>
       </menu>
     </listWithPreview>

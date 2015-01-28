@@ -70,7 +70,7 @@
               </oneLineMenuItem>
               <oneLineMenuItem id="PlexHomeUser" onSelect="atv.loadURL('{{URL(:/PMS(plex.tv)/api/home/users::PlexConnect=Settings_PlexHome)}}')">{{CUT($myplex_auth:CUT:=CUT| =)}}
                 <label>{{TEXT(Switch Home User)}}</label>
-                <rightLabel>{{SETTING(myplex_homeuser)}}</rightLabel>
+                <!--rightLabel>{{SETTING(plexhome_user)}}</rightLabel--> <!--needs in place update code. same with discover.-->
                 <accessories>
                   <arrow/>
                 </accessories>

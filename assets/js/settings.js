@@ -1,17 +1,6 @@
 // Dependency: utils.js
 
 
-// string extension: format()
-// see http://stackoverflow.com/a/4673436
-if (!String.prototype.format) {
-  String.prototype.format = function() {
-    var args = arguments;
-    return this.replace(/{(\d+)}/g, function(match, number) { 
-      return typeof args[number] != 'undefined' ? args[number] : match;
-    });
-  };
-}
-
 /*
  * update Settings
  */
@@ -211,9 +200,6 @@ myPlexSignInOut = function()
             var doc = req.responseXML;
             var new_myPlexElem = doc.getElementById('MyPlexSignInOut')
             
-            // discover
-            discover('discover', 'Settings_Main');
-            
             // update MyPlexSignInOut
             hidePict(_myPlexElem, 'spinner');
             setLabel(_myPlexElem, 'label', getLabel(new_myPlexElem, 'label'));
@@ -255,9 +241,6 @@ myPlexSignInOut = function()
             req.send();
             var doc = req.responseXML;
             var new_myPlexElem = doc.getElementById('MyPlexSignInOut')
-            
-            // discover
-            discover('discover', 'Settings_Main');
             
             // update MyPlexSignInOut
             hidePict(_myPlexElem, 'spinner');

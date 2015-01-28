@@ -219,11 +219,13 @@ discoverPMS
 parameters:
     ATV_udid
     CSettings - for manual PMS configuration. this one looks strange.
-    MyPlexToken
+    IP_self
+optional:
+    tokenDict - dictionary of tokens for MyPlex, PlexHome
 result:
     g_PMS database for ATV_udid
 """
-def discoverPMS(ATV_udid, CSettings, IP_self, MyPlexToken=''):
+def discoverPMS(ATV_udid, CSettings, IP_self, tokenDict={}):
     global g_PMS
     g_PMS[ATV_udid] = {}
     
@@ -231,7 +233,7 @@ def discoverPMS(ATV_udid, CSettings, IP_self, MyPlexToken=''):
     declarePMS(ATV_udid, 'plex.tv', 'plex.tv', 'https', 'plex.tv', '443')
     updatePMSProperty(ATV_udid, 'plex.tv', 'local', '-')
     updatePMSProperty(ATV_udid, 'plex.tv', 'owned', '-')
-    updatePMSProperty(ATV_udid, 'plex.tv', 'accesstoken', MyPlexToken)
+    updatePMSProperty(ATV_udid, 'plex.tv', 'accesstoken', tokenDict.get('MyPlex', ''))
     
     #debug
     #declarePMS(ATV_udid, '2ndServer', '2ndServer', 'http', '192.168.178.22', '32400', 'local', '1', 'token')
@@ -263,8 +265,12 @@ def discoverPMS(ATV_udid, CSettings, IP_self, MyPlexToken=''):
             declarePMS(ATV_udid, PMS['uuid'], PMS['serverName'], 'http', PMS['ip'], PMS['port'])  # dflt: token='', local, owned
     
     # MyPlex servers
-    if not MyPlexToken=='':
-        XML = getXMLFromPMS('https://plex.tv', '/pms/servers', None, MyPlexToken)
+    if 'PlexHome' in tokenDict:
+        authtoken = tokenDict.get('PlexHome')
+    else:
+        authtoken = tokenDict.get('MyPlex', '')
+    if not authtoken=='':
+        XML = getXMLFromPMS('https://plex.tv', '/pms/servers', None, authtoken)
         
         if XML==False:
             pass  # no data from MyPlex
