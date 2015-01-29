@@ -81,7 +81,9 @@ class MyHandler(BaseHTTPRequestHandler):
             accept_encoding = map(string.strip, string.split(self.headers["accept-encoding"], ","))
         except KeyError:
             accept_encoding = []
-        if 'gzip' in accept_encoding and enableGzip:
+        if enableGzip and \
+           g_param['CSettings'].getSetting('allow_gzip_atv')=='True' and \
+           'gzip' in accept_encoding:
             self.send_header('Content-encoding', 'gzip')
             self.end_headers()
             self.wfile.write(self.compress(data))
