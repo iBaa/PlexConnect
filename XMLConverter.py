@@ -909,7 +909,7 @@ class CCommandCollection(CCommandHelper):
         attribs = {'insertIndex': '0', 'required': 'true', 'src': ''}
         
         # Resolution
-        if resolution not in ['720', '1080']:
+        if resolution not in ['720', '1080', '2k', '4k']:
             attribs['src'] = g_param['baseURL'] + '/thumbnails/MediaBadges/sd.png'
         else:
             attribs['src'] = g_param['baseURL'] + '/thumbnails/MediaBadges/' + resolution + '.png'
@@ -923,13 +923,13 @@ class CCommandCollection(CCommandHelper):
             child.append(additionalBadges)
             return True # Finish, no more info needed
         # File container
-        if container != '':
+        if container != '' and self.options['aTVFirmwareVersion'] >= '7.0':
             attribs['insertIndex'] = str(index)
             attribs['src'] = g_param['baseURL'] + '/thumbnails/MediaBadges/' + container + '.png'
             urlBadge = etree.SubElement(additionalBadges, "urlBadge", attribs)
             index += 1 
         # Video Codec
-        if vCodec != '':
+        if vCodec != '' and self.options['aTVFirmwareVersion'] >= '7.0':
             if vCodec == 'mpeg4':
                 vCodec, leftover, dfltd = self.getKey(src, srcXML, param + "/Part/Stream/codecID")
             attribs['insertIndex'] = str(index)
