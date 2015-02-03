@@ -930,8 +930,8 @@ class CCommandCollection(CCommandHelper):
             index += 1 
         # Video Codec
         if vCodec != '' and self.options['aTVFirmwareVersion'] >= '7.0':
-            if vCodec == 'mpeg4':
-                vCodec, leftover, dfltd = self.getKey(src, srcXML, param + "/Part/Stream/codecID")
+            if vCodec == 'mpeg4': 
+                vCodec = "XVID" # Are there any other mpeg4-part 2 codecs?
             attribs['insertIndex'] = str(index)
             attribs['src'] = g_param['baseURL'] + '/thumbnails/MediaBadges/' + vCodec + '.png'
             urlBadge = etree.SubElement(additionalBadges, "urlBadge", attribs)
