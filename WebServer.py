@@ -20,7 +20,7 @@ from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 from SocketServer import ThreadingMixIn
 import ssl
 from multiprocessing import Pipe  # inter process communication
-import urllib
+import urllib, StringIO, gzip
 import signal
 
 import Settings, ATVSettings
@@ -65,6 +65,31 @@ class MyHandler(BaseHTTPRequestHandler):
       
     def log_message(self, format, *args):
       pass
+    
+    def compress(self, data):
+        buf = StringIO.StringIO()
+        zfile = gzip.GzipFile(mode='wb',  fileobj=buf, compresslevel=9)
+        zfile.write(data)
+        zfile.close()
+        return buf.getvalue()
+    
+    def sendResponse(self, data, type, enableGzip):
+        self.send_response(200)
+        self.send_header('Server', 'PlexConnect')
+        self.send_header('Content-type', type)
+        try:
+            accept_encoding = map(string.strip, string.split(self.headers["accept-encoding"], ","))
+        except KeyError:
+            accept_encoding = []
+        if enableGzip and \
+           g_param['CSettings'].getSetting('allow_gzip_atv')=='True' and \
+           'gzip' in accept_encoding:
+            self.send_header('Content-encoding', 'gzip')
+            self.end_headers()
+            self.wfile.write(self.compress(data))
+        else:
+            self.end_headers()
+            self.wfile.write(data)
     
     def do_GET(self):
         global g_param
@@ -155,10 +180,7 @@ class MyHandler(BaseHTTPRequestHandler):
                         dprint(__name__, 0, "Failed to access certificate: {0}", cfg_certfile)
                         return
                     
-                    self.send_response(200)
-                    self.send_header('Content-type', 'text/xml')
-                    self.end_headers()
-                    self.wfile.write(f.read())
+                    self.sendResponse(f.read(), 'text/xml', False)
                     f.close()
                     return 
                 
@@ -173,20 +195,14 @@ class MyHandler(BaseHTTPRequestHandler):
                         basename = "application.js"
                     dprint(__name__, 1, "serving /js/{0}", basename)
                     JS = JSConverter(basename, options)
-                    self.send_response(200)
-                    self.send_header('Content-type', 'text/javascript')
-                    self.end_headers()
-                    self.wfile.write(JS)
+                    self.sendResponse(JS, 'text/javascript', True)
                     return
                 
                 # serve "*.jpg" - thumbnails for old-style mainpage
                 if self.path.endswith(".jpg"):
                     dprint(__name__, 1, "serving *.jpg: "+self.path)
                     f = open(sys.path[0] + sep + "assets" + self.path, "rb")
-                    self.send_response(200)
-                    self.send_header('Content-type', 'image/jpeg')
-                    self.end_headers()
-                    self.wfile.write(f.read())
+                    self.sendResponse(f.read(), 'image/jpeg', False)
                     f.close()
                     return
                 
@@ -194,10 +210,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 if self.path.endswith(".png"):
                     dprint(__name__, 1, "serving *.png: "+self.path)
                     f = open(sys.path[0] + sep + "assets" + self.path, "rb")
-                    self.send_response(200)
-                    self.send_header('Content-type', 'image/png')
-                    self.end_headers()
-                    self.wfile.write(f.read())
+                    self.sendResponse(f.read(), 'image/png', False)
                     f.close()
                     return
                 
@@ -206,20 +219,14 @@ class MyHandler(BaseHTTPRequestHandler):
                    options['PlexConnect']=='Subtitle':
                     dprint(__name__, 1, "serving subtitle: "+self.path)
                     XML = Subtitle.getSubtitleJSON(PMSaddress, self.path + query, options)
-                    self.send_response(200)
-                    self.send_header('Content-type', 'application/json')
-                    self.end_headers()
-                    self.wfile.write(XML)
+                    self.sendResponse(XML, 'application/json', True)
                     return
                 
                 # get everything else from XMLConverter - formerly limited to trailing "/" and &PlexConnect Cmds
                 if True:
                     dprint(__name__, 1, "serving .xml: "+self.path)
                     XML = XMLConverter.XML_PMS2aTV(PMSaddress, self.path + query, options)
-                    self.send_response(200)
-                    self.send_header('Content-type', 'text/xml')
-                    self.end_headers()
-                    self.wfile.write(XML)
+                    self.sendResponse(XML, 'text/xml', True)
                     return
                 
                 """

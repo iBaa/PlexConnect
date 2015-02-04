@@ -1,0 +1,63 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/myPlexHome.js)}}" />
+  </head>
+  
+  <body>
+    <listWithPreview id="List_PlexHome">
+      <header>
+        <simpleHeader>
+          <title>{{TEXT(Settings)}}</title>
+        </simpleHeader>
+      </header>
+      <preview>
+        <keyedPreview>
+          <title>&#x00AD;<!--soft-hyphen--></title>
+          <summary/>
+          <metadataKeys>
+            <label>{{TEXT(Version)}}</label>
+            <label>{{TEXT(Authors)}}</label>
+            <label>{{TEXT(Wiki/Docs)}}</label>
+            <label>{{TEXT(Homepage)}}</label>
+            <label>{{TEXT(Forum)}}</label>
+          </metadataKeys>
+          <metadataValues>
+            <label>{{EVAL(__VERSION__)}}</label>
+            <label>Baa, roidy</label>
+            <label>f00b4r, meltman</label>
+            <label>https://github.com/ibaa/plexconnect</label>
+            <label>http://forums.plexapp.com/...plexconnect</label>
+          </metadataValues>
+          <image>{{URL(:/thumbnails/PlexConnectLogo.jpg)}}</image>
+        </keyedPreview>
+      </preview>
+
+      <menu>
+        <sections>
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{TEXT(Plex Home Users)}}</title>
+              </horizontalDivider>
+            </header>
+            <items id="myPlexHomeUsers">
+              <oneLineMenuItem id="{{VAL(id)}}"
+                               onSelect="switchHomeUser('{{VAL(id)}}', '{{VAL(protected)}}')">
+                {{COPY(User)}}
+                <label>{{VAL(title)}}</label>
+                <rightLabel>{{TEXT(Sign Out)}}</rightLabel>
+                {{CUT(title::=CUT|{{SETTING(plexhome_user)}}=|{{SETTING(plexhome_user)}} =CUT)}}
+                <accessories>
+                  <paired/>
+                  {{CUT(title::=CUT|{{SETTING(plexhome_user)}}=|{{SETTING(plexhome_user)}} =CUT)}}
+                  <lock/>{{CUT(protected:CUT:0=CUT|1=)}}
+                </accessories>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </listWithPreview>
+  </body>
+</atv>

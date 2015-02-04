@@ -32,7 +32,7 @@ http://stackoverflow.com/questions/111945/is-there-any-way-to-do-http-put-in-pyt
 import sys
 import struct
 import time
-import urllib2, socket
+import urllib2, socket, StringIO, gzip
 from threading import Thread
 import Queue
 
@@ -78,7 +78,8 @@ def declarePMS(ATV_udid, uuid, name, scheme, ip, port):
                               'baseURL': baseURL,
                               'local': '1',
                               'owned': '1',
-                              'accesstoken': ''
+                              'accesstoken': '',
+                              'enableGzip': False
                             }
 
 def updatePMSProperty(ATV_udid, uuid, tag, value):
@@ -105,7 +106,7 @@ def getPMSFromAddress(ATV_udid, address):
         return ''  # no server known for this aTV
     
     for uuid in g_PMS[ATV_udid]:
-        if address==g_PMS[ATV_udid][uuid].get('address', None):
+        if address in g_PMS[ATV_udid][uuid].get('address', None):
             return uuid
     return ''  # IP not found
 
@@ -218,13 +219,21 @@ discoverPMS
 parameters:
     ATV_udid
     CSettings - for manual PMS configuration. this one looks strange.
-    MyPlexToken
+    IP_self
+optional:
+    tokenDict - dictionary of tokens for MyPlex, PlexHome
 result:
     g_PMS database for ATV_udid
 """
-def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
+def discoverPMS(ATV_udid, CSettings, IP_self, tokenDict={}):
     global g_PMS
     g_PMS[ATV_udid] = {}
+    
+    # install plex.tv "virtual" PMS - for myPlex, PlexHome
+    declarePMS(ATV_udid, 'plex.tv', 'plex.tv', 'https', 'plex.tv', '443')
+    updatePMSProperty(ATV_udid, 'plex.tv', 'local', '-')
+    updatePMSProperty(ATV_udid, 'plex.tv', 'owned', '-')
+    updatePMSProperty(ATV_udid, 'plex.tv', 'accesstoken', tokenDict.get('MyPlex', ''))
     
     #debug
     #declarePMS(ATV_udid, '2ndServer', '2ndServer', 'http', '192.168.178.22', '32400', 'local', '1', 'token')
@@ -246,6 +255,7 @@ def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
             name = Server.get('name')
             
             declarePMS(ATV_udid, uuid, name, 'http', ip, port)  # dflt: token='', local, owned
+            # todo - check IP to verify "local"?
     
     else:
         # PlexGDM
@@ -255,8 +265,12 @@ def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
             declarePMS(ATV_udid, PMS['uuid'], PMS['serverName'], 'http', PMS['ip'], PMS['port'])  # dflt: token='', local, owned
     
     # MyPlex servers
-    if not MyPlexToken=='':
-        XML = getXMLFromPMS('https://plex.tv', '/pms/servers', None, MyPlexToken)
+    if 'PlexHome' in tokenDict:
+        authtoken = tokenDict.get('PlexHome')
+    else:
+        authtoken = tokenDict.get('MyPlex', '')
+    if not authtoken=='':
+        XML = getXMLFromPMS('https://plex.tv', '/pms/servers', None, authtoken)
         
         if XML==False:
             pass  # no data from MyPlex
@@ -317,8 +331,16 @@ def discoverPMS(ATV_udid, CSettings, MyPlexToken=''):
                     updatePMSProperty(ATV_udid, uuid, 'accesstoken', token)
                     updatePMSProperty(ATV_udid, uuid, 'owned', owned)
     
+    # all servers - update enableGzip
+    for uuid in g_PMS.get(ATV_udid, {}):
+        # enable Gzip if not on same host, local&remote PMS depending on setting
+        enableGzip = (not getPMSProperty(ATV_udid, uuid, 'ip')==IP_self) and ( \
+                     (getPMSProperty(ATV_udid, uuid, 'local')=='1' and CSettings.getSetting('allow_gzip_pmslocal')=='True' ) or \
+                     (getPMSProperty(ATV_udid, uuid, 'local')=='0' and CSettings.getSetting('allow_gzip_pmsremote')=='True') )
+        updatePMSProperty(ATV_udid, uuid, 'enableGzip', enableGzip)
+    
     # debug print all servers
-    dprint(__name__, 0, "Servers (local+MyPlex): {0}", len(g_PMS[ATV_udid]))
+    dprint(__name__, 0, "Servers (local, plex.tv, MyPlex): {0}", len(g_PMS[ATV_udid]))
     for uuid in g_PMS[ATV_udid]:
         dprint(__name__, 1, str(g_PMS[ATV_udid][uuid]))
 
@@ -335,7 +357,7 @@ parameters:
 result:
     returned XML or 'False' in case of error
 """
-def getXMLFromPMS(baseURL, path, options={}, authtoken=''):
+def getXMLFromPMS(baseURL, path, options={}, authtoken='', enableGzip=False):
     xargs = {}
     if not options==None:
         xargs = getXArgsDeviceInfo(options)
@@ -346,6 +368,10 @@ def getXMLFromPMS(baseURL, path, options={}, authtoken=''):
     dprint(__name__, 1, "xargs: {0}", xargs)
     
     request = urllib2.Request(baseURL+path , None, xargs)
+    request.add_header('User-agent', 'PlexConnect')
+    if enableGzip:
+        request.add_header('Accept-encoding', 'gzip')
+    
     try:
         response = urllib2.urlopen(request, timeout=20)
     except urllib2.URLError as e:
@@ -359,8 +385,13 @@ def getXMLFromPMS(baseURL, path, options={}, authtoken=''):
         dprint(__name__, 0, 'Error loading response XML from Plex Media Server')
         return False
     
-    # parse into etree
-    XML = etree.parse(response)
+    if response.info().get('Content-Encoding') == 'gzip':
+        buf = StringIO.StringIO(response.read())
+        file = gzip.GzipFile(fileobj=buf)
+        XML = etree.parse(file)
+    else:
+        # parse into etree
+        XML = etree.parse(response)
     
     dprint(__name__, 1, "====== received PMS-XML ======")
     dprint(__name__, 1, XML.getroot())
@@ -596,6 +627,43 @@ def MyPlexSignOut(authtoken):
     dprint(__name__, 1, response)
     dprint(__name__, 1, "====== MyPlex sign out XML finished ======")
     dprint(__name__, 0, 'MyPlex Sign Out done')
+
+
+
+def MyPlexSwitchHomeUser(id, pin, options, authtoken):
+    MyPlexHost = 'https://plex.tv'
+    MyPlexURL = MyPlexHost + '/api/home/users/' + id + '/switch'
+    
+    if pin:
+        MyPlexURL += '?pin=' + pin
+    
+    xargs = {}
+    if options:
+        xargs = getXArgsDeviceInfo(options)
+    xargs['X-Plex-Token'] = authtoken
+    
+    request = urllib2.Request(MyPlexURL, None, xargs)
+    request.get_method = lambda: 'POST'  # turn into 'POST' - done automatically with data!=None. But we don't have data.
+    
+    response = urllib2.urlopen(request).read()
+    
+    dprint(__name__, 1, "====== MyPlexHomeUser XML ======")
+    dprint(__name__, 1, response)
+    dprint(__name__, 1, "====== MyPlexHomeUser XML finished ======")
+    
+    # analyse response
+    XMLTree = etree.ElementTree(etree.fromstring(response))
+    
+    el_user = XMLTree.getroot()  # root=<user>. double check?
+    username = el_user.attrib.get('title', '')
+    authtoken = el_user.attrib.get('authenticationToken', '')
+    
+    if username and authtoken:
+        dprint(__name__, 0, 'MyPlex switch HomeUser change successfull')
+    else:
+        dprint(__name__, 0, 'MyPlex switch HomeUser change failed')
+    
+    return (username, authtoken)
 
 
 
