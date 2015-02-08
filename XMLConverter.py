@@ -335,21 +335,24 @@ def XML_PMS2aTV(PMS_address, path, options):
     
     elif path.find('SearchResults') != -1:
         XMLtemplate = 'Channels/VideoSearchResults.xml'
-        
-    # Not a special command so split it 
-    if cmd.find('_') != -1:
-        parts = cmd.split('_', 1)
-        dir = parts[0]
-        cmd = parts[1]
-            
+
     # Special case scanners
-    if cmd.find('Scanner') != -1:
-        dprint(__name__, 0, "Section scanner found, updating command.")
+    if cmd=='S_-_BABS':
+        dprint(__name__, 1, "Found S - BABS.")
+        dir = 'TVShow'
+        cmd = 'NavigationBar'
+    elif cmd.find('Scanner') != -1:
+        dprint(__name__, 1, "Found Scanner.")
         parts = cmd.split('_')
-        dir = parts[0].replace('Series', 'TVShow')
+        dir = parts[1].replace('Series', 'TVShow')
         dir = dir.replace('Video', 'HomeVideo')
         dir = dir.replace('iTunes', 'Music')
         cmd = 'NavigationBar'
+    # Not a special command so split it 
+    elif cmd.find('_') != -1:
+        parts = cmd.split('_', 1)
+        dir = parts[0]
+        cmd = parts[1]
 
     # Commands that contain a directory
     if dir != '':
@@ -909,7 +912,7 @@ class CCommandCollection(CCommandHelper):
         attribs = {'insertIndex': '0', 'required': 'true', 'src': ''}
         
         # Resolution
-        if resolution not in ['720', '1080']:
+        if resolution not in ['720', '1080', '2k', '4k']:
             attribs['src'] = g_param['baseURL'] + '/thumbnails/MediaBadges/sd.png'
         else:
             attribs['src'] = g_param['baseURL'] + '/thumbnails/MediaBadges/' + resolution + '.png'
@@ -923,15 +926,15 @@ class CCommandCollection(CCommandHelper):
             child.append(additionalBadges)
             return True # Finish, no more info needed
         # File container
-        if container != '':
+        if container != '' and self.options['aTVFirmwareVersion'] >= '7.0':
             attribs['insertIndex'] = str(index)
             attribs['src'] = g_param['baseURL'] + '/thumbnails/MediaBadges/' + container + '.png'
             urlBadge = etree.SubElement(additionalBadges, "urlBadge", attribs)
             index += 1 
         # Video Codec
-        if vCodec != '':
-            if vCodec == 'mpeg4':
-                vCodec, leftover, dfltd = self.getKey(src, srcXML, param + "/Part/Stream/codecID")
+        if vCodec != '' and self.options['aTVFirmwareVersion'] >= '7.0':
+            if vCodec == 'mpeg4': 
+                vCodec = "XVID" # Are there any other mpeg4-part 2 codecs?
             attribs['insertIndex'] = str(index)
             attribs['src'] = g_param['baseURL'] + '/thumbnails/MediaBadges/' + vCodec + '.png'
             urlBadge = etree.SubElement(additionalBadges, "urlBadge", attribs)
