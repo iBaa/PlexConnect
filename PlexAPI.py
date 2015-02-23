@@ -6,7 +6,7 @@ Collection of "connector functions" to Plex Media Server/MyPlex
 
 PlexGDM:
 loosely based on hippojay's plexGDM:
-https://github.com/hippojay/plugin.video.plexbmc
+https://github.com/hippojay/script.plexbmc.helper... /resources/lib/plexgdm.py
 
 
 Plex Media Server communication:
@@ -136,7 +136,7 @@ parameters:
 result:
     PMS_list - dict() of PMSs found
 """
-IP_PlexGDM = '<broadcast>'
+IP_PlexGDM = '239.0.0.250'  # multicast to PMS
 Port_PlexGDM = 32414
 Msg_PlexGDM = 'M-SEARCH * HTTP/1.0'
 
@@ -150,7 +150,8 @@ def PlexGDM():
     GDM.settimeout(1.0)
     
     # Set the time-to-live for messages to 1 for local network
-    GDM.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+    ttl = struct.pack('b', 1)
+    GDM.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, ttl)
     
     returnData = []
     try:
