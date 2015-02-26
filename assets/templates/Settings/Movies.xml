@@ -58,7 +58,7 @@
                 <rightLabel>{{SETTING(moviepreplay_bottomshelf)}}</rightLabel>
               </oneLineMenuItem>
               
-              <oneLineMenuItem id="MoviePrePlay_Badges" onSelect="toggleSettings('Enhanced', 'Default')">
+              <oneLineMenuItem id="MoviePrePlay_Badges" onSelect="toggleSettings('MoviePrePlay_Badges', 'Settings_Movies')">
                   <label>{{TEXT(PrePlay Badges)}}</label>
                   <rightLabel>{{SETTING(moviepreplay_badges)}}</rightLabel>
               </oneLineMenuItem>

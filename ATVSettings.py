@@ -25,7 +25,7 @@ options = { \
     'durationformat'            :('Hours/Minutes', 'Minutes'), \
     'moviefanart'               :('Hide', 'Show'), \
     'tvshowfanart'              :('Hide', 'Show'), \
-    'tvpreplay_badges'          :('Enhanced', 'Default'), \
+    'tvshowpreplay_badges'      :('Enhanced', 'Default'), \
     'moviepreplay_badges'       :('Enhanced', 'Default'), \
     'fanart_blur'               :('0', '5', '10', '15', '20'), \
     'moviepreplay_bottomshelf'  :('Extras', 'Related Movies'), \
