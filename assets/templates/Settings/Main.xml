@@ -63,14 +63,16 @@
               </oneLineMenuItem>
               <oneLineMenuItem id="PlexHomeUser" dimmed="true">{{CUT($myplex_auth::=| =CUT)}}
                 <label>{{TEXT(Switch Home User)}}</label>
-                <rightLabel>-</rightLabel>
+                <rightLabel></rightLabel>
                 <accessories>
                   <arrow/>
                 </accessories>
               </oneLineMenuItem>
-              <oneLineMenuItem id="PlexHomeUser" onSelect="atv.loadURL('{{URL(:/PMS(plex.tv)/api/home/users::PlexConnect=Settings_PlexHome)}}')">{{CUT($myplex_auth:CUT:=CUT| =)}}
+              <oneLineMenuItem id="PlexHomeUser" onSelect="plexHomeUser('{{URL(:/PMS(plex.tv)/api/home/users::PlexConnect=Settings_PlexHome)}}')">{{CUT($myplex_auth:CUT:=CUT| =)}}
                 <label>{{TEXT(Switch Home User)}}</label>
-                <!--rightLabel>{{SETTING(plexhome_user)}}</rightLabel--> <!--needs in place update code. same with discover.-->
+                <rightLabel>{{TEXT(Off)}}</rightLabel>{{CUT($plexhome_enable::False=|True=CUT)}}
+                <rightLabel></rightLabel>{{CUT($plexhome_enable:CUT:False=CUT|True=)}}{{CUT($plexhome_auth::=| =CUT)}}
+                <rightLabel>{{SETTING(plexhome_user)}}</rightLabel>{{CUT($plexhome_enable:CUT:False=CUT|True=)}}{{CUT($plexhome_auth:CUT:=CUT| =)}}
                 <accessories>
                   <arrow/>
                 </accessories>
