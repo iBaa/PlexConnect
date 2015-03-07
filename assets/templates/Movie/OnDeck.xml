@@ -5,7 +5,7 @@
 
   <body>
     {{ADDXML(OnDeck::onDeck)}}
-    {{ADDXML(RecentlyAdded::recentlyAdded)}}
+    {{ADDXML(RecentlyAdded::recentlyAdded?unwatched=1)}}
     {{ADDXML(RecentlyReleased::newest)}}
 
     {{VAR(items:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
