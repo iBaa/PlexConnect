@@ -7,6 +7,7 @@ import urllib
 import urllib2
 import urlparse
 import posixpath
+import traceback
 
 import os.path
 from Debug import * 
@@ -75,12 +76,12 @@ def generate(PMS_uuid, url, authtoken, resolution, blurRadius):
         blurRadius = int(blurRadius / 1.5)
         layer = Image.open(stylepath + "/gradient_720.png")
     
-    # Set background resolution and merge layers
     try:
+        # Set background resolution and merge layers
         bgWidth, bgHeight = background.size
         dprint(__name__,1 ,"Background size: {0}, {1}", bgWidth, bgHeight)
         dprint(__name__,1 , "aTV Height: {0}, {1}", width, height)
-    
+        
         if bgHeight != height:
             background = background.resize((width, height), Image.NEAREST)
             dprint(__name__,1 , "Resizing background")
@@ -92,17 +93,12 @@ def generate(PMS_uuid, url, authtoken, resolution, blurRadius):
             background.paste(imgBlur, blurRegion)
             
         background.paste(layer, ( 0, 0), layer)
-
-    except:
-        dprint(__name__, 0, 'Error - Failed to modify image')
-        return "/thumbnails/Background_blank_" + resolution + ".jpg"
         
-    try:
         # Save to Cache
         background.save(cachepath+"/"+cachefile)
     except:
-        dprint(__name__, 0, 'Error - Failed to save image file')
-        return "/thumbnails/Background_blank_" + resolution + ".jpg"       
+        dprint(__name__, 0, 'Error - Failed to generate background image.\n{0}', traceback.format_exc())
+        return "/thumbnails/Background_blank_" + resolution + ".jpg"
     
     dprint(__name__, 1, 'Cachefile  generated.')  # Debug
     return "/fanartcache/"+cachefile

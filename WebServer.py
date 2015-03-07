@@ -22,6 +22,7 @@ import ssl
 from multiprocessing import Pipe  # inter process communication
 import urllib, StringIO, gzip
 import signal
+import traceback
 
 import Settings, ATVSettings
 from Debug import *  # dprint()
@@ -237,7 +238,11 @@ class MyHandler(BaseHTTPRequestHandler):
             else:
                 self.send_error(403,"Not Serving Client %s" % self.client_address[0])
         except IOError:
+            dprint(__name__, 0, 'File Not Found:\n{0}', traceback.format_exc())
             self.send_error(404,"File Not Found: %s" % self.path)
+        except:
+            dprint(__name__, 0, 'Internal Server Error:\n{0}', traceback.format_exc())
+            self.send_error(500,"Internal Server Error: %s" % self.path)
 
 
 
