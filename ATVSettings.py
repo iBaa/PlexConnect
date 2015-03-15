@@ -12,17 +12,21 @@ from Debug import *  # dprint()
 options = { \
     'playlistsview'             :('List', 'Tabbed List', 'Hide'), \
     'libraryview'               :('List', 'Grid', 'Bookcase', 'Hide'), \
+    'searchglobal'              :('Hide', 'Show'), \
+    'librariesmergeview'        :('Hide', 'List', 'Grid', 'Bookcase'), \
     'sharedlibrariesview'       :('List', 'Grid', 'Bookcase', 'Hide'), \
     'channelview'               :('List', 'Tabbed List', 'Grid', 'Bookcase', 'Hide'), \
-    'movieview'                 :('Grid', 'List', 'Detailed List'), \
+    'movieview'                 :('Grid', 'List', 'Detailed List', 'BigGrid'), \
     'homevideoview'             :('Grid', 'List', 'Detailed List'), \
     'actorview'                 :('Movies', 'Portrait'), \
-    'showview'                  :('List', 'Detailed List', 'Grid', 'Bookcase'), \
+    'showview'                  :('List', 'Detailed List', 'Grid', 'Bookcase', 'BigGrid'), \
     'flattenseason'             :('False', 'True'), \
-    'seasonview'                :('List', 'Coverflow'), \
+    'seasonview'                :('List', 'Coverflow', 'BigGrid'), \
     'durationformat'            :('Hours/Minutes', 'Minutes'), \
     'moviefanart'               :('Hide', 'Show'), \
     'tvshowfanart'              :('Hide', 'Show'), \
+    'tvshowpreplay_badges'      :('Enhanced', 'Default'), \
+    'moviepreplay_badges'       :('Enhanced', 'Default'), \
     'fanart_blur'               :('0', '5', '10', '15', '20'), \
     'moviepreplay_bottomshelf'  :('Extras', 'Related Movies'), \
     'showtitles_movies'         :('Highlighted Only', 'Show All'), \

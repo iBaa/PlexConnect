@@ -56,7 +56,12 @@
               <oneLineMenuItem id="MoviePrePlay_BottomShelf" onSelect="toggleSettings('MoviePrePlay_BottomShelf', 'Settings_Movies')">
                 <label>{{TEXT(PrePlay Bottom Shelf)}}</label>
                 <rightLabel>{{SETTING(moviepreplay_bottomshelf)}}</rightLabel>
-              </oneLineMenuItem> 
+              </oneLineMenuItem>
+              
+              <oneLineMenuItem id="MoviePrePlay_Badges" onSelect="toggleSettings('MoviePrePlay_Badges', 'Settings_Movies')">
+                  <label>{{TEXT(PrePlay Badges)}}</label>
+                  <rightLabel>{{SETTING(moviepreplay_badges)}}</rightLabel>
+              </oneLineMenuItem>
 							
               <oneLineMenuItem id="MovieFanart" onSelect="toggleSettings('MovieFanart', 'Settings_Movies')">
               {{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
