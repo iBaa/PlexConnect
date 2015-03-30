@@ -33,7 +33,7 @@
                 
                 <items>
                   <!-- video channels per server -->
-                  <squarePoster id="Video_{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_channels::Highlighted Only=false|Show All=true)}}"
+                  <squarePoster id="Video_{{VAL(key)}}" alwaysShowTitles="{{VAL($postertitles::Highlighted Only=false|Show All=true)}}"
                                onPlay="atv.loadURL('{{URL(key:::PlexConnect=Channels_Video)}}')"
                                onSelect="atv.loadURL('{{URL(key:::PlexConnect=Channels_Video)}}')">
                   {{COPY(Directory)}}
@@ -65,7 +65,7 @@
                 
                 <items>
                   <!-- audio channels per server -->
-                  <squarePoster id="Audio_{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_channels::Highlighted Only=false|Show All=true)}}"
+                  <squarePoster id="Audio_{{VAL(key)}}" alwaysShowTitles="{{VAL($postertitles::Highlighted Only=false|Show All=true)}}"
                                onPlay="atv.loadURL('{{URL(key:::PlexConnect=Channels_Audio)}}')"
                                onSelect="atv.loadURL('{{URL(key:::PlexConnect=Channels_Audio)}}')">
                   {{COPY(Directory)}}
@@ -97,7 +97,7 @@
                 
                 <items>
                   <!-- video channels per server -->
-                  <squarePoster id="Photo_{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_channels::Highlighted Only=false|Show All=true)}}"
+                  <squarePoster id="Photo_{{VAL(key)}}" alwaysShowTitles="{{VAL($postertitles::Highlighted Only=false|Show All=true)}}"
                                onPlay="atv.loadURL('{{URL(key:::PlexConnect=Channels_Photo)}}')"
                                onSelect="atv.loadURL('{{URL(key:::PlexConnect=Channels_Photo)}}')">
                   {{COPY(Directory)}}

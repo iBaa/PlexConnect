@@ -6,10 +6,10 @@
   </head>
 
   <body>
-    <listWithPreview id="SettingsPage_VideoOSD">
+    <listWithPreview id="SettingsPage_TVShows">
       <header>
         <simpleHeader>
-          <title>{{TEXT(Settings)}}</title>
+          <title>{{TEXT(TV Shows)}}</title>
         </simpleHeader>
       </header>
       <preview>
@@ -61,32 +61,6 @@
               <oneLineMenuItem id="FlattenSeason" onSelect="toggleSettings('FlattenSeason', 'Settings_TVShows')">
                 <label>{{TEXT(Flatten Season)}}</label>
                 <rightLabel>{{SETTING(flattenseason)}}</rightLabel>
-              </oneLineMenuItem>
-              
-              <oneLineMenuItem id="ShowTitles_TVShows" onSelect="toggleSettings('ShowTitles_TVShows', 'Settings_TVShows')">
-                <label>{{TEXT(Poster Titles)}}</label>
-                <rightLabel>{{SETTING(showtitles_tvshows)}}</rightLabel>
-              </oneLineMenuItem>
-     
-              <oneLineMenuItem id="TVShowFanart" onSelect="toggleSettings('TVShowFanart', 'Settings_TVShows')">
-              {{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
-              {{CUT(^aTVFirmwareVersion:CUT:=CUT|6=)}}  <!-- watch out: this will make trouble with iOS10 -->
-                <label>{{TEXT(TV Show Fanart)}}</label>
-                <rightLabel>{{SETTING(tvshowfanart)}}</rightLabel>
-              </oneLineMenuItem>
-              
-              <oneLineMenuItem id="TVShowFanart" dimmed="true">
-              {{CUT(NoKey:{{EVAL(['','CUT'][isPILinstalled()])}})}}
-              {{CUT(^aTVFirmwareVersion:CUT:=CUT|6=)}}  <!-- watch out: this will make trouble with iOS10 -->
-                <label>{{TEXT(TV Show Fanart)}}</label>
-                <rightLabel>{{TEXT(PIL/Pillow not installed)}}</rightLabel>
-              </oneLineMenuItem>
-							
-							<oneLineMenuItem id="Fanart_Blur" onSelect="toggleSettings('Fanart_Blur', 'Settings_TVShows')">
-              {{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
-              {{CUT(^aTVFirmwareVersion:CUT:=CUT|6=)}}  <!-- watch out: this will make trouble with iOS10 -->
-                <label>{{TEXT(Fanart Lower Blur)}}</label>
-                <rightLabel>{{SETTING(fanart_blur)}}</rightLabel>
               </oneLineMenuItem>
             </items>
           </menuSection>

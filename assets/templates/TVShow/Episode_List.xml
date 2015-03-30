@@ -17,7 +17,7 @@
             <items>
               <twoLineEnhancedMenuItem id="{{VAL(ratingKey)}}"
                                          onPlay="atv.loadURL('{{URL(:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}}&amp;PlexConnectPlayType=Continuous)}}')"
-                                         onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_PrePlay{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
+                                         onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_PrePlay{{VAL($fanart::Hide=|Show=_Fanart)}})}}')"
                                          onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
                 {{COPY(Video:index::=|0 =COPY)}}
                 <label>{{VAL(title)}}</label>

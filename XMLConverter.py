@@ -321,8 +321,7 @@ def XML_PMS2aTV(PMS_address, path, options):
         if not PILBackgrounds.isPILinstalled() or \
            not options['aTVFirmwareVersion'] >= '6.0':
             dprint(__name__, 2, "disable fanart (PIL not installed or aTVFirmwareVersion<6.0)")
-            g_ATVSettings.setSetting(UDID, 'moviefanart', 'Hide')
-            g_ATVSettings.setSetting(UDID, 'tvshowfanart', 'Hide')
+            g_ATVSettings.setSetting(UDID, 'fanart', 'Hide')
         
         return XML_Error('PlexConnect', 'Discover!')  # not an error - but aTV won't care anyways.
 

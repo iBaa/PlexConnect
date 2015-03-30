@@ -14,7 +14,7 @@
       <items>
         <grid columnCount="7" id="grid_0">
           <items>
-            <moviePoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($showtitles_tvshows::Highlighted Only=false|Show All=true)}}"
+            <moviePoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($postertitles::Highlighted Only=false|Show All=true)}}"
                         onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Season)}}')"
                         onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Season)}}')"
                         onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
