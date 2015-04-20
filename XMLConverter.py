@@ -324,11 +324,7 @@ def XML_PMS2aTV(PMS_address, path, options):
             g_ATVSettings.setSetting(UDID, 'fanart', 'Hide')
         
         return XML_Error('PlexConnect', 'Discover!')  # not an error - but aTV won't care anyways.
-
-    # Special case path requests
-    if path.startswith('/search?'):
-        XMLtemplate = 'Search/Results.xml'
-        
+    
     elif path.find('serviceSearch') != -1 or (path.find('video') != -1 and path.lower().find('search') != -1):
         XMLtemplate = 'Channels/VideoSearchResults.xml'
     

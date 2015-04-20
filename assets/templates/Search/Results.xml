@@ -74,7 +74,7 @@
             </header>
             <items>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"
-                             onPlay="atv.loadURL('{{URL(key:::PlexConncet=Music_Track)}}')"
+                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Music_Track)}}')"
                              onSelect="atv.loadURL('{{URL(key:::PlexConnect=Music_Track)}}')">
                 {{COPY(Directory:type::=|album=COPY|album =)}}
                 {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
