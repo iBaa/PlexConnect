@@ -510,6 +510,21 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
                     if 'composite' in Playlist.attrib:
                         Playlist.set('composite', PMS_mark + getURL('', path, Playlist.get('composite')))
                     Server.append(Playlist)
+                
+                for Video in XML.getiterator('Video'):  # copy "Video" content, add PMS to links
+                    key = Video.get('key')  # absolute path
+                    Video.set('key',    PMS_mark + getURL('', path, key))
+                    if 'thumb' in Video.attrib:
+                        Video.set('thumb', PMS_mark + getURL('', path, Video.get('thumb')))
+                    if 'parentKey' in Video.attrib:
+                        Video.set('parentKey', PMS_mark + getURL('', path, Video.get('parentKey')))
+                    if 'parentThumb' in Video.attrib:
+                        Video.set('parentThumb', PMS_mark + getURL('', path, Video.get('parentThumb')))
+                    if 'grandparentKey' in Video.attrib:
+                        Video.set('grandparentKey', PMS_mark + getURL('', path, Video.get('grandparentKey')))
+                    if 'grandparentThumb' in Video.attrib:
+                        Video.set('grandparentThumb', PMS_mark + getURL('', path, Video.get('grandparentThumb')))
+                    Server.append(Video)
     
     root.set('size', str(len(root.findall('Server'))))
     
