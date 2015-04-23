@@ -48,7 +48,7 @@
           </shelf>
         </__COPY__>
       </items>
-    </scroller>{{CUT(#sections::FALSE=CUT|TRUE=)}}  <!--CUT if no section added-->
+    </scroller>
     
     <!--No Sections Available-->
     <dialog id="com.sample.error-dialog">

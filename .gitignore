@@ -22,11 +22,3 @@ PlexConnect.log
 *.suo
 
 /assets/fanartcache/*.jpg
-
-assets/templates/PlexConnect.xml
-
-assets/templates/Settings/Movies.xml
-
-assets/templates/Settings/TVShows.xml
-
-ATVSettings.py

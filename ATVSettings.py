@@ -8,26 +8,27 @@ import fnmatch
 from Debug import *  # dprint()
 
 
+
 options = { \
     'playlistsview'             :('List', 'Tabbed List', 'Hide'), \
     'libraryview'               :('List', 'Grid', 'Bookcase', 'Hide'), \
     'sharedlibrariesview'       :('List', 'Grid', 'Bookcase', 'Hide'), \
-    'librariesmergeview'        :('Hide', 'List', 'Grid', 'Bookcase'), \
     'channelview'               :('List', 'Tabbed List', 'Grid', 'Bookcase', 'Hide'), \
-    'searchglobal'              :('Hide', 'Show'), \
-    'movieview'                 :('Grid', 'List', 'Detailed List', 'BigGrid'), \
+    'movieview'                 :('Grid', 'List', 'Detailed List'), \
     'homevideoview'             :('Grid', 'List', 'Detailed List'), \
     'actorview'                 :('Movies', 'Portrait'), \
-    'showview'                  :('List', 'Detailed List', 'Grid', 'Bookcase', 'BigGrid'), \
+    'showview'                  :('List', 'Detailed List', 'Grid', 'Bookcase'), \
     'flattenseason'             :('False', 'True'), \
-    'seasonview'                :('List', 'Coverflow', 'BigGrid'), \
+    'seasonview'                :('List', 'Coverflow'), \
     'durationformat'            :('Hours/Minutes', 'Minutes'), \
-    'postertitles'              :('Highlighted Only', 'Show All'), \
-    'fanart'                    :('Hide', 'Show'), \
-    'tvshowpreplay_badges'      :('Enhanced', 'Default'), \
-    'moviepreplay_badges'       :('Enhanced', 'Default'), \
+    'moviefanart'               :('Hide', 'Show'), \
+    'tvshowfanart'              :('Hide', 'Show'), \
     'fanart_blur'               :('0', '5', '10', '15', '20'), \
     'moviepreplay_bottomshelf'  :('Extras', 'Related Movies'), \
+    'showtitles_movies'         :('Highlighted Only', 'Show All'), \
+    'showtitles_tvshows'        :('Highlighted Only', 'Show All'), \
+    'showtitles_homevideos'     :('Highlighted Only', 'Show All'), \
+    'showtitles_channels'       :('Highlighted Only', 'Show All'), \
     'movies_navbar_ondeck'      :('checked', 'unchecked'), \
     'movies_navbar_unwatched'   :('checked', 'unchecked'), \
     'movies_navbar_byfolder'    :('checked', 'unchecked'), \
@@ -55,27 +56,24 @@ options = { \
                           '480p 2.0Mbps', \
                           '720p 3.0Mbps', '720p 4.0Mbps', \
                           '1080p 8.0Mbps', '1080p 10.0Mbps', '1080p 12.0Mbps', '1080p 20.0Mbps'), \
-                          'transcoderaction'  :('Auto', 'DirectPlay', 'Transcode'), \
-                          'remotebitrate'     :('720p 3.0Mbps', '720p 4.0Mbps', \
-                                                '1080p 8.0Mbps', '1080p 10.0Mbps', '1080p 12.0Mbps', '1080p 20.0Mbps', '1080p 40.0Mbps', \
-                                                '480p 2.0Mbps'), \
-                          'phototranscoderaction'     :('Auto', 'Transcode'), \
-                          'subtitlerenderer'  :('Auto', 'iOS, PMS', 'PMS'), \
-                          'subtitlesize'      :('100', '125', '150', '50', '75'), \
-                          'audioboost'        :('100', '175', '225', '300'), \
-                          'showunwatched'     :('True', 'False'), \
-                          'showsynopsis'      :('Hide', 'Show'), \
-                          'showplayerclock'   :('True', 'False'), \
-                          'overscanadjust'    :('0', '1', '2', '3', '-3', '-2', '-1'), \
-                          'clockposition'     :('Center', 'Right', 'Left'), \
-                          'showendtime'       :('True', 'False'), \
-                          'timeformat'        :('24 Hour', '12 Hour'), \
-                          'myplex_user'       :('', ), \
-                          'myplex_auth'       :('', ), \
-                          'plexhome_enable'   :('False', 'True'), \
-                          'plexhome_user'     :('', ), \
-                          'plexhome_auth'     :('', ), \
-}
+    'transcoderaction'  :('Auto', 'DirectPlay', 'Transcode'), \
+    'remotebitrate'     :('720p 3.0Mbps', '720p 4.0Mbps', \
+                          '1080p 8.0Mbps', '1080p 10.0Mbps', '1080p 12.0Mbps', '1080p 20.0Mbps', '1080p 40.0Mbps', \
+                          '480p 2.0Mbps'), \
+    'phototranscoderaction'     :('Auto', 'Transcode'), \
+    'subtitlerenderer'  :('Auto', 'iOS, PMS', 'PMS'), \
+    'subtitlesize'      :('100', '125', '150', '50', '75'), \
+    'audioboost'        :('100', '175', '225', '300'), \
+    'showunwatched'     :('True', 'False'), \
+    'showsynopsis'      :('Hide', 'Show'), \
+    'showplayerclock'   :('True', 'False'), \
+    'overscanadjust'    :('0', '1', '2', '3', '-3', '-2', '-1'), \
+    'clockposition'     :('Center', 'Right', 'Left'), \
+    'showendtime'       :('True', 'False'), \
+    'timeformat'        :('24 Hour', '12 Hour'), \
+    'myplex_user'       :('', ), \
+    'myplex_auth'       :('', ), \
+    }
 
 
 
@@ -147,7 +145,7 @@ class CATVSettings():
         self.checkSection(UDID)
         cur = self.cfg.get(UDID, option)
         opts = options[option]
-        
+    
         # find current in list
         i=0
         for i,opt in enumerate(opts):
@@ -158,14 +156,14 @@ class CATVSettings():
         i=i+1
         if i>=len(opts):
             i=0
-
-# set
-                self.cfg.set(UDID, option, opts[i])
-                    
-                    def setOptions(self, option, opts):
-global options
-    if option in options:
-        options[option] = opts
+    
+        # set
+        self.cfg.set(UDID, option, opts[i])
+    
+    def setOptions(self, option, opts):
+        global options
+        if option in options:
+            options[option] = opts
             dprint(__name__, 1, 'setOption: update {0} to {1}', option, opts)
 
 

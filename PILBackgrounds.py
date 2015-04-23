@@ -7,7 +7,6 @@ import urllib
 import urllib2
 import urlparse
 import posixpath
-import traceback
 
 import os.path
 from Debug import * 
@@ -51,13 +50,13 @@ def generate(PMS_uuid, url, authtoken, resolution, blurRadius):
         response = urllib2.urlopen(request).read()
         background = Image.open(io.BytesIO(response))
     except urllib2.URLError as e:
-        dprint(__name__, 0, 'URLError: {0} // url: {1}', e.reason, url)
+        dprint(__name__, 1, 'URLError: {0} // url: {1}', e.reason, url)
         return "/thumbnails/Background_blank_" + resolution + ".jpg"
     except urllib2.HTTPError as e:
-        dprint(__name__, 0, 'HTTPError: {0} {1} // url: {2}', str(e.code), e.msg, url)
+        dprint(__name__, 1, 'HTTPError: {0} {1} // url: {2}', str(e.code), e.msg, url)
         return "/thumbnails/Background_blank_" + resolution + ".jpg"
     except IOError as e:
-        dprint(__name__, 0, 'IOError: {0} // url: {1}', str(e), url)
+        dprint(__name__, 1, 'IOError: {0} // url: {1}', str(e), url)
         return "/thumbnails/Background_blank_" + resolution + ".jpg"
     
     blurRadius = int(blurRadius)
@@ -76,30 +75,25 @@ def generate(PMS_uuid, url, authtoken, resolution, blurRadius):
         blurRadius = int(blurRadius / 1.5)
         layer = Image.open(stylepath + "/gradient_720.png")
     
-    try:
-        # Set background resolution and merge layers
-        bgWidth, bgHeight = background.size
-        dprint(__name__,1 ,"Background size: {0}, {1}", bgWidth, bgHeight)
-        dprint(__name__,1 , "aTV Height: {0}, {1}", width, height)
-        
-        if bgHeight != height:
-            background = background.resize((width, height), Image.ANTIALIAS)
-            dprint(__name__,1 , "Resizing background")
-        
-        if blurRadius != 0:
-            dprint(__name__,1 , "Blurring Lower Region")
-            imgBlur = background.crop(blurRegion)
-            imgBlur = imgBlur.filter(ImageFilter.GaussianBlur(blurRadius))
-            background.paste(imgBlur, blurRegion)
-            
-        background.paste(layer, ( 0, 0), layer)
-        
-        # Save to Cache
-        background.save(cachepath+"/"+cachefile)
-    except:
-        dprint(__name__, 0, 'Error - Failed to generate background image.\n{0}', traceback.format_exc())
-        return "/thumbnails/Background_blank_" + resolution + ".jpg"
+    # Set background resolution and merge layers
+    bgWidth, bgHeight = background.size
+    dprint(__name__,1 ,"Background size: {0}, {1}", bgWidth, bgHeight)
+    dprint(__name__,1 , "aTV Height: {0}, {1}", width, height)
     
+    if bgHeight != height:
+        background = background.resize((width, height), Image.ANTIALIAS)
+        dprint(__name__,1 , "Resizing background")
+        
+    if blurRadius != 0:
+        dprint(__name__,1 , "Blurring Lower Region")
+        imgBlur = background.crop(blurRegion)
+        imgBlur = imgBlur.filter(ImageFilter.GaussianBlur(blurRadius))
+        background.paste(imgBlur, blurRegion)
+        
+    background.paste(layer, ( 0, 0), layer)
+    
+    # Save to Cache
+    background.save(cachepath+"/"+cachefile)  
     dprint(__name__, 1, 'Cachefile  generated.')  # Debug
     return "/fanartcache/"+cachefile
 
