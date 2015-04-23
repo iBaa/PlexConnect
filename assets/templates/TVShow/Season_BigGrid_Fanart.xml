@@ -7,7 +7,7 @@
         <scroller id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=TVShow_Season_BigGrid_Fanart)}}')">
             <header>
                 <imageHeader>
-                    <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=550|1080=715)}}, 0" required="true">
+                    <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=550|1080=550)}}, 0" required="true">
                         {{BACKGROUNDURL(art:::)}}
                     </image>
                 </imageHeader>
