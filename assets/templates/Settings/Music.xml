@@ -6,10 +6,10 @@
   </head>
 
   <body>
-    <listWithPreview id="SettingsPage_HomeVideos">
+    <listWithPreview id="SettingsPage_Music">
       <header>
         <simpleHeader>
-          <title>{{TEXT(Settings)}}</title>
+          <title>{{TEXT(Music)}}</title>
         </simpleHeader>
       </header>
       <preview>
@@ -41,10 +41,6 @@
               <oneLineMenuItem id="MusicView" onSelect="toggleSettings('MusicView', 'Settings_Music')">
                 <label>{{TEXT(Music View)}}</label>
                 <rightLabel>{{SETTING(musicview)}}</rightLabel>
-              </oneLineMenuItem>
-              <oneLineMenuItem id="ShowTitles_Music" onSelect="toggleSettings('ShowTitles_Music', 'Settings_Music')">
-                <label>{{TEXT(Poster Titles)}}</label>
-                <rightLabel>{{SETTING(showtitles_music)}}</rightLabel>
               </oneLineMenuItem>
             </items>
           </menuSection>-->

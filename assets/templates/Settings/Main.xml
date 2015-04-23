@@ -61,6 +61,22 @@
                 <rightLabel>{{SETTING(myplex_user)}}</rightLabel>
                 <accessories></accessories>
               </oneLineMenuItem>
+              <oneLineMenuItem id="PlexHomeUser" dimmed="true">{{CUT($myplex_auth::=| =CUT)}}
+                <label>{{TEXT(Switch Home User)}}</label>
+                <rightLabel></rightLabel>
+                <accessories>
+                  <arrow/>
+                </accessories>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="PlexHomeUser" onSelect="plexHomeUser('{{URL(:/PMS(plex.tv)/api/home/users::PlexConnect=Settings_PlexHome)}}')">{{CUT($myplex_auth:CUT:=CUT| =)}}
+                <label>{{TEXT(Switch Home User)}}</label>
+                <rightLabel>{{TEXT(Off)}}</rightLabel>{{CUT($plexhome_enable::False=|True=CUT)}}
+                <rightLabel></rightLabel>{{CUT($plexhome_enable:CUT:False=CUT|True=)}}{{CUT($plexhome_auth::=| =CUT)}}
+                <rightLabel>{{SETTING(plexhome_user)}}</rightLabel>{{CUT($plexhome_enable:CUT:False=CUT|True=)}}{{CUT($plexhome_auth:CUT:=CUT| =)}}
+                <accessories>
+                  <arrow/>
+                </accessories>
+              </oneLineMenuItem>
             </items>
           </menuSection>
           
@@ -71,8 +87,8 @@
               </horizontalDivider>
             </header>
             <items>
-              <oneLineMenuItem id="MainNavigation" onSelect="atv.loadURL('{{URL(:/::PlexConnect=Settings_TopLevel)}}')">
-                <label>{{TEXT(Main Navigation)}}</label>
+              <oneLineMenuItem id="GeneralAppearance" onSelect="atv.loadURL('{{URL(:/::PlexConnect=Settings_TopLevel)}}')">
+                <label>{{TEXT(General Appearance)}}</label>
                 <accessories>
                   <arrow/>
                 </accessories>
@@ -106,10 +122,6 @@
                 <accessories>
                   <arrow/>
                 </accessories>
-              </oneLineMenuItem>
-              <oneLineMenuItem id="DurationFormat" onSelect="toggleSettings('DurationFormat', 'Settings_Main')">
-                <label>{{TEXT(Duration Format)}}</label>
-                <rightLabel>{{SETTING(durationformat)}}</rightLabel>
               </oneLineMenuItem>
             </items>
           </menuSection>
