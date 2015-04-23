@@ -1,4 +1,4 @@
 <atv>
-  <redirect newPath="{{VAL(Directory/key)}}" template="TVShow/Episode_List{{VAL($tvshowfanart::Hide=|Show=_Fanart)}}.xml" />{{CUT(size:CUT:1=|1 =CUT|2=|2 =CUT|3=CUT)}}{{CUT($flattenseason::False=CUT|True=)}}
-  <redirect template="TVShow/Season_{{VAL($seasonview)}}{{VAL($tvshowfanart::Hide=|Show=_Fanart)}}.xml" />
+  <redirect newPath="{{VAL(Directory/key)}}" template="TVShow/Episode_List{{VAL($fanart::Hide=|Show=_Fanart)}}.xml" />{{CUT(size:CUT:1=|1 =CUT|2=|2 =CUT|3=CUT)}}{{CUT($flattenseason::False=CUT|True=)}}
+  <redirect template="TVShow/Season_{{VAL($seasonview)}}{{VAL($fanart::Hide=|Show=_Fanart)}}.xml" />
 </atv>

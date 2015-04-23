@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atv>
+  <body>
+    <search id="plex-search">
+      <header>
+        <simpleHeader>
+          <title>{{TEXT(Search)}} PlexConnect</title>
+        </simpleHeader>
+      </header>
+      <baseURL>{{URL(:/PMS(all)/search::PlexConnect=Search_ResultsAllPMS&amp;type=4&amp;query=)}}</baseURL>
+    </search>
+  </body>
+</atv>

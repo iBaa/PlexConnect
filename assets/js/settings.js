@@ -306,6 +306,37 @@ myPlexSignInOut = function()
 
 };
 
+
+/*
+ * PlexHomeUser
+ * - invalidate home user & discovery (still looking for how to update it on return...)
+ * - link to subpage
+ */
+plexHomeUser = function(url)
+{
+    setLabel = function(elem, label, text)
+    {
+        var elem_label = elem.getElementByTagName(label);
+        if (!elem_label)
+        {
+            elem_label = document.makeElementNamed(label);
+            elem.appendChild(elem_label);
+        }
+        elem_label.textContent = text;
+    };
+    
+    
+    var elem = document.getElementById('PlexHomeUser');
+    setLabel(elem, 'rightLabel', '?');
+    
+    var elem = document.getElementById('discover');
+    setLabel(elem, 'rightLabel', 'Plex Media Servers: ?');
+    
+    atv.loadURL(url);
+    log("plexHomeUser - done");
+}
+
+
 /* 
  *  Save settings
  */

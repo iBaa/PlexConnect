@@ -8,7 +8,7 @@
   {{ADDXML(related::/library/metadata/{{VAL(Video/ratingKey)}}/similar)}}
 
   <body>
-    <itemDetail id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=Movie_PrePlay{{VAL($moviefanart::Hide=|Show=_Fanart)}})}}')">
+    <itemDetail id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=Movie_PrePlay{{VAL($fanart::Hide=|Show=_Fanart)}})}}')">
       <title>{{VAL(Video/title)}} ({{VAL(Video/year)}})</title>
       <subtitle>{{VAL(Video/studio)}}</subtitle>
       <rating>{{contentRating(Video/contentRating)}}</rating>
@@ -174,7 +174,7 @@
             <shelfSection>
               <items>
                 <moviePoster related="true" alwaysShowTitles="true" id="shelf_item_1" 
-                             onSelect="atv.loadAndSwapURL('{{URL(key:::includeExtras=1&amp;PlexConnect=Movie_PrePlay{{VAL($moviefanart::Hide=|Show=_Fanart)}})}}')">
+                             onSelect="atv.loadAndSwapURL('{{URL(key:::includeExtras=1&amp;PlexConnect=Movie_PrePlay{{VAL($fanart::Hide=|Show=_Fanart)}})}}')">
                   {{COPY(@related/Video)}}
                   <title>{{VAL(title)}}</title>
                   <image>{{IMAGEURL(thumb::384)}}</image>
