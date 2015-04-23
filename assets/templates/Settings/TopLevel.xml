@@ -47,14 +47,6 @@
                 <label>{{TEXT(Playlists)}}</label>
                 <rightLabel>{{SETTING(playlistsview)}}</rightLabel>
               </oneLineMenuItem>
-              <oneLineMenuItem id="SearchGlobal" onSelect="toggleSettings('SearchGlobal', 'Settings_TopLevel')">
-                  <label>{{TEXT(Search)}}</label>
-                  <rightLabel>{{SETTING(SearchGlobal)}}</rightLabel>
-                  </oneLineMenuItem>
-              <oneLineMenuItem id="LibrariesMergeView" onSelect="toggleSettings('LibrariesMergeView', 'Settings_TopLevel')">
-                  <label>{{TEXT(All Libraries)}}</label>
-                  <rightLabel>{{SETTING(librariesmergeview)}}</rightLabel>
-              </oneLineMenuItem>
               <oneLineMenuItem id="LibraryView" onSelect="toggleSettings('LibraryView', 'Settings_TopLevel')">
                 <label>{{TEXT(Library)}}</label>
                 <rightLabel>{{SETTING(libraryview)}}</rightLabel>
