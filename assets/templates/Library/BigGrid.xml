@@ -1,0 +1,57 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/sectionHoldSelect.js)}}" />
+  </head>
+
+  <body>
+    {{VAR(sections:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
+    
+    <scroller id="Library_Grid">
+      <header>
+        <simpleHeader>
+          <title>{{TEXT(Plex Library)}}</title>
+        </simpleHeader>
+      </header>
+      
+      <items>
+        <!-- servers -->
+        <__COPY__>
+        {{COPY(Server:@main/size::0=|1=COPY)}}
+          <collectionDivider alignment="left" accessibilityLabel="Show_Bookcase_Divider">
+            <title>{{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+          </collectionDivider>{{CUT(@main/size:CUT:0=CUT|1=CUT|2=)}}
+          
+          <grid id="Library_Grid_{{VAL(name)}}" columnCount="5">
+            <items>
+              <!-- /library/sections -->
+              {{VAR(serverName:name)}}
+              {{VAR(searchKey:searchKey)}}
+              <goldenPoster id="{{VAL(key)}}" showOutline="false" alwaysShowTitles="true"
+                           onPlay="atv.loadURL('{{URL(key:::PlexConnect={{EVAL('{{VAL(scanner)}}'.replace(' ', '_'))}})}}')"
+                           onSelect="atv.loadURL('{{URL(key:::PlexConnect={{EVAL('{{VAL(scanner)}}'.replace(' ', '_'))}})}}')"
+                           onHoldSelect="sectionHoldSelect('{{VAL(key)}}', '{{URL(#searchKey)}}', '{{VAL(#serverName)}}', '{{URL(refreshKey)}}', '{{VAL(title)}}')">
+              {{COPY(Directory)}}
+              {{VAR(sections:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                <title>{{VAL(title)}}</title>
+                <subtitle>&#x00AD;</subtitle><!--bugfix to prevent different poster sizes-->
+                <image>{{IMAGEURL(thumb::384)}}</image>
+                <defaultImage>resource://Square.png</defaultImage>
+                <!--badgeCount></badgeCount-->
+              </goldenPoster>
+              
+            </items>
+          </grid>
+        </__COPY__>
+      </items>
+    </scroller>{{CUT(#sections::FALSE=CUT|TRUE=)}}  <!--CUT if no section added-->
+    
+    <!--No Sections Available-->
+    <dialog id="com.sample.error-dialog">
+    {{CUT(#sections::FALSE=|TRUE=CUT)}}
+      <title>PlexConnect</title>
+      <description>{{TEXT(No Plex Library Sections Available)}}</description>
+    </dialog>
+    
+  </body>
+</atv>
