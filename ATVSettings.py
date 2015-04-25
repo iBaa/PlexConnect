@@ -14,7 +14,7 @@ options = { \
     'libraryview'               :('List', 'Grid', 'Bookcase', 'BigGrid', 'Hide'), \
     'sharedlibrariesview'       :('List', 'Grid', 'Bookcase', 'BigGrid', 'Hide'), \
     'librariesmergeview'        :('List', 'Grid', 'Bookcase', 'BigGrid', 'Hide'), \
-    'channelview'               :('List', 'Tabbed List', 'Grid', 'Bookcase', 'Hide'), \
+    'channelview'               :('List', 'Tabbed List', 'Grid', 'BigGrid', 'Bookcase', 'Hide'), \
     'movieview'                 :('Grid', 'List', 'Detailed List', 'BigGrid'), \
     'homevideoview'             :('Grid', 'List', 'Detailed List'), \
     'actorview'                 :('Movies', 'Portrait'), \
