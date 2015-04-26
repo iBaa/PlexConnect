@@ -13,14 +13,14 @@ options = { \
     'playlistsview'             :('List', 'Tabbed List', 'Hide'), \
     'libraryview'               :('List', 'Grid', 'Bookcase', 'BigGrid', 'Hide'), \
     'sharedlibrariesview'       :('List', 'Grid', 'Bookcase', 'BigGrid', 'Hide'), \
-    'librariesmergeview'        :('List', 'Grid', 'Bookcase', 'BigGrid', 'Hide'), \
+    'librariesmergeview'        :('List', 'BigGrid', 'Grid', 'Bookcase', 'Hide'), \
     'channelview'               :('List', 'Tabbed List', 'Grid', 'BigGrid', 'Bookcase', 'Hide'), \
-    'movieview'                 :('Grid', 'List', 'Detailed List', 'BigGrid'), \
+    'movieview'                 :('BigGrid', 'Grid', 'List', 'Detailed List'), \
     'homevideoview'             :('Grid', 'List', 'Detailed List'), \
     'actorview'                 :('Movies', 'Portrait'), \
-    'showview'                  :('List', 'Detailed List', 'Grid', 'Bookcase', 'BigGrid'), \
-    'flattenseason'             :('False', 'True'), \
-    'seasonview'                :('List', 'Coverflow', 'BigGrid'), \
+    'showview'                  :('BigGrid', 'List', 'Detailed List', 'Grid', 'Bookcase'), \
+    'flattenseason'             :('True', 'False'), \
+    'seasonview'                :('Coverflow', 'List', 'BigGrid'), \
     'durationformat'            :('Hours/Minutes', 'Minutes'), \
     'postertitles'              :('Highlighted Only', 'Show All'), \
     'fanart'                    :('Hide', 'Show'), \
