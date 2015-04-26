@@ -59,6 +59,10 @@
                 <label>{{TEXT(Channels)}}</label>
                 <rightLabel>{{SETTING(channelview)}}</rightLabel>
               </oneLineMenuItem>
+              <oneLineMenuItem id="GlobalSearch" onSelect="toggleSettings('GlobalSearch', 'Settings_TopLevel')">
+                <label>{{TEXT(Search)}}</label>
+                <rightLabel>{{SETTING(globalsearch)}}</rightLabel>
+              </oneLineMenuItem>
             </items>
           </menuSection>
           

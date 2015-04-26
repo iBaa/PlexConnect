@@ -14,6 +14,7 @@ options = { \
     'libraryview'               :('List', 'Grid', 'Bookcase', 'Hide'), \
     'sharedlibrariesview'       :('List', 'Grid', 'Bookcase', 'Hide'), \
     'channelview'               :('List', 'Tabbed List', 'Grid', 'Bookcase', 'Hide'), \
+    'globalsearch'              :('Show', 'Hide'), \
     'movieview'                 :('Grid', 'List', 'Detailed List'), \
     'homevideoview'             :('Grid', 'List', 'Detailed List'), \
     'actorview'                 :('Movies', 'Portrait'), \
