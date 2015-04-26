@@ -16,7 +16,8 @@
           
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Movies)}} &lt;{{VAL(name)}}{{VAL(local::0=, {{TEXT(remote)}}|0 =)}}&gt;</title>
+                <title>{{CUT(@main/size::=CUT|1=|1 =CUT)}}{{TEXT(Movies)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+                <title>{{CUT(@main/size::=|1=CUT|1 =)}}{{TEXT(Movies)}} &lt;{{VAL(name)}}{{VAL(local::0=, {{TEXT(remote)}}|0 =)}}&gt;</title>
               </horizontalDivider>
             </header>
             <items>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
@@ -41,7 +42,8 @@
           
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Shows)}} &lt;{{VAL(name)}}{{VAL(local::0=, {{TEXT(remote)}}|0 =)}}&gt;</title>
+                <title>{{CUT(@main/size::=CUT|1=|1 =CUT)}}{{TEXT(Shows)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+                <title>{{CUT(@main/size::=|1=CUT|1 =)}}{{TEXT(Shows)}} &lt;{{VAL(name)}}{{VAL(local::0=, {{TEXT(remote)}}|0 =)}}&gt;</title>
               </horizontalDivider>
             </header>
             <items>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
@@ -66,13 +68,14 @@
           
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Episodes)}} &lt;{{VAL(name)}}{{VAL(local::0=, {{TEXT(remote)}}|0 =)}}&gt;</title>
+                <title>{{CUT(@main/size::=CUT|1=|1 =CUT)}}{{TEXT(Episodes)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+                <title>{{CUT(@main/size::=|1=CUT|1 =)}}{{TEXT(Episodes)}} &lt;{{VAL(name)}}{{VAL(local::0=, {{TEXT(remote)}}|0 =)}}&gt;</title>
               </horizontalDivider>
             </header>
             <items>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
               <twoLineEnhancedMenuItem id="{{VAL(key)}}"
                              onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
-                             onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect=Movie_PrePlay{{VAL($fanart::Hide=|Show=_Fanart)}})}}')">
+                             onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect=TVShow_PrePlay{{VAL($fanart::Hide=|Show=_Fanart)}})}}')">
                 {{COPY(Video:type::=|episode=COPY|episode =)}}
                 {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
                 <label>{{VAL(title)}}</label>
@@ -92,7 +95,8 @@
           
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Albums)}} &lt;{{VAL(name)}}{{VAL(local::0=, {{TEXT(remote)}}|0 =)}}&gt;</title>
+                <title>{{CUT(@main/size::=CUT|1=|1 =CUT)}}{{TEXT(Albums)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+                <title>{{CUT(@main/size::=|1=CUT|1 =)}}{{TEXT(Albums)}} &lt;{{VAL(name)}}{{VAL(local::0=, {{TEXT(remote)}}|0 =)}}&gt;</title>
               </horizontalDivider>
             </header>
             <items>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
@@ -118,7 +122,8 @@
             
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Artists)}} &lt;{{VAL(name)}}{{VAL(local::0=, {{TEXT(remote)}}|0 =)}}&gt;</title>
+                <title>{{CUT(@main/size::=CUT|1=|1 =CUT)}}{{TEXT(Artists)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+                <title>{{CUT(@main/size::=|1=CUT|1 =)}}{{TEXT(Artists)}} &lt;{{VAL(name)}}{{VAL(local::0=, {{TEXT(remote)}}|0 =)}}&gt;</title>
               </horizontalDivider>
             </header>
             <items>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
