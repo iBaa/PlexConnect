@@ -54,6 +54,15 @@
             <label>{{VAL(Video/Director[4]/tag)}}</label>
             <label>{{VAL(Video/Writer[4]/tag)}}</label>
           </row>
+          <row>
+              <progressBar percentage="0"/>{{CUT(Video/viewCount)}}{{CUT(Video/viewOffset)}}
+              <progressBar percentage="{{EVAL({{VAL(Video/viewOffset:0)}} * 100 / {{VAL(Video/duration:1)}})}}"/>{{CUT(Video/viewOffset:CUT:=)}}
+              <progressBar percentage="100"/>{{CUT(Video/viewCount:CUT:=)}}{{CUT(Video/viewOffset)}}
+              <label></label>
+              <label></label>
+              <label></label>
+              <label></label>
+          </row>{{CUT(^aTVFirmwareVersion::=CUT|6.0=)}}
         </rows>
       </table>
 
