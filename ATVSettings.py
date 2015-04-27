@@ -13,12 +13,12 @@ options = { \
     'playlistsview'             :('List', 'Tabbed List', 'Hide'), \
     'libraryview'               :('List', 'Grid', 'Bookcase', 'BigGrid', 'Hide'), \
     'sharedlibrariesview'       :('List', 'Grid', 'Bookcase', 'BigGrid', 'Hide'), \
-    'librariesmergeview'        :('List', 'BigGrid', 'Grid', 'Bookcase', 'Hide'), \
+    'librariesmergeview'        :('List', 'Grid', 'Bookcase', 'Hide'), \
     'channelview'               :('List', 'Tabbed List', 'Grid', 'BigGrid', 'Bookcase', 'Hide'), \
-    'movieview'                 :('BigGrid', 'Grid', 'List', 'Detailed List'), \
+    'movieview'                 :('BigArtwork', 'BigGrid', 'Grid', 'List', 'Detailed List'), \
     'homevideoview'             :('Grid', 'List', 'Detailed List'), \
     'actorview'                 :('Movies', 'Portrait'), \
-    'showview'                  :('BigGrid', 'List', 'Detailed List', 'Grid', 'Bookcase'), \
+    'showview'                  :('BigArtwork', 'BigGrid', 'List', 'Detailed List', 'Grid', 'Bookcase'), \
     'flattenseason'             :('True', 'False'), \
     'seasonview'                :('Coverflow', 'List', 'BigGrid'), \
     'durationformat'            :('Hours/Minutes', 'Minutes'), \

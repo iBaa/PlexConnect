@@ -1,0 +1,68 @@
+<atv>
+    <head>
+        <script src="{{URL(:/js/utils.js)}}" />
+    </head>
+    
+    <body>
+        {{ADDXML(newest::/library/sections/{{VAL(librarySectionID)}}/newest?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=40)}}
+        {{VAR(items:NoKey:FALSE)}}
+        
+        <scroller id="Movie_Overview">
+            <header>
+                <simpleHeader>
+                    <title>{{VAL(title1)}}</title>
+                </simpleHeader>{{CUT($fanart::Hide=|Show=CUT)}}
+                <imageHeader>
+                    <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=552|1080=800)}}, 0" required="true">
+                        {{BACKGROUNDURL(@newest/Video/art:)}}
+                    </image>
+                </imageHeader>{{CUT($fanart::Hide=CUT|Show=)}}
+            </header>
+            <items>
+                <collectionDivider alignment="left" accessibilityLabel="Recently Added">
+                    <title>{{TEXT(Recently Released)}}</title>
+                </collectionDivider>{{CUT(@newest/size:CUT:0=CUT|1=)}}
+    
+                <shelf id="shelf_0" columnCount="7">
+                    {{CUT(@newest/size:CUT:0=CUT|1=)}}
+                    <sections>
+                        <shelfSection>
+                            <items>
+                                <fourByThreePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" featured="true" alwaysShowTitles="{{VAL($postertitles::Highlighted Only=false|Show All=true)}}"
+                                    onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                                    onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect=Movie_PrePlay{{VAL($fanart::Hide=|Show=_Fanart)}})}}')"
+                                    onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
+                                    {{COPY(@newest/Video)}}
+                                    {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                                    <title>{{VAL(title)}}</title>
+                                    <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
+                                    <image>{{IMAGEURL(thumb::384)}}</image>
+                                    <defaultImage>resource://Poster.png</defaultImage>
+                                </fourByThreePoster>
+                            </items>
+                        </shelfSection>
+                    </sections>
+                </shelf>
+                
+                
+                <collectionDivider alignment="left" accessibilityLabel="Movies">
+                    <title>{{TEXT(All Movies)}}</title>
+                </collectionDivider>
+                
+                <grid columnCount="6" id="grid_0">
+                    <items>
+                        <goldenPoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($postertitles::Highlighted Only=false|Show All=true)}}"
+                            onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                            onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect=Movie_PrePlay{{VAL($fanart::Hide=|Show=_Fanart)}})}}')"
+                            onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
+                            {{COPY(Video)}}
+                            <title>{{VAL(title)}} ({{VAL(year:&#x00AD;)}})</title>
+                            <image>{{IMAGEURL(thumb::768)}}</image>
+                            <defaultImage>resource://Poster.png</defaultImage>
+                        </goldenPoster>
+                    </items>
+                </grid>
+            </items>
+        </scroller>
+    </body>
+</atv>

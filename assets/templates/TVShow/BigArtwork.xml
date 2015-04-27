@@ -1,0 +1,73 @@
+<atv>
+    <head>
+        <script src="{{URL(:/js/utils.js)}}" />
+    </head>
+    
+    <body>
+        {{ADDXML(OnDeck::/library/sections/{{VAL(librarySectionID)}}/onDeck?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=30)}}
+        {{VAR(items:NoKey:FALSE)}}
+        
+        <scroller id="Show_Overview" volatile="true">
+            <header>
+                <simpleHeader>
+                    <title>{{VAL(title1)}}</title>
+                </simpleHeader>{{CUT($fanart::Hide=|Show=CUT)}}
+                <imageHeader>
+                    <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=552|1080=800)}}, 0" required="true">
+                        {{BACKGROUNDURL(@OnDeck/Video/art:)}}
+                    </image>
+                </imageHeader>{{CUT($fanart::Hide=CUT|Show=)}}
+            </header>
+            <items>
+                <collectionDivider alignment="left" accessibilityLabel="On Deck">
+                    <title>{{TEXT(On Deck)}}</title>
+                </collectionDivider>{{CUT(@OnDeck/size:CUT:0=CUT|1=)}}
+                
+                <shelf id="shelf_0" columnCount="7">
+                    {{CUT(@OnDeck/size:CUT:0=CUT|1=)}}
+                    <sections>
+                        <shelfSection>
+                            <items>
+                                <fourByThreePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" featured="true" alwaysShowTitles="{{VAL($postertitles::Highlighted Only=false|Show All=true)}}"
+                                    onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                                    onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_PrePlay{{VAL($fanart::Hide=|Show=_Fanart)}})}}')"
+                                    onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect={{VAL(type::movie=Scrobble_MenuVideo|episode=Scrobble_MenuTVOnDeck)}})}}')">
+                                    {{COPY(@OnDeck/Video)}}
+                                    {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                                    <title>{{VAL(title)}}</title>
+                                    <subtitle>{{episodestring(parentIndex:0:index:0)}}</subtitle>
+                                    <image>{{IMAGEURL(grandparentThumb::768)}}</image>
+                                    <defaultImage>resource://Poster.png</defaultImage>
+                                </fourByThreePoster>
+                            </items>
+                        </shelfSection>
+                    </sections>
+                </shelf>
+                
+                <collectionDivider alignment="left" accessibilityLabel="TV Shows">
+                    <title>{{TEXT(All Shows)}}</title>
+                </collectionDivider>
+                
+                <grid columnCount="6" id="grid_0">
+                    <items>
+                        <goldenPoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($postertitles::Highlighted Only=false|Show All=true)}}"
+                            onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Season)}}')"
+                            onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Season)}}')"
+                            onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
+                            {{COPY(Directory)}}
+                            <title>{{VAL(title)}}</title>
+                            <image>{{IMAGEURL(thumb::768)}}</image>
+                            <defaultImage>resource://Poster.png</defaultImage>
+                            <badgeCount>{{unwatchedCountGrid(leafCount:0:viewedLeafCount:0)}}</badgeCount>{{CUT($showunwatched::False=CUT|True=)}}
+                        </goldenPoster>{{CUT(Directory/title:CUT:=)}}
+                        
+                        <goldenPoster id="none">
+                            <title>{{TEXT(No Unwatched Shows)}}</title>
+                            <defaultImage>resource://Poster.png</defaultImage>
+                        </goldenPoster>{{CUT(Directory/title::=CUT)}}
+                    </items>
+                </grid>
+            </items>
+        </scroller>
+    </body>
+</atv>
