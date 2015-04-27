@@ -63,11 +63,6 @@
                 <rightLabel>{{SETTING(flattenseason)}}</rightLabel>
               </oneLineMenuItem>
               
-              <oneLineMenuItem id="TVShowPrePlay_Badges" onSelect="toggleSettings('TVShowPrePlay_Badges', 'Settings_TVShows')">
-                  <label>{{TEXT(PrePlay Badges)}}</label>
-                  <rightLabel>{{SETTING(tvshowpreplay_badges)}}</rightLabel>
-              </oneLineMenuItem>
-              
             </items>
           </menuSection>
 

@@ -26,8 +26,7 @@ options = { \
     'postertitles'              :('Highlighted Only', 'Show All'), \
     'fanart'                    :('Hide', 'Show'), \
     'fanart_blur'               :('0', '5', '10', '15', '20'), \
-    'tvshowpreplay_badges'      :('Enhanced', 'Disabled'), \
-    'moviepreplay_badges'       :('Enhanced', 'Disabled'), \
+    'preplay_badges'            :('Enhanced', 'Disabled'), \
     'moviepreplay_bottomshelf'  :('Extras', 'Related Movies'), \
     'movies_navbar_ondeck'      :('checked', 'unchecked'), \
     'movies_navbar_unwatched'   :('checked', 'unchecked'), \
