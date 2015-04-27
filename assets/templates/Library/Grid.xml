@@ -22,26 +22,32 @@
             <title>{{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
           </collectionDivider>{{CUT(@main/size:CUT:0=CUT|1=CUT|2=)}}
           
-          <grid id="Library_Grid_{{VAL(name)}}" columnCount="5">
-            <items>
-              <!-- /library/sections -->
+          <shelf id="shelf_0" columnCount="5">
+              <sections>
+                <!-- local servers -->
+                  <shelfSection>
+                      <items>
+                <!-- /library/sections -->
               {{VAR(serverName:name)}}
               {{VAR(searchKey:searchKey)}}
-              <squarePoster id="{{VAL(key)}}" showOutline="false" alwaysShowTitles="true"
+              <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" featured="true" alwaysShowTitles="true"
                            onPlay="atv.loadURL('{{URL(key:::PlexConnect={{EVAL('{{VAL(scanner)}}'.replace(' ', '_'))}})}}')"
                            onSelect="atv.loadURL('{{URL(key:::PlexConnect={{EVAL('{{VAL(scanner)}}'.replace(' ', '_'))}})}}')"
                            onHoldSelect="sectionHoldSelect('{{VAL(key)}}', '{{URL(#searchKey)}}', '{{VAL(#serverName)}}', '{{URL(refreshKey)}}', '{{VAL(title)}}')">
               {{COPY(Directory)}}
               {{VAR(sections:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <title>{{VAL(title)}}</title>
-                <subtitle>&#x00AD;</subtitle><!--bugfix to prevent different poster sizes-->
+                
                 <image>{{URL(:/thumbnails/{{VAL(type)}}.png)}}</image>
+                
                 <defaultImage>resource://16X9.png</defaultImage>
                 <!--badgeCount></badgeCount-->
-              </squarePoster>
+              </moviePoster>
               
             </items>
-          </grid>
+          </shelfSection>
+        </sections>
+      </shelf>
         </__COPY__>
       </items>
     </scroller>{{CUT(#sections::FALSE=CUT|TRUE=)}}  <!--CUT if no section added-->
