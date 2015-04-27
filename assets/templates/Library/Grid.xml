@@ -35,8 +35,8 @@
               {{VAR(sections:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <title>{{VAL(title)}}</title>
                 <subtitle>&#x00AD;</subtitle><!--bugfix to prevent different poster sizes-->
-                <image>{{IMAGEURL(thumb::384)}}</image>
-                <defaultImage>resource://Square.png</defaultImage>
+                <image>{{URL(:/thumbnails/{{VAL(type)}}.png)}}</image>
+                <defaultImage>resource://16X9.png</defaultImage>
                 <!--badgeCount></badgeCount-->
               </squarePoster>
               
