@@ -11,15 +11,15 @@ from Debug import *  # dprint()
 
 options = { \
     'playlistsview'             :('List', 'Tabbed List', 'Hide'), \
-    'libraryview'               :('List', 'Grid', 'Bookcase', 'BigGrid', 'Hide'), \
-    'sharedlibrariesview'       :('List', 'Grid', 'Bookcase', 'BigGrid', 'Hide'), \
+    'libraryview'               :('List', 'Grid', 'Bookcase', 'Hide'), \
+    'sharedlibrariesview'       :('List', 'Grid', 'Bookcase', 'Hide'), \
     'librariesmergeview'        :('Grid', 'List', 'Bookcase', 'Hide'), \
     'channelview'               :('List', 'Tabbed List', 'Grid', 'BigGrid', 'Bookcase', 'Hide'), \
     'globalsearch'              :('Show', 'Hide'), \
-    'movieview'                 :('BigArtwork', 'BigGrid', 'Grid', 'List', 'Detailed List'), \
+    'movieview'                 :('Artwork', 'BigGrid', 'Grid', 'List', 'Detailed List'), \
     'homevideoview'             :('Grid', 'List', 'Detailed List'), \
     'actorview'                 :('Movies', 'Portrait'), \
-    'showview'                  :('BigArtwork', 'BigGrid', 'List', 'Detailed List', 'Grid', 'Bookcase'), \
+    'showview'                  :('Artwork', 'BigGrid', 'List', 'Detailed List', 'Grid', 'Bookcase'), \
     'flattenseason'             :('True', 'False'), \
     'seasonview'                :('Coverflow', 'List', 'BigGrid'), \
     'durationformat'            :('Hours/Minutes', 'Minutes'), \
@@ -28,20 +28,20 @@ options = { \
     'fanart_blur'               :('0', '5', '10', '15', '20'), \
     'preplay_badges'            :('Enhanced', 'Disabled'), \
     'moviepreplay_bottomshelf'  :('Extras', 'Related Movies'), \
-    'movies_navbar_ondeck'      :('checked', 'unchecked'), \
-    'movies_navbar_unwatched'   :('checked', 'unchecked'), \
-    'movies_navbar_byfolder'    :('checked', 'unchecked'), \
-    'movies_navbar_collections' :('checked', 'unchecked'), \
+    'movies_navbar_ondeck'      :('unchecked', 'unchecked'), \
+    'movies_navbar_unwatched'   :('unchecked', 'unchecked'), \
+    'movies_navbar_byfolder'    :('unchecked', 'unchecked'), \
+    'movies_navbar_collections' :('unchecked', 'unchecked'), \
     'movies_navbar_genres'      :('checked', 'unchecked'), \
-    'movies_navbar_decades'     :('checked', 'unchecked'), \
-    'movies_navbar_directors'   :('checked', 'unchecked'), \
-    'movies_navbar_actors'      :('checked', 'unchecked'), \
+    'movies_navbar_decades'     :('unchecked', 'unchecked'), \
+    'movies_navbar_directors'   :('unchecked', 'unchecked'), \
+    'movies_navbar_actors'      :('unchecked', 'unchecked'), \
     'movies_navbar_more'        :('checked', 'unchecked'), \
-    'homevideos_navbar_ondeck'      :('checked', 'unchecked'), \
-    'homevideos_navbar_unwatched'   :('checked', 'unchecked'), \
-    'homevideos_navbar_byfolder'    :('checked', 'unchecked'), \
-    'homevideos_navbar_collections' :('checked', 'unchecked'), \
-    'homevideos_navbar_genres'      :('checked', 'unchecked'), \
+    'homevideos_navbar_ondeck'      :('unchecked', 'unchecked'), \
+    'homevideos_navbar_unwatched'   :('unchecked', 'unchecked'), \
+    'homevideos_navbar_byfolder'    :('unchecked', 'unchecked'), \
+    'homevideos_navbar_collections' :('unchecked', 'unchecked'), \
+    'homevideos_navbar_genres'      :('unchecked', 'unchecked'), \
     'music_navbar_recentlyadded'    :('checked', 'unchecked'), \
     'music_navbar_genre'            :('checked', 'unchecked'), \
     'music_navbar_decade'           :('checked', 'unchecked'), \

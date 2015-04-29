@@ -48,7 +48,7 @@
                     <title>{{TEXT(All Shows)}}</title>
                 </collectionDivider>
                 
-                <grid columnCount="6" id="grid_0">
+                <grid columnCount="5" id="grid_0">
                     <items>
                         <goldenPoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($postertitles::Highlighted Only=false|Show All=true)}}"
                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Season)}}')"
