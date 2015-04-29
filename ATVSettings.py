@@ -47,10 +47,10 @@ options = { \
     'music_navbar_decade'           :('checked', 'unchecked'), \
     'music_navbar_year'             :('checked', 'unchecked'), \
     'music_navbar_more'             :('checked', 'unchecked'), \
-    'tv_navbar_ondeck'          :('unchecked', 'unchecked'), \
-    'tv_navbar_unwatched'       :('unchecked', 'unchecked'), \
-    'tv_navbar_genres'          :('unchecked', 'unchecked'), \
-    'tv_navbar_more'            :('unchecked', 'unchecked'), \
+    'tv_navbar_ondeck'          :('unchecked', 'checked'), \
+    'tv_navbar_unwatched'       :('unchecked', 'checked'), \
+    'tv_navbar_genres'          :('unchecked', 'checked'), \
+    'tv_navbar_more'            :('unchecked', 'checked'), \
     'transcodequality'  :('1080p 40.0Mbps', \
                           '480p 2.0Mbps', \
                           '720p 3.0Mbps', '720p 4.0Mbps', \
