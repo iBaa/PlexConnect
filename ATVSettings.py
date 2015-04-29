@@ -28,14 +28,14 @@ options = { \
     'fanart_blur'               :('0', '5', '10', '15', '20'), \
     'preplay_badges'            :('Enhanced', 'Disabled'), \
     'moviepreplay_bottomshelf'  :('Extras', 'Related Movies'), \
-    'movies_navbar_ondeck'      :('unchecked', 'unchecked'), \
-    'movies_navbar_unwatched'   :('unchecked', 'unchecked'), \
-    'movies_navbar_byfolder'    :('unchecked', 'unchecked'), \
-    'movies_navbar_collections' :('unchecked', 'unchecked'), \
+    'movies_navbar_ondeck'      :('unchecked', 'checked'), \
+    'movies_navbar_unwatched'   :('unchecked', 'checked'), \
+    'movies_navbar_byfolder'    :('unchecked', 'checked'), \
+    'movies_navbar_collections' :('unchecked', 'checked'), \
     'movies_navbar_genres'      :('checked', 'unchecked'), \
-    'movies_navbar_decades'     :('unchecked', 'unchecked'), \
-    'movies_navbar_directors'   :('unchecked', 'unchecked'), \
-    'movies_navbar_actors'      :('unchecked', 'unchecked'), \
+    'movies_navbar_decades'     :('unchecked', 'checked'), \
+    'movies_navbar_directors'   :('unchecked', 'checked'), \
+    'movies_navbar_actors'      :('unchecked', 'checked'), \
     'movies_navbar_more'        :('checked', 'unchecked'), \
     'homevideos_navbar_ondeck'      :('unchecked', 'unchecked'), \
     'homevideos_navbar_unwatched'   :('unchecked', 'unchecked'), \
@@ -47,10 +47,10 @@ options = { \
     'music_navbar_decade'           :('checked', 'unchecked'), \
     'music_navbar_year'             :('checked', 'unchecked'), \
     'music_navbar_more'             :('checked', 'unchecked'), \
-    'tv_navbar_ondeck'          :('checked', 'unchecked'), \
-    'tv_navbar_unwatched'       :('checked', 'unchecked'), \
-    'tv_navbar_genres'          :('checked', 'unchecked'), \
-    'tv_navbar_more'            :('checked', 'unchecked'), \
+    'tv_navbar_ondeck'          :('unchecked', 'unchecked'), \
+    'tv_navbar_unwatched'       :('unchecked', 'unchecked'), \
+    'tv_navbar_genres'          :('unchecked', 'unchecked'), \
+    'tv_navbar_more'            :('unchecked', 'unchecked'), \
     'transcodequality'  :('1080p 40.0Mbps', \
                           '480p 2.0Mbps', \
                           '720p 3.0Mbps', '720p 4.0Mbps', \
