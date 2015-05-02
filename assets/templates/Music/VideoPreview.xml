@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+
+  <body>
+    <preview>
+      <scrollerPreview id="com.sample.moreInfoPreview">
+        <items>
+          <grid id="grid_0" columnCount="3">
+            <items>
+              <sixteenByNinePoster id="{{VAL(key)}}" alwaysShowTitles="true"
+                                  onSelect="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')">
+                {{COPY(Directory/Extras/Video)}}
+                <title>{{VAL(title)}}</title>
+                <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
+                <image>{{IMAGEURL(thumb::768)}}</image>
+                <defaultImage>resource://16x9.png</defaultImage>
+              </sixteenByNinePoster>
+            </items>
+          </grid>
+        </items>
+      </scrollerPreview>
+    </preview>
+  </body>
+</atv>
