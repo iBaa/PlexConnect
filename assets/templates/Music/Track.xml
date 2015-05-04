@@ -8,7 +8,7 @@
     {{CUT(size:CUT:0=CUT|1=)}}
       <header>
         <simpleHeader>
-          <title>{{VAL(title1:Plex Library)}}</title>
+          <title>{{VAL(title1:Plex Mix)}}</title>
           <subtitle>{{VAL(title2)}}</subtitle>
         </simpleHeader>
       </header>
@@ -186,15 +186,19 @@
             <items>
               <oneLineMenuItem id="{{VAL(key)}}"
                                        onPlay="atv.loadURL('{{URL(:::PlexConnect=Play_Audio&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
-                                       onSelect="atv.loadURL('{{URL(:::PlexConnect=Play_Audio&amp;PlexConnectCopyIx={{VAL(#copy_ix)}}&amp;PlexConnectPlayType=Continuous)}}')">
+                                       onSelect="atv.loadURL('{{URL(:::PlexConnect=Play_Audio&amp;PlexConnectCopyIx={{VAL(#copy_ix)}}&amp;PlexConnectPlayType=Continuous)}}')"
+                                       onHoldSelect="scrobbleMenu('{{URL(key:::includeRelated=1&amp;PlexConnect=Music_TrackRedirect)}}')">
               {{COPY(Track)}}
-                <label>{{VAL(title)}}</label>
+                <label>{{EVAL(("{0:02d}").format(int({{VAL(index)}})))}}. {{VAL(title)}}</label>
                 <rightLabel>{{durationToString(NoKey:Audio:duration)}}</rightLabel>
-                <ordinal>{{VAL(index)}}</ordinal>{{CUT(index:CUT:0=CUT|0 =)}}
-                <maxOrdinalDigits>2</maxOrdinalDigits>
+                <accessories>
+                  <musicVideo />
+                </accessories>{{CUT(primaryExtraKey:CUT:=CUT| =)}}
+                <!--<ordinal>{{VAL(index)}}</ordinal>{{CUT(index:CUT:0=CUT|0 =)}}
+                <maxOrdinalDigits>2</maxOrdinalDigits>-->
                 <preview>
                   <crossFadePreview>
-                    <image>{{IMAGEURL(/thumb::768)}}</image>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
                   </crossFadePreview>
                 </preview>
               </oneLineMenuItem>

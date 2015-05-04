@@ -146,6 +146,16 @@ function changeArtwork(PMS_baseURL, accessToken, ratingKey, artURL, shelfName)
         if(req.readyState == 4)
         {
           xml = req.responseText;
+          if(xml.indexOf('popUpMenu') !== -1)
+          {
+            xmlDoc = atv.parseXML(xml);
+            atv.contextMenu.load(xmlDoc);
+          }
+          else
+          {
+            xmlDoc = atv.parseXML(xml);
+            atv.loadXML(xmlDoc);
+          }
           xmlDoc = atv.parseXML(xml);
           atv.contextMenu.load(xmlDoc);
         } 
