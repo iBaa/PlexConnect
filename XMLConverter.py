@@ -404,6 +404,9 @@ def XML_PMS2aTV(PMS_address, path, options):
             XMLtemplate = XMLtemplate_rdrct.replace(" ", "")
             dprint(__name__, 1, "XMLTemplate redirect: {0}", XMLtemplate)
     
+        dprint(__name__, 1, "====== generated aTV-XML ======")
+        dprint(__name__, 1, aTVroot)
+        dprint(__name__, 1, "====== aTV-XML finished ======")
     dprint(__name__, 1, "====== generated aTV-XML ======")
     dprint(__name__, 1, aTVroot)
     dprint(__name__, 1, "====== aTV-XML finished ======")
