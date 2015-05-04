@@ -10,7 +10,7 @@
         <items>
           <grid id="grid_0" columnCount="4">
             <items>
-              <moviePoster id="{{VAL(key)}}" onSelect="atv.loadURL('{{URL(key:::PlexConnect=Music_Track)}}')">
+              <moviePoster id="{{VAL(key)}}" onSelect="atv.loadURL('{{URL(key:::includeRelated=1&amp;PlexConnect=Music_Track)}}')">
                 {{COPY(Directory)}}
                 <title>{{VAL(title)}}</title>
                 <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>

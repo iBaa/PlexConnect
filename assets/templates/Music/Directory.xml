@@ -21,8 +21,8 @@
           {{CUT(Directory/type:CUT:=CUT|album=|album =CUT)}}
             <items>
               <oneLineMenuItem id="{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Music_Track)}}')"
-                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=Music_Track)}}')">
+                                       onPlay="atv.loadURL('{{URL(key:::includeRelated=1&amp;PlexConnect=Music_Track)}}')"
+                                       onSelect="atv.loadURL('{{URL(key:::includeRelated=1&amp;PlexConnect=Music_Track)}}')">
               {{COPY(Directory)}}
 							{{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <label>{{VAL(title)}}</label>
