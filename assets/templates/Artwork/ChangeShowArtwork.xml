@@ -24,13 +24,13 @@
           <sections>
             <shelfSection>
               <items>
-                <goldenPoster related="true" id="{{VAL(key)}}" alwaysShowTitles="true"
+                <moviePoster related="true" id="{{VAL(key)}}" alwaysShowTitles="true"
                              onSelect="changeArtwork('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(#key)}}', '{{VAL(key)}}', 'Main_Show_Art')">
                   {{COPY(@showPosters/Photo)}}
                   <title>{{VAL(selected::0=|1=Selected)}}</title>
                   <image>{{IMAGEURL(thumb::384)}}</image>
                   <defaultImage>resource://Poster.png</defaultImage>
-                </goldenPoster>
+                </moviePoster>
               </items>
             </shelfSection>
           </sections>
@@ -49,13 +49,13 @@
                   {{VAR(ratingKey:ratingKey)}}
                   {{VAR(size:@seasonPoster/size)}}
                   {{VAR(title:title)}}
-                  <goldenPoster related="true" id="{{VAL(key)}}" alwaysShowTitles="true"
+                  <moviePoster related="true" id="{{VAL(key)}}" alwaysShowTitles="true"
                                onSelect="changeArtwork('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(#ratingKey)}}', '{{VAL(key)}}', '{{VAL(#title)}}')">
                     {{COPY(@seasonPoster/Photo)}}
                     <title>{{VAL(selected::0=|1=Selected)}}</title>
                     <image>{{IMAGEURL(thumb::384)}}</image>
                     <defaultImage>resource://Poster.png</defaultImage>
-                  </goldenPoster>
+                  </moviePoster>
                 </items>
               </shelfSection>
             </sections>
