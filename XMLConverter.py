@@ -342,6 +342,7 @@ def XML_PMS2aTV(PMS_address, path, options):
         elif cmd.find('Movie') != -1: dir = 'Movie'
         elif cmd.find('Video') != -1: dir = 'HomeVideo'
         elif cmd.find('Premium_Music') != -1: dir = 'Music'
+        elif cmd.find('Photo') != -1: dir = 'Photo'
         elif cmd.find('Music') != -1 or cmd.find('iTunes') != -1: dir ='Music'
         cmd = 'NavigationBar'
     # Not a special command so split it 
