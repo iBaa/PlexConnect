@@ -30,7 +30,7 @@
                                     <label2>{{durationToString(NoKey:Video:duration)}}</label2>
                                     <accessories>
                                         <HD/>
-                                    </accessories>{{CUT(Media/videoResolution:CUT:480=CUT|576=CUT|720=|1080=|SD=CUT)}}
+                                    </accessories>{{CUT(Media/videoResolution:CUT:480=CUT|576=CUT|720=|1080=|SD=CUT)}}{{CUT(^aTVFirmwareVersion:CUT:=CUT|6.0=)}}{{CUT($preplay_badges::Disabled=CUT|Enhanced=)}}
                                     <image>{{IMAGEURL(thumb::384)}}</image>
                                     <defaultImage>resource://Poster.png</defaultImage>
                                 </twoLineMenuItem>
@@ -65,7 +65,7 @@
                                         <progressBar percentage="0"/>{{CUT(viewCount)}}{{CUT(viewOffset)}}
                                         <progressBar percentage="{{EVAL({{VAL(viewOffset:0)}} * 100 / {{VAL(duration:1)}})}}"/>{{CUT(viewOffset:CUT:=)}}
                                         <progressBar percentage="100"/>{{CUT(viewCount:CUT:=)}}{{CUT(viewOffset)}}
-                                    </accessories>{{CUT(^aTVFirmwareVersion:CUT:=CUT|6.0=)}}
+                                    </accessories>{{CUT(^aTVFirmwareVersion:CUT:=CUT|6.0=)}}{{CUT($preplay_badges::Disabled=CUT|Enhanced=)}}
                                     <image>{{IMAGEURL(thumb::384)}}</image>
                                     <defaultImage>resource://Poster.png</defaultImage>
                                 </twoLineEnhancedMenuItem>
@@ -96,12 +96,12 @@
                                     <accessories>
                                         <unplayedDot/>{{CUT(viewCount)}}{{CUT(viewOffset)}}
                                         <partiallyPlayedDot/>{{CUT(viewOffset:CUT:=)}}
-                                    </accessories>{{CUT(^aTVFirmwareVersion::=|6.0=CUT)}}
+                                    </accessories>{{CUT(^aTVFirmwareVersion::=|6.0=CUT)}}{{CUT($preplay_badges::Disabled=CUT|Enhanced=)}}
                                     <accessories>
                                         <progressBar percentage="0"/>{{CUT(viewCount)}}{{CUT(viewOffset)}}
                                         <progressBar percentage="{{EVAL({{VAL(viewOffset:0)}} * 100 / {{VAL(duration:1)}})}}"/>{{CUT(viewOffset:CUT:=)}}
                                         <progressBar percentage="100"/>{{CUT(viewCount:CUT:=)}}{{CUT(viewOffset)}}
-                                    </accessories>{{CUT(^aTVFirmwareVersion:CUT:=CUT|6.0=)}}
+                                    </accessories>{{CUT(^aTVFirmwareVersion:CUT:=CUT|6.0=)}}{{CUT($preplay_badges::Disabled=CUT|Enhanced=)}}
                                     <image>{{IMAGEURL(thumb::384)}}</image>
                                     <defaultImage>resource://Poster.png</defaultImage>
                                 </twoLineEnhancedMenuItem>
