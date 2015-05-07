@@ -76,7 +76,7 @@
               <label></label>
               <label></label>
               <label></label>
-          </row>{{CUT(^aTVFirmwareVersion::=CUT|6.0=)}}
+          </row>{{CUT(^aTVFirmwareVersion::=CUT|6.0=)}}{{CUT($preplay_badges::Disabled=CUT|Enhanced=)}}
         </rows>
       </table>
 
