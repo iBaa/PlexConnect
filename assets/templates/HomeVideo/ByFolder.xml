@@ -4,7 +4,6 @@
   </head>
   
   <body>
-    <scroller id="com.sample.homevideo-grid" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=HomeVideoByFolder)}}')">
       <header>
         <simpleHeader>
           <title>{{VAL(title1)}}</title>
