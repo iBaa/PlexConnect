@@ -4,6 +4,7 @@
   </head>
   
   <body>
+    <scroller id="HomeVideo_Grid">
       <header>
         <simpleHeader>
           <title>{{VAL(title1)}}</title>
