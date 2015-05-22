@@ -25,7 +25,7 @@
               <twoLineEnhancedMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_List{{VAL($fanart::Hide=|Show=_Fanart)}})}}')"
                                                          onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_List{{VAL($fanart::Hide=|Show=_Fanart)}})}}')"
                                                          onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
-                {{COPY(Directory:title::All=|Season=COPY)}}
+                {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>
                 <label2>{{VAL(leafCount)}} {{TEXT(Episodes)}}</label2>
                 <rightLabel>{{unwatchedCountList(leafCount:0:viewedLeafCount:0)}}</rightLabel>{{CUT($showunwatched::False=CUT|True=)}}
