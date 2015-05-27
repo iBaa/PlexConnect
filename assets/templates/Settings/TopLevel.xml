@@ -18,6 +18,7 @@
           <summary/>
           <metadataKeys>
             <label>{{TEXT(Version)}}</label>
+            <label>{{TEXT(Commit Date)}}</label>
             <label>{{TEXT(Authors)}}</label>
             <label>{{TEXT(Wiki/Docs)}}</label>
             <label>{{TEXT(Homepage)}}</label>
@@ -25,6 +26,7 @@
           </metadataKeys>
           <metadataValues>
             <label>{{EVAL(__VERSION__)}}</label>
+            <label>{{EVAL(__COMMIT__)}}</label>
             <label>Baa, roidy</label>
             <label>f00b4r, meltman</label>
             <label>https://github.com/ibaa/plexconnect</label>
@@ -47,10 +49,6 @@
                 <label>{{TEXT(Playlists)}}</label>
                 <rightLabel>{{SETTING(playlistsview)}}</rightLabel>
               </oneLineMenuItem>
-              <oneLineMenuItem id="LibrariesMergeView" onSelect="toggleSettings('LibrariesMergeView', 'Settings_TopLevel')">
-                  <label>{{TEXT(All Libraries)}}</label>
-                  <rightLabel>{{SETTING(librariesmergeview)}}</rightLabel>
-              </oneLineMenuItem>
               <oneLineMenuItem id="LibraryView" onSelect="toggleSettings('LibraryView', 'Settings_TopLevel')">
                 <label>{{TEXT(Library)}}</label>
                 <rightLabel>{{SETTING(libraryview)}}</rightLabel>
@@ -66,7 +64,7 @@
               <oneLineMenuItem id="GlobalSearch" onSelect="toggleSettings('GlobalSearch', 'Settings_TopLevel')">
                 <label>{{TEXT(Search)}}</label>
                 <rightLabel>{{SETTING(globalsearch)}}</rightLabel>
-                </oneLineMenuItem>
+              </oneLineMenuItem>
             </items>
           </menuSection>
           
@@ -94,10 +92,6 @@
               {{CUT(^aTVFirmwareVersion:CUT:=CUT|6=)}}  <!-- watch out: this will make trouble with iOS10 -->
                 <label>{{TEXT(Fanart Lower Blur)}}</label>
                 <rightLabel>{{SETTING(fanart_blur)}}</rightLabel>
-              </oneLineMenuItem>
-              <oneLineMenuItem id="PrePlay_Badges" onSelect="toggleSettings('PrePlay_Badges', 'Settings_TopLevel')">
-                  <label>{{TEXT(PrePlay Badges)}}</label>
-                  <rightLabel>{{SETTING(preplay_badges)}}</rightLabel>
               </oneLineMenuItem>
               <oneLineMenuItem id="PosterTitles" onSelect="toggleSettings('PosterTitles', 'Settings_TopLevel')">
                 <label>{{TEXT(Poster Titles)}}</label>

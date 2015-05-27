@@ -33,7 +33,7 @@ from urllib import quote_plus, unquote_plus
 import urllib2
 import urlparse
 
-from Version import __VERSION__  # for {{EVAL()}}, display in settings page
+from Version import __VERSION__, __COMMIT__  # for {{EVAL()}}, display in settings page
 import Settings, ATVSettings
 import PlexAPI
 from Debug import *  # dprint(), prettyXML()
@@ -340,10 +340,16 @@ def XML_PMS2aTV(PMS_address, path, options):
         dprint(__name__, 1, "Found Scanner.")
         if cmd.find('Series') != -1: dir = 'TVShow'
         elif cmd.find('Movie') != -1: dir = 'Movie'
-        elif cmd.find('Video') != -1: dir = 'HomeVideo'
-        elif cmd.find('Premium_Music') != -1: dir = 'Music'
+        elif cmd.find('Video') != -1 or cmd.find('Personal_Media') != -1:
+            # Plex Video Files Scanner
+            # Extended Personal Media Scanner
+            dir = 'HomeVideo'
         elif cmd.find('Photo') != -1: dir = 'Photo'
+        elif cmd.find('Premium_Music') != -1: dir = 'Music'
         elif cmd.find('Music') != -1 or cmd.find('iTunes') != -1: dir ='Music'
+        else:
+            return XML_Error('PlexConnect', 'Unknown scanner: '+cmd)
+        
         cmd = 'NavigationBar'
     # Not a special command so split it 
     elif cmd.find('_') != -1:

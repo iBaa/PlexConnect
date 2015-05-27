@@ -28,7 +28,7 @@
                 <label>{{TEXT(Show Photos)}}</label>
                 <accessories><arrow/></accessories>
                 <preview>
-                  <link>{{URL(key:::X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview-Photo)}}</link>
+                  <link>{{URL(key:::X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview-photo)}}</link>
                 </preview>
               </oneLineMenuItem>{{CUT(Photo/title:CUT:=)}}
               
@@ -39,7 +39,7 @@
                 {{VAR(foundDirectories:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <label>{{VAL(title)}}</label>
                 <preview>
-                  <link>{{URL(key:::X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview-Photo)}}</link>
+                  <link>{{URL(key:::X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview-photo)}}</link>
                 </preview>
               </oneLineMenuItem>
               
