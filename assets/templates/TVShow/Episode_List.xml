@@ -12,8 +12,41 @@
         </simpleHeader>
       </header>
       <menu>
-        <sections>
-          <menuSection>
+          <sections>
+              <menuSection>
+                  <items>
+                      <!-- shuffle -->
+                      <oneLineMenuItem id="shuffle_{{VAL(title)}}"
+                          onPlay="atv.loadURL('{{URL(:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(Video/ratingKey)}}&amp;PlexConnectPlayType=Shuffle)}}')"
+                          onSelect="atv.loadURL('{{URL(:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(Video/ratingKey)}}&amp;PlexConnectPlayType=Shuffle)}}')">
+                          <label>{{TEXT(Shuffle)}}</label>
+                          <accessories>
+                              <shuffle/>
+                          </accessories>
+                          <preview>
+                              <paradePreview inOrder="true">
+                                  <image>
+                                      {{COPY(Video:thumb::=COPY)}}
+                                      {{IMAGEURL(thumb::768)}}
+                                  </image>
+                              </paradePreview>{{CUT(leafCount:CUT:0=CUT|0 =|1=CUT|1 =|2=CUT|2 =|3=CUT|4=CUT|5=CUT|6=)}}
+                              <crossFadePreview>
+                                  <image>
+                                      {{COPY(Video:thumb::=COPY)}}
+                                      {{IMAGEURL(thumb::768)}}
+                                  </image>
+                              </crossFadePreview>{{CUT(leafCount::0=|0 =CUT|1=|1 =CUT|2=|2 =CUT|3=|4=|5=|6=CUT)}}
+                          </preview>
+                      </oneLineMenuItem>
+                  </items>
+              </menuSection>
+              
+              <menuSection>
+                  <header>
+                      <horizontalDivider alignment="left">
+                          <title></title>
+                      </horizontalDivider>
+                  </header>
             <items>
               <twoLineEnhancedMenuItem id="{{VAL(ratingKey)}}"
                                          onPlay="atv.loadURL('{{URL(:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}}&amp;PlexConnectPlayType=Continuous)}}')"
