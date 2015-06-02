@@ -33,7 +33,7 @@ from urllib import quote_plus, unquote_plus
 import urllib2
 import urlparse
 
-from Version import __VERSION__  # for {{EVAL()}}, display in settings page
+from Version import __VERSION__, __COMMIT__  # for {{EVAL()}}, display in settings page
 import Settings, ATVSettings
 import PlexAPI
 from Debug import *  # dprint(), prettyXML()
@@ -321,15 +321,10 @@ def XML_PMS2aTV(PMS_address, path, options):
         if not PILBackgrounds.isPILinstalled() or \
            not options['aTVFirmwareVersion'] >= '6.0':
             dprint(__name__, 2, "disable fanart (PIL not installed or aTVFirmwareVersion<6.0)")
-            g_ATVSettings.setSetting(UDID, 'moviefanart', 'Hide')
-            g_ATVSettings.setSetting(UDID, 'tvshowfanart', 'Hide')
+            g_ATVSettings.setSetting(UDID, 'fanart', 'Hide')
         
         return XML_Error('PlexConnect', 'Discover!')  # not an error - but aTV won't care anyways.
-
-    # Special case path requests
-    if path.startswith('/search?'):
-        XMLtemplate = 'Search/Results.xml'
-        
+    
     elif path.find('serviceSearch') != -1 or (path.find('video') != -1 and path.lower().find('search') != -1):
         XMLtemplate = 'Channels/VideoSearchResults.xml'
     
@@ -343,10 +338,18 @@ def XML_PMS2aTV(PMS_address, path, options):
         cmd = 'NavigationBar'
     elif cmd.find('Scanner') != -1:
         dprint(__name__, 1, "Found Scanner.")
-        parts = cmd.split('_')
-        dir = parts[1].replace('Series', 'TVShow')
-        dir = dir.replace('Video', 'HomeVideo')
-        dir = dir.replace('iTunes', 'Music')
+        if cmd.find('Series') != -1: dir = 'TVShow'
+        elif cmd.find('Movie') != -1: dir = 'Movie'
+        elif cmd.find('Video') != -1 or cmd.find('Personal_Media') != -1:
+            # Plex Video Files Scanner
+            # Extended Personal Media Scanner
+            dir = 'HomeVideo'
+        elif cmd.find('Photo') != -1: dir = 'Photo'
+        elif cmd.find('Premium_Music') != -1: dir = 'Music'
+        elif cmd.find('Music') != -1 or cmd.find('iTunes') != -1: dir ='Music'
+        else:
+            return XML_Error('PlexConnect', 'Unknown scanner: '+cmd)
+        
         cmd = 'NavigationBar'
     # Not a special command so split it 
     elif cmd.find('_') != -1:
@@ -408,6 +411,9 @@ def XML_PMS2aTV(PMS_address, path, options):
             XMLtemplate = XMLtemplate_rdrct.replace(" ", "")
             dprint(__name__, 1, "XMLTemplate redirect: {0}", XMLtemplate)
     
+        dprint(__name__, 1, "====== generated aTV-XML ======")
+        dprint(__name__, 1, aTVroot)
+        dprint(__name__, 1, "====== aTV-XML finished ======")
     dprint(__name__, 1, "====== generated aTV-XML ======")
     dprint(__name__, 1, aTVroot)
     dprint(__name__, 1, "====== aTV-XML finished ======")

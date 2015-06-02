@@ -15,8 +15,8 @@
         <sections>
           <menuSection>
             <items>
-              <twoLineEnhancedMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_List{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
-                                                         onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_List{{VAL($tvshowfanart::Hide=|Show=_Fanart)}})}}')"
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}" onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_List{{VAL($fanart::Hide=|Show=_Fanart)}})}}')"
+                                                         onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_List{{VAL($fanart::Hide=|Show=_Fanart)}})}}')"
                                                          onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>

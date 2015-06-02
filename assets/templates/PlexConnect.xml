@@ -26,6 +26,10 @@
           <title>{{TEXT(Channels)}}</title>
           <url>{{URL(:/PMS(owned)/channels/all::PlexConnect=Channels_View)}}</url>
         </navigationItem>{{CUT($channelview:CUT:=|Hide=CUT|Hide =)}}
+        <navigationItem id="Search">
+          <title>{{TEXT(Search)}}</title>
+          <url>{{URL(:/PMS(all)::PlexConnect=Search_EntryAllPMS)}}</url>
+        </navigationItem>{{CUT($globalsearch:CUT:=|Hide=CUT|Show=)}}
         <navigationItem id="Settings">
           <title>{{TEXT(Settings)}}</title>
           <url>{{URL(:/::PlexConnect=Settings_Main)}}</url>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+
+  <body>
+    <preview>
+      <scrollerPreview id="com.sample.moreInfoPreview">
+        <items>
+          <grid id="grid_0" columnCount="4">
+            <items>
+              <moviePoster id="{{VAL(key)}}" onSelect="atv.loadURL('{{URL(key:::includeRelated=1&amp;PlexConnect=Music_Track)}}')">
+                {{COPY(Directory)}}
+                <title>{{VAL(title)}}</title>
+                <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
+                <image>{{IMAGEURL(thumb::768)}}</image>
+                <defaultImage>resource://Square.png</defaultImage>
+              </moviePoster>
+            </items>
+          </grid>
+        </items>
+      </scrollerPreview>
+    </preview>
+  </body>
+</atv>

@@ -1,0 +1,4 @@
+<atv>
+  <redirect newPath="{{VAL(Track/Related/Directory/key)}}" template="Music/Track.xml" />{{CUT(Track/primaryExtraKey::=| =CUT)}}
+  <redirect template="Music/TrackPopUp.xml" />
+ </atv>

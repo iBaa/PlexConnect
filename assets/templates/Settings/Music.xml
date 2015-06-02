@@ -6,10 +6,10 @@
   </head>
 
   <body>
-    <listWithPreview id="SettingsPage_HomeVideos">
+    <listWithPreview id="SettingsPage_Music">
       <header>
         <simpleHeader>
-          <title>{{TEXT(Settings)}}</title>
+          <title>{{TEXT(Music)}}</title>
         </simpleHeader>
       </header>
       <preview>
@@ -18,6 +18,7 @@
           <summary/>
           <metadataKeys>
             <label>{{TEXT(Version)}}</label>
+            <label>{{TEXT(Commit Date)}}</label>
             <label>{{TEXT(Authors)}}</label>
             <label>{{TEXT(Wiki/Docs)}}</label>
             <label>{{TEXT(Homepage)}}</label>
@@ -25,6 +26,7 @@
           </metadataKeys>
           <metadataValues>
             <label>{{EVAL(__VERSION__)}}</label>
+            <label>{{EVAL(__COMMIT__)}}</label>
             <label>Baa, roidy</label>
             <label>f00b4r, meltman</label>
             <label>https://github.com/ibaa/plexconnect</label>
@@ -41,10 +43,6 @@
               <oneLineMenuItem id="MusicView" onSelect="toggleSettings('MusicView', 'Settings_Music')">
                 <label>{{TEXT(Music View)}}</label>
                 <rightLabel>{{SETTING(musicview)}}</rightLabel>
-              </oneLineMenuItem>
-              <oneLineMenuItem id="ShowTitles_Music" onSelect="toggleSettings('ShowTitles_Music', 'Settings_Music')">
-                <label>{{TEXT(Poster Titles)}}</label>
-                <rightLabel>{{SETTING(showtitles_music)}}</rightLabel>
               </oneLineMenuItem>
             </items>
           </menuSection>-->

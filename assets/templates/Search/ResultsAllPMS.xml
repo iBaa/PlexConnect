@@ -8,10 +8,16 @@
       <menu>
         <sections>
 
-        <menuSection>
+          <!-- Movies -->
+          <!-- servers -->
+          <__COPY__>  <!--<menuSection>{{COPY}} somehow conflicts with </menuSection>{{CUT}}-->
+          {{COPY(Server:@main/size::0=|1=COPY)}}
+          <menuSection>
+          
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Movies)}}</title>
+                <title>{{CUT(@main/size::=CUT|1=|1 =CUT)}}{{TEXT(Movies)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+                <title>{{CUT(@main/size::=|1=CUT|1 =)}}{{TEXT(Movies)}} &lt;{{VAL(name)}}{{VAL(local::0=, {{TEXT(remote)}}|0 =)}}&gt;</title>
               </horizontalDivider>
             </header>
             <items>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
@@ -26,11 +32,18 @@
               </twoLineEnhancedMenuItem>
             </items>
           </menuSection>{{CUT(#cut)}}
+          </__COPY__>
 
+          <!-- Shows -->
+          <!-- servers -->
+          <__COPY__>  <!--<menuSection>{{COPY}} somehow conflicts with </menuSection>{{CUT}}-->
+          {{COPY(Server:@main/size::0=|1=COPY)}}
           <menuSection>
+          
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Shows)}}</title>
+                <title>{{CUT(@main/size::=CUT|1=|1 =CUT)}}{{TEXT(Shows)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+                <title>{{CUT(@main/size::=|1=CUT|1 =)}}{{TEXT(Shows)}} &lt;{{VAL(name)}}{{VAL(local::0=, {{TEXT(remote)}}|0 =)}}&gt;</title>
               </horizontalDivider>
             </header>
             <items>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
@@ -45,11 +58,18 @@
               </twoLineEnhancedMenuItem>
             </items>
           </menuSection>{{CUT(#cut)}}
+          </__COPY__>
 
+          <!-- Episodes -->
+          <!-- servers -->
+          <__COPY__>  <!--<menuSection>{{COPY}} somehow conflicts with </menuSection>{{CUT}}-->
+          {{COPY(Server:@main/size::0=|1=COPY)}}
           <menuSection>
+          
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Episodes)}}</title>
+                <title>{{CUT(@main/size::=CUT|1=|1 =CUT)}}{{TEXT(Episodes)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+                <title>{{CUT(@main/size::=|1=CUT|1 =)}}{{TEXT(Episodes)}} &lt;{{VAL(name)}}{{VAL(local::0=, {{TEXT(remote)}}|0 =)}}&gt;</title>
               </horizontalDivider>
             </header>
             <items>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
@@ -65,11 +85,18 @@
               </twoLineEnhancedMenuItem>
             </items>
           </menuSection>{{CUT(#cut)}}
+          </__COPY__>
 
+          <!-- Albums -->
+          <!-- servers -->
+          <__COPY__>  <!--<menuSection>{{COPY}} somehow conflicts with </menuSection>{{CUT}}-->
+          {{COPY(Server:@main/size::0=|1=COPY)}}
           <menuSection>
+          
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Albums)}}</title>
+                <title>{{CUT(@main/size::=CUT|1=|1 =CUT)}}{{TEXT(Albums)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+                <title>{{CUT(@main/size::=|1=CUT|1 =)}}{{TEXT(Albums)}} &lt;{{VAL(name)}}{{VAL(local::0=, {{TEXT(remote)}}|0 =)}}&gt;</title>
               </horizontalDivider>
             </header>
             <items>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
@@ -85,11 +112,18 @@
               </twoLineEnhancedMenuItem>
             </items>
           </menuSection>{{CUT(#cut)}}
+          </__COPY__>
 
+          <!-- Artists -->
+          <!-- servers -->
+          <__COPY__>  <!--<menuSection>{{COPY}} somehow conflicts with </menuSection>{{CUT}}-->
+          {{COPY(Server:@main/size::0=|1=COPY)}}
           <menuSection>
+            
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Artists)}}</title>
+                <title>{{CUT(@main/size::=CUT|1=|1 =CUT)}}{{TEXT(Artists)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+                <title>{{CUT(@main/size::=|1=CUT|1 =)}}{{TEXT(Artists)}} &lt;{{VAL(name)}}{{VAL(local::0=, {{TEXT(remote)}}|0 =)}}&gt;</title>
               </horizontalDivider>
             </header>
             <items>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
@@ -104,6 +138,7 @@
               </twoLineEnhancedMenuItem>
             </items>
           </menuSection>{{CUT(#cut)}}
+          </__COPY__>
 
         </sections>
       </menu>
