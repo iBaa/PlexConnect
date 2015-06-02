@@ -45,7 +45,7 @@ pt-BR       pt          Português (Brasil) (Portuguese Brasil)
             en_GB       British English
 ro          ro          Română (Romanian)
 tr-TR       tr          Türkçe (Turkish)
-            ca          Català (Catalan)
+ca-AD       ca          Català (Catalan)
 grk         el          Ελληνικά (Greek)
 hu-HU       hu          Magyar (Hungarian)
 cs-CZ       cs          Čeština (Czech)

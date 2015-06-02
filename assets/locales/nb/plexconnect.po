@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-26 18:56:01+0000\n"
-"PO-Revision-Date: 2014-12-14 12:00+0000\n"
+"POT-Creation-Date: 2015-03-30 18:25:13+0000\n"
+"PO-Revision-Date: 2015-06-01 12:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb\n"
@@ -136,10 +136,6 @@ msgid "Channel Search"
 msgstr ""
 
 
-msgid "Channel View"
-msgstr ""
-
-
 msgid "Channels"
 msgstr "Kanaler"
 
@@ -184,11 +180,27 @@ msgid "Enter the MyPlex password for {0}."
 msgstr "Skriv inn MyPlex-passordet til {0}"
 
 
+msgid "Enter the PlexHome user pin for {0}."
+msgstr ""
+
+
 msgid "Episodes"
 msgstr "Episoder"
 
 
+msgid "Extras"
+msgstr ""
+
+
 msgid "Failed"
+msgstr ""
+
+
+msgid "Fanart"
+msgstr ""
+
+
+msgid "Fanart Lower Blur"
 msgstr ""
 
 
@@ -200,12 +212,20 @@ msgid "Forum"
 msgstr "Forum"
 
 
+msgid "General Appearance"
+msgstr ""
+
+
 msgid "Genre"
 msgstr "Sjanger"
 
 
 msgid "Genres"
 msgstr "Sjangre"
+
+
+msgid "Home Video Navigation Bar"
+msgstr ""
 
 
 msgid "Home Video Options"
@@ -216,7 +236,7 @@ msgid "Home Video View"
 msgstr ""
 
 
-msgid "Home Videos Navigation Bar"
+msgid "Home Videos"
 msgstr ""
 
 
@@ -240,7 +260,7 @@ msgid "Library"
 msgstr "Bibliotek"
 
 
-msgid "Library View"
+msgid "Main Navigation Bar"
 msgstr ""
 
 
@@ -252,16 +272,16 @@ msgid "Mark as Watched"
 msgstr "Markér som sett"
 
 
+msgid "Miscellaneous"
+msgstr ""
+
+
 msgid "More"
 msgstr "Mer"
 
 
 msgid "More..."
 msgstr "Mer..."
-
-
-msgid "Movie Fanart"
-msgstr ""
 
 
 msgid "Movie Navigation Bar"
@@ -278,6 +298,10 @@ msgstr "Filmvisning"
 
 msgid "Movies"
 msgstr "Filmer"
+
+
+msgid "Music"
+msgstr ""
 
 
 msgid "Music Navigation Bar"
@@ -306,10 +330,6 @@ msgstr "MyPlex-utlogging"
 
 msgid "MyPlex Username"
 msgstr "MyPlex-brukernavn"
-
-
-msgid "Navigation Bar"
-msgstr ""
 
 
 msgid "No Plex Channels Available"
@@ -348,6 +368,10 @@ msgid "Now Playing"
 msgstr ""
 
 
+msgid "Off"
+msgstr ""
+
+
 msgid "On Deck"
 msgstr "Pågående"
 
@@ -380,6 +404,10 @@ msgid "Plex Channels"
 msgstr "Plex-kanaler"
 
 
+msgid "Plex Home Users"
+msgstr ""
+
+
 msgid "Plex Library"
 msgstr "Plex-bibliotek"
 
@@ -404,7 +432,15 @@ msgid "PlexConnect"
 msgstr "PlexConnect"
 
 
+msgid "PlexHome User PIN"
+msgstr ""
+
+
 msgid "Poster Titles"
+msgstr ""
+
+
+msgid "PrePlay Bottom Shelf"
 msgstr ""
 
 
@@ -437,6 +473,10 @@ msgstr "Nylig viste programmer"
 
 
 msgid "Refresh"
+msgstr ""
+
+
+msgid "Related Movies"
 msgstr ""
 
 
@@ -488,14 +528,6 @@ msgid "Show Photos"
 msgstr "Vis bilder"
 
 
-msgid "Show Playlists"
-msgstr ""
-
-
-msgid "Show Shared Libraries"
-msgstr ""
-
-
 msgid "Show Unwatched Count"
 msgstr "Vis antall usette elementer"
 
@@ -510,6 +542,10 @@ msgstr ""
 
 msgid "Shutter Speed"
 msgstr "Lukkerhastighet"
+
+
+msgid "Sign Out"
+msgstr ""
 
 
 msgid "SlideShow"
@@ -536,12 +572,12 @@ msgid "Subtitle Track"
 msgstr "Undertekst"
 
 
+msgid "Switch Home User"
+msgstr ""
+
+
 msgid "Synopsis hidden."
 msgstr "Sammendraget er skjult"
-
-
-msgid "TV Show Fanart"
-msgstr ""
 
 
 msgid "TV Show Navigation Bar"
@@ -556,6 +592,10 @@ msgid "TV Show View"
 msgstr "TV-programvisning"
 
 
+msgid "TV Shows"
+msgstr ""
+
+
 msgid "TheMovieDB: No Trailer Info available"
 msgstr "TheMovieDB: Ingen trailerinfo tilgjengelig"
 
@@ -566,10 +606,6 @@ msgstr "Tidsformat"
 
 msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
 msgstr "For å logge inn på MyPlex, skriv inn din epostadresse, MyPlex-brukernavn eller brukernavn fra Plexforumet."
-
-
-msgid "Top Level Options"
-msgstr ""
 
 
 msgid "Trailer"

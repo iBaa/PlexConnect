@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-26 18:56:01+0000\n"
-"PO-Revision-Date: 2014-12-14 12:00+0000\n"
+"POT-Creation-Date: 2015-03-30 18:25:13+0000\n"
+"PO-Revision-Date: 2015-06-01 12:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fr\n"
@@ -136,10 +136,6 @@ msgid "Channel Search"
 msgstr "Recherche des canaux"
 
 
-msgid "Channel View"
-msgstr "Vue des canaux"
-
-
 msgid "Channels"
 msgstr "Chaines"
 
@@ -184,12 +180,28 @@ msgid "Enter the MyPlex password for {0}."
 msgstr "Entrer le mot de passe MyPlex pour {0}."
 
 
+msgid "Enter the PlexHome user pin for {0}."
+msgstr "Entrer le code PIN de l'utilisateur {0}"
+
+
 msgid "Episodes"
 msgstr "Episodes"
 
 
+msgid "Extras"
+msgstr "Suppléments"
+
+
 msgid "Failed"
 msgstr "Échec"
+
+
+msgid "Fanart"
+msgstr "Fanart"
+
+
+msgid "Fanart Lower Blur"
+msgstr "Fanant (faible définition)"
 
 
 msgid "Flatten Season"
@@ -200,12 +212,20 @@ msgid "Forum"
 msgstr "Forum"
 
 
+msgid "General Appearance"
+msgstr "Aspect général"
+
+
 msgid "Genre"
 msgstr "Genre"
 
 
 msgid "Genres"
 msgstr "Genres"
+
+
+msgid "Home Video Navigation Bar"
+msgstr "Baree de navigation des vidéos personnels"
 
 
 msgid "Home Video Options"
@@ -216,8 +236,8 @@ msgid "Home Video View"
 msgstr "Vue des vidéos personnelles"
 
 
-msgid "Home Videos Navigation Bar"
-msgstr "Barre des vidéos personnelles"
+msgid "Home Videos"
+msgstr "Toutes les vidéos"
 
 
 msgid "Homepage"
@@ -240,8 +260,8 @@ msgid "Library"
 msgstr "Bibliothèque"
 
 
-msgid "Library View"
-msgstr "Voir par librairies"
+msgid "Main Navigation Bar"
+msgstr "Barre de navigation générale"
 
 
 msgid "Mark as Unwatched"
@@ -252,16 +272,16 @@ msgid "Mark as Watched"
 msgstr "Marquer comme vu"
 
 
+msgid "Miscellaneous"
+msgstr "Divers"
+
+
 msgid "More"
 msgstr "Plus"
 
 
 msgid "More..."
 msgstr "Plus..."
-
-
-msgid "Movie Fanart"
-msgstr "Fanart du film"
 
 
 msgid "Movie Navigation Bar"
@@ -278,6 +298,10 @@ msgstr "Vue Films"
 
 msgid "Movies"
 msgstr "Films"
+
+
+msgid "Music"
+msgstr "Musique"
 
 
 msgid "Music Navigation Bar"
@@ -306,10 +330,6 @@ msgstr "Fermer une session MyPlex"
 
 msgid "MyPlex Username"
 msgstr "Nom d'utilisateur MyPlex"
-
-
-msgid "Navigation Bar"
-msgstr "Barre de navigation"
 
 
 msgid "No Plex Channels Available"
@@ -348,6 +368,10 @@ msgid "Now Playing"
 msgstr "Ecoute en cours"
 
 
+msgid "Off"
+msgstr "Fermé"
+
+
 msgid "On Deck"
 msgstr "En cours"
 
@@ -380,6 +404,10 @@ msgid "Plex Channels"
 msgstr "Chaines Plex"
 
 
+msgid "Plex Home Users"
+msgstr "Utilisateurs Plex Home"
+
+
 msgid "Plex Library"
 msgstr "Bibliothèque Plex"
 
@@ -404,8 +432,16 @@ msgid "PlexConnect"
 msgstr "PlexConnect"
 
 
+msgid "PlexHome User PIN"
+msgstr "PIN utilisateur Plex Home"
+
+
 msgid "Poster Titles"
 msgstr "Titres des affiches"
+
+
+msgid "PrePlay Bottom Shelf"
+msgstr ""
 
 
 msgid "Producers"
@@ -438,6 +474,10 @@ msgstr "Séries vues récemment"
 
 msgid "Refresh"
 msgstr "Rafraichir"
+
+
+msgid "Related Movies"
+msgstr "Films équivalents"
 
 
 msgid "Remote Bitrate"
@@ -488,14 +528,6 @@ msgid "Show Photos"
 msgstr "Afficher les photos"
 
 
-msgid "Show Playlists"
-msgstr "Voir les listes"
-
-
-msgid "Show Shared Libraries"
-msgstr "Voir les librairies partagées"
-
-
 msgid "Show Unwatched Count"
 msgstr "Afficher le nombre de non vus"
 
@@ -510,6 +542,10 @@ msgstr "Ordre aléatoire"
 
 msgid "Shutter Speed"
 msgstr "Vitesse d'obturation"
+
+
+msgid "Sign Out"
+msgstr "Déconnection"
 
 
 msgid "SlideShow"
@@ -536,12 +572,12 @@ msgid "Subtitle Track"
 msgstr "Piste de sous-titre"
 
 
+msgid "Switch Home User"
+msgstr "Changer d'utilisateur"
+
+
 msgid "Synopsis hidden."
 msgstr "Cacher le synopsis"
-
-
-msgid "TV Show Fanart"
-msgstr "Fanart de la série"
 
 
 msgid "TV Show Navigation Bar"
@@ -556,6 +592,10 @@ msgid "TV Show View"
 msgstr "Vue Séries"
 
 
+msgid "TV Shows"
+msgstr "Séries TV"
+
+
 msgid "TheMovieDB: No Trailer Info available"
 msgstr "TheMovieDB : Pas de Bande-annonce disponible"
 
@@ -566,10 +606,6 @@ msgstr "Format de l'heure"
 
 msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
 msgstr "Pour se connecter à MyPlex, entrer votre adresse de courriel, nom d'utilisateur ou le nom d'usager du site Plex forum."
-
-
-msgid "Top Level Options"
-msgstr "Option de niveau supérieur"
 
 
 msgid "Trailer"

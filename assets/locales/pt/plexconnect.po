@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-26 18:56:01+0000\n"
-"PO-Revision-Date: 2014-12-14 12:00+0000\n"
+"POT-Creation-Date: 2015-03-30 18:25:13+0000\n"
+"PO-Revision-Date: 2015-06-01 12:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -25,7 +25,7 @@ msgstr "Atores"
 
 
 msgid "Albums"
-msgstr ""
+msgstr "Álbuns"
 
 
 msgid "All Movies"
@@ -53,7 +53,7 @@ msgstr "Aparência"
 
 
 msgid "Artists"
-msgstr ""
+msgstr "Artistas"
 
 
 msgid "Audio"
@@ -65,7 +65,7 @@ msgstr "Aumento do Áudio %"
 
 
 msgid "Audio Playlist"
-msgstr ""
+msgstr "Lista de Reprodução de Áudio"
 
 
 msgid "Audio Track"
@@ -121,23 +121,19 @@ msgstr "Modelo da Câmera"
 
 
 msgid "Change All Posters"
-msgstr ""
+msgstr "Trocar Todos os Posters"
 
 
 msgid "Change Fanart"
-msgstr ""
+msgstr "Trocar Fanart"
 
 
 msgid "Change Poster"
-msgstr ""
+msgstr "Trocar Poster"
 
 
 msgid "Channel Search"
 msgstr "Busca nos Canais"
-
-
-msgid "Channel View"
-msgstr "Ver Canais"
 
 
 msgid "Channels"
@@ -153,7 +149,7 @@ msgstr "Coleções"
 
 
 msgid "Decade"
-msgstr ""
+msgstr "Década"
 
 
 msgid "Decades"
@@ -184,12 +180,28 @@ msgid "Enter the MyPlex password for {0}."
 msgstr "Entre com a senha para o MyPlex {0}."
 
 
+msgid "Enter the PlexHome user pin for {0}."
+msgstr "Digite o pin do PlexHome para o usuário {0}"
+
+
 msgid "Episodes"
 msgstr "Episódios"
 
 
+msgid "Extras"
+msgstr "Extras"
+
+
 msgid "Failed"
 msgstr "Falhou"
+
+
+msgid "Fanart"
+msgstr "Fanart"
+
+
+msgid "Fanart Lower Blur"
+msgstr "Fanart Blur Baixo"
 
 
 msgid "Flatten Season"
@@ -200,12 +212,20 @@ msgid "Forum"
 msgstr "Fórum"
 
 
+msgid "General Appearance"
+msgstr "Aparência Geral"
+
+
 msgid "Genre"
 msgstr "Gênero"
 
 
 msgid "Genres"
 msgstr "Gêneros"
+
+
+msgid "Home Video Navigation Bar"
+msgstr "Barra de Navegação de Vídeos Caseiros"
 
 
 msgid "Home Video Options"
@@ -216,8 +236,8 @@ msgid "Home Video View"
 msgstr "Ver Vídeos Caseiros"
 
 
-msgid "Home Videos Navigation Bar"
-msgstr "Barra de Navegação dos Vídeos Caseiros"
+msgid "Home Videos"
+msgstr "Vídeos Caseiros"
 
 
 msgid "Homepage"
@@ -240,8 +260,8 @@ msgid "Library"
 msgstr "Biblioteca"
 
 
-msgid "Library View"
-msgstr "Visualizar Biblioteca"
+msgid "Main Navigation Bar"
+msgstr "Barra de Navegação Principal"
 
 
 msgid "Mark as Unwatched"
@@ -252,16 +272,16 @@ msgid "Mark as Watched"
 msgstr "Marcar como Assistido"
 
 
+msgid "Miscellaneous"
+msgstr "Variados"
+
+
 msgid "More"
 msgstr "Mais"
 
 
 msgid "More..."
 msgstr "Mais..."
-
-
-msgid "Movie Fanart"
-msgstr ""
 
 
 msgid "Movie Navigation Bar"
@@ -280,16 +300,20 @@ msgid "Movies"
 msgstr "Filmes"
 
 
+msgid "Music"
+msgstr "Música"
+
+
 msgid "Music Navigation Bar"
-msgstr ""
+msgstr "Barra de Navegação de Música"
 
 
 msgid "Music Options"
-msgstr ""
+msgstr "Opções de Música"
 
 
 msgid "Music View"
-msgstr ""
+msgstr "Visualização de Músicas"
 
 
 msgid "MyPlex Password"
@@ -308,10 +332,6 @@ msgid "MyPlex Username"
 msgstr "MyPlex Nome do Usuário"
 
 
-msgid "Navigation Bar"
-msgstr ""
-
-
 msgid "No Plex Channels Available"
 msgstr "Nenhum Canal Plex Disponível"
 
@@ -321,7 +341,7 @@ msgstr "Nenhuma Seção de Biblioteca Plex Disponível"
 
 
 msgid "No Plex Playlists Available"
-msgstr ""
+msgstr "Nenhuma Lista de Reprodução Plex Disponível"
 
 
 msgid "No Seasons"
@@ -345,7 +365,11 @@ msgstr "Nenhuma"
 
 
 msgid "Now Playing"
-msgstr ""
+msgstr "Tocando Agora"
+
+
+msgid "Off"
+msgstr "Off"
 
 
 msgid "On Deck"
@@ -357,7 +381,7 @@ msgstr "Ajuste"
 
 
 msgid "PIL/Pillow not installed"
-msgstr ""
+msgstr "PIL/Pillow não instalado"
 
 
 msgid "Photo"
@@ -369,15 +393,19 @@ msgstr "Atividade do Transcoder de Foto"
 
 
 msgid "Play"
-msgstr "Reproduzir"
+msgstr "Play"
 
 
 msgid "Playlists"
-msgstr ""
+msgstr "Listas de Reprodução"
 
 
 msgid "Plex Channels"
 msgstr "Canais Plex"
+
+
+msgid "Plex Home Users"
+msgstr "Usuários Locais Plex"
 
 
 msgid "Plex Library"
@@ -393,19 +421,27 @@ msgstr "Plex Media Server: Sem Ítens Disponíveis"
 
 
 msgid "Plex Media Server: No Tracks Available"
-msgstr ""
+msgstr "Plex Media Server: Não Há Faixas Disponíveis"
 
 
 msgid "Plex Playlists"
-msgstr ""
+msgstr "Listas de Reprodução Plex"
 
 
 msgid "PlexConnect"
 msgstr "PlexConnect"
 
 
+msgid "PlexHome User PIN"
+msgstr "PIN do Usuário Plex Local"
+
+
 msgid "Poster Titles"
 msgstr "Título Original"
+
+
+msgid "PrePlay Bottom Shelf"
+msgstr "Reprodução da Prateleira Inferior"
 
 
 msgid "Producers"
@@ -440,6 +476,10 @@ msgid "Refresh"
 msgstr "Recarregar"
 
 
+msgid "Related Movies"
+msgstr "Filmes Relacionados"
+
+
 msgid "Remote Bitrate"
 msgstr "Bitrate Remoto"
 
@@ -453,15 +493,15 @@ msgstr "Visualização da Temporada"
 
 
 msgid "Select Fanart"
-msgstr ""
+msgstr "Seleção de Fanart"
 
 
 msgid "Select Poster"
-msgstr ""
+msgstr "Seleção de Poster"
 
 
 msgid "Select Posters"
-msgstr ""
+msgstr "Seleção de Posters"
 
 
 msgid "Select Tracks"
@@ -488,14 +528,6 @@ msgid "Show Photos"
 msgstr "Mostrar Fotos"
 
 
-msgid "Show Playlists"
-msgstr ""
-
-
-msgid "Show Shared Libraries"
-msgstr ""
-
-
 msgid "Show Unwatched Count"
 msgstr "Mostrar Contador de Não Vistos"
 
@@ -505,11 +537,15 @@ msgstr "Séries"
 
 
 msgid "Shuffle"
-msgstr ""
+msgstr "Embaralhar"
 
 
 msgid "Shutter Speed"
 msgstr "Velocidade Shutter"
+
+
+msgid "Sign Out"
+msgstr "Sair"
 
 
 msgid "SlideShow"
@@ -536,12 +572,12 @@ msgid "Subtitle Track"
 msgstr "Trilha de legenda"
 
 
+msgid "Switch Home User"
+msgstr "Trocar usuário local"
+
+
 msgid "Synopsis hidden."
 msgstr "Sinopse oculta"
-
-
-msgid "TV Show Fanart"
-msgstr ""
 
 
 msgid "TV Show Navigation Bar"
@@ -556,6 +592,10 @@ msgid "TV Show View"
 msgstr "Visualização do Seriado"
 
 
+msgid "TV Shows"
+msgstr "Séries de TV"
+
+
 msgid "TheMovieDB: No Trailer Info available"
 msgstr "TheMovieDB: Informação do Trailer Indisponível"
 
@@ -566,10 +606,6 @@ msgstr "Formato do Relógio"
 
 msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
 msgstr "Para logar no MyPlex, entre com seu endereço de email, nome de usuário ou nome de usuário do fórum Plex."
-
-
-msgid "Top Level Options"
-msgstr "Opções de Nível Superior"
 
 
 msgid "Trailer"
@@ -609,11 +645,11 @@ msgstr "OSD do Reprodutor"
 
 
 msgid "Video Playlist"
-msgstr ""
+msgstr "Lista de Reprodução de Vídeo"
 
 
 msgid "Video Playlist: No Items Available"
-msgstr ""
+msgstr "Lista de Reprodução de Vídeo: Sem Itens Disponíveis"
 
 
 msgid "View Show"
@@ -649,7 +685,7 @@ msgstr "{0:d} Minutos"
 
 
 msgid "{0:d}:{1:0>2d}"
-msgstr ""
+msgstr "{0:d}:{1:0>2d}"
 
 
 msgid "{0:d}hr {1:d}min"

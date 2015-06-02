@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-26 18:56:01+0000\n"
-"PO-Revision-Date: 2014-12-14 12:00+0000\n"
+"POT-Creation-Date: 2015-03-30 18:25:13+0000\n"
+"PO-Revision-Date: 2015-06-01 12:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -25,7 +25,7 @@ msgstr "Skuespillere"
 
 
 msgid "Albums"
-msgstr ""
+msgstr "Album"
 
 
 msgid "All Movies"
@@ -53,7 +53,7 @@ msgstr "Udseende"
 
 
 msgid "Artists"
-msgstr ""
+msgstr "Kunstnere"
 
 
 msgid "Audio"
@@ -65,7 +65,7 @@ msgstr "Lyd boost %"
 
 
 msgid "Audio Playlist"
-msgstr ""
+msgstr "Splilleliste"
 
 
 msgid "Audio Track"
@@ -121,23 +121,19 @@ msgstr "Kamera model"
 
 
 msgid "Change All Posters"
-msgstr ""
+msgstr "Skift alle illustrationer"
 
 
 msgid "Change Fanart"
-msgstr ""
+msgstr "Udskift banner"
 
 
 msgid "Change Poster"
-msgstr ""
+msgstr "Udskift plakat"
 
 
 msgid "Channel Search"
 msgstr "Kanal søgning"
-
-
-msgid "Channel View"
-msgstr "Kanal visning"
 
 
 msgid "Channels"
@@ -153,7 +149,7 @@ msgstr "Samlinger"
 
 
 msgid "Decade"
-msgstr ""
+msgstr "Årti"
 
 
 msgid "Decades"
@@ -184,12 +180,28 @@ msgid "Enter the MyPlex password for {0}."
 msgstr "Indtast MyPlex kode for {0}."
 
 
+msgid "Enter the PlexHome user pin for {0}."
+msgstr ""
+
+
 msgid "Episodes"
 msgstr "Episoder"
 
 
+msgid "Extras"
+msgstr ""
+
+
 msgid "Failed"
 msgstr "Fejlet"
+
+
+msgid "Fanart"
+msgstr ""
+
+
+msgid "Fanart Lower Blur"
+msgstr ""
 
 
 msgid "Flatten Season"
@@ -200,12 +212,20 @@ msgid "Forum"
 msgstr "Forum"
 
 
+msgid "General Appearance"
+msgstr ""
+
+
 msgid "Genre"
 msgstr "Genre"
 
 
 msgid "Genres"
 msgstr "Genrer"
+
+
+msgid "Home Video Navigation Bar"
+msgstr ""
 
 
 msgid "Home Video Options"
@@ -216,8 +236,8 @@ msgid "Home Video View"
 msgstr "Hjemmevideo visning"
 
 
-msgid "Home Videos Navigation Bar"
-msgstr "Hjemmevideo Navigationsbjælke"
+msgid "Home Videos"
+msgstr ""
 
 
 msgid "Homepage"
@@ -240,8 +260,8 @@ msgid "Library"
 msgstr "Bibliotek"
 
 
-msgid "Library View"
-msgstr "Bibliotek visning"
+msgid "Main Navigation Bar"
+msgstr ""
 
 
 msgid "Mark as Unwatched"
@@ -252,16 +272,16 @@ msgid "Mark as Watched"
 msgstr "Marker som set"
 
 
+msgid "Miscellaneous"
+msgstr ""
+
+
 msgid "More"
 msgstr "Mere"
 
 
 msgid "More..."
 msgstr "Mere..."
-
-
-msgid "Movie Fanart"
-msgstr ""
 
 
 msgid "Movie Navigation Bar"
@@ -280,16 +300,20 @@ msgid "Movies"
 msgstr "Film"
 
 
-msgid "Music Navigation Bar"
+msgid "Music"
 msgstr ""
+
+
+msgid "Music Navigation Bar"
+msgstr "Musik navigationsbjælke"
 
 
 msgid "Music Options"
-msgstr ""
+msgstr "Musik indstillinger"
 
 
 msgid "Music View"
-msgstr ""
+msgstr "Musik Visning"
 
 
 msgid "MyPlex Password"
@@ -308,10 +332,6 @@ msgid "MyPlex Username"
 msgstr "MyPlex Brugernavn"
 
 
-msgid "Navigation Bar"
-msgstr ""
-
-
 msgid "No Plex Channels Available"
 msgstr "Ingen Plex Kanaler Tilgængelig"
 
@@ -321,7 +341,7 @@ msgstr "Ingen Plex biblioteker tilgængelige"
 
 
 msgid "No Plex Playlists Available"
-msgstr ""
+msgstr "Ingen Plex Spillelister tilgængelige"
 
 
 msgid "No Seasons"
@@ -345,6 +365,10 @@ msgstr "Ingen"
 
 
 msgid "Now Playing"
+msgstr "Spiller nu"
+
+
+msgid "Off"
 msgstr ""
 
 
@@ -357,7 +381,7 @@ msgstr "Overscan justering"
 
 
 msgid "PIL/Pillow not installed"
-msgstr ""
+msgstr "PIL/Pude ikke installeret"
 
 
 msgid "Photo"
@@ -373,11 +397,15 @@ msgstr "Afspil"
 
 
 msgid "Playlists"
-msgstr ""
+msgstr "Spilleliste"
 
 
 msgid "Plex Channels"
 msgstr "Plex kanaler"
+
+
+msgid "Plex Home Users"
+msgstr ""
 
 
 msgid "Plex Library"
@@ -393,7 +421,7 @@ msgstr "Plex Medie Server: Ingen emner tilgængelige"
 
 
 msgid "Plex Media Server: No Tracks Available"
-msgstr ""
+msgstr "Plex Media Server: Ingen numre tilgængelige"
 
 
 msgid "Plex Playlists"
@@ -404,8 +432,16 @@ msgid "PlexConnect"
 msgstr "PlexConnect"
 
 
+msgid "PlexHome User PIN"
+msgstr ""
+
+
 msgid "Poster Titles"
 msgstr "Plakat titler"
+
+
+msgid "PrePlay Bottom Shelf"
+msgstr ""
 
 
 msgid "Producers"
@@ -438,6 +474,10 @@ msgstr "Nyligt viste serier"
 
 msgid "Refresh"
 msgstr "Genopfrisk"
+
+
+msgid "Related Movies"
+msgstr ""
 
 
 msgid "Remote Bitrate"
@@ -488,14 +528,6 @@ msgid "Show Photos"
 msgstr "Vis billeder"
 
 
-msgid "Show Playlists"
-msgstr ""
-
-
-msgid "Show Shared Libraries"
-msgstr ""
-
-
 msgid "Show Unwatched Count"
 msgstr "Vis uset optælling"
 
@@ -510,6 +542,10 @@ msgstr ""
 
 msgid "Shutter Speed"
 msgstr "Lukkerhastighed"
+
+
+msgid "Sign Out"
+msgstr "Log af"
 
 
 msgid "SlideShow"
@@ -536,12 +572,12 @@ msgid "Subtitle Track"
 msgstr "Undertekst spor"
 
 
+msgid "Switch Home User"
+msgstr "Skift bruger"
+
+
 msgid "Synopsis hidden."
 msgstr "Synopsis skjult"
-
-
-msgid "TV Show Fanart"
-msgstr ""
 
 
 msgid "TV Show Navigation Bar"
@@ -556,6 +592,10 @@ msgid "TV Show View"
 msgstr "TV serier visning"
 
 
+msgid "TV Shows"
+msgstr "TV serier"
+
+
 msgid "TheMovieDB: No Trailer Info available"
 msgstr "TheMovieDB: Ingen trailer info tilgængelig"
 
@@ -566,10 +606,6 @@ msgstr "Tidsformat"
 
 msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
 msgstr "For at logge på MyPlex, indtast e-mail, brugernavn eller Plex forum brugernavn."
-
-
-msgid "Top Level Options"
-msgstr "Top niveau indstillinger"
 
 
 msgid "Trailer"
