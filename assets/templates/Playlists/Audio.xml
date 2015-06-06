@@ -96,7 +96,7 @@
     <dialog id="com.sample.error-dialog">
     {{CUT(#items::FALSE=|TRUE=CUT)}}
       <title>PlexConnect</title>
-      <description>{{TEXT(Video Playlist: No Items Available)}}</description>
+      <description>{{TEXT(Audio Playlist: No Items Available)}}</description>
     </dialog>
     
   </body>

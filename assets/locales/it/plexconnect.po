@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-26 18:56:01+0000\n"
-"PO-Revision-Date: 2014-12-14 12:00+0000\n"
+"POT-Creation-Date: 2015-03-30 18:25:13+0000\n"
+"PO-Revision-Date: 2015-06-01 12:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: it\n"
@@ -25,19 +25,19 @@ msgstr "Attori"
 
 
 msgid "Albums"
-msgstr ""
+msgstr "Album"
 
 
 msgid "All Movies"
-msgstr "Tutti i Film"
+msgstr "Tutti i film"
 
 
 msgid "All Photos"
-msgstr "Tutte le Foto"
+msgstr "Tutte le foto"
 
 
 msgid "All Shows"
-msgstr "Tutte le Serie"
+msgstr "Tutte le serie"
 
 
 msgid "All Videos"
@@ -53,7 +53,7 @@ msgstr "Aspetto"
 
 
 msgid "Artists"
-msgstr ""
+msgstr "Artisti"
 
 
 msgid "Audio"
@@ -65,7 +65,7 @@ msgstr "Incremento audio %"
 
 
 msgid "Audio Playlist"
-msgstr ""
+msgstr "Playlist audio"
 
 
 msgid "Audio Track"
@@ -121,23 +121,19 @@ msgstr "Modello Camera"
 
 
 msgid "Change All Posters"
-msgstr ""
+msgstr "Cambia tutte le locandine"
 
 
 msgid "Change Fanart"
-msgstr ""
+msgstr "Cambia fanart"
 
 
 msgid "Change Poster"
-msgstr ""
+msgstr "Cambia locandina"
 
 
 msgid "Channel Search"
 msgstr "Cerca nei canali"
-
-
-msgid "Channel View"
-msgstr "Vista canale"
 
 
 msgid "Channels"
@@ -153,7 +149,7 @@ msgstr "Raccolte"
 
 
 msgid "Decade"
-msgstr ""
+msgstr "Decade"
 
 
 msgid "Decades"
@@ -184,12 +180,28 @@ msgid "Enter the MyPlex password for {0}."
 msgstr "Inserisci la password myPlex per {0}."
 
 
+msgid "Enter the PlexHome user pin for {0}."
+msgstr "Inserisci il pin utente PlexHome per {0}."
+
+
 msgid "Episodes"
 msgstr "Episodi"
 
 
+msgid "Extras"
+msgstr "Extra"
+
+
 msgid "Failed"
 msgstr "Fallito"
+
+
+msgid "Fanart"
+msgstr "Fanart"
+
+
+msgid "Fanart Lower Blur"
+msgstr "Sfumatura fanart"
 
 
 msgid "Flatten Season"
@@ -200,6 +212,10 @@ msgid "Forum"
 msgstr "Forum"
 
 
+msgid "General Appearance"
+msgstr "Aspetto generale"
+
+
 msgid "Genre"
 msgstr "Genere"
 
@@ -208,16 +224,20 @@ msgid "Genres"
 msgstr "Generi"
 
 
+msgid "Home Video Navigation Bar"
+msgstr "Barra di navigazione Home Video"
+
+
 msgid "Home Video Options"
-msgstr "Opzioni video domestici"
+msgstr "Opzioni Home video"
 
 
 msgid "Home Video View"
-msgstr "Vista video domestici"
+msgstr "Vista Home video"
 
 
-msgid "Home Videos Navigation Bar"
-msgstr "Barra di navigazione home video"
+msgid "Home Videos"
+msgstr "Home Video"
 
 
 msgid "Homepage"
@@ -240,16 +260,20 @@ msgid "Library"
 msgstr "Libreria"
 
 
-msgid "Library View"
-msgstr "Vista libreria"
+msgid "Main Navigation Bar"
+msgstr "Barra di navigazione principale"
 
 
 msgid "Mark as Unwatched"
-msgstr "Segna come non visto"
+msgstr "Segna come da vedere"
 
 
 msgid "Mark as Watched"
 msgstr "Segna come già visto"
+
+
+msgid "Miscellaneous"
+msgstr "Varie"
 
 
 msgid "More"
@@ -258,10 +282,6 @@ msgstr "Altro"
 
 msgid "More..."
 msgstr "Altro..."
-
-
-msgid "Movie Fanart"
-msgstr ""
 
 
 msgid "Movie Navigation Bar"
@@ -280,16 +300,20 @@ msgid "Movies"
 msgstr "Film"
 
 
+msgid "Music"
+msgstr "Musica"
+
+
 msgid "Music Navigation Bar"
-msgstr ""
+msgstr "Barra di navigazione Musica"
 
 
 msgid "Music Options"
-msgstr ""
+msgstr "Opzioni Musica"
 
 
 msgid "Music View"
-msgstr ""
+msgstr "Vista Musica"
 
 
 msgid "MyPlex Password"
@@ -297,31 +321,27 @@ msgstr "Password MyPlex"
 
 
 msgid "MyPlex Sign In"
-msgstr "Accesso MyPlex"
+msgstr "Connetti a MyPlex"
 
 
 msgid "MyPlex Sign Out"
-msgstr "Disconnessione MyPlex"
+msgstr "Esci da MyPlex"
 
 
 msgid "MyPlex Username"
-msgstr "Nome Utente MyPlex"
-
-
-msgid "Navigation Bar"
-msgstr ""
+msgstr "Nome utente MyPlex"
 
 
 msgid "No Plex Channels Available"
-msgstr "Nessun Canale Plex Disponibile"
+msgstr "Nessun canale Plex disponibile"
 
 
 msgid "No Plex Library Sections Available"
-msgstr "Nessuna Sezione della Libreria Plex Disponibile"
+msgstr "Nessuna libreria Plex disponibile"
 
 
 msgid "No Plex Playlists Available"
-msgstr ""
+msgstr "Nessuna playlist disponibile"
 
 
 msgid "No Seasons"
@@ -329,11 +349,11 @@ msgstr "Nessuna stagione"
 
 
 msgid "No Unwatched Shows"
-msgstr "Nessuna serie non vista"
+msgstr "Nessuna serie da vedere"
 
 
 msgid "No Unwatched Shows."
-msgstr "Nessuna serie non vista."
+msgstr "Nessuna serie da vedere."
 
 
 msgid "No episodes"
@@ -345,7 +365,11 @@ msgstr "Nessuno"
 
 
 msgid "Now Playing"
-msgstr ""
+msgstr "In riproduzione"
+
+
+msgid "Off"
+msgstr "Spento"
 
 
 msgid "On Deck"
@@ -357,7 +381,7 @@ msgstr "Correzione overscan"
 
 
 msgid "PIL/Pillow not installed"
-msgstr ""
+msgstr "PIL/Pillow non installato"
 
 
 msgid "Photo"
@@ -373,11 +397,15 @@ msgstr "Riproduci"
 
 
 msgid "Playlists"
-msgstr ""
+msgstr "Playlist"
 
 
 msgid "Plex Channels"
 msgstr "Canali Plex"
+
+
+msgid "Plex Home Users"
+msgstr "Utenti PlexHome"
 
 
 msgid "Plex Library"
@@ -393,19 +421,27 @@ msgstr "Plex Media Server: Nessun elemento disponibile"
 
 
 msgid "Plex Media Server: No Tracks Available"
-msgstr ""
+msgstr "Plex Media Server: Nessuna traccia disponibile"
 
 
 msgid "Plex Playlists"
-msgstr ""
+msgstr "Playlist Plex"
 
 
 msgid "PlexConnect"
 msgstr "PlexConnect"
 
 
+msgid "PlexHome User PIN"
+msgstr "PIN utente PlexHome"
+
+
 msgid "Poster Titles"
-msgstr "Titoli dei poster"
+msgstr "Titoli locandine"
+
+
+msgid "PrePlay Bottom Shelf"
+msgstr ""
 
 
 msgid "Producers"
@@ -440,6 +476,10 @@ msgid "Refresh"
 msgstr "Ricarica"
 
 
+msgid "Related Movies"
+msgstr "Film correlati"
+
+
 msgid "Remote Bitrate"
 msgstr "Bitrate remoto"
 
@@ -453,19 +493,19 @@ msgstr "Vista Stagione"
 
 
 msgid "Select Fanart"
-msgstr ""
+msgstr "Seleziona fanart"
 
 
 msgid "Select Poster"
-msgstr ""
+msgstr "Seleziona locandina"
 
 
 msgid "Select Posters"
-msgstr ""
+msgstr "Seleziona locandine"
 
 
 msgid "Select Tracks"
-msgstr "Seleziona Tracce"
+msgstr "Seleziona tracce"
 
 
 msgid "Settings"
@@ -488,16 +528,8 @@ msgid "Show Photos"
 msgstr "Mostra Foto"
 
 
-msgid "Show Playlists"
-msgstr ""
-
-
-msgid "Show Shared Libraries"
-msgstr ""
-
-
 msgid "Show Unwatched Count"
-msgstr "Mostra conteggio non visti"
+msgstr "Mostra conteggio elementi da vedere"
 
 
 msgid "Shows"
@@ -505,11 +537,15 @@ msgstr "Serie"
 
 
 msgid "Shuffle"
-msgstr ""
+msgstr "Mischia"
 
 
 msgid "Shutter Speed"
 msgstr "Tempo di esposizione"
+
+
+msgid "Sign Out"
+msgstr "Disconnetti"
 
 
 msgid "SlideShow"
@@ -536,12 +572,12 @@ msgid "Subtitle Track"
 msgstr "Traccia sottotitoli"
 
 
+msgid "Switch Home User"
+msgstr "Cambia utente Home"
+
+
 msgid "Synopsis hidden."
 msgstr "Trama nascosta."
-
-
-msgid "TV Show Fanart"
-msgstr ""
 
 
 msgid "TV Show Navigation Bar"
@@ -556,20 +592,20 @@ msgid "TV Show View"
 msgstr "Vista  Serie TV"
 
 
+msgid "TV Shows"
+msgstr "Serie TV"
+
+
 msgid "TheMovieDB: No Trailer Info available"
-msgstr "TheMovieDB: Nessuna informazione sul trailer disponibile"
+msgstr "TheMovieDB: Nessuna informazione sul trailer"
 
 
 msgid "Time Format"
-msgstr "Formato orario"
+msgstr "Formato ora"
 
 
 msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
 msgstr "Per accedere a MyPlex inserisci la tua email o il nome utente."
-
-
-msgid "Top Level Options"
-msgstr "Opzioni livello principale"
 
 
 msgid "Trailer"
@@ -585,15 +621,15 @@ msgstr "Azione del Convertitore"
 
 
 msgid "Transcoder Quality"
-msgstr "Qualità di conversione"
+msgstr "Qualità conversione"
 
 
 msgid "Unwatched"
-msgstr "Non visti"
+msgstr "Da vedere"
 
 
 msgid "Unwatched Synopsis"
-msgstr "Trama per Non visti"
+msgstr "Trama per elementi da vedere"
 
 
 msgid "Version"
@@ -605,15 +641,15 @@ msgstr "Video"
 
 
 msgid "Video Player OSD"
-msgstr "OSD riproduzione video"
+msgstr "OSD riproduttore video"
 
 
 msgid "Video Playlist"
-msgstr ""
+msgstr "Playlist video"
 
 
 msgid "Video Playlist: No Items Available"
-msgstr ""
+msgstr "Playlist video: Nessun elemento disponibile"
 
 
 msgid "View Show"
@@ -649,7 +685,7 @@ msgstr "{0:d} minuti"
 
 
 msgid "{0:d}:{1:0>2d}"
-msgstr ""
+msgstr "{0:d}:{1:0>2d}"
 
 
 msgid "{0:d}hr {1:d}min"
@@ -657,6 +693,6 @@ msgstr "{0:d} ore {1:d} min"
 
 
 msgid "{0} unwatched"
-msgstr "{0} non visti"
+msgstr "{0} da vedere"
 
 

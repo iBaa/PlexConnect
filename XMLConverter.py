@@ -33,7 +33,7 @@ from urllib import quote_plus, unquote_plus
 import urllib2
 import urlparse
 
-from Version import __VERSION__, __COMMIT__  # for {{EVAL()}}, display in settings page
+from Version import __VERSION__  # for {{EVAL()}}, display in settings page
 import Settings, ATVSettings
 import PlexAPI
 from Debug import *  # dprint(), prettyXML()

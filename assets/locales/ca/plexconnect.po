@@ -6,14 +6,14 @@ msgstr ""
 "PO-Revision-Date: 2015-06-01 12:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: fi\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 ""
 
 msgid "ATV firmware version 5.1 or higher required. Please think about updating."
-msgstr "Vaaditaan firmware versio 5.1 tai uudempi."
+msgstr "Es necessita la versió 5.1 o superior del firmware de l'AppleTV. Recorda-ho abans d'actualitzar."
 
 
 msgid "Actor View"
@@ -25,7 +25,7 @@ msgstr ""
 
 
 msgid "Albums"
-msgstr ""
+msgstr "Àlbums"
 
 
 msgid "All Movies"
@@ -33,7 +33,7 @@ msgstr ""
 
 
 msgid "All Photos"
-msgstr "Kaikki kuvat"
+msgstr "Totes les Imatges"
 
 
 msgid "All Shows"
@@ -41,11 +41,11 @@ msgstr ""
 
 
 msgid "All Videos"
-msgstr ""
+msgstr "Tots els vídeos"
 
 
 msgid "Aperture"
-msgstr "Aukko"
+msgstr "Aperture"
 
 
 msgid "Appearance"
@@ -53,7 +53,7 @@ msgstr ""
 
 
 msgid "Artists"
-msgstr ""
+msgstr "Artistes"
 
 
 msgid "Audio"
@@ -65,11 +65,11 @@ msgstr ""
 
 
 msgid "Audio Playlist"
-msgstr ""
+msgstr "Llista de reproducció d'àudio"
 
 
 msgid "Audio Track"
-msgstr "Ääniraita"
+msgstr "Pista d'àudio"
 
 
 msgid "Audio/Subs"
@@ -93,11 +93,11 @@ msgstr ""
 
 
 msgid "By First Letter"
-msgstr "Ensimmäisen kirjaimen mukaan"
+msgstr ""
 
 
 msgid "By Folder"
-msgstr "Kansion mukaan"
+msgstr ""
 
 
 msgid "By Rating"
@@ -109,31 +109,31 @@ msgstr ""
 
 
 msgid "By Year"
-msgstr "Vuoden mukaan"
+msgstr ""
 
 
 msgid "Camera Make"
-msgstr "Kamera"
+msgstr "Fabricant de la càmera"
 
 
 msgid "Camera Model"
-msgstr "Kameran malli"
+msgstr "Model de la càmera"
 
 
 msgid "Change All Posters"
-msgstr ""
+msgstr "Canviar tots els cartells"
 
 
 msgid "Change Fanart"
-msgstr ""
+msgstr "Canviar Fanart"
 
 
 msgid "Change Poster"
-msgstr ""
+msgstr "Canviar Cartell"
 
 
 msgid "Channel Search"
-msgstr ""
+msgstr "Búsqueda de canals"
 
 
 msgid "Channels"
@@ -149,7 +149,7 @@ msgstr ""
 
 
 msgid "Decade"
-msgstr ""
+msgstr "Dècada"
 
 
 msgid "Decades"
@@ -173,11 +173,11 @@ msgstr ""
 
 
 msgid "Duration Format"
-msgstr ""
+msgstr "Format de durada"
 
 
 msgid "Enter the MyPlex password for {0}."
-msgstr "Anna MyPlex salasana tunnukselle {0}."
+msgstr ""
 
 
 msgid "Enter the PlexHome user pin for {0}."
@@ -193,7 +193,7 @@ msgstr ""
 
 
 msgid "Failed"
-msgstr ""
+msgstr "Fracassat"
 
 
 msgid "Fanart"
@@ -205,7 +205,7 @@ msgstr ""
 
 
 msgid "Flatten Season"
-msgstr ""
+msgstr "Aplana temporada"
 
 
 msgid "Forum"
@@ -217,11 +217,11 @@ msgstr ""
 
 
 msgid "Genre"
-msgstr "Tyylilaji"
+msgstr ""
 
 
 msgid "Genres"
-msgstr "Tyylilajit"
+msgstr ""
 
 
 msgid "Home Video Navigation Bar"
@@ -229,11 +229,11 @@ msgstr ""
 
 
 msgid "Home Video Options"
-msgstr ""
+msgstr "Opcions de vídeos casolans"
 
 
 msgid "Home Video View"
-msgstr ""
+msgstr "Vista de vídeos casolans"
 
 
 msgid "Home Videos"
@@ -241,7 +241,7 @@ msgstr ""
 
 
 msgid "Homepage"
-msgstr "Kotisivu"
+msgstr ""
 
 
 msgid "ISO"
@@ -249,15 +249,15 @@ msgstr "ISO"
 
 
 msgid "Length"
-msgstr "Kesto"
-
-
-msgid "Lens"
 msgstr ""
 
 
+msgid "Lens"
+msgstr "Lent"
+
+
 msgid "Library"
-msgstr "Kirjasto"
+msgstr ""
 
 
 msgid "Main Navigation Bar"
@@ -265,11 +265,11 @@ msgstr ""
 
 
 msgid "Mark as Unwatched"
-msgstr ""
+msgstr "Marcar com a no vist"
 
 
 msgid "Mark as Watched"
-msgstr ""
+msgstr "Marcar com a vist"
 
 
 msgid "Miscellaneous"
@@ -309,47 +309,47 @@ msgstr ""
 
 
 msgid "Music Options"
-msgstr ""
+msgstr "Opcions de música"
 
 
 msgid "Music View"
-msgstr ""
+msgstr "Vista de música"
 
 
 msgid "MyPlex Password"
-msgstr ""
+msgstr "Contrasenya MyPlex"
 
 
 msgid "MyPlex Sign In"
-msgstr "MyPlex kirjaudu"
+msgstr "Registre MyPlex"
 
 
 msgid "MyPlex Sign Out"
-msgstr "MyPlex Kirjaudu ulos"
+msgstr "Desconnectar MyPlex"
 
 
 msgid "MyPlex Username"
-msgstr "MyPlex Käyttäjätunnus"
+msgstr "Usuari MyPlex"
 
 
 msgid "No Plex Channels Available"
-msgstr "Plex kanavia ei saatavilla"
+msgstr "No hi han canals disponibles de Plex"
 
 
 msgid "No Plex Library Sections Available"
-msgstr "Plex kirjastoja ei saatavilla"
+msgstr "No hi han seccions a la biblioteca Plex"
 
 
 msgid "No Plex Playlists Available"
-msgstr ""
+msgstr "No hi han llistes de reproducció a la biblioteca Plex"
 
 
 msgid "No Seasons"
-msgstr "Ei kausia"
+msgstr ""
 
 
 msgid "No Unwatched Shows"
-msgstr "Ei katsomattomia videoita"
+msgstr ""
 
 
 msgid "No Unwatched Shows."
@@ -361,11 +361,11 @@ msgstr ""
 
 
 msgid "None"
-msgstr "Ei mitään"
+msgstr "Cap"
 
 
 msgid "Now Playing"
-msgstr ""
+msgstr "Reproduïnt ara mateix"
 
 
 msgid "Off"
@@ -381,7 +381,7 @@ msgstr ""
 
 
 msgid "PIL/Pillow not installed"
-msgstr ""
+msgstr "PIL/Pillow no instal·lat"
 
 
 msgid "Photo"
@@ -393,15 +393,15 @@ msgstr ""
 
 
 msgid "Play"
-msgstr "Toista"
+msgstr ""
 
 
 msgid "Playlists"
-msgstr ""
+msgstr "Llistes de reproducció"
 
 
 msgid "Plex Channels"
-msgstr ""
+msgstr "Canals de Plex"
 
 
 msgid "Plex Home Users"
@@ -409,7 +409,7 @@ msgstr ""
 
 
 msgid "Plex Library"
-msgstr ""
+msgstr "Biblioteca Plex"
 
 
 msgid "Plex Media Server"
@@ -421,15 +421,15 @@ msgstr ""
 
 
 msgid "Plex Media Server: No Tracks Available"
-msgstr ""
+msgstr "Plex Media Server: No hi ha pistes disponibles"
 
 
 msgid "Plex Playlists"
-msgstr ""
+msgstr "Llistes de reproducció del Plex"
 
 
 msgid "PlexConnect"
-msgstr ""
+msgstr "PlexConnect"
 
 
 msgid "PlexHome User PIN"
@@ -465,7 +465,7 @@ msgstr ""
 
 
 msgid "Recently Viewed Episodes"
-msgstr ""
+msgstr "Episodis vistos recentment"
 
 
 msgid "Recently Viewed Shows"
@@ -481,7 +481,7 @@ msgstr ""
 
 
 msgid "Remote Bitrate"
-msgstr ""
+msgstr "Bitrate remot"
 
 
 msgid "Search"
@@ -493,19 +493,19 @@ msgstr ""
 
 
 msgid "Select Fanart"
-msgstr ""
+msgstr "Selecciona Fanart"
 
 
 msgid "Select Poster"
-msgstr ""
+msgstr "Selecciona Cartell"
 
 
 msgid "Select Posters"
-msgstr ""
+msgstr "Selecciona cartells"
 
 
 msgid "Select Tracks"
-msgstr ""
+msgstr "Selecciona pistes"
 
 
 msgid "Settings"
@@ -537,11 +537,11 @@ msgstr ""
 
 
 msgid "Shuffle"
-msgstr ""
+msgstr "Aleatori"
 
 
 msgid "Shutter Speed"
-msgstr ""
+msgstr "Velocitat d'obturador"
 
 
 msgid "Sign Out"
@@ -565,11 +565,11 @@ msgstr ""
 
 
 msgid "Subtitle Size %"
-msgstr "Tekstityksen koko %"
+msgstr ""
 
 
 msgid "Subtitle Track"
-msgstr ""
+msgstr "Subtítol de la pista"
 
 
 msgid "Switch Home User"
@@ -577,7 +577,7 @@ msgstr ""
 
 
 msgid "Synopsis hidden."
-msgstr ""
+msgstr "Sinopsis oculta"
 
 
 msgid "TV Show Navigation Bar"
@@ -585,7 +585,7 @@ msgstr ""
 
 
 msgid "TV Show Options"
-msgstr "TV-sarjan asetukset"
+msgstr ""
 
 
 msgid "TV Show View"
@@ -597,19 +597,19 @@ msgstr ""
 
 
 msgid "TheMovieDB: No Trailer Info available"
-msgstr ""
+msgstr "TheMovieDB: Informació de tràiler no disponible"
 
 
 msgid "Time Format"
-msgstr "Ajan muoto"
+msgstr ""
 
 
 msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
-msgstr ""
+msgstr "Per iniciar sessió a MyPlex, introdueix el teu correu electrònic, usuari o el teu usuari dels fòrums de Plex."
 
 
 msgid "Trailer"
-msgstr ""
+msgstr "Tràiler"
 
 
 msgid "Transcoder"
@@ -617,7 +617,7 @@ msgstr ""
 
 
 msgid "Transcoder Action"
-msgstr ""
+msgstr "Acció de Transcoder"
 
 
 msgid "Transcoder Quality"
@@ -629,7 +629,7 @@ msgstr ""
 
 
 msgid "Unwatched Synopsis"
-msgstr ""
+msgstr "Sinopsis no llegida"
 
 
 msgid "Version"
@@ -645,15 +645,15 @@ msgstr ""
 
 
 msgid "Video Playlist"
-msgstr ""
+msgstr "Llista de reproducció de vídeo"
 
 
 msgid "Video Playlist: No Items Available"
-msgstr ""
+msgstr "Llista de reproducció de vídeo: No hi ha items disponibles"
 
 
 msgid "View Show"
-msgstr ""
+msgstr "Veure show"
 
 
 msgid "Wiki/Docs"
@@ -665,7 +665,7 @@ msgstr ""
 
 
 msgid "Year"
-msgstr ""
+msgstr "Any"
 
 
 msgid "refreshing"
