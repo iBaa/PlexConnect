@@ -22,8 +22,8 @@
             <items>
               <!-- shuffle -->
               <oneLineMenuItem id="shuffle_{{VAL(title)}}"
-                                       onPlay="atv.loadURL('{{URL(:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(Video/ratingKey)}}&amp;PlexConnectPlayType=Shuffle)}}')"
-                                       onSelect="atv.loadURL('{{URL(:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(Video/ratingKey)}}&amp;PlexConnectPlayType=Shuffle)}}')">
+                                       onPlay="atv.loadURL('{{URL(:::PlexConnect=Play_Shuffle&amp;PlexConnectRatingKey={{VAL(Video/ratingKey)}}&amp;PlexConnectPlayType=Shuffle)}}')"
+                                       onSelect="atv.loadURL('{{URL(:::PlexConnect=Play_Shuffle&amp;PlexConnectRatingKey={{VAL(Video/ratingKey)}}&amp;PlexConnectPlayType=Shuffle)}}')">
                 <label>{{TEXT(Shuffle)}}</label>
                 <accessories>
                   <shuffle/>
