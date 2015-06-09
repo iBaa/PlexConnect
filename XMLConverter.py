@@ -827,7 +827,7 @@ class CCommandCollection(CCommandHelper):
             if not key:
                 random.shuffle(elemsSRC)                   # shuffle all
             else:
-                elems = elemsSRC[1:]                       # keep first element fix
+                elems = elemsSRC[0:]                       # keep first element fix
                 random.shuffle(elems)
                 elemsSRC = [elemsSRC[0]] + elems
         

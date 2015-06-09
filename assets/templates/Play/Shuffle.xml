@@ -4,11 +4,11 @@
             <httpFileVideoAsset id="{{VAL(^PlexConnectRatingKey)}}">
                 {{COPY(Video:ratingKey::=|{{VAL_QUOTED(^PlexConnectRatingKey)}}=COPY|{{VAL_QUOTED(^PlexConnectRatingKey)}} =)}}
                 
-                <mediaURL>{{VIDEOURL(@copy_Video:#partIndex)}}</mediaURL>
-                <title>{{VAL(title)}}</title>
-                <description>{{VAL(summary)}}</description>
+                <mediaURL>{{VIDEOURL(@copy_Video)}}</mediaURL>
+                <title>{{VAL(@copy_Video/title)}}</title>
+                <description>{{VAL(@copy_Video/summary)}}</description>
                 <bookmarkTime>{{EVAL({{VAL(viewOffset:0)}} / 1000)}}</bookmarkTime>
-                <image>{{IMAGEURL(thumb::384)}}</image>
+                <image>{{IMAGEURL(@copy_Video/thumb::384)}}</image>
                 
                 <videoPlayerSettings>
                     <!-- PMS, OSD settings, ... -->
@@ -25,10 +25,10 @@
                 </videoPlayerSettings>
                 
                 <myMetadata>
-                    <key>{{VAL(key)}}</key>
-                    <ratingKey>{{VAL(ratingKey)}}</ratingKey>
-                    <duration>{{VAL(duration)}}</duration>
-                    <partDuration>{{VAL(Media/Part/duration)}}</partDuration>
+                    <key>{{VAL(@copy_Video/key)}}</key>
+                    <ratingKey>{{VAL(@copy_Video/ratingKey)}}</ratingKey>
+                    <duration>{{VAL(@copy_Video/duration)}}</duration>
+                    <partDuration>{{VAL(duration)}}</partDuration>
                     
                     <!-- subtitle -->
                     <__COPY__><!--needed as {{COPY}} doesn't work completely clean. Todo: ExpandTree needs to "finish" current element...-->
@@ -45,10 +45,7 @@
                     {{COPY_PLAYLIST(@main/Video:^PlexConnectPlayType:Single:^PlexConnectRatingKey::ratingKey:)}}
                     
                     <httpFileVideoAsset id="{{VAL(key)}}">
-                        {{VAR(partIndex::-1)}}  <!--dirty hack: VAR is evaluated before VAL, VIDEOURL; so #partIndex is +1-->
-                        {{COPY(Media/Part)}}  <!-- stacked media -->
-                        <mediaURL>{{VIDEOURL(@copy_Video:#partIndex)}}</mediaURL>
-                        {{VAR(partIndex::{{EVAL({{VAL(#partIndex)}}+1)}})}}
+                        <mediaURL>{{VIDEOURL()}}</mediaURL>
                         <title>{{VAL(@copy_Video/title)}}</title>
                         <description>{{VAL(@copy_Video/summary)}}</description>
                         <!--bookmarkTime>{{EVAL({{VAL(@main/Video/viewOffset:0)}} / 1000)}}</bookmarkTime-->
@@ -67,6 +64,5 @@
             
         </httpFileVideoAsset>
     </videoPlayer>
-    
 </body>
 </atv>
