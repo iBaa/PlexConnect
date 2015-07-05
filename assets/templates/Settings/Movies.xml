@@ -6,10 +6,10 @@
   </head>
 
   <body>
-    <listWithPreview id="SettingsPage_VideoOSD">
+    <listWithPreview id="SettingsPage_Movies">
       <header>
         <simpleHeader>
-          <title>{{TEXT(Settings)}}</title>
+          <title>{{TEXT(Movies)}}</title>
         </simpleHeader>
       </header>
       <preview>
@@ -41,42 +41,16 @@
               <oneLineMenuItem id="MovieView" onSelect="toggleSettings('MovieView', 'Settings_Movies')">
                 <label>{{TEXT(Movie View)}}</label>
                 <rightLabel>{{SETTING(movieview)}}</rightLabel>
-              </oneLineMenuItem> 
-
+              </oneLineMenuItem>
+              
               <oneLineMenuItem id="ActorView" onSelect="toggleSettings('ActorView', 'Settings_Movies')">
                 <label>{{TEXT(Actor View)}}</label>
                 <rightLabel>{{SETTING(actorview)}}</rightLabel>
               </oneLineMenuItem>
               
-              <oneLineMenuItem id="ShowTitles_Movies" onSelect="toggleSettings('ShowTitles_Movies', 'Settings_Movies')">
-                <label>{{TEXT(Poster Titles)}}</label>
-                <rightLabel>{{SETTING(showtitles_movies)}}</rightLabel>
-              </oneLineMenuItem>
-							
               <oneLineMenuItem id="MoviePrePlay_BottomShelf" onSelect="toggleSettings('MoviePrePlay_BottomShelf', 'Settings_Movies')">
                 <label>{{TEXT(PrePlay Bottom Shelf)}}</label>
                 <rightLabel>{{SETTING(moviepreplay_bottomshelf)}}</rightLabel>
-              </oneLineMenuItem> 
-							
-              <oneLineMenuItem id="MovieFanart" onSelect="toggleSettings('MovieFanart', 'Settings_Movies')">
-              {{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
-              {{CUT(^aTVFirmwareVersion:CUT:=CUT|6=)}}  <!-- watch out: this will make trouble with iOS10 -->
-                <label>{{TEXT(Movie Fanart)}}</label>
-                <rightLabel>{{SETTING(moviefanart)}}</rightLabel>
-              </oneLineMenuItem>
-              
-              <oneLineMenuItem id="MovieFanart" dimmed="true">
-              {{CUT(NoKey:{{EVAL(['','CUT'][isPILinstalled()])}})}}
-              {{CUT(^aTVFirmwareVersion:CUT:=CUT|6=)}}  <!-- watch out: this will make trouble with iOS10 -->
-                <label>{{TEXT(Movie Fanart)}}</label>
-                <rightLabel>{{TEXT(PIL/Pillow not installed)}}</rightLabel>
-              </oneLineMenuItem>
-							
-							<oneLineMenuItem id="Fanart_Blur" onSelect="toggleSettings('Fanart_Blur', 'Settings_Movies')">
-              {{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
-              {{CUT(^aTVFirmwareVersion:CUT:=CUT|6=)}}  <!-- watch out: this will make trouble with iOS10 -->
-                <label>{{TEXT(Fanart Lower Blur)}}</label>
-                <rightLabel>{{SETTING(fanart_blur)}}</rightLabel>
               </oneLineMenuItem>
             </items>
           </menuSection>

@@ -14,6 +14,7 @@ options = { \
     'libraryview'               :('List', 'Grid', 'Bookcase', 'Hide'), \
     'sharedlibrariesview'       :('List', 'Grid', 'Bookcase', 'Hide'), \
     'channelview'               :('List', 'Tabbed List', 'Grid', 'Bookcase', 'Hide'), \
+    'globalsearch'              :('Show', 'Hide'), \
     'movieview'                 :('Grid', 'List', 'Detailed List'), \
     'homevideoview'             :('Grid', 'List', 'Detailed List'), \
     'actorview'                 :('Movies', 'Portrait'), \
@@ -21,14 +22,10 @@ options = { \
     'flattenseason'             :('False', 'True'), \
     'seasonview'                :('List', 'Coverflow'), \
     'durationformat'            :('Hours/Minutes', 'Minutes'), \
-    'moviefanart'               :('Hide', 'Show'), \
-    'tvshowfanart'              :('Hide', 'Show'), \
+    'postertitles'              :('Highlighted Only', 'Show All'), \
+    'fanart'                    :('Hide', 'Show'), \
     'fanart_blur'               :('0', '5', '10', '15', '20'), \
     'moviepreplay_bottomshelf'  :('Extras', 'Related Movies'), \
-    'showtitles_movies'         :('Highlighted Only', 'Show All'), \
-    'showtitles_tvshows'        :('Highlighted Only', 'Show All'), \
-    'showtitles_homevideos'     :('Highlighted Only', 'Show All'), \
-    'showtitles_channels'       :('Highlighted Only', 'Show All'), \
     'movies_navbar_ondeck'      :('checked', 'unchecked'), \
     'movies_navbar_unwatched'   :('checked', 'unchecked'), \
     'movies_navbar_byfolder'    :('checked', 'unchecked'), \

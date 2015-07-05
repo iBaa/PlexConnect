@@ -21,8 +21,8 @@
           {{CUT(Directory/type:CUT:=CUT|album=|album =CUT)}}
             <items>
               <oneLineMenuItem id="{{VAL(key)}}"
-                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Music_Track)}}')"
-                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=Music_Track)}}')">
+                                       onPlay="atv.loadURL('{{URL(key:::includeRelated=1&amp;PlexConnect=Music_Track)}}')"
+                                       onSelect="atv.loadURL('{{URL(key:::includeRelated=1&amp;PlexConnect=Music_Track)}}')">
               {{COPY(Directory)}}
 							{{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
                 <label>{{VAL(title)}}</label>
@@ -123,7 +123,7 @@
             <items>
               <oneLineMenuItem id="{{VAL(key)}}"
                                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=Music_Directory)}}')"
-                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=Music_Directory)}}')">
+                                       onSelect="atv.loadURL('{{URL(:/library/metadata/:{{VAL(ratingKey)}}:includeExtras=1&amp;includeRelated=1&amp;includePopularLeaves=1&amp;PlexConnect=Music_ArtistInfo{{VAL($fanart::Hide=|Show=_Fanart)}})}}')">
                 {{COPY(Directory)}}
                 <label>{{VAL(title)}}</label>
                 <preview>

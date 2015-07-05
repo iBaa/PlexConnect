@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-26 18:56:01+0000\n"
-"PO-Revision-Date: 2014-12-14 12:00+0000\n"
+"POT-Creation-Date: 2015-03-30 18:25:13+0000\n"
+"PO-Revision-Date: 2015-06-01 12:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ru\n"
@@ -125,7 +125,7 @@ msgstr "Сменить все обложки"
 
 
 msgid "Change Fanart"
-msgstr "Сменить Фон"
+msgstr "Сменить фон"
 
 
 msgid "Change Poster"
@@ -134,10 +134,6 @@ msgstr "Сменить обложку"
 
 msgid "Channel Search"
 msgstr "Поиск каналов"
-
-
-msgid "Channel View"
-msgstr "Просмотр каналов"
 
 
 msgid "Channels"
@@ -184,12 +180,28 @@ msgid "Enter the MyPlex password for {0}."
 msgstr "Введите MyPlex пароль для {0}"
 
 
+msgid "Enter the PlexHome user pin for {0}."
+msgstr "Введите пароль для MyPlex для {0}."
+
+
 msgid "Episodes"
 msgstr "Эпизоды"
 
 
+msgid "Extras"
+msgstr "Дополнительно"
+
+
 msgid "Failed"
 msgstr "Не удалось"
+
+
+msgid "Fanart"
+msgstr "Фон"
+
+
+msgid "Fanart Lower Blur"
+msgstr "Интенсивность Blur`а фона"
 
 
 msgid "Flatten Season"
@@ -200,12 +212,20 @@ msgid "Forum"
 msgstr "Форум"
 
 
+msgid "General Appearance"
+msgstr "Внешний вид - Основные"
+
+
 msgid "Genre"
 msgstr "Жанр"
 
 
 msgid "Genres"
 msgstr "Жанры"
+
+
+msgid "Home Video Navigation Bar"
+msgstr "Панель навигации по домашнему видео"
 
 
 msgid "Home Video Options"
@@ -216,8 +236,8 @@ msgid "Home Video View"
 msgstr "Просмотр домашнего видео"
 
 
-msgid "Home Videos Navigation Bar"
-msgstr "Панель навигации по домашнему видео"
+msgid "Home Videos"
+msgstr "Домашние видео"
 
 
 msgid "Homepage"
@@ -240,8 +260,8 @@ msgid "Library"
 msgstr "Библиотека"
 
 
-msgid "Library View"
-msgstr "Просмотр библиотеки"
+msgid "Main Navigation Bar"
+msgstr "Основная панель навигации"
 
 
 msgid "Mark as Unwatched"
@@ -252,16 +272,16 @@ msgid "Mark as Watched"
 msgstr "Отметить как просмотренное"
 
 
+msgid "Miscellaneous"
+msgstr "Прочие"
+
+
 msgid "More"
 msgstr "Ещё"
 
 
 msgid "More..."
 msgstr "Еще..."
-
-
-msgid "Movie Fanart"
-msgstr "Фон фильма"
 
 
 msgid "Movie Navigation Bar"
@@ -278,6 +298,10 @@ msgstr "Просмотр фильмов"
 
 msgid "Movies"
 msgstr "Фильмы"
+
+
+msgid "Music"
+msgstr "Музыка"
 
 
 msgid "Music Navigation Bar"
@@ -306,10 +330,6 @@ msgstr "Выйти из MyPlex"
 
 msgid "MyPlex Username"
 msgstr "MyPlex Логин"
-
-
-msgid "Navigation Bar"
-msgstr "Панель навигации"
 
 
 msgid "No Plex Channels Available"
@@ -348,6 +368,10 @@ msgid "Now Playing"
 msgstr "Сейчас воспроизводится"
 
 
+msgid "Off"
+msgstr "Выкл"
+
+
 msgid "On Deck"
 msgstr "На главной"
 
@@ -380,6 +404,10 @@ msgid "Plex Channels"
 msgstr "Каналы Plex"
 
 
+msgid "Plex Home Users"
+msgstr "Пользователи Plex Home"
+
+
 msgid "Plex Library"
 msgstr "Библиотека Plex"
 
@@ -404,8 +432,16 @@ msgid "PlexConnect"
 msgstr "PlexConnect"
 
 
+msgid "PlexHome User PIN"
+msgstr "PIN пользователя Plex Home"
+
+
 msgid "Poster Titles"
 msgstr "Заголовки плакатов"
+
+
+msgid "PrePlay Bottom Shelf"
+msgstr "Панель воспроизведения перед фильмами"
 
 
 msgid "Producers"
@@ -438,6 +474,10 @@ msgstr "Недавно просмотренные сериалы"
 
 msgid "Refresh"
 msgstr "Обновить"
+
+
+msgid "Related Movies"
+msgstr "Похожие фильмы"
 
 
 msgid "Remote Bitrate"
@@ -488,14 +528,6 @@ msgid "Show Photos"
 msgstr " Просмотр Фотографий"
 
 
-msgid "Show Playlists"
-msgstr "Показать плейлисты"
-
-
-msgid "Show Shared Libraries"
-msgstr "Показать общие библиотеки"
-
-
 msgid "Show Unwatched Count"
 msgstr "Показать количество непросмотренных"
 
@@ -510,6 +542,10 @@ msgstr "Перемешать"
 
 msgid "Shutter Speed"
 msgstr "Скорость затвора"
+
+
+msgid "Sign Out"
+msgstr "Выйти"
 
 
 msgid "SlideShow"
@@ -536,12 +572,12 @@ msgid "Subtitle Track"
 msgstr "Дорожка субтитров"
 
 
+msgid "Switch Home User"
+msgstr "Сменить пользователя Home"
+
+
 msgid "Synopsis hidden."
 msgstr "Краткий обзор скрыт."
-
-
-msgid "TV Show Fanart"
-msgstr "Фон сериалов"
 
 
 msgid "TV Show Navigation Bar"
@@ -556,6 +592,10 @@ msgid "TV Show View"
 msgstr "Просмотр сериалов"
 
 
+msgid "TV Shows"
+msgstr "Сериалы"
+
+
 msgid "TheMovieDB: No Trailer Info available"
 msgstr "TheMovieDB: Нет информации по трейлеру"
 
@@ -566,10 +606,6 @@ msgstr "Формат времени"
 
 msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
 msgstr "Чтобы войти в MyPlex, введите свой ​​адрес электронной почты, имя пользователя или логин на форуме Plex."
-
-
-msgid "Top Level Options"
-msgstr "Настройки верхнего уровня"
 
 
 msgid "Trailer"

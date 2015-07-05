@@ -9,7 +9,7 @@
     <listWithPreview id="SettingsPage_HomeVideos">
       <header>
         <simpleHeader>
-          <title>{{TEXT(Settings)}}</title>
+          <title>{{TEXT(Home Videos)}}</title>
         </simpleHeader>
       </header>
       <preview>
@@ -42,17 +42,13 @@
                 <label>{{TEXT(Home Video View)}}</label>
                 <rightLabel>{{SETTING(homevideoview)}}</rightLabel>
               </oneLineMenuItem>
-              <oneLineMenuItem id="ShowTitles_HomeVideos" onSelect="toggleSettings('ShowTitles_HomeVideos', 'Settings_HomeVideos')">
-                <label>{{TEXT(Poster Titles)}}</label>
-                <rightLabel>{{SETTING(showtitles_homevideos)}}</rightLabel>
-              </oneLineMenuItem>
             </items>
           </menuSection>
 
           <menuSection>
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Home Videos Navigation Bar)}}</title>
+                <title>{{TEXT(Home Video Navigation Bar)}}</title>
               </horizontalDivider>
             </header>
             <items>

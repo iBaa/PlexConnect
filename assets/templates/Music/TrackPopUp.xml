@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<atv> 
+  <head>{{CUT(^aTVFirmwareVersion:CUT:4.0=|6.0=CUT)}}
+    <script src="{{URL(:/js/utils.js)}}"/> 
+  </head> 
+  
+  <body>{{CUT(^aTVFirmwareVersion:CUT:4.0=|6.0=CUT)}}
+    <optionDialog id="scrobble.optionDialog">
+      <header>
+        <simpleHeader>
+          <title>{{VAL(title1)}}</title>
+          <subtitle>{{VAL(title2)}}</subtitle>
+        </simpleHeader>
+      </header> 
+      
+      <menu>
+        <sections>
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title></title>
+              </horizontalDivider>
+            </header>
+            
+            <items>
+            <oneLineMenuItem id="item2" onSelect="atv.loadAndSwapURL('{{URL(Track/Related/Directory/key:::includeRelated=1&amp;PlexConnect=Music_Track)}}')">
+              <label>{{TEXT(Plex Mix)}}</label>
+            </oneLineMenuItem>
+        
+            <oneLineMenuItem id="item3" onSelect="atv.loadAndSwapURL('{{URL(Track/primaryExtraKey:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{EVAL('{{VAL(Track/primaryExtraKey)}}'[18:])}})}}')">
+              <label>{{TEXT(Play Video)}}</label>
+            </oneLineMenuItem>
+            </items>
+
+          </menuSection>
+        </sections>
+      </menu>
+    </optionDialog>
+  </body>
+  
+  <body>{{CUT(^aTVFirmwareVersion::4.0=CUT|6.0=)}}
+    <popUpMenu id='context_menu'>
+      <sections>
+        <menuSection>
+          <items>
+            <oneLineMenuItem id="item2" onSelect="atv.loadURL('{{URL(Track/Related/Directory/key:::includeRelated=1&amp;PlexConnect=Music_Track)}}')">
+              <label>{{TEXT(Plex Mix)}}</label>
+            </oneLineMenuItem>
+        
+            <oneLineMenuItem id="item3" onSelect="atv.loadURL('{{URL(Track/primaryExtraKey:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{EVAL('{{VAL(Track/primaryExtraKey)}}'[18:])}})}}')">
+              <label>{{TEXT(Play Video)}}</label>
+            </oneLineMenuItem>
+          </items>
+        </menuSection>
+      </sections> 
+    </popUpMenu>
+  </body>
+</atv>

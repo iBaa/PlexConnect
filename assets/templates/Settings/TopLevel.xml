@@ -6,10 +6,10 @@
   </head>
 
   <body>
-    <listWithPreview id="SettingsPage_MainNavigation">
+    <listWithPreview id="SettingsPage_GeneralAppearance">
       <header>
         <simpleHeader>
-          <title>{{TEXT(Settings)}}</title>
+          <title>{{TEXT(General Appearance)}}</title>
         </simpleHeader>
       </header>
       <preview>
@@ -39,7 +39,7 @@
           <menuSection>
             <header>
               <horizontalDivider alignment="left">
-                <title>{{TEXT(Navigation Bar)}}</title>
+                <title>{{TEXT(Main Navigation Bar)}}</title>
               </horizontalDivider>
             </header>
             <items>
@@ -59,9 +59,45 @@
                 <label>{{TEXT(Channels)}}</label>
                 <rightLabel>{{SETTING(channelview)}}</rightLabel>
               </oneLineMenuItem>
-              <oneLineMenuItem id="ShowTitles_Channels" onSelect="toggleSettings('ShowTitles_Channels', 'Settings_TopLevel')">
-                <label>- {{TEXT(Poster Titles)}}</label>
-                <rightLabel>{{SETTING(showtitles_channels)}}</rightLabel>
+              <oneLineMenuItem id="GlobalSearch" onSelect="toggleSettings('GlobalSearch', 'Settings_TopLevel')">
+                <label>{{TEXT(Search)}}</label>
+                <rightLabel>{{SETTING(globalsearch)}}</rightLabel>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+          
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{TEXT(Miscellaneous)}}</title>
+              </horizontalDivider>
+            </header>
+            <items>
+              <oneLineMenuItem id="Fanart" onSelect="toggleSettings('Fanart', 'Settings_TopLevel')">
+              {{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
+              {{CUT(^aTVFirmwareVersion:CUT:=CUT|6=)}}  <!-- watch out: this will make trouble with iOS10 -->
+                <label>{{TEXT(Fanart)}}</label>
+                <rightLabel>{{SETTING(fanart)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="Fanart" dimmed="true">
+              {{CUT(NoKey:{{EVAL(['','CUT'][isPILinstalled()])}})}}
+              {{CUT(^aTVFirmwareVersion:CUT:=CUT|6=)}}  <!-- watch out: this will make trouble with iOS10 -->
+                <label>{{TEXT(Fanart)}}</label>
+                <rightLabel>{{TEXT(PIL/Pillow not installed)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="Fanart_Blur" onSelect="toggleSettings('Fanart_Blur', 'Settings_TopLevel')">
+              {{CUT(NoKey:{{EVAL(['CUT',''][isPILinstalled()])}})}}
+              {{CUT(^aTVFirmwareVersion:CUT:=CUT|6=)}}  <!-- watch out: this will make trouble with iOS10 -->
+                <label>{{TEXT(Fanart Lower Blur)}}</label>
+                <rightLabel>{{SETTING(fanart_blur)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="PosterTitles" onSelect="toggleSettings('PosterTitles', 'Settings_TopLevel')">
+                <label>{{TEXT(Poster Titles)}}</label>
+                <rightLabel>{{SETTING(postertitles)}}</rightLabel>
+              </oneLineMenuItem>
+              <oneLineMenuItem id="DurationFormat" onSelect="toggleSettings('DurationFormat', 'Settings_TopLevel')">
+                <label>{{TEXT(Duration Format)}}</label>
+                <rightLabel>{{SETTING(durationformat)}}</rightLabel>
               </oneLineMenuItem>
             </items>
           </menuSection>

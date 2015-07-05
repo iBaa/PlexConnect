@@ -7,7 +7,7 @@
             <title>{{TEXT(Search)}} {{PMSNAME()}}</title>
           </simpleHeader>
         </header>
-      <baseURL>{{URL(:/search::type=4&amp;query=)}}</baseURL>
+      <baseURL>{{URL(:/search::PlexConnect=Search_Results&amp;type=4&amp;query=)}}</baseURL>
     </search>
   </body>
 </atv>

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-26 18:56:01+0000\n"
-"PO-Revision-Date: 2014-12-14 12:00+0000\n"
+"POT-Creation-Date: 2015-03-30 18:25:13+0000\n"
+"PO-Revision-Date: 2015-06-01 12:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_Hant\n"
@@ -136,10 +136,6 @@ msgid "Channel Search"
 msgstr "頻道搜尋"
 
 
-msgid "Channel View"
-msgstr "頻道檢視"
-
-
 msgid "Channels"
 msgstr "頻道"
 
@@ -184,12 +180,28 @@ msgid "Enter the MyPlex password for {0}."
 msgstr "輸入 {0} 的 MyPlex 密碼。"
 
 
+msgid "Enter the PlexHome user pin for {0}."
+msgstr ""
+
+
 msgid "Episodes"
 msgstr "集"
 
 
+msgid "Extras"
+msgstr ""
+
+
 msgid "Failed"
 msgstr "失敗"
+
+
+msgid "Fanart"
+msgstr ""
+
+
+msgid "Fanart Lower Blur"
+msgstr ""
 
 
 msgid "Flatten Season"
@@ -200,12 +212,20 @@ msgid "Forum"
 msgstr "討論區"
 
 
+msgid "General Appearance"
+msgstr ""
+
+
 msgid "Genre"
 msgstr "類型"
 
 
 msgid "Genres"
 msgstr "類型"
+
+
+msgid "Home Video Navigation Bar"
+msgstr ""
 
 
 msgid "Home Video Options"
@@ -216,8 +236,8 @@ msgid "Home Video View"
 msgstr "家庭影片檢視"
 
 
-msgid "Home Videos Navigation Bar"
-msgstr "家庭影片主選單"
+msgid "Home Videos"
+msgstr ""
 
 
 msgid "Homepage"
@@ -240,8 +260,8 @@ msgid "Library"
 msgstr "資料庫"
 
 
-msgid "Library View"
-msgstr "資料庫檢視"
+msgid "Main Navigation Bar"
+msgstr ""
 
 
 msgid "Mark as Unwatched"
@@ -252,16 +272,16 @@ msgid "Mark as Watched"
 msgstr "標示為已觀看"
 
 
+msgid "Miscellaneous"
+msgstr ""
+
+
 msgid "More"
 msgstr "更多"
 
 
 msgid "More..."
 msgstr "更多⋯"
-
-
-msgid "Movie Fanart"
-msgstr ""
 
 
 msgid "Movie Navigation Bar"
@@ -278,6 +298,10 @@ msgstr "電影檢視"
 
 msgid "Movies"
 msgstr "電影"
+
+
+msgid "Music"
+msgstr ""
 
 
 msgid "Music Navigation Bar"
@@ -306,10 +330,6 @@ msgstr "登出 MyPlex"
 
 msgid "MyPlex Username"
 msgstr "MyPlex 帳號"
-
-
-msgid "Navigation Bar"
-msgstr ""
 
 
 msgid "No Plex Channels Available"
@@ -348,6 +368,10 @@ msgid "Now Playing"
 msgstr ""
 
 
+msgid "Off"
+msgstr ""
+
+
 msgid "On Deck"
 msgstr "首頁"
 
@@ -380,6 +404,10 @@ msgid "Plex Channels"
 msgstr "Plex 頻道"
 
 
+msgid "Plex Home Users"
+msgstr ""
+
+
 msgid "Plex Library"
 msgstr "Plex 資料庫"
 
@@ -404,8 +432,16 @@ msgid "PlexConnect"
 msgstr "PlexConnect"
 
 
+msgid "PlexHome User PIN"
+msgstr ""
+
+
 msgid "Poster Titles"
 msgstr "海報標題"
+
+
+msgid "PrePlay Bottom Shelf"
+msgstr ""
 
 
 msgid "Producers"
@@ -438,6 +474,10 @@ msgstr "最近觀看的節目"
 
 msgid "Refresh"
 msgstr "更新"
+
+
+msgid "Related Movies"
+msgstr ""
 
 
 msgid "Remote Bitrate"
@@ -488,14 +528,6 @@ msgid "Show Photos"
 msgstr "顯示照片"
 
 
-msgid "Show Playlists"
-msgstr ""
-
-
-msgid "Show Shared Libraries"
-msgstr ""
-
-
 msgid "Show Unwatched Count"
 msgstr "顯示未觀看的數量"
 
@@ -510,6 +542,10 @@ msgstr ""
 
 msgid "Shutter Speed"
 msgstr "快門速度"
+
+
+msgid "Sign Out"
+msgstr ""
 
 
 msgid "SlideShow"
@@ -536,12 +572,12 @@ msgid "Subtitle Track"
 msgstr "字幕"
 
 
+msgid "Switch Home User"
+msgstr ""
+
+
 msgid "Synopsis hidden."
 msgstr "影片簡介已隱藏。"
-
-
-msgid "TV Show Fanart"
-msgstr ""
 
 
 msgid "TV Show Navigation Bar"
@@ -556,6 +592,10 @@ msgid "TV Show View"
 msgstr "電視節目檢視"
 
 
+msgid "TV Shows"
+msgstr ""
+
+
 msgid "TheMovieDB: No Trailer Info available"
 msgstr "TheMovieDB 找不到此電影的預告片"
 
@@ -566,10 +606,6 @@ msgstr "時間格式"
 
 msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
 msgstr "輸入你的 E-mail 帳號、MyPlex 帳號或 Plex 論壇帳號以登入 MyPlex。"
-
-
-msgid "Top Level Options"
-msgstr "最外層選項"
 
 
 msgid "Trailer"

@@ -1,0 +1,147 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+
+  <body>
+    <searchResults id="searchResults">
+      <menu>
+        <sections>
+
+          <!-- Movies -->
+          <!-- servers -->
+          <__COPY__>  <!--<menuSection>{{COPY}} somehow conflicts with </menuSection>{{CUT}}-->
+          {{COPY(Server:@main/size::0=|1=COPY)}}
+          <menuSection>
+          
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{CUT(@main/size::=CUT|1=|1 =CUT)}}{{TEXT(Movies)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+                <title>{{CUT(@main/size::=|1=CUT|1 =)}}{{TEXT(Movies)}} &lt;{{VAL(name)}}{{VAL(local::0=, {{TEXT(remote)}}|0 =)}}&gt;</title>
+              </horizontalDivider>
+            </header>
+            <items>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}"
+                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                             onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect=Movie_PrePlay{{VAL($fanart::Hide=|Show=_Fanart)}})}}')">
+                {{COPY(Video:type::=|movie=COPY|movie =)}}
+                {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
+                <label>{{VAL(title)}}</label>
+                <image>{{IMAGEURL(thumb::384)}}</image>
+                <defaultImage>resource://Poster.png</defaultImage>
+              </twoLineEnhancedMenuItem>
+            </items>
+          </menuSection>{{CUT(#cut)}}
+          </__COPY__>
+
+          <!-- Shows -->
+          <!-- servers -->
+          <__COPY__>  <!--<menuSection>{{COPY}} somehow conflicts with </menuSection>{{CUT}}-->
+          {{COPY(Server:@main/size::0=|1=COPY)}}
+          <menuSection>
+          
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{CUT(@main/size::=CUT|1=|1 =CUT)}}{{TEXT(Shows)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+                <title>{{CUT(@main/size::=|1=CUT|1 =)}}{{TEXT(Shows)}} &lt;{{VAL(name)}}{{VAL(local::0=, {{TEXT(remote)}}|0 =)}}&gt;</title>
+              </horizontalDivider>
+            </header>
+            <items>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}"
+                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Season)}}')"
+                             onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Season)}}')">
+                {{COPY(Directory:type::=|show=COPY|show =)}}
+                {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
+                <label>{{VAL(title)}}</label>
+                <image>{{IMAGEURL(thumb::384)}}</image>
+                <defaultImage>resource://Poster.png</defaultImage>
+              </twoLineEnhancedMenuItem>
+            </items>
+          </menuSection>{{CUT(#cut)}}
+          </__COPY__>
+
+          <!-- Episodes -->
+          <!-- servers -->
+          <__COPY__>  <!--<menuSection>{{COPY}} somehow conflicts with </menuSection>{{CUT}}-->
+          {{COPY(Server:@main/size::0=|1=COPY)}}
+          <menuSection>
+          
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{CUT(@main/size::=CUT|1=|1 =CUT)}}{{TEXT(Episodes)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+                <title>{{CUT(@main/size::=|1=CUT|1 =)}}{{TEXT(Episodes)}} &lt;{{VAL(name)}}{{VAL(local::0=, {{TEXT(remote)}}|0 =)}}&gt;</title>
+              </horizontalDivider>
+            </header>
+            <items>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}"
+                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                             onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect=TVShow_PrePlay{{VAL($fanart::Hide=|Show=_Fanart)}})}}')">
+                {{COPY(Video:type::=|episode=COPY|episode =)}}
+                {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
+                <label>{{VAL(title)}}</label>
+                <label2>{{VAL(grandparentTitle)}}</label2>
+                <image>{{IMAGEURL(thumb::384)}}</image>
+                <defaultImage>resource://Poster.png</defaultImage>
+              </twoLineEnhancedMenuItem>
+            </items>
+          </menuSection>{{CUT(#cut)}}
+          </__COPY__>
+
+          <!-- Albums -->
+          <!-- servers -->
+          <__COPY__>  <!--<menuSection>{{COPY}} somehow conflicts with </menuSection>{{CUT}}-->
+          {{COPY(Server:@main/size::0=|1=COPY)}}
+          <menuSection>
+          
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{CUT(@main/size::=CUT|1=|1 =CUT)}}{{TEXT(Albums)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+                <title>{{CUT(@main/size::=|1=CUT|1 =)}}{{TEXT(Albums)}} &lt;{{VAL(name)}}{{VAL(local::0=, {{TEXT(remote)}}|0 =)}}&gt;</title>
+              </horizontalDivider>
+            </header>
+            <items>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}"
+                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Music_Track)}}')"
+                             onSelect="atv.loadURL('{{URL(key:::PlexConnect=Music_Track)}}')">
+                {{COPY(Directory:type::=|album=COPY|album =)}}
+                {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
+                <label>{{VAL(title)}}</label>
+                <label2>{{VAL(parentTitle)}}</label2>
+                <image>{{IMAGEURL(thumb::384)}}</image>
+                <defaultImage>resource://Poster.png</defaultImage>
+              </twoLineEnhancedMenuItem>
+            </items>
+          </menuSection>{{CUT(#cut)}}
+          </__COPY__>
+
+          <!-- Artists -->
+          <!-- servers -->
+          <__COPY__>  <!--<menuSection>{{COPY}} somehow conflicts with </menuSection>{{CUT}}-->
+          {{COPY(Server:@main/size::0=|1=COPY)}}
+          <menuSection>
+            
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{CUT(@main/size::=CUT|1=|1 =CUT)}}{{TEXT(Artists)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+                <title>{{CUT(@main/size::=|1=CUT|1 =)}}{{TEXT(Artists)}} &lt;{{VAL(name)}}{{VAL(local::0=, {{TEXT(remote)}}|0 =)}}&gt;</title>
+              </horizontalDivider>
+            </header>
+            <items>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}"
+                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Music_Directory)}}')"
+                             onSelect="atv.loadURL('{{URL(key:::PlexConnect=Music_Directory)}}')">
+                {{COPY(Directory:type::=|artist=COPY|artist =)}}
+                {{VAR(cut:NoKey:)}}  <!--this sets the var to None-->
+                <label>{{VAL(title)}}</label>
+                <image>{{IMAGEURL(thumb::384)}}</image>
+                <defaultImage>resource://Poster.png</defaultImage>
+              </twoLineEnhancedMenuItem>
+            </items>
+          </menuSection>{{CUT(#cut)}}
+          </__COPY__>
+
+        </sections>
+      </menu>
+    </searchResults>
+  </body>
+</atv>

@@ -6,7 +6,7 @@ Collection of "connector functions" to Plex Media Server/MyPlex
 
 PlexGDM:
 loosely based on hippojay's plexGDM:
-https://github.com/hippojay/plugin.video.plexbmc
+https://github.com/hippojay/script.plexbmc.helper... /resources/lib/plexgdm.py
 
 
 Plex Media Server communication:
@@ -136,7 +136,7 @@ parameters:
 result:
     PMS_list - dict() of PMSs found
 """
-IP_PlexGDM = '<broadcast>'
+IP_PlexGDM = '239.0.0.250'  # multicast to PMS
 Port_PlexGDM = 32414
 Msg_PlexGDM = 'M-SEARCH * HTTP/1.0'
 
@@ -150,7 +150,8 @@ def PlexGDM():
     GDM.settimeout(1.0)
     
     # Set the time-to-live for messages to 1 for local network
-    GDM.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+    ttl = struct.pack('b', 1)
+    GDM.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, ttl)
     
     returnData = []
     try:
@@ -448,7 +449,7 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
     root.set('friendlyName', type+' Servers')
     
     for uuid in g_PMS.get(ATV_udid, {}):
-        if (type=='all') or \
+        if (type=='all' and getPMSProperty(ATV_udid, uuid, 'name')!='plex.tv') or \
            (type=='owned' and getPMSProperty(ATV_udid, uuid, 'owned')=='1') or \
            (type=='shared' and getPMSProperty(ATV_udid, uuid, 'owned')=='0') or \
            (type=='local' and getPMSProperty(ATV_udid, uuid, 'local')=='1') or \
@@ -509,6 +510,21 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
                     if 'composite' in Playlist.attrib:
                         Playlist.set('composite', PMS_mark + getURL('', path, Playlist.get('composite')))
                     Server.append(Playlist)
+                
+                for Video in XML.getiterator('Video'):  # copy "Video" content, add PMS to links
+                    key = Video.get('key')  # absolute path
+                    Video.set('key',    PMS_mark + getURL('', path, key))
+                    if 'thumb' in Video.attrib:
+                        Video.set('thumb', PMS_mark + getURL('', path, Video.get('thumb')))
+                    if 'parentKey' in Video.attrib:
+                        Video.set('parentKey', PMS_mark + getURL('', path, Video.get('parentKey')))
+                    if 'parentThumb' in Video.attrib:
+                        Video.set('parentThumb', PMS_mark + getURL('', path, Video.get('parentThumb')))
+                    if 'grandparentKey' in Video.attrib:
+                        Video.set('grandparentKey', PMS_mark + getURL('', path, Video.get('grandparentKey')))
+                    if 'grandparentThumb' in Video.attrib:
+                        Video.set('grandparentThumb', PMS_mark + getURL('', path, Video.get('grandparentThumb')))
+                    Server.append(Video)
     
     root.set('size', str(len(root.findall('Server'))))
     

@@ -1,0 +1,83 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+
+  <body>
+    <itemDetail id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=Music_ArtistInfo{{VAL($fanart::Hide=|Show=_Fanart)}})}}')">
+
+      <title>{{VAL(Directory/title)}}</title>
+      <summary>{{VAL(Directory/summary)}}</summary>
+      <image style="squarePoster">{{IMAGEURL(Directory/thumb::768)}}</image>
+      <defaultImage>resource://Poster.png</defaultImage>
+
+      <centerShelf>
+        <shelf id="centerShelf" columnCount="3" center="true">
+          <sections>
+            <shelfSection>
+              <items>
+                <actionButton id="more" accessibilityLabel="More info" onSelect="atv.showMoreInfo();" onPlay="atv.showMoreInfo();">
+                  <title>{{TEXT(More)}}</title>
+                  <image>resource://More.png</image>
+                  <focusedImage>resource://MoreFocused.png</focusedImage>
+                </actionButton>
+              </items>
+            </shelfSection>
+          </sections>
+        </shelf>
+      </centerShelf>
+      
+      <divider>
+        <smallCollectionDivider alignment="left">
+          <title>{{TEXT(Similar Artists)}}</title>
+        </smallCollectionDivider>
+      </divider>{{CUT(Directory/Related/Hub/Directory/ratingKey:CUT:=)}}
+
+      <bottomShelf>
+        <shelf id="bottomShelf" columnCount="5">
+          <sections>
+            <shelfSection>
+              <items>
+                <moviePoster related="true" alwaysShowTitles="true" id="shelf_item_1" 
+                             onSelect="atv.loadAndSwapURL('{{URL(:/library/metadata/:{{VAL(ratingKey)}}:includeExtras=1&amp;includeRelated=1&amp;includePopularLeaves=1&amp;PlexConnect=Music_ArtistInfo{{VAL($fanart::Hide=|Show=_Fanart)}})}}')">
+                  {{COPY(Directory/Related/Hub/Directory)}}
+                  <title>{{VAL(title)}}</title>
+                  <image>{{IMAGEURL(thumb::384)}}</image>
+                  <defaultImage>resource://16x9.png</defaultImage>
+                </moviePoster>
+              </items>
+            </shelfSection>
+          </sections>
+        </shelf>
+      </bottomShelf>{{CUT(Directory/Related/Hub/Directory/ratingKey:CUT:=)}}
+
+      <moreInfo>{{VAR(cut:NoKey:CUT)}}  <!--this sets the var to CUT-->
+        <listScrollerSplit id="com.sample.list-scroller-split">
+          <menu>
+            <sections>
+              <menuSection>
+                <items>
+                  <oneLineMenuItem id="list_1">
+                    <label>{{TEXT(Albums)}}</label>
+                    <preview>
+                      <link>{{URL(:/library/metadata/:{{VAL(Directory/ratingKey)}}/children:PlexConnect=Music_AlbumPreview)}}</link>
+                    </preview>
+                  </oneLineMenuItem>
+ 
+                  <oneLineMenuItem id="list_2">
+                    <label>{{TEXT(Music Videos)}}</label>
+                    <preview>
+                      <link>{{URL(:/library/metadata/:{{VAL(Directory/ratingKey)}}:includeExtras=1&amp;PlexConnect=Music_VideoPreview)}}</link>
+                    </preview>
+                  </oneLineMenuItem>{{CUT(Directory/Extras/Video/ratingKey:CUT:=)}}
+                </items>
+              </menuSection>
+
+            </sections>
+          </menu>
+        </listScrollerSplit>
+      </moreInfo>
+
+    </itemDetail>
+	</body>
+</atv>

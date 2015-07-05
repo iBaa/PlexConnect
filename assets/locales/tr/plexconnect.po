@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-26 18:56:01+0000\n"
-"PO-Revision-Date: 2014-12-14 12:00+0000\n"
+"POT-Creation-Date: 2015-03-30 18:25:13+0000\n"
+"PO-Revision-Date: 2015-06-01 12:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -136,10 +136,6 @@ msgid "Channel Search"
 msgstr "Kanal Arama"
 
 
-msgid "Channel View"
-msgstr "Kanal Görünümü"
-
-
 msgid "Channels"
 msgstr "Kanallar"
 
@@ -184,12 +180,28 @@ msgid "Enter the MyPlex password for {0}."
 msgstr "{0} İçin MyPLex Şifresini Girin."
 
 
+msgid "Enter the PlexHome user pin for {0}."
+msgstr ""
+
+
 msgid "Episodes"
 msgstr "Bölümler"
 
 
+msgid "Extras"
+msgstr ""
+
+
 msgid "Failed"
 msgstr "Başarısız"
+
+
+msgid "Fanart"
+msgstr ""
+
+
+msgid "Fanart Lower Blur"
+msgstr ""
 
 
 msgid "Flatten Season"
@@ -200,12 +212,20 @@ msgid "Forum"
 msgstr "Forum"
 
 
+msgid "General Appearance"
+msgstr ""
+
+
 msgid "Genre"
 msgstr "Tür"
 
 
 msgid "Genres"
 msgstr "Türler"
+
+
+msgid "Home Video Navigation Bar"
+msgstr ""
 
 
 msgid "Home Video Options"
@@ -216,8 +236,8 @@ msgid "Home Video View"
 msgstr "Ev Video Görünümü"
 
 
-msgid "Home Videos Navigation Bar"
-msgstr "Ev Videoları Gezinme Çubuğu"
+msgid "Home Videos"
+msgstr ""
 
 
 msgid "Homepage"
@@ -240,8 +260,8 @@ msgid "Library"
 msgstr "Kütüphanem"
 
 
-msgid "Library View"
-msgstr "Kütüphane Görünümü"
+msgid "Main Navigation Bar"
+msgstr ""
 
 
 msgid "Mark as Unwatched"
@@ -252,16 +272,16 @@ msgid "Mark as Watched"
 msgstr "İzlenmiş Olarak İşaretle"
 
 
+msgid "Miscellaneous"
+msgstr ""
+
+
 msgid "More"
 msgstr "Daha"
 
 
 msgid "More..."
 msgstr "Daha..."
-
-
-msgid "Movie Fanart"
-msgstr ""
 
 
 msgid "Movie Navigation Bar"
@@ -278,6 +298,10 @@ msgstr "Film"
 
 msgid "Movies"
 msgstr "Film"
+
+
+msgid "Music"
+msgstr ""
 
 
 msgid "Music Navigation Bar"
@@ -306,10 +330,6 @@ msgstr "MyPlex Çıkış"
 
 msgid "MyPlex Username"
 msgstr "MyPlex Kullanıcı Adı"
-
-
-msgid "Navigation Bar"
-msgstr ""
 
 
 msgid "No Plex Channels Available"
@@ -348,6 +368,10 @@ msgid "Now Playing"
 msgstr ""
 
 
+msgid "Off"
+msgstr ""
+
+
 msgid "On Deck"
 msgstr "Hazırda"
 
@@ -380,6 +404,10 @@ msgid "Plex Channels"
 msgstr "Plex Kanalları"
 
 
+msgid "Plex Home Users"
+msgstr ""
+
+
 msgid "Plex Library"
 msgstr "Plex Kütüphanesi"
 
@@ -404,8 +432,16 @@ msgid "PlexConnect"
 msgstr "PlexConnect"
 
 
+msgid "PlexHome User PIN"
+msgstr ""
+
+
 msgid "Poster Titles"
 msgstr "Afiş Başlıkları"
+
+
+msgid "PrePlay Bottom Shelf"
+msgstr ""
 
 
 msgid "Producers"
@@ -438,6 +474,10 @@ msgstr "Yakında Görüntülenen Diziler"
 
 msgid "Refresh"
 msgstr "Yenile"
+
+
+msgid "Related Movies"
+msgstr ""
 
 
 msgid "Remote Bitrate"
@@ -488,14 +528,6 @@ msgid "Show Photos"
 msgstr "Resimleri Göster"
 
 
-msgid "Show Playlists"
-msgstr ""
-
-
-msgid "Show Shared Libraries"
-msgstr ""
-
-
 msgid "Show Unwatched Count"
 msgstr "İzlenmemiş Sayısını Göster"
 
@@ -510,6 +542,10 @@ msgstr ""
 
 msgid "Shutter Speed"
 msgstr "Perde Hızı"
+
+
+msgid "Sign Out"
+msgstr ""
 
 
 msgid "SlideShow"
@@ -536,12 +572,12 @@ msgid "Subtitle Track"
 msgstr "Altyazı"
 
 
+msgid "Switch Home User"
+msgstr ""
+
+
 msgid "Synopsis hidden."
 msgstr "Saklı Özet."
-
-
-msgid "TV Show Fanart"
-msgstr ""
 
 
 msgid "TV Show Navigation Bar"
@@ -556,6 +592,10 @@ msgid "TV Show View"
 msgstr "Dizi"
 
 
+msgid "TV Shows"
+msgstr ""
+
+
 msgid "TheMovieDB: No Trailer Info available"
 msgstr "TheMovieDB: Tanıtım Filmi Mevcut Değil"
 
@@ -566,10 +606,6 @@ msgstr "Zaman Biçimi"
 
 msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
 msgstr "MyPLex'e giriş yapabilmeniz için, önce E-posta adresinizi, kullanıcı adınızı veya  Plex Forum adınızı girin."
-
-
-msgid "Top Level Options"
-msgstr "Üst Seviye Seçenekleri"
 
 
 msgid "Trailer"

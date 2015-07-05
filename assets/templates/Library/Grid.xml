@@ -20,7 +20,7 @@
         {{COPY(Server:@main/size::0=|1=COPY)}}
           <collectionDivider alignment="left" accessibilityLabel="Show_Bookcase_Divider">
             <title>{{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
-          </collectionDivider>{{CUT(@main/size:CUT:0=CUT|1=CUT|2=)}}
+          </collectionDivider>{{CUT(@main/size:CUT:0=CUT|1=CUT|1 =)}}
           
           <grid id="Library_Grid_{{VAL(name)}}" columnCount="5">
             <items>
