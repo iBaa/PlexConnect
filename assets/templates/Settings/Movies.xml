@@ -35,7 +35,7 @@
           <image>{{URL(:/thumbnails/PlexConnectLogo.jpg)}}</image>
         </keyedPreview>
       </preview>
-
+      
       <menu>
         <sections>
           <menuSection>
@@ -54,9 +54,15 @@
                 <label>{{TEXT(PrePlay Bottom Shelf)}}</label>
                 <rightLabel>{{SETTING(moviepreplay_bottomshelf)}}</rightLabel>
               </oneLineMenuItem>
+              
+              <oneLineMenuItem id="Movies_Artwork" onSelect="toggleSettings('Movies_Artwork', 'Settings_Movies')">
+                  <label>{{TEXT(Artwork View)}}</label>
+                  <rightLabel>{{SETTING(movies_artwork)}}</rightLabel>
+              </oneLineMenuItem>
+              
             </items>
           </menuSection>
-
+          
           <menuSection>
             <header>
               <horizontalDivider alignment="left">

@@ -4,7 +4,9 @@
     </head>
     
     <body>
-        {{ADDXML(newest::/library/sections/{{VAL(librarySectionID)}}/newest?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=40)}}
+        {{ADDXML(OnDeck::/library/sections/{{VAL(librarySectionID)}}/onDeck?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20)}}
+        {{ADDXML(recentlyAdded::/library/sections/{{VAL(librarySectionID)}}/recentlyAdded?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20)}}
+        {{ADDXML(newest::/library/sections/{{VAL(librarySectionID)}}/newest?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20)}}
         {{VAR(items:NoKey:FALSE)}}
         
         <scroller id="Movie_Overview">
@@ -14,15 +16,74 @@
                 </simpleHeader>{{CUT($fanart::Hide=|Show=CUT)}}
                 <imageHeader>
                     <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=552|1080=800)}}, 0" required="true">
+                        {{BACKGROUNDURL(@OnDeck/Video/art:)}}
+                    </image>{{CUT($movies_artwork::On Deck=|Recently Added=CUT|Recently Released=CUT)}}
+                    <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=552|1080=800)}}, 0" required="true">
+                        {{BACKGROUNDURL(@recentlyAdded/Video/art:)}}
+                    </image>{{CUT($movies_artwork::On Deck=CUT|Recently Added=|Recently Released=CUT)}}
+                    <image insets="0, 0, {{VAL(^aTVScreenResolution:1:720=552|1080=800)}}, 0" required="true">
                         {{BACKGROUNDURL(@newest/Video/art:)}}
-                    </image>
+                    </image>{{CUT($movies_artwork::On Deck=CUT|Recently Added=CUT|Recently Released=)}}
                 </imageHeader>{{CUT($fanart::Hide=CUT|Show=)}}
             </header>
             <items>
+                
+                <collectionDivider alignment="left" accessibilityLabel="On Deck">
+                    <title>{{TEXT(On Deck)}}</title>
+                </collectionDivider>{{CUT(@OnDeck/size:CUT:0=CUT|1=)}}{{CUT($movies_artwork::On Deck=|Recently Added=CUT|Recently Released=CUT)}}
+                
+                <shelf id="shelf_0" columnCount="7">
+                    {{CUT(@OnDeck/size:CUT:0=CUT|1=)}}
+                    <sections>
+                        <shelfSection>
+                            <items>
+                                <fourByThreePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" featured="true" alwaysShowTitles="{{VAL($postertitles::Highlighted Only=false|Show All=true)}}"
+                                    onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                                    onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect=Movie_PrePlay{{VAL($fanart::Hide=|Show=_Fanart)}})}}')"
+                                    onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
+                                    {{COPY(@OnDeck/Video)}}
+                                    {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                                    <title>{{VAL(title)}}</title>
+                                    <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
+                                    <image>{{IMAGEURL(thumb::384)}}</image>
+                                    <defaultImage>resource://Poster.png</defaultImage>
+                                </fourByThreePoster>
+                            </items>
+                        </shelfSection>
+                    </sections>
+                </shelf>{{CUT($movies_artwork::On Deck=|Recently Added=CUT|Recently Released=CUT)}}
+                
                 <collectionDivider alignment="left" accessibilityLabel="Recently Added">
+                    <title>{{TEXT(Recently Added)}}</title>
+                </collectionDivider>{{CUT(@recentlyAdded/size:CUT:0=CUT|1=)}}{{CUT($movies_artwork::On Deck=CUT|Recently Added=|Recently Released=CUT)}}
+                
+                
+                <shelf id="shelf_0" columnCount="7">
+                    {{CUT(@recentlyAdded/size:CUT:0=CUT|1=)}}
+                    <sections>
+                        <shelfSection>
+                            <items>
+                                <fourByThreePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" featured="true" alwaysShowTitles="{{VAL($postertitles::Highlighted Only=false|Show All=true)}}"
+                                    onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
+                                    onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect=Movie_PrePlay{{VAL($fanart::Hide=|Show=_Fanart)}})}}')"
+                                    onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
+                                    {{COPY(@recentlyAdded/Video)}}
+                                    {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                                    <title>{{VAL(title)}}</title>
+                                    <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
+                                    <image>{{IMAGEURL(thumb::384)}}</image>
+                                    <defaultImage>resource://Poster.png</defaultImage>
+                                </fourByThreePoster>
+                            </items>
+                        </shelfSection>
+                    </sections>
+                </shelf>{{CUT($movies_artwork::On Deck=CUT|Recently Added=|Recently Released=CUT)}}
+                
+                <collectionDivider alignment="left" accessibilityLabel="Recently Released">
                     <title>{{TEXT(Recently Released)}}</title>
-                </collectionDivider>{{CUT(@newest/size:CUT:0=CUT|1=)}}
-    
+                </collectionDivider>{{CUT(@newest/size:CUT:0=CUT|1=)}}{{CUT($movies_artwork::On Deck=CUT|Recently Added=CUT|Recently Released=)}}
+                
+                
                 <shelf id="shelf_0" columnCount="7">
                     {{CUT(@newest/size:CUT:0=CUT|1=)}}
                     <sections>
@@ -42,8 +103,7 @@
                             </items>
                         </shelfSection>
                     </sections>
-                </shelf>
-                
+                </shelf>{{CUT($movies_artwork::On Deck=CUT|Recently Added=CUT|Recently Released=)}}
                 
                 <collectionDivider alignment="left" accessibilityLabel="Movies">
                     <title>{{TEXT(All Movies)}}</title>

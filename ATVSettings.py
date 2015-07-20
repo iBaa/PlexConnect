@@ -27,6 +27,8 @@ options = { \
     'fanart'                    :('Hide', 'Show'), \
     'fanart_blur'               :('0', '5', '10', '15', '20'), \
     'preplay_badges'            :('Enhanced', 'Disabled'), \
+    'shows_artwork'             :('Recently Released', 'Recently Added', 'On Deck'), \
+    'movies_artwork'            :('Recently Released', 'Recently Added', 'On Deck'), \
     'moviepreplay_bottomshelf'  :('Extras', 'Related Movies'), \
     'movies_navbar_ondeck'      :('unchecked', 'checked'), \
     'movies_navbar_unwatched'   :('unchecked', 'checked'), \
