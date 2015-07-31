@@ -85,9 +85,9 @@ The software is provided as is. It might work as expected - or not. Just don't b
 
 
 [ATVBrowser]: https://github.com/finkdiff/ATVBrowser-script/tree/atvxml
-[Plex Forum thread]: http://forums.plexapp.com/index.php/topic/57831-plex-atv-think-different
+[Plex Forum thread]: http://forums.plex.tv/discussion/57831/plex-atv-think-different/p1
 [ZIP]: https://github.com/iBaa/PlexConnect/archive/master.zip
 [Wiki]: https://github.com/iBaa/PlexConnect/wiki
 [Wiki - Install Guide]: https://github.com/iBaa/PlexConnect/wiki/Install-Guide
 [Wiki - Advanced Settings]: https://github.com/iBaa/PlexConnect/wiki/Settings-for-advanced-use-and-troubleshooting
-[Donation]: http://forums.plexapp.com/index.php/topic/80675-donations-donations/
+[Donation]: http://forums.plex.tv/discussion/80675/donations-donations/p1

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-26 18:56:01+0000\n"
-"PO-Revision-Date: 2014-12-14 12:00+0000\n"
+"POT-Creation-Date: 2015-03-30 18:25:13+0000\n"
+"PO-Revision-Date: 2015-06-01 12:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
@@ -136,10 +136,6 @@ msgid "Channel Search"
 msgstr ""
 
 
-msgid "Channel View"
-msgstr ""
-
-
 msgid "Channels"
 msgstr "Canale"
 
@@ -184,11 +180,27 @@ msgid "Enter the MyPlex password for {0}."
 msgstr ""
 
 
+msgid "Enter the PlexHome user pin for {0}."
+msgstr ""
+
+
 msgid "Episodes"
 msgstr "Episoade"
 
 
+msgid "Extras"
+msgstr ""
+
+
 msgid "Failed"
+msgstr ""
+
+
+msgid "Fanart"
+msgstr ""
+
+
+msgid "Fanart Lower Blur"
 msgstr ""
 
 
@@ -200,12 +212,20 @@ msgid "Forum"
 msgstr "Forum"
 
 
+msgid "General Appearance"
+msgstr ""
+
+
 msgid "Genre"
 msgstr "Gen"
 
 
 msgid "Genres"
 msgstr "Genuri"
+
+
+msgid "Home Video Navigation Bar"
+msgstr ""
 
 
 msgid "Home Video Options"
@@ -216,7 +236,7 @@ msgid "Home Video View"
 msgstr ""
 
 
-msgid "Home Videos Navigation Bar"
+msgid "Home Videos"
 msgstr ""
 
 
@@ -240,7 +260,7 @@ msgid "Library"
 msgstr "Librărie"
 
 
-msgid "Library View"
+msgid "Main Navigation Bar"
 msgstr ""
 
 
@@ -252,16 +272,16 @@ msgid "Mark as Watched"
 msgstr "Marchează ca vizionat"
 
 
+msgid "Miscellaneous"
+msgstr ""
+
+
 msgid "More"
 msgstr "Mai Mult"
 
 
 msgid "More..."
 msgstr "Mai Multe..."
-
-
-msgid "Movie Fanart"
-msgstr ""
 
 
 msgid "Movie Navigation Bar"
@@ -278,6 +298,10 @@ msgstr "Vizualizarea Filmului"
 
 msgid "Movies"
 msgstr "Filme"
+
+
+msgid "Music"
+msgstr ""
 
 
 msgid "Music Navigation Bar"
@@ -306,10 +330,6 @@ msgstr "Delogare MyPlex"
 
 msgid "MyPlex Username"
 msgstr "Nume de utilizator MyPlex"
-
-
-msgid "Navigation Bar"
-msgstr ""
 
 
 msgid "No Plex Channels Available"
@@ -348,6 +368,10 @@ msgid "Now Playing"
 msgstr ""
 
 
+msgid "Off"
+msgstr ""
+
+
 msgid "On Deck"
 msgstr ""
 
@@ -380,6 +404,10 @@ msgid "Plex Channels"
 msgstr "Canale Plex"
 
 
+msgid "Plex Home Users"
+msgstr ""
+
+
 msgid "Plex Library"
 msgstr "Libraria Plex"
 
@@ -404,7 +432,15 @@ msgid "PlexConnect"
 msgstr "PlexConnect"
 
 
+msgid "PlexHome User PIN"
+msgstr ""
+
+
 msgid "Poster Titles"
+msgstr ""
+
+
+msgid "PrePlay Bottom Shelf"
 msgstr ""
 
 
@@ -437,6 +473,10 @@ msgstr "Show-urile Vizionate Recent"
 
 
 msgid "Refresh"
+msgstr ""
+
+
+msgid "Related Movies"
 msgstr ""
 
 
@@ -488,14 +528,6 @@ msgid "Show Photos"
 msgstr "Arată Pozele"
 
 
-msgid "Show Playlists"
-msgstr ""
-
-
-msgid "Show Shared Libraries"
-msgstr ""
-
-
 msgid "Show Unwatched Count"
 msgstr ""
 
@@ -509,6 +541,10 @@ msgstr ""
 
 
 msgid "Shutter Speed"
+msgstr ""
+
+
+msgid "Sign Out"
 msgstr ""
 
 
@@ -536,12 +572,12 @@ msgid "Subtitle Track"
 msgstr "Track-ul Subtitrării"
 
 
+msgid "Switch Home User"
+msgstr ""
+
+
 msgid "Synopsis hidden."
 msgstr "Synopsa ascunsa."
-
-
-msgid "TV Show Fanart"
-msgstr ""
 
 
 msgid "TV Show Navigation Bar"
@@ -556,6 +592,10 @@ msgid "TV Show View"
 msgstr ""
 
 
+msgid "TV Shows"
+msgstr ""
+
+
 msgid "TheMovieDB: No Trailer Info available"
 msgstr "TheMovieDB: Nu este disponibila nici o informație despre trailer"
 
@@ -566,10 +606,6 @@ msgstr ""
 
 msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
 msgstr "Pentru a vă loga în MyPlex, introduceți adresa dumneavoastră de Email, Numele de utilizator sau Numele de utilizator de pe forumul Plex"
-
-
-msgid "Top Level Options"
-msgstr ""
 
 
 msgid "Trailer"

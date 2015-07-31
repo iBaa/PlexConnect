@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-26 18:56:01+0000\n"
-"PO-Revision-Date: 2014-12-14 12:00+0000\n"
+"POT-Creation-Date: 2015-03-30 18:25:13+0000\n"
+"PO-Revision-Date: 2015-06-01 12:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -136,10 +136,6 @@ msgid "Channel Search"
 msgstr ""
 
 
-msgid "Channel View"
-msgstr ""
-
-
 msgid "Channels"
 msgstr "ערוצים"
 
@@ -184,12 +180,28 @@ msgid "Enter the MyPlex password for {0}."
 msgstr "הכנס את סיסמת MyPlex עבור {0}."
 
 
+msgid "Enter the PlexHome user pin for {0}."
+msgstr ""
+
+
 msgid "Episodes"
 msgstr "פרקים"
 
 
+msgid "Extras"
+msgstr ""
+
+
 msgid "Failed"
 msgstr "נכשל"
+
+
+msgid "Fanart"
+msgstr ""
+
+
+msgid "Fanart Lower Blur"
+msgstr ""
 
 
 msgid "Flatten Season"
@@ -200,12 +212,20 @@ msgid "Forum"
 msgstr "פורום"
 
 
+msgid "General Appearance"
+msgstr ""
+
+
 msgid "Genre"
 msgstr "ז'אנר"
 
 
 msgid "Genres"
 msgstr "ז'אנרים"
+
+
+msgid "Home Video Navigation Bar"
+msgstr ""
 
 
 msgid "Home Video Options"
@@ -216,7 +236,7 @@ msgid "Home Video View"
 msgstr ""
 
 
-msgid "Home Videos Navigation Bar"
+msgid "Home Videos"
 msgstr ""
 
 
@@ -240,7 +260,7 @@ msgid "Library"
 msgstr "ספריה"
 
 
-msgid "Library View"
+msgid "Main Navigation Bar"
 msgstr ""
 
 
@@ -252,16 +272,16 @@ msgid "Mark as Watched"
 msgstr "סמן כנצפה"
 
 
+msgid "Miscellaneous"
+msgstr ""
+
+
 msgid "More"
 msgstr "עוד"
 
 
 msgid "More..."
 msgstr "עוד..."
-
-
-msgid "Movie Fanart"
-msgstr ""
 
 
 msgid "Movie Navigation Bar"
@@ -278,6 +298,10 @@ msgstr "תצוגת סרט"
 
 msgid "Movies"
 msgstr "סרטים"
+
+
+msgid "Music"
+msgstr ""
 
 
 msgid "Music Navigation Bar"
@@ -306,10 +330,6 @@ msgstr "התנתקות מMyPlex"
 
 msgid "MyPlex Username"
 msgstr "שם המשתמש בMyPlex"
-
-
-msgid "Navigation Bar"
-msgstr ""
 
 
 msgid "No Plex Channels Available"
@@ -348,6 +368,10 @@ msgid "Now Playing"
 msgstr ""
 
 
+msgid "Off"
+msgstr ""
+
+
 msgid "On Deck"
 msgstr "בצפייה"
 
@@ -380,6 +404,10 @@ msgid "Plex Channels"
 msgstr "ערוצי Plex"
 
 
+msgid "Plex Home Users"
+msgstr ""
+
+
 msgid "Plex Library"
 msgstr "ספריית Plex"
 
@@ -404,7 +432,15 @@ msgid "PlexConnect"
 msgstr "PlexConnect"
 
 
+msgid "PlexHome User PIN"
+msgstr ""
+
+
 msgid "Poster Titles"
+msgstr ""
+
+
+msgid "PrePlay Bottom Shelf"
 msgstr ""
 
 
@@ -437,6 +473,10 @@ msgstr "תוכניות שנצפו לאחרונה"
 
 
 msgid "Refresh"
+msgstr ""
+
+
+msgid "Related Movies"
 msgstr ""
 
 
@@ -488,14 +528,6 @@ msgid "Show Photos"
 msgstr "הצג/י תמונות"
 
 
-msgid "Show Playlists"
-msgstr ""
-
-
-msgid "Show Shared Libraries"
-msgstr ""
-
-
 msgid "Show Unwatched Count"
 msgstr "הצג/י מונה תוכן שלא נצפה"
 
@@ -509,6 +541,10 @@ msgstr ""
 
 
 msgid "Shutter Speed"
+msgstr ""
+
+
+msgid "Sign Out"
 msgstr ""
 
 
@@ -536,12 +572,12 @@ msgid "Subtitle Track"
 msgstr "קובץ תרגום"
 
 
+msgid "Switch Home User"
+msgstr ""
+
+
 msgid "Synopsis hidden."
 msgstr "תקציר מוסתר."
-
-
-msgid "TV Show Fanart"
-msgstr ""
 
 
 msgid "TV Show Navigation Bar"
@@ -556,6 +592,10 @@ msgid "TV Show View"
 msgstr "תצוגת תוכנית טלוויזיה"
 
 
+msgid "TV Shows"
+msgstr ""
+
+
 msgid "TheMovieDB: No Trailer Info available"
 msgstr "TheMovieDB:אין מידע זמין על טריילר"
 
@@ -566,10 +606,6 @@ msgstr "פורמט זמן"
 
 msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
 msgstr "על מנת להתחבר לMyPlex, הזן את כתובת הEmail/שם משתמש/שם המשתמש בפורום Plex."
-
-
-msgid "Top Level Options"
-msgstr ""
 
 
 msgid "Trailer"

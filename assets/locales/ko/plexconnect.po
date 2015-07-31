@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-26 18:56:01+0000\n"
-"PO-Revision-Date: 2014-12-14 12:00+0000\n"
+"POT-Creation-Date: 2015-03-30 18:25:13+0000\n"
+"PO-Revision-Date: 2015-06-01 12:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
@@ -136,10 +136,6 @@ msgid "Channel Search"
 msgstr ""
 
 
-msgid "Channel View"
-msgstr ""
-
-
 msgid "Channels"
 msgstr ""
 
@@ -184,11 +180,27 @@ msgid "Enter the MyPlex password for {0}."
 msgstr ""
 
 
+msgid "Enter the PlexHome user pin for {0}."
+msgstr ""
+
+
 msgid "Episodes"
 msgstr ""
 
 
+msgid "Extras"
+msgstr ""
+
+
 msgid "Failed"
+msgstr ""
+
+
+msgid "Fanart"
+msgstr ""
+
+
+msgid "Fanart Lower Blur"
 msgstr ""
 
 
@@ -200,11 +212,19 @@ msgid "Forum"
 msgstr ""
 
 
+msgid "General Appearance"
+msgstr ""
+
+
 msgid "Genre"
 msgstr ""
 
 
 msgid "Genres"
+msgstr ""
+
+
+msgid "Home Video Navigation Bar"
 msgstr ""
 
 
@@ -216,7 +236,7 @@ msgid "Home Video View"
 msgstr ""
 
 
-msgid "Home Videos Navigation Bar"
+msgid "Home Videos"
 msgstr ""
 
 
@@ -240,7 +260,7 @@ msgid "Library"
 msgstr ""
 
 
-msgid "Library View"
+msgid "Main Navigation Bar"
 msgstr ""
 
 
@@ -252,15 +272,15 @@ msgid "Mark as Watched"
 msgstr ""
 
 
+msgid "Miscellaneous"
+msgstr ""
+
+
 msgid "More"
 msgstr ""
 
 
 msgid "More..."
-msgstr ""
-
-
-msgid "Movie Fanart"
 msgstr ""
 
 
@@ -277,6 +297,10 @@ msgstr ""
 
 
 msgid "Movies"
+msgstr ""
+
+
+msgid "Music"
 msgstr ""
 
 
@@ -305,10 +329,6 @@ msgstr ""
 
 
 msgid "MyPlex Username"
-msgstr ""
-
-
-msgid "Navigation Bar"
 msgstr ""
 
 
@@ -348,6 +368,10 @@ msgid "Now Playing"
 msgstr ""
 
 
+msgid "Off"
+msgstr ""
+
+
 msgid "On Deck"
 msgstr ""
 
@@ -380,6 +404,10 @@ msgid "Plex Channels"
 msgstr ""
 
 
+msgid "Plex Home Users"
+msgstr ""
+
+
 msgid "Plex Library"
 msgstr ""
 
@@ -404,7 +432,15 @@ msgid "PlexConnect"
 msgstr ""
 
 
+msgid "PlexHome User PIN"
+msgstr ""
+
+
 msgid "Poster Titles"
+msgstr ""
+
+
+msgid "PrePlay Bottom Shelf"
 msgstr ""
 
 
@@ -437,6 +473,10 @@ msgstr ""
 
 
 msgid "Refresh"
+msgstr ""
+
+
+msgid "Related Movies"
 msgstr ""
 
 
@@ -488,14 +528,6 @@ msgid "Show Photos"
 msgstr ""
 
 
-msgid "Show Playlists"
-msgstr ""
-
-
-msgid "Show Shared Libraries"
-msgstr ""
-
-
 msgid "Show Unwatched Count"
 msgstr ""
 
@@ -509,6 +541,10 @@ msgstr ""
 
 
 msgid "Shutter Speed"
+msgstr ""
+
+
+msgid "Sign Out"
 msgstr ""
 
 
@@ -536,11 +572,11 @@ msgid "Subtitle Track"
 msgstr ""
 
 
-msgid "Synopsis hidden."
+msgid "Switch Home User"
 msgstr ""
 
 
-msgid "TV Show Fanart"
+msgid "Synopsis hidden."
 msgstr ""
 
 
@@ -556,6 +592,10 @@ msgid "TV Show View"
 msgstr ""
 
 
+msgid "TV Shows"
+msgstr ""
+
+
 msgid "TheMovieDB: No Trailer Info available"
 msgstr ""
 
@@ -565,10 +605,6 @@ msgstr ""
 
 
 msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
-msgstr ""
-
-
-msgid "Top Level Options"
 msgstr ""
 
 
