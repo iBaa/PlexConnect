@@ -16,8 +16,9 @@
         </navigationItem>{{CUT($playlistsview:CUT:=|Hide=CUT|Hide =)}}
         <navigationItem id="Libraries">
             <title>{{TEXT(All Libraries)}}</title>
-            <url>{{URL(:/PMS(all)/library/sections::PlexConnect=Library_ViewMerged)}}</url>
-        </navigationItem>{{CUT($myplex_auth:CUT:=CUT| =)}}{{CUT($librariesmergeview:CUT:=|Hide=CUT|Hide =)}}
+            <url>{{URL(:/PMS(owned)/library/sections::PlexConnect=Library_View)}}</url>{{CUT($myplex_auth:CUT:=CUT)}}
+            <url>{{URL(:/PMS(all)/library/sections::PlexConnect=Library_ViewMerged)}}</url>{{CUT($myplex_auth:CUT:=CUT| =)}}
+        </navigationItem>{{CUT($librariesmergeview:CUT:=|Hide=CUT|Hide =)}}
         <navigationItem id="Library">
           <title>{{TEXT(Library)}}</title>
           <url>{{URL(:/PMS(owned)/library/sections::PlexConnect=Library_View)}}</url>
