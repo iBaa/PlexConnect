@@ -15,7 +15,8 @@ syntax: 'setting': ('default', 'regex to validate')
 
 PMS: plexgdm, ip_pms, port_pms
 DNS: ip_dnsmaster - IP of Router, ISP's DNS, ... [dflt: google public DNS]
-IP_self: enable_plexconnect_autodetect, ip_plexconnect - manual override for VPN usage
+IP_self: enable_plexconnect_autodetect, ip_plexconnect - manual override for VPN usage (bind address)
+IP_outside: enable_plexconnect_autodetect_outside, ip_outside - manual override for VPN usage (an address presented to a client)
 Intercept: Trailers-trailers.apple.com, WSJ-secure.marketwatch.com, iMovie-www.icloud.com
 HTTP: port_webserver - override when using webserver + forwarding to PlexConnect
 HTTPS: port_ssl, certfile, enable_webserver_ssl - configure SSL portion or webserver
@@ -31,7 +32,9 @@ g_settings = [
     ('prevent_atv_update'           , ('True', '((True)|(False))')),
     \
     ('enable_plexconnect_autodetect', ('True', '((True)|(False))')),
+    ('enable_plexconnect_autodetect_outside', ('True', '((True)|(False))')),
     ('ip_plexconnect'  , ('0.0.0.0', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
+    ('ip_outside'  , ('0.0.0.0', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
     ('hosttointercept' , ('trailers.apple.com', '[a-zA-Z0-9_.-]+')),
     \
     ('port_webserver'  , ('80', '[0-9]{1,5}')),

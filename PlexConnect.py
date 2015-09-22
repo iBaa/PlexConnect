@@ -26,7 +26,7 @@ from Debug import *  # dprint()
 def getIP_self():
     cfg = param['CSettings']
     if cfg.getSetting('enable_plexconnect_autodetect')=='True':
-        # get public ip of machine running PlexConnect
+        # get bind ip of machine running PlexConnect
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.connect(('1.2.3.4', 1000))
         IP = s.getsockname()[0]
@@ -35,6 +35,21 @@ def getIP_self():
         # manual override from "settings.cfg"
         IP = cfg.getSetting('ip_plexconnect')
         dprint('PlexConnect', 0, "IP_self (from settings): "+IP)
+    
+    return IP
+
+def getIP_outside():
+    cfg = param['CSettings']
+    if cfg.getSetting('enable_plexconnect_autodetect_outside')=='True':
+        # get public/outside ip of machine running PlexConnect for clients
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(('1.2.3.4', 1000))
+        IP = s.getsockname()[0]
+        dprint('PlexConnect', 0, "IP_outside: "+IP)
+    else:
+        # manual override from "settings.cfg"
+        IP = cfg.getSetting('ip_outside')
+        dprint('PlexConnect', 0, "IP_outside (from settings): "+IP)
     
     return IP
 
@@ -80,6 +95,7 @@ def startup():
     
     # more Settings
     param['IP_self'] = getIP_self()
+    param['IP_outside'] = getIP_outside()
     param['HostToIntercept'] = cfg.getSetting('hosttointercept')
     param['baseURL'] = 'http://'+ param['HostToIntercept']
     
