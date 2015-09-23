@@ -316,7 +316,7 @@ def Run(cmdPipe, param):
         signal.signal(signal.SIGINT, signal.SIG_IGN)
     
     dinit(__name__, param)  # init logging, DNSServer process
-    if param['CSettings'].getSetting('is_custom_dns_bind_ip') == True:
+    if param['CSettings'].getSetting('is_custom_dns_bind_ip') == "True":
       cfg_IP_self = param['CSettings'].getSetting('dns_bind_ip')
     else:
       cfg_IP_self = param['IP_self']
