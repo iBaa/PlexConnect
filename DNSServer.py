@@ -339,6 +339,8 @@ def Run(cmdPipe, param):
     
     intercept = [param['HostToIntercept']]
     restrain = []
+    if param['CSettings'].getSetting('intercept_atv_icon')=='True':
+        intercept.append('a1.phobos.apple.com')
     if param['CSettings'].getSetting('prevent_atv_update')=='True':
         restrain = ['mesu.apple.com', 'appldnld.apple.com', 'appldnld.apple.com.edgesuite.net']
     

@@ -32,9 +32,10 @@ http://stackoverflow.com/questions/111945/is-there-any-way-to-do-http-put-in-pyt
 import sys
 import struct
 import time
-import urllib2, socket, StringIO, gzip
+import urllib2, httplib, socket, StringIO, gzip
 from threading import Thread
 import Queue
+import traceback
 
 try:
     import xml.etree.cElementTree as etree
@@ -375,15 +376,16 @@ def getXMLFromPMS(baseURL, path, options={}, authtoken='', enableGzip=False):
     
     try:
         response = urllib2.urlopen(request, timeout=20)
-    except urllib2.URLError as e:
+    except (urllib2.URLError, httplib.HTTPException) as e:
         dprint(__name__, 0, 'No Response from Plex Media Server')
         if hasattr(e, 'reason'):
             dprint(__name__, 0, "We failed to reach a server. Reason: {0}", e.reason)
         elif hasattr(e, 'code'):
             dprint(__name__, 0, "The server couldn't fulfill the request. Error code: {0}", e.code)
+        dprint(__name__, 0, 'Traceback:\n{0}', traceback.format_exc())
         return False
     except IOError:
-        dprint(__name__, 0, 'Error loading response XML from Plex Media Server')
+        dprint(__name__, 0, 'Error loading response XML from Plex Media Server:\n{0}', traceback.format_exc())
         return False
     
     if response.info().get('Content-Encoding') == 'gzip':
