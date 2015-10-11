@@ -13,7 +13,7 @@ options = { \
     'playlistsview'             :('List', 'Tabbed List', 'Hide'), \
     'libraryview'               :('List', 'Grid', 'Bookcase', 'Hide'), \
     'sharedlibrariesview'       :('List', 'Grid', 'Bookcase', 'Hide'), \
-    'librariesmergeview'        :('List', 'Grid', 'Bookcase', 'Hide'), \
+    'librariesmergeview'        :('Hide', 'List', 'Grid', 'Bookcase'), \
     'channelview'               :('List', 'Tabbed List', 'Grid', 'BigGrid', 'Bookcase', 'Hide'), \
     'globalsearch'              :('Show', 'Hide'), \
     'movieview'                 :('Artwork', 'BigGrid', 'Grid', 'List', 'Detailed List'), \
