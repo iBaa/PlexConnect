@@ -51,12 +51,11 @@
                             </items>
                         </shelfSection>
                     </sections>
-                </shelf>{{CUT($movies_artwork::On Deck=|Recently Added=CUT|Recently Released=CUT)}}
+                </shelf>{{CUT($movies_artwork::On Deck=|Recently Added=CUT|Recently Released=CUT|Hide=CUT)}}
                 
                 <collectionDivider alignment="left" accessibilityLabel="Recently Added">
                     <title>{{TEXT(Recently Added)}}</title>
                 </collectionDivider>{{CUT(@recentlyAdded/size:CUT:0=CUT|1=)}}{{CUT($movies_artwork::On Deck=CUT|Recently Added=|Recently Released=CUT)}}
-                
                 
                 <shelf id="shelf_0" columnCount="7">
                     {{CUT(@recentlyAdded/size:CUT:0=CUT|1=)}}
@@ -77,12 +76,11 @@
                             </items>
                         </shelfSection>
                     </sections>
-                </shelf>{{CUT($movies_artwork::On Deck=CUT|Recently Added=|Recently Released=CUT)}}
+                </shelf>{{CUT($movies_artwork::On Deck=CUT|Recently Added=|Recently Released=CUT|Hide=CUT)}}
                 
                 <collectionDivider alignment="left" accessibilityLabel="Recently Released">
                     <title>{{TEXT(Recently Released)}}</title>
                 </collectionDivider>{{CUT(@newest/size:CUT:0=CUT|1=)}}{{CUT($movies_artwork::On Deck=CUT|Recently Added=CUT|Recently Released=)}}
-                
                 
                 <shelf id="shelf_0" columnCount="7">
                     {{CUT(@newest/size:CUT:0=CUT|1=)}}
@@ -103,7 +101,7 @@
                             </items>
                         </shelfSection>
                     </sections>
-                </shelf>{{CUT($movies_artwork::On Deck=CUT|Recently Added=CUT|Recently Released=)}}
+                </shelf>{{CUT($movies_artwork::On Deck=CUT|Recently Added=CUT|Recently Released=|Hide=CUT)}}
                 
                 <collectionDivider alignment="left" accessibilityLabel="Movies">
                     <title>{{TEXT(All Movies)}}</title>
@@ -124,5 +122,13 @@
                 </grid>
             </items>
         </scroller>
+        
+        <!--No Items Available-->
+        <dialog id="com.sample.error-dialog">
+            {{CUT(size::0=|1=CUT)}}
+            <title>PlexConnect</title>
+            <description>{{TEXT(Plex Media Server: No Items Available)}}</description>
+        </dialog>
+        
     </body>
 </atv>

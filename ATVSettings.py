@@ -16,10 +16,10 @@ options = { \
     'librariesmergeview'        :('Hide', 'List', 'Grid', 'Bookcase'), \
     'channelview'               :('List', 'Tabbed List', 'Grid', 'BigGrid', 'Bookcase', 'Hide'), \
     'globalsearch'              :('Show', 'Hide'), \
-    'movieview'                 :('Artwork', 'BigGrid', 'Grid', 'List', 'Detailed List'), \
+    'movieview'                 :('Artwork', 'Grid', 'List', 'Detailed List'), \
     'homevideoview'             :('Grid', 'List', 'Detailed List'), \
     'actorview'                 :('Movies', 'Portrait'), \
-    'showview'                  :('Artwork', 'BigGrid', 'List', 'Detailed List', 'Grid', 'Bookcase'), \
+    'showview'                  :('Artwork', 'Grid', 'List', 'Detailed List', 'Bookcase'), \
     'flattenseason'             :('True', 'False'), \
     'seasonview'                :('Coverflow', 'List', 'BigGrid'), \
     'durationformat'            :('Hours/Minutes', 'Minutes'), \
@@ -27,8 +27,8 @@ options = { \
     'fanart'                    :('Hide', 'Show'), \
     'fanart_blur'               :('0', '5', '10', '15', '20'), \
     'preplay_badges'            :('Enhanced', 'Disabled'), \
-    'shows_artwork'             :('Recently Released', 'Recently Added', 'On Deck'), \
-    'movies_artwork'            :('Recently Released', 'Recently Added', 'On Deck'), \
+    'shows_artwork'             :('Recently Released', 'Recently Added', 'On Deck', 'Hide'), \
+    'movies_artwork'            :('Recently Released', 'Recently Added', 'On Deck', 'Hide'), \
     'moviepreplay_bottomshelf'  :('Extras', 'Related Movies'), \
     'movies_navbar_ondeck'      :('unchecked', 'checked'), \
     'movies_navbar_unwatched'   :('unchecked', 'checked'), \
