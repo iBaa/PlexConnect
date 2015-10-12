@@ -25,7 +25,7 @@
                         {{BACKGROUNDURL(@newest/Video/art:)}}
                     </image>{{CUT($shows_artwork::On Deck=CUT|Recently Added=CUT|Recently Released=)}}
                 </imageHeader>{{CUT($fanart::Hide=CUT|Show=)}}
-            </header>
+            </header>{{CUT($movies_artwork::On Deck=|Recently Added=|Recently Released=|Hide=CUT)}}
             <items>
                 
                 <collectionDivider alignment="left" accessibilityLabel="On Deck">
