@@ -310,6 +310,7 @@ def XML_PMS2aTV(PMS_address, path, options):
         XMLtemplate = 'Settings/PlexHome.xml'
     
     elif cmd.startswith('Discover'):
+        os.system("wakeonlan 44:8A:5B:61:96:CE")
         tokenDict = {}
         tokenDict['MyPlex'] = g_ATVSettings.getSetting(UDID, 'myplex_auth')
         if g_ATVSettings.getSetting(UDID, 'plexhome_enable') == 'True':
