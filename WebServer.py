@@ -152,27 +152,6 @@ class MyHandler(BaseHTTPRequestHandler):
             dprint(__name__, 2, "PlexConnect options:\n{0}", options)
             dprint(__name__, 2, "additional arguments:\n{0}", query)
             
-            if "a1.phobos.apple.com" in self.headers['Host']:
-                resource = self.headers['Host']+self.path
-                try:
-                    if self.path.endswith("com.apple.imovietheatre.appletv@1080.png"):
-                        resource = './assets/icons/icon@1080.png'
-                        dprint(__name__, 1, "serving "+self.headers['Host']+self.path+" with "+resource)
-                        r = open(resource, "rb")
-                    elif self.path.endswith("com.apple.imovietheatre.appletv@720.png"):
-                        resource = './assets/icons/icon@720.png'
-                        dprint(__name__, 1, "serving "+self.headers['Host']+self.path+" with "+resource)
-                        r = open(resource, "rb")
-                    else:
-                        r = urllib.urlopen('http://'+resource)
-                except:
-                    dprint(__name__, 0, "Failed to access resource: {0}", resource)
-                    return
-                # dprint(__name__, 1, "serving "+self.headers['Host']+self.path+" with "+resource)
-                self.sendResponse(r.read(), 'image/png', False)
-                r.close()
-                return
-    
             if 'User-Agent' in self.headers and \
                'AppleTV' in self.headers['User-Agent']:
                 
@@ -218,6 +197,21 @@ class MyHandler(BaseHTTPRequestHandler):
                     dprint(__name__, 1, "serving /js/{0}", basename)
                     JS = JSConverter(basename, options)
                     self.sendResponse(JS, 'text/javascript', True)
+                    return
+            
+                # proxy phobos.apple.com to support  PlexConnect main icon
+                if "a1.phobos.apple.com" in self.headers['Host']:
+                    resource = self.headers['Host']+self.path
+                    icon = g_param['CSettings'].getSetting('icon')
+                    if basename.startswith(icon):
+                        icon_res = basename[len(icon):]  # cut string from settings, keeps @720.png/@1080.png
+                        resource = './assets/icons/icon'+icon_res
+                        dprint(__name__, 1, "serving "+self.headers['Host']+self.path+" with "+resource)
+                        r = open(resource, "rb")
+                    else:
+                        r = urllib.urlopen('http://'+resource)
+                    self.sendResponse(r.read(), 'image/png', False)
+                    r.close()
                     return
                 
                 # serve "*.jpg" - thumbnails for old-style mainpage
@@ -389,7 +383,7 @@ if __name__=="__main__":
     
     param['IP_self'] = '192.168.178.20'  # IP_self?
     param['baseURL'] = 'http://'+ param['IP_self'] +':'+ cfg.getSetting('port_webserver')
-    param['HostToIntercept'] = 'www.icloud.com'
+    param['HostToIntercept'] = 'trailers.apple.com'
     
     if len(sys.argv)==1:
         Run(cmdPipe[1], param)

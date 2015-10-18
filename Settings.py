@@ -30,6 +30,7 @@ g_settings = [
     ('ip_dnsmaster'    , ('8.8.8.8', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
     ('prevent_atv_update'           , ('True', '((True)|(False))')),
     ('intercept_atv_icon', ('True', '((True)|(False))')),
+    ('icon', ('com.apple.imovietheatre.appletv', '[a-zA-Z0-9_.-]+')),
     \
     ('enable_plexconnect_autodetect', ('True', '((True)|(False))')),
     ('ip_plexconnect'  , ('0.0.0.0', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
