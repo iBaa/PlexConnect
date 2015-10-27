@@ -4,7 +4,7 @@ Install PlexConnect on your iOS Device (not for aTV see aTV_Jailbreak in support
 - SSH into iOS device (default user is root and default password is alpine)
 - Paste this into the ssh session:
 
-apt-get -y install git; rm -R /Applications/PlexConnect; cd /Applications; git clone git://github.com/ibaa/PlexConnect.git; cd /Applications/PlexConnect/support/iOS_jailbreak; chmod +x installios.bash; ./installios.bash
+apt-get -y install git; rm -R /Applications/PlexConnect; cd /Applications; git clone git://github.com/ibaa/PlexConnect.git; cd /Applications/PlexConnect/support/iOS_jailbreak; ./installios.bash
 
 Done!
 
@@ -14,3 +14,7 @@ restart.bash
 
 A good way to keep PlexConnect active is to turn on airplane mode then turn your wifi back on while airplane mode is active otherwise you iOS device will put your wifi to sleep because it doesn’t realize PlexConnect is running in the background.
 
+Other scripts available are:
+
+update.bash <——This will allow you to update PlexConnect
+status.bash <——This will allow you to check the status of PlexConnect

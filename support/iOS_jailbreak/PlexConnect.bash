@@ -10,6 +10,6 @@ sleep 10
 done
 exec $1&
 
-# change directory & launch plexconnect
+# change dir & launch plexconnect
 cd /Applications/PlexConnect
 ./PlexConnect.py
