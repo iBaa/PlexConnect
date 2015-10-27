@@ -319,13 +319,17 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
                 owned = Dir.get('owned', '0')
                 local = Dir.get('publicAddressMatches')
                 
+                if Dir.find('Connection') == None:
+                    continue  # no valid connection - skip
+                
+                uri = ""  # flag to set first connection, possibly overwrite later with more suitable
                 for Con in Dir.getiterator('Connection'):
-                    if Con.get('local','') == local:
+                    if uri=="" or Con.get('local','') == local:
                         protocol = Con.get('protocol')
                         ip = Con.get('address')
                         port = Con.get('port')
                         uri = Con.get('uri')
-                    # todo: handle unforeseen - like we don't get valid connection data
+                    # todo: handle unforeseen - like we get multiple suitable connections. how to choose one?
                 
                 # check MyPlex data age - skip if >2 days
                 infoAge = time.time() - int(Dir.get('lastSeenAt'))
