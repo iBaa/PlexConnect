@@ -28,9 +28,8 @@ cat ./assets/certificates/trailers.cer ./assets/certificates/trailers.key >> ./a
 esac
 done
 
-## use python without env to avoid errors in PlexConect.py
+## install python if not installed yet
 cd /Applications/PlexConnect/support/iOS_jailbreak
-cp PlexConnect.py /Applications/PlexConnect
 if [ -f /usr/bin/python2.7 ];
 then
    echo "Python already installed, skipping"
