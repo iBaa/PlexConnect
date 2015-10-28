@@ -62,11 +62,11 @@
                 </preview>
               </oneLineMenuItem>{{CUT($movies_navbar_actors::checked=CUT|unchecked=)}}
 
-              <oneLineMenuItem id="recentlyViewed" onPlay="atv.loadURL('{{URL(key::/recentlyViewed)}}')" 
-																									onSelect="atv.loadURL('{{URL(key::/recentlyViewed)}}')">
+              <oneLineMenuItem id="recentlyViewed" onPlay="atv.loadURL('{{URL(key::/recentlyViewed:PlexConnect=Movie_{{EVAL('{{VAL($movieview)}}'.replace(' ', ''))}})}}')"
+																									onSelect="atv.loadURL('{{URL(key::/recentlyViewed:PlexConnect=Movie_{{EVAL('{{VAL($movieview)}}'.replace(' ', ''))}})}}')">
                 <label>{{TEXT(Recently Viewed)}}</label>
                 <preview>
-                  <link>{{URL(key::/recentlyViewed:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview)}}</link>
+                  <link>{{URL(key::/recentlyViewedMovies:X-Plex-Container-Start=0&amp;X-Plex-Container-Size=25&amp;PlexConnect=Main_SectionPreview)}}</link>
                 </preview>
               </oneLineMenuItem>
 
