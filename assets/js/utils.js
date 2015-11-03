@@ -47,7 +47,7 @@ function log(msg, level)
     level = level || 1;
     var req = new XMLHttpRequest();
     var url = "{{URL(/)}}" + "&PlexConnectATVLogLevel=" + level.toString() + "&PlexConnectLog=" + encodeURIComponent(msg);
-    req.open('GET', url, false);
+    req.open('GET', url, true);
     req.send();
 };
 
@@ -114,7 +114,7 @@ function changeArtwork(PMS_baseURL, accessToken, ratingKey, artURL, shelfName)
   if (accessToken!='') url = url + '&X-Plex-Token=' + accessToken;
     
   var req = new XMLHttpRequest();
-	req.open('PUT', url, false);
+	req.open('PUT', url, true);
 	req.send();
 };
 

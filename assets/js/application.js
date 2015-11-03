@@ -29,7 +29,7 @@ var isTranscoding = false;
 function loadPage(url)
 {
   var req = new XMLHttpRequest();
-  req.open('GET', url, false);
+  req.open('GET', url, true);
   req.send();
 };
 
@@ -41,7 +41,7 @@ function log(msg, level)
     level = level || 1;
     var req = new XMLHttpRequest();
     var url = "{{URL(/)}}" + "&PlexConnectATVLogLevel=" + level.toString() + "&PlexConnectLog=" + encodeURIComponent(msg);
-    req.open('GET', url, false);
+    req.open('GET', url, true);
     req.send();
 };
 
@@ -169,7 +169,7 @@ atv.player.willStartPlaying = function()
             subtitle = JSON.parse(req.responseText);
         }
     };
-    req.open('GET', subtitleURL+"&PlexConnectUDID=" + atv.device.udid, false);  // true: asynchronous
+    req.open('GET', subtitleURL+"&PlexConnectUDID=" + atv.device.udid, true);  // true: asynchronous
     req.send();
     log('willStartPlaying/parseSubtitleJSON done');
   }
