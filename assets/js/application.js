@@ -41,7 +41,7 @@ function log(msg, level)
     level = level || 1;
     var req = new XMLHttpRequest();
     var url = "{{URL(/)}}" + "&PlexConnectATVLogLevel=" + level.toString() + "&PlexConnectLog=" + encodeURIComponent(msg);
-    req.open('GET', url, true);
+    req.open('GET', url, false);
     req.send();
 };
 
