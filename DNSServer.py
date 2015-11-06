@@ -330,13 +330,6 @@ def Run(cmdPipe, param):
         dprint(__name__, 0, "Failed to create socket on UDP port {0}: {1}", cfg_Port_DNSServer, e)
         sys.exit(1)
     
-    try:
-        DNS_forward = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        DNS_forward.settimeout(5.0)
-    except Exception, e:
-        dprint(__name__, 0, "Failed to create socket on UDP port 49152: {0}", e)
-        sys.exit(1)
-    
     intercept = [param['HostToIntercept']]
     restrain = []
     if param['CSettings'].getSetting('prevent_atv_update')=='True':
@@ -404,8 +397,17 @@ def Run(cmdPipe, param):
                 
                 else:
                     dprint(__name__, 1, "***forward request")
+                    
+                    try:
+                        DNS_forward = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+                        DNS_forward.settimeout(5.0)
+                    except Exception, e:
+                        dprint(__name__, 0, "Failed to create socket for DNS_forward): {0}", e)
+                        continue
+                    
                     DNS_forward.sendto(data, (cfg_IP_DNSMaster, 53))
                     paket, addr_master = DNS_forward.recvfrom(1024)
+                    DNS_forward.close()
                     # todo: double check: ID has to be the same!
                     # todo: spawn thread to wait in parallel
                     dprint(__name__, 1, "-> DNS response from higher level")
@@ -428,7 +430,6 @@ def Run(cmdPipe, param):
     finally:
         dprint(__name__, 0, "Shutting down.")
         DNS.close()
-        DNS_forward.close()
 
 
 
