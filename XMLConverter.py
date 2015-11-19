@@ -1172,8 +1172,18 @@ class CCommandCollection(CCommandHelper):
                     if Stream.get('profile', '-') == 'high 10' or \
                         int(Stream.get('refFrames','0')) > 8:
                             videoATVNative = False
-                    break
-            
+                            break
+
+		# aTV only supports AC3 Dolby passthrough.  If we're playing a
+		# non-AC3 multi-channel track, transcode the audio to get
+		# surround
+                if Stream.get('streamType','') == '2' and \
+		   Stream.get('selected', '-') == '1' and \
+		   int(Stream.get('channels', '0')) > 2 and \
+		   Stream.get('codec', '-') != 'ac3':
+		    videoATVNative = False
+		    break
+
             dprint(__name__, 2, "video: ATVNative - {0}", videoATVNative)
             
             # quality limits: quality=(resolution, quality, bitrate)
