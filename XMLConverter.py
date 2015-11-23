@@ -1064,23 +1064,27 @@ class CCommandCollection(CCommandHelper):
         if Media!=None:
             # transcoder action setting?
             # transcoder bitrate setting [kbps] -  eg. 128, 256, 384, 512?
-            maxAudioBitrate = '384'
+            maxAudioBitrateCompressed = '320'
+            maxAudioBitrateUncompressed = '1000'
             
             audioATVNative = \
-                Media.get('audioCodec','-') in ("mp3", "aac", "ac3", "drms", "alac", "aiff", "wav")
+                Media.get('audioCodec','-') in ("mp3", "aac", "ac3", "drms") and \
+                int(Media.get('bitrate','0')) < int(maxAudioBitrateCompressed) \
+                or \
+                Media.get('audioCodec','-') in ("alac", "aiff", "wav") and \
+                int(Media.get('bitrate','0')) < int(maxAudioBitrateUncompressed)
             # check Media.get('container') as well - mp3, m4a, ...?
             
             dprint(__name__, 2, "audio: ATVNative - {0}", audioATVNative)
             
-            if audioATVNative and\
-               int(Media.get('bitrate','0')) < int(maxAudioBitrate):
+            if audioATVNative:
                 # direct play
                 res, leftover, dfltd = self.getKey(Media, srcXML, 'Part/key')
                 res = PlexAPI.getDirectAudioPath(res, AuthToken)
             else:
                 # request transcoding
                 res, leftover, dfltd = self.getKey(Track, srcXML, 'key')
-                res = PlexAPI.getTranscodeAudioPath(res, AuthToken, self.options, maxAudioBitrate)
+                res = PlexAPI.getTranscodeAudioPath(res, AuthToken, self.options, maxAudioBitrateCompressed)
         
         else:
             dprint(__name__, 0, "MEDIAPATH - element not found: {0}", param)
