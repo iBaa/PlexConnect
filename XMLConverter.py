@@ -1100,7 +1100,7 @@ class CCommandCollection(CCommandHelper):
         addOpt, leftover = self.getParam(src, leftover)
         
         # compare PMS_mark in PlexAPI/getXMLFromMultiplePMS()
-        PMS_mark = '/PMS(' + PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'address') + ')'
+        PMS_mark = '/PMS(' + self.PMS_address + ')'
         
         # overwrite with URL embedded PMS address
         cmd_start = key.find('PMS(')
