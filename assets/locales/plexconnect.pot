@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-30 18:25:13+0000\n"
+"POT-Creation-Date: 2015-11-23 20:25:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,6 +51,9 @@ msgid "Audio Boost %"
 msgstr ""
 
 msgid "Audio Playlist"
+msgstr ""
+
+msgid "Audio Playlist: No Items Available"
 msgstr ""
 
 msgid "Audio Track"
@@ -236,6 +239,9 @@ msgstr ""
 msgid "Music Options"
 msgstr ""
 
+msgid "Music Videos"
+msgstr ""
+
 msgid "Music View"
 msgstr ""
 
@@ -299,6 +305,9 @@ msgstr ""
 msgid "Play"
 msgstr ""
 
+msgid "Play Video"
+msgstr ""
+
 msgid "Playlists"
 msgstr ""
 
@@ -318,6 +327,9 @@ msgid "Plex Media Server: No Items Available"
 msgstr ""
 
 msgid "Plex Media Server: No Tracks Available"
+msgstr ""
+
+msgid "Plex Mix"
 msgstr ""
 
 msgid "Plex Playlists"
@@ -386,6 +398,9 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
+msgid "Shared Channels"
+msgstr ""
+
 msgid "Shared Libraries"
 msgstr ""
 
@@ -411,6 +426,9 @@ msgid "Shutter Speed"
 msgstr ""
 
 msgid "Sign Out"
+msgstr ""
+
+msgid "Similar Artists"
 msgstr ""
 
 msgid "SlideShow"
