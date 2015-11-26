@@ -1069,10 +1069,10 @@ class CCommandCollection(CCommandHelper):
             
             audioATVNative = \
                 Media.get('audioCodec','-') in ("mp3", "aac", "ac3", "drms") and \
-                int(Media.get('bitrate','0')) < int(maxAudioBitrateCompressed) \
+                int(Media.get('bitrate','0')) <= int(maxAudioBitrateCompressed) \
                 or \
                 Media.get('audioCodec','-') in ("alac", "aiff", "wav") and \
-                int(Media.get('bitrate','0')) < int(maxAudioBitrateUncompressed)
+                int(Media.get('bitrate','0')) <= int(maxAudioBitrateUncompressed)
             # check Media.get('container') as well - mp3, m4a, ...?
             
             dprint(__name__, 2, "audio: ATVNative - {0}", audioATVNative)
