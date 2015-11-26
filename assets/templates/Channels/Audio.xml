@@ -28,8 +28,8 @@
                                        onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=Play_Audio_plist&amp;PlexConnectRatingKey={{VAL_QUOTED(ratingKey)}}')"
                                        onSelect="atv.loadURL('{{URL()}}&amp;PlexConnect=Play_Audio_plist&amp;PlexConnectRatingKey={{VAL_QUOTED(ratingKey)}}')">
               {{COPY(Track)}}
-                <label>{{VAL(track)}}</label>
-                <rightLabel>{{durationToString(NoKey:Audio:totalTime)}}</rightLabel>
+                <label>{{VAL(title)}}</label>
+                <rightLabel>{{durationToString(NoKey:Audio:duration)}}</rightLabel>
                 <ordinal>{{VAL(index)}}</ordinal>{{CUT(index:CUT:0=CUT|0 =)}}
                 <maxOrdinalDigits>2</maxOrdinalDigits>
                 <preview>
@@ -121,8 +121,8 @@
                                        onPlay="atv.loadURL('{{URL()}}&amp;PlexConnect=Play_Audio&amp;PlexConnectRatingKey={{VAL_QUOTED(ratingKey)}}')"
                                        onSelect="atv.loadURL('{{URL()}}&amp;PlexConnect=Play_Audio&amp;PlexConnectCopyIx={{VAL(#copy_ix)}}&amp;PlexConnectPlayType=Continuous')">
               {{COPY(Track)}}
-                <label>{{VAL(track)}}</label>
-                <rightLabel>{{durationToString(NoKey:Audio:totalTime)}}</rightLabel>
+                <label>{{VAL(title)}}</label>
+                <rightLabel>{{durationToString(NoKey:Audio:duration)}}</rightLabel>
                 <ordinal>{{VAL(index)}}</ordinal>{{CUT(index:CUT:0=CUT|0 =)}}
                 <maxOrdinalDigits>2</maxOrdinalDigits>
                 <preview>
