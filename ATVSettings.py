@@ -15,6 +15,7 @@ options = { \
     'sharedlibrariesview'       :('List', 'Grid', 'Bookcase', 'Hide'), \
     'librariesmergeview'        :('Hide', 'List', 'Grid', 'Bookcase'), \
     'channelview'               :('List', 'Tabbed List', 'Grid', 'BigGrid', 'Bookcase', 'Hide'), \
+    'sharedchannelsview'        :('List', 'Tabbed List', 'Grid', 'Bookcase', 'Hide'), \
     'globalsearch'              :('Show', 'Hide'), \
     'movieview'                 :('Artwork', 'Grid', 'List', 'Detailed List'), \
     'homevideoview'             :('Grid', 'List', 'Detailed List'), \

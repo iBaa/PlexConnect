@@ -31,6 +31,10 @@
           <title>{{TEXT(Channels)}}</title>
           <url>{{URL(:/PMS(owned)/channels/all::PlexConnect=Channels_View)}}</url>
         </navigationItem>{{CUT($channelview:CUT:=|Hide=CUT|Hide =)}}
+        <navigationItem id="SharedChannels">
+          <title>{{TEXT(Shared Channels)}}</title>
+          <url>{{URL(:/PMS(shared)/channels/all::PlexConnect=Channels_ViewShared)}}</url>
+        </navigationItem>{{CUT($myplex_auth:CUT:=CUT| =)}}{{CUT($sharedchannelsview:CUT:=|Hide=CUT|Hide =)}}
         <navigationItem id="Search">
           <title>{{TEXT(Search)}}</title>
           <url>{{URL(:/PMS(all)::PlexConnect=Search_EntryAllPMS)}}</url>
