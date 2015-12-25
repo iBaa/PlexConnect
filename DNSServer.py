@@ -75,6 +75,7 @@ import signal
 
 import Settings
 from Debug import *  # dprint()
+import re
 
 
 
@@ -320,6 +321,8 @@ def Run(cmdPipe, param):
     cfg_IP_self = param['IP_self']
     cfg_Port_DNSServer = param['CSettings'].getSetting('port_dnsserver')
     cfg_IP_DNSMaster = param['CSettings'].getSetting('ip_dnsmaster')
+    cfg_Domain_Block = re.sub("[^A-Za-z0-9-_\.,]", "", param['CSettings'].getSetting('block_domains')).lower().split(",")
+    cfg_Domain_Block_Prefix = param['CSettings'].getSetting('block_prefix') 
     
     try:
         DNS = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -328,6 +331,13 @@ def Run(cmdPipe, param):
         DNS.bind((cfg_IP_self, int(cfg_Port_DNSServer)))
     except Exception, e:
         dprint(__name__, 0, "Failed to create socket on UDP port {0}: {1}", cfg_Port_DNSServer, e)
+        sys.exit(1)
+    
+    try:
+        DNS_forward = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        DNS_forward.settimeout(5.0)
+    except Exception, e:
+        dprint(__name__, 0, "Failed to create socket on UDP port 49152: {0}", e)
         sys.exit(1)
     
     intercept = [param['HostToIntercept']]
@@ -364,9 +374,17 @@ def Run(cmdPipe, param):
                 opcode = (ord(data[2]) >> 3) & 0x0F # Opcode bits (query=0, inversequery=1, status=2)
                 if opcode == 0:                     # Standard query
                     domain = DNSToHost(data, 12)
-                    dprint(__name__, 1, "Domain: "+domain)
+                    if not domain:
+                        dprint(__name__, 1, cfg_Domain_Block_Prefix + " " + str(addr))
+                    elif domain.lower() in cfg_Domain_Block:
+                        dprint(__name__, 1, cfg_Domain_Block_Prefix + " " + str(addr))
+                    else:
+                        dprint(__name__, 1, "Domain: "+domain)
+                    
                 
                 paket=''
+                if not domain:
+                    domain = "mesu.apple.com"
                 if domain in intercept:
                     dprint(__name__, 1, "***intercept request")
                     paket+=data[:2]         # 0:1 - ID
@@ -397,17 +415,8 @@ def Run(cmdPipe, param):
                 
                 else:
                     dprint(__name__, 1, "***forward request")
-                    
-                    try:
-                        DNS_forward = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-                        DNS_forward.settimeout(5.0)
-                    except Exception, e:
-                        dprint(__name__, 0, "Failed to create socket for DNS_forward): {0}", e)
-                        continue
-                    
                     DNS_forward.sendto(data, (cfg_IP_DNSMaster, 53))
                     paket, addr_master = DNS_forward.recvfrom(1024)
-                    DNS_forward.close()
                     # todo: double check: ID has to be the same!
                     # todo: spawn thread to wait in parallel
                     dprint(__name__, 1, "-> DNS response from higher level")
@@ -418,6 +427,7 @@ def Run(cmdPipe, param):
                 # todo: double check: ID has to be the same!
                 DNS.sendto(paket, addr)
             
+
             except socket.timeout:
                 pass
             
@@ -430,6 +440,7 @@ def Run(cmdPipe, param):
     finally:
         dprint(__name__, 0, "Shutting down.")
         DNS.close()
+        DNS_forward.close()
 
 
 
