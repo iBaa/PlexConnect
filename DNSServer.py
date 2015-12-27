@@ -376,8 +376,10 @@ def Run(cmdPipe, param):
                     domain = DNSToHost(data, 12)
                     if not domain:
                         dprint(__name__, 1, cfg_Domain_Block_Prefix + " " + str(addr))
+                        continue
                     elif domain.lower() in cfg_Domain_Block:
                         dprint(__name__, 1, cfg_Domain_Block_Prefix + " " + str(addr))
+                        continue
                     else:
                         dprint(__name__, 1, "Domain: "+domain)
                     
