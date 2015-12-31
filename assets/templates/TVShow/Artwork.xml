@@ -104,7 +104,7 @@
                 </shelf>{{CUT($shows_artwork::On Deck=CUT|Recently Added=CUT|Recently Released=|Hide=CUT)}}
                 
                 <collectionDivider alignment="left" accessibilityLabel="TV Shows">
-                    <title>{{TEXT(All Shows)}}</title>
+                    <title>{{TEXT(All Shows)}} ({{VAL(size)}})</title>
                 </collectionDivider>
                 
                 <grid columnCount="5" id="grid_0">

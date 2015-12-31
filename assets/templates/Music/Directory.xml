@@ -9,7 +9,7 @@
       <header>
         <simpleHeader>
           <title>{{VAL(title1:Plex Library)}}</title>
-          <subtitle>{{VAL(title2)}}</subtitle>
+          <subtitle>{{VAL(title2)}} ({{VAL(size)}})</subtitle>
         </simpleHeader>
       </header>
       <menu>

@@ -104,7 +104,7 @@
                 </shelf>{{CUT($movies_artwork::On Deck=CUT|Recently Added=CUT|Recently Released=|Hide=CUT)}}
                 
                 <collectionDivider alignment="left" accessibilityLabel="Movies">
-                    <title>{{TEXT(All Movies)}}</title>
+                    <title>{{TEXT(All Movies)}} ({{VAL(size)}})</title>
                 </collectionDivider>
                 
                 <grid columnCount="7" id="grid_0">
