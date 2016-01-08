@@ -1,0 +1,34 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+  
+  <body>
+    <scroller id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=TVShow_Season_Grid_Fanart)}}')">
+      <header>
+        <imageHeader>
+           <image insets="{{VAL(^aTVScreenResolution:1:720=-270|1080=-434)}}, 0, {{VAL(^aTVScreenResolution:1:720=580|1080=900)}}, 0" required="true">
+            {{BACKGROUNDURL(art:)}}
+           </image>
+        </imageHeader>
+      </header>
+      {{VAR(parentThumb:thumb)}}
+      <items>
+        <grid columnCount="7" id="grid_0">
+              <items>
+                <fourByThreePoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($postertitles::Highlighted Only=false|Show All=true)}}"
+                              onPlay="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_List{{VAL($fanart::Hide=|Show=_Fanart)}})}}')"
+                              onSelect="atv.loadURL('{{URL(key:::PlexConnect=TVShow_Episode_List{{VAL($fanart::Hide=|Show=_Fanart)}})}}')"
+                              onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
+                  {{COPY(Directory)}}
+                  <title>{{VAL(title)}}</title>
+                  <image>{{IMAGEURL(thumb::384)}}</image>{{CUT(thumb:CUT:=CUT| =)}}
+                  <image>{{IMAGEURL(#parentThumb::384)}}</image>{{CUT(thumb:: =CUT)}}
+                  <defaultImage>resource://Poster.png</defaultImage>
+                </fourByThreePoster>{{CUT(Directory/title:CUT:=)}}
+              </items>
+        </grid>
+      </items>
+    </scroller>
+  </body>
+</atv>

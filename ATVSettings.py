@@ -17,12 +17,12 @@ options = { \
     'channelview'               :('List', 'Tabbed List', 'Grid', 'BigGrid', 'Bookcase', 'Hide'), \
     'sharedchannelsview'        :('List', 'Tabbed List', 'Grid', 'Bookcase', 'Hide'), \
     'globalsearch'              :('Show', 'Hide'), \
-    'movieview'                 :('Artwork', 'Grid', 'List', 'Detailed List'), \
+    'movieview'                 :('Grid', 'Artwork', 'List', 'Detailed List'), \
     'homevideoview'             :('Grid', 'List', 'Detailed List'), \
     'actorview'                 :('Movies', 'Portrait'), \
-    'showview'                  :('Artwork', 'Grid', 'List', 'Detailed List', 'Bookcase'), \
+    'showview'                  :('Grid', 'Artwork', 'List', 'Detailed List', 'Bookcase'), \
     'flattenseason'             :('True', 'False'), \
-    'seasonview'                :('Coverflow', 'List', 'BigGrid'), \
+    'seasonview'                :('Grid', 'Coverflow', 'List', 'BigGrid'), \
     'durationformat'            :('Hours/Minutes', 'Minutes'), \
     'postertitles'              :('Highlighted Only', 'Show All'), \
     'fanart'                    :('Hide', 'Show'), \
@@ -72,7 +72,7 @@ options = { \
     'overscanadjust'    :('0', '1', '2', '3', '-3', '-2', '-1'), \
     'clockposition'     :('Center', 'Right', 'Left'), \
     'showendtime'       :('True', 'False'), \
-    'timeformat'        :('24 Hour', '12 Hour'), \
+    'timeformat'        :('12 Hour', '24 Hour'), \
     'myplex_user'       :('', ), \
     'myplex_auth'       :('', ), \
     'plexhome_enable'   :('False', 'True'), \

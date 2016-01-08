@@ -109,6 +109,14 @@
                 
                 <grid columnCount="5" id="grid_0">
                     <items>
+                        <!-- shuffle -->
+                        <goldenPoster id="shuffle_{{VAL(title)}}"
+                            onPlay="atv.loadURL('{{URL(:::PlexConnect=Play_Shuffle&amp;PlexConnectRatingKey={{VAL(Video/ratingKey)}}&amp;PlexConnectPlayType=Shuffle)}}')"
+                            onSelect="atv.loadURL('{{URL(:::PlexConnect=Play_Shuffle&amp;PlexConnectRatingKey={{VAL(Video/ratingKey)}}&amp;PlexConnectPlayType=Shuffle)}}')">
+                            <title>{{TEXT(Shuffle)}}</title>
+                            <image>{{URL(:/thumbnails/shuffle.png)}}</image>
+                            
+                        </goldenPoster>
                         <goldenPoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($postertitles::Highlighted Only=false|Show All=true)}}"
                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
                             onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect=Movie_PrePlay{{VAL($fanart::Hide=|Show=_Fanart)}})}}')"
