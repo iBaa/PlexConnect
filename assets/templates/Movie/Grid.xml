@@ -96,7 +96,7 @@
                                     <title>{{VAL(title)}}</title>
                                     <subtitle>{{VAL(year:&#x00AD;)}}</subtitle>
                                     <image>{{IMAGEURL(thumb::384)}}</image>
-                                    <defaultImage>{{URL(:/thumbnails/Folder.png)}}</defaultImage>
+                                    <defaultImage>resource://Poster.png</defaultImage>
                                 </fourByThreePoster>
                             </items>
                         </shelfSection>

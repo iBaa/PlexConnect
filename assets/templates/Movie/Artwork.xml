@@ -115,7 +115,6 @@
                             onSelect="atv.loadURL('{{URL(:::PlexConnect=Play_Shuffle&amp;PlexConnectRatingKey={{VAL(Video/ratingKey)}}&amp;PlexConnectPlayType=Shuffle)}}')">
                             <title>{{TEXT(Shuffle)}}</title>
                             <image>{{URL(:/thumbnails/shuffle.png)}}</image>
-                            
                         </goldenPoster>
                         <goldenPoster id="{{VAL(key)}}" alwaysShowTitles="{{VAL($postertitles::Highlighted Only=false|Show All=true)}}"
                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
