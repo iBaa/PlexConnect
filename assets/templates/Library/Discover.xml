@@ -6,6 +6,7 @@
     <body>
         {{ADDXML(OnDeck::/library/onDeck?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20)}}
         {{ADDXML(RecentlyAdded::/library/recentlyAdded?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20)}}
+        {{ADDXML(VideoChannels::/channels/all)}}
         {{VAR(sections:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
         {{VAR(items:NoKey:FALSE)}}
         
@@ -133,6 +134,30 @@
                     </shelf>
                 </__COPY__>
                 
+                <!--Channels-->
+                <__COPY__>
+                    {{COPY(@VideoChannels/Server:size::0=|1=COPY)}}
+                    <collectionDivider alignment="left" accessibilityLabel="Channels">
+                        <title>{{TEXT(Channels)}}</title>
+                    </collectionDivider>
+                    <shelf id="shelf_0" columnCount="10">
+                        <sections>
+                            <shelfSection>
+                                <items>
+                                    <fourByThreePoster id="{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($postertitles::Highlighted Only=false|Show All=true)}}"
+                                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=Channels_Video)}}')"
+                                        onSelect="atv.loadURL('{{URL(key:::PlexConnect=Channels_Video)}}')">
+                                        {{COPY(Directory)}}
+                                        {{VAR(channels:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                                        <title>{{VAL(title)}}</title>
+                                        <image>{{IMAGEURL(thumb::384)}}</image>
+                                        <defaultImage>resource://Square.png</defaultImage>
+                                    </fourByThreePoster>
+                                </items>
+                            </shelfSection>
+                        </sections>
+                    </shelf>
+                </__COPY__>
             </items>
         </scroller>{{CUT(#sections::FALSE=CUT|TRUE=)}}  <!--CUT if no section added-->
         
