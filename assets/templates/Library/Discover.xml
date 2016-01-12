@@ -6,7 +6,6 @@
     <body>
         {{ADDXML(OnDeck::/library/onDeck?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20)}}
         {{ADDXML(RecentlyAdded::/library/recentlyAdded?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20)}}
-        {{ADDXML(VideoChannels::/channels/all)}}
         {{VAR(sections:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
         {{VAR(items:NoKey:FALSE)}}
         
@@ -52,6 +51,44 @@
                         </sections>
                     </shelf>
                 </__COPY__>
+                
+                <!-- Navigation -->
+                <shelf id="shelf_0" columnCount="5">
+                    <sections>
+                        <shelfSection>
+                    <items>
+                        <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" featured="true" alwaysShowTitles="true"
+                            onPlay="atv.loadURL('{{URL(:/PMS(owned)/channels/all::PlexConnect=Channels_List)}}')"
+                            onSelect="atv.loadURL('{{URL(:/PMS(owned)/channels/all::PlexConnect=Channels_List)}}')">
+                            <title>{{TEXT(Channels)}}</title>
+                            <image>{{URL(:/thumbnails/channels.png)}}</image>
+                            <defaultImage>resource://16X9.png</defaultImage>
+                        </moviePoster>
+                        <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" featured="true" alwaysShowTitles="true"
+                            onPlay="atv.loadURL('{{URL(:/PMS(shared)/library/sections::PlexConnect=Library_List)}}')"
+                            onSelect="atv.loadURL('{{URL(:/PMS(shared)/library/sections::PlexConnect=Library_List)}}')">
+                            <title>{{TEXT(Shared Libraries)}}</title>
+                            <image>{{URL(:/thumbnails/shared.png)}}</image>
+                            <defaultImage>resource://16X9.png</defaultImage>
+                        </moviePoster>
+                        <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" featured="true" alwaysShowTitles="true"
+                            onPlay="atv.loadURL('{{URL(:/PMS(all)::PlexConnect=Search_EntryAllPMS)}}')"
+                            onSelect="atv.loadURL('{{URL(:/PMS(all)::PlexConnect=Search_EntryAllPMS)}}')">
+                            <title>{{TEXT(Search)}}</title>
+                            <image>{{URL(:/thumbnails/search.png)}}</image>
+                            <defaultImage>resource://16X9.png</defaultImage>
+                        </moviePoster>
+                        <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" featured="true" alwaysShowTitles="true"
+                            onPlay="atv.loadURL('{{URL(:/::PlexConnect=Settings_Main)}}')"
+                            onSelect="atv.loadURL('{{URL(:/::PlexConnect=Settings_Main)}}')">
+                            <title>{{TEXT(Settings)}}</title>
+                            <image>{{URL(:/thumbnails/settings.png)}}</image>
+                            <defaultImage>resource://16X9.png</defaultImage>
+                        </moviePoster>
+                    </items>
+                        </shelfSection>
+                    </sections>
+                </shelf>
                 
                 <!--On Deck-->
                 <__COPY__>
@@ -134,30 +171,6 @@
                     </shelf>
                 </__COPY__>
                 
-                <!--Channels-->
-                <__COPY__>
-                    {{COPY(@VideoChannels/Server:size::0=|1=COPY)}}
-                    <collectionDivider alignment="left" accessibilityLabel="Channels">
-                        <title>{{TEXT(Channels)}}</title>
-                    </collectionDivider>
-                    <shelf id="shelf_0" columnCount="10">
-                        <sections>
-                            <shelfSection>
-                                <items>
-                                    <fourByThreePoster id="{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($postertitles::Highlighted Only=false|Show All=true)}}"
-                                        onPlay="atv.loadURL('{{URL(key:::PlexConnect=Channels_Video)}}')"
-                                        onSelect="atv.loadURL('{{URL(key:::PlexConnect=Channels_Video)}}')">
-                                        {{COPY(Directory)}}
-                                        {{VAR(channels:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
-                                        <title>{{VAL(title)}}</title>
-                                        <image>{{IMAGEURL(thumb::384)}}</image>
-                                        <defaultImage>resource://Square.png</defaultImage>
-                                    </fourByThreePoster>
-                                </items>
-                            </shelfSection>
-                        </sections>
-                    </shelf>
-                </__COPY__>
             </items>
         </scroller>{{CUT(#sections::FALSE=CUT|TRUE=)}}  <!--CUT if no section added-->
         
