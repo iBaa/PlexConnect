@@ -22,7 +22,7 @@
       <items>
         <!--Library/Photo-->
         <photo id="{{VAL(ratingKey)}}" onSelect="onSelectPhoto('{{VAL(ratingKey)}}')">
-          {{COPY(Photo:Media/Part/key::=COPY)}}
+          {{COPY(Photo:ratingKey::=COPY)}}
           <caption>{{VAL(title)}}</caption>
           <assets>
             <photoAsset width="0" height="0" src="{{IMAGEURL(Media/Part/key::384)}}"/>
@@ -35,13 +35,13 @@
 
         <!--Photo channel-->
         <photo id="{{VAL(key)}}" onSelect="onSelectPhoto('{{VAL(key)}}')">
-          {{COPY(Photo:Media/Part/key:COPY:=)}}
+          {{COPY(Photo:ratingKey:COPY:=)}}
           <caption>{{VAL(title)}}</caption>
           <assets>
-            <photoAsset width="0" height="0" src="{{IMAGEURL(key::384)}}"/>
+            <photoAsset width="0" height="0" src="{{IMAGEURL(Media/Part/key::384)}}"/>
           </assets>
           <stash>
-            <url>{{IMAGEURL(key)}}</url>
+            <url>{{IMAGEURL(Media/Part/key)}}</url>
             <directory>false</directory>
           </stash>
         </photo>
