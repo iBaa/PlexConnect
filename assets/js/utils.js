@@ -76,7 +76,7 @@ function changeArtwork(PMS_baseURL, accessToken, ratingKey, artURL, shelfName)
     var root = document.rootElement;
     var shelf = document.getElementById(shelfName);
     if (shelf == null) return;
-    var items = shelf.getElementsByTagName('moviePoster');
+    var items = shelf.getElementsByTagName('goldenPoster');
     if (items == null) return;
   
     for (var i=0; i<items.length; i++)

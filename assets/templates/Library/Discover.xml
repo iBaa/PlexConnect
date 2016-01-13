@@ -1,6 +1,7 @@
 <atv>
     <head>
         <script src="{{URL(:/js/utils.js)}}" />
+        <script src="{{URL(:/js/sectionHoldSelect.js)}}" />
     </head>
     
     <body>
@@ -104,7 +105,7 @@
                                     <goldenPoster id="{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($postertitles::Highlighted Only=false|Show All=true)}}"
                                         onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}}&amp;PlexConnectPlayType=Continuous)}}')"
                                         onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect=Movie_PrePlay{{VAL($fanart::Hide=|Show=_Fanart)}})}}')"
-                                        onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_Menu)}}')">
+                                        onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuTVOnDeck)}}')">
                                         {{COPY(Video)}}
                                         <title>{{VAL(title)}} ({{VAL(year)}})</title>{{CUT(type:CUT:episode=CUT|movie=)}}
                                         <title>{{TEXT(Season)}} {{VAL(parentIndex)}} · {{TEXT(Episode)}} {{VAL(index)}}</title>{{CUT(type::episode=|movie=CUT)}}                <image>{{IMAGEURL({{VAL(type::movie=thumb|episode=grandparentThumb)}}::768)}}</image>
@@ -157,7 +158,7 @@
                                     <goldenPoster id="{{VAL(key)}}" featured="true" alwaysShowTitles="{{VAL($postertitles::Highlighted Only=false|Show All=true)}}"
                                         onPlay="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect=TVShow_Episode_List)}}')"
                                         onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect=TVShow_Episode_List)}}')"
-                                        onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuSeason)}}')">
+                                      onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuSeason)}}')">
                                         {{COPY(Directory:type::album=|season=COPY)}}
                                         {{VAR(items:NoKey:TRUE)}} <!--within COPY this sets the var to TRUE-->
                                         <title>{{VAL(title)}}</title>
