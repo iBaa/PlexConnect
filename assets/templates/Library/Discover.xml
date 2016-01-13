@@ -86,6 +86,13 @@
                             <image>{{URL(:/thumbnails/settings.png)}}</image>
                             <defaultImage>resource://16X9.png</defaultImage>
                         </moviePoster>
+                        <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}" featured="true" alwaysShowTitles="true"
+                            onPlay="atv.loadURL('{{URL(:/PMS(owned)/library/sections::PlexConnect=Library_Discover)}}')"
+                            onSelect="atv.loadURL('{{URL(:/PMS(owned)/library/sections::PlexConnect=Library_Discover)}}')">
+                            <title>{{TEXT(Reload)}}</title>
+                            <image>{{URL(:/thumbnails/reload.png)}}</image>
+                            <defaultImage>resource://16X9.png</defaultImage>
+                        </moviePoster>
                     </items>
                         </shelfSection>
                     </sections>
