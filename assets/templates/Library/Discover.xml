@@ -5,8 +5,8 @@
     </head>
     
     <body>
-        {{ADDXML(OnDeck::/library/onDeck?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20)}}
-        {{ADDXML(RecentlyAdded::/library/recentlyAdded?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20)}}
+        {{ADDXML(OnDeck::/library/onDeck?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=60)}}
+        {{ADDXML(RecentlyAdded::/library/recentlyAdded?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=60)}}
         {{VAR(sections:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
         {{VAR(items:NoKey:FALSE)}}
         

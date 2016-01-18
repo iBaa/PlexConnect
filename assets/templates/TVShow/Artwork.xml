@@ -4,9 +4,9 @@
     </head>
     
     <body>
-        {{ADDXML(OnDeck::/library/sections/{{VAL(librarySectionID)}}/onDeck?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20)}}
-        {{ADDXML(recentlyAdded::/library/sections/{{VAL(librarySectionID)}}/recentlyAdded?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20)}}
-        {{ADDXML(newest::/library/sections/{{VAL(librarySectionID)}}/newest?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=20)}}
+        {{ADDXML(OnDeck::/library/sections/{{VAL(librarySectionID)}}/onDeck?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=60)}}
+        {{ADDXML(recentlyAdded::/library/sections/{{VAL(librarySectionID)}}/recentlyAdded?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=60)}}
+        {{ADDXML(newest::/library/sections/{{VAL(librarySectionID)}}/newest?X-Plex-Container-Start=0&amp;X-Plex-Container-Size=60)}}
         {{VAR(items:NoKey:FALSE)}}
         
         <scroller id="Show_Overview" volatile="true">
