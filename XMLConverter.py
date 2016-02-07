@@ -886,13 +886,15 @@ class CCommandCollection(CCommandHelper):
         else:  # internal path, add-on
             path = self.path[srcXML] + '/' + key
         
-        if PMS_address[0].isdigit() or PMS_address=='plex.tv':  # IP:port or plex.tv
+        if PMS_address in ['all', 'owned', 'shared', 'local', 'remote']:
+            # owned, shared PMSs
+            type = PMS_address
+            PMS = PlexAPI.getXMLFromMultiplePMS(self.ATV_udid, path, type, self.options)
+        else:
+            # IP:port or plex.tv
             auth_token = PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'accesstoken')
             enableGzip = PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'enableGzip')
             PMS = PlexAPI.getXMLFromPMS(self.PMS_baseURL, path, self.options, auth_token, enableGzip)
-        else:  # owned, shared PMSs
-            type = self.PMS_address
-            PMS = PlexAPI.getXMLFromMultiplePMS(self.ATV_udid, path, type, self.options)
         
         self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML
         self.path[tag] = path  # store base path
