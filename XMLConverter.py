@@ -370,13 +370,16 @@ def XML_PMS2aTV(PMS_address, path, options):
     while True:
         # request PMS-XML
         if not path=='' and not PMSroot and PMS_address:
-            if PMS_address[0].isdigit() or PMS_address=='plex.tv':  # IP:port or plex.tv
+            if PMS_address in ['all', 'owned', 'shared', 'local', 'remote']:
+                # owned, shared PMSs
+                type = PMS_address
+                PMS = PlexAPI.getXMLFromMultiplePMS(UDID, path, type, options)
+            else:
+                # IP:port or plex.tv
+                # PMS_uuid derived earlier from PMSaddress
                 auth_token = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
                 enableGzip = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'enableGzip')
                 PMS = PlexAPI.getXMLFromPMS(PMS_baseURL, path, options, auth_token, enableGzip)
-            else:  # owned, shared PMSs
-                type = PMS_address
-                PMS = PlexAPI.getXMLFromMultiplePMS(UDID, path, type, options)
             
             if PMS==False:
                 return XML_Error('PlexConnect', 'No Response from Plex Media Server')
@@ -884,13 +887,15 @@ class CCommandCollection(CCommandHelper):
         else:  # internal path, add-on
             path = self.path[srcXML] + '/' + key
         
-        if PMS_address[0].isdigit() or PMS_address=='plex.tv':  # IP:port or plex.tv
+        if PMS_address in ['all', 'owned', 'shared', 'local', 'remote']:
+            # owned, shared PMSs
+            type = PMS_address
+            PMS = PlexAPI.getXMLFromMultiplePMS(self.ATV_udid, path, type, self.options)
+        else:
+            # IP:port or plex.tv
             auth_token = PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'accesstoken')
             enableGzip = PlexAPI.getPMSProperty(self.ATV_udid, self.PMS_uuid, 'enableGzip')
             PMS = PlexAPI.getXMLFromPMS(self.PMS_baseURL, path, self.options, auth_token, enableGzip)
-        else:  # owned, shared PMSs
-            type = self.PMS_address
-            PMS = PlexAPI.getXMLFromMultiplePMS(self.ATV_udid, path, type, self.options)
         
         self.PMSroot[tag] = PMS.getroot()  # store additional PMS XML
         self.path[tag] = path  # store base path
