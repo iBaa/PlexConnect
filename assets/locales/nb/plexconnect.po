@@ -213,7 +213,7 @@ msgstr "Forum"
 
 
 msgid "General Appearance"
-msgstr "Vanlig Utseende"
+msgstr "Generelt Utseende"
 
 
 msgid "Genre"
