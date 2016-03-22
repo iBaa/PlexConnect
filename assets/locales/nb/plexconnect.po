@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plex Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-30 18:25:13+0000\n"
-"PO-Revision-Date: 2015-06-01 12:00+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2016-03-21 22:25+0000\n"
+"PO-Revision-Date: 2016-03-22 03:14+0000\n"
+"Last-Translator: FULLNAME <Email@Adress>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 ""
 
 msgid "ATV firmware version 5.1 or higher required. Please think about updating."
-msgstr ""
+msgstr "Apple TV fastvare versjon 5.1 eller høyere er nødvendig. Hver vennlig å oppdater."
 
 
 msgid "Actor View"
@@ -21,15 +21,15 @@ msgstr "Skuespillervisning"
 
 
 msgid "Actors"
-msgstr "Skuespillere "
+msgstr "Skuespillere"
 
 
 msgid "Albums"
-msgstr ""
+msgstr "Album"
 
 
 msgid "All Movies"
-msgstr "Alle Filmer"
+msgstr "Alle filmer"
 
 
 msgid "All Photos"
@@ -41,7 +41,7 @@ msgstr "Alle TV-programmer"
 
 
 msgid "All Videos"
-msgstr ""
+msgstr "Alle videoer"
 
 
 msgid "Aperture"
@@ -53,7 +53,7 @@ msgstr "Utseende"
 
 
 msgid "Artists"
-msgstr ""
+msgstr "Artister"
 
 
 msgid "Audio"
@@ -65,7 +65,7 @@ msgstr "Lydforsterking i %"
 
 
 msgid "Audio Playlist"
-msgstr ""
+msgstr "Musikk spilleliste"
 
 
 msgid "Audio Track"
@@ -121,19 +121,19 @@ msgstr "Kameramodell"
 
 
 msgid "Change All Posters"
-msgstr ""
+msgstr "Endre alle plakater"
 
 
 msgid "Change Fanart"
-msgstr ""
+msgstr "Endre Bakgrunn"
 
 
 msgid "Change Poster"
-msgstr ""
+msgstr "Endre plakat"
 
 
 msgid "Channel Search"
-msgstr ""
+msgstr "Kanal søk"
 
 
 msgid "Channels"
@@ -149,7 +149,7 @@ msgstr "Samlinger"
 
 
 msgid "Decade"
-msgstr ""
+msgstr "Tiår"
 
 
 msgid "Decades"
@@ -165,7 +165,7 @@ msgstr "Regissør"
 
 
 msgid "Directors"
-msgstr "Regi"
+msgstr "Regissører"
 
 
 msgid "Discover"
@@ -173,7 +173,7 @@ msgstr "Oppdag"
 
 
 msgid "Duration Format"
-msgstr ""
+msgstr "Varighets Format"
 
 
 msgid "Enter the MyPlex password for {0}."
@@ -181,7 +181,7 @@ msgstr "Skriv inn MyPlex-passordet til {0}"
 
 
 msgid "Enter the PlexHome user pin for {0}."
-msgstr ""
+msgstr "Skriv inn PlexHome pinkoden til {0}."
 
 
 msgid "Episodes"
@@ -189,23 +189,23 @@ msgstr "Episoder"
 
 
 msgid "Extras"
-msgstr ""
+msgstr "Ekstra"
 
 
 msgid "Failed"
-msgstr ""
+msgstr "Mislykket"
 
 
 msgid "Fanart"
-msgstr ""
+msgstr "Bakgrunnsbilde"
 
 
 msgid "Fanart Lower Blur"
-msgstr ""
+msgstr "Bakgrunnsuskarphet nederst"
 
 
 msgid "Flatten Season"
-msgstr ""
+msgstr "Flat ut sesongen"
 
 
 msgid "Forum"
@@ -213,7 +213,7 @@ msgstr "Forum"
 
 
 msgid "General Appearance"
-msgstr ""
+msgstr "Vanlig Utseende"
 
 
 msgid "Genre"
@@ -225,19 +225,19 @@ msgstr "Sjangre"
 
 
 msgid "Home Video Navigation Bar"
-msgstr ""
+msgstr "Navigasjonsfelt for hjemmevideo"
 
 
 msgid "Home Video Options"
-msgstr ""
+msgstr "Hjemmevideo innstillinger"
 
 
 msgid "Home Video View"
-msgstr ""
+msgstr "Hjemmevideo visning"
 
 
 msgid "Home Videos"
-msgstr ""
+msgstr "Hjemmevideoer"
 
 
 msgid "Homepage"
@@ -261,7 +261,7 @@ msgstr "Bibliotek"
 
 
 msgid "Main Navigation Bar"
-msgstr ""
+msgstr "Hoved Navigasjonsfelt"
 
 
 msgid "Mark as Unwatched"
@@ -273,7 +273,7 @@ msgstr "Markér som sett"
 
 
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Diverse"
 
 
 msgid "More"
@@ -301,19 +301,19 @@ msgstr "Filmer"
 
 
 msgid "Music"
-msgstr ""
+msgstr "Musikk"
 
 
 msgid "Music Navigation Bar"
-msgstr ""
+msgstr "Navigasjonsfelt for musikk"
 
 
 msgid "Music Options"
-msgstr ""
+msgstr "Musikk innstillinger"
 
 
 msgid "Music View"
-msgstr ""
+msgstr "Musikk visning"
 
 
 msgid "MyPlex Password"
@@ -333,15 +333,15 @@ msgstr "MyPlex-brukernavn"
 
 
 msgid "No Plex Channels Available"
-msgstr "Ingen kanaler tilgjengelig"
+msgstr "Ingen Plex kanaler tilgjengelig"
 
 
 msgid "No Plex Library Sections Available"
-msgstr "Ingen bibliotek tilgjengelig"
+msgstr "Ingen Plex bibliotek tilgjengelig"
 
 
 msgid "No Plex Playlists Available"
-msgstr ""
+msgstr "Ingen Plex-spillelister er tilgjengelige"
 
 
 msgid "No Seasons"
@@ -365,11 +365,11 @@ msgstr "Ingen"
 
 
 msgid "Now Playing"
-msgstr ""
+msgstr "Spilles nå"
 
 
 msgid "Off"
-msgstr ""
+msgstr "Av"
 
 
 msgid "On Deck"
@@ -381,7 +381,7 @@ msgstr "Justér overscan"
 
 
 msgid "PIL/Pillow not installed"
-msgstr ""
+msgstr "PIL/Pillow er ikke installert"
 
 
 msgid "Photo"
@@ -389,7 +389,7 @@ msgstr "Bilde"
 
 
 msgid "Photo Transcoder Action"
-msgstr ""
+msgstr "Bilde-ombrenningshandling"
 
 
 msgid "Play"
@@ -397,7 +397,7 @@ msgstr "Spill av"
 
 
 msgid "Playlists"
-msgstr ""
+msgstr "Spillelister"
 
 
 msgid "Plex Channels"
@@ -405,7 +405,7 @@ msgstr "Plex-kanaler"
 
 
 msgid "Plex Home Users"
-msgstr ""
+msgstr "PlexHome brukere"
 
 
 msgid "Plex Library"
@@ -421,11 +421,11 @@ msgstr "Plex Media Server: Ingen elementer tilgjengelig"
 
 
 msgid "Plex Media Server: No Tracks Available"
-msgstr ""
+msgstr "Plex Media Server: Ingen spor tilgjengelig"
 
 
 msgid "Plex Playlists"
-msgstr ""
+msgstr "Plex spillelister"
 
 
 msgid "PlexConnect"
@@ -433,11 +433,11 @@ msgstr "PlexConnect"
 
 
 msgid "PlexHome User PIN"
-msgstr ""
+msgstr "PlexHome bruker pinkode"
 
 
 msgid "Poster Titles"
-msgstr ""
+msgstr "Plakat titler"
 
 
 msgid "PrePlay Bottom Shelf"
@@ -453,7 +453,7 @@ msgstr "Nylig lagt til"
 
 
 msgid "Recently Aired"
-msgstr "Nylig vist"
+msgstr "Nylig Sent"
 
 
 msgid "Recently Released"
@@ -465,7 +465,7 @@ msgstr "Nylig sett"
 
 
 msgid "Recently Viewed Episodes"
-msgstr ""
+msgstr "Nylig sett episoder"
 
 
 msgid "Recently Viewed Shows"
@@ -473,11 +473,11 @@ msgstr "Nylig viste programmer"
 
 
 msgid "Refresh"
-msgstr ""
+msgstr "Oppdater"
 
 
 msgid "Related Movies"
-msgstr ""
+msgstr "Beslektede Filmer"
 
 
 msgid "Remote Bitrate"
@@ -493,19 +493,19 @@ msgstr "Sesongvisning"
 
 
 msgid "Select Fanart"
-msgstr ""
+msgstr "Velg bakgrunnsbilde"
 
 
 msgid "Select Poster"
-msgstr ""
+msgstr "Velg plakat"
 
 
 msgid "Select Posters"
-msgstr ""
+msgstr "Velg plakater"
 
 
 msgid "Select Tracks"
-msgstr ""
+msgstr "Velg spor"
 
 
 msgid "Settings"
@@ -513,7 +513,7 @@ msgstr "Innstillinger"
 
 
 msgid "Shared Libraries"
-msgstr ""
+msgstr "Delte bibliotek"
 
 
 msgid "Show Clock"
@@ -525,7 +525,7 @@ msgstr "Vis sluttid"
 
 
 msgid "Show Photos"
-msgstr "Vis bilder"
+msgstr "Hvis bilder"
 
 
 msgid "Show Unwatched Count"
@@ -537,7 +537,7 @@ msgstr "Programmer"
 
 
 msgid "Shuffle"
-msgstr ""
+msgstr "Tilfeldig rekkefølge"
 
 
 msgid "Shutter Speed"
@@ -545,7 +545,7 @@ msgstr "Lukkerhastighet"
 
 
 msgid "Sign Out"
-msgstr ""
+msgstr "Logg ut"
 
 
 msgid "SlideShow"
@@ -553,15 +553,15 @@ msgstr "Lysbildefremvisning"
 
 
 msgid "Studio"
-msgstr ""
+msgstr "Studio"
 
 
 msgid "Subs"
-msgstr ""
+msgstr "Teksting"
 
 
 msgid "Subtitle Renderer"
-msgstr ""
+msgstr "Tekst genererer"
 
 
 msgid "Subtitle Size %"
@@ -573,7 +573,7 @@ msgstr "Undertekst"
 
 
 msgid "Switch Home User"
-msgstr ""
+msgstr "Bytt hjemme bruker"
 
 
 msgid "Synopsis hidden."
@@ -585,7 +585,7 @@ msgstr "Navigasjonsfelt for TV-programmer"
 
 
 msgid "TV Show Options"
-msgstr "Innstillinger for TV-programmer"
+msgstr "TV-programinnstillinger"
 
 
 msgid "TV Show View"
@@ -593,7 +593,7 @@ msgstr "TV-programvisning"
 
 
 msgid "TV Shows"
-msgstr ""
+msgstr "TV-programmer"
 
 
 msgid "TheMovieDB: No Trailer Info available"
@@ -605,7 +605,7 @@ msgstr "Tidsformat"
 
 
 msgid "To sign in to MyPlex, enter your Email address, username or Plex forum username."
-msgstr "For å logge inn på MyPlex, skriv inn din epostadresse, MyPlex-brukernavn eller brukernavn fra Plexforumet."
+msgstr "For å logge inn på MyPlex, skriv inn din epostadresse, brukernavn eller Plexforum-brukernavnet."
 
 
 msgid "Trailer"
@@ -613,15 +613,15 @@ msgstr "Trailer"
 
 
 msgid "Transcoder"
-msgstr "Transkoder"
+msgstr "Ombrenning"
 
 
 msgid "Transcoder Action"
-msgstr ""
+msgstr "Ombrenningshandling"
 
 
 msgid "Transcoder Quality"
-msgstr "Transkoderkvalitet"
+msgstr "Ombrenningskvalitet"
 
 
 msgid "Unwatched"
@@ -645,11 +645,11 @@ msgstr "Skjermvisning"
 
 
 msgid "Video Playlist"
-msgstr ""
+msgstr "Video spilleliste"
 
 
 msgid "Video Playlist: No Items Available"
-msgstr ""
+msgstr "Video spilleliste: Ingen elementer tilgjengelige"
 
 
 msgid "View Show"
@@ -669,11 +669,11 @@ msgstr "År"
 
 
 msgid "refreshing"
-msgstr ""
+msgstr "Oppdaterer"
 
 
 msgid "remote"
-msgstr ""
+msgstr "Ekstern"
 
 
 msgid "{0:0d}x{1:02d} {2}"
@@ -685,7 +685,7 @@ msgstr "{0:d} minutter."
 
 
 msgid "{0:d}:{1:0>2d}"
-msgstr ""
+msgstr "{0:d}:{1:0>2d}"
 
 
 msgid "{0:d}hr {1:d}min"
