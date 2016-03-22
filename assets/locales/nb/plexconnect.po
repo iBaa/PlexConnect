@@ -585,7 +585,7 @@ msgstr "Navigasjonsfelt for TV-programmer"
 
 
 msgid "TV Show Options"
-msgstr "TV-programinnstillinger"
+msgstr "TV-program innstillinger"
 
 
 msgid "TV Show View"
