@@ -297,6 +297,8 @@ def discoverPMS(ATV_udid, CSettings, IP_self, tokenDict={}):
 getPMSListFromMyPlex
 
 get Plex media Server List from plex.tv/pms/resources
+poke every PMS at every given address (plex.tv tends to cache a LOT...)
+-> by design this leads to numerous threads ending in URLErrors like <timed out> or <Connection refused>
 """
 def getPMSListFromMyPlex(ATV_udid, authtoken):
     dprint(__name__, 0, "***")
@@ -310,6 +312,7 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
     else:
         queue = Queue.Queue()
         threads = []
+        PMSsPoked = 0
         
         for Dir in XML.getiterator('Device'):
             if Dir.get('product','') == "Plex Media Server" and Dir.get('provides','') == "server":
@@ -319,18 +322,6 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
                 owned = Dir.get('owned', '0')
                 local = Dir.get('publicAddressMatches')
                 
-                if Dir.find('Connection') == None:
-                    continue  # no valid connection - skip
-                
-                uri = ""  # flag to set first connection, possibly overwrite later with more suitable
-                for Con in Dir.getiterator('Connection'):
-                    if uri=="" or Con.get('local','') == local:
-                        protocol = Con.get('protocol')
-                        ip = Con.get('address')
-                        port = Con.get('port')
-                        uri = Con.get('uri')
-                    # todo: handle unforeseen - like we get multiple suitable connections. how to choose one?
-                
                 # check MyPlex data age - skip if >2 days
                 infoAge = time.time() - int(Dir.get('lastSeenAt'))
                 oneDayInSec = 60*60*24
@@ -338,35 +329,64 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
                     dprint(__name__, 1, "Server {0} not updated for {1} days - skipping.", name, infoAge/oneDayInSec)
                     continue
                 
-                # poke PMS, own thread for each poke
-                PMSInfo = { 'uuid': uuid, 'name': name, 'token': token, 'owned': owned, 'local': local, \
-                        'protocol': protocol, 'ip': ip, 'port': port, 'uri': uri }
-                PMS = { 'baseURL': uri, 'path': '/', 'options': None, 'token': token, \
-                        'data': PMSInfo }
-                t = Thread(target=getXMLFromPMSToQueue, args=(PMS, queue))
-                t.start()
-                threads.append(t)
-            
-            # wait for requests being answered
+                if Dir.find('Connection') == None:
+                    continue  # no valid connection - skip
+                
+                PMSsPoked +=1
+                
+                # multiple connection possible - poke either one, fastest response wins
+                for Con in Dir.getiterator('Connection'):
+                    protocol = Con.get('protocol')
+                    ip = Con.get('address')
+                    port = Con.get('port')
+                    uri = Con.get('uri')
+                    
+                    dprint(__name__, 0, "poke {0} ({1}) at {2}", name, uuid, uri)
+                    
+                    # poke PMS, own thread for each poke
+                    PMSInfo = { 'uuid': uuid, 'name': name, 'token': token, 'owned': owned, 'local': local, \
+                            'protocol': protocol, 'ip': ip, 'port': port, 'uri': uri }
+                    PMS = { 'baseURL': uri, 'path': '/', 'options': None, 'token': token, \
+                            'data': PMSInfo }
+                    
+                    t = Thread(target=getXMLFromPMSToQueue, args=(PMS, queue))
+                    t.start()
+                    threads.append(t)
+        
+        # wait for requests being answered
+        # - either all communication threads done
+        # - or at least one response received from every PMS (early exit)
+        ThreadsAlive = -1
+        PMSsCnt = 0
+        while ThreadsAlive != 0 and PMSsPoked != PMSsCnt:
+            # check for "living" threads - basically a manual t.join()
+            ThreadsAlive = 0
             for t in threads:
-                t.join()
+                if t.isAlive():
+                    ThreadsAlive += 1
             
-            # declare new PMSs
-            while not queue.empty():
-                    (PMSInfo, PMS) = queue.get()
+            # analyse PMS/http response - declare new PMS
+            if not queue.empty():
+                (PMSInfo, PMS) = queue.get()
+                
+                if PMS==False:
+                    # communication error - skip this connection
+                    continue
+                
+                uuid = PMSInfo['uuid']
+                name = PMSInfo['name']
+                token = PMSInfo['token']
+                owned = PMSInfo['owned']
+                local = PMSInfo['local']
+                protocol = PMSInfo['protocol']
+                ip = PMSInfo['ip']
+                port = PMSInfo['port']
+                uri = PMSInfo['uri']
                     
-                    if PMS==False:
-                        continue
+                if not uuid in g_PMS[ATV_udid]:  # PMS uuid not yet handled, so this must be the fastest response
+                    PMSsCnt += 1
                     
-                    uuid = PMSInfo['uuid']
-                    name = PMSInfo['name']
-                    token = PMSInfo['token']
-                    owned = PMSInfo['owned']
-                    local = PMSInfo['local']
-                    protocol = PMSInfo['protocol']
-                    ip = PMSInfo['ip']
-                    port = PMSInfo['port']
-                    uri = PMSInfo['uri']
+                    dprint(__name__, 0, "response {0} ({1}) at {2}", name, uuid, uri)
                     
                     declarePMS(ATV_udid, uuid, name, protocol, ip, port)  # dflt: token='', local, owned - updated later
                     updatePMSProperty(ATV_udid, uuid, 'accesstoken', token)
