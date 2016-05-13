@@ -375,6 +375,12 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
                 
                 uuid = PMSInfo['uuid']
                 name = PMSInfo['name']
+                
+                if uuid != PMS.getroot().get('machineIdentifier') or \
+                    name != PMS.getroot().get('friendlyName'):
+                    # response from someone - but not the poked PMS - skip this connection
+                    continue
+                
                 token = PMSInfo['token']
                 owned = PMSInfo['owned']
                 local = PMSInfo['local']
