@@ -1071,7 +1071,7 @@ class CCommandCollection(CCommandHelper):
             # transcoder action setting?
             # transcoder bitrate setting [kbps] -  eg. 128, 256, 384, 512?
             maxAudioBitrateCompressed = '320'
-            maxAudioBitrateUncompressed = '1000'
+            maxAudioBitrateUncompressed = '2000'  # 2.0Mbps equals smallest available bitrate setting (480p)
             
             audioATVNative = \
                 Media.get('audioCodec','-') in ("mp3", "aac", "ac3", "drms") and \
