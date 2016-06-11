@@ -26,6 +26,7 @@ options = { \
     'postertitles'              :('Highlighted Only', 'Show All'), \
     'fanart'                    :('Hide', 'Show'), \
     'fanart_blur'               :('0', '5', '10', '15', '20'), \
+    'allowdeletion'             :('No', 'Yes'), \
     'moviepreplay_bottomshelf'  :('Extras', 'Related Movies'), \
     'movies_navbar_ondeck'      :('checked', 'unchecked'), \
     'movies_navbar_unwatched'   :('checked', 'unchecked'), \
