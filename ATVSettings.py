@@ -27,6 +27,7 @@ options = { \
     'postertitles'              :('Highlighted Only', 'Show All'), \
     'fanart'                    :('Hide', 'Show'), \
     'fanart_blur'               :('0', '5', '10', '15', '20'), \
+    'allowdeletion'             :('No', 'Yes'), \
     'preplay_badges'            :('Enhanced', 'Disabled'), \
     'shows_artwork'             :('Recently Released', 'Recently Added', 'On Deck', 'Hide'), \
     'movies_artwork'            :('Recently Released', 'Recently Added', 'On Deck', 'Hide'), \

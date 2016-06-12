@@ -79,6 +79,10 @@
                   <arrow/>
                 </accessories>
               </oneLineMenuItem>
+              <oneLineMenuItem id="AllowDeletion" onSelect="toggleSettings('AllowDeletion', 'Settings_Main')">
+                <label>{{TEXT(Allow deletion of media)}}</label>
+                <rightLabel>{{SETTING(allowdeletion)}}</rightLabel>
+              </oneLineMenuItem>
             </items>
           </menuSection>
           

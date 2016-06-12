@@ -66,6 +66,19 @@ function markItem(PMS_baseURL, accessToken, ratingKey, action)
 }
 
 /*
+ * Delete an item from the library
+ */
+function deleteItem(PMS_baseURL, accessToken, ratingKey)
+{
+  var url = PMS_baseURL + "/library/metadata/" + ratingKey;
+  if (accessToken!='') url = url + '&X-Plex-Token=' + accessToken;
+    
+	var req = new XMLHttpRequest();
+	req.open('DELETE', url, false);
+	req.send();
+}
+
+/*
  * Update Plex library with new artwork
  */
 function changeArtwork(PMS_baseURL, accessToken, ratingKey, artURL, shelfName)
