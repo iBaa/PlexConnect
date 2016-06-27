@@ -71,7 +71,7 @@ function markItem(PMS_baseURL, accessToken, ratingKey, action)
 function deleteItem(PMS_baseURL, accessToken, ratingKey)
 {
   var url = PMS_baseURL + "/library/metadata/" + ratingKey;
-  if (accessToken!='') url = url + '&X-Plex-Token=' + accessToken;
+  if (accessToken!='') url = url + '?X-Plex-Token=' + accessToken;
     
 	var req = new XMLHttpRequest();
 	req.open('DELETE', url, false);
