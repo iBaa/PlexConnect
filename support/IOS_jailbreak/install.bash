@@ -28,17 +28,19 @@ echo 'Installing PlexConnect...'
 
 ## make scripts executable for ios devices
 chmod +x /Applications/PlexConnect/PlexConnect.py
-chmod +x /Applications/PlexConnect/support/aTV_jailbreak/PlexConnect.bash
-chmod +x /Applications/PlexConnect/support/aTV_jailbreak/createcert.bash
-chmod +x /Applications/PlexConnect/support/aTV_jailbreak/restart.bash
-chmod +x /Applications/PlexConnect/support/aTV_jailbreak/uninstall.bash
+chmod +x /Applications/PlexConnect/support/IOS_jailbreak/PlexConnect.bash
+chmod +x /Applications/PlexConnect/support/IOS_jailbreak/createcert.bash
+chmod +x /Applications/PlexConnect/support/IOS_jailbreak/restart.bash
+chmod +x /Applications/PlexConnect/support/IOS_jailbreak/uninstall.bash
+chmod +x /Applications/PlexConnect/support/IOS_jailbreak/fix.bash
+chmod +x /Applications/PlexConnect/support/IOS_jailbreak/unfix.bash
 
 ## replace __INSTALLERPATH__, __PLEXCONNECTPATH__ in default com.plex.plexconnect.daemon.bash.plist
 ## save directly to the /Library/LaunchDameons folder
 sed -e "s/__INSTALLERPATH__/${InstallerPath//\//\\/}/;s/__PLEXCONNECTPATH__/${PlexConnectPath//\//\\/}/" "${InstallerPath}/com.plex.plexconnect.bash.plist" > /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
 
 ## change ownership and permissions of the plist file to make it launchctl compatible
-chown root /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
+chown root:wheel /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
 chmod 644 /Library/LaunchDaemons/com.plex.plexconnect.bash.plist
 
 ## start PlexConnect for this session
@@ -53,6 +55,3 @@ sleep 2
 ## display the running status of PlexConnect
 #./PlexConnect_daemon.bash status
 launchctl list | grep com.plex.plexconnect.bash
-
-##Restart AppleTV to load the new plexconnect app
-reboot
