@@ -92,7 +92,7 @@ def startup():
     running = True
     
     # init DNSServer
-    if cfg.getSetting('enable_dnsserver')=='True':
+    if cfg.getSetting('enable_dnsserver')=='FALES':
         master, slave = Pipe()  # endpoint [0]-PlexConnect, [1]-DNSServer
         proc = Process(target=DNSServer.Run, args=(slave, param))
         proc.start()
