@@ -1,0 +1,18 @@
+For starting PlexConnect at boot:
+If you have installed Plexconnect somewhere else than "/opt/PlexConnect" you need to replace this path with yours in file: plexconnect.service
+If you are running an arch system you need to change ExecStart=/usr/bin/python with ExecStart=/usr/bin/python2.7 in plexconnect.service
+
+1: Move plexconnect.service 
+mv plexconnect.service /etc/systemd/system/
+
+2: Set the right permissions for unit file:
+chmod 644 /etc/systemd/system/plexconnect.service
+
+3: Start at boot:
+sudo systemctl enable plexconnect.service
+
+Now Plexconnect service is ready and we can start it with:
+systemctl start plexconnect.service
+
+You can check your service status with:
+sudo systemctl status plexconnect.service
