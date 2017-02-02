@@ -79,7 +79,10 @@ atv.player.playerTimeDidChange = function(time)
      )
   {
     lastTranscoderPingTime = thisReportTime;
-    loadPage( baseURL + '/video/:/transcode/universal/ping?session=' + atv.device.udid);
+    var token = '';
+    if (accessToken != '')
+        token = '&X-Plex-Token=' + accessToken;
+    loadPage( baseURL + '/video/:/transcode/universal/ping?session=' + atv.device.udid + token);
   }
   
   if (subtitle)
@@ -351,8 +354,11 @@ atv.player.playerStateChanged = function(newState, timeIntervalSec) {
     state = 'paused';
     if (isTranscoding)
     {
+    var token = '';
+    if (accessToken != '')
+    token = '&X-Plex-Token=' + accessToken;
       pingTimer = atv.setInterval(
-        function() { loadPage( baseURL + '/video/:/transcode/universal/ping?session=' + atv.device.udid); },
+        function() { loadPage( baseURL + '/video/:/transcode/universal/ping?session=' + atv.device.udid + token ); },
         60000
       );
     }
