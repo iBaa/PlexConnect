@@ -388,6 +388,12 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
                 ip = PMSInfo['ip']
                 port = PMSInfo['port']
                 uri = PMSInfo['uri']
+                
+                # Plex Cloud Beta doesn't allow video to work over https. Not sure if this is the best way to do this.
+                if PMSInfo['ip'].endswith('services'):
+                    protocol = 'http'
+                    port = '80'
+                    uri = PMSInfo['uri'].replace('https://', 'http://')
                     
                 if not uuid in g_PMS[ATV_udid]:  # PMS uuid not yet handled, so this must be the fastest response
                     PMSsCnt += 1
