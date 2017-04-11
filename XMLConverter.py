@@ -1022,8 +1022,8 @@ class CCommandCollection(CCommandHelper):
         transcoderAction = g_ATVSettings.getSetting(self.ATV_udid, 'phototranscoderaction')
         
         # image orientation
-	    orientation, leftover, dfltd = self.getKey(src, srcXML, 'Media/Part/orientation')
-	    normalOrientation = (not orientation) or orientation=='1'
+	orientation, leftover, dfltd = self.getKey(src, srcXML, 'Media/Part/orientation')
+	normalOrientation = (not orientation) or orientation=='1'
         
         # aTV native filetypes
         parts = key.rsplit('.',1)
