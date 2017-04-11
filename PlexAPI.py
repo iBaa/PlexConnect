@@ -475,8 +475,9 @@ def getXArgsDeviceInfo(options={}):
             xargs['X-Plex-Client-Identifier'] = options['PlexConnectUDID']  # UDID for MyPlex device identification
     if 'PlexConnectATVName' in options:
             xargs['X-Plex-Device-Name'] = options['PlexConnectATVName'] # "friendly" name: aTV-Settings->General->Name.
-    xargs['X-Plex-Platform'] = 'tvOS'
-    xargs['X-Plex-Client-Platform'] = 'tvOS'
+    xargs['X-Plex-Platform'] = 'iOS'
+    xargs['X-Plex-Client-Platform'] = 'iOS'
+    xargs['X-Plex-Client-Profile-Extra'] = 'append-transcode-target-audio-codec(type=videoProfile&context=streaming&protocol=hls&audioCodec=ac3,mp3)'
     if 'aTVFirmwareVersion' in options:
         xargs['X-Plex-Platform-Version'] = options['aTVFirmwareVersion']
     xargs['X-Plex-Product'] = 'PlexConnect'
