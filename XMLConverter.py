@@ -1160,9 +1160,6 @@ class CCommandCollection(CCommandHelper):
             res = 'VIDEO_ELEMENT_NOT_FOUND'  # not found?
             return res
         
-	# determine if Dolby Digital is active
-	DolbyDigital = g_ATVSettings.getSetting(self.ATV_udid, 'dolbydigital')
-	
         # complete video structure - request transcoding if needed
         Media = Video.find('Media')
         
@@ -1179,7 +1176,10 @@ class CCommandCollection(CCommandHelper):
                 or \
                 Media.get('container','-') in ("mov", "mp4") and \
                 Media.get('videoCodec','-') in ("mpeg4", "h264", "drmi") and \
-                Media.get('audioCodec','-') in ("aac", "ac3", "drms")   # remove AC3 when Dolby Digital is Off
+                Media.get('audioCodec','-') in ("aac", "drms")   # remove AC3 when Dolby Digital is Off
+
+	    # determine if Dolby Digital is active
+	    DolbyDigital = g_ATVSettings.getSetting(self.ATV_udid, 'dolbydigital')
 	    if DolbyDigital=='On':
 		self.options['DolbyDigital'] = True
                 videoATVNative = \
