@@ -1160,6 +1160,11 @@ class CCommandCollection(CCommandHelper):
             res = 'VIDEO_ELEMENT_NOT_FOUND'  # not found?
             return res
         
+	# determine if Dolby Digital is active
+	DolbyDigital = g_ATVSettings.getSetting(self.ATV_udid, 'dolbydigital')
+	if DolbyDigital=='On':
+		self.options['DolbyDigital'] = True
+	
         # complete video structure - request transcoding if needed
         Media = Video.find('Media')
         
