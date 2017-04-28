@@ -149,6 +149,10 @@
                 <label>{{TEXT(Remote Bitrate)}}</label>
                 <rightLabel>{{SETTING(remotebitrate)}}</rightLabel>
               </oneLineMenuItem>
+              <oneLineMenuItem id="DolbyDigital" onSelect="toggleSettings('DolbyDigital', 'Settings_Main')">
+                <label>{{TEXT(Dolby Digital)}}</label>
+                <rightLabel>{{SETTING(dolbydigital)}}</rightLabel>
+              </oneLineMenuItem>
               <oneLineMenuItem id="PhotoTranscoderAction" onSelect="toggleSettings('PhotoTranscoderAction', 'Settings_Main')">
                 <label>{{TEXT(Photo Transcoder Action)}}</label>
                 <rightLabel>{{SETTING(phototranscoderaction)}}</rightLabel>
