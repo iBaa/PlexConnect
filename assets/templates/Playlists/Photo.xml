@@ -1,0 +1,94 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+  
+  <body>
+    {{VAR(items:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
+    
+    <!-- List (copied from Video with some modifs) -->
+    <listWithPreview id="Playlist_List">
+    {{CUT(size:CUT:0=CUT|1=)}}
+      <header>
+        <simpleHeader>
+          <title>{{VAL(title:{{TEXT(Photo Playlist)}})}}</title>
+        </simpleHeader>
+      </header>
+      
+      <menu>
+        <sections>
+          
+          <menuSection>
+            <items>
+              <!-- shuffle -->
+              <oneLineMenuItem id="shuffle_{{VAL(title)}}"
+                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Photo_Directory)}}')"
+                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=Photo_Directory)}}')">
+                <label>{{TEXT(Shuffle)}}</label>
+                <accessories>
+                  <shuffle/>
+                </accessories>
+                <preview>
+                  <paradePreview inOrder="true">
+                    <image>
+                      {{COPY(Photo:thumb::=COPY)}}
+                      {{IMAGEURL(thumb::768)}}
+                    </image>
+                  </paradePreview>{{CUT(leafCount:CUT:0=CUT|0 =|1=CUT|1 =|2=CUT|2 =|3=CUT|4=CUT|5=CUT|6=)}}
+                  <crossFadePreview>
+                    <image>
+                      {{COPY(Photo:thumb::=COPY)}}
+                      {{IMAGEURL(thumb::768)}}
+                    </image>
+                  </crossFadePreview>{{CUT(leafCount::0=|0 =CUT|1=|1 =CUT|2=|2 =CUT|3=|4=|5=|6=CUT)}}
+                </preview>
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+          
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title />
+              </horizontalDivider>
+            </header>
+            
+            <items>
+              <__COPY__>
+              {{COPY(Photo)}}
+              
+              <!-- Photos -->
+              <twoLineEnhancedMenuItem id="{{VAL(key)}}"
+                             onPlay="atv.loadURL('{{URL(key:::PlexConnect=Photo_Directory)}}')"
+                             onSelect="atv.loadURL('{{URL(key:::PlexConnect=Photo_Directory)}}')">
+                             <!--onSelectHold=""-->
+              {{CUT(type::episode=CUT|movie=)}}
+              {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+                <label>{{VAL(title)}}</label>
+                <image>{{IMAGEURL(thumb::384)}}</image>
+                <preview>
+                  <keyedPreview>
+                    <title>{{VAL(title)}}</title>
+                    <summary>{{VAL(summary)}}</summary>
+                    <image>{{IMAGEURL(thumb::768)}}</image>
+                  </keyedPreview>
+                </preview>
+              </twoLineEnhancedMenuItem>
+              
+              </__COPY__>
+            </items>
+          </menuSection>
+          
+        </sections>
+      </menu>
+    </listWithPreview>
+    
+    <!--No Items Available-->
+    <dialog id="com.sample.error-dialog">
+    {{CUT(#items::FALSE=|TRUE=CUT)}}
+      <title>PlexConnect</title>
+      <description>{{TEXT(Photo Playlist: No Items Available)}}</description>
+    </dialog>
+    
+  </body>
+</atv>
