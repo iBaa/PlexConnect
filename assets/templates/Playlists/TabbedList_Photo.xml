@@ -1,0 +1,73 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+  
+  <body>
+    {{VAR(items:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
+    
+    <!-- List -->
+    <listByNavigation id="Playlists_List">
+    {{CUT(size:CUT:0=CUT|1=)}}
+      <header>
+        <tabWithTitle>
+          <title>{{TEXT(Plex Playlists)}}</title>
+        </tabWithTitle>
+      </header>
+
+      <navigation>
+        <navigationItem>
+          <title>Photo</title>
+          <url>{{URL(:/PMS(all)/playlists::PlexConnect=Playlists_TabbedList_Photo)}}</url>
+        </navigationItem>
+        <navigationItem>
+          <title>Audio</title>
+          <url>{{URL(:/PMS(all)/playlists::PlexConnect=Playlists_TabbedList_Audio)}}</url>
+        </navigationItem>
+      </navigation>
+			
+      <menu>
+        <sections>
+          
+          <!-- Photo (copied from Video, with some modifs) -->
+          <!-- servers -->
+          <__COPY__>  <!--<menuSection>{{COPY}} somehow conflicts with </menuSection>{{CUT}}-->
+          {{COPY(Server:size::0=|1=COPY)}}
+          <menuSection>
+          {{VAR(items_section:NoKey:FALSE)}}  <!--this sets the var to FALSE-->
+            
+            <header>
+              <horizontalDivider alignment="left">
+                <title>{{VAL(name)}}{{VAL(local::0= &lt;{{TEXT(remote)}}&gt;|0 =)}}</title>
+              </horizontalDivider>
+            </header>{{CUT(@main/size:CUT:0=CUT|1=CUT|1 =)}}
+            
+            <items>
+              <!-- Playlist -->
+              <oneLineMenuItem id="{{VAL(key)}}"
+                                       onPlay="atv.loadURL('{{URL(key:::PlexConnect=Playlists_Photo)}}')"
+                                       onSelect="atv.loadURL('{{URL(key:::PlexConnect=Playlists_Photo)}}')">
+                                       <!--onSelectHold=""-->
+              {{COPY(Playlist:playlistType::=|photo=COPY|photo =)}}
+              {{VAR(items:NoKey:TRUE)}}  <!--within COPY this sets the var to TRUE-->
+              {{VAR(items_section:NoKey:TRUE)}}
+              
+                <label>{{VAL(title)}}</label>
+                <rightLabel>{{VAL(leafCount)}}</rightLabel>
+                <preview>
+                  <crossFadePreview>
+                    <image>{{IMAGEURL(composite::768)}}</image>
+                  </crossFadePreview>
+                </preview>
+              </oneLineMenuItem>
+              
+            </items>
+          </menuSection>{{CUT(#items_section::FALSE=CUT|TRUE=)}}  <!--CUT if no section added-->
+          </__COPY__>
+          
+        </sections>
+      </menu>{{CUT(#items::FALSE=CUT|TRUE=)}}  <!--CUT if no section added-->
+    </listByNavigation>
+    
+  </body>
+</atv>
