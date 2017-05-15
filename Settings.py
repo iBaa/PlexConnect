@@ -29,10 +29,12 @@ g_settings = [
     ('port_dnsserver'  , ('53', '[0-9]{1,5}')),
     ('ip_dnsmaster'    , ('8.8.8.8', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
     ('prevent_atv_update'           , ('True', '((True)|(False))')),
+    ('intercept_atv_icon', ('True', '((True)|(False))')),
+    ('wake_on_lan_mac' , ('44:8A:5B:61:96:CE', '[a-zA-Z0-9_:]+')),
     \
     ('enable_plexconnect_autodetect', ('True', '((True)|(False))')),
     ('ip_plexconnect'  , ('0.0.0.0', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
-    ('hosttointercept' , ('trailers.apple.com', '[a-zA-Z0-9_.-]+')),
+    ('hosttointercept' , ('trailers.apple.com', '[a-zA-Z0-9_.]+')),
     \
     ('port_webserver'  , ('80', '[0-9]{1,5}')),
     ('enable_webserver_ssl'         , ('True', '((True)|(False))')),
