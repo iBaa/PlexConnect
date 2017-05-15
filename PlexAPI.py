@@ -276,7 +276,7 @@ def discoverPMS(ATV_udid, CSettings, IP_self, tokenDict={}):
     
     else:
         # MyPlex servers
-        getPMSListFromMyPlex(ATV_udid, authtoken)
+        getPMSListFromMyPlex(ATV_udid, authtoken, CSettings)
     
     # all servers - update enableGzip
     for uuid in g_PMS.get(ATV_udid, {}):
@@ -300,7 +300,7 @@ get Plex media Server List from plex.tv/pms/resources
 poke every PMS at every given address (plex.tv tends to cache a LOT...)
 -> by design this leads to numerous threads ending in URLErrors like <timed out> or <Connection refused>
 """
-def getPMSListFromMyPlex(ATV_udid, authtoken):
+def getPMSListFromMyPlex(ATV_udid, authtoken, CSettings):
     dprint(__name__, 0, "***")
     dprint(__name__, 0, "poke plex.tv - request Plex Media Server list")
     dprint(__name__, 0, "***")
@@ -340,6 +340,10 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
                     ip = Con.get('address')
                     port = Con.get('port')
                     uri = Con.get('uri')
+
+                    if CSettings.getSetting('enable_plexgdm')=='False' and (ip != CSettings.getSetting('ip_pms')):
+                        # Only select the hardcoded IP address from the config if not using plexgdm
+                        continue
                     
                     dprint(__name__, 0, "poke {0} ({1}) at {2}", name, uuid, uri)
                     
