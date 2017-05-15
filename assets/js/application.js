@@ -650,6 +650,61 @@ atv.config = {
 
 atv.onAppEntry = function()
 {
+// debug
+  var time = new Date();
+  var intMins = parseInt(time.getMinutes());
+  var intSecs = parseInt(time.getSeconds());
+  var intMSecs = parseInt(time.getMilliseconds());
+  var total_A = (intMins * 60000 + intSecs*1000 + intMSecs);
+  log("Benchmark");
+  
+    for (var i = 0; i < 10; i++)
+    {
+        var url = "{{URL(/AllMovies.xml.raw)}}&PlexConnectUDID="+atv.device.udid
+        var req = new XMLHttpRequest();
+        req.open('GET', url, false);
+        req.send();
+        delete req;
+    }
+  var time = new Date();
+  var intMins = parseInt(time.getMinutes());
+  var intSecs = parseInt(time.getSeconds());
+  var intMSecs = parseInt(time.getMilliseconds());
+  var total_B = (intMins * 60000 + intSecs*1000 + intMSecs);
+  log("Benchmark - request xml.raw - "+(total_B-total_A));
+  
+    for (var i = 0; i < 10; i++)
+    {
+        var url = "{{URL(/AllMovies.xml.zip)}}&PlexConnectUDID="+atv.device.udid
+        var req = new XMLHttpRequest();
+        req.open('GET', url, false);
+        req.send();
+        delete req;
+    }
+
+  var time = new Date();
+  var intMins = parseInt(time.getMinutes());
+  var intSecs = parseInt(time.getSeconds());
+  var intMSecs = parseInt(time.getMilliseconds());
+  var total_C = (intMins * 60000 + intSecs*1000 + intMSecs);
+  log("Benchmark - request xml.zip - "+(total_C-total_B));
+
+    for (var i = 0; i < 10; i++)
+    {
+        var url = "{{URL(/AllMovies.xml)}}&PlexConnectUDID="+atv.device.udid
+        var req = new XMLHttpRequest();
+        req.open('GET', url, false);
+        req.send();
+        delete req;
+    }
+  var time = new Date();
+  var intMins = parseInt(time.getMinutes());
+  var intSecs = parseInt(time.getSeconds());
+  var intMSecs = parseInt(time.getMilliseconds());
+  var total_D = (intMins * 60000 + intSecs*1000 + intMSecs);
+  log("Benchmark - request xml - "+(total_D-total_C));
+//debug
+
     fv = atv.device.softwareVersion.split(".");
     firmVer = fv[0] + "." + fv[1];
     if (parseFloat(firmVer) >= 5.1)
