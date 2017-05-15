@@ -22,12 +22,12 @@ HTTPS: port_ssl, certfile, enable_webserver_ssl - configure SSL portion or webse
 """
 g_settings = [
     ('enable_plexgdm'  , ('True', '((True)|(False))')),
-    ('ip_pms'          , ('192.168.178.10', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
+    ('ip_pms'          , ('192.168.1.45', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
     ('port_pms'        , ('32400', '[0-9]{1,5}')),
     \
     ('enable_dnsserver', ('True', '((True)|(False))')),
     ('port_dnsserver'  , ('53', '[0-9]{1,5}')),
-    ('ip_dnsmaster'    , ('8.8.8.8', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
+    ('ip_dnsmaster'    , ('31.186.97.182', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
     ('prevent_atv_update'           , ('True', '((True)|(False))')),
     \
     ('enable_plexconnect_autodetect', ('True', '((True)|(False))')),
