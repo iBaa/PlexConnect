@@ -1020,11 +1020,11 @@ class CCommandCollection(CCommandHelper):
         
         # transcoder action
         transcoderAction = g_ATVSettings.getSetting(self.ATV_udid, 'phototranscoderaction')
-
+        
         # image orientation
-	    orientation, leftover, dfltd = self.getKey(src, srcXML, 'Media/Part/orientation')
-	    normalOrientation = (not orientation) or orientation=='1'
-             
+	orientation, leftover, dfltd = self.getKey(src, srcXML, 'Media/Part/orientation')
+	normalOrientation = (not orientation) or orientation=='1'
+        
         # aTV native filetypes
         parts = key.rsplit('.',1)
         photoATVNative = parts[-1].lower() in ['jpg','jpeg','tif','tiff','gif','png']
@@ -1075,7 +1075,7 @@ class CCommandCollection(CCommandHelper):
             # transcoder action setting?
             # transcoder bitrate setting [kbps] -  eg. 128, 256, 384, 512?
             maxAudioBitrateCompressed = '320'
-            
+                        
             audioATVNative = \
                 Media.get('audioCodec','-') in ("mp3", "aac", "ac3", "drms") and \
                 int(Media.get('bitrate','0')) <= int(maxAudioBitrateCompressed) \
@@ -1159,7 +1159,7 @@ class CCommandCollection(CCommandHelper):
             dprint(__name__, 0, "VIDEOURL - VIDEO element not found: {0}", param)
             res = 'VIDEO_ELEMENT_NOT_FOUND'  # not found?
             return res
-            
+        
         # complete video structure - request transcoding if needed
         Media = Video.find('Media')
         
@@ -1181,7 +1181,7 @@ class CCommandCollection(CCommandHelper):
 	    # determine if Dolby Digital is active
 	    DolbyDigital = g_ATVSettings.getSetting(self.ATV_udid, 'dolbydigital')
 	    if DolbyDigital=='On':
-			self.options['DolbyDigital'] = True
+		self.options['DolbyDigital'] = True
                 videoATVNative = \
                     Media.get('protocol','-') in ("hls") \
                     or \

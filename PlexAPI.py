@@ -377,7 +377,7 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
                 name = PMSInfo['name']
                 
                 if uuid != PMS.getroot().get('machineIdentifier') or \
-                    name != PMS.getroot().get('friendlyName'):
+                   name != PMS.getroot().get('friendlyName'):
                     # response from someone - but not the poked PMS - skip this connection
                     continue
                 
@@ -480,7 +480,6 @@ def getXArgsDeviceInfo(options={}):
     if 'DolbyDigital' in options:
         if options['DolbyDigital']:
             xargs['X-Plex-Client-Profile-Extra'] = 'append-transcode-target-audio-codec(type=videoProfile&context=streaming&protocol=hls&audioCodec=ac3,mp3)'
-
     if 'aTVFirmwareVersion' in options:
         xargs['X-Plex-Platform-Version'] = options['aTVFirmwareVersion']
     xargs['X-Plex-Product'] = 'PlexConnect'
