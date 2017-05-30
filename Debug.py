@@ -48,7 +48,7 @@ def dinit(src, param, newlog=False):
         f = open(g_logfile, 'w')
         f.close()
         
-    dprint(src, 0, "started: {0}", time.strftime("%H:%M:%S"))
+    dprint(src, 0, "Started")
 
 
 
@@ -71,7 +71,7 @@ def dprint(src, dlevel, *args):
         # print to file (if filename defined)
         if logToFile:
             f = open(g_logfile, 'a')
-            f.write(time.strftime("%H:%M:%S "))
+            f.write(time.strftime("%b %d,%Y %H:%M:%S "))
             if len(asc_args)==0:
                 f.write(src+":\n")
             elif len(asc_args)==1:
@@ -82,7 +82,7 @@ def dprint(src, dlevel, *args):
         
         # print to terminal window
         if logToTerminal:
-            print(time.strftime("%H:%M:%S")),
+            print(time.strftime("%b %d,%Y %H:%M:%S")),
             if len(asc_args)==0:
                 print src+":"
             elif len(asc_args)==1:

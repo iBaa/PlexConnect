@@ -158,7 +158,7 @@ def shutdown():
         procs[slave].join()
     param['CATVSettings'].saveSettings()
     
-    dprint('PlexConnect', 0, "shutdown")
+    dprint('PlexConnect', 0, "Shutdown")
 
 def cmdShutdown():
     global running
