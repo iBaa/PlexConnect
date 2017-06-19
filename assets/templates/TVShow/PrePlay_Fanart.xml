@@ -74,7 +74,7 @@
                   {{VAR(SubtitleStreams:NoKey:{{EVAL({{VAL(#SubtitleStreams)}}+1)}})}}
                   <id>{{VAL(id)}}</id>
                   <language>{{VAL(language:Unknown)}}</language>
-                  <format>{{VAL(format)}}</format>
+                  <format>{{VAL(codec)}}</format>
                   <streamType>{{VAL(streamType)}}</streamType>
                   <selected>{{VAL(selected:0)}}</selected>
                 </stream>

@@ -1225,6 +1225,8 @@ class CCommandCollection(CCommandHelper):
                     subtitleId = Stream.get('id','')
                     subtitleKey = Stream.get('key','')
                     subtitleFormat = Stream.get('format','')
+                    if subtitleFormat == '':
+                        subtitleFormat = Stream.get('codec','')
                     break
             
             subtitleIOSNative = \
