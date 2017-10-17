@@ -477,9 +477,10 @@ def getXArgsDeviceInfo(options={}):
             xargs['X-Plex-Device-Name'] = options['PlexConnectATVName'] # "friendly" name: aTV-Settings->General->Name.
     xargs['X-Plex-Platform'] = 'iOS'
     xargs['X-Plex-Client-Platform'] = 'iOS'
+    xargs['X-Plex-Client-Profile-Extra'] = 'add-transcode-target(type=videoProfile&context=streaming&protocol=hls&container=mpegts&videoCodec=h264&audioCodec=aac,mp3&replace=true)'
     if 'DolbyDigital' in options:
         if options['DolbyDigital']:
-            xargs['X-Plex-Client-Profile-Extra'] = 'append-transcode-target-audio-codec(type=videoProfile&context=streaming&protocol=hls&audioCodec=ac3,mp3)'
+            xargs['X-Plex-Client-Profile-Extra'] = 'add-transcode-target(type=videoProfile&context=streaming&protocol=hls&container=mpegts&videoCodec=h264&audioCodec=aac,mp3,ac3&replace=true)'
     if 'aTVFirmwareVersion' in options:
         xargs['X-Plex-Platform-Version'] = options['aTVFirmwareVersion']
     xargs['X-Plex-Product'] = 'PlexConnect'
