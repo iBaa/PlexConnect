@@ -429,7 +429,7 @@ def getXMLFromPMS(baseURL, path, options={}, authtoken='', enableGzip=False):
         request.add_header('Accept-encoding', 'gzip')
 
     try:
-        response = urllib2.urlopen(request, timeout=80)
+        response = urllib2.urlopen(request, timeout=40)
     except (urllib2.URLError, httplib.HTTPException) as e:
         dprint(__name__, 0, 'No Response from Plex Media Server')
         if hasattr(e, 'reason'):
