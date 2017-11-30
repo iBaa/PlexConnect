@@ -1,44 +1,27 @@
 /*
- * lookup movie title on tmdb and pass trailer ID to PlexConnect
+ * lookup movie title, year, language on youtube and pass trailer ID to PlexConnect
  */
 function playTrailer(title,year)
 {
-    log("playTrailer: "+title);
+    var google_api_key = "putYoutOwnKey";
+	var lookup = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=relevance&key="+google_api_key+"&q="+encodeURIComponent(title+" "+year+" trailer deutsch");
 
-    var api_key = "0dd32eece72fc9640fafaa5c87017fcf";
-    var lookup = "http://api.themoviedb.org/3/search/movie?api_key="+api_key+"&query="+encodeURIComponent(title)+"&year="+encodeURIComponent(year);
-    var doc = JSON.parse(ajax(lookup));
-    if (doc.total_results === 0)
+    var req = new XMLHttpRequest();
+    req.open('GET', lookup, false);
+    req.send();
+
+    var doc = JSON.parse(req.responseText);
+
+    if (doc.items[0].id.videoId.length === 0)
     {
-        XML_Error("{{TEXT(PlexConnect)}}", "{{TEXT(TheMovieDB: No Trailer Info available)}}");
-        return;
-    }
-    lookup = "http://api.themoviedb.org/3/movie/"+doc.results[0].id+"/trailers?api_key="+api_key;
-    doc = JSON.parse(ajax(lookup));
-    if (doc.youtube.length === 0)
-    {
-        XML_Error("{{TEXT(PlexConnect)}}", "{{TEXT(TheMovieDB: No Trailer Info available)}}");
+        XML_Error("{{TEXT(PlexConnect)}}", "{{TEXT(Youtube: Kein Trailer gefunden)}}");
         return;
     }
 
-    var id = doc.youtube[0].source;
-    var url = "{{URL(/)}}&PlexConnect=PlayTrailer&PlexConnectTrailerID="+id
+    var id = doc.items[0].id.videoId;
+    var url = "{{URL(/)}}&PlexConnect=PlayTrailer&PlexConnectTrailerID="+id;
     atv.loadURL(url);
 };
-
-
-
-/*
- *  Small synchronous AJAX handler
- */
-function ajax(url)
-{
-    var req = new XMLHttpRequest();
-    req.open('GET', url, false);
-    req.send();
-    if(req.status == 200) return req.responseText;
-}
-
 
 
 /*
