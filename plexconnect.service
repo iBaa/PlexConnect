@@ -1,0 +1,17 @@
+[Unit]
+Description=Plexconnect
+After=plexmediaserver.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python /opt/PlexConnect/PlexConnect.py
+User=root
+Group=root
+Restart=on-failure
+RestartSec=15
+StartLimitInterval=10s
+StartLimitBurst=3
+
+
+[Install]
+WantedBy=multi-user.target
