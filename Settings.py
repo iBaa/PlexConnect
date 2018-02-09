@@ -45,6 +45,8 @@ g_settings = [
     \
     ('loglevel'        , ('Normal', '((Off)|(Normal)|(High))')),
     ('logpath'         , ('.', '.+')),
+    ('block_domains'         , ('', '.+')),
+    ('block_prefix'         , ('Blockthis', '.+')),
     ]
 
 
