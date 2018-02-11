@@ -480,7 +480,7 @@ def getXArgsDeviceInfo(options={}):
     xargs['X-Plex-Client-Profile-Extra'] = 'add-transcode-target(type=videoProfile&context=streaming&protocol=hls&container=mpegts&videoCodec=h264&audioCodec=aac,mp3&replace=true)'
     if 'DolbyDigital' in options:
         if options['DolbyDigital']:
-            xargs['X-Plex-Client-Profile-Extra'] = 'add-transcode-target(type=videoProfile&context=streaming&protocol=hls&container=mpegts&videoCodec=h264&audioCodec=aac,mp3,ac3&replace=true)'
+            xargs['X-Plex-Client-Profile-Extra'] = 'add-transcode-target(type=videoProfile&context=streaming&protocol=hls&container=mpegts&videoCodec=h264&audioCodec=ac3&replace=true)+add-limitation(scope=videoAudioCodec&scopeName=ac3&type=upperBound&name=audio.channels&value=6&onlyTranscodes=true&replace=true)'
     if 'aTVFirmwareVersion' in options:
         xargs['X-Plex-Platform-Version'] = options['aTVFirmwareVersion']
     xargs['X-Plex-Product'] = 'PlexConnect'
