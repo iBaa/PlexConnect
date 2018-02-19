@@ -222,13 +222,17 @@ def XML_PMS2aTV(PMS_address, path, options):
             return XML_Error('PlexConnect', 'Youtube: No Trailer Info available')
         streams = parsed[key][0].split(',')
         
-        url = ''
+        itags = ['18', '22', '37', '137']
+        urls = []
         for i in range(len(streams)):
             stream = urlparse.parse_qs(streams[i])
-            if stream['itag'][0] == '18':
-                url = stream['url'][0]
-        if url == '':
+            itag = stream['itag'][0]
+            if itag in itags:
+                urls.append({'itag': itag, 'url': stream['url'][0]})
+        if urls == []:
             return XML_Error('PlexConnect','Youtube: ATV compatible Trailer not available')
+            
+        url = sorted(urls, key=lambda k: k['itag'])[-1]['url']
         
         return XML_PlayVideo_ChannelsV1('', url.replace('&','&amp;'))
         
