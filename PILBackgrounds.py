@@ -83,7 +83,7 @@ def generate(PMS_uuid, url, authtoken, resolution, blurRadius):
         dprint(__name__,1 , "aTV Height: {0}, {1}", width, height)
         
         if bgHeight != height:
-            background = background.resize((width, height), Image.ANTIALIAS)
+            background = background.resize((width, height), Image.NEAREST)
             dprint(__name__,1 , "Resizing background")
         
         if blurRadius != 0:
