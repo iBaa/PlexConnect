@@ -1378,8 +1378,8 @@ if __name__=="__main__":
     cfg = Settings.CSettings()
     param = {}
     param['CSettings'] = cfg
-    
-    param['HostToIntercept'] = 'trailers.apple.com'
+
+    param['HostToIntercept'] = cfg.getSetting('hosttointercept')
     setParams(param)
     
     cfg = ATVSettings.CATVSettings()
