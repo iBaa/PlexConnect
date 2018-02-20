@@ -775,6 +775,7 @@ def getTranscodeVideoPath(path, AuthToken, options, action, quality, subtitle, a
     args['videoResolution'] = vRes
     args['maxVideoBitrate'] = mVB
     args['videoQuality'] = vQ
+    args['mediaBufferSize'] = '80000'
     args['directStream'] = '0' if action=='Transcode' else '1'
     # 'directPlay' - handled by the client in MEDIARUL()
     args['subtitleSize'] = subtitle['size']
