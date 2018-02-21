@@ -236,7 +236,15 @@ class MyHandler(BaseHTTPRequestHandler):
                 """
             
             else:
+                """
+                Added Up Page for docker helthcheck
                 self.send_error(403,"Not Serving Client %s" % self.client_address[0])
+                """
+                dprint(__name__, 1, "serving *.html: "+self.path)
+                f = open(sys.path[0] + sep + "assets/up.html")
+                self.sendResponse(f.read(), 'text/html', False)
+                f.close()
+
         except IOError:
             dprint(__name__, 0, 'File Not Found:\n{0}', traceback.format_exc())
             self.send_error(404,"File Not Found: %s" % self.path)
