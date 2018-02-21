@@ -711,10 +711,11 @@ class CCommandHelper():
         return [convlist, leftover]
     
     def applyConversion(self, val, convlist):
-        # apply string conversion            
+        # apply string conversion
+	encodedval = val.replace(" ", "+")
         if convlist!=[]:
             for part in reversed(sorted(convlist)):
-                if val>=part[0]:
+                if encodedval>=part[0]:
                     val = part[1]
                     break
         
