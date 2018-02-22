@@ -6,14 +6,14 @@ function playTrailer(title,year)
     log("playTrailer: "+title);
 
     var api_key = "0dd32eece72fc9640fafaa5c87017fcf";
-    var lookup = "http://api.themoviedb.org/3/search/movie?api_key="+api_key+"&query="+encodeURIComponent(title)+"&year="+encodeURIComponent(year);
+    var lookup = "https://api.themoviedb.org/3/search/movie?api_key="+api_key+"&query="+encodeURIComponent(title)+"&year="+encodeURIComponent(year);
     var doc = JSON.parse(ajax(lookup));
     if (doc.total_results === 0)
     {
         XML_Error("{{TEXT(PlexConnect)}}", "{{TEXT(TheMovieDB: No Trailer Info available)}}");
         return;
     }
-    lookup = "http://api.themoviedb.org/3/movie/"+doc.results[0].id+"/trailers?api_key="+api_key;
+    lookup = "https://api.themoviedb.org/3/movie/"+doc.results[0].id+"/trailers?api_key="+api_key;
     doc = JSON.parse(ajax(lookup));
     if (doc.youtube.length === 0)
     {
