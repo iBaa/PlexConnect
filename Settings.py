@@ -13,7 +13,7 @@ from Debug import *  # dprint()
 Global Settings...
 syntax: 'setting': ('default', 'regex to validate')
 
-PMS: plexgdm, ip_pms, port_pms
+PMS: plexgdm, ip_pms, port_pms, hostname_pms if you want to use hostname instead of ip
 DNS: ip_dnsmaster - IP of Router, ISP's DNS, ... [dflt: google public DNS]
 IP_self: enable_plexconnect_autodetect, ip_plexconnect - manual override for VPN usage
 Intercept: Trailers-trailers.apple.com, WSJ-secure.marketwatch.com, iMovie-www.icloud.com
@@ -23,6 +23,7 @@ HTTPS: port_ssl, certfile, enable_webserver_ssl - configure SSL portion or webse
 g_settings = [
     ('enable_plexgdm'  , ('True', '((True)|(False))')),
     ('ip_pms'          , ('192.168.178.10', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
+    ('hostname_pms'    , ('none', '[a-zA-Z0-9_.-]+')),
     ('port_pms'        , ('32400', '[0-9]{1,5}')),
     \
     ('enable_dnsserver', ('True', '((True)|(False))')),

@@ -252,7 +252,11 @@ def discoverPMS(ATV_udid, CSettings, IP_self, tokenDict={}):
       # local PMS
       if CSettings.getSetting('enable_plexgdm')=='False':
         # defined in setting.cfg
-        ip = CSettings.getSetting('ip_pms')
+        if CSettings.getSetting('hostname_pms')=='none':
+            ip = CSettings.getSetting('ip_pms')
+        else:
+            ip = CSettings.getSetting('hostname_pms')
+
         port = CSettings.getSetting('port_pms')
         XML = getXMLFromPMS('http://'+ip+':'+port, '/servers', None, '')
         
