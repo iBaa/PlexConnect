@@ -254,8 +254,10 @@ def discoverPMS(ATV_udid, CSettings, IP_self, tokenDict={}):
         # defined in setting.cfg
         if CSettings.getSetting('hostname_pms')=='none':
             ip = CSettings.getSetting('ip_pms')
+            dprint(__name__, 0, "Plex GDM is Disabled using: {0}", ip_pms)
         else:
             ip = CSettings.getSetting('hostname_pms')
+            dprint(__name__, 0, "Plex GDM is Disabled and hostname is configerd using: {0}", hostname_pms)
 
         port = CSettings.getSetting('port_pms')
         XML = getXMLFromPMS('http://'+ip+':'+port, '/servers', None, '')
