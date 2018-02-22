@@ -711,10 +711,11 @@ class CCommandHelper():
         return [convlist, leftover]
     
     def applyConversion(self, val, convlist):
-        # apply string conversion            
+        # apply string conversion
+	encodedval = val.replace(" ", "+")
         if convlist!=[]:
             for part in reversed(sorted(convlist)):
-                if val>=part[0]:
+                if encodedval>=part[0]:
                     val = part[1]
                     break
         
@@ -941,10 +942,10 @@ class CCommandCollection(CCommandHelper):
             attribs['insertIndex'] = str(index)
             attribs['src'] = g_param['baseURL'] + '/thumbnails/MediaBadges/' + container + '.png'
             urlBadge = etree.SubElement(additionalBadges, "urlBadge", attribs)
-            index += 1 
+            index += 1
         # Video Codec
         if vCodec != '' and self.options['aTVFirmwareVersion'] >= '7.0':
-            if vCodec == 'mpeg4': 
+            if vCodec == 'mpeg4':
                 vCodec = "XVID" # Are there any other mpeg4-part 2 codecs?
             attribs['insertIndex'] = str(index)
             attribs['src'] = g_param['baseURL'] + '/thumbnails/MediaBadges/' + vCodec + '.png'
