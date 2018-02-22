@@ -332,6 +332,12 @@ def Run(cmdPipe, param):
     
     intercept = [param['HostToIntercept']]
     restrain = []
+
+    if param['CSettings'].getSetting('custom_dns_bind_ip') == "0.0.0.0":
+        cfg_IP_self = param['IP_self']
+    else:
+        cfg_IP_self = param['CSettings'].getSetting('custom_dns_bind_ip')
+
     if param['CSettings'].getSetting('prevent_atv_update')=='True':
         restrain = ['mesu.apple.com', 'appldnld.apple.com', 'appldnld.apple.com.edgesuite.net']
     
