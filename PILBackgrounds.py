@@ -113,7 +113,7 @@ def isPILinstalled():
 
 
 if __name__=="__main__":
-    url = "http://thetvdb.com/banners/fanart/original/95451-23.jpg"
+    url = "https://thetvdb.com/banners/fanart/original/95451-23.jpg"
     res = generate('uuid', url, 'authtoken', '1080')
     res = generate('uuid', url, 'authtoken', '720')
     dprint(__name__, 0, "Background: {0}", res)
