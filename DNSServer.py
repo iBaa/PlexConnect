@@ -332,9 +332,13 @@ def Run(cmdPipe, param):
     
     intercept = [param['HostToIntercept']]
     restrain = []
+    if param['CSettings'].getSetting('intercept_atv_icon')=='True':
+        intercept.append('a1.phobos.apple.com')
+        dprint(__name__, 0, "Intercept Atv Icon: Enabled")
     if param['CSettings'].getSetting('prevent_atv_update')=='True':
         restrain = ['mesu.apple.com', 'appldnld.apple.com', 'appldnld.apple.com.edgesuite.net']
-    
+        dprint(__name__, 0, "Prevent Atv Update: Enabled")
+
     dprint(__name__, 0, "***")
     dprint(__name__, 0, "DNSServer: Serving DNS on {0} port {1}.", cfg_IP_self, cfg_Port_DNSServer)
     dprint(__name__, 1, "intercept: {0} => {1}", intercept, cfg_IP_self)
@@ -442,6 +446,6 @@ if __name__ == '__main__':
     
     param['IP_self'] = '192.168.178.20'  # IP_self?
     param['baseURL'] = 'http://'+ param['IP_self'] +':'+ cfg.getSetting('port_webserver')
-    param['HostToIntercept'] = 'trailers.apple.com'
-    
+    param['HostToIntercept'] = cfg.getSetting('hosttointercept')
+
     Run(cmdPipe[1], param)
