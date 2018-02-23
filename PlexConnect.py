@@ -25,6 +25,8 @@ from Debug import *  # dprint()
 
 def getIP_self():
     cfg = param['CSettings']
+    if cfg.getSetting('enable_plexgdm')=='False':
+        dprint('PlexConnect', 0, "IP_PMS: "+cfg.getSetting('ip_pms'))
     if cfg.getSetting('enable_plexconnect_autodetect')=='True':
         # get public ip of machine running PlexConnect
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
