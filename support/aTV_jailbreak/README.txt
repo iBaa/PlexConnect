@@ -4,8 +4,8 @@ PlexConnect on aTV (jailbroken)
 
 Install Python on aTV
 (current version: python_2.7.3-3_iphoneos-arm.deb)
-- download "https://yangapp.googlecode.com/files/python_2.7.3-3_iphoneos-arm.deb"
-- SFTP "python_2.7.3-3_iphoneos-arm.deb" to your aTV
+- download "https://github.com/linusyang/python-for-ios/releases/download/v2.7.6-3/python_2.7.6-3_iphoneos-arm.deb"
+- SFTP "python_2.7.6-3_iphoneos-arm.deb" to your aTV
 - SSH into aTV and execute...
   "apt-get update"
   "apt-get upgrade"
@@ -13,8 +13,8 @@ Install Python on aTV
   "apt-get install cydia"
   "apt-get install python"
   this will pull and install python 2.5.1 with all dependencies
-  "dpkg -i python_2.7.3-3_iphoneos-arm.deb"
-  this will update python to 2.7.3
+  "dpkg -i python_2.7.6-3_iphoneos-arm.deb"
+  this will update python to 2.7.6
 
 Push PlexConnect to aTV
 - SFTP into aTV and copy the complete PlexConnect directory to eg. /Application/PlexConnect.
