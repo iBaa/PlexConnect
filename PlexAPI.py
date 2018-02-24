@@ -145,7 +145,9 @@ def PlexGDM():
     dprint(__name__, 0, "***")
     dprint(__name__, 0, "PlexGDM - looking up Plex Media Server")
     dprint(__name__, 0, "***")
-    
+
+    returnData = []
+ 
     # setup socket for discovery -> multicast message
     GDM = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     GDM.settimeout(1.0)
@@ -154,11 +156,35 @@ def PlexGDM():
     ttl = struct.pack('b', 1)
     GDM.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, ttl)
     
-    returnData = []
     try:
         # Send data to the multicast group
         dprint(__name__, 1, "Sending discovery message: {0}", Msg_PlexGDM)
         GDM.sendto(Msg_PlexGDM, (IP_PlexGDM, Port_PlexGDM))
+
+        # Look for responses from all recipients
+        while True:
+            try:
+                data, server = GDM.recvfrom(1024)
+                dprint(__name__, 1, "Received data from {0}", server)
+                dprint(__name__, 1, "Data received:\n {0}", data)
+                returnData.append( { 'from' : server,
+                                     'data' : data } )
+            except socket.timeout:
+                break
+    finally:
+        GDM.close()
+
+    # setup socket for discovery -> broadcast message
+    GDM = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    GDM.settimeout(1.0)
+    
+    # Set the time-to-live for messages to 1 for local network
+    GDM.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+    
+    try:
+        # Send data to the multicast group
+        dprint(__name__, 1, "Sending discovery message: {0}", Msg_PlexGDM)
+        GDM.sendto(Msg_PlexGDM, ('<broadcast>', Port_PlexGDM))
 
         # Look for responses from all recipients
         while True:
