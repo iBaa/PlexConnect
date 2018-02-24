@@ -198,7 +198,22 @@ class MyHandler(BaseHTTPRequestHandler):
                     JS = JSConverter(basename, options)
                     self.sendResponse(JS, 'text/javascript', True)
                     return
-                
+
+                # proxy phobos.apple.com to support  PlexConnect main icon
+                if "a1.phobos.apple.com" in self.headers['Host']:
+                    resource = self.headers['Host']+self.path
+                    icon = g_param['CSettings'].getSetting('icon')
+                    if basename.startswith(icon):
+                        icon_res = basename[len(icon):]  # cut string from settings, keeps @720.png/@1080.png
+                        resource = sys.path[0] + '/assets/icons/icon'+icon_res
+                        dprint(__name__, 1, "serving "+self.headers['Host']+self.path+" with "+resource)
+                        r = open(resource, "rb")
+                    else:
+                        r = urllib.urlopen('http://'+resource)
+                    self.sendResponse(r.read(), 'image/png', False)
+                    r.close()
+                    return
+
                 # serve "*.jpg" - thumbnails for old-style mainpage
                 if self.path.endswith(".jpg"):
                     dprint(__name__, 1, "serving *.jpg: "+self.path)
@@ -376,8 +391,8 @@ if __name__=="__main__":
     
     param['IP_self'] = '192.168.178.20'  # IP_self?
     param['baseURL'] = 'http://'+ param['IP_self'] +':'+ cfg.getSetting('port_webserver')
-    param['HostToIntercept'] = 'trailers.apple.com'
-    
+    param['HostToIntercept'] = cfg.getSetting('hosttointercept')
+
     if len(sys.argv)==1:
         Run(cmdPipe[1], param)
     elif len(sys.argv)==2 and sys.argv[1]=='SSL':

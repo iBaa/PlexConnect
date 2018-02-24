@@ -19,6 +19,7 @@ IP_self: enable_plexconnect_autodetect, ip_plexconnect - manual override for VPN
 Intercept: Trailers-trailers.apple.com, WSJ-secure.marketwatch.com, iMovie-www.icloud.com
 HTTP: port_webserver - override when using webserver + forwarding to PlexConnect
 HTTPS: port_ssl, certfile, enable_webserver_ssl - configure SSL portion or webserver
+intercept_atv_icon: changes atv icon to plex icon
 """
 g_settings = [
     ('enable_plexgdm'  , ('True', '((True)|(False))')),
@@ -29,9 +30,12 @@ g_settings = [
     ('port_dnsserver'  , ('53', '[0-9]{1,5}')),
     ('ip_dnsmaster'    , ('8.8.8.8', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
     ('prevent_atv_update'           , ('True', '((True)|(False))')),
+    ('intercept_atv_icon'           , ('True', '((True)|(False))')),
+    ('icon', ('movie-trailers', '[a-zA-Z0-9_.-]+')),
     \
     ('enable_plexconnect_autodetect', ('True', '((True)|(False))')),
     ('ip_plexconnect'  , ('0.0.0.0', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
+    ('custom_dns_bind_ip'  , ('0.0.0.0', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
     ('hosttointercept' , ('trailers.apple.com', '[a-zA-Z0-9_.-]+')),
     \
     ('port_webserver'  , ('80', '[0-9]{1,5}')),
