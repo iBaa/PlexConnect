@@ -31,16 +31,17 @@ g_settings = [
     ('ip_dnsmaster'    , ('8.8.8.8', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
     ('prevent_atv_update'           , ('True', '((True)|(False))')),
     ('intercept_atv_icon'           , ('True', '((True)|(False))')),
-    ('icon', ('movie-trailers', '[a-zA-Z0-9_.-]+')),
     \
     ('enable_plexconnect_autodetect', ('True', '((True)|(False))')),
     ('ip_plexconnect'  , ('0.0.0.0', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
+    \
     ('hosttointercept' , ('trailers.apple.com', '[a-zA-Z0-9_.-]+')),
+    ('icon', ('movie-trailers', '[a-zA-Z0-9_.-]+')),
+    ('certfile'        , ('./assets/certificates/trailers.pem', '.+.pem')),
     \
     ('port_webserver'  , ('80', '[0-9]{1,5}')),
     ('enable_webserver_ssl'         , ('True', '((True)|(False))')),
     ('port_ssl'        , ('443', '[0-9]{1,5}')),
-    ('certfile'        , ('./assets/certificates/trailers.pem', '.+.pem')),
     \
     ('allow_gzip_atv'              , ('False', '((True)|(False))')),
     ('allow_gzip_pmslocal'         , ('False', '((True)|(False))')),
