@@ -257,8 +257,8 @@ def discoverPMS(ATV_udid, CSettings, IP_self, tokenDict={}):
         try:
             ip2 = socket.gethostbyname(ip)
             if ip != ip2:
+                dprint(__name__, 0, "PlexAPI - Hostname "+ip+" resolved to "+ip2)
                 ip = ip2
-                dprint(__name__, 0, "PlexAPI - ip_dns resolved to "+ip)
         except:
             dprint(__name__, 0, "PlexAPI - ip_dns "+ip+" could not be resolved")
             
