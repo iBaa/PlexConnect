@@ -256,7 +256,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 self.send_error(403,"Not Serving Client %s" % self.client_address[0])
                 """
                 dprint(__name__, 1, "serving *.html: "+self.path)
-                f = open(sys.path[0] + sep + "assets/up.html")
+                f = open(sys.path[0] + sep + "assets/templates/up.html")
                 self.sendResponse(f.read(), 'text/html', False)
                 f.close()
 
