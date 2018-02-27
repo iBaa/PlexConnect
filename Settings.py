@@ -23,7 +23,7 @@ intercept_atv_icon: changes atv icon to plex icon
 """
 g_settings = [
     ('enable_plexgdm'  , ('True', '((True)|(False))')),
-    ('ip_pms'          , ('192.168.178.10', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
+    ('ip_pms'          , ('192.168.178.10', '[a-zA-Z0-9_.-]+')),
     ('port_pms'        , ('32400', '[0-9]{1,5}')),
     \
     ('enable_dnsserver', ('True', '((True)|(False))')),
