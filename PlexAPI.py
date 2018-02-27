@@ -253,6 +253,15 @@ def discoverPMS(ATV_udid, CSettings, IP_self, tokenDict={}):
       if CSettings.getSetting('enable_plexgdm')=='False':
         # defined in setting.cfg
         ip = CSettings.getSetting('ip_pms')
+        # resolve hostname if needed
+        try:
+            ip2 = socket.gethostbyname(ip)
+            if ip != ip2:
+                dprint(__name__, 0, "PlexAPI - Hostname "+ip+" resolved to "+ip2)
+                ip = ip2
+        except:
+            dprint(__name__, 0, "PlexAPI - ip_dns "+ip+" could not be resolved")
+            
         port = CSettings.getSetting('port_pms')
         XML = getXMLFromPMS('http://'+ip+':'+port, '/servers', None, '')
         
