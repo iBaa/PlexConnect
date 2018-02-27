@@ -256,7 +256,7 @@ def discoverPMS(ATV_udid, CSettings, IP_self, tokenDict={}):
         # resolve hostname if needed
         try:
             ip2 = socket.gethostbyname(ip)
-            if ip.upper().isupper():
+            if ip != ip2:
                 ip = ip2
                 dprint(__name__, 0, "PlexAPI - ip_dns resolved to "+ip)
         except:
