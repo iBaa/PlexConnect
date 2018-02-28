@@ -332,6 +332,12 @@ def Run(cmdPipe, param):
     
     intercept = [param['HostToIntercept']]
     restrain = []
+
+    if param['CSettings'].getSetting('use_custom_dns_bind_ip') == "True":
+        cfg_IP_self = param['CSettings'].getSetting('custom_dns_bind_ip')
+    else:
+        cfg_IP_self = param['IP_self']
+
     if param['CSettings'].getSetting('intercept_atv_icon')=='True':
         intercept.append('a1.phobos.apple.com')
         dprint(__name__, 0, "Intercept Atv Icon: Enabled")

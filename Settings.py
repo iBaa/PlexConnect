@@ -34,6 +34,8 @@ g_settings = [
     \
     ('enable_plexconnect_autodetect', ('True', '((True)|(False))')),
     ('ip_plexconnect'  , ('0.0.0.0', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
+    ('use_custom_dns_bind_ip'   , ('False', '((True)|(False))')),
+    ('custom_dns_bind_ip'  , ('0.0.0.0', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
     \
     ('hosttointercept' , ('trailers.apple.com', '[a-zA-Z0-9_.-]+')),
     ('icon', ('movie-trailers', '[a-zA-Z0-9_.-]+')),
