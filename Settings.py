@@ -48,6 +48,7 @@ g_settings = [
     ('allow_gzip_atv'              , ('False', '((True)|(False))')),
     ('allow_gzip_pmslocal'         , ('False', '((True)|(False))')),
     ('allow_gzip_pmsremote'        , ('True', '((True)|(False))')),
+    ('fanart_quality'              , ('High', '((Low)|(High))')),
     \
     ('loglevel'        , ('Normal', '((Off)|(Normal)|(High))')),
     ('logpath'         , ('.', '.+')),
