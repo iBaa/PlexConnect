@@ -35,7 +35,7 @@
             {{COPY(Media/Part/Stream:streamType::=|3=COPY|3 =)}}
               <subtitleURL> <!-- id="{{VAL(id)}}" key="{{VAL(key)}}" codec="{{VAL(codec)}}"--><!--.srt only -->
               {{CUT(selected:CUT:0=CUT|1=)}}
-                {{URL(key:::PlexConnect=Subtitle&amp;PlexConnectSubtitleFormat={{VAL(format)}})}}
+                {{URL(key:::PlexConnect=Subtitle&amp;PlexConnectSubtitleFormat={{VAL(codec)}})}}
               </subtitleURL>
             </__COPY__>
         </myMetadata>
