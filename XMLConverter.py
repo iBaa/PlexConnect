@@ -1229,7 +1229,7 @@ class CCommandCollection(CCommandHelper):
                     break
             
             subtitleIOSNative = \
-                subtitleKey=='' and (subtitleCodec=="mov_text" orsubtitleCodec=="ttxt" orsubtitleCodec=="tx3g" orsubtitleCodec=="text")  # embedded
+                subtitleKey=='' and (subtitleCodec=="mov_text" or subtitleCodec=="ttxt" or subtitleCodec=="tx3g" or subtitleCodec=="text")  # embedded
             subtitlePlexConnect = \
                 subtitleKey!='' and subtitleCodec=="srt"  # external
             
