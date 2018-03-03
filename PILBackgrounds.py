@@ -83,10 +83,7 @@ def generate(PMS_uuid, url, authtoken, resolution, blurRadius):
         dprint(__name__,1 , "aTV Height: {0}, {1}", width, height)
         
         if bgHeight != height:
-            if CSettings.getSetting('fanart_quality')=='High':
-                background = background.resize((width, height), Image.ANTIALIAS)
-            else:
-                background = background.resize((width, height), Image.NEAREST)
+            background = background.resize((width, height), Image.ANTIALIAS)
             dprint(__name__,1 , "Resizing background")
         
         if blurRadius != 0:
