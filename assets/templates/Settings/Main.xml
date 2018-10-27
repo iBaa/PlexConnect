@@ -50,14 +50,14 @@
               </oneLineMenuItem>
               
 							<oneLineMenuItem id="MyPlexSignInOut" onSelect="myPlexSignInOut()">{{CUT($myplex_auth::=| =CUT)}}
-                <label>{{TEXT(PlexTV Sign In)}}</label>
+                <label>{{TEXT(Plex account sign In)}}</label>
                 <rightLabel></rightLabel>
                 <accessories>
                   <arrow/>
                 </accessories>
               </oneLineMenuItem>
               <oneLineMenuItem id="MyPlexSignInOut" onSelect="myPlexSignInOut()">{{CUT($myplex_auth:CUT:=CUT| =)}}
-                <label>{{TEXT(PlexTV Sign Out)}}</label>
+                <label>{{TEXT(Plex account sign Out)}}</label>
                 <rightLabel>{{SETTING(myplex_user)}}</rightLabel>
                 <accessories></accessories>
               </oneLineMenuItem>
