@@ -478,7 +478,7 @@ def getXMLFromPMSToQueue(PMS, queue):
 def getXArgsDeviceInfo(options={}):
     xargs = dict()
     xargs['X-Plex-Device'] = 'AppleTV'
-    xargs['X-Plex-Model'] = '3,1' # Base it on AppleTV model.
+    xargs['X-Plex-Model'] = '2,3' # Base it on AppleTV model.
     #if not options is None:
     if 'PlexConnectUDID' in options:
             xargs['X-Plex-Client-Identifier'] = options['PlexConnectUDID']  # UDID for MyPlex device identification
