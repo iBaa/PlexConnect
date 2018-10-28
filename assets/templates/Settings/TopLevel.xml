@@ -25,10 +25,10 @@
           </metadataKeys>
           <metadataValues>
             <label>{{EVAL(__VERSION__)}}</label>
-            <label>Baa, roidy</label>
+            <label>Baa, roidy, moody_blue</label>
             <label>f00b4r, meltman</label>
             <label>https://github.com/ibaa/plexconnect</label>
-            <label>https://forums.plex.tv/...plexconnect</label>
+            <label>https://forums.plex.tv/tags/plexconnect</label>
           </metadataValues>
           <image>{{URL(:/thumbnails/PlexConnectLogo.jpg)}}</image>
         </keyedPreview>
