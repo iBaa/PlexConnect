@@ -84,7 +84,7 @@ switchHomeUser = function(id, prtct)
         pinEntry.initialPINCode = in_initPinCode;
         pinEntry.numDigits = 4;
         pinEntry.userEditable = true;
-        pinEntry.hideDigits = false;
+        pinEntry.hideDigits = true;
         pinEntry.onSubmit = callback_submit;
         pinEntry.onCancel = callback_cancel;
         
