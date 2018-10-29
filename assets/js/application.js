@@ -6,6 +6,10 @@ var showEndtime;
 var subtitleSize;
 
 
+// Client Name
+var ClientName = 'PlexConnect';
+
+
 // metadata - communicated in PlayVideo/myMetadata
 var mediaURL;
 var key;
@@ -68,7 +72,7 @@ atv.player.playerTimeDidChange = function(time)
                         '&duration=' + duration.toString() + 
                         '&state=playing' +
                         '&time=' + thisReportTime.toString() + 
-                        '&X-Plex-Client-Identifier=' + atv.device.udid + 
+                        '&X-Plex-Client-Identifier=' + atv.device.udid + '&X-Plex-Product=' + ClientName + 
                         '&X-Plex-Device-Name=' + encodeURIComponent(atv.device.displayName) +
                         token );
   }
@@ -108,7 +112,7 @@ atv.player.didStopPlaying = function()
                       '&duration=' + duration.toString() + 
                       '&state=stopped' +
                       '&time=' + lastReportedTime.toString() + 
-                      '&X-Plex-Client-Identifier=' + atv.device.udid + 
+                      '&X-Plex-Client-Identifier=' + atv.device.udid + '&X-Plex-Product=' + ClientName + 
                       '&X-Plex-Device-Name=' + encodeURIComponent(atv.device.displayName) +
                       token );
     
@@ -393,7 +397,7 @@ atv.player.playerStateChanged = function(newState, timeIntervalSec) {
                       '&state=' + state + 
                       '&time=' + thisReportTime.toString() + 
                       '&report=1' +
-                      '&X-Plex-Client-Identifier=' + atv.device.udid + 
+                      '&X-Plex-Client-Identifier=' + atv.device.udid + '&X-Plex-Product=' + ClientName + 
                       '&X-Plex-Device-Name=' + encodeURIComponent(atv.device.displayName) +
                       token );
   }
