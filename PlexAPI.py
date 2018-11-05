@@ -330,14 +330,14 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
                 token = Dir.get('accessToken', authtoken)
                 owned = Dir.get('owned', '0')
                 local = Dir.get('publicAddressMatches')
-                
+                """
                 # check MyPlex data age - skip if >2 days
                 infoAge = time.time() - int(Dir.get('lastSeenAt'))
                 oneDayInSec = 60*60*24
                 if infoAge > 2*oneDayInSec:  # two days in seconds -> expiration in setting?
                     dprint(__name__, 1, "Server {0} not updated for {1} days - skipping.", name, infoAge/oneDayInSec)
                     continue
-                
+                """
                 if Dir.find('Connection') == None:
                     continue  # no valid connection - skip
                 
