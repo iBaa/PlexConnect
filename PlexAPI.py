@@ -407,14 +407,16 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
                     updatePMSProperty(ATV_udid, uuid, 'owned', owned)
                     updatePMSProperty(ATV_udid, uuid, 'local', local)
                     updatePMSProperty(ATV_udid, uuid, 'baseURL', uri)  # set in declarePMS, overwrite for https encryption
-                elif local=='1':
+                elif local=='1':    # Update udid if local instance is found
+                    
+                    dprint(__name__, 0, "update to {0} ({1}) at {2}", name, uuid, uri)
+                    
+                    declarePMS(ATV_udid, uuid, name, protocol, ip, port)  # dflt: token='', local, owned - updated later
                     updatePMSProperty(ATV_udid, uuid, 'accesstoken', token)
                     updatePMSProperty(ATV_udid, uuid, 'owned', owned)
                     updatePMSProperty(ATV_udid, uuid, 'local', local)
-                    updatePMSProperty(ATV_udid, uuid, 'protocol', protocol)
-                    updatePMSProperty(ATV_udid, uuid, 'ip', ip)
-                    updatePMSProperty(ATV_udid, uuid, 'port', port)
                     updatePMSProperty(ATV_udid, uuid, 'baseURL', uri)  # set in declarePMS, overwrite for https encryption
+                    
                     
 
 """
