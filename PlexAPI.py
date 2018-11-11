@@ -295,7 +295,7 @@ def discoverPMS(ATV_udid, CSettings, IP_self, tokenDict={}):
         updatePMSProperty(ATV_udid, uuid, 'enableGzip', enableGzip)
     
     # debug print all servers
-    dprint(__name__, 0, "Servers (local, plex.tv, MyPlex): {0}", len(g_PMS[ATV_udid]))
+    dprint(__name__, 0, "Plex Media Servers found: {0}", len(g_PMS[ATV_udid])-1)
     for uuid in g_PMS[ATV_udid]:
         dprint(__name__, 1, str(g_PMS[ATV_udid][uuid]))
 
