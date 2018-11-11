@@ -276,7 +276,6 @@ def discoverPMS(ATV_udid, CSettings, IP_self, tokenDict={}):
             # todo - check IP to verify "local"?
       
       else:
-        # signed into myPlex - poke plex.tv for servers
         # PlexGDM
         PMS_list = PlexGDM()
         for uuid in PMS_list:
@@ -330,14 +329,14 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
                 token = Dir.get('accessToken', authtoken)
                 owned = Dir.get('owned', '0')
                 local = Dir.get('publicAddressMatches')
-                """
+                
                 # check MyPlex data age - skip if >2 days
                 infoAge = time.time() - int(Dir.get('lastSeenAt'))
                 oneDayInSec = 60*60*24
                 if infoAge > 2*oneDayInSec:  # two days in seconds -> expiration in setting?
                     dprint(__name__, 1, "Server {0} not updated for {1} days - skipping.", name, infoAge/oneDayInSec)
                     continue
-                """
+                
                 if Dir.find('Connection') == None:
                     continue  # no valid connection - skip
                 
@@ -398,7 +397,7 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
                 port = PMSInfo['port']
                 uri = PMSInfo['uri']
                     
-                if not uuid in g_PMS[ATV_udid]:  # PMS uuid not yet handled, so this must be the fastest response
+                if not uuid in g_PMS[ATV_udid]:  # PMS uuid not yet handled, so take it
                     PMSsCnt += 1
                     
                     dprint(__name__, 0, "response {0} ({1}) at {2}", name, uuid, uri)
@@ -408,8 +407,15 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
                     updatePMSProperty(ATV_udid, uuid, 'owned', owned)
                     updatePMSProperty(ATV_udid, uuid, 'local', local)
                     updatePMSProperty(ATV_udid, uuid, 'baseURL', uri)  # set in declarePMS, overwrite for https encryption
-
-
+                elif local=='1':
+                    updatePMSProperty(ATV_udid, uuid, 'accesstoken', token)
+                    updatePMSProperty(ATV_udid, uuid, 'owned', owned)
+                    updatePMSProperty(ATV_udid, uuid, 'local', local)
+                    updatePMSProperty(ATV_udid, uuid, 'protocol', protocol)
+                    updatePMSProperty(ATV_udid, uuid, 'ip', ip)
+                    updatePMSProperty(ATV_udid, uuid, 'port', port)
+                    updatePMSProperty(ATV_udid, uuid, 'baseURL', uri)  # set in declarePMS, overwrite for https encryption
+                    
 
 """
 Plex Media Server communication
