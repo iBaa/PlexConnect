@@ -7,4 +7,4 @@ Version.py
 
 
 # Version string - globally available
-__VERSION__ = '0.7-dev-020318'
+__VERSION__ = '0.7-dev-111118'
