@@ -328,7 +328,6 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
                 name = Dir.get('name')
                 token = Dir.get('accessToken', authtoken)
                 owned = Dir.get('owned', '0')
-                local = Dir.get('publicAddressMatches')
                 
                 # check MyPlex data age - skip if >2 days
                 infoAge = time.time() - int(Dir.get('lastSeenAt'))
@@ -348,6 +347,7 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
                     ip = Con.get('address')
                     port = Con.get('port')
                     uri = Con.get('uri')
+                    local = Con.get('local')
                     
                     dprint(__name__, 0, "poke {0} ({1}) at {2}", name, uuid, uri)
                     
