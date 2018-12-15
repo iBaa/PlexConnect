@@ -329,13 +329,6 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
                 token = Dir.get('accessToken', authtoken)
                 owned = Dir.get('owned', '0')
                 
-                # check MyPlex data age - skip if >2 days
-                infoAge = time.time() - int(Dir.get('lastSeenAt'))
-                oneDayInSec = 60*60*24
-                if infoAge > 2*oneDayInSec:  # two days in seconds -> expiration in setting?
-                    dprint(__name__, 1, "Server {0} not updated for {1} days - skipping.", name, infoAge/oneDayInSec)
-                    continue
-                
                 if Dir.find('Connection') == None:
                     continue  # no valid connection - skip
                 
@@ -448,12 +441,12 @@ def getXMLFromPMS(baseURL, path, options={}, authtoken='', enableGzip=False):
     try:
         response = urllib2.urlopen(request, timeout=20)
     except (urllib2.URLError, httplib.HTTPException) as e:
-        dprint(__name__, 0, 'No Response from Plex Media Server')
+        dprint(__name__, 1, 'No Response from Plex Media Server')
         if hasattr(e, 'reason'):
-            dprint(__name__, 0, "We failed to reach a server. Reason: {0}", e.reason)
+            dprint(__name__, 1, "We failed to reach a server. Reason: {0}", e.reason)
         elif hasattr(e, 'code'):
-            dprint(__name__, 0, "The server couldn't fulfill the request. Error code: {0}", e.code)
-        dprint(__name__, 0, 'Traceback:\n{0}', traceback.format_exc())
+            dprint(__name__, 1, "The server couldn't fulfill the request. Error code: {0}", e.code)
+        dprint(__name__, 1, 'Traceback:\n{0}', traceback.format_exc())
         return False
     except IOError:
         dprint(__name__, 0, 'Error loading response XML from Plex Media Server:\n{0}', traceback.format_exc())
