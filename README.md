@@ -53,6 +53,10 @@ sudo ./PlexConnect.py
 See the [Wiki - Advanced Settings][] for more details on configuration and advanced settings.
 
 
+## Support
+End user support is provided in Plex forums https://forums.plex.tv/tags/c/third-party/apps-tools/plexconnect. Please do not open new issues unless instructed to do so by the development team.
+
+
 ## More detailed Information about the files
 * __PlexConnect.py__ - 
 Main script file, invoking the DNSServer and WebServer into seperate processes.
