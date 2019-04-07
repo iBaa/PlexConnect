@@ -20,7 +20,7 @@ The basic idea is, to...
 
 ## Requirements
 - Python 2.6.x with minor issues: ElementTree doesn't support tag indices.
-- Python 2.7.x recommended.
+- Python 2.7.12 recommended.
 
 
 ## Installation
