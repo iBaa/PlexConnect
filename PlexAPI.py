@@ -554,7 +554,7 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
             (data, XML) = queue.get()
             uuid = data['uuid']
             Server = data['Server']
-            
+
             baseURL = getPMSProperty(ATV_udid, uuid, 'baseURL')
             token = getPMSProperty(ATV_udid, uuid, 'accesstoken')
             PMS_mark = 'PMS(' + getPMSProperty(ATV_udid, uuid, 'address') + ')'
@@ -565,15 +565,31 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
                 Server.set('size',    XML.getroot().get('size', '0'))
                 
                 for Dir in XML.getiterator('Directory'):  # copy "Directory" content, add PMS to links
-                    key = Dir.get('key')  # absolute path
-                    Dir.set('key',    PMS_mark + getURL('', path, key))
-                    Dir.set('refreshKey', getURL(baseURL, path, key) + '/refresh')
-                    if 'thumb' in Dir.attrib:
-                        Dir.set('thumb',  PMS_mark + getURL('', path, Dir.get('thumb')))
-                    if 'art' in Dir.attrib:
-                        Dir.set('art',    PMS_mark + getURL('', path, Dir.get('art')))
-                    Server.append(Dir)
-                
+                    if Dir.get('key') is not None and Dir.get('agent') is not None:
+                        key = Dir.get('key')  # absolute path
+                        Dir.set('key',    PMS_mark + getURL('', path, key))
+                        Dir.set('refreshKey', getURL(baseURL, path, key) + '/refresh')
+                        if 'thumb' in Dir.attrib:
+                            Dir.set('thumb',  PMS_mark + getURL('', path, Dir.get('thumb')))
+                        if 'art' in Dir.attrib:
+                            Dir.set('art',    PMS_mark + getURL('', path, Dir.get('art')))
+                        print Dir.get('type')
+                        Server.append(Dir)
+                    elif Dir.get('title') == 'Live TV & DVR':
+                        mp = None
+                        for MediaProvider in XML.getiterator('MediaProvider'):
+                            if MediaProvider.get('protocols') == 'livetv':
+                                mp = MediaProvider
+                                break
+
+                        if mp is not None:
+                            Dir.set('key', PMS_mark + getURL('', '', mp.get('identifier')))
+                            Dir.set('refreshKey', getURL(baseURL, '/livetv/dvrs', mp.get('parentID')) + '/reloadGuide')
+                            Dir.set('scanner', 'PlexConnect LiveTV Scanner Placeholder')
+                            Dir.set('type', 'livetv')
+                            Dir.set('thumbType', 'video')
+                            Server.append(Dir)
+
                 for Playlist in XML.getiterator('Playlist'):  # copy "Playlist" content, add PMS to links
                     key = Playlist.get('key')  # absolute path
                     Playlist.set('key',    PMS_mark + getURL('', path, key))

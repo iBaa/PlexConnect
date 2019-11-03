@@ -23,6 +23,8 @@ import inspect
 import string, random
 import copy  # deepcopy()
 
+import datetime
+
 try:
     import xml.etree.cElementTree as etree
 except ImportError:
@@ -347,6 +349,7 @@ def XML_PMS2aTV(PMS_address, path, options):
         elif cmd.find('Photo') != -1: dir = 'Photo'
         elif cmd.find('Premium_Music') != -1: dir = 'Music'
         elif cmd.find('Music') != -1 or cmd.find('iTunes') != -1: dir ='Music'
+        elif cmd.find('LiveTV') != -1: dir = 'LiveTV'
         else:
             return XML_Error('PlexConnect', 'Unknown scanner: '+cmd)
         
@@ -618,6 +621,12 @@ class CCommandHelper():
         param = param.replace('&lt;','<')
         param = param.replace('&gt;','>')
         param = param.replace('&amp;','&')  # must be last
+
+        sevenDate = datetime.datetime.now().replace(hour=19)
+        elevenDate = datetime.datetime.now().replace(hour=23)
+
+        param = param.replace("7pmtimestamp", str(int(time.mktime(sevenDate.timetuple()))))
+        param = param.replace("11pmtimestamp", str(int(time.mktime(elevenDate.timetuple()))))
         
         dprint(__name__, 2, "CCmds_getParam: {0}, {1}", param, leftover)
         return [param, leftover]

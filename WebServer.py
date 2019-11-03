@@ -24,6 +24,8 @@ import urllib, StringIO, gzip
 import signal
 import traceback
 
+import datetime
+
 import Settings, ATVSettings
 from Debug import *  # dprint()
 import XMLConverter  # XML_PMS2aTV, XML_PlayVideo
@@ -136,6 +138,8 @@ class MyHandler(BaseHTTPRequestHandler):
             
             # get aTV language setting
             options['aTVLanguage'] = Localize.pickLanguage(self.headers.get('Accept-Language', 'en'))
+
+            query = query.replace("yyltyy", "<").replace("yygtyy", ">")
             
             # add client address - to be used in case UDID is unknown
             if 'X-Forwarded-For' in self.headers:

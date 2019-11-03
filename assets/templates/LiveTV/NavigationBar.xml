@@ -1,0 +1,65 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/updateXML.js)}}" />
+  </head>
+
+	<body>
+		<viewWithNavigationBar id="PlexConnect_Navigation" onNavigate="loadItem(event)" volatile="true" onVolatileReload="updatePage('{{URL(:::PlexConnect=LiveTV)}}');">
+			<navigation currentIndex="0">
+
+      <navigationItem id="0">
+					<title>Recommended</title>
+					<url>{{URL(key::/hubs/discover:excludeFields=summary&amp;count=20&amp;PlexConnect=LiveTV_Hub)}}</url>
+				</navigationItem>
+
+				<navigationItem id="1">
+					<title>On Right Now</title>
+					<url>{{URL(key::/all:type=1,4&amp;beginsAtyyltyy=now&amp;endsAtyygtyy=1sPlexConnect=LiveTV_Grid)}}</url>
+				</navigationItem>
+
+				<navigationItem id="2">
+					<title>Starting Soon</title>
+					<url>{{URL(key::/all:type=1,4&amp;beginsAtyygtyy=+1s&amp;beginsAtyyltyy=+1hPlexConnect=LiveTV_Grid)}}</url>
+				</navigationItem>
+
+        <navigationItem id="3">
+					<title>New Episodes Tonight</title>
+					<url>{{URL(key::/all:type=1,4&amp;beginsAtyygtyy=7pmtimestamp&amp;beginsAtyyltyy=11pmtimestamp&amp;sort=beginsAtPlexConnect=LiveTV_Grid)}}</url>
+				</navigationItem>
+
+        <navigationItem id="4">
+					<title>Recommended for You</title>
+					<url>{{URL(key::/rec:PlexConnect=LiveTV_Grid)}}</url>
+				</navigationItem>
+
+				<navigationItem id="5">
+					<title>Upcoming Movies</title>
+					<url>{{URL(key::/sections/1/all:type=1&amp;beginsAtyygtyy=now&amp;PlexConnect=LiveTV_Grid)}}</url>
+				</navigationItem>
+
+				<navigationItem id="6">
+					<title>Upcoming Shows</title>
+					<url>{{URL(key::/sections/2/all:type=4&amp;beginsAtyygtyy=now&amp;PlexConnect=LiveTV_Grid)}}</url>
+				</navigationItem>
+
+				<navigationItem id="7">
+					<title>Upcoming Sports</title>
+					<url>{{URL(key::/sections/3/all:type=4&amp;beginsAtyygtyy=now&amp;PlexConnect=LiveTV_Grid)}}</url>
+				</navigationItem>
+
+				<navigationItem id="8">
+					<title>Upcoming News</title>
+					<url>{{URL(key::/sections/4/all:type=4&amp;beginsAtyygtyy=now&amp;PlexConnect=LiveTV_Grid)}}</url>
+				</navigationItem>
+
+				<navigationItem id="9">
+					<title>DVR Schedule</title>
+					<url>{{URL(/media/subscriptions/scheduled:::PlexConnect=LiveTV_DVRSchedule)}}</url>
+				</navigationItem>
+
+
+			</navigation>
+		</viewWithNavigationBar>
+	</body>
+</atv>

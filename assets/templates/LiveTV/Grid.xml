@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <atv>
+    <body>
+      <search id="plex-search">
+        <header>
+          <simpleHeader>
+            <title>lol</title>
+          </simpleHeader>
+        </header>
+    </search>
+  </body>
+</atv>
