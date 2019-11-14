@@ -9,7 +9,7 @@
         <scroller id="com.sample.movie-showcase-grid">
             <header>
                 <simpleHeader>
-                    <title>Recommended</title>
+                    <title>{{VAL(^PlexConnectTitle)}}</title>
                 </simpleHeader>
             </header>
 
@@ -25,9 +25,8 @@
                                 <items>
                                     <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}"
                                                  alwaysShowTitles="{{VAL($postertitles::Highlighted Only=false|Show All=true)}}"
-                                                 onPlay="atv.loadURL('{{URL(key:::PlexConnect={{VAL(Media/onAir:LiveTV_Record:1=LiveTV_Watch|=LiveTV_Record)}}&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
-                                                 onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect=Movie_PrePlay{{VAL($fanart::Hide=|Show=_Fanart)}})}}')"
-                                                 onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
+                                                 onHoldSelect="recordMenu('{{URL(/:/media/subscriptions/template::guid={{EVAL(quote_plus('{{VAL(ratingKey)}}'))}}&amp;PlexConnect=LiveTV_RecordMenu)}}')"
+                                                 onSelect="atv.loadURL('{{URL(/:{{EVAL('{{VAL(key)}}'.replace(':', '&amp;col;'))}}::PlexConnect=LiveTV_PrePlay)}}')">
                                         {{COPY(Video)}}
                                         <title>{{VAL(grandparentTitle)}}</title>{{CUT(grandparentTitle:CUT:=CUT| =)}}
                                         <title>{{VAL(title)}}</title>{{CUT(grandparentTitle:: =CUT)}}
@@ -35,14 +34,12 @@
                                         <image>{{IMAGEURL(grandparentThumb::384)}}</image>{{CUT(grandparentThumb:CUT:=CUT| =)}}
                                         <image>{{IMAGEURL(thumb::384)}}</image>{{CUT(grandparentThumb:: =CUT)}}
                                         <defaultImage>resource://Poster.png</defaultImage>
-                                        <badgeCount>8</badgeCount>
                                     </moviePoster>
 
                                     <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}"
                                                  alwaysShowTitles="{{VAL($postertitles::Highlighted Only=false|Show All=true)}}"
-                                                 onPlay="atv.loadURL('{{URL(key:::PlexConnect=Play_Video&amp;PlexConnectRatingKey={{VAL(ratingKey)}})}}')"
-                                                 onSelect="atv.loadURL('{{URL(key:::includeExtras=1&amp;PlexConnect=Movie_PrePlay{{VAL($fanart::Hide=|Show=_Fanart)}})}}')"
-                                                 onHoldSelect="scrobbleMenu('{{URL(key:::PlexConnect=Scrobble_MenuVideo)}}')">
+                                                 onHoldSelect="recordMenu('{{URL(/:/media/subscriptions/template::guid={{EVAL(quote_plus('{{VAL(ratingKey)}}'))}}&amp;PlexConnect=LiveTV_RecordMenu)}}')"
+                                                 onSelect="atv.loadURL('{{URL(/:{{EVAL('{{VAL(key)}}'.replace('/children', '').replace(':', '&amp;col;'))}}::PlexConnect=LiveTV_Episode_List)}}')">
                                         {{COPY(Directory)}}
                                         <title>{{VAL(title)}}</title>
                                         <image>{{IMAGEURL(grandparentThumb::384)}}</image>{{CUT(grandparentThumb:CUT:=CUT| =)}}

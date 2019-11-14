@@ -31,7 +31,7 @@ except ImportError:
     import xml.etree.ElementTree as etree
 
 import time, uuid, hmac, hashlib, base64
-from urllib import quote_plus, unquote_plus
+from urllib import quote_plus, unquote_plus, urlencode
 import urllib2
 import urlparse
 
@@ -1205,6 +1205,9 @@ class CCommandCollection(CCommandHelper):
                     if Stream.get('profile', '-') == 'high 10' or \
                         int(Stream.get('refFrames','0')) > 8:
                             videoATVNative = False
+                            break
+                if Stream.get('scanType', '') == 'interlaced':
+                    videoATVNative = False
                     break
             
             dprint(__name__, 2, "video: ATVNative - {0}", videoATVNative)

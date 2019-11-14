@@ -53,7 +53,7 @@ def dinit(src, param, newlog=False):
 
 
 def dprint(src, dlevel, *args):
-    logToTerminal = True
+    logToTerminal = not (src in dlevels) or dlevel <= dlevels[src]
     logToFile = not g_loglevel==-1 and not g_logfile=='' and dlevel <= g_loglevel
     
     if logToTerminal or logToFile:

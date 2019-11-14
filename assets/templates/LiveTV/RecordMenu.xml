@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}"/>
+  </head>
+
+  <body>{{CUT(^aTVFirmwareVersion:CUT:4.0=|6.0=CUT)}}
+    <optionDialog id="record.optionDialog">
+      <header>
+        <simpleHeader>
+          <title>Record Show</title>
+          <subtitle>{{VAL(title)}}</subtitle>
+        </simpleHeader>
+      </header>
+
+      <menu>
+        <sections>
+          <menuSection>
+            <header>
+              <horizontalDivider alignment="left">
+                <title></title>
+              </horizontalDivider>
+            </header>
+
+            <items>
+              <oneLineMenuItem id="record" onSelect="record('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(parameters)}}', '{{VAL(type)}}', '{{VAL(targetLibrarySectionID)}}');atv.unloadPage();">
+                {{COPY(SubscriptionTemplate/MediaSubscription)}}
+                <label>Record Series</label>{{CUT(type:CUT:2=|4=CUT|1=CUT)}}
+                <label>Record Episode</label>{{CUT(type:CUT:4=|2=CUT|1=CUT)}}
+                <label>Record Movie</label>{{CUT(type:CUT:1=|2=CUT|4=CUT)}}
+              </oneLineMenuItem>
+
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </optionDialog>
+  </body>
+
+  <body>{{CUT(^aTVFirmwareVersion::4.0=CUT|6.0=)}}
+    <popUpMenu id='context_menu'>
+      <sections>
+        <menuSection>
+            <items>
+              <oneLineMenuItem id="record" onSelect="record('{{VAL(%baseURL)}}', '{{VAL(%accesstoken)}}', '{{VAL(parameters)}}', '{{VAL(type)}}', '{{VAL(targetLibrarySectionID)}}');atv.unloadPage();">
+                {{COPY(SubscriptionTemplate/MediaSubscription)}}
+                <label>Record Series</label>{{CUT(type:CUT:2=|4=CUT|1=CUT)}}
+                <label>Record Episode</label>{{CUT(type:CUT:4=|2=CUT|1=CUT)}}
+                <label>Record Movie</label>{{CUT(type:CUT:1=|2=CUT|4=CUT)}}
+              </oneLineMenuItem>
+            </items>
+          </menuSection>
+      </sections>
+    </popUpMenu>
+  </body>
+</atv>

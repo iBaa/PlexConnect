@@ -1,0 +1,53 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+  </head>
+
+  <body>
+    {{ADDXML(GrandChildren::grandchildren)}}
+
+    <listWithPreview id="com.sample.menu-items-with-sections" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=LiveTV_Episode_List)}}')">
+      {{COPY(Directory)}}
+      <header>
+        <simpleHeader>
+          <title>{{VAL(title)}}</title>
+          <subtitle>{{VAL(Channel/tag)}}</subtitle>
+        </simpleHeader>
+      </header>
+      <menu>
+        <sections>
+          <menuSection>
+            <items>
+              <twoLineEnhancedMenuItem id="{{VAL(ratingKey)}}"
+                                         onPlay="atv.loadURL('{{URL(/:{{EVAL('{{VAL(key)}}'.replace(':', '&amp;col;'))}}:PlexConnect=LiveTV_PrePlay)}}')"
+                                         onSelect="atv.loadURL('{{URL(/:{{EVAL('{{VAL(key)}}'.replace(':', '&amp;col;'))}}::PlexConnect=LiveTV_PrePlay)}}')">
+                {{COPY(@GrandChildren/Video)}}
+                <label>{{VAL(title)}}</label>
+                <label2>Season {{VAL(parentIndex)}} • Episode {{VAL(index)}}</label2>
+                <image>{{IMAGEURL(grandparentThumb::800)}}</image>
+                <!--<defaultImage>resource://16X9.png</defaultImage>      This causes the thumbnail to be too small, not sure why.-->
+                <accessories>
+                  <unplayedDot/>
+                </accessories>{{CUT(grandparentSubscriptionType:CUT:=)}}
+                <accessories>
+                  <unplayedDot/>
+                </accessories>{{CUT(subscriptionType:CUT:=)}}
+                <preview>
+                  <keyedPreview>
+                    <title>{{VAL(title)}}</title>
+                    <summary>{{VAL(summary)}}</summary>{{CUT($showsynopsis::Hide=CUT|Show=)}}
+                    <image>{{IMAGEURL(grandparentThumb::800)}}</image>
+                  </keyedPreview>
+                </preview>
+              </twoLineEnhancedMenuItem>{{CUT(@GrandChildren/Video/title:CUT:=)}}
+
+              <oneLineMenuItem id="none">
+                <label>{{TEXT(No episodes)}}</label>
+              </oneLineMenuItem>{{CUT(@GrandChildren/Video/title::=CUT)}}
+            </items>
+          </menuSection>
+        </sections>
+      </menu>
+    </listWithPreview>
+  </body>
+</atv>

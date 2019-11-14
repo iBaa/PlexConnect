@@ -432,9 +432,16 @@ def getXMLFromPMS(baseURL, path, options={}, authtoken='', enableGzip=False):
     
     dprint(__name__, 1, "URL: {0}{1}", baseURL, path)
     dprint(__name__, 1, "xargs: {0}", xargs)
+
+    method = 'GET'
+    if options is not None and 'PlexConnectMethod' in options:
+        dprint(__name__, 1, 'Custom method ' + method)
+        method = options['PlexConnectMethod']
     
     request = urllib2.Request(baseURL+path , None, xargs)
     request.add_header('User-agent', 'PlexConnect')
+
+    request.get_method = lambda: method
     if enableGzip:
         request.add_header('Accept-encoding', 'gzip')
     
