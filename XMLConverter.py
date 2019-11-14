@@ -1206,7 +1206,7 @@ class CCommandCollection(CCommandHelper):
                         int(Stream.get('refFrames','0')) > 8:
                             videoATVNative = False
                             break
-                if Stream.get('scanType', '') == 'interlaced':
+                if Stream.get('scanType', '') == 'interlaced' or Stream.get('codec') == 'mpeg2video':
                     videoATVNative = False
                     break
             
