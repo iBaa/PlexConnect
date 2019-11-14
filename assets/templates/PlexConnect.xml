@@ -16,7 +16,7 @@
         </navigationItem>{{CUT($playlistsview:CUT:=|Hide=CUT|Hide =)}}
         <navigationItem id="Library">
           <title>{{TEXT(Library)}}</title>
-          <url>{{URL(:/PMS(owned)/library/sections::PlexConnect=Library_View)}}</url>
+          <url>{{URL(:/PMS(owned)/media/providers::PlexConnect=Provider_View)}}</url>
         </navigationItem>{{CUT($libraryview:CUT:=|Hide=CUT|Hide =)}}
         <navigationItem id="SharedLibraries">
           <title>{{TEXT(Shared Libraries)}}</title>

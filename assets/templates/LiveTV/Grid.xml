@@ -1,0 +1,53 @@
+<atv>
+    <head>
+        <script src="{{URL(:/js/utils.js)}}"/>
+    </head>
+
+    <body>
+        <scroller id="com.sample.movie-grid">
+            {{CUT(size:CUT:0=CUT|1=)}}
+            <header>
+                <simpleHeader>
+                    <title>{{VAL(^PlexConnectTitle)}}</title>
+                </simpleHeader>
+            </header>
+            <items>
+                <grid columnCount="7" id="grid_0">
+                    <items>
+                        <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}"
+                                     alwaysShowTitles="{{VAL($postertitles::Highlighted Only=false|Show All=true)}}"
+                                     onHoldSelect="recordMenu('{{URL(/:/media/subscriptions/template::guid={{EVAL(quote_plus('{{VAL(ratingKey)}}'))}}&amp;PlexConnect=LiveTV_RecordMenu)}}')"
+                                     onSelect="atv.loadURL('{{URL(/:{{EVAL('{{VAL(key)}}'.replace(':', '&amp;col;'))}}::PlexConnect=LiveTV_PrePlay)}}')">
+                            {{COPY(Video)}}
+                            <title>{{VAL(grandparentTitle)}}</title>{{CUT(grandparentTitle:CUT:=CUT| =)}}
+                            <title>{{VAL(title)}}</title>{{CUT(grandparentTitle:: =CUT)}}
+                            <subtitle>{{VAL(title)}}</subtitle>{{CUT(grandparentTitle:CUT:=CUT| =)}}
+                            <image>{{IMAGEURL(grandparentThumb::384)}}</image>{{CUT(grandparentThumb:CUT:=CUT| =)}}
+                            <image>{{IMAGEURL(thumb::384)}}</image>{{CUT(grandparentThumb:: =CUT)}}
+                            <defaultImage>resource://Poster.png</defaultImage>
+                        </moviePoster>
+
+                        <moviePoster id="{{VAL(key)}}" accessibilityLabel="{{VAL(title)}}"
+                                     alwaysShowTitles="{{VAL($postertitles::Highlighted Only=false|Show All=true)}}"
+                                     onHoldSelect="recordMenu('{{URL(/:/media/subscriptions/template::guid={{EVAL(quote_plus('{{VAL(ratingKey)}}'))}}&amp;PlexConnect=LiveTV_RecordMenu)}}')"
+                                     onSelect="atv.loadURL('{{URL(/:{{EVAL('{{VAL(key)}}'.replace('/children', '').replace(':', '&amp;col;'))}}::PlexConnect=LiveTV_Episode_List)}}')">
+                            {{COPY(Directory)}}
+                            <title>{{VAL(title)}}</title>
+                            <image>{{IMAGEURL(grandparentThumb::384)}}</image>{{CUT(grandparentThumb:CUT:=CUT| =)}}
+                            <image>{{IMAGEURL(thumb::384)}}</image>{{CUT(grandparentThumb:: =CUT)}}
+                            <defaultImage>resource://Poster.png</defaultImage>
+                        </moviePoster>
+                    </items>
+                </grid>
+            </items>
+        </scroller>
+
+        <!--No Items Available-->
+        <dialog id="com.sample.error-dialog">
+            {{CUT(size::0=|1=CUT)}}
+            <title>PlexConnect</title>
+            <description>{{TEXT(Plex Media Server: No Items Available)}}</description>
+        </dialog>
+
+    </body>
+</atv>

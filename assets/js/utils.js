@@ -185,6 +185,75 @@ function changeArtwork(PMS_baseURL, accessToken, ratingKey, artURL, shelfName)
 }
 
 /*
+ * RecordMenu
+ */
+ function recordMenu(url)
+{
+  fv = atv.device.softwareVersion.split(".");
+  firmVer = fv[0] + "." + fv[1];
+  log(firmVer);
+  if (parseFloat(firmVer) < 6.0)
+  {
+    // firmware <6.0
+    // load standard scrobble menu
+    atv.loadURL(url);
+  }
+  else
+  {
+    // firmware >=6.0
+    // load scrobble menu xml
+    // parse the xml and build a popup context menu
+    var url = url + "&PlexConnectUDID="+atv.device.udid
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function()
+    {
+      try
+      {
+        if(req.readyState == 4)
+        {
+          xml = req.responseText;
+          if(xml.indexOf('popUpMenu') !== -1)
+          {
+            xmlDoc = atv.parseXML(xml);
+            atv.contextMenu.load(xmlDoc);
+          }
+          else
+          {
+            xmlDoc = atv.parseXML(xml);
+            atv.loadXML(xmlDoc);
+          }
+          xmlDoc = atv.parseXML(xml);
+          atv.contextMenu.load(xmlDoc);
+        }
+      }
+      catch(e)
+      {
+        req.abort();
+      }
+    }
+
+    req.open('GET',unescape(url), false);
+    req.send();
+  }
+}
+
+/*
+ * Record item
+ */
+function record(PMS_baseURL, accessToken, parameters, type, targetLibrarySectionID)
+{
+  var url = PMS_baseURL + "/media/subscriptions?" + parameters + "&prefs%5BremoteMedia%5D=false&type=" + type + "&targetLibrarySectionID=" + targetLibrarySectionID;
+  if (accessToken!='') url = url + '&X-Plex-Token=' + accessToken;
+
+    log("Record! " + url)
+	var req = new XMLHttpRequest();
+	req.open('POST', url, false);
+	req.send();
+
+	atv.unloadPage();
+}
+
+/*
  * xml updater Major Hack :)
  */
 function updateContextXML()

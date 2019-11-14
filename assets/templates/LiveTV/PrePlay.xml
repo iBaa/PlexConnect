@@ -1,0 +1,102 @@
+<atv>
+  <head>
+    <script src="{{URL(:/js/utils.js)}}" />
+    <script src="{{URL(:/js/selectAudioAndSubs.js)}}" />
+  </head>
+
+  <body>
+    <itemDetail id="com.apple.trailer" volatile="true" onVolatileReload="atv.loadAndSwapURL('{{URL(:::PlexConnect=LiveTV_PrePlay)}}')">
+      {{VAR(libSection:Video/librarySectionKey)}}
+      {{VAR(ratingKey:Video/ratingKey)}}
+      <title>{{VAL(Video/title)}}</title>
+      <label2>Season {{VAL(parentIndex)}} • Episode {{VAL(index)}}</label2>{{CUT(parentIndex:CUT:=)}}
+      <subtitle>{{VAL(Video/Channel/tag)}}</subtitle>
+      <rating>{{contentRating(Video/contentRating)}}</rating>
+      <summary>{{VAL(Video/summary)}}</summary>{{CUT($showsynopsis::Hide=CUT|Show=)}}
+      <image style="moviePoster">{{IMAGEURL(Video/grandparentThumb::768)}}</image>{{CUT(Video/grandparentThumb:CUT:=)}}
+      <image style="moviePoster">{{IMAGEURL(Video/thumb::768)}}</image>{{CUT(Video/grandparentThumb::=CUT)}}
+      <defaultImage>resource://Poster.png</defaultImage>
+
+      <table>
+        <columnDefinitions>
+          <columnDefinition width="27" alignment="left">
+            <title>{{TEXT(Details)}}</title>
+          </columnDefinition>
+          <columnDefinition width="27" alignment="left">
+            <title>{{TEXT(Actors)}}</title>
+          </columnDefinition>
+          <columnDefinition width="27" alignment="left">
+            <title>{{TEXT(Writers)}}</title>
+          </columnDefinition>
+          <columnDefinition width="27" alignment="left">
+            <title>{{TEXT(Directors)}}</title>
+          </columnDefinition>
+        </columnDefinitions>
+        <rows>
+          <row>
+            <label>{{durationToString(NoKey:Video:Video/duration)}}</label>
+            <label>{{VAL(Video/Role/tag)}}</label>
+            <label>{{VAL(Video/Writer/tag)}}</label>
+            <label>{{VAL(Video/Director/tag)}}</label>
+          </row>
+          <row>
+            <label>{{VAL(Video/Media/videoResolution:Unknown:1080=1080p|720=720p|576=SD|480=SD|sd=SD)}} {{VAL(Video/Media/audioCodec:Unknown:ac3=AC3|aac=AAC|mp3=MP3|dca=DTS|drms=DRMS)}} {{VAL(Video/Media/audioChannels:Unknown:2=Stereo|6=5.1|8=7.1)}}</label>{{CUT(^aTVFirmwareVersion:CUT:=|6=CUT)}}
+            <mediaBadges />{{MEDIABADGES(Video/Media)}}{{CUT(^aTVFirmwareVersion::=CUT|6=)}}
+            <label>{{VAL(Video/Role[2]/tag)}}</label>
+            <label>{{VAL(Video/Writer[2]/tag)}}</label>
+            <label>{{VAL(Video/Director[2]/tag)}}</label>
+          </row>
+          <row>
+            <label>{{VAL(Video/Genre/tag)}}</label>
+            <label>{{VAL(Video/Role[3]/tag)}}</label>
+            <label>{{VAL(Video/Writer[3]/tag)}}</label>
+            <label>{{VAL(Video/Director[3]/tag)}}</label>
+          </row>
+          <row>
+            <label>{{VAL(Video/Genre[2]/tag)}}</label>
+            <label>{{VAL(Video/Role[4]/tag)}}</label>
+            <label>{{VAL(Video/Writer[4]/tag)}}</label>
+            <label>{{VAL(Video/Director[4]/tag)}}</label>
+          </row>
+          <row>
+            <label>{{VAL(Video/Genre[3]/tag)}}</label>
+            <label>{{VAL(Video/Role[5]/tag)}}</label>
+            <label>{{VAL(Video/Writer[5]/tag)}}</label>
+            <label>{{VAL(Video/Director[5]/tag)}}</label>
+          </row>
+        </rows>
+      </table>
+
+      <centerShelf>
+        <shelf id="centerShelf" columnCount="4" center="true">
+          <sections>
+            <shelfSection>
+              <items>
+                <actionButton id="play" onSelect="atv.loadURL('{{URL(/:/livetv/dvrs/{{EVAL('{{VAL(#libSection)}}'.split(':')[1].split('/')[0])}}/channels/{{VAL(channelIdentifier)}}/tune::PlexConnect=Play_LiveTV&amp;PlexConnectRatingKey={{VAL(#ratingKey)}}&amp;PlexConnectMethod=POST)}}')"
+                                        onPlay="atv.loadURL('{{URL(/:/livetv/dvrs/{{EVAL('{{VAL(#libSection)}}'.split(':')[1].split('/')[0])}}/channels/{{VAL(channelIdentifier)}}/tune::PlexConnect=Play_LiveTV&amp;PlexConnectRatingKey={{VAL(#ratingKey)}}&amp;PlexConnectMethod=POST)}}')">
+                  {{COPY(Video/Media:onAir::1=COPY)}}
+                  <title>Watch Live ({{VAL(channelCallSign)}})</title>
+                  <image>resource://Play.png</image>
+                  <focusedImage>resource://PlayFocused.png</focusedImage>
+                </actionButton>
+               <actionButton id="record" onSelect="atv.loadURL('{{URL(/:/media/subscriptions/template::guid={{VAL(Video/ratingKey)}}&amp;PlexConnect=LiveTV_RecordPage)}}')"
+                                        onPlay="atv.loadURL('{{URL(/:/media/subscriptions/template::guid={{VAL(Video/ratingKey)}}&amp;PlexConnect=LiveTV_RecordPage)}}')">
+                  <title>Record</title>
+                  <image>resource://Queue.png</image>
+                  <focusedImage>resource://QueueFocused.png</focusedImage>
+                </actionButton>
+                <actionButton id="viewshow" onSelect="atv.loadURL('{{URL(Video/grandparentKey:::PlexConnect=LiveTV_Episode_List&amp;PlexConnectRatingKey={{VAL(Video/ratingKey)}})}}')"
+                                        onPlay="atv.loadURL('{{URL(Video/grandparentKey:::PlexConnect=LiveTV_Episode_List')">
+                  <title>View Show</title>
+                  <image>resource://More.png</image>
+                  <focusedImage>resource://MoreFocused.png</focusedImage>
+                </actionButton>{{CUT(Video/grandparentKey:CUT:=)}}
+              </items>
+            </shelfSection>
+          </sections>
+        </shelf>
+      </centerShelf>
+
+    </itemDetail>
+  </body>
+</atv>
