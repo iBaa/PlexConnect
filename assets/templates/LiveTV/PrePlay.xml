@@ -12,8 +12,8 @@
       <label2>Season {{VAL(parentIndex)}} • Episode {{VAL(index)}}</label2>{{CUT(parentIndex:CUT:=)}}
       <subtitle>{{VAL(Video/Channel/tag)}}</subtitle>
       <rating>{{contentRating(Video/contentRating)}}</rating>
-      <summary>{{VAL(Video/summary)}}</summary>{{CUT($showsynopsis::Hide=CUT|Show=)}}
-      <image style="moviePoster">{{IMAGEURL(Video/grandparentThumb::768)}}</image>{{CUT(Video/grandparentThumb:CUT:=)}}
+      <summary>{{VAL(Video/summary)}}</summary>
+\      <image style="moviePoster">{{IMAGEURL(Video/grandparentThumb::768)}}</image>{{CUT(Video/grandparentThumb:CUT:=)}}
       <image style="moviePoster">{{IMAGEURL(Video/thumb::768)}}</image>{{CUT(Video/grandparentThumb::=CUT)}}
       <defaultImage>resource://Poster.png</defaultImage>
 
