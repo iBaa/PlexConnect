@@ -13,8 +13,8 @@ options = { \
     'playlistsview'             :('List', 'Tabbed List', 'Hide'), \
     'libraryview'               :('List', 'Grid', 'Bookcase', 'Hide'), \
     'sharedlibrariesview'       :('List', 'Grid', 'Bookcase', 'Hide'), \
-    'channelview'               :('List', 'Tabbed List', 'Grid', 'Bookcase', 'Hide'), \
-    'sharedchannelsview'        :('List', 'Tabbed List', 'Grid', 'Bookcase', 'Hide'), \
+    'channelview'               :('Hide', 'List', 'Tabbed List', 'Grid', 'Bookcase'), \
+    'sharedchannelsview'        :('Hide', 'List', 'Tabbed List', 'Grid', 'Bookcase'), \
     'globalsearch'              :('Show', 'Hide'), \
     'movieview'                 :('Grid', 'List', 'Detailed List'), \
     'homevideoview'             :('Grid', 'List', 'Detailed List'), \
@@ -51,10 +51,12 @@ options = { \
     'tv_navbar_unwatched'       :('checked', 'unchecked'), \
     'tv_navbar_genres'          :('checked', 'unchecked'), \
     'tv_navbar_more'            :('checked', 'unchecked'), \
-    'transcodequality'  :('1080p 40.0Mbps', \
+    'transcodequality'  :('1080p 12.0Mbps', \
+                          '1080p 20.0Mbps', \
+                          '1080p 40.0Mbps', \
                           '480p 2.0Mbps', \
                           '720p 3.0Mbps', '720p 4.0Mbps', \
-                          '1080p 8.0Mbps', '1080p 10.0Mbps', '1080p 12.0Mbps', '1080p 20.0Mbps'), \
+                          '1080p 8.0Mbps', '1080p 10.0Mbps'), \
     'transcoderaction'  :('Auto', 'DirectPlay', 'Transcode'), \
     'remotebitrate'     :('720p 3.0Mbps', '720p 4.0Mbps', \
                           '1080p 8.0Mbps', '1080p 10.0Mbps', '1080p 12.0Mbps', '1080p 20.0Mbps', '1080p 40.0Mbps', \
