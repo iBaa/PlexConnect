@@ -338,6 +338,10 @@ def XML_PMS2aTV(PMS_address, path, options):
         dprint(__name__, 1, "Found S - BABS / BABS")
         dir = 'TVShow'
         cmd = 'NavigationBar'
+    elif cmd=='Plex_Music':
+        dprint(__name__, 1, "Found Plex_Music")
+        dir = 'Music'
+        cmd = 'NavigationBar'
     elif cmd.find('Scanner') != -1:
         dprint(__name__, 1, "Found Scanner.")
         if cmd.find('Series') != -1: dir = 'TVShow'
@@ -348,7 +352,6 @@ def XML_PMS2aTV(PMS_address, path, options):
             dir = 'HomeVideo'
         elif cmd.find('Photo') != -1: dir = 'Photo'
         elif cmd.find('Premium_Music') != -1: dir = 'Music'
-	elif cmd.find('Plex_Music') != -1: dir = 'Music'
         elif cmd.find('Music') != -1 or cmd.find('iTunes') != -1: dir ='Music'
         elif cmd.find('LiveTV') != -1: dir = 'LiveTV'
         else:
