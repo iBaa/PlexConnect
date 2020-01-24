@@ -1180,7 +1180,8 @@ class CCommandCollection(CCommandHelper):
         # check "Media" element and get key
         if Media!=None:
             # transcoder action
-            transcoderAction = g_ATVSettings.getSetting(self.ATV_udid, 'transcoderaction')
+            # transcoderAction = g_ATVSettings.getSetting(self.ATV_udid, 'transcoderaction')
+	    transcoderAction = "Transcode"
             
             # video format
             #    HTTP live stream
