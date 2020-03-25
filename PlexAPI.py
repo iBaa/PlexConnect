@@ -581,7 +581,7 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
                             Dir.set('thumb',  PMS_mark + getURL('', path, Dir.get('thumb')))
                         if 'art' in Dir.attrib:
                             Dir.set('art',    PMS_mark + getURL('', path, Dir.get('art')))
-                        print Dir.get('type')
+                        # print Dir.get('type')
                         Server.append(Dir)
                     elif Dir.get('title') == 'Live TV & DVR':
                         mp = None
