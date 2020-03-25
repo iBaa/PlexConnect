@@ -572,14 +572,6 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
                 Server.set('size',    XML.getroot().get('size', '0'))
                 
                 for Dir in XML.getiterator('Directory'):  # copy "Directory" content, add PMS to links
-                    key = Dir.get('key')  # absolute path
-                    Dir.set('key',    PMS_mark + getURL('', path, key))
-                    Dir.set('refreshKey', getURL(baseURL, path, key) + '/refresh')
-                    if 'thumb' in Dir.attrib:
-                        Dir.set('thumb',  PMS_mark + getURL('', path, Dir.get('thumb')))
-                    if 'art' in Dir.attrib:
-                        Dir.set('art',    PMS_mark + getURL('', path, Dir.get('art')))
-                    Server.append(Dir)
 
                     if Dir.get('title') == 'Live TV & DVR':
                         mp = None
@@ -595,6 +587,16 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
                             Dir.set('type', 'livetv')
                             Dir.set('thumbType', 'video')
                             Server.append(Dir)
+                    else
+                        key = Dir.get('key')  # absolute path
+                        Dir.set('key',    PMS_mark + getURL('', path, key))
+                        Dir.set('refreshKey', getURL(baseURL, path, key) + '/refresh')
+                        if 'thumb' in Dir.attrib:
+                            Dir.set('thumb',  PMS_mark + getURL('', path, Dir.get('thumb')))
+                        if 'art' in Dir.attrib:
+                            Dir.set('art',    PMS_mark + getURL('', path, Dir.get('art')))
+                        Server.append(Dir)
+
 
                 for Playlist in XML.getiterator('Playlist'):  # copy "Playlist" content, add PMS to links
                     key = Playlist.get('key')  # absolute path
