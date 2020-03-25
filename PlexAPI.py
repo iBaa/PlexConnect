@@ -587,7 +587,7 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
                             Dir.set('type', 'livetv')
                             Dir.set('thumbType', 'video')
                             Server.append(Dir)
-                    else
+                    else:
                         key = Dir.get('key')  # absolute path
                         Dir.set('key',    PMS_mark + getURL('', path, key))
                         Dir.set('refreshKey', getURL(baseURL, path, key) + '/refresh')
