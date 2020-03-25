@@ -572,17 +572,16 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
                 Server.set('size',    XML.getroot().get('size', '0'))
                 
                 for Dir in XML.getiterator('Directory'):  # copy "Directory" content, add PMS to links
-                    if Dir.get('key') is not None and Dir.get('agent') is not None:
-                        key = Dir.get('key')  # absolute path
-                        Dir.set('key',    PMS_mark + getURL('', path, key))
-                        Dir.set('refreshKey', getURL(baseURL, path, key) + '/refresh')
-                        if 'thumb' in Dir.attrib:
-                            Dir.set('thumb',  PMS_mark + getURL('', path, Dir.get('thumb')))
-                        if 'art' in Dir.attrib:
-                            Dir.set('art',    PMS_mark + getURL('', path, Dir.get('art')))
-                        print Dir.get('type')
-                        Server.append(Dir)
-                    elif Dir.get('title') == 'Live TV & DVR':
+                    key = Dir.get('key')  # absolute path
+                    Dir.set('key',    PMS_mark + getURL('', path, key))
+                    Dir.set('refreshKey', getURL(baseURL, path, key) + '/refresh')
+                    if 'thumb' in Dir.attrib:
+                        Dir.set('thumb',  PMS_mark + getURL('', path, Dir.get('thumb')))
+                    if 'art' in Dir.attrib:
+                        Dir.set('art',    PMS_mark + getURL('', path, Dir.get('art')))
+                    Server.append(Dir)
+
+                    if Dir.get('title') == 'Live TV & DVR':
                         mp = None
                         for MediaProvider in XML.getiterator('MediaProvider'):
                             if MediaProvider.get('protocols') == 'livetv':
