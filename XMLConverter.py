@@ -23,6 +23,7 @@ import inspect
 import string, random
 import copy  # deepcopy()
 
+import json
 import datetime
 
 try:
@@ -219,16 +220,21 @@ def XML_PMS2aTV(PMS_address, path, options):
         info = urllib2.urlopen("https://youtube.com/get_video_info?video_id=" + trailerID).read()
         parsed = urlparse.parse_qs(info)
         
-        key = 'url_encoded_fmt_stream_map'
+        key = 'player_response'
         if not key in parsed:
             return XML_Error('PlexConnect', 'Youtube: No Trailer Info available')
-        streams = parsed[key][0].split(',')
+        streams_dict = json.loads(parsed[key][0])
+	streams = streams_dict['streamingData']['formats']
         
         url = ''
         for i in range(len(streams)):
-            stream = urlparse.parse_qs(streams[i])
-            if stream['itag'][0] == '18':
-                url = stream['url'][0]
+            stream = streams[i]
+	    # 18: "medium", 22: hd720
+            if stream['itag'] == 18:
+                url = stream['url']
+	    # if there is also a "22" (720p) stream, let's upgrade to that one
+            if stream['itag'] == 22:
+                url = stream['url']
         if url == '':
             return XML_Error('PlexConnect','Youtube: ATV compatible Trailer not available')
         
