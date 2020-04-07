@@ -573,7 +573,7 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
                 
                 for Dir in XML.getiterator('Directory'):  # copy "Directory" content, add PMS to links
 
-                    if Dir.get('key') is not None and (Dir.get('agent') is not None or Dir.get('hasPrefs') is None):
+                    if Dir.get('key') is not None and (Dir.get('agent') is not None or Dir.get('share') is None):
                         key = Dir.get('key')  # absolute path
                         Dir.set('key',    PMS_mark + getURL('', path, key))
                         Dir.set('refreshKey', getURL(baseURL, path, key) + '/refresh')
