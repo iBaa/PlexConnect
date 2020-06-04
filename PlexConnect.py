@@ -14,6 +14,7 @@ import socket
 from multiprocessing import Process, Pipe
 from multiprocessing.managers import BaseManager
 import signal, errno
+import argparse
 
 from Version import __VERSION__
 import DNSServer, WebServer
@@ -22,6 +23,7 @@ from PILBackgrounds import isPILinstalled
 from Debug import *  # dprint()
 
 
+CONFIG_PATH = '.'
 
 def getIP_self():
     cfg = param['CSettings']
@@ -60,7 +62,7 @@ def startup():
     global running
     
     # Settings
-    cfg = Settings.CSettings()
+    cfg = Settings.CSettings(CONFIG_PATH)
     param['CSettings'] = cfg
     
     # Logfile
@@ -89,7 +91,7 @@ def startup():
     proxy = BaseManager()
     proxy.register('ATVSettings', ATVSettings.CATVSettings)
     proxy.start(initProxy)
-    param['CATVSettings'] = proxy.ATVSettings()
+    param['CATVSettings'] = proxy.ATVSettings(CONFIG_PATH)
     
     running = True
     
@@ -181,6 +183,12 @@ def sighandler_shutdown(signum, frame):
 if __name__=="__main__":
     signal.signal(signal.SIGINT, sighandler_shutdown)
     signal.signal(signal.SIGTERM, sighandler_shutdown)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--config_path', metavar='<config_path>', required=False,
+                        help='path of folder containing config files, relative to PlexConnect.py')
+    args = parser.parse_args()
+    if args.config_path:
+        CONFIG_PATH = args.config_path
     
     dprint('PlexConnect', 0, "***")
     dprint('PlexConnect', 0, "PlexConnect")

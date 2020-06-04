@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
 import sys
-from os import sep
+from os import sep, makedirs
+from os.path import isdir
 import ConfigParser
 import re
 
@@ -57,11 +58,12 @@ g_settings = [
 
 
 class CSettings():
-    def __init__(self):
+    def __init__(self, path):
         dprint(__name__, 1, "init class CSettings")
         self.cfg = ConfigParser.SafeConfigParser()
         self.section = 'PlexConnect'
-        
+        self.path = path
+
         # set option for fixed ordering
         self.cfg.add_section(self.section)
         for (opt, (dflt, vldt)) in g_settings:
@@ -84,7 +86,15 @@ class CSettings():
         f.close()
     
     def getSettingsFile(self):
-        return sys.path[0] + sep + "Settings.cfg"
+        if self.path.startswith('.'):
+            # relative to current path
+            directory = sys.path[0] + sep + self.path
+        else:
+            # absolute path
+            directory = self.path
+        if not isdir(directory):
+            makedirs(directory)
+        return directory + "/Settings.cfg"
     
     def checkSection(self):
         modify = False
