@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
 import sys
-from os import sep
+from os import sep, makedirs
+from os.path import isdir
 import ConfigParser
 import fnmatch
 
@@ -83,9 +84,10 @@ options = { \
 
 
 class CATVSettings():
-    def __init__(self):
+    def __init__(self, path):
         dprint(__name__, 1, "init class CATVSettings")
         self.cfg = None
+        self.path = path
         self.loadSettings()
     
     
@@ -109,7 +111,15 @@ class CATVSettings():
         f.close()
     
     def getSettingsFile(self):
-        return sys.path[0] + sep + "ATVSettings.cfg"
+        if self.path.startswith('.'):
+            # relative to current path
+            directory = sys.path[0] + sep + self.path
+        else:
+            # absolute path
+            directory = self.path
+        if not isdir(directory):
+            makedirs(directory)
+        return directory + "/ATVSettings.cfg"
     
     def checkSection(self, UDID):
         # check for existing UDID section
