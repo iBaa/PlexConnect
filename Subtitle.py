@@ -34,7 +34,7 @@ def getSubtitleJSON(PMS_address, path, options):
         if UDID:
             options['PlexConnectUDID'] = UDID
     """
-    path = path + '?' if not '?' in path else '&'
+    path = path + ('?' if not '?' in path else '&')
     path = path + 'encoding=utf-8'
     
     if not 'PlexConnectUDID' in options:
