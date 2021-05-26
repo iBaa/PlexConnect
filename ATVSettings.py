@@ -119,7 +119,7 @@ class CATVSettings():
             directory = self.path
         if not isdir(directory):
             makedirs(directory)
-        return directory + "/ATVSettings.cfg"
+        return directory + sep + "ATVSettings.cfg"
     
     def checkSection(self, UDID):
         # check for existing UDID section
