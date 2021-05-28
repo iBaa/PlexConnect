@@ -9,6 +9,7 @@ DNAME="PlexConnect"
 PNAME="PlexConnect_daemon"
 
 # Others
+export PYTHONHTTPSVERIFY=0
 # current path resolver from http://stackoverflow.com/a/246128
 SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ]; do
