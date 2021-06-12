@@ -969,7 +969,7 @@ class CCommandCollection(CCommandHelper):
         # Video Codec
         if vCodec != '' and self.options['aTVFirmwareVersion'] >= '7.0':
             if vCodec == 'mpeg4':
-                vCodec = "XVID" # Are there any other mpeg4-part 2 codecs?
+                vCodec = 'xvid' # Are there any other mpeg4-part 2 codecs?
             attribs['insertIndex'] = str(index)
             attribs['src'] = g_param['baseURL'] + '/thumbnails/MediaBadges/' + vCodec + '.png'
             urlBadge = etree.SubElement(additionalBadges, "urlBadge", attribs)
