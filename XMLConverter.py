@@ -217,7 +217,7 @@ def XML_PMS2aTV(PMS_address, path, options):
     
     elif cmd=='PlayTrailer':
         trailerID = options['PlexConnectTrailerID']
-        info = urllib2.urlopen("https://youtube.com/get_video_info?video_id=" + trailerID).read()
+        info = urllib2.urlopen("https://youtube.com/get_video_info?html5=1&video_id=" + trailerID).read()
         parsed = urlparse.parse_qs(info)
         
         key = 'player_response'
