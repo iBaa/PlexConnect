@@ -341,18 +341,21 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
                     port = Con.get('port')
                     uri = Con.get('uri')
                     local = Con.get('local')
+                    
+                    # change protocol and uri if in local
+                    if local == "1":
+                        protocol = "http"
+                        uri = protocol + "://" + ip + ":" + port
                                         
                     # poke PMS, own thread for each poke
                     PMSInfo = { 'uuid': uuid, 'name': name, 'token': token, 'owned': owned, 'local': local, \
                             'protocol': protocol, 'ip': ip, 'port': port, 'uri': uri }
                     PMS = { 'baseURL': uri, 'path': '/', 'options': None, 'token': token, \
                             'data': PMSInfo }
-                    
-                    if local == "0":
-                        dprint(__name__, 0, "poke {0} ({1}) at {2}", name, uuid, uri)
-                        t = Thread(target=getXMLFromPMSToQueue, args=(PMS, queue))
-                        t.start()
-                        threads.append(t)
+                    dprint(__name__, 0, "poke {0} ({1}) at {2}", name, uuid, uri)
+                    t = Thread(target=getXMLFromPMSToQueue, args=(PMS, queue))
+                    t.start()
+                    threads.append(t)
         
         # wait for requests being answered
         # - either all communication threads done
