@@ -33,17 +33,17 @@ CONFIG_PATH = '.'
 def getIP_self():
     cfg = param['CSettings']
     if cfg.getSetting('enable_plexgdm') == 'False':
-        dprint('PlexConnect', 0, "IP_PMS: "+cfg.getSetting('ip_pms'))
+        dprint('PlexConnect', 0, f"IP_PMS: {cfg.getSetting('ip_pms')}")
     if cfg.getSetting('enable_plexconnect_autodetect') == 'True':
         # get public ip of machine running PlexConnect
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.connect(('1.2.3.4', 1000))
         IP = s.getsockname()[0]
-        dprint('PlexConnect', 0, "IP_self: "+IP)
+        dprint('PlexConnect', 0, f"IP_self: {IP}")
     else:
         # manual override from "settings.cfg"
         IP = cfg.getSetting('ip_plexconnect')
-        dprint('PlexConnect', 0, "IP_self (from settings): "+IP)
+        dprint('PlexConnect', 0, f"IP_self (from settings): {IP}")
 
     return IP
 
@@ -97,22 +97,15 @@ def startup():
     proxy.register('ATVSettings', ATVSettings.CATVSettings)
     proxy.start(initProxy)
     param['CATVSettings'] = proxy.ATVSettings(CONFIG_PATH)
-
     running = True
 
     # init DNSServer
     if cfg.getSetting('enable_dnsserver') == 'True':
-        master, slave = Pipe()  # endpoint [0]-PlexConnect, [1]-DNSServer
-        proc = Process(target=DNSServer.Run, args=(slave, param))
-        proc.start()
-
-        time.sleep(0.1)
-        if proc.is_alive():
-            procs['DNSServer'] = proc
-            pipes['DNSServer'] = master
-        else:
-            dprint('PlexConnect', 0, "DNSServer not alive. Shutting down.")
-            running = False
+        dnsserver = DNSServer.DNSServer(param)
+        dnsserver.start_thread()
+        # if not dnsserver.isAlive():
+        #     dprint('PlexConnect', 0, "DNSServer not alive. Shutting down.")
+        #     running = False
 
     # init WebServer
     if running:
@@ -167,6 +160,9 @@ def run(timeout=60):
 def shutdown():
     for slave in procs:
         procs[slave].join()
+    if param['CATVSettings'].getSetting('enable_dnsserver') == 'True':
+        if dnsserver:
+            dnsserver.stop()
     param['CATVSettings'].saveSettings()
 
     dprint('PlexConnect', 0, "Shutdown")
