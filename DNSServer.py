@@ -7,11 +7,12 @@ class DNSServer():
     def __init__(self, param):
 
         cfg = param['CSettings']
+        cfg_IP_self = param['IP_self']
 
         if cfg.getSetting('use_custom_dns_bind_ip') == "True":
-            cfg_IP_self = cfg.getSetting('custom_dns_bind_ip')
+            intercept_ip = cfg.getSetting('custom_dns_bind_ip')
         else:
-            cfg_IP_self = param['IP_self']
+            intercept_ip = cfg_IP_self
 
         cfg_Port_DNSServer = int(cfg.getSetting('port_dnsserver'))
         if not cfg_Port_DNSServer:
@@ -31,13 +32,13 @@ class DNSServer():
         dprint(__name__, 0, "***")
         dprint(__name__, 0,
                f"DNSServer: Serving DNS on {cfg_IP_self} port {cfg_Port_DNSServer}.")
-        dprint(__name__, 1, f"intercept: {intercept} => {cfg_IP_self}")
+        dprint(__name__, 1, f"intercept: {intercept} => {intercept_ip}")
         dprint(__name__, 1, f"restrain: {restrain} => NXDOMAIN")
         dprint(__name__, 1,
                f"forward other to higher level DNS: {cfg_IP_DNSMaster}")
         dprint(__name__, 0, "***")
 
-        intercept_records = [f"{i} 300 IN A {cfg_IP_self}" for i in intercept]
+        intercept_records = [f"{i} 300 IN A {intercept_ip}" for i in intercept]
 
         resolver = InterceptResolver(
             address=cfg_IP_DNSMaster,
