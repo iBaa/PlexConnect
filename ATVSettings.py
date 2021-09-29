@@ -106,9 +106,8 @@ class CATVSettings():
     
     def saveSettings(self):
         dprint(__name__, 1, "save settings")
-        f = open(self.getSettingsFile(), 'wb')
-        self.cfg.write(f)
-        f.close()
+        with open(self.getSettingsFile(), 'w') as f:
+            self.cfg.write(f)
     
     def getSettingsFile(self):
         if self.path.startswith('.'):
