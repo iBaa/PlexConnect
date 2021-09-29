@@ -8,7 +8,7 @@ Subtitle transcoder functions
 
 
 import re
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import json
 
 from Debug import *  # dprint(), prettyXML()
@@ -52,10 +52,10 @@ def getSubtitleJSON(PMS_address, path, options):
     dprint(__name__, 1, "subtitle URL: {0}{1}", PMS_baseURL, path)
     dprint(__name__, 1, "xargs: {0}", xargs)
     
-    request = urllib2.Request(PMS_baseURL+path , None, xargs)
+    request = urllib.request.Request(PMS_baseURL+path , None, xargs)
     try:
-        response = urllib2.urlopen(request, timeout=20)
-    except urllib2.URLError as e:
+        response = urllib.request.urlopen(request, timeout=20)
+    except urllib.error.URLError as e:
         dprint(__name__, 0, 'No Response from Plex Media Server')
         if hasattr(e, 'reason'):
             dprint(__name__, 0, "We failed to reach a server. Reason: {0}", e.reason)
@@ -69,7 +69,7 @@ def getSubtitleJSON(PMS_address, path, options):
     # Todo: Deal with ANSI files. How to select used "codepage"?
     subtitleFile = response.read()
     
-    print response.headers
+    print(response.headers)
     
     dprint(__name__, 1, "====== received Subtitle ======")
     dprint(__name__, 1, "{0} [...]", subtitleFile[:255])

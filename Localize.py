@@ -60,10 +60,10 @@ if __name__=="__main__":
     language = pickLanguage(languages)
     
     Text = "Hello World"  # doesn't translate
-    print getTranslation(language).ugettext(Text)
+    print(getTranslation(language).ugettext(Text))
     
     Text = "Library"  # translates
-    print getTranslation(language).ugettext(Text)
+    print(getTranslation(language).ugettext(Text))
     
     Text = "{{TEXT(Channels)}}"  # translates
-    print replaceTEXT(Text, language).encode('ascii', 'replace')
+    print(replaceTEXT(Text, language).encode('ascii', 'replace'))

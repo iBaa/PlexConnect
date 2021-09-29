@@ -113,20 +113,20 @@ def DNSToHost(DNSdata, i, followlink=True):
 
 def printDNSdata(paket):
     # HEADER
-    print "ID {0:04x}".format((ord(paket[0])<<8)+ord(paket[1]))
-    print "flags {0:02x} {1:02x}".format(ord(paket[2]), ord(paket[3]))
-    print "OpCode "+str((ord(paket[2])>>3)&0x0F)
-    print "RCode "+str((ord(paket[3])>>0)&0x0F)
+    print("ID {0:04x}".format((ord(paket[0])<<8)+ord(paket[1])))
+    print("flags {0:02x} {1:02x}".format(ord(paket[2]), ord(paket[3])))
+    print("OpCode "+str((ord(paket[2])>>3)&0x0F))
+    print("RCode "+str((ord(paket[3])>>0)&0x0F))
     qdcount = (ord(paket[4])<<8)+ord(paket[5])
     ancount = (ord(paket[6])<<8)+ord(paket[7])
     nscount = (ord(paket[8])<<8)+ord(paket[9])
     arcount = (ord(paket[10])<<8)+ord(paket[11])
-    print "Count - QD, AN, NS, AR:", qdcount, ancount, nscount, arcount
+    print("Count - QD, AN, NS, AR:", qdcount, ancount, nscount, arcount)
     adr = 12
     
     # QDCOUNT (query)
     for i in range(qdcount):
-        print "QUERY"
+        print("QUERY")
         host = DNSToHost(paket, adr)
         
         """
@@ -136,62 +136,62 @@ def printDNSdata(paket):
         """
         
         adr = adr + len(host) + 2
-        print host
-        print "type "+str((ord(paket[adr+0])<<8)+ord(paket[adr+1]))
-        print "class "+str((ord(paket[adr+2])<<8)+ord(paket[adr+3]))
+        print(host)
+        print("type "+str((ord(paket[adr+0])<<8)+ord(paket[adr+1])))
+        print("class "+str((ord(paket[adr+2])<<8)+ord(paket[adr+3])))
         adr = adr + 4
     
     # ANCOUNT (resource record)
     for i in range(ancount):
-        print "ANSWER"
-        print ord(paket[adr])
+        print("ANSWER")
+        print(ord(paket[adr]))
         if ord(paket[adr]) & 0xC0:
-            print"link"
+            print("link")
             adr = adr + 2
         else:
             host = DNSToHost(paket, adr)
             adr = adr + len(host) + 2
-        print host
+        print(host)
         _type = (ord(paket[adr+0])<<8)+ord(paket[adr+1])
         _class = (ord(paket[adr+2])<<8)+ord(paket[adr+3])
-        print "type, class: ", _type, _class
+        print("type, class: ", _type, _class)
         adr = adr + 4
-        print "ttl"
+        print("ttl")
         adr = adr + 4
         rdlength = (ord(paket[adr+0])<<8)+ord(paket[adr+1])
-        print "rdlength", rdlength
+        print("rdlength", rdlength)
         adr = adr + 2
         if _type==1:
-            print "IP:",
+            print("IP:", end=' ')
             for j in range(rdlength):
-                print ord(paket[adr+j]),
-            print
+                print(ord(paket[adr+j]), end=' ')
+            print()
         elif _type==5:
-            print "redirect:", DNSToHost(paket, adr)
+            print("redirect:", DNSToHost(paket, adr))
         else:
-            print "type unsupported:",
+            print("type unsupported:", end=' ')
             for j in range(rdlength):
-                print ord(paket[adr+j]),
-            print
+                print(ord(paket[adr+j]), end=' ')
+            print()
         adr = adr + rdlength
 
 def printDNSdata_raw(DNSdata):
     # hex code
     for i in range(len(DNSdata)):
         if i % 16==0:
-            print
-        print "{0:02x}".format(ord(DNSdata[i])),
-    print
+            print()
+        print("{0:02x}".format(ord(DNSdata[i])), end=' ')
+    print()
     
     # printable characters
     for i in range(len(DNSdata)):
         if i % 16==0:
-            print
+            print()
         if (ord(DNSdata[i])>32) & (ord(DNSdata[i])<128):
-            print DNSdata[i],
+            print(DNSdata[i], end=' ')
         else:
-            print ".",
-    print
+            print(".", end=' ')
+    print()
 
 
 
@@ -294,20 +294,20 @@ def encodeDNSstruct(DNSstruct):
 
 def printDNSstruct(DNSstruct):
     for i in range(DNSstruct['head']['qdcnt']):
-        print "query:", DNSstruct['query'][i]['host']
+        print("query:", DNSstruct['query'][i]['host'])
     
     for i in range(DNSstruct['head']['ancnt'] + DNSstruct['head']['nscnt'] + DNSstruct['head']['arcnt']):
-        print "resrc:",
-        print DNSstruct['resrc'][i]['host']
+        print("resrc:", end=' ')
+        print(DNSstruct['resrc'][i]['host'])
         if DNSstruct['resrc'][i]['type']==1:
-            print "->IP:",
+            print("->IP:", end=' ')
             for j in range(DNSstruct['resrc'][i]['rdlen']):
-                print ord(DNSstruct['resrc'][i]['rdata'][j]),
-            print
+                print(ord(DNSstruct['resrc'][i]['rdata'][j]), end=' ')
+            print()
         elif DNSstruct['resrc'][i]['type']==5:
-            print "->alias:", DNSstruct['resrc'][i]['rdata']
+            print("->alias:", DNSstruct['resrc'][i]['rdata'])
         else:
-            print "->unknown type"
+            print("->unknown type")
 
 
 
@@ -326,7 +326,7 @@ def Run(cmdPipe, param):
         DNS.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         DNS.settimeout(5.0)
         DNS.bind((cfg_IP_self, int(cfg_Port_DNSServer)))
-    except Exception, e:
+    except Exception as e:
         dprint(__name__, 0, "Failed to create socket on UDP port {0}: {1}", cfg_Port_DNSServer, e)
         sys.exit(1)
     
@@ -388,7 +388,7 @@ def Run(cmdPipe, param):
                     paket+=data[12:]                                     # original query
                     paket+='\xc0\x0c'                                    # pointer to domain name/original query
                     paket+='\x00\x01\x00\x01\x00\x00\x00\x3c\x00\x04'    # response type, ttl and resource data length -> 4 bytes
-                    paket+=str.join('',map(lambda x: chr(int(x)), cfg_IP_self.split('.'))) # 4bytes of IP
+                    paket+=str.join('',[chr(int(x)) for x in cfg_IP_self.split('.')]) # 4bytes of IP
                     dprint(__name__, 1, "-> DNS response: "+cfg_IP_self)
                 
                 elif domain in restrain:
@@ -411,7 +411,7 @@ def Run(cmdPipe, param):
                     try:
                         DNS_forward = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
                         DNS_forward.settimeout(5.0)
-                    except Exception, e:
+                    except Exception as e:
                         dprint(__name__, 0, "Failed to create socket for DNS_forward): {0}", e)
                         continue
                     

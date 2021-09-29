@@ -3,9 +3,7 @@
 import re
 import sys
 import io
-import urllib
-import urllib2
-import urlparse
+import urllib.request, urllib.parse, urllib.error
 import posixpath
 import traceback
 
@@ -29,10 +27,10 @@ def generate(PMS_uuid, url, authtoken, resolution, blurRadius, CSettings):
     if id:
         # assumes URL in format "/library/metadata/<ratingKey>/art/fileId>"
         id = id.groupdict()
-        cachefile = urllib.quote_plus(PMS_uuid +"_"+ id['ratingKey'] +"_"+ id['fileId'] +"_"+ resolution +"_"+ blurRadius) + ".jpg"
+        cachefile = urllib.parse.quote_plus(PMS_uuid +"_"+ id['ratingKey'] +"_"+ id['fileId'] +"_"+ resolution +"_"+ blurRadius) + ".jpg"
     else:
-        fileid = posixpath.basename(urlparse.urlparse(url).path)
-        cachefile = urllib.quote_plus(PMS_uuid +"_"+ fileid +"_"+ resolution +"_"+ blurRadius) + ".jpg"  # quote: just to make sure...
+        fileid = posixpath.basename(urllib.parse.urlparse(url).path)
+        cachefile = urllib.parse.quote_plus(PMS_uuid +"_"+ fileid +"_"+ resolution +"_"+ blurRadius) + ".jpg"  # quote: just to make sure...
     
     # Already created?
     dprint(__name__, 1, 'Check for Cachefile.')  # Debug
@@ -47,13 +45,13 @@ def generate(PMS_uuid, url, authtoken, resolution, blurRadius, CSettings):
         xargs = {}
         if authtoken:
             xargs['X-Plex-Token'] = authtoken
-        request = urllib2.Request(url, None, xargs)
-        response = urllib2.urlopen(request).read()
+        request = urllib.request.Request(url, None, xargs)
+        response = urllib.request.urlopen(request).read()
         background = Image.open(io.BytesIO(response))
-    except urllib2.URLError as e:
+    except urllib.error.URLError as e:
         dprint(__name__, 0, 'URLError: {0} // url: {1}', e.reason, url)
         return "/thumbnails/Background_blank_" + resolution + ".jpg"
-    except urllib2.HTTPError as e:
+    except urllib.error.HTTPError as e:
         dprint(__name__, 0, 'HTTPError: {0} {1} // url: {2}', str(e.code), e.msg, url)
         return "/thumbnails/Background_blank_" + resolution + ".jpg"
     except IOError as e:

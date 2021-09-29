@@ -16,11 +16,11 @@ Thanks to reaperhulk for showing this solution!
 import sys
 import string, cgi, time
 from os import sep, path
-from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
-from SocketServer import ThreadingMixIn
+from http.server import BaseHTTPRequestHandler, HTTPServer
+from socketserver import ThreadingMixIn
 import ssl
 from multiprocessing import Pipe  # inter process communication
-import urllib, StringIO, gzip
+import urllib.request, urllib.parse, urllib.error, io, gzip
 import signal
 import traceback
 
@@ -70,7 +70,7 @@ class MyHandler(BaseHTTPRequestHandler):
       pass
     
     def compress(self, data):
-        buf = StringIO.StringIO()
+        buf = io.StringIO()
         zfile = gzip.GzipFile(mode='wb',  fileobj=buf, compresslevel=9)
         zfile.write(data)
         zfile.close()
@@ -81,7 +81,7 @@ class MyHandler(BaseHTTPRequestHandler):
         self.send_header('Server', 'PlexConnect')
         self.send_header('Content-type', type)
         try:
-            accept_encoding = map(string.strip, string.split(self.headers["accept-encoding"], ","))
+            accept_encoding = list(map(string.strip, string.split(self.headers["accept-encoding"], ",")))
         except KeyError:
             accept_encoding = []
         if enableGzip and \
@@ -104,7 +104,7 @@ class MyHandler(BaseHTTPRequestHandler):
             PMSaddress = ''
             pms_end = self.path.find(')')
             if self.path.startswith('/PMS(') and pms_end>-1:
-                PMSaddress = urllib.unquote_plus(self.path[5:pms_end])
+                PMSaddress = urllib.parse.unquote_plus(self.path[5:pms_end])
                 self.path = self.path[pms_end+1:]
             
             # break up path, separate PlexConnect options
@@ -128,7 +128,7 @@ class MyHandler(BaseHTTPRequestHandler):
                         if len(opt)==1:
                             options[opt[0]] = ''
                         else:
-                            options[opt[0]] = urllib.unquote(opt[1])
+                            options[opt[0]] = urllib.parse.unquote(opt[1])
                     else:
                         # recreate query string (non-PlexConnect) - has to be merged back when forwarded
                         if query=='':
@@ -213,7 +213,7 @@ class MyHandler(BaseHTTPRequestHandler):
                         dprint(__name__, 1, "serving "+self.headers['Host']+self.path+" with "+resource)
                         r = open(resource, "rb")
                     else:
-                        r = urllib.urlopen('http://'+resource)
+                        r = urllib.request.urlopen('http://'+resource)
                     self.sendResponse(r.read(), 'image/png', False)
                     r.close()
                     return
@@ -289,7 +289,7 @@ def Run(cmdPipe, param):
     try:
         server = ThreadedHTTPServer((cfg_IP_WebServer,int(cfg_Port_WebServer)), MyHandler)
         server.timeout = 1
-    except Exception, e:
+    except Exception as e:
         dprint(__name__, 0, "Failed to connect to HTTP on {0} port {1}: {2}", cfg_IP_WebServer, cfg_Port_WebServer, e)
         sys.exit(1)
     
@@ -351,7 +351,7 @@ def Run_SSL(cmdPipe, param):
         server = ThreadedHTTPServer((cfg_IP_WebServer,int(cfg_Port_SSL)), MyHandler)
         server.socket = ssl.wrap_socket(server.socket, certfile=cfg_certfile, server_side=True)
         server.timeout = 1
-    except Exception, e:
+    except Exception as e:
         dprint(__name__, 0, "Failed to connect to HTTPS on {0} port {1}: {2}", cfg_IP_WebServer, cfg_Port_SSL, e)
         sys.exit(1)
     

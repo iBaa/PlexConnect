@@ -3,7 +3,7 @@
 import sys
 from os import sep, makedirs
 from os.path import isdir
-import ConfigParser
+import configparser
 import re
 
 from Debug import *  # dprint()
@@ -60,7 +60,7 @@ g_settings = [
 class CSettings():
     def __init__(self, path):
         dprint(__name__, 1, "init class CSettings")
-        self.cfg = ConfigParser.SafeConfigParser()
+        self.cfg = configparser.ConfigParser()
         self.section = 'PlexConnect'
         self.path = path
 
@@ -68,23 +68,20 @@ class CSettings():
         self.cfg.add_section(self.section)
         for (opt, (dflt, vldt)) in g_settings:
             self.cfg.set(self.section, opt, '\0')
-        
+
         self.loadSettings()
         self.checkSection()
-    
-    
-    
+
     # load/save config
     def loadSettings(self):
         dprint(__name__, 1, "load settings")
         self.cfg.read(self.getSettingsFile())
-    
+
     def saveSettings(self):
         dprint(__name__, 1, "save settings")
-        f = open(self.getSettingsFile(), 'wb')
-        self.cfg.write(f)
-        f.close()
-    
+        with open(self.getSettingsFile(), 'w') as f:
+            self.cfg.write(f)
+
     def getSettingsFile(self):
         if self.path.startswith('.'):
             # relative to current path
@@ -95,7 +92,7 @@ class CSettings():
         if not isdir(directory):
             makedirs(directory)
         return directory + "/Settings.cfg"
-    
+
     def checkSection(self):
         modify = False
         # check for existing section
@@ -103,41 +100,39 @@ class CSettings():
             modify = True
             self.cfg.add_section(self.section)
             dprint(__name__, 0, "add section {0}", self.section)
-        
+
         for (opt, (dflt, vldt)) in g_settings:
             setting = self.cfg.get(self.section, opt)
-            if setting=='\0':
+            if setting == '\0':
                 # check settings - add if new
                 modify = True
                 self.cfg.set(self.section, opt, dflt)
                 dprint(__name__, 0, "add setting {0}={1}", opt, dflt)
-            
+    
             elif not re.search('\A'+vldt+'\Z', setting):
                 # check settings - default if unknown
                 modify = True
                 self.cfg.set(self.section, opt, dflt)
                 dprint(__name__, 0, "bad setting {0}={1} - set default {2}", opt, setting, dflt)
-        
+
         # save if changed
         if modify:
             self.saveSettings()
-    
-    
-    
+
+
     # access/modify PlexConnect settings
     def getSetting(self, option):
         dprint(__name__, 1, "getsetting {0}={1}", option, self.cfg.get(self.section, option))
         return self.cfg.get(self.section, option)
 
 
-
-if __name__=="__main__":
+if __name__ == "__main__":
     Settings = CSettings()
-    
+
     option = 'enable_plexgdm'
-    print Settings.getSetting(option)
-    
+    print(Settings.getSetting(option))
+
     option = 'enable_dnsserver'
-    print Settings.getSetting(option)
-    
+    print(Settings.getSetting(option))
+
     del Settings

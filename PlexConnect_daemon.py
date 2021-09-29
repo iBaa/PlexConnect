@@ -25,7 +25,7 @@ def daemonize(args):
         pid = os.fork()
         if pid != 0:
             sys.exit(0)
-    except OSError, e:
+    except OSError as e:
         raise RuntimeError("1st fork failed: %s [%d]" % (e.strerror, e.errno))
 
     # decouple from parent environment
@@ -40,7 +40,7 @@ def daemonize(args):
         pid = os.fork()
         if pid != 0:
             sys.exit(0)
-    except OSError, e:
+    except OSError as e:
         raise RuntimeError("2nd fork failed: %s [%d]" % (e.strerror, e.errno))
 
     # redirect standard file descriptors
@@ -58,7 +58,7 @@ def daemonize(args):
             atexit.register(delpid)
             pid = str(os.getpid())
             file(args.pidfile, 'w').write("%s\n" % pid)
-        except IOError, e:
+        except IOError as e:
             raise SystemExit("Unable to write PID file: %s [%d]" % (e.strerror, e.errno))
 
 

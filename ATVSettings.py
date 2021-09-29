@@ -3,7 +3,7 @@
 import sys
 from os import sep, makedirs
 from os.path import isdir
-import ConfigParser
+import configparser
 import fnmatch
 
 from Debug import *  # dprint()
@@ -101,7 +101,7 @@ class CATVSettings():
             dflt[opt] = options[opt][0]
         
         # load settings
-        self.cfg = ConfigParser.SafeConfigParser(dflt)
+        self.cfg = configparser.ConfigParser(dflt)
         self.cfg.read(self.getSettingsFile())
     
     def saveSettings(self):
@@ -190,20 +190,20 @@ if __name__=="__main__":
     ATVSettings.checkSection(UDID)
     
     option = 'transcodequality'
-    print ATVSettings.getSetting(UDID, option)
+    print(ATVSettings.getSetting(UDID, option))
     
-    print "setSetting"
+    print("setSetting")
     ATVSettings.setSetting(UDID, option, 'True')  # error - pick default
-    print ATVSettings.getSetting(UDID, option)
+    print(ATVSettings.getSetting(UDID, option))
     ATVSettings.setSetting(UDID, option, '9')
-    print ATVSettings.getSetting(UDID, option)
+    print(ATVSettings.getSetting(UDID, option))
     
-    print "toggleSetting"
+    print("toggleSetting")
     ATVSettings.toggleSetting(UDID, option)
-    print ATVSettings.getSetting(UDID, option)
+    print(ATVSettings.getSetting(UDID, option))
     ATVSettings.toggleSetting(UDID, option)
-    print ATVSettings.getSetting(UDID, option)
+    print(ATVSettings.getSetting(UDID, option))
     ATVSettings.toggleSetting(UDID, option)
-    print ATVSettings.getSetting(UDID, option)
+    print(ATVSettings.getSetting(UDID, option))
     
     del ATVSettings

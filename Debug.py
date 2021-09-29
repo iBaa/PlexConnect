@@ -63,11 +63,6 @@ def dprint(src, dlevel, *args):
             if etree.iselement(asc_args[i]):
                 asc_args[i] = prettyXML(asc_args[i])
             
-            if isinstance(asc_args[i], str):
-                asc_args[i] = asc_args[i].decode('utf-8', 'replace')  # convert as utf-8 just in case
-            if isinstance(asc_args[i], unicode):
-                asc_args[i] = asc_args[i].encode('ascii', 'replace')  # back to ascii
-        
         # print to file (if filename defined)
         if logToFile:
             f = open(g_logfile, 'a')
@@ -82,13 +77,13 @@ def dprint(src, dlevel, *args):
         
         # print to terminal window
         if logToTerminal:
-            print(time.strftime("%b %d,%Y %H:%M:%S")),
+            print((time.strftime("%b %d,%Y %H:%M:%S")), end=' ')
             if len(asc_args)==0:
-                print src+":"
+                print(src+":")
             elif len(asc_args)==1:
-                print src+": "+str(asc_args[0])
+                print(src+": "+str(asc_args[0]))
             else:
-                print src+": "+asc_args[0].format(*asc_args[1:])
+                print(src+": "+asc_args[0].format(*asc_args[1:]))
 
 
 
