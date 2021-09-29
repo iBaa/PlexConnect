@@ -59,7 +59,8 @@ def daemonize(args):
             pid = str(os.getpid())
             file(args.pidfile, 'w').write("%s\n" % pid)
         except IOError as e:
-            raise SystemExit("Unable to write PID file: %s [%d]" % (e.strerror, e.errno))
+            raise SystemExit(
+                "Unable to write PID file: %s [%d]" % (e.strerror, e.errno))
 
 
 def delpid():
@@ -70,6 +71,7 @@ def delpid():
 def sighandler_shutdown(signum, frame):
     signal.signal(signal.SIGINT, signal.SIG_IGN)  # we heard you!
     cmdShutdown()
+
 
 if __name__ == '__main__':
     signal.signal(signal.SIGINT, sighandler_shutdown)

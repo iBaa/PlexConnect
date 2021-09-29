@@ -6,14 +6,14 @@ Subtitle transcoder functions
 """
 
 
-
 import re
-import urllib.request, urllib.error, urllib.parse
+import urllib.request
+import urllib.error
+import urllib.parse
 import json
 
 from Debug import *  # dprint(), prettyXML()
 import PlexAPI
-
 
 
 """
@@ -26,6 +26,8 @@ parameters:
 result:
     aTV subtitle JSON or 'False' in case of error
 """
+
+
 def getSubtitleJSON(PMS_address, path, options):
     """
     # double check aTV UDID, redo from client IP if needed/possible
@@ -36,57 +38,59 @@ def getSubtitleJSON(PMS_address, path, options):
     """
     path = path + ('?' if not '?' in path else '&')
     path = path + 'encoding=utf-8'
-    
+
     if not 'PlexConnectUDID' in options:
         # aTV unidentified, UDID not known
         return False
-    
+
     UDID = options['PlexConnectUDID']
-    
+
     # determine PMS_uuid, PMSBaseURL from IP (PMS_mark)
     xargs = {}
     PMS_uuid = PlexAPI.getPMSFromAddress(UDID, PMS_address)
     PMS_baseURL = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'baseURL')
-    xargs['X-Plex-Token'] = PlexAPI.getPMSProperty(UDID, PMS_uuid, 'accesstoken')
-    
+    xargs['X-Plex-Token'] = PlexAPI.getPMSProperty(
+        UDID, PMS_uuid, 'accesstoken')
+
     dprint(__name__, 1, "subtitle URL: {0}{1}", PMS_baseURL, path)
     dprint(__name__, 1, "xargs: {0}", xargs)
-    
-    request = urllib.request.Request(PMS_baseURL+path , None, xargs)
+
+    request = urllib.request.Request(PMS_baseURL+path, None, xargs)
     try:
         response = urllib.request.urlopen(request, timeout=20)
     except urllib.error.URLError as e:
         dprint(__name__, 0, 'No Response from Plex Media Server')
         if hasattr(e, 'reason'):
-            dprint(__name__, 0, "We failed to reach a server. Reason: {0}", e.reason)
+            dprint(__name__, 0,
+                   "We failed to reach a server. Reason: {0}", e.reason)
         elif hasattr(e, 'code'):
-            dprint(__name__, 0, "The server couldn't fulfill the request. Error code: {0}", e.code)
+            dprint(
+                __name__, 0, "The server couldn't fulfill the request. Error code: {0}", e.code)
         return False
     except IOError:
         dprint(__name__, 0, 'Error loading response XML from Plex Media Server')
         return False
-    
+
     # Todo: Deal with ANSI files. How to select used "codepage"?
     subtitleFile = response.read()
-    
+
     print(response.headers)
-    
+
     dprint(__name__, 1, "====== received Subtitle ======")
     dprint(__name__, 1, "{0} [...]", subtitleFile[:255])
     dprint(__name__, 1, "====== Subtitle finished ======")
-    
-    if options['PlexConnectSubtitleFormat']=='srt':
+
+    if options['PlexConnectSubtitleFormat'] == 'srt':
         subtitle = parseSRT(subtitleFile)
     else:
         return False
-    
+
     JSON = json.dumps(subtitle)
-    
+
     dprint(__name__, 1, "====== generated subtitle aTV subtitle JSON ======")
     dprint(__name__, 1, "{0} [...]", JSON[:255])
     dprint(__name__, 1, "====== aTV subtitle JSON finished ======")
     return(JSON)
-
 
 
 """
@@ -97,58 +101,72 @@ parameters:
 result:
     JSON - subtitle encoded into .js tree to feed PlexConnect's updateSubtitle() (see application.js)
 """
+
+
 def parseSRT(SRT):
-    subtitle = { 'Timestamp': [] }
-    
-    srtPart = re.split(r'(\r\n|\n\r|\n|\r)\1+(?=[0-9]+)', SRT.strip())[::2];  # trim whitespaces, split at multi-newline, check for following number
+    subtitle = {'Timestamp': []}
+
+    # trim whitespaces, split at multi-newline, check for following number
+    srtPart = re.split(r'(\r\n|\n\r|\n|\r)\1+(?=[0-9]+)', SRT.strip())[::2]
     timeHide_last = 0
-    
+
     for Item in srtPart:
-        ItemPart = re.split(r'\r\n|\n\r|\n|\r', Item.strip());  # trim whitespaces, split at newline
-        
-        timePart = re.split(r':|,|-->', ItemPart[1]);  # <StartTime> --> <EndTime> split at : , or -->
+        # trim whitespaces, split at newline
+        ItemPart = re.split(r'\r\n|\n\r|\n|\r', Item.strip())
+
+        # <StartTime> --> <EndTime> split at : , or -->
+        timePart = re.split(r':|,|-->', ItemPart[1])
         timeShow = int(timePart[0])*1000*60*60 +\
-                   int(timePart[1])*1000*60 +\
-                   int(timePart[2])*1000 +\
-                   int(timePart[3]);
+            int(timePart[1])*1000*60 +\
+            int(timePart[2])*1000 +\
+            int(timePart[3])
         timeHide = int(timePart[4])*1000*60*60 +\
-                   int(timePart[5])*1000*60 +\
-                   int(timePart[6])*1000 +\
-                   int(timePart[7]);
-        
+            int(timePart[5])*1000*60 +\
+            int(timePart[6])*1000 +\
+            int(timePart[7])
+
         # switch off? skip if new msg at same point in time.
-        if timeHide_last!=timeShow:
-            subtitle['Timestamp'].append({ 'time': timeHide_last })
+        if timeHide_last != timeShow:
+            subtitle['Timestamp'].append({'time': timeHide_last})
         timeHide_last = timeHide
-        
+
         # current time
-        subtitle['Timestamp'].append({ 'time': timeShow, 'Line': [] })
+        subtitle['Timestamp'].append({'time': timeShow, 'Line': []})
         #JSON += '  { "time":'+str(timeHide_last)+', "Line": [\n'
-        
+
         # analyse format: <...> - i_talics (light), b_old (heavy), u_nderline (?), font color (?)
         frmt_i = False
         frmt_b = False
         for i, line in enumerate(ItemPart[2:]):  # evaluate each text line
-            for frmt in re.finditer(r'<([^/]*?)>', line):  # format switch on in current line
-                if frmt.group(1)=='i': frmt_i = True
-                if frmt.group(1)=='b': frmt_b = True
-            
-            weight = ''  # determine aTV font - from previous line or current
-            if frmt_i: weight = 'light'
-            if frmt_b: weight = 'heavy'
-            
-            for frmt in re.finditer(r'</(.*?)>', line):  # format switch off
-                if frmt.group(1)=='i': frmt_i = False
-                if frmt.group(1)=='b': frmt_b = False
-            
-            line = re.sub('<.*?>', "", line);  # remove the formatting identifiers
-            
-            subtitle['Timestamp'][-1]['Line'].append({ 'text': line })
-            if weight: subtitle['Timestamp'][-1]['Line'][-1]['weight'] = weight
-    
-    subtitle['Timestamp'].append({ 'time': timeHide_last })  # switch off last subtitle
-    return subtitle
+            # format switch on in current line
+            for frmt in re.finditer(r'<([^/]*?)>', line):
+                if frmt.group(1) == 'i':
+                    frmt_i = True
+                if frmt.group(1) == 'b':
+                    frmt_b = True
 
+            weight = ''  # determine aTV font - from previous line or current
+            if frmt_i:
+                weight = 'light'
+            if frmt_b:
+                weight = 'heavy'
+
+            for frmt in re.finditer(r'</(.*?)>', line):  # format switch off
+                if frmt.group(1) == 'i':
+                    frmt_i = False
+                if frmt.group(1) == 'b':
+                    frmt_b = False
+
+            # remove the formatting identifiers
+            line = re.sub('<.*?>', "", line)
+
+            subtitle['Timestamp'][-1]['Line'].append({'text': line})
+            if weight:
+                subtitle['Timestamp'][-1]['Line'][-1]['weight'] = weight
+
+    # switch off last subtitle
+    subtitle['Timestamp'].append({'time': timeHide_last})
+    return subtitle
 
 
 if __name__ == '__main__':
@@ -167,14 +185,14 @@ Does it run?\n\
 Yes, Python works!\n\
 \n\
 "
-    
+
     dprint('', 0, "SRT file")
     dprint('', 0, SRT[:1000])
     subtitle = parseSRT(SRT)
     JSON = json.dumps(subtitle)
     dprint('', 0, "aTV subtitle JSON")
     dprint('', 0, JSON[:1000])
-    
+
 """
 JSON result (about):
 { "Timestamp": [

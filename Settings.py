@@ -9,7 +9,6 @@ import re
 from Debug import *  # dprint()
 
 
-
 """
 Global Settings...
 syntax: 'setting': ('default', 'regex to validate')
@@ -23,38 +22,37 @@ HTTPS: port_ssl, certfile, enable_webserver_ssl - configure SSL portion or webse
 intercept_atv_icon: changes atv icon to plex icon
 """
 g_settings = [
-    ('enable_plexgdm'  , ('True', '((True)|(False))')),
-    ('ip_pms'          , ('192.168.178.10', '[a-zA-Z0-9_.-]+')),
-    ('port_pms'        , ('32400', '[0-9]{1,5}')),
+    ('enable_plexgdm', ('True', '((True)|(False))')),
+    ('ip_pms', ('192.168.178.10', '[a-zA-Z0-9_.-]+')),
+    ('port_pms', ('32400', '[0-9]{1,5}')),
     \
     ('enable_dnsserver', ('True', '((True)|(False))')),
-    ('port_dnsserver'  , ('53', '[0-9]{1,5}')),
-    ('ip_dnsmaster'    , ('8.8.8.8', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
-    ('prevent_atv_update'           , ('True', '((True)|(False))')),
-    ('intercept_atv_icon'           , ('True', '((True)|(False))')),
+    ('port_dnsserver', ('53', '[0-9]{1,5}')),
+    ('ip_dnsmaster', ('8.8.8.8', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
+    ('prevent_atv_update', ('True', '((True)|(False))')),
+    ('intercept_atv_icon', ('True', '((True)|(False))')),
     \
     ('enable_plexconnect_autodetect', ('True', '((True)|(False))')),
-    ('ip_plexconnect'  , ('0.0.0.0', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
-    ('use_custom_dns_bind_ip'   , ('False', '((True)|(False))')),
-    ('custom_dns_bind_ip'  , ('0.0.0.0', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
+    ('ip_plexconnect', ('0.0.0.0', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
+    ('use_custom_dns_bind_ip', ('False', '((True)|(False))')),
+    ('custom_dns_bind_ip', ('0.0.0.0', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
     \
-    ('hosttointercept' , ('trailers.apple.com', '[a-zA-Z0-9_.-]+')),
+    ('hosttointercept', ('trailers.apple.com', '[a-zA-Z0-9_.-]+')),
     ('icon', ('movie-trailers', '[a-zA-Z0-9_.-]+')),
-    ('certfile'        , ('./assets/certificates/trailers.pem', '.+.pem')),
+    ('certfile', ('./assets/certificates/trailers.pem', '.+.pem')),
     \
-    ('port_webserver'  , ('80', '[0-9]{1,5}')),
-    ('enable_webserver_ssl'         , ('True', '((True)|(False))')),
-    ('port_ssl'        , ('443', '[0-9]{1,5}')),
+    ('port_webserver', ('80', '[0-9]{1,5}')),
+    ('enable_webserver_ssl', ('True', '((True)|(False))')),
+    ('port_ssl', ('443', '[0-9]{1,5}')),
     \
-    ('allow_gzip_atv'              , ('False', '((True)|(False))')),
-    ('allow_gzip_pmslocal'         , ('False', '((True)|(False))')),
-    ('allow_gzip_pmsremote'        , ('True', '((True)|(False))')),
-    ('fanart_quality'              , ('High', '((Low)|(High))')),
+    ('allow_gzip_atv', ('False', '((True)|(False))')),
+    ('allow_gzip_pmslocal', ('False', '((True)|(False))')),
+    ('allow_gzip_pmsremote', ('True', '((True)|(False))')),
+    ('fanart_quality', ('High', '((Low)|(High))')),
     \
-    ('loglevel'        , ('Normal', '((Off)|(Normal)|(High))')),
-    ('logpath'         , ('.', '.+')),
-    ]
-
+    ('loglevel', ('Normal', '((Off)|(Normal)|(High))')),
+    ('logpath', ('.', '.+')),
+]
 
 
 class CSettings():
@@ -108,21 +106,23 @@ class CSettings():
                 modify = True
                 self.cfg.set(self.section, opt, dflt)
                 dprint(__name__, 0, "add setting {0}={1}", opt, dflt)
-    
+
             elif not re.search('\A'+vldt+'\Z', setting):
                 # check settings - default if unknown
                 modify = True
                 self.cfg.set(self.section, opt, dflt)
-                dprint(__name__, 0, "bad setting {0}={1} - set default {2}", opt, setting, dflt)
+                dprint(
+                    __name__, 0, "bad setting {0}={1} - set default {2}", opt, setting, dflt)
 
         # save if changed
         if modify:
             self.saveSettings()
 
-
     # access/modify PlexConnect settings
+
     def getSetting(self, option):
-        dprint(__name__, 1, "getsetting {0}={1}", option, self.cfg.get(self.section, option))
+        dprint(__name__, 1, "getsetting {0}={1}",
+               option, self.cfg.get(self.section, option))
         return self.cfg.get(self.section, option)
 
 
