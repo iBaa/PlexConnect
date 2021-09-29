@@ -81,7 +81,7 @@ class MyHandler(BaseHTTPRequestHandler):
         self.send_header('Server', 'PlexConnect')
         self.send_header('Content-type', type)
         try:
-            accept_encoding = list(map(string.strip, string.split(self.headers["accept-encoding"], ",")))
+            accept_encoding = [x.strip() for x in self.headers["accept-encoding"].split(",")]
         except KeyError:
             accept_encoding = []
         if enableGzip and \
@@ -92,7 +92,7 @@ class MyHandler(BaseHTTPRequestHandler):
             self.wfile.write(self.compress(data))
         else:
             self.end_headers()
-            self.wfile.write(data)
+            self.wfile.write(data.encode())
     
     def do_GET(self):
         global g_param
