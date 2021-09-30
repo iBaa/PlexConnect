@@ -345,7 +345,7 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
         threads = []
         PMSsPoked = 0
 
-        for Dir in XML.getiterator('Device'):
+        for Dir in XML.iter('Device'):
             if Dir.get('product', '') == "Plex Media Server" and Dir.get('provides', '') == "server":
                 uuid = Dir.get('clientIdentifier')
                 name = Dir.get('name')
@@ -358,7 +358,7 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
                 PMSsPoked += 1
 
                 # multiple connection possible - poke either one, fastest response wins
-                for Con in Dir.getiterator('Connection'):
+                for Con in Dir.iter('Connection'):
                     protocol = Con.get('protocol')
                     ip = Con.get('address')
                     port = Con.get('port')
@@ -613,7 +613,7 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
             Server.set('size',    XML.getroot().get('size', '0'))
 
             # copy "Directory" content, add PMS to links
-            for Dir in XML.getiterator('Directory'):
+            for Dir in XML.iter('Directory'):
 
                 if Dir.get('key') is not None and (Dir.get('agent') is not None or Dir.get('share') is not None):
                     key = Dir.get('key')  # absolute path
@@ -630,7 +630,7 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
                     Server.append(Dir)
                 elif Dir.get('title') == 'Live TV & DVR':
                     mp = None
-                    for MediaProvider in XML.getiterator('MediaProvider'):
+                    for MediaProvider in XML.iter('MediaProvider'):
                         if MediaProvider.get('protocols') == 'livetv':
                             mp = MediaProvider
                             break
@@ -646,7 +646,7 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
                         Server.append(Dir)
 
             # copy "Playlist" content, add PMS to links
-            for Playlist in XML.getiterator('Playlist'):
+            for Playlist in XML.iter('Playlist'):
                 key = Playlist.get('key')  # absolute path
                 Playlist.set('key',    PMS_mark + getURL('', path, key))
                 if 'composite' in Playlist.attrib:
@@ -655,7 +655,7 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
                 Server.append(Playlist)
 
             # copy "Video" content, add PMS to links
-            for Video in XML.getiterator('Video'):
+            for Video in XML.iter('Video'):
                 key = Video.get('key')  # absolute path
                 Video.set('key',    PMS_mark + getURL('', path, key))
                 if 'thumb' in Video.attrib:
