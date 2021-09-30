@@ -88,7 +88,7 @@ class MyHandler(BaseHTTPRequestHandler):
         self.send_header('Content-type', type)
         try:
             accept_encoding = [x.strip()
-                               for x in self.headers["accept-encoding"].split(",")]
+                               for x in self.headers.get("accept-encoding", "").split(",")]
         except KeyError:
             accept_encoding = []
         if enableGzip and \
@@ -99,7 +99,9 @@ class MyHandler(BaseHTTPRequestHandler):
             self.wfile.write(self.compress(data))
         else:
             self.end_headers()
-            self.wfile.write(data.encode())
+            if not isinstance(data, bytes):
+                data = bytes(data, 'utf8')
+            self.wfile.write(data)
 
     def do_GET(self):
         global g_param

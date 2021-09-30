@@ -51,7 +51,7 @@ def pickLanguage(languages):
 def replaceTEXT(textcontent, language):
     translation = getTranslation(language)
     for msgid in set(re.findall(r'\{\{TEXT\((.+?)\)\}\}', textcontent)):
-        msgstr = translation.ugettext(msgid).replace('\"', '\\\"')
+        msgstr = translation.gettext(msgid).replace('\"', '\\\"')
         textcontent = textcontent.replace('{{TEXT(%s)}}' % msgid, msgstr)
     return textcontent
 
@@ -61,10 +61,10 @@ if __name__ == "__main__":
     language = pickLanguage(languages)
 
     Text = "Hello World"  # doesn't translate
-    print(getTranslation(language).ugettext(Text))
+    print(getTranslation(language).gettext(Text))
 
     Text = "Library"  # translates
-    print(getTranslation(language).ugettext(Text))
+    print(getTranslation(language).gettext(Text))
 
     Text = "{{TEXT(Channels)}}"  # translates
     print(replaceTEXT(Text, language).encode('ascii', 'replace'))

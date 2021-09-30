@@ -169,7 +169,7 @@ def PlexGDM():
     try:
         # Send data to the multicast group
         dprint(__name__, 1, "Sending discovery message: {0}", Msg_PlexGDM)
-        GDM.sendto(Msg_PlexGDM, (IP_PlexGDM, Port_PlexGDM))
+        GDM.sendto(bytes(Msg_PlexGDM, "utf8"), (IP_PlexGDM, Port_PlexGDM))
 
         # Look for responses from all recipients
         while True:
@@ -341,7 +341,7 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
     if XML == False:
         pass  # no data from MyPlex
     else:
-        queue = queue.Queue()
+        q = queue.Queue()
         threads = []
         PMSsPoked = 0
 
@@ -377,7 +377,7 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
                            'data': PMSInfo}
                     dprint(__name__, 0,
                            "poke {0} ({1}) at {2}", name, uuid, uri)
-                    t = Thread(target=getXMLFromPMSToQueue, args=(PMS, queue))
+                    t = Thread(target=getXMLFromPMSToQueue, args=(PMS, q))
                     t.start()
                     threads.append(t)
 
@@ -394,8 +394,8 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
                     ThreadsAlive += 1
 
             # analyse PMS/http response - declare new PMS
-            if not queue.empty():
-                (PMSInfo, PMS) = queue.get()
+            if not q.empty():
+                (PMSInfo, PMS) = q.get()
 
                 if PMS == False:
                     # communication error - skip this connection
@@ -514,10 +514,10 @@ def getXMLFromPMS(baseURL, path, options={}, authtoken='', enableGzip=False):
     return XML
 
 
-def getXMLFromPMSToQueue(PMS, queue):
+def getXMLFromPMSToQueue(PMS, q):
     XML = getXMLFromPMS(PMS['baseURL'], PMS['path'],
                         PMS['options'], PMS['token'])
-    queue.put((PMS['data'], XML))
+    q.put((PMS['data'], XML))
 
 
 def getXArgsDeviceInfo(options={}):
@@ -559,7 +559,7 @@ result:
 
 
 def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
-    queue = queue.Queue()
+    q = queue.Queue()
     threads = []
 
     root = etree.Element("MediaConverter")
@@ -589,7 +589,7 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
             # request XMLs, one thread for each
             PMS = {'baseURL': baseURL, 'path': path, 'options': options, 'token': token,
                    'data': {'uuid': uuid, 'Server': Server}}
-            t = Thread(target=getXMLFromPMSToQueue, args=(PMS, queue))
+            t = Thread(target=getXMLFromPMSToQueue, args=(PMS, q))
             t.start()
             threads.append(t)
 
@@ -598,8 +598,8 @@ def getXMLFromMultiplePMS(ATV_udid, path, type, options={}):
         t.join()
 
     # add new data to root XML, individual Server
-    while not queue.empty():
-        (data, XML) = queue.get()
+    while not q.empty():
+        (data, XML) = q.get()
         uuid = data['uuid']
         Server = data['Server']
 

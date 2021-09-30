@@ -841,7 +841,7 @@ class CCommandHelper():
         return val
 
     def _(self, msgid):
-        return Localize.getTranslation(self.options['aTVLanguage']).ugettext(msgid)
+        return Localize.getTranslation(self.options['aTVLanguage']).gettext(msgid)
 
 
 class CCommandCollection(CCommandHelper):
@@ -1463,12 +1463,12 @@ class CCommandCollection(CCommandHelper):
                 return self._("{0:d} Minutes").format(min)
             else:
                 if len(duration) > 0:
-                    hour = min/60
-                    min = min % 60
+                    hour = int(min / 60)
+                    min = int(min % 60)
                     if hour == 0:
-                        return self._("{0:d} Minutes").format(min)
+                        return self._(f"{min} Minutes")
                     else:
-                        return self._("{0:d}hr {1:d}min").format(hour, min)
+                        return self._(f"{hour}hr {min}min")
 
         if type == 'Audio':
             secs = int(duration)/1000
