@@ -160,9 +160,6 @@ def run(timeout=60):
 def shutdown():
     for slave in procs:
         procs[slave].join()
-    if param['CATVSettings'].getSetting('enable_dnsserver') == 'True':
-        if dnsserver:
-            dnsserver.stop()
     param['CATVSettings'].saveSettings()
 
     dprint('PlexConnect', 0, "Shutdown")
