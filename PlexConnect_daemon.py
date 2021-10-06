@@ -46,18 +46,19 @@ def daemonize(args):
     # redirect standard file descriptors
     sys.stdout.flush()
     sys.stderr.flush()
-    si = file('/dev/null', 'r')
-    so = file('/dev/null', 'a+')
-    se = file('/dev/null', 'a+', 0)
-    os.dup2(si.fileno(), sys.stdin.fileno())
-    os.dup2(so.fileno(), sys.stdout.fileno())
-    os.dup2(se.fileno(), sys.stderr.fileno())
+    si = os.open('/dev/null', os.O_RDONLY)
+    so = os.open('/dev/null', os.O_APPEND)
+    se = os.open('/dev/null', os.O_APPEND, 0)
+    os.dup2(si, sys.stdin.fileno())
+    os.dup2(so, sys.stdout.fileno())
+    os.dup2(se, sys.stderr.fileno())
 
     if args.pidfile:
         try:
             atexit.register(delpid)
             pid = str(os.getpid())
-            file(args.pidfile, 'w').write("%s\n" % pid)
+            with open(args.pidfile, 'w') as fh:
+                fh.write(f"{pid}")
         except IOError as e:
             raise SystemExit(
                 "Unable to write PID file: %s [%d]" % (e.strerror, e.errno))
