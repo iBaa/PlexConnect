@@ -63,21 +63,20 @@ def dprint(src, dlevel, *args):
 
         # print to file (if filename defined)
         if logToFile:
-            f = open(g_logfile, 'a')
-            f.write(time.strftime("%b %d,%Y %H:%M:%S "))
-            if len(asc_args) == 0:
-                f.write(src+":\n")
-            elif len(asc_args) == 1:
-                f.write(src+": "+asc_args[0]+"\n")
-            else:
-                f.write(src+": "+asc_args[0].format(*asc_args[1:])+"\n")
-            f.close()
+            with open(g_logfile, 'a') as f:
+                f.write(time.strftime("%b %d,%Y %H:%M:%S "))
+                if len(asc_args) == 0:
+                    f.write(f"{src}:\n")
+                elif len(asc_args) == 1:
+                    f.write(f"{src}: {asc_args[0]}\n")
+                else:
+                    f.write(f"{src}: {asc_args[0].format(*asc_args[1:])}\n")
 
         # print to terminal window
         if logToTerminal:
             print((time.strftime("%b %d,%Y %H:%M:%S")), end=' ')
             if len(asc_args) == 0:
-                print(src+":")
+                print(f"{src}:")
             elif len(asc_args) == 1:
                 print(src+": "+str(asc_args[0]))
             else:

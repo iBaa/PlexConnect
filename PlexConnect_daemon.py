@@ -12,7 +12,7 @@ import signal
 import argparse
 import atexit
 from PlexConnect import startup, shutdown, run, cmdShutdown
-
+from contextlib import redirect_stderr, redirect_stdout
 
 def daemonize(args):
     """
@@ -43,16 +43,6 @@ def daemonize(args):
     except OSError as e:
         raise RuntimeError("2nd fork failed: %s [%d]" % (e.strerror, e.errno))
 
-    # redirect standard file descriptors
-    sys.stdout.flush()
-    sys.stderr.flush()
-    si = os.open('/dev/null', os.O_RDONLY)
-    so = os.open('/dev/null', os.O_APPEND)
-    se = os.open('/dev/null', os.O_APPEND, 0)
-    os.dup2(si, sys.stdin.fileno())
-    os.dup2(so, sys.stdout.fileno())
-    os.dup2(se, sys.stderr.fileno())
-
     if args.pidfile:
         try:
             atexit.register(delpid)
@@ -82,11 +72,13 @@ if __name__ == '__main__':
     parser.add_argument('--pidfile', dest='pidfile')
     args = parser.parse_args()
 
-    daemonize(args)
+    with redirect_stdout(open(os.devnull, "a")):
+        with redirect_stderr(open(os.devnull, "a")):
+            daemonize(args)
 
-    running = startup()
+            running = startup()
 
-    while running:
-        running = run()
+            while running:
+                running = run()
 
-    shutdown()
+            shutdown()
