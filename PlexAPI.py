@@ -150,7 +150,6 @@ def PlexGDM():
     # setup socket for discovery -> multicast message
     GDM = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     GDM.settimeout(1.0)
-
     # Set the time-to-live for messages to 1 for local network
     ttl = struct.pack('b', 1)
     GDM.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, ttl)
@@ -158,7 +157,7 @@ def PlexGDM():
     returnData = []
     try:
         # Send data to the multicast group
-        dprint(__name__, 1, "Sending discovery message: {0}", Msg_PlexGDM)
+        dprint(__name__, 1, f"Sending discovery message: {Msg_PlexGDM}")
         GDM.sendto(bytes(Msg_PlexGDM, "utf8"), (IP_PlexGDM, Port_PlexGDM))
 
         # Look for responses from all recipients
@@ -171,6 +170,8 @@ def PlexGDM():
                                    'data': data})
             except socket.timeout:
                 break
+    except Exception as e:
+        print(str(e))
     finally:
         GDM.close()
 
@@ -182,8 +183,8 @@ def PlexGDM():
             update = {'ip': response.get('from')[0]}
 
             # Check if we had a positive HTTP response
-            if "200 OK" in response.get('data'):
-                for each in response.get('data').split('\n'):
+            if "200 OK" in response.get('data', b'').decode():
+                for each in response.get('data').decode().split('\n'):
                     # decode response data
                     update['discovery'] = "auto"
                     # update['owned']='1'
@@ -195,8 +196,7 @@ def PlexGDM():
                     elif "Resource-Identifier:" in each:
                         update['uuid'] = each.split(':')[1].strip()
                     elif "Name:" in each:
-                        update['serverName'] = each.split(':')[1].strip().decode(
-                            'utf-8', 'replace')  # store in utf-8
+                        update['serverName'] = each.split(':')[1].strip()
                     elif "Port:" in each:
                         update['port'] = each.split(':')[1].strip()
                     elif "Updated-At:" in each:
