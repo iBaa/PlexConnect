@@ -78,9 +78,9 @@ def dprint(src, dlevel, *args):
             if len(asc_args) == 0:
                 print(f"{src}:")
             elif len(asc_args) == 1:
-                print(src+": "+str(asc_args[0]))
+                print(f"{src}: {str(asc_args[0])}")
             else:
-                print(src+": "+asc_args[0].format(*asc_args[1:]))
+                print(f"{src}: {asc_args[0].format(*asc_args[1:])}")
 
 
 """
@@ -90,14 +90,14 @@ def dprint(src, dlevel, *args):
 
 
 def indent(elem, level=0):
-    i = "\n" + level*"  "
+    i = f"\n" + level * "  "
     if len(elem):
         if not elem.text or not elem.text.strip():
             elem.text = i + "  "
         if not elem.tail or not elem.tail.strip():
             elem.tail = i
         for elem in elem:
-            indent(elem, level+1)
+            indent(elem, level + 1)
         if not elem.tail or not elem.tail.strip():
             elem.tail = i
     else:

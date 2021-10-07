@@ -14,6 +14,7 @@ import atexit
 from PlexConnect import startup, shutdown, run, cmdShutdown
 from contextlib import redirect_stderr, redirect_stdout
 
+
 def daemonize(args):
     """
     do the UNIX double-fork magic, see Stevens' "Advanced
