@@ -42,10 +42,7 @@ from threading import Thread
 import queue
 import traceback
 
-try:
-    import xml.etree.cElementTree as etree
-except ImportError:
-    import xml.etree.ElementTree as etree
+import xml.etree.ElementTree as etree
 
 from urllib.parse import urlencode, quote_plus
 
@@ -328,14 +325,12 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
 
     XML = getXMLFromPMS('https://plex.tv',
                         '/api/resources?includeHttps=1', {}, authtoken)
-
     if not XML:
         pass  # no data from MyPlex
     else:
         q = queue.Queue()
         threads = []
         PMSsPoked = 0
-
         for Dir in XML.iter('Device'):
             if Dir.get('product', '') == "Plex Media Server" and Dir.get('provides', '') == "server":
                 uuid = Dir.get('clientIdentifier')
@@ -343,7 +338,7 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
                 token = Dir.get('accessToken', authtoken)
                 owned = Dir.get('owned', '0')
 
-                if not Dir.find('Connection'):
+                if not Dir.findall('Connection'):
                     continue  # no valid connection - skip
 
                 PMSsPoked += 1
@@ -381,7 +376,7 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
             # check for "living" threads - basically a manual t.join()
             ThreadsAlive = 0
             for t in threads:
-                if t.isAlive():
+                if t.is_alive():
                     ThreadsAlive += 1
 
             # analyse PMS/http response - declare new PMS
@@ -487,20 +482,11 @@ def getXMLFromPMS(baseURL, path, options={}, authtoken='', enableGzip=False):
         dprint(
             __name__, 0, 'Error loading response XML from Plex Media Server:\n{0}', traceback.format_exc())
         return False
-
     if response.info().get('Content-Encoding') == 'gzip':
         buf = io.StringIO(response.read())
         file = gzip.GzipFile(fileobj=buf)
-        XML = etree.parse(file)
-    else:
-        # parse into etree
-        XML = etree.parse(response)
-
-    dprint(__name__, 1, "====== received PMS-XML ======")
-    dprint(__name__, 1, XML.getroot())
-    dprint(__name__, 1, "====== PMS-XML finished ======")
-
-    return XML
+        return etree.parse(file)
+    return etree.parse(response)
 
 
 def getXMLFromPMSToQueue(PMS, q):
@@ -514,6 +500,8 @@ def getXArgsDeviceInfo(options={}):
     xargs['X-Plex-Device'] = 'AppleTV'
     xargs['X-Plex-Model'] = '2,3'  # Base it on AppleTV model.
     # if not options is None:
+    if not options:
+        options = {}
     if 'PlexConnectUDID' in options:
         # UDID for MyPlex device identification
         xargs['X-Plex-Client-Identifier'] = options['PlexConnectUDID']
