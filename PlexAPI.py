@@ -38,7 +38,7 @@ import http.client
 import socket
 import io
 import gzip
-from threading import Thread
+from multiprocessing.dummy import Pool as ThreadPool
 import queue
 import traceback
 
@@ -102,28 +102,23 @@ def getPMSProperty(ATV_udid, uuid, tag):
 
 def getPMSFromAddress(ATV_udid, address):
     # find PMS by IP, return UUID
-    if ATV_udid not in g_PMS:
-        return ''  # no server known for this aTV
-    for uuid in g_PMS[ATV_udid]:
-        if address in g_PMS[ATV_udid][uuid].get('address', None):
+    for uuid in g_PMS.get(ATV_udid, []):
+        if address in g_PMS[ATV_udid][uuid].get('address', []):
             return uuid
     return ''  # IP not found
 
 
 def getPMSAddress(ATV_udid, uuid):
     # get address of PMS by UUID
-    if ATV_udid not in g_PMS:
-        return ''  # no server known for this aTV
-    if uuid not in g_PMS[ATV_udid]:
-        return ''  # requested PMS not available
-    return g_PMS[ATV_udid][uuid]['ip'] + ':' + g_PMS[ATV_udid][uuid]['port']
+    retval = g_PMS.get(ATV_udid, {}).get(uuid, {}).get('ip', '')
+    if retval:
+        retval = f"{retval}:{g_PMS.get(ATV_udid, {}).get(uuid, {}).get('port', '')}"
+    return retval
 
 
 def getPMSCount(ATV_udid):
     # get count of discovered PMS by UUID
-    if ATV_udid in g_PMS:
-        return len(g_PMS[ATV_udid])
-    return 0  # no server known for this aTV
+    return len(g_PMS.get(ATV_udid, []))
 
 
 """
@@ -342,7 +337,6 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
                     continue  # no valid connection - skip
 
                 PMSsPoked += 1
-
                 # multiple connection possible - poke either one, fastest response wins
                 for Con in Dir.iter('Connection'):
                     protocol = Con.get('protocol')
@@ -355,7 +349,6 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
                     if local == "1":
                         protocol = "http"
                         uri = protocol + "://" + ip + ":" + port
-
                     # poke PMS, own thread for each poke
                     PMSInfo = {'uuid': uuid, 'name': name, 'token': token, 'owned': owned, 'local': local,
                                'protocol': protocol, 'ip': ip, 'port': port, 'uri': uri}
@@ -382,7 +375,6 @@ def getPMSListFromMyPlex(ATV_udid, authtoken):
             # analyse PMS/http response - declare new PMS
             if not q.empty():
                 (PMSInfo, PMS) = q.get()
-
                 if not PMS:
                     # communication error - skip this connection
                     continue
@@ -446,9 +438,9 @@ result:
 
 def getXMLFromPMS(baseURL, path, options={}, authtoken='', enableGzip=False):
     xargs = {}
-    if options is None:
+    if options:
         xargs = getXArgsDeviceInfo(options)
-    if not authtoken == '':
+    if authtoken:
         xargs['X-Plex-Token'] = authtoken
 
     dprint(__name__, 1, "URL: {0}{1}", baseURL, path)
@@ -499,9 +491,6 @@ def getXArgsDeviceInfo(options={}):
     xargs = dict()
     xargs['X-Plex-Device'] = 'AppleTV'
     xargs['X-Plex-Model'] = '2,3'  # Base it on AppleTV model.
-    # if not options is None:
-    if not options:
-        options = {}
     if 'PlexConnectUDID' in options:
         # UDID for MyPlex device identification
         xargs['X-Plex-Client-Identifier'] = options['PlexConnectUDID']
