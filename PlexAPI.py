@@ -38,7 +38,7 @@ import http.client
 import socket
 import io
 import gzip
-from multiprocessing.dummy import Pool as ThreadPool
+from threading import Thread
 import queue
 import traceback
 
@@ -280,7 +280,6 @@ def discoverPMS(ATV_udid, CSettings, IP_self, tokenDict={}):
 
             PMS_list = PlexGDM()
             for (uuid, PMS) in PMS_list.items():
-                print(f"uuid:{uuid}\nPMS: {PMS}")
                 # dflt: token='', local, owned
                 declarePMS(
                     ATV_udid, PMS['uuid'], PMS['serverName'], 'http', PMS['ip'], PMS['port'])
