@@ -22,30 +22,28 @@ import win32service
 import PlexConnect
 
 
-
 class AppServerSvc(win32serviceutil.ServiceFramework):
     _svc_name_ = "PlexConnect-Service"
     _svc_display_name_ = "PlexConnect-Service"
     _svc_description_ = "Description"
-    
-    def __init__(self,args):
-        win32serviceutil.ServiceFramework.__init__(self,args)
-    
+
+    def __init__(self, args):
+        win32serviceutil.ServiceFramework.__init__(self, args)
+
     def SvcStop(self):
         self.ReportServiceStatus(win32service.SERVICE_STOP_PENDING)
         PlexConnect.cmdShutdown()
-    
+
     def SvcDoRun(self):
         self.ReportServiceStatus(win32service.SERVICE_RUNNING)
         running = PlexConnect.startup()
-        
+
         while running:
             running = PlexConnect.run(timeout=10)
-        
-        PlexConnect.shutdown()
-        
-        self.ReportServiceStatus(win32service.SERVICE_STOPPED)
 
+        PlexConnect.shutdown()
+
+        self.ReportServiceStatus(win32service.SERVICE_STOPPED)
 
 
 if __name__ == '__main__':

@@ -19,9 +19,7 @@ The basic idea is, to...
 
 
 ## Requirements
-- Python 2.6.x with minor issues: ElementTree doesn't support tag indices.
-- Python 2.7.18 recommended.
-
+- Python 3 (Tested on 3.9.2)
 
 ## Installation
 ```sh
@@ -42,6 +40,7 @@ See the [Wiki - Install Guide][] for additional documentation.
 
 ## Usage
 ```sh
+pip install -r requirements.txt
 # Run with root privileges
 sudo ./PlexConnect.py
 ```

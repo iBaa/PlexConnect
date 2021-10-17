@@ -12,6 +12,7 @@ import signal
 import argparse
 import atexit
 from PlexConnect import startup, shutdown, run, cmdShutdown
+from contextlib import redirect_stderr, redirect_stdout
 
 
 def daemonize(args):
@@ -25,7 +26,7 @@ def daemonize(args):
         pid = os.fork()
         if pid != 0:
             sys.exit(0)
-    except OSError, e:
+    except OSError as e:
         raise RuntimeError("1st fork failed: %s [%d]" % (e.strerror, e.errno))
 
     # decouple from parent environment
@@ -40,26 +41,18 @@ def daemonize(args):
         pid = os.fork()
         if pid != 0:
             sys.exit(0)
-    except OSError, e:
+    except OSError as e:
         raise RuntimeError("2nd fork failed: %s [%d]" % (e.strerror, e.errno))
-
-    # redirect standard file descriptors
-    sys.stdout.flush()
-    sys.stderr.flush()
-    si = file('/dev/null', 'r')
-    so = file('/dev/null', 'a+')
-    se = file('/dev/null', 'a+', 0)
-    os.dup2(si.fileno(), sys.stdin.fileno())
-    os.dup2(so.fileno(), sys.stdout.fileno())
-    os.dup2(se.fileno(), sys.stderr.fileno())
 
     if args.pidfile:
         try:
             atexit.register(delpid)
             pid = str(os.getpid())
-            file(args.pidfile, 'w').write("%s\n" % pid)
-        except IOError, e:
-            raise SystemExit("Unable to write PID file: %s [%d]" % (e.strerror, e.errno))
+            with open(args.pidfile, 'w') as fh:
+                fh.write(f"{pid}")
+        except IOError as e:
+            raise SystemExit(
+                "Unable to write PID file: %s [%d]" % (e.strerror, e.errno))
 
 
 def delpid():
@@ -71,6 +64,7 @@ def sighandler_shutdown(signum, frame):
     signal.signal(signal.SIGINT, signal.SIG_IGN)  # we heard you!
     cmdShutdown()
 
+
 if __name__ == '__main__':
     signal.signal(signal.SIGINT, sighandler_shutdown)
     signal.signal(signal.SIGTERM, sighandler_shutdown)
@@ -79,11 +73,13 @@ if __name__ == '__main__':
     parser.add_argument('--pidfile', dest='pidfile')
     args = parser.parse_args()
 
-    daemonize(args)
+    with redirect_stdout(open(os.devnull, "a")):
+        with redirect_stderr(open(os.devnull, "a")):
+            daemonize(args)
 
-    running = startup()
+            running = startup()
 
-    while running:
-        running = run()
+            while running:
+                running = run()
 
-    shutdown()
+            shutdown()
