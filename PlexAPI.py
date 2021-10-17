@@ -255,10 +255,12 @@ def discoverPMS(ATV_udid, CSettings, IP_self, tokenDict={}):
             try:
                 ip2 = socket.gethostbyname(ip)
                 if ip != ip2:
-                    dprint(__name__, 0, f"PlexAPI - Hostname {ip} resolved to {ip2}")
+                    dprint(__name__, 0,
+                           f"PlexAPI - Hostname {ip} resolved to {ip2}")
                     ip = ip2
             except Exception:
-                dprint(__name__, 0, f"PlexAPI - ip_dns {ip} could not be resolved")
+                dprint(__name__, 0,
+                       f"PlexAPI - ip_dns {ip} could not be resolved")
 
             port = CSettings.getSetting('port_pms')
             XML = getXMLFromPMS(f'http://{ip}:{port}', '/servers', None, '')
@@ -476,8 +478,14 @@ def getXMLFromPMS(baseURL, path, options={}, authtoken='', enableGzip=False):
     if response.info().get('Content-Encoding') == 'gzip':
         buf = io.StringIO(response.read())
         file = gzip.GzipFile(fileobj=buf)
-        return etree.parse(file)
-    return etree.parse(response)
+        XML = etree.parse(file)
+    else:
+        XML = etree.parse(response)
+    dprint(__name__, 1, "====== received PMS-XML ======")
+    dprint(__name__, 1, XML.getroot())
+    dprint(__name__, 1, "====== PMS-XML finished ======")
+    return XML
+
 
 
 def getXMLFromPMSToQueue(PMS, q):
@@ -718,7 +726,6 @@ def MyPlexSignIn(username, password, options):
             return ('', '')
         else:
             raise
-
     dprint(__name__, 1, "====== MyPlex sign in XML ======")
     dprint(__name__, 1, response)
     dprint(__name__, 1, "====== MyPlex sign in XML finished ======")
