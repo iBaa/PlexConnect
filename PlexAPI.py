@@ -725,13 +725,13 @@ def MyPlexSignIn(username, password, options):
 def MyPlexSignOut(authtoken):
     # MyPlex web address
     MyPlexHost = 'plex.tv'
-    MyPlexSignOutPath = '/users/sign_out.xml'
+    MyPlexSignOutPath = '/api/v2/users/signout'
     MyPlexURL = 'http://' + MyPlexHost + MyPlexSignOutPath
     
     # create POST request
     xargs = { 'X-Plex-Token': authtoken }
     request = urllib2.Request(MyPlexURL, None, xargs)
-    request.get_method = lambda: 'POST'  # turn into 'POST' - done automatically with data!=None. But we don't have data.
+    request.get_method = lambda: 'DELETE'  # turn into 'DELETE' - done automatically with data!=None. But we don't have data.
     
     response = urllib2.urlopen(request).read()
     
