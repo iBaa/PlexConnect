@@ -320,6 +320,7 @@ def Run(cmdPipe, param):
     cfg_IP_self = param['IP_self']
     cfg_Port_DNSServer = param['CSettings'].getSetting('port_dnsserver')
     cfg_IP_DNSMaster = param['CSettings'].getSetting('ip_dnsmaster')
+    cfg_Port_DNSMaster = param['CSettings'].getSetting('port_dnsmaster')
     
     try:
         DNS = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -349,7 +350,7 @@ def Run(cmdPipe, param):
     dprint(__name__, 0, "DNSServer: Serving DNS on {0} port {1}.", cfg_IP_self, cfg_Port_DNSServer)
     dprint(__name__, 1, "intercept: {0} => {1}", intercept, cfg_IP_self)
     dprint(__name__, 1, "restrain: {0} => 127.0.0.1", restrain)
-    dprint(__name__, 1, "forward other to higher level DNS: "+cfg_IP_DNSMaster)
+    dprint(__name__, 1, "forward other to higher level DNS {0} port {1}.", cfg_IP_DNSMaster, cfg_Port_DNSMaster)
     dprint(__name__, 0, "***")
     
     try:
@@ -415,7 +416,7 @@ def Run(cmdPipe, param):
                         dprint(__name__, 0, "Failed to create socket for DNS_forward): {0}", e)
                         continue
                     
-                    DNS_forward.sendto(data, (cfg_IP_DNSMaster, 53))
+                    DNS_forward.sendto(data, (cfg_IP_DNSMaster, int(cfg_Port_DNSMaster)))
                     paket, addr_master = DNS_forward.recvfrom(1024)
                     DNS_forward.close()
                     # todo: double check: ID has to be the same!
