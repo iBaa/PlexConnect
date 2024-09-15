@@ -1,7 +1,7 @@
 # PlexConnect
 or: "Plex @ aTV - think different..."
 
-PlexConnect is an app that allows AppleTV2 and AppleTV3 to be used as Plex clients. Development started in 2013 and finished in 2015 (whan AppleTV4 was announced), as described in this [Plex Forum thread][].
+PlexConnect is an app that allows AppleTV2 and AppleTV3 to be used as Plex clients. Development started in 2013 and finished in 2015 (whnn AppleTV4 was announced), as described in this [Plex Forum thread][].
 
 There are two options to install PlexConnect:
 - If you applied a jailbreak to your aTV you can install PlexConnect on it. This is the preferred way
