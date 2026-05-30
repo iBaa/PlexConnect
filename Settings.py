@@ -15,7 +15,7 @@ Global Settings...
 syntax: 'setting': ('default', 'regex to validate')
 
 PMS: plexgdm, ip_pms, port_pms
-DNS: ip_dnsmaster - IP of Router, ISP's DNS, ... [dflt: google public DNS]
+DNS: ip_dnsmaster, port_dnsmaster - IP of Router, ISP's DNS, Other local DNS service, ... [dflt: google public DNS, port 53]
 IP_self: enable_plexconnect_autodetect, ip_plexconnect - manual override for VPN usage
 Intercept: Trailers-trailers.apple.com, WSJ-secure.marketwatch.com, iMovie-www.icloud.com
 HTTP: port_webserver - override when using webserver + forwarding to PlexConnect
@@ -30,6 +30,7 @@ g_settings = [
     ('enable_dnsserver', ('True', '((True)|(False))')),
     ('port_dnsserver'  , ('53', '[0-9]{1,5}')),
     ('ip_dnsmaster'    , ('8.8.8.8', '([0-9]{1,3}\.){3}[0-9]{1,3}')),
+    ('port_dnsmaster'  , ('53', '[0-9]{1,5}')),
     ('prevent_atv_update'           , ('True', '((True)|(False))')),
     ('intercept_atv_icon'           , ('True', '((True)|(False))')),
     \
